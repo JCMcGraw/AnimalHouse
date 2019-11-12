@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalHouse", "AnimalHouse\AnimalHouse.csproj", "{58CE7844-5CE9-497B-906C-CCD6C3D2B611}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalHouseUI", "AnimalHouseUI\AnimalHouseUI.csproj", "{DC10BB5C-8807-424D-A2E9-1DE878CAC8BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{58CE7844-5CE9-497B-906C-CCD6C3D2B611}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58CE7844-5CE9-497B-906C-CCD6C3D2B611}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58CE7844-5CE9-497B-906C-CCD6C3D2B611}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC10BB5C-8807-424D-A2E9-1DE878CAC8BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC10BB5C-8807-424D-A2E9-1DE878CAC8BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC10BB5C-8807-424D-A2E9-1DE878CAC8BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC10BB5C-8807-424D-A2E9-1DE878CAC8BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
