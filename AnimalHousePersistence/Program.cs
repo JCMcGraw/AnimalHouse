@@ -10,7 +10,7 @@ namespace AnimalHousePersistence
     {
         static void Main(string[] args)
         {
-            //test
+
         }
     }
 }

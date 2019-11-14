@@ -11,7 +11,7 @@ namespace AnimalHousePersistence
     {
         public void GetAnimal(int animalID)
         {
-            string query = "";
+            string query = Utility.ReadSQLQueryFromFile("GetAnimal.txt");
 
             SQLQuery sQLQuery = new SQLQuery(query);
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace AnimalHousePersistence
 {
@@ -25,6 +26,13 @@ namespace AnimalHousePersistence
             {
                 connectionString = value;
             }
+        }
+
+        public static string ReadSQLQueryFromFile(string filename)
+        {
+            string query = File.ReadAllText(@"SQLQueries\" + filename);
+
+            return query;
         }
     }
 }
