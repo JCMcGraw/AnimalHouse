@@ -1,0 +1,2 @@
+﻿Insert into Animals
+Value(@customerid, @weight, @speciesid...)
