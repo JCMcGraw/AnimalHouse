@@ -15,7 +15,7 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("animalid", animalID.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@animalid", animalID.ToString(), SqlDbType.Int);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 

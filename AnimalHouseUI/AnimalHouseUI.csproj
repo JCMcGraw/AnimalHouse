@@ -66,6 +66,12 @@
     <Compile Include="SampleForm.Designer.cs">
       <DependentUpon>SampleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TreatmentBooking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TreatmentBooking.Designer.cs">
+      <DependentUpon>TreatmentBooking.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -81,6 +87,9 @@
     </Compile>
     <EmbeddedResource Include="SampleForm.resx">
       <DependentUpon>SampleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TreatmentBooking.resx">
+      <DependentUpon>TreatmentBooking.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -115,6 +124,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8_maximize_button_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AnimalHouseEntities\AnimalHouseEntities.csproj">
+      <Project>{333dca3f-6627-4364-995d-d0458e3b65ef}</Project>
+      <Name>AnimalHouseEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnimalHousePersistence\AnimalHousePersistence.csproj">
+      <Project>{0251eddd-f40b-4de2-9697-67d86e520d87}</Project>
+      <Name>AnimalHousePersistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnimalHouse\AnimalHouse.csproj">
+      <Project>{58ce7844-5ce9-497b-906c-ccd6c3d2b611}</Project>
+      <Name>AnimalHouse</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\System.Windows.Forms.Calendar\System.Windows.Forms.Calendar.csproj">
+      <Project>{25649F08-3046-4891-ADB8-7EA787B57063}</Project>
+      <Name>System.Windows.Forms.Calendar</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
