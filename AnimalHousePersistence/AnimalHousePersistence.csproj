@@ -58,12 +58,24 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SQLQueries\DeleteTreatment.txt" />
     <Content Include="SQLQueries\GetAnimal.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLQueries\CreateAnimal.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQLQueries\CreateTreatment.txt" />
+    <Content Include="SQLQueries\GetManyTreatmentsByAnimal.txt" />
+    <Content Include="SQLQueries\GetManyTreatmentsByEmployee.txt" />
+    <Content Include="SQLQueries\GetTreatment.txt" />
+    <Content Include="SQLQueries\UpdateTreatment.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AnimalHouseEntities\AnimalHouseEntities.csproj">
+      <Project>{333dca3f-6627-4364-995d-d0458e3b65ef}</Project>
+      <Name>AnimalHouseEntities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
