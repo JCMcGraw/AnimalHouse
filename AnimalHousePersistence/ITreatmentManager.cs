@@ -9,7 +9,7 @@ namespace AnimalHousePersistence
 {
     public interface ITreatmentManager
     {
-        string CreateTreatment(Treatment treatment);
+        string CreateTreatment(DateTime startTime, DateTime endTime, bool payed);
 
         string UpdateTreatment(Treatment treatment);
 

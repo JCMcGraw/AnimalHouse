@@ -8,13 +8,27 @@ using AnimalHouseEntities;
 
 namespace AnimalHouse
 {
-    class TreatmentController
+    public class TreatmentController
     {
+        private static TreatmentController instance;
+
+        private TreatmentController() { }
+
+        public static TreatmentController Instance()
+        {
+            if (instance == null)
+            {
+                instance = new TreatmentController();
+            }
+
+            return instance;
+        }
+
         ITreatmentManager treatmentManager = new TreatmentManager();
 
-        public string CreateTreatment(Treatment treatment)
+        public string CreateTreatment(DateTime startTime, DateTime endTime, bool payed)
         {
-            string createTreatment = treatmentManager.CreateTreatment(treatment);
+            string createTreatment = treatmentManager.CreateTreatment(startTime,endTime,payed);
             return createTreatment;
         }
 
