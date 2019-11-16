@@ -16,9 +16,9 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("startTime", treatment.startTime.ToString(), SqlDbType.DateTime);
-            sQLQuery.AddParameter("endTime", treatment.endTime.ToString(), SqlDbType.DateTime);
-            sQLQuery.AddParameter("payed", treatment.payed.ToString(), SqlDbType.Bit);
+            sQLQuery.AddParameter("@startTime", treatment.startTime.ToString(), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@endTime", treatment.endTime.ToString(), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@payed", treatment.payed.ToString(), SqlDbType.Bit);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
@@ -40,9 +40,9 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("startTime", treatment.startTime.ToString(), SqlDbType.DateTime);
-            sQLQuery.AddParameter("endTime", treatment.endTime.ToString(), SqlDbType.DateTime);
-            sQLQuery.AddParameter("payed", treatment.payed.ToString(), SqlDbType.Bit);
+            sQLQuery.AddParameter("@startTime", treatment.startTime.ToString(), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@endTime", treatment.endTime.ToString(), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@payed", treatment.payed.ToString(), SqlDbType.Bit);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
@@ -55,9 +55,9 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("startTime", treatment.startTime.ToString(), SqlDbType.DateTime);
-            sQLQuery.AddParameter("endTime", treatment.endTime.ToString(), SqlDbType.DateTime);
-            sQLQuery.AddParameter("payed", treatment.payed.ToString(), SqlDbType.Bit);
+            sQLQuery.AddParameter("@startTime", treatment.startTime.ToString(), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@endTime", treatment.endTime.ToString(), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@payed", treatment.payed.ToString(), SqlDbType.Bit);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
@@ -70,7 +70,7 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("TreatmentID", treatmentID.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@treatmentID", treatmentID.ToString(), SqlDbType.Int);
             
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
@@ -83,9 +83,9 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("EmployeeID", employeeID.ToString(), SqlDbType.Int);
-            sQLQuery.AddParameter("startTime", startTime.ToString(), SqlDbType.DateTime);
-            sQLQuery.AddParameter("endTime", endTime.ToString(), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@employeeID", employeeID.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@startTime", startTime.ToString(), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@endTime", endTime.ToString(), SqlDbType.DateTime);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
@@ -98,9 +98,9 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("EmployeeID", animalID.ToString(), SqlDbType.Int);
-            sQLQuery.AddParameter("startTime", startTime.ToString(), SqlDbType.DateTime);
-            sQLQuery.AddParameter("endTime", endTime.ToString(), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@employeeID", animalID.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@startTime", startTime.ToString(), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@endTime", endTime.ToString(), SqlDbType.DateTime);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
