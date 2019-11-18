@@ -9,15 +9,15 @@ namespace AnimalHousePersistence
 {
     public interface ITreatmentManager
     {
-        string CreateTreatment(Treatment treatment);
+        Treatment CreateTreatment(Treatment treatment);
 
         string UpdateTreatment(Treatment treatment);
 
         string DeleteTreatment(Treatment treatment);
 
-        string GetTreatment(int treatmentID);
+        Treatment GetTreatment(int treatmentID);
 
-        string GetManyTreatmentsByEmployee(int employeeID, DateTime startTime, DateTime endTime);
+        List<Treatment> GetManyTreatmentsByEmployee(int employeeID, DateTime startTime, DateTime endTime);
 
         string GetManyTreatmentsByAnimal(int animalID, DateTime startTime, DateTime endTime);
     }

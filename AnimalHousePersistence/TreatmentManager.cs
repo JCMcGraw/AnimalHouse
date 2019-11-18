@@ -10,7 +10,7 @@ namespace AnimalHousePersistence
 {
     public class TreatmentManager : ITreatmentManager
     {
-        public string CreateTreatment(Treatment treatment)
+        public Treatment CreateTreatment(Treatment treatment)
         {
             string query = Utility.ReadSQLQueryFromFile("CreateTreatment.txt");
 
@@ -22,14 +22,11 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            if (sQLQueryResult.code == 0)
-            {
-                return "OK";
-            }
-            else
-            {
-                return sQLQueryResult.code.ToString();
-            }
+            int iD = (int)sQLQueryResult.dataTable.Rows[0]["TreatmentID"];
+
+            treatment.UpdateID(iD);
+
+            return treatment;
         }
 
         public string UpdateTreatment(Treatment treatment)
@@ -62,20 +59,33 @@ namespace AnimalHousePersistence
             return "ok";
         }
 
-        public string GetTreatment(int treatmentID)
+        public Treatment GetTreatment(int treatmentID)
         {
             string query = Utility.ReadSQLQueryFromFile("GetTreatment.txt");
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
             sQLQuery.AddParameter("@treatmentID", treatmentID.ToString(), SqlDbType.Int);
-            
+
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            return "ok";
+            int tratmentID = (int)sQLQueryResult.dataTable.Rows[0]["TreatmentID"];
+            DateTime startTime = (DateTime)sQLQueryResult.dataTable.Rows[0]["StartTime"];
+            DateTime endTime = (DateTime)sQLQueryResult.dataTable.Rows[0]["EndTime"];
+            bool payed = (bool)sQLQueryResult.dataTable.Rows[0]["Payed"];
+            int cageID = (int)sQLQueryResult.dataTable.Rows[0]["CageID"];
+            int treatmentTypeID = (int)sQLQueryResult.dataTable.Rows[0]["TreatmentTypeID"];
+            int operationRoomID = (int)sQLQueryResult.dataTable.Rows[0]["OperationRoomID"];
+            int employeeID = (int)sQLQueryResult.dataTable.Rows[0]["EmployeeID"];
+            int animalID = (int)sQLQueryResult.dataTable.Rows[0]["AnimalID"];
+            int itemID = (int)sQLQueryResult.dataTable.Rows[0]["ItemID"];
+
+            Treatment treatment = TreatmentFaktory.Instance().CreateTreatment(tratmentID, treatmentTypeID, operationRoomID,cageID,itemID,startTime,endTime,payed);
+
+            return treatment;
         }
 
-        public string GetManyTreatmentsByEmployee(int employeeID, DateTime startTime, DateTime endTime)
+        public List<Treatment> GetManyTreatmentsByEmployee(int employeeID, DateTime startTime, DateTime endTime)
         {
             string query = Utility.ReadSQLQueryFromFile("GetManyTreatmentsByEmployee.txt");
 
@@ -87,7 +97,9 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            return "ok";
+
+
+            return new List<Treatment>();
         }
 
         public string GetManyTreatmentsByAnimal(int animalID, DateTime startTime, DateTime endTime)
