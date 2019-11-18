@@ -10,18 +10,18 @@ namespace AnimalHouse
 {
     public class TreatmentController
     {
-        private static TreatmentController instance;
+        private static TreatmentController treatmentController;
 
         private TreatmentController() { }
 
-        public static TreatmentController Instance()
+        public static TreatmentController instance()
         {
-            if (instance == null)
+            if (treatmentController == null)
             {
-                instance = new TreatmentController();
+                treatmentController = new TreatmentController();
             }
 
-            return instance;
+            return treatmentController;
         }
 
         ITreatmentManager treatmentManager = new TreatmentManager();

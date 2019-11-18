@@ -152,13 +152,11 @@ namespace AnimalHouseUI
 
         private void button_soeg_Click(object sender, EventArgs e)
         {
-            BossController bosscontroller = new BossController();
-
-
-            CustomerController customercontroller = bosscontroller.GetCustomerController();
 
             
-            Customer customer = customercontroller.GetCustomer(textBox_phonenumber.Text);
+            
+
+            Customer customer = BossController.instance().customerController.GetCustomer(textBox_phonenumber.Text);
 
 
             textBox_navn.Text = customer.name.ToString();
@@ -175,8 +173,8 @@ namespace AnimalHouseUI
 
         private void button_opret_Click(object sender, EventArgs e)
         {
-            BossController bosscontroller = new BossController();
-            CustomerController customercontroller = bosscontroller.GetCustomerController();
+            //BossController bosscontroller = new BossController();
+           // CustomerController customercontroller = bosscontroller.GetCustomerController();
 
             
             
@@ -186,9 +184,10 @@ namespace AnimalHouseUI
         private void button_rediger_Click(object sender, EventArgs e)
         {
             //Lav en "er du sikker"-popup
+            //
 
-            BossController bosscontroller = new BossController();
-            CustomerController customercontroller = bosscontroller.GetCustomerController();
+            //ossController bosscontroller = new BossController()
+           // CustomerController customercontroller = bosscontroller.GetCustomerController();
 
             //string message= customercontroller.UpdateCustomer(textBox_phonenumber.Text.ToString(), textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_email.Text.ToString());
             //MessageBox.Show(message);
@@ -197,8 +196,8 @@ namespace AnimalHouseUI
         private void button_slet_Click(object sender, EventArgs e)
             //lav en "er du sikker" popup
         {
-            BossController bosscontroller = new BossController();
-            CustomerController customercontroller = bosscontroller.GetCustomerController();
+            //BossController bosscontroller = new BossController();
+          //  CustomerController customercontroller = bosscontroller.GetCustomerController();
 
             //string message = customercontroller.DeleteCustomer(textBox_phonenumber.Text.ToString());
             //MessageBox.Show(message);
