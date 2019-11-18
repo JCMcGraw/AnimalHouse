@@ -98,7 +98,7 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("@phone", phone.ToString(), SqlDbType.VarChar);
+            sQLQuery.AddParameter("@phone", phone, SqlDbType.VarChar);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 

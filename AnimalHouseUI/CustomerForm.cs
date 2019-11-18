@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AnimalHouse;
+using AnimalHouseEntities;
 
 
 namespace AnimalHouseUI
@@ -156,21 +157,20 @@ namespace AnimalHouseUI
 
             CustomerController customercontroller = bosscontroller.GetCustomerController();
 
-            DataTable dataTable = customercontroller.GetCustomer(textBox_phonenumber.ToString());
-
             
+            Customer customer = customercontroller.GetCustomer(textBox_phonenumber.Text);
 
 
-            textBox_navn.Text=dataTable.Rows[0]["Name"].ToString();
-            textBox_adresse.Text = dataTable.Rows[0]["Adress"].ToString();
-            textBox_email.Text = dataTable.Rows[0]["Email"].ToString();
+            textBox_navn.Text = customer.name.ToString();
+            textBox_adresse.Text = customer.address.ToString();
+            textBox_email.Text = customer.email.ToString();
 
             button_rediger.Enabled = true;
 
             button_slet.Enabled = true;
 
            button_dyr.Enabled = true;
-            label_headline.Text = textBox_navn.Text;
+            label_headline.Text = customer.name.ToString();
         }
 
         private void button_opret_Click(object sender, EventArgs e)
@@ -179,10 +179,7 @@ namespace AnimalHouseUI
             CustomerController customercontroller = bosscontroller.GetCustomerController();
 
             
-
-          string message= customercontroller.CreateCostumer(textBox_phonenumber.Text.ToString(), textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(),textBox_email.Text.ToString());
-
-            MessageBox.Show(message);
+            
 
         }
 
@@ -193,8 +190,8 @@ namespace AnimalHouseUI
             BossController bosscontroller = new BossController();
             CustomerController customercontroller = bosscontroller.GetCustomerController();
 
-            string message= customercontroller.UpdateCustomer(textBox_phonenumber.Text.ToString(), textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_email.Text.ToString());
-            MessageBox.Show(message);
+            //string message= customercontroller.UpdateCustomer(textBox_phonenumber.Text.ToString(), textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_email.Text.ToString());
+            //MessageBox.Show(message);
         }
 
         private void button_slet_Click(object sender, EventArgs e)
@@ -203,8 +200,8 @@ namespace AnimalHouseUI
             BossController bosscontroller = new BossController();
             CustomerController customercontroller = bosscontroller.GetCustomerController();
 
-            string message = customercontroller.DeleteCustomer(textBox_phonenumber.Text.ToString());
-            MessageBox.Show(message);
+            //string message = customercontroller.DeleteCustomer(textBox_phonenumber.Text.ToString());
+            //MessageBox.Show(message);
 
         }
     }

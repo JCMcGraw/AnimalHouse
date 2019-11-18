@@ -31,8 +31,7 @@ namespace AnimalHouse
         {
 
             ICustomerManager customerManager = new CustomerManager();
-            //DataTable dataTable=customerFactory.GetCustomer(phone);
-
+            
             Customer customer = customerManager.GetCustomer(phone);
             return customer;
 
