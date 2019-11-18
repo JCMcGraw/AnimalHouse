@@ -13,16 +13,16 @@ namespace AnimalHouse
     {
         private CustomerController()
             {}
-        private static CustomerController _instance = null;
+        private static CustomerController customerController = null;
         public static CustomerController instance
         {
             get
             {
-                if (_instance == null)
+                if (customerController == null)
                 {
-                    _instance = new CustomerController();
+                    customerController = new CustomerController();
                 }
-                return _instance;
+                return customerController;
             }
 
         }
@@ -33,6 +33,7 @@ namespace AnimalHouse
             ICustomerManager customerManager = new CustomerManager();
             
             Customer customer = customerManager.GetCustomer(phone);
+
             return customer;
 
            
