@@ -134,5 +134,15 @@
   <ItemGroup>
     <None Include="Resources\icons8_maximize_button_32px.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AnimalHouseEntities\AnimalHouseEntities.csproj">
+      <Project>{333dca3f-6627-4364-995d-d0458e3b65ef}</Project>
+      <Name>AnimalHouseEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AnimalHouse\AnimalHouse.csproj">
+      <Project>{58ce7844-5ce9-497b-906c-ccd6c3d2b611}</Project>
+      <Name>AnimalHouse</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
