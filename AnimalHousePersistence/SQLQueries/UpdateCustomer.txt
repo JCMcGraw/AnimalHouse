@@ -1,0 +1,1 @@
+﻿update customer set Name = @name, Adress =@address, Phone =@phone, Email=@email where Phone='123'

@@ -7,16 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AnimalHouse;
+
 
 namespace AnimalHouseUI
 {
-    public partial class SampleForm : Form
+    public partial class CustomerForm : Form
     {
-        public SampleForm()
+        public CustomerForm()
         {
             InitializeComponent();
         }
-
         #region Copy this 
 
         private const int CS_DROPSHADOW = 0x20000;
@@ -138,11 +139,73 @@ namespace AnimalHouseUI
 
         #endregion
 
-        private void SampleForm_Load(object sender, EventArgs e)
+        //private void SampleForm_Load(object sender, EventArgs e)
+        //{
+
+        //}
+
+        private void CustomerForm_Load(object sender, EventArgs e)
         {
+            
+        }
+
+        private void button_soeg_Click(object sender, EventArgs e)
+        {
+            BossController bosscontroller = new BossController();
+
+
+            CustomerController customercontroller = bosscontroller.GetCustomerController();
+
+            DataTable dataTable = customercontroller.GetCustomer(textBox_phonenumber.ToString());
+
+            
+
+
+            textBox_navn.Text=dataTable.Rows[0]["Name"].ToString();
+            textBox_adresse.Text = dataTable.Rows[0]["Adress"].ToString();
+            textBox_email.Text = dataTable.Rows[0]["Email"].ToString();
+
+            button_rediger.Enabled = true;
+
+            button_slet.Enabled = true;
+
+           button_dyr.Enabled = true;
+            label_headline.Text = textBox_navn.Text;
+        }
+
+        private void button_opret_Click(object sender, EventArgs e)
+        {
+            BossController bosscontroller = new BossController();
+            CustomerController customercontroller = bosscontroller.GetCustomerController();
+
+            
+
+          string message= customercontroller.CreateCostumer(textBox_phonenumber.Text.ToString(), textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(),textBox_email.Text.ToString());
+
+            MessageBox.Show(message);
+
+        }
+
+        private void button_rediger_Click(object sender, EventArgs e)
+        {
+            //Lav en "er du sikker"-popup
+
+            BossController bosscontroller = new BossController();
+            CustomerController customercontroller = bosscontroller.GetCustomerController();
+
+            string message= customercontroller.UpdateCustomer(textBox_phonenumber.Text.ToString(), textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_email.Text.ToString());
+            MessageBox.Show(message);
+        }
+
+        private void button_slet_Click(object sender, EventArgs e)
+            //lav en "er du sikker" popup
+        {
+            BossController bosscontroller = new BossController();
+            CustomerController customercontroller = bosscontroller.GetCustomerController();
+
+            string message = customercontroller.DeleteCustomer(textBox_phonenumber.Text.ToString());
+            MessageBox.Show(message);
 
         }
     }
-
-
 }
