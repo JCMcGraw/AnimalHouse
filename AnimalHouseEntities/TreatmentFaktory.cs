@@ -29,7 +29,9 @@ namespace AnimalHouseEntities
             return new Treatment(treatmentID, treatmentTypeID, operationRoomID, cageID, itemID, startTime, endTime, payed);
         }
 
-
-
+        public Treatment CreateTreatment(int treatmentTypeID, int operationRoomID, int cageID, int itemID, DateTime startTime, DateTime endTime, bool payed)
+        {
+            return new Treatment(treatmentTypeID, operationRoomID, cageID, itemID, startTime, endTime, payed);
+        }
     }
 }
