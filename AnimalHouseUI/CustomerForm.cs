@@ -184,6 +184,7 @@ namespace AnimalHouseUI
         private void button_rediger_Click(object sender, EventArgs e)
         {
             //Lav en "er du sikker"-popup
+            //
 
             //ossController bosscontroller = new BossController()
            // CustomerController customercontroller = bosscontroller.GetCustomerController();
