@@ -17,5 +17,7 @@ namespace AnimalHouse
 
         }
 
+        public CustomerController customercontroller = CustomerController.instance;
+
     }
 }
