@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AnimalHouseEntities;
 using System.Data;
+using AnimalHousePersistence;
 
 namespace AnimalHouse
 {
@@ -26,40 +27,38 @@ namespace AnimalHouse
 
         }
 
-        public DataTable GetCustomer(string phone)
+        public Customer GetCustomer(string phone)
         {
 
-            CustomerFactory customerFactory = new CustomerFactory();
-
-           
+            ICustomerManager customerManager = new CustomerManager();
             //DataTable dataTable=customerFactory.GetCustomer(phone);
 
-
-            return dataTable;
+            Customer customer = customerManager.GetCustomer(phone);
+            return customer;
 
            
         }
        
-        public string CreateCostumer(string phone, string name, string address, string email)
-        {
-            CustomerFactory customerfactory = new CustomerFactory();
+        //public string CreateCostumer(string phone, string name, string address, string email)
+        //{
+        //    CustomerFactory customerfactory = new CustomerFactory();
 
-           // Customer customer = new Customer(name, address, phone, email, true);
+        //    Customer customer = new Customer(name, address, phone, email, true);
 
-            //return customerfactory.CreateCustomer(phone, name, address, email);
-        }
+        //    return customerfactory.CreateCustomer(phone, name, address, email);
+        //}
 
-        public string UpdateCustomer(string phone, string name, string address, string email)
-        {
-            CustomerFactory customerfactory = new CustomerFactory();
+        //public string UpdateCustomer(string phone, string name, string address, string email)
+        //{
+        //    CustomerFactory customerfactory = new CustomerFactory();
 
-            //return customerfactory.UpdateCustomer(phone, name, address, email);
-        }
+        //    return customerfactory.UpdateCustomer(phone, name, address, email);
+        //}
 
-        public string DeleteCustomer(string phone)
-        {
-            CustomerFactory customerfactory = new CustomerFactory();
-            //return customerfactory.DeleteCustomer(phone);
-        }
+        //public string DeleteCustomer(string phone)
+        //{
+        //    CustomerFactory customerfactory = new CustomerFactory();
+        //    return customerfactory.DeleteCustomer(phone);
+        //}
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using AnimalHouseEntities;
 
 
 
@@ -89,7 +90,7 @@ namespace AnimalHousePersistence
 
         }
 
-        public DataTable GetCustomer(string phone)
+        public Customer GetCustomer(string phone)
         {
             //Jeg kan ikke få det her fuck til at virke!
 
@@ -101,9 +102,11 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
+            DataRow dataRow = sQLQueryResult.dataTable.Rows[0];
 
+            Customer customer = new Customer((int)dataRow["CustomerID"],(string)dataRow["Name"], (string)dataRow["Adress"], (string)dataRow["Phone"],(string)dataRow["Email"], (bool)dataRow["Active"]);
 
-            return sQLQueryResult.dataTable;
+            return customer;
 
 
           //  if (sQLQueryResult.code == 0)

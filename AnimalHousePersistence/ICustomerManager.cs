@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using AnimalHouseEntities;
 
 
 
@@ -18,7 +19,7 @@ namespace AnimalHousePersistence
        string  CreateCustomer(string phone, string name, string address, string email);
         string UpdateCustomer(string phone, string name, string address, string email);
         string DeleteCustomer(string phone);
-        DataTable GetCustomer(string phone);
+        Customer GetCustomer(string phone);
 
     }
 }

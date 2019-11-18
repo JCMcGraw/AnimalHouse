@@ -9,11 +9,11 @@ namespace AnimalHouseEntities
 {
    public class CustomerFactory
     {
-        
+
 
         //public DataTable GetCustomer(string phone)
         //{
-          
+
         //    return customerManager.GetCustomer(phone);
 
 
@@ -21,14 +21,14 @@ namespace AnimalHouseEntities
 
         //public string CreateCustomer(string phone, string name, string address, string email)
         //{
-          
+
 
         //    return customerManager.CreateCustomer(phone, name, address, email);
         //}
 
         //public string UpdateCustomer(string phone, string name, string address, string email)
         //{
-        //   return customerManager.UpdateCustomer(phone, name, address, email);
+        //    return customerManager.UpdateCustomer(phone, name, address, email);
 
         //}
 

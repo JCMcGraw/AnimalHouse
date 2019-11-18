@@ -8,12 +8,12 @@ namespace AnimalHouseEntities
 {
     public class Customer
     {
-        //int CustomerID;
-       public string name { get; set; }
-        string address { get; set; }
-        string phone { get; set; }
-        string email { get; set; }
-        bool active { get; set; }
+       public int CustomerID {  get; private set; }
+       public string name { get; private set; }
+        public string address { get; private set; }
+        public string phone { get; private set; }
+        public string email { get; private set; }
+        public bool active { get; private set; }
 
         //constructor UDEN customerID
         public Customer(string name, string address, string phone, string email, bool active)
@@ -28,6 +28,8 @@ namespace AnimalHouseEntities
         //customer MED customerID
         public Customer(int customerID, string name, string address, string phone, string email, bool active)
         {
+            this.CustomerID = customerID;
+            
             this.name = name;
             this.address = address;
             this.phone = phone;
