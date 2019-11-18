@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AnimalHousePersistence;
 
 namespace AnimalHouse
 {
@@ -10,10 +11,12 @@ namespace AnimalHouse
     {
         static void Main(string[] args)
         {
-            //skrevet af peder
-            //daniel
-            //skrevet af Jens
-            //skrevet af Simeon
+            TreatmentController.Instance().CreateTreatment(Convert.ToDateTime("1905 - 03 - 27"), Convert.ToDateTime("1905 - 09 - 22"), true);
+
+            //TreatmentController.Instance().UpdateTreatment(Convert.ToDateTime("1905 - 05 - 27"), Convert.ToDateTime("1905 - 08 - 22"), false);
+            
+
+            Console.ReadKey();
         }
     }
 }

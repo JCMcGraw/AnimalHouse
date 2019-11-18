@@ -75,6 +75,12 @@
     <EmbeddedResource Include="CustomerForm.resx">
       <DependentUpon>CustomerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <Compile Include="TreatmentBooking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TreatmentBooking.Designer.cs">
+      <DependentUpon>TreatmentBooking.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -90,6 +96,9 @@
     </Compile>
     <EmbeddedResource Include="SampleForm.resx">
       <DependentUpon>SampleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TreatmentBooking.resx">
+      <DependentUpon>TreatmentBooking.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -124,12 +133,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8_maximize_button_32px.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AnimalHouse\AnimalHouse.csproj">
-      <Project>{58ce7844-5ce9-497b-906c-ccd6c3d2b611}</Project>
-      <Name>AnimalHouse</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

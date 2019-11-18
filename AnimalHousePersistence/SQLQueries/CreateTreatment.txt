@@ -1,0 +1,3 @@
+﻿insert into Treatment
+(StartTime, EndTime, Payed)
+values (@startTime,@endTime,@payed)

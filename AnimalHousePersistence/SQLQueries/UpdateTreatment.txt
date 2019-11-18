@@ -1,0 +1,5 @@
+﻿update Treatment set
+StartTime = @startTime
+,EndTime = @endTime
+,Payed = @payed
+where TreatmentID = @treatmentID
