@@ -19,6 +19,9 @@ namespace AnimalHousePersistence
 
         List<Treatment> GetManyTreatmentsByEmployee(int employeeID, DateTime startTime, DateTime endTime);
 
-        string GetManyTreatmentsByAnimal(int animalID, DateTime startTime, DateTime endTime);
+        List<Treatment> GetManyTreatmentsByAnimal(int animalID, DateTime startTime, DateTime endTime);
+
+        List<Treatment> GetManyTreatmentsByDateTime(DateTime startTime, DateTime endTime);
+        
     }
 }

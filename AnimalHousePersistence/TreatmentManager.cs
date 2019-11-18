@@ -22,9 +22,9 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            int iD = (int)sQLQueryResult.dataTable.Rows[0]["TreatmentID"];
+            int treatmentID = (int)sQLQueryResult.dataTable.Rows[0]["TreatmentID"];
 
-            treatment.UpdateID(iD);
+            treatment.UpdateID(treatmentID);
 
             return treatment;
         }
@@ -97,12 +97,27 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
+            List<Treatment> treatments = new List<Treatment>();
 
+            for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
+            {
+                int tratmentID = (int)sQLQueryResult.dataTable.Rows[i]["TreatmentID"];
+                DateTime startTimee = (DateTime)sQLQueryResult.dataTable.Rows[i]["StartTime"];
+                DateTime endTimee = (DateTime)sQLQueryResult.dataTable.Rows[i]["EndTime"];
+                bool payed = (bool)sQLQueryResult.dataTable.Rows[i]["Payed"];
+                int cageID = (int)sQLQueryResult.dataTable.Rows[i]["CageID"];
+                int treatmentTypeID = (int)sQLQueryResult.dataTable.Rows[i]["TreatmentTypeID"];
+                int operationRoomID = (int)sQLQueryResult.dataTable.Rows[i]["OperationRoomID"];
+                int employeeIDD = (int)sQLQueryResult.dataTable.Rows[i]["EmployeeID"];
+                int animalID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalID"];
+                int itemID = (int)sQLQueryResult.dataTable.Rows[i]["ItemID"];
 
+                treatments.Add(TreatmentFaktory.Instance().CreateTreatment(tratmentID, treatmentTypeID, operationRoomID, cageID, itemID, startTimee, endTimee, payed));
+            }
             return new List<Treatment>();
         }
 
-        public string GetManyTreatmentsByAnimal(int animalID, DateTime startTime, DateTime endTime)
+        public List<Treatment> GetManyTreatmentsByAnimal(int animalID, DateTime startTime, DateTime endTime)
         {
             string query = Utility.ReadSQLQueryFromFile("GetManyTreatmentsByAnimal.txt");
 
@@ -114,7 +129,55 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            return "ok";
+            List<Treatment> treatments = new List<Treatment>();
+
+            for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
+            {
+                int tratmentID = (int)sQLQueryResult.dataTable.Rows[i]["TreatmentID"];
+                DateTime startTimee = (DateTime)sQLQueryResult.dataTable.Rows[i]["StartTime"];
+                DateTime endTimee = (DateTime)sQLQueryResult.dataTable.Rows[i]["EndTime"];
+                bool payed = (bool)sQLQueryResult.dataTable.Rows[i]["Payed"];
+                int cageID = (int)sQLQueryResult.dataTable.Rows[i]["CageID"];
+                int treatmentTypeID = (int)sQLQueryResult.dataTable.Rows[i]["TreatmentTypeID"];
+                int operationRoomID = (int)sQLQueryResult.dataTable.Rows[i]["OperationRoomID"];
+                int employeeIDD = (int)sQLQueryResult.dataTable.Rows[i]["EmployeeID"];
+                int animalIDD = (int)sQLQueryResult.dataTable.Rows[i]["AnimalID"];
+                int itemID = (int)sQLQueryResult.dataTable.Rows[i]["ItemID"];
+
+                treatments.Add(TreatmentFaktory.Instance().CreateTreatment(tratmentID, treatmentTypeID, operationRoomID, cageID, itemID, startTimee, endTimee, payed));
+            }
+            return new List<Treatment>();
+        }
+
+        public List<Treatment> GetManyTreatmentsByDateTime(DateTime startTime, DateTime endTime)
+        {
+            string query = Utility.ReadSQLQueryFromFile("GetManyTreatmentsByDateTime.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            sQLQuery.AddParameter("@startTime", startTime.ToString(), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@endTime", endTime.ToString(), SqlDbType.DateTime);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            List<Treatment> treatments = new List<Treatment>();
+
+            for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
+            {
+                int tratmentID = (int)sQLQueryResult.dataTable.Rows[i]["TreatmentID"];
+                DateTime startTimee = (DateTime)sQLQueryResult.dataTable.Rows[i]["StartTime"];
+                DateTime endTimee = (DateTime)sQLQueryResult.dataTable.Rows[i]["EndTime"];
+                bool payed = (bool)sQLQueryResult.dataTable.Rows[i]["Payed"];
+                int cageID = (int)sQLQueryResult.dataTable.Rows[i]["CageID"];
+                int treatmentTypeID = (int)sQLQueryResult.dataTable.Rows[i]["TreatmentTypeID"];
+                int operationRoomID = (int)sQLQueryResult.dataTable.Rows[i]["OperationRoomID"];
+                int employeeIDD = (int)sQLQueryResult.dataTable.Rows[i]["EmployeeID"];
+                int animalIDD = (int)sQLQueryResult.dataTable.Rows[i]["AnimalID"];
+                int itemID = (int)sQLQueryResult.dataTable.Rows[i]["ItemID"];
+
+                treatments.Add(TreatmentFaktory.Instance().CreateTreatment(tratmentID, treatmentTypeID, operationRoomID, cageID, itemID, startTimee, endTimee, payed));
+            }
+            return new List<Treatment>();
         }
     }
 }

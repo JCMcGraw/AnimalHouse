@@ -71,6 +71,7 @@
     <Content Include="SQLQueries\GetCustomer.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQLQueries\GetManyTreatmentsByDateTime.txt" />
     <Content Include="SQLQueries\UpdateCustomer.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
