@@ -26,9 +26,9 @@ namespace AnimalHouse
 
         ITreatmentManager treatmentManager = new TreatmentManager();
 
-        public string CreateTreatment(DateTime startTime, DateTime endTime, bool payed)
+        public string CreateTreatment(Treatment treatment)
         {
-            string createTreatment = treatmentManager.CreateTreatment(startTime,endTime,payed);
+            string createTreatment = treatmentManager.CreateTreatment(treatment);
             return createTreatment;
         }
 

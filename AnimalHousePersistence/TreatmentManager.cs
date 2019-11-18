@@ -10,28 +10,26 @@ namespace AnimalHousePersistence
 {
     public class TreatmentManager : ITreatmentManager
     {
-        public string CreateTreatment(DateTime startTime,DateTime endTime,bool payed)
+        public string CreateTreatment(Treatment treatment)
         {
             string query = Utility.ReadSQLQueryFromFile("CreateTreatment.txt");
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("@startTime", startTime.ToString(), SqlDbType.DateTime);
-            sQLQuery.AddParameter("@endTime", endTime.ToString(), SqlDbType.DateTime);
-            sQLQuery.AddParameter("@payed", payed.ToString(), SqlDbType.Bit);
+            sQLQuery.AddParameter("@startTime", treatment.startTime.ToString(), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@endTime", treatment.endTime.ToString(), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@payed", treatment.payed.ToString(), SqlDbType.Bit);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            //if (sQLQueryResult.code == 0)
-            //{
-            //    //read datatable
-            //}
-            //else
-            //{
-
-            //}
-
-            return "OK";
+            if (sQLQueryResult.code == 0)
+            {
+                return "OK";
+            }
+            else
+            {
+                return sQLQueryResult.code.ToString();
+            }
         }
 
         public string UpdateTreatment(Treatment treatment)
