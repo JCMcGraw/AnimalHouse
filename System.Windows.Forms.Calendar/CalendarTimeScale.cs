@@ -20,6 +20,11 @@ namespace System.Windows.Forms.Calendar
         ThirtyMinutes = 30,
 
         /// <summary>
+        /// Makes calendar show intervals of 30 minutes
+        /// </summary>
+        TwentyMinutes = 20,
+
+        /// <summary>
         /// Makes calendar show intervals of 15 minutes
         /// </summary>
         FifteenMinutes = 15,

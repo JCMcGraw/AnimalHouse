@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerForm.Designer.cs">
+      <DependentUpon>CustomerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +72,9 @@
     <Compile Include="SampleForm.Designer.cs">
       <DependentUpon>SampleForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CustomerForm.resx">
+      <DependentUpon>CustomerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="TreatmentBooking.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,16 +139,12 @@
       <Project>{333dca3f-6627-4364-995d-d0458e3b65ef}</Project>
       <Name>AnimalHouseEntities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AnimalHousePersistence\AnimalHousePersistence.csproj">
-      <Project>{0251eddd-f40b-4de2-9697-67d86e520d87}</Project>
-      <Name>AnimalHousePersistence</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AnimalHouse\AnimalHouse.csproj">
       <Project>{58ce7844-5ce9-497b-906c-ccd6c3d2b611}</Project>
       <Name>AnimalHouse</Name>
     </ProjectReference>
     <ProjectReference Include="..\System.Windows.Forms.Calendar\System.Windows.Forms.Calendar.csproj">
-      <Project>{25649F08-3046-4891-ADB8-7EA787B57063}</Project>
+      <Project>{25649f08-3046-4891-adb8-7ea787b57063}</Project>
       <Name>System.Windows.Forms.Calendar</Name>
     </ProjectReference>
   </ItemGroup>

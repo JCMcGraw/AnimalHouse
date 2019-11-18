@@ -266,6 +266,7 @@ namespace System.Windows.Forms.Calendar
             {
                 case CalendarTimeScale.SixtyMinutes:    factor = 1;     break;
                 case CalendarTimeScale.ThirtyMinutes:   factor = 2;     break;
+                case CalendarTimeScale.TwentyMinutes:   factor = 3;     break;
                 case CalendarTimeScale.FifteenMinutes:  factor = 4;     break;
                 case CalendarTimeScale.TenMinutes:      factor = 6;     break;
                 case CalendarTimeScale.SixMinutes:      factor = 10;    break;
