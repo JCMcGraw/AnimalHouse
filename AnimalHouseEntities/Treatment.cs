@@ -46,5 +46,10 @@ namespace AnimalHouseEntities
             this.endTime = endTime;
             this.payed = payed;
         }
+
+        public void UpdateID(int treatmentID)
+        {
+            this.treatmentID = treatmentID;
+        }
     }
 }

@@ -1,3 +1,4 @@
 ﻿insert into Treatment
 (StartTime, EndTime, Payed)
+output inserted.TreatmentID
 values (@startTime,@endTime,@payed)
