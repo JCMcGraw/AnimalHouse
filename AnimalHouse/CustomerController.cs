@@ -32,7 +32,7 @@ namespace AnimalHouse
             CustomerFactory customerFactory = new CustomerFactory();
 
            
-            DataTable dataTable=customerFactory.GetCustomer(phone);
+            //DataTable dataTable=customerFactory.GetCustomer(phone);
 
 
             return dataTable;
@@ -46,20 +46,20 @@ namespace AnimalHouse
 
            // Customer customer = new Customer(name, address, phone, email, true);
 
-            return customerfactory.CreateCustomer(phone, name, address, email);
+            //return customerfactory.CreateCustomer(phone, name, address, email);
         }
 
         public string UpdateCustomer(string phone, string name, string address, string email)
         {
             CustomerFactory customerfactory = new CustomerFactory();
 
-            return customerfactory.UpdateCustomer(phone, name, address, email);
+            //return customerfactory.UpdateCustomer(phone, name, address, email);
         }
 
         public string DeleteCustomer(string phone)
         {
             CustomerFactory customerfactory = new CustomerFactory();
-            return customerfactory.DeleteCustomer(phone);
+            //return customerfactory.DeleteCustomer(phone);
         }
     }
 }

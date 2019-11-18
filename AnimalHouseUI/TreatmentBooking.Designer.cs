@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange11 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange12 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange13 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange14 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange15 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             this.PanelHeader = new System.Windows.Forms.Panel();
             this.LabelTitle = new System.Windows.Forms.Label();
             this.PictureBoxLogo = new System.Windows.Forms.PictureBox();
@@ -72,11 +72,11 @@
             this.noneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timescaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hourToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.minutesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.minutesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.minutesToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.minutesToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.minutes30ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.minutes20ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.minutes15ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.minutes10ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.minutes5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.editItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PanelHeader.SuspendLayout();
@@ -235,10 +235,6 @@
             this.ComboBoxTreatmentType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ComboBoxTreatmentType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxTreatmentType.FormattingEnabled = true;
-            this.ComboBoxTreatmentType.Items.AddRange(new object[] {
-            "Konsultation",
-            "Operation",
-            "Observation"});
             this.ComboBoxTreatmentType.Location = new System.Drawing.Point(288, 33);
             this.ComboBoxTreatmentType.Name = "ComboBoxTreatmentType";
             this.ComboBoxTreatmentType.Size = new System.Drawing.Size(196, 28);
@@ -251,11 +247,6 @@
             this.ComboBoxEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ComboBoxEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxEmployee.FormattingEnabled = true;
-            this.ComboBoxEmployee.Items.AddRange(new object[] {
-            "Alle",
-            "Ole Ernst",
-            "Dirch Passer",
-            "Poul Bundgaard"});
             this.ComboBoxEmployee.Location = new System.Drawing.Point(52, 33);
             this.ComboBoxEmployee.Name = "ComboBoxEmployee";
             this.ComboBoxEmployee.Size = new System.Drawing.Size(196, 28);
@@ -372,33 +363,35 @@
             // 
             this.CalendarBooking.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CalendarBooking.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange11.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange11.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange11.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange12.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange12.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange12.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange13.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange13.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange13.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange14.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange14.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange14.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange15.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange15.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange15.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("08:00:00");
             this.CalendarBooking.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange11,
-        calendarHighlightRange12,
-        calendarHighlightRange13,
-        calendarHighlightRange14,
-        calendarHighlightRange15};
+        calendarHighlightRange1,
+        calendarHighlightRange2,
+        calendarHighlightRange3,
+        calendarHighlightRange4,
+        calendarHighlightRange5};
             this.CalendarBooking.Location = new System.Drawing.Point(10, 10);
             this.CalendarBooking.Name = "CalendarBooking";
             this.CalendarBooking.Size = new System.Drawing.Size(830, 406);
             this.CalendarBooking.TabIndex = 0;
             this.CalendarBooking.Text = "calendar1";
+            this.CalendarBooking.LoadItems += new System.Windows.Forms.Calendar.Calendar.CalendarLoadEventHandler(this.CalendarBooking_LoadItems);
             this.CalendarBooking.ItemCreating += new System.Windows.Forms.Calendar.Calendar.CalendarItemCancelEventHandler(this.CalendarBooking_ItemCreating);
+            this.CalendarBooking.ItemDatesChanged += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.CalendarBooking_ItemDatesChanged);
             this.CalendarBooking.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CalendarBooking_MouseClick);
             // 
             // ContextMenuStripBooking
@@ -509,11 +502,11 @@
             // 
             this.timescaleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.hourToolStripMenuItem,
-            this.minutesToolStripMenuItem,
-            this.toolStripMenuItem4,
-            this.minutesToolStripMenuItem1,
-            this.minutesToolStripMenuItem2,
-            this.minutesToolStripMenuItem3});
+            this.minutes30ToolStripMenuItem,
+            this.minutes20ToolStripMenuItem,
+            this.minutes15ToolStripMenuItem,
+            this.minutes10ToolStripMenuItem,
+            this.minutes5ToolStripMenuItem});
             this.timescaleToolStripMenuItem.Name = "timescaleToolStripMenuItem";
             this.timescaleToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.timescaleToolStripMenuItem.Text = "Timescale";
@@ -523,36 +516,42 @@
             this.hourToolStripMenuItem.Name = "hourToolStripMenuItem";
             this.hourToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.hourToolStripMenuItem.Text = "1 hour";
+            this.hourToolStripMenuItem.Click += new System.EventHandler(this.hourToolStripMenuItem_Click);
             // 
-            // minutesToolStripMenuItem
+            // minutes30ToolStripMenuItem
             // 
-            this.minutesToolStripMenuItem.Name = "minutesToolStripMenuItem";
-            this.minutesToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
-            this.minutesToolStripMenuItem.Text = "30 minutes";
+            this.minutes30ToolStripMenuItem.Name = "minutes30ToolStripMenuItem";
+            this.minutes30ToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.minutes30ToolStripMenuItem.Text = "30 minutes";
+            this.minutes30ToolStripMenuItem.Click += new System.EventHandler(this.minutesToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem4
+            // minutes20ToolStripMenuItem
             // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(132, 22);
-            this.toolStripMenuItem4.Text = "15 minutes";
+            this.minutes20ToolStripMenuItem.Name = "minutes20ToolStripMenuItem";
+            this.minutes20ToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.minutes20ToolStripMenuItem.Text = "20 minutes";
+            this.minutes20ToolStripMenuItem.Click += new System.EventHandler(this.minutes20ToolStripMenuItem_Click);
             // 
-            // minutesToolStripMenuItem1
+            // minutes15ToolStripMenuItem
             // 
-            this.minutesToolStripMenuItem1.Name = "minutesToolStripMenuItem1";
-            this.minutesToolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
-            this.minutesToolStripMenuItem1.Text = "10 minutes";
+            this.minutes15ToolStripMenuItem.Name = "minutes15ToolStripMenuItem";
+            this.minutes15ToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.minutes15ToolStripMenuItem.Text = "15 minutes";
+            this.minutes15ToolStripMenuItem.Click += new System.EventHandler(this.minutes15ToolStripMenuItem_Click);
             // 
-            // minutesToolStripMenuItem2
+            // minutes10ToolStripMenuItem
             // 
-            this.minutesToolStripMenuItem2.Name = "minutesToolStripMenuItem2";
-            this.minutesToolStripMenuItem2.Size = new System.Drawing.Size(132, 22);
-            this.minutesToolStripMenuItem2.Text = "6 minutes";
+            this.minutes10ToolStripMenuItem.Name = "minutes10ToolStripMenuItem";
+            this.minutes10ToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.minutes10ToolStripMenuItem.Text = "10 minutes";
+            this.minutes10ToolStripMenuItem.Click += new System.EventHandler(this.minutes10ToolStripMenuItem_Click);
             // 
-            // minutesToolStripMenuItem3
+            // minutes5ToolStripMenuItem
             // 
-            this.minutesToolStripMenuItem3.Name = "minutesToolStripMenuItem3";
-            this.minutesToolStripMenuItem3.Size = new System.Drawing.Size(132, 22);
-            this.minutesToolStripMenuItem3.Text = "5 minutes";
+            this.minutes5ToolStripMenuItem.Name = "minutes5ToolStripMenuItem";
+            this.minutes5ToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.minutes5ToolStripMenuItem.Text = "5 minutes";
+            this.minutes5ToolStripMenuItem.Click += new System.EventHandler(this.minutes5ToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -637,12 +636,12 @@
         private System.Windows.Forms.ToolStripMenuItem noneToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem timescaleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hourToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem minutesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
-        private System.Windows.Forms.ToolStripMenuItem minutesToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem minutesToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem minutesToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem minutes30ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem minutes15ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem minutes10ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem minutes5ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem editItemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem minutes20ToolStripMenuItem;
     }
 }

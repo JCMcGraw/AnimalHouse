@@ -53,11 +53,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AnimalHousePersistence\AnimalHousePersistence.csproj">
-      <Project>{0251eddd-f40b-4de2-9697-67d86e520d87}</Project>
-      <Name>AnimalHousePersistence</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
