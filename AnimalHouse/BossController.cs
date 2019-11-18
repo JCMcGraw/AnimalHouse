@@ -10,14 +10,38 @@ namespace AnimalHouse
     public class BossController
     {
 
-        public CustomerController GetCustomerController()
+        private BossController()
+        { }
+        private static BossController bossController = null;
+        public static BossController instance()
         {
-            CustomerController customercontroller = CustomerController.instance;
-            return customercontroller;
+
+            if (bossController == null)
+            {
+                bossController = new BossController();
+            }
+            return bossController;
+
 
         }
 
-        public CustomerController customercontroller = CustomerController.instance;
+        public CustomerController customerController
+        {
+            get
+            {
+             return   CustomerController.instance;
+            }
+        }
+
+        public TreatmentController treatmentController
+        {
+            get
+            {
+                return TreatmentController.instance();
+            }
+        }
+
 
     }
 }
+
