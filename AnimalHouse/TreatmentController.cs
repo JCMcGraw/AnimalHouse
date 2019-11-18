@@ -14,7 +14,7 @@ namespace AnimalHouse
 
         private TreatmentController() { }
 
-        public static TreatmentController instance()
+        public static TreatmentController Instance()
         {
             if (treatmentController == null)
             {
