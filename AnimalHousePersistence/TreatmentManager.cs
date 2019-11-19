@@ -19,6 +19,8 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@startTime", treatment.startTime.ToString(), SqlDbType.DateTime);
             sQLQuery.AddParameter("@endTime", treatment.endTime.ToString(), SqlDbType.DateTime);
             sQLQuery.AddParameter("@payed", treatment.payed.ToString(), SqlDbType.Bit);
+            sQLQuery.AddParameter("@headline", treatment.headline.ToString(), SqlDbType.VarChar);
+            sQLQuery.AddParameter("@active", treatment.active.ToString(), SqlDbType.Bit);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
@@ -38,22 +40,22 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@startTime", treatment.startTime.ToString(), SqlDbType.DateTime);
             sQLQuery.AddParameter("@endTime", treatment.endTime.ToString(), SqlDbType.DateTime);
             sQLQuery.AddParameter("@payed", treatment.payed.ToString(), SqlDbType.Bit);
+            sQLQuery.AddParameter("@headline", treatment.headline.ToString(), SqlDbType.VarChar);
+            sQLQuery.AddParameter("@active", treatment.active.ToString(), SqlDbType.Bit);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
             return "ok";
         }
 
-        public string DeleteTreatment(Treatment treatment)
+        public string DeleteTreatment(int treatmentID)
         {
             string query = Utility.ReadSQLQueryFromFile("DeleteTreatment.txt");
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("@startTime", treatment.startTime.ToString(), SqlDbType.DateTime);
-            sQLQuery.AddParameter("@endTime", treatment.endTime.ToString(), SqlDbType.DateTime);
-            sQLQuery.AddParameter("@payed", treatment.payed.ToString(), SqlDbType.Bit);
-
+            sQLQuery.AddParameter("@treatmentID", treatmentID.ToString(), SqlDbType.Int);
+            
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
             return "ok";
@@ -83,8 +85,8 @@ namespace AnimalHousePersistence
             SQLQuery sQLQuery = new SQLQuery(query);
 
             sQLQuery.AddParameter("@employeeID", employeeID.ToString(), SqlDbType.Int);
-            sQLQuery.AddParameter("@startTime", startTime.ToString(), SqlDbType.DateTime);
-            sQLQuery.AddParameter("@endTime", endTime.ToString(), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@startTime", startTime.ToString("yyyy-MM-ddThh:mm:ss"), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@endTime", endTime.ToString("yyyy-MM-ddThh:mm:ss"), SqlDbType.DateTime);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
@@ -101,9 +103,9 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("@employeeID", animalID.ToString(), SqlDbType.Int);
-            sQLQuery.AddParameter("@startTime", startTime.ToString(), SqlDbType.DateTime);
-            sQLQuery.AddParameter("@endTime", endTime.ToString(), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@animalID", animalID.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@startTime", startTime.ToString("yyyy-MM-ddThh:mm:ss"), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@endTime", endTime.ToString("yyyy-MM-ddThh:mm:ss"), SqlDbType.DateTime);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
@@ -154,7 +156,6 @@ namespace AnimalHousePersistence
                 {
                     treatmentID = (int)sQLQueryResult.dataTable.Rows[i]["TreatmentID"];
                 }
-
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("TreatmentTypeID"))
                 {
                     treatmentTypeID = -1;
@@ -163,8 +164,6 @@ namespace AnimalHousePersistence
                 {
                     treatmentTypeID = (int)sQLQueryResult.dataTable.Rows[i]["TreatmentTypeID"];
                 }
-
-                
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("OperationRoomID"))
                 {
                     operationRoomID = -1;
@@ -173,8 +172,6 @@ namespace AnimalHousePersistence
                 {
                     operationRoomID = (int)sQLQueryResult.dataTable.Rows[i]["OperationRoomID"];
                 }
-                
-                
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("CageID"))
                 {
                     cageID = -1;
@@ -183,8 +180,6 @@ namespace AnimalHousePersistence
                 {
                     cageID = (int)sQLQueryResult.dataTable.Rows[i]["CageID"];
                 }
-
-                
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("ItemID"))
                 {
                     itemID = -1;
@@ -193,8 +188,6 @@ namespace AnimalHousePersistence
                 {
                     itemID = (int)sQLQueryResult.dataTable.Rows[i]["ItemID"];
                 }
-
-                
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("EmployeeID"))
                 {
                     employeeID = -1;
@@ -203,8 +196,6 @@ namespace AnimalHousePersistence
                 {
                     employeeID = (int)sQLQueryResult.dataTable.Rows[i]["EmployeeID"];
                 }
-
-                
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("AnimalID"))
                 {
                     animalID = -1;
@@ -213,12 +204,13 @@ namespace AnimalHousePersistence
                 {
                     animalID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalID"];
                 }
-
-                DateTime startTimee = (DateTime)sQLQueryResult.dataTable.Rows[i]["StartTime"];
-                DateTime endTimee = (DateTime)sQLQueryResult.dataTable.Rows[i]["EndTime"];
+                DateTime startTime = (DateTime)sQLQueryResult.dataTable.Rows[i]["StartTime"];
+                DateTime endTime = (DateTime)sQLQueryResult.dataTable.Rows[i]["EndTime"];
                 bool payed = (bool)sQLQueryResult.dataTable.Rows[i]["Payed"];
+                string headline = (string)sQLQueryResult.dataTable.Rows[i]["Headline"];
+                bool active = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
 
-                treatments.Add(TreatmentFaktory.Instance().CreateTreatment(treatmentID, treatmentTypeID, operationRoomID, cageID, itemID, startTimee, endTimee, payed));
+                treatments.Add(TreatmentFaktory.Instance().CreateTreatment(treatmentID, treatmentTypeID, operationRoomID, cageID, itemID, startTime, endTime, payed, headline, active, employeeID, animalID));
             }
             return treatments;
         }

@@ -13,7 +13,7 @@ namespace AnimalHousePersistence
 
         string UpdateTreatment(Treatment treatment);
 
-        string DeleteTreatment(Treatment treatment);
+        string DeleteTreatment(int treatmentID);
 
         List<Treatment> GetTreatment(int treatmentID);
 

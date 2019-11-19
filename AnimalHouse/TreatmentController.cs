@@ -38,9 +38,9 @@ namespace AnimalHouse
             return updateTreatment;
         }
 
-        public string DeleteTreatment(Treatment treatment)
+        public string DeleteTreatment(int treatmentID)
         {
-            string deleteTreatment = treatmentManager.DeleteTreatment(treatment);
+            string deleteTreatment = treatmentManager.DeleteTreatment(treatmentID);
             return deleteTreatment;
         }
 

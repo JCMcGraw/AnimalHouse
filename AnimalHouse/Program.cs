@@ -12,11 +12,11 @@ namespace AnimalHouse
     {
         static void Main(string[] args)
         {
-            Treatment treatment = TreatmentFaktory.Instance().CreateTreatment(0,0,0,0,0, Convert.ToDateTime("1905 - 05 - 27"), Convert.ToDateTime("1905 - 08 - 22"), false);
+            //Treatment treatment = TreatmentFaktory.Instance().CreateTreatment(0,0,0,0,0, Convert.ToDateTime("1905 - 05 - 27"), Convert.ToDateTime("1905 - 08 - 22"), false);
 
-            TreatmentController.Instance().CreateTreatment(treatment);
+            //TreatmentController.Instance().CreateTreatment(treatment);
 
-            TreatmentController.Instance().UpdateTreatment(treatment);
+            //TreatmentController.Instance().UpdateTreatment(treatment);
 
             
             

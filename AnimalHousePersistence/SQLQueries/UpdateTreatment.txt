@@ -2,4 +2,6 @@
 StartTime = @startTime
 ,EndTime = @endTime
 ,Payed = @payed
+,Headline = @headline
+,Active = @active
 where TreatmentID = @treatmentID
