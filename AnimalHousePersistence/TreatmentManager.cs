@@ -162,33 +162,101 @@ namespace AnimalHousePersistence
 
             List<Treatment> treatments = new List<Treatment>();
 
+
+            treatments = GetTreatmentList(sQLQueryResult);
+
+            return treatments;
+        }
+
+        public List<Treatment> GetTreatmentList(SQLQueryResult sQLQueryResult)
+        {
+
+            List<Treatment> treatments = new List<Treatment>();
             for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
             {
-                DataRow dataRow = sQLQueryResult.dataTable.Rows[i];
+                int treatmentID;
+                int treatmentTypeID;
+                int operationRoomID;
+                int cageID;
+                int itemID;
+                int employeeID;
+                int animalID;
 
-                int tratmentID = (int)sQLQueryResult.dataTable.Rows[i]["TreatmentID"];
-                if (sQLQueryResult.dataTable.Rows[i].IsNull("TreatmentTypeID"))
+                if (sQLQueryResult.dataTable.Rows[i].IsNull("TreatmentID"))
                 {
-
+                    treatmentID = -1;
                 }
                 else
                 {
-                    int treatmentTypeID = (int)sQLQueryResult.dataTable.Rows[i]["TreatmentTypeID"];
+                    treatmentID = (int)sQLQueryResult.dataTable.Rows[i]["TreatmentID"];
                 }
-                int operationRoomID = (int)sQLQueryResult.dataTable.Rows[i]["OperationRoomID"];
-                int cageID = (int)sQLQueryResult.dataTable.Rows[i]["CageID"];
-                int itemID = (int)sQLQueryResult.dataTable.Rows[i]["ItemID"];
+
+                if (sQLQueryResult.dataTable.Rows[i].IsNull("TreatmentTypeID"))
+                {
+                    treatmentTypeID = -1;
+                }
+                else
+                {
+                    treatmentTypeID = (int)sQLQueryResult.dataTable.Rows[i]["TreatmentTypeID"];
+                }
+
+                
+                if (sQLQueryResult.dataTable.Rows[i].IsNull("OperationRoomID"))
+                {
+                    operationRoomID = -1;
+                }
+                else
+                {
+                    operationRoomID = (int)sQLQueryResult.dataTable.Rows[i]["OperationRoomID"];
+                }
+                
+                
+                if (sQLQueryResult.dataTable.Rows[i].IsNull("CageID"))
+                {
+                    cageID = -1;
+                }
+                else
+                {
+                    cageID = (int)sQLQueryResult.dataTable.Rows[i]["CageID"];
+                }
+
+                
+                if (sQLQueryResult.dataTable.Rows[i].IsNull("ItemID"))
+                {
+                    itemID = -1;
+                }
+                else
+                {
+                    itemID = (int)sQLQueryResult.dataTable.Rows[i]["ItemID"];
+                }
+
+                
+                if (sQLQueryResult.dataTable.Rows[i].IsNull("EmployeeID"))
+                {
+                    employeeID = -1;
+                }
+                else
+                {
+                    employeeID = (int)sQLQueryResult.dataTable.Rows[i]["EmployeeID"];
+                }
+
+                
+                if (sQLQueryResult.dataTable.Rows[i].IsNull("AnimalID"))
+                {
+                    animalID = -1;
+                }
+                else
+                {
+                    animalID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalID"];
+                }
+
                 DateTime startTimee = (DateTime)sQLQueryResult.dataTable.Rows[i]["StartTime"];
                 DateTime endTimee = (DateTime)sQLQueryResult.dataTable.Rows[i]["EndTime"];
                 bool payed = (bool)sQLQueryResult.dataTable.Rows[i]["Payed"];
-                int employeeID = (int)sQLQueryResult.dataTable.Rows[i]["EmployeeID"];
-                int animalID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalID"];
 
-                //treatments.Add(TreatmentFaktory.Instance().CreateTreatment(tratmentID, treatmentTypeID, operationRoomID, cageID, itemID, startTimee, endTimee, payed));
+                treatments.Add(TreatmentFaktory.Instance().CreateTreatment(treatmentID, treatmentTypeID, operationRoomID, cageID, itemID, startTimee, endTimee, payed));
             }
             return new List<Treatment>();
         }
-
-
     }
 }
