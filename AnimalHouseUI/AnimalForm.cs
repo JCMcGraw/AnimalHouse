@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AnimalHouse;
+using AnimalHouseEntities;
 
 namespace AnimalHouseUI
 {
@@ -139,6 +141,18 @@ namespace AnimalHouseUI
 
         private void AnimalForm_Load(object sender, EventArgs e)
         {
+
+        }
+        private void button_opret_Click(object sender, EventArgs e)
+        {
+
+
+            //Animal animal = new Animal(Animal_name.Text.ToString(), Animal_weight.Text.ToString(), Animal_bday.Text.ToString(),
+            //    true);
+
+            //string message = BossController.instance().animalController.CreateAnimal(animal);
+            //MessageBox.Show(message);
+
 
         }
     }

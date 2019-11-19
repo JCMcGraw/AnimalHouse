@@ -39,16 +39,15 @@
             this.label_headline = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.textBox_phonenumber = new System.Windows.Forms.TextBox();
+            this.Animal_name = new System.Windows.Forms.TextBox();
             this.label_telefonnummer = new System.Windows.Forms.Label();
             this.button_rediger = new System.Windows.Forms.Button();
             this.button_slet = new System.Windows.Forms.Button();
-            this.textBox_navn = new System.Windows.Forms.TextBox();
             this.label_navn = new System.Windows.Forms.Label();
             this.label_adresse = new System.Windows.Forms.Label();
-            this.textBox_adresse = new System.Windows.Forms.TextBox();
+            this.Animal_weight = new System.Windows.Forms.TextBox();
             this.label_email = new System.Windows.Forms.Label();
-            this.textBox_email = new System.Windows.Forms.TextBox();
+            this.Animal_bday = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -56,6 +55,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             this.SuspendLayout();
@@ -203,12 +203,12 @@
             this.listBox1.Size = new System.Drawing.Size(283, 368);
             this.listBox1.TabIndex = 11;
             // 
-            // textBox_phonenumber
+            // Animal_name
             // 
-            this.textBox_phonenumber.Location = new System.Drawing.Point(43, 174);
-            this.textBox_phonenumber.Name = "textBox_phonenumber";
-            this.textBox_phonenumber.Size = new System.Drawing.Size(99, 20);
-            this.textBox_phonenumber.TabIndex = 12;
+            this.Animal_name.Location = new System.Drawing.Point(43, 174);
+            this.Animal_name.Name = "Animal_name";
+            this.Animal_name.Size = new System.Drawing.Size(99, 20);
+            this.Animal_name.TabIndex = 12;
             // 
             // label_telefonnummer
             // 
@@ -247,13 +247,6 @@
             this.button_slet.Text = "Slet";
             this.button_slet.UseVisualStyleBackColor = false;
             // 
-            // textBox_navn
-            // 
-            this.textBox_navn.Location = new System.Drawing.Point(43, 218);
-            this.textBox_navn.Name = "textBox_navn";
-            this.textBox_navn.Size = new System.Drawing.Size(99, 20);
-            this.textBox_navn.TabIndex = 17;
-            // 
             // label_navn
             // 
             this.label_navn.AutoSize = true;
@@ -268,16 +261,16 @@
             this.label_adresse.AutoSize = true;
             this.label_adresse.Location = new System.Drawing.Point(40, 251);
             this.label_adresse.Name = "label_adresse";
-            this.label_adresse.Size = new System.Drawing.Size(52, 13);
+            this.label_adresse.Size = new System.Drawing.Size(61, 13);
             this.label_adresse.TabIndex = 20;
-            this.label_adresse.Text = "Fødselsår";
+            this.label_adresse.Text = "Fødselsdag";
             // 
-            // textBox_adresse
+            // Animal_weight
             // 
-            this.textBox_adresse.Location = new System.Drawing.Point(162, 218);
-            this.textBox_adresse.Name = "textBox_adresse";
-            this.textBox_adresse.Size = new System.Drawing.Size(99, 20);
-            this.textBox_adresse.TabIndex = 19;
+            this.Animal_weight.Location = new System.Drawing.Point(162, 218);
+            this.Animal_weight.Name = "Animal_weight";
+            this.Animal_weight.Size = new System.Drawing.Size(99, 20);
+            this.Animal_weight.TabIndex = 19;
             // 
             // label_email
             // 
@@ -288,12 +281,12 @@
             this.label_email.TabIndex = 22;
             this.label_email.Text = "Køn";
             // 
-            // textBox_email
+            // Animal_bday
             // 
-            this.textBox_email.Location = new System.Drawing.Point(43, 267);
-            this.textBox_email.Name = "textBox_email";
-            this.textBox_email.Size = new System.Drawing.Size(99, 20);
-            this.textBox_email.TabIndex = 21;
+            this.Animal_bday.Location = new System.Drawing.Point(43, 267);
+            this.Animal_bday.Name = "Animal_bday";
+            this.Animal_bday.Size = new System.Drawing.Size(99, 20);
+            this.Animal_bday.TabIndex = 21;
             // 
             // label1
             // 
@@ -356,12 +349,31 @@
             this.label5.TabIndex = 29;
             this.label5.Text = "Ejer";
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Hund",
+            "Kat",
+            "Kanin",
+            "Marsvin",
+            "Hamster",
+            "Kanariefugl",
+            "Papegøje",
+            "Slange",
+            "Skildpadde"});
+            this.comboBox1.Location = new System.Drawing.Point(43, 218);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(99, 21);
+            this.comboBox1.TabIndex = 30;
+            // 
             // AnimalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(640, 542);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -370,15 +382,14 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label_email);
-            this.Controls.Add(this.textBox_email);
+            this.Controls.Add(this.Animal_bday);
             this.Controls.Add(this.label_adresse);
-            this.Controls.Add(this.textBox_adresse);
+            this.Controls.Add(this.Animal_weight);
             this.Controls.Add(this.label_navn);
-            this.Controls.Add(this.textBox_navn);
             this.Controls.Add(this.button_slet);
             this.Controls.Add(this.button_rediger);
             this.Controls.Add(this.label_telefonnummer);
-            this.Controls.Add(this.textBox_phonenumber);
+            this.Controls.Add(this.Animal_name);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label_headline);
@@ -412,16 +423,15 @@
         #endregion
 
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.TextBox textBox_phonenumber;
+        private System.Windows.Forms.TextBox Animal_name;
         private System.Windows.Forms.Label label_telefonnummer;
         private System.Windows.Forms.Button button_rediger;
         private System.Windows.Forms.Button button_slet;
-        private System.Windows.Forms.TextBox textBox_navn;
         private System.Windows.Forms.Label label_navn;
         private System.Windows.Forms.Label label_adresse;
-        private System.Windows.Forms.TextBox textBox_adresse;
+        private System.Windows.Forms.TextBox Animal_weight;
         private System.Windows.Forms.Label label_email;
-        private System.Windows.Forms.TextBox textBox_email;
+        private System.Windows.Forms.TextBox Animal_bday;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
@@ -429,6 +439,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 
     #region Windows Form Designer generated code

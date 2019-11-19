@@ -29,7 +29,7 @@ namespace AnimalHouse
         {
             get
             {
-             return   CustomerController.instance;
+                return CustomerController.instance;
             }
         }
 
@@ -40,8 +40,14 @@ namespace AnimalHouse
                 return TreatmentController.Instance();
             }
         }
+        public AnimalController animalController
+        {
+            get
+            {
+                return AnimalController.Instance();
+            }
 
-
+        }
     }
 }
 
