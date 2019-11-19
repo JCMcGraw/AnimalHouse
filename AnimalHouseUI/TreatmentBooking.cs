@@ -34,53 +34,61 @@ namespace AnimalHouseUI
 
         private void DummyValuesForComboboxes()
         {
-            DataTable employees = new DataTable();
-            employees.Columns.Add("employee", typeof(string));
-            employees.Columns.Add("employeeid", typeof(int));
+            //DataTable employees = new DataTable();
+            //employees.Columns.Add("employee", typeof(string));
+            //employees.Columns.Add("employeeid", typeof(int));
 
-            DataRow dataRow = employees.NewRow();
-            dataRow[0] = "Alle";
-            dataRow[1] = -1;
-            employees.Rows.Add(dataRow);
-            DataRow dataRow1 = employees.NewRow();
-            dataRow1[0] = "Ole Ernst";
-            dataRow1[1] = 0;
-            employees.Rows.Add(dataRow1);
-            DataRow dataRow2 = employees.NewRow();
-            dataRow2[0] = "Poul Bundgaard";
-            dataRow2[1] = 1;
-            employees.Rows.Add(dataRow2);
-            DataRow dataRow3 = employees.NewRow();
-            dataRow3[0] = "Dirch Passer";
-            dataRow3[1] = 2;
-            employees.Rows.Add(dataRow3);
+            //DataRow dataRow = employees.NewRow();
+            //dataRow[0] = "Alle";
+            //dataRow[1] = -1;
+            //employees.Rows.Add(dataRow);
+            //DataRow dataRow1 = employees.NewRow();
+            //dataRow1[0] = "Ole Ernst";
+            //dataRow1[1] = 0;
+            //employees.Rows.Add(dataRow1);
+            //DataRow dataRow2 = employees.NewRow();
+            //dataRow2[0] = "Poul Bundgaard";
+            //dataRow2[1] = 1;
+            //employees.Rows.Add(dataRow2);
+            //DataRow dataRow3 = employees.NewRow();
+            //dataRow3[0] = "Dirch Passer";
+            //dataRow3[1] = 2;
+            //employees.Rows.Add(dataRow3);
 
-            ComboBoxEmployee.DataSource = employees;
-            ComboBoxEmployee.DisplayMember = "employee";
-            ComboBoxEmployee.ValueMember = "employeeid";
+            List<KeyValuePair<string, int>> employeeList = new List<KeyValuePair<string, int>>() { new KeyValuePair<string, int>("Alle", -1),
+                new KeyValuePair<string, int>("Ole Ernst", 1), new KeyValuePair<string, int>("Dirch Passer", 2), new KeyValuePair<string, int>("Poul Bundgaard", 3) };
 
-            DataTable treatment = new DataTable();
-            treatment.Columns.Add("treatment", typeof(string));
-            treatment.Columns.Add("treatmentid", typeof(int));
+            ComboBoxEmployee.DataSource = employeeList;
+            ComboBoxEmployee.DisplayMember = "Key";
+            ComboBoxEmployee.ValueMember = "Value";
 
-            DataRow dataRow6 = treatment.NewRow();
-            dataRow6[0] = "Konsultation";
-            dataRow6[1] = 0;
-            treatment.Rows.Add(dataRow6);
-            DataRow dataRow4 = treatment.NewRow();
-            dataRow4[0] = "Operation";
-            dataRow4[1] = 1;
-            treatment.Rows.Add(dataRow4);
-            DataRow dataRow5 = treatment.NewRow();
-            dataRow5[0] = "Observation";
-            dataRow5[1] = 2;
-            treatment.Rows.Add(dataRow5);
+            //DataTable treatment = new DataTable();
+            //treatment.Columns.Add("treatment", typeof(string));
+            //treatment.Columns.Add("treatmentid", typeof(int));
 
-            ComboBoxTreatmentType.DataSource = treatment;
-            ComboBoxTreatmentType.DisplayMember = "treatment";
-            ComboBoxTreatmentType.ValueMember = "treatmentid";
+            //DataRow dataRow6 = treatment.NewRow();
+            //dataRow6[0] = "Konsultation";
+            //dataRow6[1] = 0;
+            //treatment.Rows.Add(dataRow6);
+            //DataRow dataRow4 = treatment.NewRow();
+            //dataRow4[0] = "Operation";
+            //dataRow4[1] = 1;
+            //treatment.Rows.Add(dataRow4);
+            //DataRow dataRow5 = treatment.NewRow();
+            //dataRow5[0] = "Observation";
+            //dataRow5[1] = 2;
+            //treatment.Rows.Add(dataRow5);
 
 
+            List<KeyValuePair<string, int>> treatmentTypeList = new List<KeyValuePair<string, int>>() { new KeyValuePair<string, int>("Konsultation", 0),
+                new KeyValuePair<string, int>("Operation", 1), new KeyValuePair<string, int>("Observation", 2) };
+
+            ComboBoxTreatmentType.DataSource = treatmentTypeList;
+            ComboBoxTreatmentType.DisplayMember = "Key";
+            ComboBoxTreatmentType.ValueMember = "Value";
+
+            //ComboBoxTreatmentType.DisplayMember = "treatment";
+            //ComboBoxTreatmentType.ValueMember = "treatmentid";
         }
 
         private const int CS_DROPSHADOW = 0x20000;
@@ -575,18 +583,11 @@ namespace AnimalHouseUI
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DeleteSelectedItems();
+            ContextMenuStripBooking.Close();
+            CalendarBooking.Focus();
+            SendKeys.Send("{DELETE}");
         }
 
-        private void DeleteSelectedItems()
-        {
-            var selectedItems = CalendarBooking.GetSelectedItems();
-
-            foreach (var item in selectedItems)
-            {
-                CalendarBooking.Items.Remove(item);
-            }
-        }
 
         private void CalendarBooking_ItemDeleting(object sender, CalendarItemCancelEventArgs e)
         {
