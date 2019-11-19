@@ -1,0 +1,2 @@
+﻿Select * from Treatment
+where (StartTime='@startTime' AND EndTime='@endTime')

@@ -14,7 +14,7 @@ namespace AnimalHouse
 
         private TreatmentController() { }
 
-        public static TreatmentController instance()
+        public static TreatmentController Instance()
         {
             if (treatmentController == null)
             {
@@ -56,10 +56,16 @@ namespace AnimalHouse
             return getManyTreatmentsByEmployee;
         }
 
-        public string GetManyTreatmentsByAnimal(int animalID, DateTime startTime, DateTime endTime)
+        public List<Treatment> GetManyTreatmentsByAnimal(int animalID, DateTime startTime, DateTime endTime)
         {
-            string getManyTreatmentsByAnimal = treatmentManager.GetManyTreatmentsByAnimal(animalID,startTime,endTime);
+            List<Treatment> getManyTreatmentsByAnimal = treatmentManager.GetManyTreatmentsByAnimal(animalID,startTime,endTime);
             return getManyTreatmentsByAnimal;
+        }
+
+        public List<Treatment> GetManyTreatmentsByDateTime(DateTime startTime, DateTime endTime)
+        {
+            List<Treatment> getManyTreatmentsByDateTime = treatmentManager.GetManyTreatmentsByDateTime(startTime, endTime);
+            return getManyTreatmentsByDateTime;
         }
     }
 }
