@@ -1,2 +1,3 @@
-﻿Delete from Treatment
+﻿update Treatment set
+Payed = @payed
 where TreatmentID = @treatmentID

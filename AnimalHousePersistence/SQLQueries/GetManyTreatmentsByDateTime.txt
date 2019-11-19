@@ -1,2 +1,2 @@
 ﻿Select * from Treatment
-where (StartTime='@startTime' AND EndTime='@endTime')
+where (StartTime > @endTime AND EndTime < @startTime)
