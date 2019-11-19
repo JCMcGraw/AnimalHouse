@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace AnimalHouseEntities
 {
-    public class TreatmentFaktory
+    public class TreatmentFactory
     {
-        private static TreatmentFaktory instance;
+        private static TreatmentFactory instance;
 
-        private TreatmentFaktory() { }
+        private TreatmentFactory() { }
 
-        public static TreatmentFaktory Instance()
+        public static TreatmentFactory Instance()
         {
             if (instance == null)
             {
-                instance = new TreatmentFaktory();
+                instance = new TreatmentFactory();
             }
 
             return instance;
