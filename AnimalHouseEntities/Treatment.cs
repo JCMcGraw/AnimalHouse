@@ -24,7 +24,15 @@ namespace AnimalHouseEntities
 
         public bool payed { get; private set; }
 
-        public Treatment(int treatmentID, int treatmentTypeID, int operationRoomID, int cageID, int itemID, DateTime startTime, DateTime endTime, bool payed)
+        public string headline { get; private set; }
+
+        public bool active { get; private set; }
+
+        public int animalID { get; private set; }
+
+        public int employee { get; private set; }
+
+        public Treatment(int treatmentID, int treatmentTypeID, int operationRoomID, int cageID, int itemID, DateTime startTime, DateTime endTime, bool payed, string headline, bool active, int animalID, int employee)
         {
             this.treatmentID = treatmentID;
             this.treatmentTypeID = treatmentTypeID;
@@ -34,9 +42,13 @@ namespace AnimalHouseEntities
             this.startTime = startTime;
             this.endTime = endTime;
             this.payed = payed;
+            this.headline = headline;
+            this.active = active;
+            this.animalID = animalID;
+            this.employee = employee;
         }
 
-        public Treatment(int treatmentTypeID, int operationRoomID, int cageID, int itemID, DateTime startTime, DateTime endTime, bool payed)
+        public Treatment(int treatmentTypeID, int operationRoomID, int cageID, int itemID, DateTime startTime, DateTime endTime, bool payed, string headline, bool active, int animalID, int employee)
         {
             this.treatmentTypeID = treatmentTypeID;
             this.operationRoomID = operationRoomID;
@@ -45,6 +57,10 @@ namespace AnimalHouseEntities
             this.startTime = startTime;
             this.endTime = endTime;
             this.payed = payed;
+            this.headline = headline;
+            this.active = active;
+            this.animalID = animalID;
+            this.employee = employee;
         }
 
         public void UpdateID(int treatmentID)
