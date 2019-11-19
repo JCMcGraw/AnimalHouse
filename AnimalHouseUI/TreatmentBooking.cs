@@ -270,7 +270,7 @@ namespace AnimalHouseUI
             treatments.Add(new Treatment(2, 1, 2, 3, 4, new DateTime(2019, 11, 14, 14, 30, 0), new DateTime(2019, 11, 14, 15, 30, 0), false));
             treatments.Add(new Treatment(3, 2, 2, 3, 4, new DateTime(2019, 11, 18, 0, 0, 0), new DateTime(2019, 11, 20, 0, 0, 0), false));
 
-            //List<Treatment> treatmentsfromdatabase = bossController.treatmentController.GetManyTreatmentsByDateTime(CalendarRangeStart, CalendarRangeEnd);
+            List<Treatment> treatmentsfromdatabase = bossController.treatmentController.GetManyTreatmentsByDateTime(CalendarRangeStart, CalendarRangeEnd);
 
             foreach (var treatment in treatments)
             {
