@@ -44,9 +44,9 @@ namespace AnimalHouse
             return deleteTreatment;
         }
 
-        public Treatment GetTreatment(int treatmentID)
+        public List<Treatment> GetTreatment(int treatmentID)
         {
-            Treatment getTreatment = treatmentManager.GetTreatment(treatmentID);
+            List<Treatment> getTreatment = treatmentManager.GetTreatment(treatmentID);
             return getTreatment;
         }
 

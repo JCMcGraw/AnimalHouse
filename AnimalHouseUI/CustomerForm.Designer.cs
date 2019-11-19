@@ -52,6 +52,8 @@
             this.textBox_adresse = new System.Windows.Forms.TextBox();
             this.label_email = new System.Windows.Forms.Label();
             this.textBox_email = new System.Windows.Forms.TextBox();
+            this.textBox_cvr = new System.Windows.Forms.TextBox();
+            this.label_cvr = new System.Windows.Forms.Label();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             this.SuspendLayout();
@@ -323,12 +325,30 @@
             this.textBox_email.Size = new System.Drawing.Size(182, 20);
             this.textBox_email.TabIndex = 21;
             // 
+            // textBox_cvr
+            // 
+            this.textBox_cvr.Location = new System.Drawing.Point(121, 211);
+            this.textBox_cvr.Name = "textBox_cvr";
+            this.textBox_cvr.Size = new System.Drawing.Size(131, 20);
+            this.textBox_cvr.TabIndex = 23;
+            // 
+            // label_cvr
+            // 
+            this.label_cvr.AutoSize = true;
+            this.label_cvr.Location = new System.Drawing.Point(82, 214);
+            this.label_cvr.Name = "label_cvr";
+            this.label_cvr.Size = new System.Drawing.Size(29, 13);
+            this.label_cvr.TabIndex = 24;
+            this.label_cvr.Text = "CVR";
+            // 
             // CustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(640, 542);
+            this.Controls.Add(this.label_cvr);
+            this.Controls.Add(this.textBox_cvr);
             this.Controls.Add(this.label_email);
             this.Controls.Add(this.textBox_email);
             this.Controls.Add(this.label_adresse);
@@ -386,5 +406,7 @@
         private System.Windows.Forms.TextBox textBox_adresse;
         private System.Windows.Forms.Label label_email;
         private System.Windows.Forms.TextBox textBox_email;
+        private System.Windows.Forms.TextBox textBox_cvr;
+        private System.Windows.Forms.Label label_cvr;
     }
 }
