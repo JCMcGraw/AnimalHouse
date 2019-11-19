@@ -517,5 +517,15 @@ namespace AnimalHouseUI
         {
             CalendarBooking.TimeScale = CalendarTimeScale.FiveMinutes;
         }
+
+        private void PanelHeader_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void PanelHeadline_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
