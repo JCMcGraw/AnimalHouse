@@ -14,7 +14,7 @@ namespace AnimalHouse
 
         private TreatmentController() { }
 
-        public static TreatmentController instance()
+        public static TreatmentController Instance()
         {
             if (treatmentController == null)
             {
@@ -26,9 +26,9 @@ namespace AnimalHouse
 
         ITreatmentManager treatmentManager = new TreatmentManager();
 
-        public string CreateTreatment(Treatment treatment)
+        public Treatment CreateTreatment(Treatment treatment)
         {
-            string createTreatment = treatmentManager.CreateTreatment(treatment);
+            Treatment createTreatment = treatmentManager.CreateTreatment(treatment);
             return createTreatment;
         }
 
@@ -44,22 +44,28 @@ namespace AnimalHouse
             return deleteTreatment;
         }
 
-        public string GetTreatment(int treatmentID)
+        public Treatment GetTreatment(int treatmentID)
         {
-            string getTreatment = treatmentManager.GetTreatment(treatmentID);
+            Treatment getTreatment = treatmentManager.GetTreatment(treatmentID);
             return getTreatment;
         }
 
-        public string GetManyTreatmentsByEmployee(int employeeID, DateTime startTime, DateTime endTime)
+        public List<Treatment> GetManyTreatmentsByEmployee(int employeeID, DateTime startTime, DateTime endTime)
         {
-            string getManyTreatmentsByEmployee = treatmentManager.GetManyTreatmentsByEmployee(employeeID,startTime,endTime);
+            List<Treatment> getManyTreatmentsByEmployee = treatmentManager.GetManyTreatmentsByEmployee(employeeID,startTime,endTime);
             return getManyTreatmentsByEmployee;
         }
 
-        public string GetManyTreatmentsByAnimal(int animalID, DateTime startTime, DateTime endTime)
+        public List<Treatment> GetManyTreatmentsByAnimal(int animalID, DateTime startTime, DateTime endTime)
         {
-            string getManyTreatmentsByAnimal = treatmentManager.GetManyTreatmentsByAnimal(animalID,startTime,endTime);
+            List<Treatment> getManyTreatmentsByAnimal = treatmentManager.GetManyTreatmentsByAnimal(animalID,startTime,endTime);
             return getManyTreatmentsByAnimal;
+        }
+
+        public List<Treatment> GetManyTreatmentsByDateTime(DateTime startTime, DateTime endTime)
+        {
+            List<Treatment> getManyTreatmentsByDateTime = treatmentManager.GetManyTreatmentsByDateTime(startTime, endTime);
+            return getManyTreatmentsByDateTime;
         }
     }
 }
