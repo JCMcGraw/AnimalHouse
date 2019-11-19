@@ -5,11 +5,14 @@ using System.Windows.Forms;
 using AnimalHouseEntities;
 using System.Windows.Forms.Calendar;
 using System.Data;
+using AnimalHouse;
 
 namespace AnimalHouseUI
 {
     public partial class TreatmentBooking : Form
     {
+        BossController bossController = BossController.instance();
+
         Dictionary<int, Treatment> treatmentsCache = new Dictionary<int, Treatment>();
 
         DateTime treatmentCacheDateStart = DateTime.Today;
@@ -18,6 +21,7 @@ namespace AnimalHouseUI
         List<CalendarItem> calendarItemsCache = new List<CalendarItem>();
         CalendarItem contextItem = null;
 
+        
         public TreatmentBooking()
         {
             InitializeComponent();
@@ -261,18 +265,31 @@ namespace AnimalHouseUI
 
             foreach (var treatment in treatments)
             {
-                if (!treatmentsCache.ContainsKey(treatment.treatmentID))
-                {
-                    treatmentsCache.Add(treatment.treatmentID, treatment);
+                //if (!treatmentsCache.ContainsKey(treatment.treatmentID))
+                //{
+                //    treatmentsCache.Add(treatment.treatmentID, treatment);
 
-                    CalendarItem calendarItem = new CalendarItem(CalendarBooking, treatment.startTime, treatment.endTime, "");
-                    calendarItem.TreatmentID = treatment.treatmentID;
-                    calendarItemsCache.Add(calendarItem);
-                }
+                //    CalendarItem calendarItem = new CalendarItem(CalendarBooking, treatment.startTime, treatment.endTime, "");
+                //    calendarItem.TreatmentID = treatment.treatmentID;
+                //    calendarItemsCache.Add(calendarItem);
+                //}
+                AddTreatmentToCache(treatment);
 
             }
 
             PlaceItems();
+        }
+
+        private void AddTreatmentToCache(Treatment treatment)
+        {
+            if (!treatmentsCache.ContainsKey(treatment.treatmentID))
+            {
+                treatmentsCache.Add(treatment.treatmentID, treatment);
+
+                CalendarItem calendarItem = new CalendarItem(CalendarBooking, treatment.startTime, treatment.endTime, "");
+                calendarItem.TreatmentID = treatment.treatmentID;
+                calendarItemsCache.Add(calendarItem);
+            }
         }
 
         private void CalendarBooking_MouseClick(object sender, MouseEventArgs e)
@@ -429,7 +446,10 @@ namespace AnimalHouseUI
             DialogResult dialogResult = MessageBox.Show(message, "Book behandling", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                Treatment treatment = new Treatment(1, -1, -1, -1, e.Item.StartDate, e.Item.EndDate, false);
+                Treatment treatment = TreatmentFaktory.Instance().CreateTreatment((int)ComboBoxTreatmentType.SelectedValue, -1, -1, -1, e.Item.StartDate, e.Item.EndDate, false);
+                Treatment treatmentWithID = bossController.treatmentController.CreateTreatment(treatment);
+
+                AddTreatmentToCache(treatmentWithID);
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -444,22 +464,27 @@ namespace AnimalHouseUI
 
         private void CalendarBooking_ItemDatesChanged(object sender, CalendarItemEventArgs e)
         {
-            //string message = $"Ønsker du at flytte denne aftale til kl. {e.Item.StartDate.ToString("HH:mm")} den {e.Item.StartDate.ToString("M/dd")}";
+            TimeSpan appointmentDuration = e.Item.EndDate - e.Item.StartDate;
+
+            string message = $"Ønsker du at ændre denne aftale til kl. {e.Item.StartDate.ToString("HH:mm")} den {e.Item.StartDate.ToString("dd/M")}, varighed: {(e.Item.EndDate - e.Item.StartDate).ToString(@"h\:mm")}?";
+            if ((int)ComboBoxTreatmentType.SelectedValue == 2)
+            {
+                message = $"Ønsker du at ændre denne observation til {e.Item.StartDate.ToString("d/M")}-{e.Item.EndDate.ToString("d/M")}?";
+            }
 
 
-            //DialogResult dialogResult = MessageBox.Show(message, "Book behandling", MessageBoxButtons.YesNo);
-            //if (dialogResult == DialogResult.Yes)
-            //{
-            //    Treatment treatment = new Treatment(1, -1, -1, -1, e.Item.StartDate, e.Item.EndDate, false);
-            //}
-            //else if (dialogResult == DialogResult.No)
-            //{
-            //    e.Cancel = true;
-            //}
-            //MessageBox.Show(e.Item.StartDate.ToString());
-            //e.Item.StartDate = treatmentsCache[e.Item.TreatmentID].startTime;
-            //e.Item.EndDate = treatmentsCache[e.Item.TreatmentID].endTime;
-            //MessageBox.Show(e.Item.StartDate.ToString());
+            DialogResult dialogResult = MessageBox.Show(message, "Book behandling", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                int treatmentID = e.Item.TreatmentID;
+
+                
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                e.Item.StartDate = treatmentsCache[e.Item.TreatmentID].startTime;
+                e.Item.EndDate = treatmentsCache[e.Item.TreatmentID].endTime;
+            }
             PlaceItems();
         }
 

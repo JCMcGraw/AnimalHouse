@@ -83,7 +83,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLQueries\CreateTreatment.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLQueries\GetManyTreatmentsByAnimal.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
