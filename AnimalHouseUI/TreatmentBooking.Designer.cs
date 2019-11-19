@@ -391,6 +391,7 @@
             this.CalendarBooking.Text = "calendar1";
             this.CalendarBooking.LoadItems += new System.Windows.Forms.Calendar.Calendar.CalendarLoadEventHandler(this.CalendarBooking_LoadItems);
             this.CalendarBooking.ItemCreating += new System.Windows.Forms.Calendar.Calendar.CalendarItemCancelEventHandler(this.CalendarBooking_ItemCreating);
+            this.CalendarBooking.ItemDeleting += new System.Windows.Forms.Calendar.Calendar.CalendarItemCancelEventHandler(this.CalendarBooking_ItemDeleting);
             this.CalendarBooking.ItemDatesChanged += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.CalendarBooking_ItemDatesChanged);
             this.CalendarBooking.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CalendarBooking_MouseClick);
             // 

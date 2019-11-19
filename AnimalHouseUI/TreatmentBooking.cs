@@ -214,6 +214,9 @@ namespace AnimalHouseUI
             DateTime CalendarRangeStart;
             DateTime CalendarRangeEnd;
 
+            DateTime CacheRangeStart;
+            DateTime CacheRangeEnd;
+
             if (MonthViewBooking.SelectionEnd > MonthViewBooking.SelectionStart)
             {
                 if (ComboBoxTreatmentType.Text == "Observation")
@@ -226,9 +229,13 @@ namespace AnimalHouseUI
                     CalendarRangeStart = MonthViewBooking.SelectionStart;
                     CalendarRangeEnd = MonthViewBooking.SelectionEnd;
                 }
-                if (CheckCacheDates(CalendarRangeStart, CalendarRangeEnd) == false)
+
+                CacheRangeStart = CalendarRangeStart.AddDays(-14);
+                CacheRangeEnd = CalendarRangeEnd.AddDays(21);
+
+                if (CheckCacheDates(CacheRangeStart, CacheRangeEnd) == false)
                 {
-                    UpdateTreatmentCache(CalendarRangeStart, CalendarRangeEnd);
+                    UpdateTreatmentCache(CacheRangeStart, CacheRangeEnd);
                 }
 
                 CalendarBooking.SetViewRange(CalendarRangeStart, CalendarRangeEnd);
@@ -263,20 +270,11 @@ namespace AnimalHouseUI
             treatments.Add(new Treatment(2, 1, 2, 3, 4, new DateTime(2019, 11, 14, 14, 30, 0), new DateTime(2019, 11, 14, 15, 30, 0), false));
             treatments.Add(new Treatment(3, 2, 2, 3, 4, new DateTime(2019, 11, 18, 0, 0, 0), new DateTime(2019, 11, 20, 0, 0, 0), false));
 
-            List<Treatment> treatmentsfromdatabase = bossController.treatmentController.GetManyTreatmentsByDateTime(CalendarRangeStart, CalendarRangeEnd);
+            //List<Treatment> treatmentsfromdatabase = bossController.treatmentController.GetManyTreatmentsByDateTime(CalendarRangeStart, CalendarRangeEnd);
 
             foreach (var treatment in treatments)
             {
-                //if (!treatmentsCache.ContainsKey(treatment.treatmentID))
-                //{
-                //    treatmentsCache.Add(treatment.treatmentID, treatment);
-
-                //    CalendarItem calendarItem = new CalendarItem(CalendarBooking, treatment.startTime, treatment.endTime, "");
-                //    calendarItem.TreatmentID = treatment.treatmentID;
-                //    calendarItemsCache.Add(calendarItem);
-                //}
                 AddTreatmentToCache(treatment);
-
             }
 
             PlaceItems();
@@ -442,7 +440,8 @@ namespace AnimalHouseUI
 
         private void CalendarBooking_ItemCreating(object sender, CalendarItemCancelEventArgs e)
         {
-            string message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} kl. {e.Item.StartDate.ToString("HH:mm")} den {e.Item.StartDate.ToString("dd/M")}";
+            TimeSpan appointmentDuration = e.Item.EndDate - e.Item.StartDate;
+            string message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra kl. {e.Item.StartDate.ToString("H:mm")} til kl. {e.Item.EndDate.ToString("H:mm")} den {e.Item.StartDate.ToString("dd/M")}";
 
 
             DialogResult dialogResult = MessageBox.Show(message, "Book behandling", MessageBoxButtons.YesNo);
@@ -466,27 +465,27 @@ namespace AnimalHouseUI
 
         private void CalendarBooking_ItemDatesChanged(object sender, CalendarItemEventArgs e)
         {
-            TimeSpan appointmentDuration = e.Item.EndDate - e.Item.StartDate;
-
-            string message = $"Ønsker du at ændre denne aftale til kl. {e.Item.StartDate.ToString("HH:mm")} den {e.Item.StartDate.ToString("dd/M")}, varighed: {(e.Item.EndDate - e.Item.StartDate).ToString(@"h\:mm")}?";
+            string message = $"Ønsker du at ændre denne aftale til kl. {e.Item.StartDate.ToString("H:mm")}-{e.Item.EndDate.ToString("H:mm")} den {e.Item.StartDate.ToString("dd/M")}?";
             if ((int)ComboBoxTreatmentType.SelectedValue == 2)
             {
                 message = $"Ønsker du at ændre denne observation til {e.Item.StartDate.ToString("d/M")}-{e.Item.EndDate.ToString("d/M")}?";
             }
-
 
             DialogResult dialogResult = MessageBox.Show(message, "Book behandling", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 int treatmentID = e.Item.TreatmentID;
 
-                
+
+
+
             }
             else if (dialogResult == DialogResult.No)
             {
                 e.Item.StartDate = treatmentsCache[e.Item.TreatmentID].startTime;
                 e.Item.EndDate = treatmentsCache[e.Item.TreatmentID].endTime;
             }
+
             PlaceItems();
         }
 
@@ -518,6 +517,28 @@ namespace AnimalHouseUI
         private void minutes5ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CalendarBooking.TimeScale = CalendarTimeScale.FiveMinutes;
+        }
+
+        private void CalendarBooking_ItemDeleting(object sender, CalendarItemCancelEventArgs e)
+        {
+            string message = $"Ønsker du at slette denne aftale?";
+
+
+            DialogResult dialogResult = MessageBox.Show(message, "Slet aftale", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                int treatmentID = e.Item.TreatmentID;
+
+                treatmentsCache.Remove(treatmentID);
+
+                //bossController.treatmentController.DeleteTreatment(treatmentID);
+
+
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }
