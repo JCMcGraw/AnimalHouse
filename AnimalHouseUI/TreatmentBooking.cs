@@ -251,7 +251,7 @@ namespace AnimalHouseUI
                 return true;
             }
 
-            if(treatmentCacheDateStart < CalendarRangeStart && treatmentCacheDateEnd > CalendarRangeEnd)
+            if(treatmentCacheDateStart <= CalendarRangeStart && treatmentCacheDateEnd >= CalendarRangeEnd)
             {
                 return true;
             }
@@ -265,6 +265,7 @@ namespace AnimalHouseUI
         private void UpdateTreatmentCache(DateTime CalendarRangeStart, DateTime CalendarRangeEnd)
         {
             List<Treatment> treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(CalendarRangeStart, CalendarRangeEnd);
+            UpdateCacheRange(CalendarRangeStart, CalendarRangeEnd);
 
             foreach (var treatment in treatments)
             {
@@ -272,6 +273,18 @@ namespace AnimalHouseUI
             }
 
             PlaceItems();
+        }
+
+        private void UpdateCacheRange(DateTime CacheRangeStart, DateTime CacheRangeEnd)
+        {
+            if (CacheRangeStart < treatmentCacheDateStart)
+            {
+                treatmentCacheDateStart = CacheRangeStart;
+            }
+            if (CacheRangeEnd > treatmentCacheDateEnd)
+            {
+                treatmentCacheDateEnd = CacheRangeEnd;
+            }
         }
 
         private void AddTreatmentToCache(Treatment treatment)
@@ -434,7 +447,7 @@ namespace AnimalHouseUI
 
         private void CalendarBooking_ItemCreating(object sender, CalendarItemCancelEventArgs e)
         {
-            TimeSpan appointmentDuration = e.Item.EndDate - e.Item.StartDate;
+            //TimeSpan appointmentDuration = e.Item.EndDate - e.Item.StartDate;
             string message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra kl. {e.Item.StartDate.ToString("H:mm")} til kl. {e.Item.EndDate.ToString("H:mm")} den {e.Item.StartDate.ToString("dd/M")}";
 
 
@@ -470,9 +483,12 @@ namespace AnimalHouseUI
             {
                 int treatmentID = e.Item.TreatmentID;
 
+                Treatment newTreatment = GetUpdatedTreatment(treatmentID, e.Item.StartDate, e.Item.EndDate);
+                //bossController.treatmentController.UpdateTreatment(newTreatment);
+
+                treatmentsCache.Remove(treatmentID);
+                treatmentsCache.Add(newTreatment.treatmentID, newTreatment);
                 
-
-
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -481,6 +497,16 @@ namespace AnimalHouseUI
             }
 
             PlaceItems();
+        }
+
+        private Treatment GetUpdatedTreatment(int treatmentID, DateTime newStartTime, DateTime newEndTime)
+        {
+            Treatment oldTreatment = treatmentsCache[treatmentID];
+            Treatment newTreatment = TreatmentFaktory.Instance().CreateTreatment(treatmentID, oldTreatment.treatmentTypeID, oldTreatment.operationRoomID, oldTreatment.cageID,
+                oldTreatment.itemID, newStartTime, newEndTime, oldTreatment.payed);
+
+
+            return newTreatment;
         }
 
         private void hourToolStripMenuItem_Click(object sender, EventArgs e)
@@ -513,6 +539,21 @@ namespace AnimalHouseUI
             CalendarBooking.TimeScale = CalendarTimeScale.FiveMinutes;
         }
 
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteSelectedItems();
+        }
+
+        private void DeleteSelectedItems()
+        {
+            var selectedItems = CalendarBooking.GetSelectedItems();
+
+            foreach (var item in selectedItems)
+            {
+                CalendarBooking.Items.Remove(item);
+            }
+        }
+
         private void CalendarBooking_ItemDeleting(object sender, CalendarItemCancelEventArgs e)
         {
             string message = $"Ønsker du at slette denne aftale?";
@@ -525,14 +566,59 @@ namespace AnimalHouseUI
 
                 treatmentsCache.Remove(treatmentID);
 
-                //bossController.treatmentController.DeleteTreatment(treatmentID);
+                //bossController.treatmentController.DeleteTreatment(treatmentsCache[treatmentID]);
 
+                treatmentsCache.Remove(treatmentID);
+                RemoveItemFromCalendarItemsCache(treatmentID);
 
             }
             else if (dialogResult == DialogResult.No)
             {
                 e.Cancel = true;
             }
+
+        }
+
+        private void RemoveItemFromCalendarItemsCache(int treatmentID)
+        {
+            int itemcounter = -1;
+
+            for(itemcounter = 0; itemcounter < calendarItemsCache.Count; itemcounter++)
+            {
+                if (calendarItemsCache[itemcounter].TreatmentID == treatmentID)
+                {
+                    break;
+                }
+            }
+
+            if (itemcounter > -1)
+            {
+                calendarItemsCache.RemoveAt(itemcounter);
+            }
+        }
+
+        private void ButtonDelete_Click(object sender, EventArgs e)
+        {
+            DeleteSelectedItems();
+        }
+
+        private void ButtonCreateTreatment_Click(object sender, EventArgs e)
+        {
+            DateTime selectionStart = CalendarBooking.SelectedElementStart.Date;
+            DateTime selectionEnd = CalendarBooking.SelectedElementEnd.Date.AddMinutes((int)CalendarBooking.TimeScale);
+
+            string message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra kl. {selectionStart.ToString("H:mm")} til kl. {selectionEnd.ToString("H:mm")} den {selectionStart.ToString("dd/M")}";
+
+
+            DialogResult dialogResult = MessageBox.Show(message, "Book behandling", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                Treatment treatment = TreatmentFaktory.Instance().CreateTreatment((int)ComboBoxTreatmentType.SelectedValue, -1, -1, -1, selectionStart, selectionEnd, false);
+                Treatment treatmentWithID = bossController.treatmentController.CreateTreatment(treatment);
+
+                AddTreatmentToCache(treatmentWithID);
+            }
+            PlaceItems();
         }
     }
 }
