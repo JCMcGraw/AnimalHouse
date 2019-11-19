@@ -15,7 +15,7 @@ namespace AnimalHousePersistence
 
         string DeleteTreatment(Treatment treatment);
 
-        Treatment GetTreatment(int treatmentID);
+        List<Treatment> GetTreatment(int treatmentID);
 
         List<Treatment> GetManyTreatmentsByEmployee(int employeeID, DateTime startTime, DateTime endTime);
 

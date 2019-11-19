@@ -30,7 +30,7 @@ namespace AnimalHouseUI
             ComboBoxTreatmentType.SelectedIndex = 0;
 
             SelectCurrentWeek();
-            UpdateTreatmentCache(DateTime.Today,DateTime.Today);
+            //UpdateTreatmentCache(DateTime.Today,DateTime.Today);
 
 
             //string query = "insert into customer values ('Larsen', 'gadenavn 211', @phone, 'mail2@mail.com)',1)";
@@ -228,7 +228,7 @@ namespace AnimalHouseUI
                 }
                 if (CheckCacheDates(CalendarRangeStart, CalendarRangeEnd) == false)
                 {
-                    //UpdateTreatmentCache(CalendarRangeStart, CalendarRangeEnd);
+                    UpdateTreatmentCache(CalendarRangeStart, CalendarRangeEnd);
                 }
 
                 CalendarBooking.SetViewRange(CalendarRangeStart, CalendarRangeEnd);
@@ -262,6 +262,8 @@ namespace AnimalHouseUI
             treatments.Add(new Treatment(1, 0, 2, 3, 4, new DateTime(2019, 11, 14, 10, 30, 0), new DateTime(2019, 11, 14, 11, 30, 0), false));
             treatments.Add(new Treatment(2, 1, 2, 3, 4, new DateTime(2019, 11, 14, 14, 30, 0), new DateTime(2019, 11, 14, 15, 30, 0), false));
             treatments.Add(new Treatment(3, 2, 2, 3, 4, new DateTime(2019, 11, 18, 0, 0, 0), new DateTime(2019, 11, 20, 0, 0, 0), false));
+
+            List<Treatment> treatmentsfromdatabase = bossController.treatmentController.GetManyTreatmentsByDateTime(CalendarRangeStart, CalendarRangeEnd);
 
             foreach (var treatment in treatments)
             {
