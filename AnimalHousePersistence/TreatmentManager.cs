@@ -155,8 +155,8 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("@startTime", startTime.ToString(), SqlDbType.DateTime);
-            sQLQuery.AddParameter("@endTime", endTime.ToString(), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@startTime", startTime.ToString("yyyy-MM-ddThh:mm:ss"), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@endTime", endTime.ToString("yyyy-MM-ddThh:mm:ss"), SqlDbType.DateTime);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
@@ -164,8 +164,17 @@ namespace AnimalHousePersistence
 
             for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
             {
+                DataRow dataRow = sQLQueryResult.dataTable.Rows[i];
+
                 int tratmentID = (int)sQLQueryResult.dataTable.Rows[i]["TreatmentID"];
-                int treatmentTypeID = (int)sQLQueryResult.dataTable.Rows[i]["TreatmentTypeID"];
+                if (sQLQueryResult.dataTable.Rows[i].IsNull("TreatmentTypeID"))
+                {
+
+                }
+                else
+                {
+                    int treatmentTypeID = (int)sQLQueryResult.dataTable.Rows[i]["TreatmentTypeID"];
+                }
                 int operationRoomID = (int)sQLQueryResult.dataTable.Rows[i]["OperationRoomID"];
                 int cageID = (int)sQLQueryResult.dataTable.Rows[i]["CageID"];
                 int itemID = (int)sQLQueryResult.dataTable.Rows[i]["ItemID"];
@@ -175,9 +184,11 @@ namespace AnimalHousePersistence
                 int employeeID = (int)sQLQueryResult.dataTable.Rows[i]["EmployeeID"];
                 int animalID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalID"];
 
-                treatments.Add(TreatmentFaktory.Instance().CreateTreatment(tratmentID, treatmentTypeID, operationRoomID, cageID, itemID, startTimee, endTimee, payed));
+                //treatments.Add(TreatmentFaktory.Instance().CreateTreatment(tratmentID, treatmentTypeID, operationRoomID, cageID, itemID, startTimee, endTimee, payed));
             }
             return new List<Treatment>();
         }
+
+
     }
 }
