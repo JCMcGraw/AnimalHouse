@@ -13,7 +13,7 @@ namespace AnimalHousePersistence
 {
     public class CustomerManager : ICustomerManager
     {
-        public string CreateCustomer(string phone, string name, string address, string email)
+        public string CreateCustomer(Customer customer)
         {
             SqlConnection con = new SqlConnection(Utility.connectionString);
 
@@ -21,10 +21,10 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-             sQLQuery.AddParameter("@phone", phone.ToString(), SqlDbType.VarChar);
-            sQLQuery.AddParameter("@name", name.ToString(), SqlDbType.VarChar);
-            sQLQuery.AddParameter("@address", address.ToString(), SqlDbType.VarChar);
-            sQLQuery.AddParameter("@email", email.ToString(), SqlDbType.VarChar);
+             sQLQuery.AddParameter("@phone", customer.phone.ToString(), SqlDbType.VarChar);
+            sQLQuery.AddParameter("@name", customer.name.ToString(), SqlDbType.VarChar);
+            sQLQuery.AddParameter("@address",customer.address.ToString(), SqlDbType.VarChar);
+            sQLQuery.AddParameter("@email",customer.email.ToString(), SqlDbType.VarChar);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
@@ -41,25 +41,32 @@ namespace AnimalHousePersistence
            
         }
 
-        public string UpdateCustomer(string phone, string name, string address, string email)
+        public string UpdateCustomer(Customer customer)
         {
+            
+
             SqlConnection con = new SqlConnection(Utility.connectionString);
 
             string query = Utility.ReadSQLQueryFromFile("UpdateCustomer.txt");
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("@phone", phone.ToString(), SqlDbType.VarChar);
-            sQLQuery.AddParameter("@name", name.ToString(), SqlDbType.VarChar);
-            sQLQuery.AddParameter("@address", address.ToString(), SqlDbType.VarChar);
-            sQLQuery.AddParameter("@email", email.ToString(), SqlDbType.VarChar);
+
+            //Den kan ikke æde parameterne, men melder ikke fejl
+            //Det er som om den slet ikke læser txt-filen, for det gør inden forksel hvad jeg kalder filen
+
+            sQLQuery.AddParameter("@phone", customer.phone.ToString(), SqlDbType.VarChar);
+            sQLQuery.AddParameter("@name", customer.name.ToString(), SqlDbType.VarChar);
+            sQLQuery.AddParameter("@address", customer.address.ToString(), SqlDbType.VarChar);
+            sQLQuery.AddParameter("@email", customer.email.ToString(), SqlDbType.VarChar);
+            
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
             
                   if (sQLQueryResult.code == 0)
                 {
-                    return "Kunde rettet";
+                return "Kunde rettet";
                 }
                 else
                 {
@@ -68,13 +75,14 @@ namespace AnimalHousePersistence
                 }
 
         }
-        public string DeleteCustomer(string phone)
+        public string DeleteCustomer(Customer customer)
         {
             string query = Utility.ReadSQLQueryFromFile("DeleteCustomer.txt");
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("@phone", phone.ToString(), SqlDbType.VarChar);
+            //af en eller anden grund virker det her fint med varchars og strings
+            sQLQuery.AddParameter("@customerID", customer.CustomerID.ToString(), SqlDbType.VarChar);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 

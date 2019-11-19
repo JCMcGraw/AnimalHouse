@@ -16,9 +16,9 @@ namespace AnimalHousePersistence
     public interface ICustomerManager
     {
 
-       string  CreateCustomer(string phone, string name, string address, string email);
-        string UpdateCustomer(string phone, string name, string address, string email);
-        string DeleteCustomer(string phone);
+       string  CreateCustomer(Customer customer);
+        string UpdateCustomer(Customer customer);
+        string DeleteCustomer(Customer customer);
         Customer GetCustomer(string phone);
 
     }

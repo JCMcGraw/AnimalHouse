@@ -31,34 +31,44 @@ namespace AnimalHouse
         {
 
             ICustomerManager customerManager = new CustomerManager();
-            
+
             Customer customer = customerManager.GetCustomer(phone);
 
             return customer;
 
-           
+
         }
-       
-        //public string CreateCostumer(string phone, string name, string address, string email)
-        //{
-        //    CustomerFactory customerfactory = new CustomerFactory();
 
-        //    Customer customer = new Customer(name, address, phone, email, true);
+        public string CreateCustomer(Customer customer)
+        {
+            ICustomerManager customerManager = new CustomerManager();
 
-        //    return customerfactory.CreateCustomer(phone, name, address, email);
-        //}
+            return customerManager.CreateCustomer(customer);
 
-        //public string UpdateCustomer(string phone, string name, string address, string email)
-        //{
-        //    CustomerFactory customerfactory = new CustomerFactory();
+             
 
-        //    return customerfactory.UpdateCustomer(phone, name, address, email);
-        //}
+            //CustomerFactory customerfactory = new CustomerFactory();
 
-        //public string DeleteCustomer(string phone)
-        //{
-        //    CustomerFactory customerfactory = new CustomerFactory();
-        //    return customerfactory.DeleteCustomer(phone);
-        //}
+            //Customer customer = new Customer(name, address, phone, email, true);
+
+            //return customerfactory.CreateCustomer(phone, name, address, email);
+        }
+
+
+        public string UpdateCustomer(Customer customer)
+        {
+            ICustomerManager customerManager = new CustomerManager();
+
+            return customerManager.UpdateCustomer(customer);
+
+            
+        }
+
+        public string DeleteCustomer(Customer customer)
+        {
+            ICustomerManager customerManager = new CustomerManager();
+
+            return customerManager.DeleteCustomer(customer);
+        }
     }
 }

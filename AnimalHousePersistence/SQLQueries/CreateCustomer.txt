@@ -1,1 +1,1 @@
-﻿insert into customer values (@name, @address, @phone, @email,1)
+﻿insert into Customer values (@name, @address, @phone, @email,1)

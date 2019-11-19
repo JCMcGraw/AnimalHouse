@@ -1,1 +1,1 @@
-﻿update customer set Active =0 where Phone=@phone
+﻿update customer set Active =0 where customerID=@customerID
