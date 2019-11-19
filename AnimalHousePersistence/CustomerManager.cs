@@ -21,22 +21,28 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-             sQLQuery.AddParameter("@phone", customer.phone.ToString(), SqlDbType.VarChar);
+          
+
+            sQLQuery.AddParameter("@phone", customer.phone.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@name", customer.name.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@address",customer.address.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@email",customer.email.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@cvr", customer.cvr.ToString(), SqlDbType.VarChar);
 
-           // Customer tempkunde = GetCustomer("@phone".ToString());
-            //sQLQuery.AddParameter("@customerID", tempkunde.customerID.ToString(), SqlDbType.VarChar);
+            //Den virker hvis jeg insætter telefonnummeret direkte her, men ikke hvis jeg bruger customer.phone.tostring()
             
-            //sQLQuery.AddParameter("@customerID", customer.customerID.ToString(), SqlDbType.VarChar);
+            Customer tmpcustomer = GetCustomer(777.ToString());
+
+           
+            sQLQuery.AddParameter("@customerID", tmpcustomer.customerID.ToString(), SqlDbType.VarChar);
+            
+
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
             if (sQLQueryResult.code==0)
             {
-                return "Kunde oprettet";
+                return customer.customerID.ToString();
             }
             else
             {
