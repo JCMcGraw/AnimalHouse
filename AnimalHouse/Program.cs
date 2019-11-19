@@ -14,9 +14,9 @@ namespace AnimalHouse
         {
             Treatment treatment = TreatmentFaktory.Instance().CreateTreatment(0,0,0,0,0, Convert.ToDateTime("1905 - 05 - 27"), Convert.ToDateTime("1905 - 08 - 22"), false);
 
-            TreatmentController.instance().CreateTreatment(treatment);
+            TreatmentController.Instance().CreateTreatment(treatment);
 
-            TreatmentController.instance().UpdateTreatment(treatment);
+            TreatmentController.Instance().UpdateTreatment(treatment);
 
             
             

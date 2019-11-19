@@ -37,7 +37,7 @@ namespace AnimalHouse
         {
             get
             {
-                return TreatmentController.instance();
+                return TreatmentController.Instance();
             }
         }
 

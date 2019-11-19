@@ -51,10 +51,6 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-
-            //Den kan ikke æde parameterne, men melder ikke fejl
-            //Det er som om den slet ikke læser txt-filen, for det gør inden forksel hvad jeg kalder filen
-
             sQLQuery.AddParameter("@phone", customer.phone.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@name", customer.name.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@address", customer.address.ToString(), SqlDbType.VarChar);
