@@ -152,13 +152,9 @@ namespace AnimalHouseUI
 
         private void button_soeg_Click(object sender, EventArgs e)
         {
-
             
-            
-
             Customer customer = BossController.instance().customerController.GetCustomer(textBox_phonenumber.Text);
-
-
+            
             textBox_navn.Text = customer.name.ToString();
             textBox_adresse.Text = customer.address.ToString();
             textBox_email.Text = customer.email.ToString();
@@ -173,34 +169,39 @@ namespace AnimalHouseUI
 
         private void button_opret_Click(object sender, EventArgs e)
         {
-            //BossController bosscontroller = new BossController();
-           // CustomerController customercontroller = bosscontroller.GetCustomerController();
+          
 
-            
-            
+            Customer customer = new Customer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true);
+
+            string message= BossController.instance().customerController.CreateCustomer(customer);
+            MessageBox.Show(message);
+
 
         }
 
         private void button_rediger_Click(object sender, EventArgs e)
         {
             //Lav en "er du sikker"-popup
-            //
 
-            //ossController bosscontroller = new BossController()
-           // CustomerController customercontroller = bosscontroller.GetCustomerController();
+            //skaf en kunde fra databasen så du kan finde hans customerID
+            Customer customer = new Customer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true);
 
-            //string message= customercontroller.UpdateCustomer(textBox_phonenumber.Text.ToString(), textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_email.Text.ToString());
-            //MessageBox.Show(message);
+            //string message=customer.name.ToString();
+            string message = BossController.instance().customerController.UpdateCustomer(customer);
+            MessageBox.Show(message);
+
+           
         }
 
         private void button_slet_Click(object sender, EventArgs e)
             //lav en "er du sikker" popup
         {
-            //BossController bosscontroller = new BossController();
-          //  CustomerController customercontroller = bosscontroller.GetCustomerController();
+            Customer customer = new Customer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true);
 
-            //string message = customercontroller.DeleteCustomer(textBox_phonenumber.Text.ToString());
-            //MessageBox.Show(message);
+            string message = BossController.instance().customerController.DeleteCustomer(customer);
+            MessageBox.Show(message);
+
+           
 
         }
     }
