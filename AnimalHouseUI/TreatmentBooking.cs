@@ -30,14 +30,6 @@ namespace AnimalHouseUI
             ComboBoxTreatmentType.SelectedIndex = 0;
 
             SelectCurrentWeek();
-            //UpdateTreatmentCache(DateTime.Today,DateTime.Today);
-
-
-            //string query = "insert into customer values ('Larsen', 'gadenavn 211', @phone, 'mail2@mail.com)',1)";
-            //AnimalHousePersistence.SQLQuery sQLQuery = new AnimalHousePersistence.SQLQuery(query);
-            //sQLQuery.AddParameter("@phone", "2345235", SqlDbType.VarChar);
-            //AnimalHousePersistence.SQLQueryResult sQLQueryResult = AnimalHousePersistence.SQLDatabaseConnector.QueryDatabase(sQLQuery);
-
         }
 
         private void DummyValuesForComboboxes()
@@ -293,7 +285,7 @@ namespace AnimalHouseUI
             {
                 treatmentsCache.Add(treatment.treatmentID, treatment);
 
-                CalendarItem calendarItem = new CalendarItem(CalendarBooking, treatment.startTime, treatment.endTime, "");
+                CalendarItem calendarItem = new CalendarItem(CalendarBooking, treatment.startTime, treatment.endTime, treatment.headline);
                 calendarItem.TreatmentID = treatment.treatmentID;
                 calendarItemsCache.Add(calendarItem);
             }
@@ -450,16 +442,20 @@ namespace AnimalHouseUI
             //TimeSpan appointmentDuration = e.Item.EndDate - e.Item.StartDate;
             string message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra kl. {e.Item.StartDate.ToString("H:mm")} til kl. {e.Item.EndDate.ToString("H:mm")} den {e.Item.StartDate.ToString("dd/M")}";
 
+            string headline = ComboBoxTreatmentType.Text;
 
             DialogResult dialogResult = MessageBox.Show(message, "Book behandling", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                Treatment treatment = TreatmentFaktory.Instance().CreateTreatment((int)ComboBoxTreatmentType.SelectedValue, -1, -1, -1, e.Item.StartDate, e.Item.EndDate, false, "", true, -1, -1);
+                Treatment treatment = TreatmentFaktory.Instance().CreateTreatment((int)ComboBoxTreatmentType.SelectedValue, -1, -1, -1, e.Item.StartDate, e.Item.EndDate, false, headline, true, -1, -1);
 
                 //(int)ComboBoxTreatmentType.SelectedValue, -1, -1, -1, e.Item.StartDate, e.Item.EndDate, false);
                 Treatment treatmentWithID = bossController.treatmentController.CreateTreatment(treatment);
 
                 AddTreatmentToCache(treatmentWithID);
+
+                e.Item.Text = headline;
+                e.Item.TreatmentID = treatment.treatmentID;
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -486,7 +482,7 @@ namespace AnimalHouseUI
                 int treatmentID = e.Item.TreatmentID;
 
                 Treatment newTreatment = GetUpdatedTreatment(treatmentID, e.Item.StartDate, e.Item.EndDate);
-                //bossController.treatmentController.UpdateTreatment(newTreatment);
+                bossController.treatmentController.UpdateTreatment(newTreatment);
 
                 treatmentsCache.Remove(treatmentID);
                 treatmentsCache.Add(newTreatment.treatmentID, newTreatment);
@@ -504,11 +500,9 @@ namespace AnimalHouseUI
         private Treatment GetUpdatedTreatment(int treatmentID, DateTime newStartTime, DateTime newEndTime)
         {
             Treatment oldTreatment = treatmentsCache[treatmentID];
+
             Treatment newTreatment = TreatmentFaktory.Instance().CreateTreatment(treatmentID, oldTreatment.treatmentTypeID, oldTreatment.operationRoomID, oldTreatment.cageID, oldTreatment.itemID,
                 newStartTime, newEndTime, oldTreatment.payed, oldTreatment.headline, oldTreatment.active, oldTreatment.animalID, oldTreatment.employee);
-                //treatmentID, oldTreatment.treatmentTypeID, oldTreatment.operationRoomID, oldTreatment.cageID,
-                //oldTreatment.itemID, newStartTime, newEndTime, oldTreatment.payed,true, -1, -1);
-
 
             return newTreatment;
         }
@@ -570,7 +564,7 @@ namespace AnimalHouseUI
 
                 treatmentsCache.Remove(treatmentID);
 
-                //bossController.treatmentController.DeleteTreatment(treatmentsCache[treatmentID]);
+                bossController.treatmentController.DeleteTreatment(treatmentID);
 
                 treatmentsCache.Remove(treatmentID);
                 RemoveItemFromCalendarItemsCache(treatmentID);
@@ -603,26 +597,29 @@ namespace AnimalHouseUI
 
         private void ButtonDelete_Click(object sender, EventArgs e)
         {
-            DeleteSelectedItems();
+            CalendarBooking.Focus();
+            SendKeys.Send("{DELETE}");
         }
 
         private void ButtonCreateTreatment_Click(object sender, EventArgs e)
         {
-            DateTime selectionStart = CalendarBooking.SelectedElementStart.Date;
-            DateTime selectionEnd = CalendarBooking.SelectedElementEnd.Date.AddMinutes((int)CalendarBooking.TimeScale);
+            //DateTime selectionStart = CalendarBooking.SelectedElementStart.Date;
+            //DateTime selectionEnd = CalendarBooking.SelectedElementEnd.Date.AddMinutes((int)CalendarBooking.TimeScale);
 
-            string message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra kl. {selectionStart.ToString("H:mm")} til kl. {selectionEnd.ToString("H:mm")} den {selectionStart.ToString("dd/M")}";
+            //string message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra kl. {selectionStart.ToString("H:mm")} til kl. {selectionEnd.ToString("H:mm")} den {selectionStart.ToString("dd/M")}";
 
 
-            DialogResult dialogResult = MessageBox.Show(message, "Book behandling", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                Treatment treatment = TreatmentFaktory.Instance().CreateTreatment((int)ComboBoxTreatmentType.SelectedValue, -1, -1, -1, selectionStart, selectionEnd, false, "", true, -1, -1);
-                Treatment treatmentWithID = bossController.treatmentController.CreateTreatment(treatment);
+            //DialogResult dialogResult = MessageBox.Show(message, "Book behandling", MessageBoxButtons.YesNo);
+            //if (dialogResult == DialogResult.Yes)
+            //{
+            //    Treatment treatment = TreatmentFaktory.Instance().CreateTreatment((int)ComboBoxTreatmentType.SelectedValue, -1, -1, -1, selectionStart, selectionEnd, false, "", true, -1, -1);
+            //    Treatment treatmentWithID = bossController.treatmentController.CreateTreatment(treatment);
 
-                AddTreatmentToCache(treatmentWithID);
-            }
-            PlaceItems();
+            //    AddTreatmentToCache(treatmentWithID);
+            //}
+            //PlaceItems();
+            CalendarBooking.Focus();
+            SendKeys.Send("{ENTER}");
         }
     }
 }
