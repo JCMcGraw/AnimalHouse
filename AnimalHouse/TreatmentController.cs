@@ -38,15 +38,15 @@ namespace AnimalHouse
             return updateTreatment;
         }
 
-        public string DeleteTreatment(Treatment treatment)
+        public string DeleteTreatment(int treatmentID)
         {
-            string deleteTreatment = treatmentManager.DeleteTreatment(treatment);
+            string deleteTreatment = treatmentManager.DeleteTreatment(treatmentID);
             return deleteTreatment;
         }
 
-        public Treatment GetTreatment(int treatmentID)
+        public List<Treatment> GetTreatment(int treatmentID)
         {
-            Treatment getTreatment = treatmentManager.GetTreatment(treatmentID);
+            List<Treatment> getTreatment = treatmentManager.GetTreatment(treatmentID);
             return getTreatment;
         }
 

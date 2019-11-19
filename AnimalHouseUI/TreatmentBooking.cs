@@ -30,65 +30,65 @@ namespace AnimalHouseUI
             ComboBoxTreatmentType.SelectedIndex = 0;
 
             SelectCurrentWeek();
-            UpdateTreatmentCache(DateTime.Today,DateTime.Today);
-
-
-            //string query = "insert into customer values ('Larsen', 'gadenavn 211', @phone, 'mail2@mail.com)',1)";
-            //AnimalHousePersistence.SQLQuery sQLQuery = new AnimalHousePersistence.SQLQuery(query);
-            //sQLQuery.AddParameter("@phone", "2345235", SqlDbType.VarChar);
-            //AnimalHousePersistence.SQLQueryResult sQLQueryResult = AnimalHousePersistence.SQLDatabaseConnector.QueryDatabase(sQLQuery);
-
         }
 
         private void DummyValuesForComboboxes()
         {
-            DataTable employees = new DataTable();
-            employees.Columns.Add("employee", typeof(string));
-            employees.Columns.Add("employeeid", typeof(int));
+            //DataTable employees = new DataTable();
+            //employees.Columns.Add("employee", typeof(string));
+            //employees.Columns.Add("employeeid", typeof(int));
 
-            DataRow dataRow = employees.NewRow();
-            dataRow[0] = "Alle";
-            dataRow[1] = -1;
-            employees.Rows.Add(dataRow);
-            DataRow dataRow1 = employees.NewRow();
-            dataRow1[0] = "Ole Ernst";
-            dataRow1[1] = 0;
-            employees.Rows.Add(dataRow1);
-            DataRow dataRow2 = employees.NewRow();
-            dataRow2[0] = "Poul Bundgaard";
-            dataRow2[1] = 1;
-            employees.Rows.Add(dataRow2);
-            DataRow dataRow3 = employees.NewRow();
-            dataRow3[0] = "Dirch Passer";
-            dataRow3[1] = 2;
-            employees.Rows.Add(dataRow3);
+            //DataRow dataRow = employees.NewRow();
+            //dataRow[0] = "Alle";
+            //dataRow[1] = -1;
+            //employees.Rows.Add(dataRow);
+            //DataRow dataRow1 = employees.NewRow();
+            //dataRow1[0] = "Ole Ernst";
+            //dataRow1[1] = 0;
+            //employees.Rows.Add(dataRow1);
+            //DataRow dataRow2 = employees.NewRow();
+            //dataRow2[0] = "Poul Bundgaard";
+            //dataRow2[1] = 1;
+            //employees.Rows.Add(dataRow2);
+            //DataRow dataRow3 = employees.NewRow();
+            //dataRow3[0] = "Dirch Passer";
+            //dataRow3[1] = 2;
+            //employees.Rows.Add(dataRow3);
 
-            ComboBoxEmployee.DataSource = employees;
-            ComboBoxEmployee.DisplayMember = "employee";
-            ComboBoxEmployee.ValueMember = "employeeid";
+            List<KeyValuePair<string, int>> employeeList = new List<KeyValuePair<string, int>>() { new KeyValuePair<string, int>("Alle", -1),
+                new KeyValuePair<string, int>("Ole Ernst", 1), new KeyValuePair<string, int>("Dirch Passer", 2), new KeyValuePair<string, int>("Poul Bundgaard", 3) };
 
-            DataTable treatment = new DataTable();
-            treatment.Columns.Add("treatment", typeof(string));
-            treatment.Columns.Add("treatmentid", typeof(int));
+            ComboBoxEmployee.DataSource = employeeList;
+            ComboBoxEmployee.DisplayMember = "Key";
+            ComboBoxEmployee.ValueMember = "Value";
 
-            DataRow dataRow6 = treatment.NewRow();
-            dataRow6[0] = "Konsultation";
-            dataRow6[1] = 0;
-            treatment.Rows.Add(dataRow6);
-            DataRow dataRow4 = treatment.NewRow();
-            dataRow4[0] = "Operation";
-            dataRow4[1] = 1;
-            treatment.Rows.Add(dataRow4);
-            DataRow dataRow5 = treatment.NewRow();
-            dataRow5[0] = "Observation";
-            dataRow5[1] = 2;
-            treatment.Rows.Add(dataRow5);
+            //DataTable treatment = new DataTable();
+            //treatment.Columns.Add("treatment", typeof(string));
+            //treatment.Columns.Add("treatmentid", typeof(int));
 
-            ComboBoxTreatmentType.DataSource = treatment;
-            ComboBoxTreatmentType.DisplayMember = "treatment";
-            ComboBoxTreatmentType.ValueMember = "treatmentid";
+            //DataRow dataRow6 = treatment.NewRow();
+            //dataRow6[0] = "Konsultation";
+            //dataRow6[1] = 0;
+            //treatment.Rows.Add(dataRow6);
+            //DataRow dataRow4 = treatment.NewRow();
+            //dataRow4[0] = "Operation";
+            //dataRow4[1] = 1;
+            //treatment.Rows.Add(dataRow4);
+            //DataRow dataRow5 = treatment.NewRow();
+            //dataRow5[0] = "Observation";
+            //dataRow5[1] = 2;
+            //treatment.Rows.Add(dataRow5);
 
 
+            List<KeyValuePair<string, int>> treatmentTypeList = new List<KeyValuePair<string, int>>() { new KeyValuePair<string, int>("Konsultation", 0),
+                new KeyValuePair<string, int>("Operation", 1), new KeyValuePair<string, int>("Observation", 2) };
+
+            ComboBoxTreatmentType.DataSource = treatmentTypeList;
+            ComboBoxTreatmentType.DisplayMember = "Key";
+            ComboBoxTreatmentType.ValueMember = "Value";
+
+            //ComboBoxTreatmentType.DisplayMember = "treatment";
+            //ComboBoxTreatmentType.ValueMember = "treatmentid";
         }
 
         private const int CS_DROPSHADOW = 0x20000;
@@ -214,26 +214,33 @@ namespace AnimalHouseUI
             DateTime CalendarRangeStart;
             DateTime CalendarRangeEnd;
 
+            DateTime CacheRangeStart;
+            DateTime CacheRangeEnd;
+
             if (MonthViewBooking.SelectionEnd > MonthViewBooking.SelectionStart)
             {
                 if (ComboBoxTreatmentType.Text == "Observation")
                 {
-                    CalendarRangeStart = MonthViewBooking.SelectionStart;
-                    CalendarRangeEnd = MonthViewBooking.SelectionStart.AddDays(14);
+                    CalendarRangeStart = GetFirstDayOfWeek( MonthViewBooking.SelectionStart);
+                    CalendarRangeEnd = CalendarRangeStart.AddDays(19);
                 }
                 else
                 {
                     CalendarRangeStart = MonthViewBooking.SelectionStart;
                     CalendarRangeEnd = MonthViewBooking.SelectionEnd;
                 }
-                if (CheckCacheDates(CalendarRangeStart, CalendarRangeEnd) == false)
+
+                CacheRangeStart = CalendarRangeStart.AddDays(-14);
+                CacheRangeEnd = CalendarRangeEnd.AddDays(21);
+
+                if (CheckCacheDates(CacheRangeStart, CacheRangeEnd) == false)
                 {
-                    //UpdateTreatmentCache(CalendarRangeStart, CalendarRangeEnd);
+                    UpdateTreatmentCache(CacheRangeStart, CacheRangeEnd);
                 }
 
                 CalendarBooking.SetViewRange(CalendarRangeStart, CalendarRangeEnd);
             }
-
+            CalendarBooking.TimeUnitsOffset = -32;
                 
         }
 
@@ -244,7 +251,7 @@ namespace AnimalHouseUI
                 return true;
             }
 
-            if(treatmentCacheDateStart < CalendarRangeStart && treatmentCacheDateEnd > CalendarRangeEnd)
+            if(treatmentCacheDateStart <= CalendarRangeStart && treatmentCacheDateEnd >= CalendarRangeEnd)
             {
                 return true;
             }
@@ -257,27 +264,27 @@ namespace AnimalHouseUI
 
         private void UpdateTreatmentCache(DateTime CalendarRangeStart, DateTime CalendarRangeEnd)
         {
-
-            List<Treatment> treatments = new List<Treatment>();
-            treatments.Add(new Treatment(1, 0, 2, 3, 4, new DateTime(2019, 11, 14, 10, 30, 0), new DateTime(2019, 11, 14, 11, 30, 0), false));
-            treatments.Add(new Treatment(2, 1, 2, 3, 4, new DateTime(2019, 11, 14, 14, 30, 0), new DateTime(2019, 11, 14, 15, 30, 0), false));
-            treatments.Add(new Treatment(3, 2, 2, 3, 4, new DateTime(2019, 11, 18, 0, 0, 0), new DateTime(2019, 11, 20, 0, 0, 0), false));
+            List<Treatment> treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(CalendarRangeStart, CalendarRangeEnd);
+            UpdateCacheRange(CalendarRangeStart, CalendarRangeEnd);
 
             foreach (var treatment in treatments)
             {
-                //if (!treatmentsCache.ContainsKey(treatment.treatmentID))
-                //{
-                //    treatmentsCache.Add(treatment.treatmentID, treatment);
-
-                //    CalendarItem calendarItem = new CalendarItem(CalendarBooking, treatment.startTime, treatment.endTime, "");
-                //    calendarItem.TreatmentID = treatment.treatmentID;
-                //    calendarItemsCache.Add(calendarItem);
-                //}
                 AddTreatmentToCache(treatment);
-
             }
 
             PlaceItems();
+        }
+
+        private void UpdateCacheRange(DateTime CacheRangeStart, DateTime CacheRangeEnd)
+        {
+            if (CacheRangeStart < treatmentCacheDateStart)
+            {
+                treatmentCacheDateStart = CacheRangeStart;
+            }
+            if (CacheRangeEnd > treatmentCacheDateEnd)
+            {
+                treatmentCacheDateEnd = CacheRangeEnd;
+            }
         }
 
         private void AddTreatmentToCache(Treatment treatment)
@@ -286,7 +293,7 @@ namespace AnimalHouseUI
             {
                 treatmentsCache.Add(treatment.treatmentID, treatment);
 
-                CalendarItem calendarItem = new CalendarItem(CalendarBooking, treatment.startTime, treatment.endTime, "");
+                CalendarItem calendarItem = new CalendarItem(CalendarBooking, treatment.startTime, treatment.endTime, treatment.headline);
                 calendarItem.TreatmentID = treatment.treatmentID;
                 calendarItemsCache.Add(calendarItem);
             }
@@ -438,18 +445,62 @@ namespace AnimalHouseUI
             }
         }
 
+        private DateTime GetFirstDayOfWeek(DateTime selectionStart)
+        {
+            DateTime newSelectedStartDate = selectionStart;
+            switch (selectionStart.DayOfWeek)
+            {
+                case DayOfWeek.Sunday:
+                    newSelectedStartDate = selectionStart.AddDays(1);
+                    break;
+                case DayOfWeek.Monday:
+                    newSelectedStartDate = selectionStart;
+                    break;
+                case DayOfWeek.Tuesday:
+                    newSelectedStartDate = selectionStart.AddDays(-1);
+                    break;
+                case DayOfWeek.Wednesday:
+                    newSelectedStartDate = selectionStart.AddDays(-2);
+                    break;
+                case DayOfWeek.Thursday:
+                    newSelectedStartDate = selectionStart.AddDays(-2);
+                    break;
+                case DayOfWeek.Friday:
+                    newSelectedStartDate = selectionStart.AddDays(-4);
+                    break;
+                case DayOfWeek.Saturday:
+                    newSelectedStartDate = selectionStart.AddDays(-5);
+                    break;
+            }
+
+            return newSelectedStartDate;
+        }
+
         private void CalendarBooking_ItemCreating(object sender, CalendarItemCancelEventArgs e)
         {
-            string message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} kl. {e.Item.StartDate.ToString("HH:mm")} den {e.Item.StartDate.ToString("dd/M")}";
+            //TimeSpan appointmentDuration = e.Item.EndDate - e.Item.StartDate;
+            string message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra kl. {e.Item.StartDate.ToString("H:mm")} til kl. {e.Item.EndDate.ToString("H:mm")} den {e.Item.StartDate.ToString("dd/M")}";
 
+            if ((int)ComboBoxTreatmentType.SelectedValue == 2)
+            {
+                message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra {e.Item.StartDate.ToString("dd/M")} til {e.Item.EndDate.ToString("dd/M")}";
+
+            }
+
+            string headline = ComboBoxTreatmentType.Text;
 
             DialogResult dialogResult = MessageBox.Show(message, "Book behandling", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                Treatment treatment = TreatmentFaktory.Instance().CreateTreatment((int)ComboBoxTreatmentType.SelectedValue, -1, -1, -1, e.Item.StartDate, e.Item.EndDate, false);
+                Treatment treatment = TreatmentFactory.Instance().CreateTreatment((int)ComboBoxTreatmentType.SelectedValue, -1, -1, -1, e.Item.StartDate, e.Item.EndDate, false, headline, true, -1, -1);
+
+                //(int)ComboBoxTreatmentType.SelectedValue, -1, -1, -1, e.Item.StartDate, e.Item.EndDate, false);
                 Treatment treatmentWithID = bossController.treatmentController.CreateTreatment(treatment);
 
                 AddTreatmentToCache(treatmentWithID);
+
+                e.Item.Text = headline;
+                e.Item.TreatmentID = treatment.treatmentID;
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -464,20 +515,22 @@ namespace AnimalHouseUI
 
         private void CalendarBooking_ItemDatesChanged(object sender, CalendarItemEventArgs e)
         {
-            TimeSpan appointmentDuration = e.Item.EndDate - e.Item.StartDate;
-
-            string message = $"Ønsker du at ændre denne aftale til kl. {e.Item.StartDate.ToString("HH:mm")} den {e.Item.StartDate.ToString("dd/M")}, varighed: {(e.Item.EndDate - e.Item.StartDate).ToString(@"h\:mm")}?";
+            string message = $"Ønsker du at ændre denne aftale til kl. {e.Item.StartDate.ToString("H:mm")}-{e.Item.EndDate.ToString("H:mm")} den {e.Item.StartDate.ToString("dd/M")}?";
             if ((int)ComboBoxTreatmentType.SelectedValue == 2)
             {
                 message = $"Ønsker du at ændre denne observation til {e.Item.StartDate.ToString("d/M")}-{e.Item.EndDate.ToString("d/M")}?";
             }
-
 
             DialogResult dialogResult = MessageBox.Show(message, "Book behandling", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 int treatmentID = e.Item.TreatmentID;
 
+                Treatment newTreatment = GetUpdatedTreatment(treatmentID, e.Item.StartDate, e.Item.EndDate);
+                bossController.treatmentController.UpdateTreatment(newTreatment);
+
+                treatmentsCache.Remove(treatmentID);
+                treatmentsCache.Add(newTreatment.treatmentID, newTreatment);
                 
             }
             else if (dialogResult == DialogResult.No)
@@ -485,7 +538,17 @@ namespace AnimalHouseUI
                 e.Item.StartDate = treatmentsCache[e.Item.TreatmentID].startTime;
                 e.Item.EndDate = treatmentsCache[e.Item.TreatmentID].endTime;
             }
+
             PlaceItems();
+        }
+
+        private Treatment GetUpdatedTreatment(int treatmentID, DateTime newStartTime, DateTime newEndTime)
+        {
+            Treatment oldTreatment = treatmentsCache[treatmentID];
+            Treatment newTreatment = TreatmentFactory.Instance().CreateTreatment(treatmentID, oldTreatment.treatmentTypeID, oldTreatment.operationRoomID, oldTreatment.cageID, oldTreatment.itemID,
+                newStartTime, newEndTime, oldTreatment.payed, oldTreatment.headline, oldTreatment.active, oldTreatment.animalID, oldTreatment.employee);
+
+            return newTreatment;
         }
 
         private void hourToolStripMenuItem_Click(object sender, EventArgs e)
@@ -516,6 +579,84 @@ namespace AnimalHouseUI
         private void minutes5ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CalendarBooking.TimeScale = CalendarTimeScale.FiveMinutes;
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ContextMenuStripBooking.Close();
+            CalendarBooking.Focus();
+            SendKeys.Send("{DELETE}");
+        }
+
+
+        private void CalendarBooking_ItemDeleting(object sender, CalendarItemCancelEventArgs e)
+        {
+            string message = $"Ønsker du at slette denne aftale?";
+
+
+            DialogResult dialogResult = MessageBox.Show(message, "Slet aftale", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                int treatmentID = e.Item.TreatmentID;
+
+                treatmentsCache.Remove(treatmentID);
+
+                bossController.treatmentController.DeleteTreatment(treatmentID);
+
+                treatmentsCache.Remove(treatmentID);
+                RemoveItemFromCalendarItemsCache(treatmentID);
+
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+
+        }
+
+        private void RemoveItemFromCalendarItemsCache(int treatmentID)
+        {
+            int itemcounter = -1;
+
+            for(itemcounter = 0; itemcounter < calendarItemsCache.Count; itemcounter++)
+            {
+                if (calendarItemsCache[itemcounter].TreatmentID == treatmentID)
+                {
+                    break;
+                }
+            }
+
+            if (itemcounter > -1)
+            {
+                calendarItemsCache.RemoveAt(itemcounter);
+            }
+        }
+
+        private void ButtonDelete_Click(object sender, EventArgs e)
+        {
+            CalendarBooking.Focus();
+            SendKeys.Send("{DELETE}");
+        }
+
+        private void ButtonCreateTreatment_Click(object sender, EventArgs e)
+        {
+            //DateTime selectionStart = CalendarBooking.SelectedElementStart.Date;
+            //DateTime selectionEnd = CalendarBooking.SelectedElementEnd.Date.AddMinutes((int)CalendarBooking.TimeScale);
+
+            //string message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra kl. {selectionStart.ToString("H:mm")} til kl. {selectionEnd.ToString("H:mm")} den {selectionStart.ToString("dd/M")}";
+
+
+            //DialogResult dialogResult = MessageBox.Show(message, "Book behandling", MessageBoxButtons.YesNo);
+            //if (dialogResult == DialogResult.Yes)
+            //{
+            //    Treatment treatment = TreatmentFaktory.Instance().CreateTreatment((int)ComboBoxTreatmentType.SelectedValue, -1, -1, -1, selectionStart, selectionEnd, false, "", true, -1, -1);
+            //    Treatment treatmentWithID = bossController.treatmentController.CreateTreatment(treatment);
+
+            //    AddTreatmentToCache(treatmentWithID);
+            //}
+            //PlaceItems();
+            CalendarBooking.Focus();
+            SendKeys.Send("{ENTER}");
         }
     }
 }

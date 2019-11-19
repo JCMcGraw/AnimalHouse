@@ -7,34 +7,72 @@ using System.Data;
 
 namespace AnimalHouseEntities
 {
-   public class CustomerFactory
+    public class CustomerFactory
     {
 
 
-        //public DataTable GetCustomer(string phone)
+        private CustomerFactory()
+        { }
+        private static CustomerFactory customerFactory = null;
+        public static CustomerFactory Instance()
+        {
+
+            if (customerFactory == null)
+            {
+                customerFactory = new CustomerFactory();
+            }
+            return customerFactory;
+
+
+        }
+        ////privat kunde
+        //public Customer CreateCustomer(string name, string address, string phone, string email, bool active)
         //{
 
-        //    return customerManager.GetCustomer(phone);
-
-
+        //    return new Customer(name, address, phone, email, true);
         //}
 
-        //public string CreateCustomer(string phone, string name, string address, string email)
-        //{
+        //erhverskunde
+        public Customer CreateCustomer(string name, string address, string phone, string email, bool active, string cvr)
+        {
+            if (cvr==null)
+            {
+                return new Customer(name, address, phone, email, true, cvr);
+
+            }
+            else
+            {
+                
+                   return new Customer(name, address, phone, email, true, cvr);
+            }
+        }
+ 
+            
+    //public Customer CreateCustomer()
+    //      //public DataTable GetCustomer(string phone)
+    //{
+
+    //    return customerManager.GetCustomer(phone);
 
 
-        //    return customerManager.CreateCustomer(phone, name, address, email);
-        //}
+    //}
 
-        //public string UpdateCustomer(string phone, string name, string address, string email)
-        //{
-        //    return customerManager.UpdateCustomer(phone, name, address, email);
+    //public string CreateCustomer(string phone, string name, string address, string email)
+    //{
 
-        //}
 
-        //public string DeleteCustomer(string phone)
-        //{
-        //    return customerManager.DeleteCustomer(phone);
-        //}
-    }
+    //    return customerManager.CreateCustomer(phone, name, address, email);
+    //}
+
+    //public string UpdateCustomer(string phone, string name, string address, string email)
+    //{
+    //    return customerManager.UpdateCustomer(phone, name, address, email);
+
+    //}
+
+    //public string DeleteCustomer(string phone)
+    //{
+    //    return customerManager.DeleteCustomer(phone);
+    //}
+}
 }

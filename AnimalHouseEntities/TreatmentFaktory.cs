@@ -8,30 +8,30 @@ using System.Threading.Tasks;
 
 namespace AnimalHouseEntities
 {
-    public class TreatmentFaktory
+    public class TreatmentFactory
     {
-        private static TreatmentFaktory instance;
+        private static TreatmentFactory instance;
 
-        private TreatmentFaktory() { }
+        private TreatmentFactory() { }
 
-        public static TreatmentFaktory Instance()
+        public static TreatmentFactory Instance()
         {
             if (instance == null)
             {
-                instance = new TreatmentFaktory();
+                instance = new TreatmentFactory();
             }
 
             return instance;
         }
 
-        public Treatment CreateTreatment(int treatmentID, int treatmentTypeID, int operationRoomID, int cageID, int itemID, DateTime startTime, DateTime endTime, bool payed)
+        public Treatment CreateTreatment(int treatmentID, int treatmentTypeID, int operationRoomID, int cageID, int itemID, DateTime startTime, DateTime endTime, bool payed, string headline, bool active, int animalID, int employee)
         {
-            return new Treatment(treatmentID, treatmentTypeID, operationRoomID, cageID, itemID, startTime, endTime, payed);
+            return new Treatment(treatmentID, treatmentTypeID, operationRoomID, cageID, itemID, startTime, endTime, payed ,headline,active,animalID,employee);
         }
 
-        public Treatment CreateTreatment(int treatmentTypeID, int operationRoomID, int cageID, int itemID, DateTime startTime, DateTime endTime, bool payed)
+        public Treatment CreateTreatment(int treatmentTypeID, int operationRoomID, int cageID, int itemID, DateTime startTime, DateTime endTime, bool payed, string headline, bool active, int animalID, int employee)
         {
-            return new Treatment(treatmentTypeID, operationRoomID, cageID, itemID, startTime, endTime, payed);
+            return new Treatment(treatmentTypeID, operationRoomID, cageID, itemID, startTime, endTime, payed, headline, active, animalID, employee);
         }
     }
 }

@@ -21,16 +21,28 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-             sQLQuery.AddParameter("@phone", customer.phone.ToString(), SqlDbType.VarChar);
+          
+
+            sQLQuery.AddParameter("@phone", customer.phone.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@name", customer.name.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@address",customer.address.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@email",customer.email.ToString(), SqlDbType.VarChar);
+            sQLQuery.AddParameter("@cvr", customer.cvr.ToString(), SqlDbType.VarChar);
+
+            //Den virker hvis jeg insætter telefonnummeret direkte her, men ikke hvis jeg bruger customer.phone.tostring()
+            
+            Customer tmpcustomer = GetCustomer(777.ToString());
+
+           
+            sQLQuery.AddParameter("@customerID", tmpcustomer.customerID.ToString(), SqlDbType.VarChar);
+            
+
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
             if (sQLQueryResult.code==0)
             {
-                return "Kunde oprettet";
+                return customer.customerID.ToString();
             }
             else
             {
@@ -50,10 +62,6 @@ namespace AnimalHousePersistence
             string query = Utility.ReadSQLQueryFromFile("UpdateCustomer.txt");
 
             SQLQuery sQLQuery = new SQLQuery(query);
-
-
-            //Den kan ikke æde parameterne, men melder ikke fejl
-            //Det er som om den slet ikke læser txt-filen, for det gør inden forksel hvad jeg kalder filen
 
             sQLQuery.AddParameter("@phone", customer.phone.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@name", customer.name.ToString(), SqlDbType.VarChar);
@@ -82,7 +90,7 @@ namespace AnimalHousePersistence
             SQLQuery sQLQuery = new SQLQuery(query);
 
             //af en eller anden grund virker det her fint med varchars og strings
-            sQLQuery.AddParameter("@customerID", customer.CustomerID.ToString(), SqlDbType.VarChar);
+            sQLQuery.AddParameter("@customerID", customer.customerID.ToString(), SqlDbType.VarChar);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
@@ -112,7 +120,7 @@ namespace AnimalHousePersistence
 
             DataRow dataRow = sQLQueryResult.dataTable.Rows[0];
 
-            Customer customer = new Customer((int)dataRow["CustomerID"],(string)dataRow["Name"], (string)dataRow["Adress"], (string)dataRow["Phone"],(string)dataRow["Email"], (bool)dataRow["Active"]);
+            Customer customer = new Customer((int)dataRow["CustomerID"],(string)dataRow["Name"], (string)dataRow["Adress"], (string)dataRow["Phone"],(string)dataRow["Email"], (bool)dataRow["Active"],(string)"pap" );
 
             return customer;
 

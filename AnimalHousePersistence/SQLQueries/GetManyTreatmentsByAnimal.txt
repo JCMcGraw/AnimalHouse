@@ -1,2 +1,2 @@
 ﻿Select * from Treatment
-where (AnimalID = @animalID AND StartTime='@startTime' AND EndTime='@endTime')
+where (AnimalID = @animalID AND StartTime < @endTime AND EndTime > @startTime AND Active=1)
