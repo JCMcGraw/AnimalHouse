@@ -62,6 +62,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SQLQueries\DeleteTreatment.txt" />
     <Content Include="SQLQueries\GetAnimal.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
