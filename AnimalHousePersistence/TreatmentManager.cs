@@ -256,7 +256,7 @@ namespace AnimalHousePersistence
 
                 treatments.Add(TreatmentFaktory.Instance().CreateTreatment(treatmentID, treatmentTypeID, operationRoomID, cageID, itemID, startTimee, endTimee, payed));
             }
-            return new List<Treatment>();
+            return treatments;
         }
     }
 }
