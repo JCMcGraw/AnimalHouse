@@ -50,10 +50,8 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("@startTime", treatment.startTime.ToString(), SqlDbType.DateTime);
-            sQLQuery.AddParameter("@endTime", treatment.endTime.ToString(), SqlDbType.DateTime);
-            sQLQuery.AddParameter("@payed", treatment.payed.ToString(), SqlDbType.Bit);
-
+            sQLQuery.AddParameter("@treatmentID", treatment.treatmentID.ToString(), SqlDbType.Int);
+            
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
             return "ok";
