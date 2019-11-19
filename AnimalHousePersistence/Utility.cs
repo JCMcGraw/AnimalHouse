@@ -30,7 +30,15 @@ namespace AnimalHousePersistence
 
         public static string ReadSQLQueryFromFile(string filename)
         {
-            string query = File.ReadAllText(@"SQLQueries\" + filename);
+            string query = "";
+            try
+            {
+                query = File.ReadAllText(@"SQLQueries\" + filename);
+            }
+            catch
+            {
+                query = File.ReadAllText(@"..\..\..\AnimalHousePersistence\bin\Debug\SQLQueries\" + filename);
+            }
 
             return query;
         }

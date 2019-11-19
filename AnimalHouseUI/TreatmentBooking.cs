@@ -213,8 +213,8 @@ namespace AnimalHouseUI
             {
                 if (ComboBoxTreatmentType.Text == "Observation")
                 {
-                    CalendarRangeStart = MonthViewBooking.SelectionStart;
-                    CalendarRangeEnd = MonthViewBooking.SelectionStart.AddDays(14);
+                    CalendarRangeStart = GetFirstDayOfWeek( MonthViewBooking.SelectionStart);
+                    CalendarRangeEnd = CalendarRangeStart.AddDays(19);
                 }
                 else
                 {
@@ -232,7 +232,7 @@ namespace AnimalHouseUI
 
                 CalendarBooking.SetViewRange(CalendarRangeStart, CalendarRangeEnd);
             }
-
+            CalendarBooking.TimeUnitsOffset = -32;
                 
         }
 
@@ -437,10 +437,47 @@ namespace AnimalHouseUI
             }
         }
 
+        private DateTime GetFirstDayOfWeek(DateTime selectionStart)
+        {
+            DateTime newSelectedStartDate = selectionStart;
+            switch (selectionStart.DayOfWeek)
+            {
+                case DayOfWeek.Sunday:
+                    newSelectedStartDate = selectionStart.AddDays(1);
+                    break;
+                case DayOfWeek.Monday:
+                    newSelectedStartDate = selectionStart;
+                    break;
+                case DayOfWeek.Tuesday:
+                    newSelectedStartDate = selectionStart.AddDays(-1);
+                    break;
+                case DayOfWeek.Wednesday:
+                    newSelectedStartDate = selectionStart.AddDays(-2);
+                    break;
+                case DayOfWeek.Thursday:
+                    newSelectedStartDate = selectionStart.AddDays(-2);
+                    break;
+                case DayOfWeek.Friday:
+                    newSelectedStartDate = selectionStart.AddDays(-4);
+                    break;
+                case DayOfWeek.Saturday:
+                    newSelectedStartDate = selectionStart.AddDays(-5);
+                    break;
+            }
+
+            return newSelectedStartDate;
+        }
+
         private void CalendarBooking_ItemCreating(object sender, CalendarItemCancelEventArgs e)
         {
             //TimeSpan appointmentDuration = e.Item.EndDate - e.Item.StartDate;
             string message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra kl. {e.Item.StartDate.ToString("H:mm")} til kl. {e.Item.EndDate.ToString("H:mm")} den {e.Item.StartDate.ToString("dd/M")}";
+
+            if ((int)ComboBoxTreatmentType.SelectedValue == 2)
+            {
+                message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra {e.Item.StartDate.ToString("dd/M")} til {e.Item.EndDate.ToString("dd/M")}";
+
+            }
 
             string headline = ComboBoxTreatmentType.Text;
 
