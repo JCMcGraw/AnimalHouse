@@ -454,7 +454,9 @@ namespace AnimalHouseUI
             DialogResult dialogResult = MessageBox.Show(message, "Book behandling", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                Treatment treatment = TreatmentFaktory.Instance().CreateTreatment((int)ComboBoxTreatmentType.SelectedValue, -1, -1, -1, e.Item.StartDate, e.Item.EndDate, false);
+                Treatment treatment = TreatmentFaktory.Instance().CreateTreatment((int)ComboBoxTreatmentType.SelectedValue, -1, -1, -1, e.Item.StartDate, e.Item.EndDate, false, "", true, -1, -1);
+
+                //(int)ComboBoxTreatmentType.SelectedValue, -1, -1, -1, e.Item.StartDate, e.Item.EndDate, false);
                 Treatment treatmentWithID = bossController.treatmentController.CreateTreatment(treatment);
 
                 AddTreatmentToCache(treatmentWithID);
@@ -502,8 +504,10 @@ namespace AnimalHouseUI
         private Treatment GetUpdatedTreatment(int treatmentID, DateTime newStartTime, DateTime newEndTime)
         {
             Treatment oldTreatment = treatmentsCache[treatmentID];
-            Treatment newTreatment = TreatmentFaktory.Instance().CreateTreatment(treatmentID, oldTreatment.treatmentTypeID, oldTreatment.operationRoomID, oldTreatment.cageID,
-                oldTreatment.itemID, newStartTime, newEndTime, oldTreatment.payed);
+            Treatment newTreatment = TreatmentFaktory.Instance().CreateTreatment(treatmentID, oldTreatment.treatmentTypeID, oldTreatment.operationRoomID, oldTreatment.cageID, oldTreatment.itemID,
+                newStartTime, newEndTime, oldTreatment.payed, oldTreatment.headline, oldTreatment.active, oldTreatment.animalID, oldTreatment.employee);
+                //treatmentID, oldTreatment.treatmentTypeID, oldTreatment.operationRoomID, oldTreatment.cageID,
+                //oldTreatment.itemID, newStartTime, newEndTime, oldTreatment.payed,true, -1, -1);
 
 
             return newTreatment;
@@ -613,7 +617,7 @@ namespace AnimalHouseUI
             DialogResult dialogResult = MessageBox.Show(message, "Book behandling", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                Treatment treatment = TreatmentFaktory.Instance().CreateTreatment((int)ComboBoxTreatmentType.SelectedValue, -1, -1, -1, selectionStart, selectionEnd, false);
+                Treatment treatment = TreatmentFaktory.Instance().CreateTreatment((int)ComboBoxTreatmentType.SelectedValue, -1, -1, -1, selectionStart, selectionEnd, false, "", true, -1, -1);
                 Treatment treatmentWithID = bossController.treatmentController.CreateTreatment(treatment);
 
                 AddTreatmentToCache(treatmentWithID);
