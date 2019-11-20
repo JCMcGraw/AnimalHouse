@@ -53,6 +53,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BusinessCustomer.cs" />
+    <Compile Include="Sale.cs" />
+    <Compile Include="SaleFactory.cs" />
+    <Compile Include="SaleLineItem.cs" />
+    <Compile Include="SaleLineItemFactory.cs" />
     <Compile Include="Treatment.cs" />
     <Compile Include="TreatmentFaktory.cs" />
     <Compile Include="TreatmentType.cs" />

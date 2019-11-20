@@ -10,6 +10,7 @@ namespace AnimalHousePersistence
 {
     public class SaleManager : ISaleManager
     {
+
         public List<Item> GetAllActiveItems()
         {
             string query = Utility.ReadSQLQueryFromFile("GetAllActiveItems.txt");
@@ -48,6 +49,26 @@ namespace AnimalHousePersistence
             }
 
             return items;
+        }
+
+        public Sale CreateSale(Sale sale)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string DeleteSale(Sale sale)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Sale> GetManySalesByCustomerID(Customer customer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string UpdateSale(Sale sale)
+        {
+            throw new NotImplementedException();
         }
     }
 }
