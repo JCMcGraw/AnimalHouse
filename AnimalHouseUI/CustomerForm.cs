@@ -169,10 +169,10 @@ namespace AnimalHouseUI
 
         private void button_opret_Click(object sender, EventArgs e)
         {
+            //Kunden skabes direkte fra entity-laget, men igennem factoryen
+            Customer customer =CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, textBox_cvr.Text.ToString());
 
-            Customer customer = CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, textBox_cvr.Text.ToString());
-
-
+            //stringen oprettes gennem bosscontrolleren og videre igennem customercontroleren
             string message= BossController.instance().customerController.CreateCustomer(customer);
             MessageBox.Show(message);
 

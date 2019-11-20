@@ -27,23 +27,35 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@name", customer.name.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@address",customer.address.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@email",customer.email.ToString(), SqlDbType.VarChar);
-            sQLQuery.AddParameter("@cvr", customer.cvr.ToString(), SqlDbType.VarChar);
+            
+
+           // sQLQuery.AddParameter("@cvr", customer.cvr.ToString(), SqlDbType.VarChar);
 
             //Den virker hvis jeg insætter telefonnummeret direkte her, men ikke hvis jeg bruger customer.phone.tostring()
-            
-            Customer tmpcustomer = GetCustomer(777.ToString());
+
+           // Customer tmpcustomer = GetCustomer(999.ToString()); //Skal hente en kunde ud fra dens nummer.
+
 
            
-            sQLQuery.AddParameter("@customerID", tmpcustomer.customerID.ToString(), SqlDbType.VarChar);
+            //---Problemet er at den ikke kan læse en kunde op fra databasen før den er helt færdig med at lægge 
+            //denne her nedi den.
+
+            //sQLQuery.AddParameter("@customerID", tmpcustomer.customerID.ToString(), SqlDbType.VarChar);
             
+
 
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            if (sQLQueryResult.code==0)
+            if (sQLQueryResult.code==0&&customer.cvr==null)
             {
-                return customer.customerID.ToString();
+                return "Kunde oprettet, cvr er null";
             }
+            if (sQLQueryResult.code == 0 && customer.cvr != null)
+            {
+                return "Kunde oprettet, cvr er ikke null";
+            }
+
             else
             {
                 return sQLQueryResult.message.ToString();
@@ -120,7 +132,7 @@ namespace AnimalHousePersistence
 
             DataRow dataRow = sQLQueryResult.dataTable.Rows[0];
 
-            Customer customer = new Customer((int)dataRow["CustomerID"],(string)dataRow["Name"], (string)dataRow["Adress"], (string)dataRow["Phone"],(string)dataRow["Email"], (bool)dataRow["Active"],(string)"pap" );
+            Customer customer = new Customer((int)dataRow["CustomerID"],(string)dataRow["Name"], (string)dataRow["Adress"], (string)dataRow["Phone"],(string)dataRow["Email"], (bool)dataRow["Active"]);
 
             return customer;
 

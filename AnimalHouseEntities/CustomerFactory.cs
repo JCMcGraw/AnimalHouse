@@ -35,7 +35,7 @@ namespace AnimalHouseEntities
         //erhverskunde
         public Customer CreateCustomer(string name, string address, string phone, string email, bool active, string cvr)
         {
-            if (cvr==null)
+            if (cvr!=null)
             {
                 return new Customer(name, address, phone, email, true, cvr);
 
@@ -43,7 +43,7 @@ namespace AnimalHouseEntities
             else
             {
                 
-                   return new Customer(name, address, phone, email, true, cvr);
+                   return new Customer(name, address, phone, email, true);
             }
         }
  
