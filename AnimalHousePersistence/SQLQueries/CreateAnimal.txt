@@ -1,2 +1,4 @@
-﻿Insert into Animals
-Value(@customerid, @weight, @speciesid...)
+﻿Insert into Animal
+(Name, BirthYear,Gender,Weight,Active,CustomerID,SpeciesID,EmployeeID)
+output inserted.AnimalID
+Values(@name, @birthday,@gender, @weight, @active, @customerid, @species,@employeeid)

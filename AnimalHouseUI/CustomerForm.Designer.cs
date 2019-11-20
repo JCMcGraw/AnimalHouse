@@ -86,6 +86,7 @@
             this.LabelTitle.Size = new System.Drawing.Size(162, 29);
             this.LabelTitle.TabIndex = 5;
             this.LabelTitle.Text = "Animal House";
+            this.LabelTitle.Click += new System.EventHandler(this.LabelTitle_Click);
             this.LabelTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseDown);
             this.LabelTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseMove);
             this.LabelTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseUp);

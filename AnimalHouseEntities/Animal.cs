@@ -9,20 +9,20 @@ namespace AnimalHouseEntities
     public class Animal
     {
 
-        public int customerid { get; private set; }
-        public int animalid { get; private set; }
+        public int customerID { get; private set; }
+        public int animalID { get; private set; }
         public string name { get; private set; }
-        public string birthday { get; private set; }
+        public DateTime birthday { get; private set; }
         public int species { get; private set; }
         
         public double weight { get; private set; }
         public int gender { get; private set; }
         public bool active { get; private set; }
 
-        public Animal(int customerID, int animalID, string name, string birthday, int species, double weight, int gender, bool active)
+        public Animal(int customerID, int animalID, string name, DateTime birthday, int species, double weight, int gender, bool active)
         {
-            this.customerid = customerID;
-            this.animalid = animalID;
+            this.customerID = customerID;
+            this.animalID = animalID;
             this.name = name;
             this.birthday = birthday;
             this.species = species;
@@ -30,19 +30,21 @@ namespace AnimalHouseEntities
             this.gender = gender;
             this.active = active;
         }
-       
-        public Animal(string name, string birthday, double weight, int gender, bool active)
+        public Animal(int customerID, string name, DateTime birthday, int species, double weight, int gender, bool active)
         {
-
+            this.customerID = customerID;
             this.name = name;
-            this.birthday = name;
+            this.birthday = birthday;
+            this.species = species;
             this.weight = weight;
             this.gender = gender;
             this.active = active;
         }
-        public void UpdateID(int animalID)
+
+       
+        public void UpdateID(int animalid)
         {
-            this.animalid = animalID;
+            this.animalID = animalid;
         }
 
     }

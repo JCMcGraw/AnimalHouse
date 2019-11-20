@@ -546,7 +546,7 @@ namespace AnimalHouseUI
         {
             Treatment oldTreatment = treatmentsCache[treatmentID];
             Treatment newTreatment = TreatmentFactory.Instance().CreateTreatment(treatmentID, oldTreatment.treatmentTypeID, oldTreatment.operationRoomID, oldTreatment.cageID, oldTreatment.itemID,
-                newStartTime, newEndTime, oldTreatment.payed, oldTreatment.headline, oldTreatment.active, oldTreatment.animalID, oldTreatment.employee);
+                newStartTime, newEndTime, oldTreatment.payed, oldTreatment.headline, oldTreatment.active, oldTreatment.animalID, oldTreatment.employeeID);
 
             return newTreatment;
         }

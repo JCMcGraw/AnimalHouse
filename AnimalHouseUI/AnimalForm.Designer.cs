@@ -36,26 +36,28 @@
             this.ButtonClose = new System.Windows.Forms.Button();
             this.button_opret = new System.Windows.Forms.Button();
             this.label_dyr = new System.Windows.Forms.Label();
-            this.label_headline = new System.Windows.Forms.Label();
+            this.AnimalName_Label = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.Animal_name = new System.Windows.Forms.TextBox();
+            this.animal_name = new System.Windows.Forms.TextBox();
             this.label_telefonnummer = new System.Windows.Forms.Label();
             this.button_rediger = new System.Windows.Forms.Button();
             this.button_slet = new System.Windows.Forms.Button();
             this.label_navn = new System.Windows.Forms.Label();
             this.label_adresse = new System.Windows.Forms.Label();
-            this.Animal_weight = new System.Windows.Forms.TextBox();
+            this.animal_weight = new System.Windows.Forms.TextBox();
             this.label_email = new System.Windows.Forms.Label();
-            this.Animal_bday = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.owner_phone = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.animalAge_label = new System.Windows.Forms.Label();
+            this.owner_label = new System.Windows.Forms.Label();
+            this.animal_species = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.animal_gender = new System.Windows.Forms.ComboBox();
+            this.animal_bdate = new System.Windows.Forms.DateTimePicker();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             this.SuspendLayout();
@@ -88,6 +90,7 @@
             this.LabelTitle.Size = new System.Drawing.Size(162, 29);
             this.LabelTitle.TabIndex = 5;
             this.LabelTitle.Text = "Animal House";
+            this.LabelTitle.Click += new System.EventHandler(this.LabelTitle_Click);
             this.LabelTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseDown);
             this.LabelTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseMove);
             this.LabelTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseUp);
@@ -160,6 +163,7 @@
             this.button_opret.TabIndex = 6;
             this.button_opret.Text = "Opret";
             this.button_opret.UseVisualStyleBackColor = false;
+            this.button_opret.Click += new System.EventHandler(this.Button_opret_Click_1);
             // 
             // label_dyr
             // 
@@ -171,15 +175,15 @@
             this.label_dyr.TabIndex = 7;
             this.label_dyr.Text = "Journal";
             // 
-            // label_headline
+            // AnimalName_Label
             // 
-            this.label_headline.AutoSize = true;
-            this.label_headline.Font = new System.Drawing.Font("Segoe Print", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_headline.Location = new System.Drawing.Point(35, 56);
-            this.label_headline.Name = "label_headline";
-            this.label_headline.Size = new System.Drawing.Size(91, 47);
-            this.label_headline.TabIndex = 8;
-            this.label_headline.Text = "Navn";
+            this.AnimalName_Label.AutoSize = true;
+            this.AnimalName_Label.Font = new System.Drawing.Font("Segoe Print", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AnimalName_Label.Location = new System.Drawing.Point(35, 56);
+            this.AnimalName_Label.Name = "AnimalName_Label";
+            this.AnimalName_Label.Size = new System.Drawing.Size(91, 47);
+            this.AnimalName_Label.TabIndex = 8;
+            this.AnimalName_Label.Text = "Navn";
             // 
             // button3
             // 
@@ -203,12 +207,12 @@
             this.listBox1.Size = new System.Drawing.Size(283, 368);
             this.listBox1.TabIndex = 11;
             // 
-            // Animal_name
+            // animal_name
             // 
-            this.Animal_name.Location = new System.Drawing.Point(43, 174);
-            this.Animal_name.Name = "Animal_name";
-            this.Animal_name.Size = new System.Drawing.Size(99, 20);
-            this.Animal_name.TabIndex = 12;
+            this.animal_name.Location = new System.Drawing.Point(43, 174);
+            this.animal_name.Name = "animal_name";
+            this.animal_name.Size = new System.Drawing.Size(99, 20);
+            this.animal_name.TabIndex = 12;
             // 
             // label_telefonnummer
             // 
@@ -265,12 +269,12 @@
             this.label_adresse.TabIndex = 20;
             this.label_adresse.Text = "Fødselsdag";
             // 
-            // Animal_weight
+            // animal_weight
             // 
-            this.Animal_weight.Location = new System.Drawing.Point(162, 218);
-            this.Animal_weight.Name = "Animal_weight";
-            this.Animal_weight.Size = new System.Drawing.Size(99, 20);
-            this.Animal_weight.TabIndex = 19;
+            this.animal_weight.Location = new System.Drawing.Point(162, 218);
+            this.animal_weight.Name = "animal_weight";
+            this.animal_weight.Size = new System.Drawing.Size(99, 20);
+            this.animal_weight.TabIndex = 19;
             // 
             // label_email
             // 
@@ -280,13 +284,6 @@
             this.label_email.Size = new System.Drawing.Size(26, 13);
             this.label_email.TabIndex = 22;
             this.label_email.Text = "Køn";
-            // 
-            // Animal_bday
-            // 
-            this.Animal_bday.Location = new System.Drawing.Point(43, 267);
-            this.Animal_bday.Name = "Animal_bday";
-            this.Animal_bday.Size = new System.Drawing.Size(99, 20);
-            this.Animal_bday.TabIndex = 21;
             // 
             // label1
             // 
@@ -306,19 +303,13 @@
             this.label2.TabIndex = 24;
             this.label2.Text = "Ejer, telefon";
             // 
-            // textBox1
+            // owner_phone
             // 
-            this.textBox1.Location = new System.Drawing.Point(162, 174);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(99, 20);
-            this.textBox1.TabIndex = 25;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(162, 267);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(99, 20);
-            this.textBox2.TabIndex = 26;
+            this.owner_phone.Enabled = false;
+            this.owner_phone.Location = new System.Drawing.Point(162, 174);
+            this.owner_phone.Name = "owner_phone";
+            this.owner_phone.Size = new System.Drawing.Size(99, 20);
+            this.owner_phone.TabIndex = 25;
             // 
             // label3
             // 
@@ -330,24 +321,43 @@
             this.label3.TabIndex = 27;
             this.label3.Text = "Art,";
             // 
-            // label4
+            // animalAge_label
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label4.Location = new System.Drawing.Point(61, 109);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 17);
-            this.label4.TabIndex = 28;
-            this.label4.Text = "Alder";
+            this.animalAge_label.AutoSize = true;
+            this.animalAge_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.animalAge_label.Location = new System.Drawing.Point(61, 109);
+            this.animalAge_label.Name = "animalAge_label";
+            this.animalAge_label.Size = new System.Drawing.Size(41, 17);
+            this.animalAge_label.TabIndex = 28;
+            this.animalAge_label.Text = "Alder";
             // 
-            // label5
+            // owner_label
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(40, 134);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(25, 13);
-            this.label5.TabIndex = 29;
-            this.label5.Text = "Ejer";
+            this.owner_label.AutoSize = true;
+            this.owner_label.Location = new System.Drawing.Point(40, 134);
+            this.owner_label.Name = "owner_label";
+            this.owner_label.Size = new System.Drawing.Size(25, 13);
+            this.owner_label.TabIndex = 29;
+            this.owner_label.Text = "Ejer";
+            // 
+            // animal_species
+            // 
+            this.animal_species.FormattingEnabled = true;
+            this.animal_species.Items.AddRange(new object[] {
+            "Hund",
+            "Kat",
+            "Kanin",
+            "Marsvin",
+            "Hamster",
+            "Kanariefugl",
+            "Papegøje",
+            "Slange",
+            "Skildpadde"});
+            this.animal_species.Location = new System.Drawing.Point(43, 218);
+            this.animal_species.Name = "animal_species";
+            this.animal_species.Size = new System.Drawing.Size(99, 21);
+            this.animal_species.TabIndex = 30;
+            this.animal_species.SelectedIndexChanged += new System.EventHandler(this.Animal_species_SelectedIndexChanged);
             // 
             // comboBox1
             // 
@@ -362,10 +372,44 @@
             "Papegøje",
             "Slange",
             "Skildpadde"});
-            this.comboBox1.Location = new System.Drawing.Point(43, 218);
+            this.comboBox1.Location = new System.Drawing.Point(43, 312);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(99, 21);
-            this.comboBox1.TabIndex = 30;
+            this.comboBox1.TabIndex = 31;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(41, 296);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(55, 13);
+            this.label4.TabIndex = 32;
+            this.label4.Text = "Behandler";
+            // 
+            // animal_gender
+            // 
+            this.animal_gender.FormattingEnabled = true;
+            this.animal_gender.Items.AddRange(new object[] {
+            "Hund",
+            "Kat",
+            "Kanin",
+            "Marsvin",
+            "Hamster",
+            "Kanariefugl",
+            "Papegøje",
+            "Slange",
+            "Skildpadde"});
+            this.animal_gender.Location = new System.Drawing.Point(162, 267);
+            this.animal_gender.Name = "animal_gender";
+            this.animal_gender.Size = new System.Drawing.Size(99, 21);
+            this.animal_gender.TabIndex = 33;
+            // 
+            // animal_bdate
+            // 
+            this.animal_bdate.Location = new System.Drawing.Point(44, 267);
+            this.animal_bdate.Name = "animal_bdate";
+            this.animal_bdate.Size = new System.Drawing.Size(98, 20);
+            this.animal_bdate.TabIndex = 34;
             // 
             // AnimalForm
             // 
@@ -373,26 +417,28 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(640, 542);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.animal_bdate);
+            this.Controls.Add(this.animal_gender);
             this.Controls.Add(this.label4);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.animal_species);
+            this.Controls.Add(this.owner_label);
+            this.Controls.Add(this.animalAge_label);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.owner_phone);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label_email);
-            this.Controls.Add(this.Animal_bday);
             this.Controls.Add(this.label_adresse);
-            this.Controls.Add(this.Animal_weight);
+            this.Controls.Add(this.animal_weight);
             this.Controls.Add(this.label_navn);
             this.Controls.Add(this.button_slet);
             this.Controls.Add(this.button_rediger);
             this.Controls.Add(this.label_telefonnummer);
-            this.Controls.Add(this.Animal_name);
+            this.Controls.Add(this.animal_name);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.label_headline);
+            this.Controls.Add(this.AnimalName_Label);
             this.Controls.Add(this.label_dyr);
             this.Controls.Add(this.button_opret);
             this.Controls.Add(this.PanelHeader);
@@ -418,28 +464,30 @@
         private System.Windows.Forms.Label LabelTitle;
         private System.Windows.Forms.Button button_opret;
         private System.Windows.Forms.Label label_dyr;
-        private System.Windows.Forms.Label label_headline;
+        private System.Windows.Forms.Label AnimalName_Label;
         private System.Windows.Forms.Button button3;
         #endregion
 
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.TextBox Animal_name;
+        private System.Windows.Forms.TextBox animal_name;
         private System.Windows.Forms.Label label_telefonnummer;
         private System.Windows.Forms.Button button_rediger;
         private System.Windows.Forms.Button button_slet;
         private System.Windows.Forms.Label label_navn;
         private System.Windows.Forms.Label label_adresse;
-        private System.Windows.Forms.TextBox Animal_weight;
+        private System.Windows.Forms.TextBox animal_weight;
         private System.Windows.Forms.Label label_email;
-        private System.Windows.Forms.TextBox Animal_bday;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox owner_phone;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label animalAge_label;
+        private System.Windows.Forms.Label owner_label;
+        private System.Windows.Forms.ComboBox animal_species;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox animal_gender;
+        private System.Windows.Forms.DateTimePicker animal_bdate;
     }
 
     #region Windows Form Designer generated code

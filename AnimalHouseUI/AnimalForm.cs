@@ -14,8 +14,11 @@ namespace AnimalHouseUI
 {
     public partial class AnimalForm : Form
     {
-        public AnimalForm()
+        Customer customer;
+        public AnimalForm(Customer customer)
+
         {
+            this.customer = customer;
             InitializeComponent();
         }
         #region Copy this 
@@ -141,18 +144,52 @@ namespace AnimalHouseUI
 
         private void AnimalForm_Load(object sender, EventArgs e)
         {
-
+            
+            
         }
         private void button_opret_Click(object sender, EventArgs e)
         {
 
 
+            
+
+
+
+        }
+
+        private void Button_opret_Click_1(object sender, EventArgs e)
+        {
             //Animal animal = new Animal(Animal_name.Text.ToString(), Animal_weight.Text.ToString(), Animal_bday.Text.ToString(),
             //    true);
 
             //string message = BossController.instance().animalController.CreateAnimal(animal);
             //MessageBox.Show(message);
+            //fejl
+            Animal animal = AnimalFactory.Instance().CreateAnimal(customer.customerID,animal_name.Text.ToString(), (animal_bdate.Value), 1, Convert.ToDouble(animal_weight.Text), 1, true);
 
+            Animal message = BossController.instance().animalController.CreateAnimal(animal);
+            MessageBox.Show("dyr oprettet");
+        }
+
+        private void Animal_species_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //try
+            //{
+            //    DataView dv = new DataView(dataTableSubGroup);
+            //    dv.RowFilter = $"MainGroup = {ComboModelMain.SelectedValue}";
+
+            //    ComboModelSub.DataSource = dv.ToTable();
+            //    ComboModelSub.DisplayMember = "Category";
+            //    ComboModelSub.ValueMember = "SubGroupID";
+            //}
+            //catch
+            //{
+
+            //}
+        }
+
+        private void LabelTitle_Click(object sender, EventArgs e)
+        {
 
         }
     }
