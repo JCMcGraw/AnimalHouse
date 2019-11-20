@@ -86,6 +86,7 @@
             this.LabelTitle.Size = new System.Drawing.Size(162, 29);
             this.LabelTitle.TabIndex = 5;
             this.LabelTitle.Text = "Animal House";
+            this.LabelTitle.Click += new System.EventHandler(this.LabelTitle_Click);
             this.LabelTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseDown);
             this.LabelTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseMove);
             this.LabelTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseUp);
@@ -276,6 +277,7 @@
             this.button_dyr.TabIndex = 16;
             this.button_dyr.Text = "Tilføj Dyr";
             this.button_dyr.UseVisualStyleBackColor = false;
+            this.button_dyr.Click += new System.EventHandler(this.Button_dyr_Click);
             // 
             // textBox_navn
             // 

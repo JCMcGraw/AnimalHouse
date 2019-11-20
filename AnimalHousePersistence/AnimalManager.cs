@@ -17,10 +17,14 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("@name", animal.name.ToString(), SqlDbType.DateTime);
-            sQLQuery.AddParameter("@weight", animal.weight.ToString(), SqlDbType.Bit);
-            sQLQuery.AddParameter("@gender", animal.gender.ToString(), SqlDbType.Bit);
-            sQLQuery.AddParameter("@active", animal.active.ToString(), SqlDbType.Bit);
+            sQLQuery.AddParameter("@customerid", animal.customerID.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@species", animal.species.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@birthday", animal.birthday.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@name", animal.name.ToString(), SqlDbType.VarChar);
+            sQLQuery.AddParameter("@weight", animal.weight.ToString(), SqlDbType.Float);
+            sQLQuery.AddParameter("@gender", animal.gender.ToString(), SqlDbType.TinyInt);
+            sQLQuery.AddParameter("@active", "1", SqlDbType.TinyInt);
+            sQLQuery.AddParameter("@employeeid", "1" , SqlDbType.TinyInt);
 
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
@@ -55,7 +59,7 @@ namespace AnimalHousePersistence
             int customerID = (int)sQLQueryResult.dataTable.Rows[0]["customerID"];
             //int animalID = (int)sQLQueryResult.dataTable.Rows[0]["AnimalID"];
             string name = (string)sQLQueryResult.dataTable.Rows[0]["name"];
-            string birthday = (string)sQLQueryResult.dataTable.Rows[0]["species"];
+            DateTime birthday = (DateTime)sQLQueryResult.dataTable.Rows[0]["birthday"];
             int species = (int)sQLQueryResult.dataTable.Rows[0]["species"];
             double weight = (int)sQLQueryResult.dataTable.Rows[0]["weight"];
             char gender = (char)sQLQueryResult.dataTable.Rows[0]["gender"];
@@ -85,10 +89,12 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("@name", animal.name.ToString(), SqlDbType.DateTime);
-            sQLQuery.AddParameter("@gender", animal.gender.ToString(), SqlDbType.DateTime);
-            sQLQuery.AddParameter("@weight", animal.weight.ToString(), SqlDbType.DateTime);
-            sQLQuery.AddParameter("@active", animal.active.ToString(), SqlDbType.Bit);
+            sQLQuery.AddParameter("@name", animal.name.ToString(), SqlDbType.VarChar);
+            sQLQuery.AddParameter("@birthday", animal.birthday.ToString(), SqlDbType.VarChar);
+            sQLQuery.AddParameter("@gender", animal.gender.ToString(), SqlDbType.Char);
+            sQLQuery.AddParameter("@weight", animal.weight.ToString(), SqlDbType.VarChar);
+            sQLQuery.AddParameter("@species", animal.species.ToString(), SqlDbType.VarChar);
+
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
@@ -111,7 +117,7 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("@animalid", animal.animalid.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@animalid", animal.animalID.ToString(), SqlDbType.Int);
            
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
