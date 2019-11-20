@@ -15,6 +15,7 @@ namespace AnimalHouseUI
 {
     public partial class CustomerForm : Form
     {
+        Customer customer;
         public CustomerForm()
         {
             InitializeComponent();
@@ -171,7 +172,7 @@ namespace AnimalHouseUI
         private void button_opret_Click(object sender, EventArgs e)
         {
             //Kunden skabes direkte fra entity-laget, men igennem factoryen
-            Customer customer =CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, textBox_cvr.Text.ToString());
+             customer =CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, textBox_cvr.Text.ToString());
 
             //stringen oprettes gennem bosscontrolleren og videre igennem customercontroleren
             string message= BossController.instance().customerController.CreateCustomer(customer);
@@ -185,7 +186,7 @@ namespace AnimalHouseUI
             //Lav en "er du sikker"-popup
 
             //skaf en kunde fra databasen så du kan finde hans customerID
-            Customer customer = new Customer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.ToString(), textBox_email.ToString(),true);
+             customer = new Customer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.ToString(), textBox_email.ToString(),true);
 
             //string message=customer.name.ToString();
             string message = BossController.instance().customerController.UpdateCustomer(customer);
@@ -197,7 +198,7 @@ namespace AnimalHouseUI
         private void button_slet_Click(object sender, EventArgs e)
             //lav en "er du sikker" popup
         {
-            Customer customer = new Customer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.ToString(), textBox_email.ToString(), true);
+             customer = new Customer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.ToString(), textBox_email.ToString(), true);
 
             string message = BossController.instance().customerController.DeleteCustomer(customer);
             MessageBox.Show(message);
@@ -208,7 +209,7 @@ namespace AnimalHouseUI
 
         private void button_dyr_Click(object sender, EventArgs e)
         {
-            AnimalForm animalForm = new AnimalForm();
+            AnimalForm animalForm = new AnimalForm(customer);
             animalForm.Show();
         }
     }

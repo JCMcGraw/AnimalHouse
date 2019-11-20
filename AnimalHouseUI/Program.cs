@@ -19,7 +19,7 @@ namespace AnimalHouseUI
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new CustomerForm());
             Application.Run(new TreatmentBooking());
-            Application.Run(new AnimalForm(new Customer(1, "Børge", "Hundevej 8", "12345", "hund@hund.dk", true, "")));
+          
         }
     }
 }
