@@ -1,2 +1,1 @@
 ﻿insert into Customer values (@name, @address, @phone, @email,1)
-insert into BusinessCustomer (CVR, CustomerID) values (@cvr, @customerID)
