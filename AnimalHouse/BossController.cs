@@ -45,6 +45,15 @@ namespace AnimalHouse
             }
 
         }
+
+        public SaleController saleController
+        {
+            get
+            {
+                return SaleController.Instance();
+            }
+
+        }
     }
 }
 

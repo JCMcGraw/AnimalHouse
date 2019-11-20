@@ -17,9 +17,7 @@ namespace AnimalHouse
             //TreatmentController.Instance().CreateTreatment(treatment);
 
             //TreatmentController.Instance().UpdateTreatment(treatment);
-
-            
-            
+                        
 
             
             Console.ReadKey();

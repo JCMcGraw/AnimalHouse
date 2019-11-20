@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnimalHouseEntities
 {
-    class ItemFactory
+    public class ItemFactory
     {
         private static ItemFactory instance;
 
