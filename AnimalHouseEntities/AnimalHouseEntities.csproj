@@ -47,8 +47,10 @@
     <Compile Include="AnimalFactory.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerFactory.cs" />
+    <Compile Include="PrivateCustomer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BusinessCustomer.cs" />
     <Compile Include="Treatment.cs" />
     <Compile Include="TreatmentFaktory.cs" />
   </ItemGroup>

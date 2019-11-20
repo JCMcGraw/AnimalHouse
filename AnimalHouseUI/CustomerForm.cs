@@ -184,7 +184,7 @@ namespace AnimalHouseUI
             //Lav en "er du sikker"-popup
 
             //skaf en kunde fra databasen så du kan finde hans customerID
-            Customer customer = new Customer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, textBox_cvr.Text.ToString());
+            Customer customer = new Customer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.ToString(), textBox_email.ToString(),true);
 
             //string message=customer.name.ToString();
             string message = BossController.instance().customerController.UpdateCustomer(customer);
@@ -196,13 +196,19 @@ namespace AnimalHouseUI
         private void button_slet_Click(object sender, EventArgs e)
             //lav en "er du sikker" popup
         {
-            Customer customer = new Customer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, textBox_cvr.Text.ToString());
+            Customer customer = new Customer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.ToString(), textBox_email.ToString(), true);
 
             string message = BossController.instance().customerController.DeleteCustomer(customer);
             MessageBox.Show(message);
 
            
 
+        }
+
+        private void button_dyr_Click(object sender, EventArgs e)
+        {
+            AnimalForm animalForm = new AnimalForm();
+            animalForm.Show();
         }
     }
 }

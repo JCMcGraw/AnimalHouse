@@ -276,6 +276,7 @@
             this.button_dyr.TabIndex = 16;
             this.button_dyr.Text = "Tilføj Dyr";
             this.button_dyr.UseVisualStyleBackColor = false;
+            this.button_dyr.Click += new System.EventHandler(this.button_dyr_Click);
             // 
             // textBox_navn
             // 

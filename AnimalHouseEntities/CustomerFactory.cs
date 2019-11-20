@@ -37,7 +37,7 @@ namespace AnimalHouseEntities
         {
             if (cvr!=null)
             {
-                return new Customer(name, address, phone, email, true, cvr);
+                return new Customer(name, address, phone, email, true);
 
             }
             else

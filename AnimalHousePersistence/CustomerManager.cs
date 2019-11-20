@@ -47,21 +47,8 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            if (sQLQueryResult.code==0&&customer.cvr==null)
-            {
-                return "Kunde oprettet, cvr er null";
-            }
-            if (sQLQueryResult.code == 0 && customer.cvr != null)
-            {
-                return "Kunde oprettet, cvr er ikke null";
-            }
-
-            else
-            {
-                return sQLQueryResult.message.ToString();
-
-            }
-
+            return "Kunde oprettet";
+            
            
         }
 
