@@ -135,10 +135,25 @@ namespace AnimalHousePersistence
             return treatments;
         }
 
+        public List<TreatmentType> GetManyTreatmentTypes()
+        {
+            string query = Utility.ReadSQLQueryFromFile("GetManyTreatmentTypes.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            List<TreatmentType> treatments = new List<TreatmentType>();
+
+            treatments = GetTreatmentTypeList(sQLQueryResult);
+
+            return treatments;
+        }
+
         public List<Treatment> GetTreatmentList(SQLQueryResult sQLQueryResult)
         {
-
             List<Treatment> treatments = new List<Treatment>();
+
             for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
             {
                 int treatmentID;
@@ -214,6 +229,30 @@ namespace AnimalHousePersistence
                 treatments.Add(TreatmentFactory.Instance().CreateTreatment(treatmentID, treatmentTypeID, operationRoomID, cageID, itemID, startTime, endTime, payed, headline, active, employeeID, animalID));
             }
             return treatments;
+        }
+
+        public List<TreatmentType> GetTreatmentTypeList(SQLQueryResult sQLQueryResult)
+        {
+            List<TreatmentType> treatmentTypes = new List<TreatmentType>();
+
+            for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
+            {
+                int treatmentTypeID;
+
+                if (sQLQueryResult.dataTable.Rows[i].IsNull("TreatmentTypeID"))
+                {
+                    treatmentTypeID = -1;
+                }
+                else
+                {
+                    treatmentTypeID = (int)sQLQueryResult.dataTable.Rows[i]["TreatmentTypeID"];
+                }
+
+                string name = (string)sQLQueryResult.dataTable.Rows[i]["Name"];
+
+                treatmentTypes.Add(TreatmentTypeFactory.Instance().CreateTreatmentType(treatmentTypeID, name));
+            }
+            return treatmentTypes;
         }
     }
 }

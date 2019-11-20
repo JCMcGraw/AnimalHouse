@@ -22,6 +22,7 @@ namespace AnimalHousePersistence
         List<Treatment> GetManyTreatmentsByAnimal(int animalID, DateTime startTime, DateTime endTime);
 
         List<Treatment> GetManyTreatmentsByDateTime(DateTime startTime, DateTime endTime);
-        
+
+        List<TreatmentType> GetManyTreatmentTypes();
     }
 }

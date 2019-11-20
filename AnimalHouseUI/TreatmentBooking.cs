@@ -428,7 +428,7 @@ namespace AnimalHouseUI
                     break;
                 case DayOfWeek.Wednesday:
                     MonthViewBooking.SelectionStart = DateTime.Today.AddDays(-2);
-                    MonthViewBooking.SelectionEnd = DateTime.Today.AddDays(-2);
+                    MonthViewBooking.SelectionEnd = DateTime.Today.AddDays(2);
                     break;
                 case DayOfWeek.Thursday:
                     MonthViewBooking.SelectionStart = DateTime.Today.AddDays(-2);
