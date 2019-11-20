@@ -39,7 +39,7 @@ namespace AnimalHouse
 
         }
 
-        public string CreateCustomer(Customer customer)
+        public Customer CreateCustomer(Customer customer)
         {
 
 

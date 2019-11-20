@@ -33,17 +33,17 @@ namespace AnimalHouseEntities
         //}
 
         //erhverskunde
-        public Customer CreateCustomer(string name, string address, string phone, string email, bool active, string cvr)
+        public Customer CreateCustomer(string name, string address, string phone, string email, bool active, int cvr)
         {
-            if (cvr!=null)
+            if (cvr!=0)
             {
-                return new Customer(name, address, phone, email, true);
+                return new BusinessCustomer(cvr, name, address, phone,email, true);
 
             }
             else
             {
                 
-                   return new Customer(name, address, phone, email, true);
+                   return new PrivateCustomer(name, address, phone, email, true);
             }
         }
  
