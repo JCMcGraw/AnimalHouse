@@ -42,6 +42,7 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@payed", treatment.payed.ToString(), SqlDbType.Bit);
             sQLQuery.AddParameter("@headline", treatment.headline.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@active", treatment.active.ToString(), SqlDbType.Bit);
+            sQLQuery.AddParameter("@treatmentID", treatment.treatmentID.ToString(), SqlDbType.Int);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
@@ -210,7 +211,7 @@ namespace AnimalHousePersistence
                 string headline = (string)sQLQueryResult.dataTable.Rows[i]["Headline"];
                 bool active = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
 
-                treatments.Add(TreatmentFaktory.Instance().CreateTreatment(treatmentID, treatmentTypeID, operationRoomID, cageID, itemID, startTime, endTime, payed, headline, active, employeeID, animalID));
+                treatments.Add(TreatmentFactory.Instance().CreateTreatment(treatmentID, treatmentTypeID, operationRoomID, cageID, itemID, startTime, endTime, payed, headline, active, employeeID, animalID));
             }
             return treatments;
         }
