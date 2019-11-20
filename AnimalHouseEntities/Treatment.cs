@@ -68,4 +68,4 @@ namespace AnimalHouseEntities
             this.treatmentID = treatmentID;
         }
     }
-}
+}       
