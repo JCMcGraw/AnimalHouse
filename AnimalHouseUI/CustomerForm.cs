@@ -139,6 +139,7 @@ namespace AnimalHouseUI
         }
 
         #endregion
+       
 
         //private void SampleForm_Load(object sender, EventArgs e)
         //{
@@ -202,6 +203,16 @@ namespace AnimalHouseUI
             MessageBox.Show(message);
 
            
+
+        }
+
+        private void Button_dyr_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void LabelTitle_Click(object sender, EventArgs e)
+        {
 
         }
     }

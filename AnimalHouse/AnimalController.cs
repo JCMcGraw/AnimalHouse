@@ -33,7 +33,7 @@ namespace AnimalHouse
         {
             Animal createAnimal = animalManager.CreateAnimal(animal);
 
-            return CreateAnimal(animal);
+            return createAnimal;
         }
 
 
