@@ -1,1 +1,1 @@
-﻿insert into BusinessCustomer (CVR, CustomerID) values (@cvr, @customerID)
+﻿insert into BusinessCustomer (CVR, CustomerID) values (@cvr, @businesscustomerID)

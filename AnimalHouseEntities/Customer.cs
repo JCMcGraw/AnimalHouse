@@ -46,7 +46,10 @@ namespace AnimalHouseEntities
            // this.cvr = cvr;
         }
 
-
+        public void UpdateID(int customerID)
+        {
+            this.customerID = customerID;
+        }
 
     }
 }

@@ -13,7 +13,7 @@ namespace AnimalHousePersistence
 {
     public class CustomerManager : ICustomerManager
     {
-        public string CreateCustomer(Customer customer)
+        public Customer CreateCustomer(Customer customer)
         {
             SqlConnection con = new SqlConnection(Utility.connectionString);
 
@@ -28,30 +28,52 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@address",customer.address.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@email",customer.email.ToString(), SqlDbType.VarChar);
             
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-           // sQLQuery.AddParameter("@cvr", customer.cvr.ToString(), SqlDbType.VarChar);
+            int customerID = (int)sQLQueryResult.dataTable.Rows[0]["CustomerID"];
 
-            //Den virker hvis jeg insætter telefonnummeret direkte her, men ikke hvis jeg bruger customer.phone.tostring()
-
-           // Customer tmpcustomer = GetCustomer(999.ToString()); //Skal hente en kunde ud fra dens nummer.
-
-
-           
-            //---Problemet er at den ikke kan læse en kunde op fra databasen før den er helt færdig med at lægge 
-            //denne her nedi den.
-
-            //sQLQuery.AddParameter("@customerID", tmpcustomer.customerID.ToString(), SqlDbType.VarChar);
+            customer.UpdateID(customerID);
             
 
+            if (customer.GetType()==typeof(BusinessCustomer))
 
+            {
+             //der laves en BusinessCustomer som castes til customer
+
+                BusinessCustomer businessCustomer = (BusinessCustomer)customer;
+                CreateBusinessCustomer(businessCustomer);
+                
+
+            }
+
+            if (customer.GetType() == typeof(PrivateCustomer))
+
+            {
+                
+                //createprivatecustomer
+            }
+                return customer;
+
+        }
+
+        public void CreateBusinessCustomer(BusinessCustomer businessCustomer)
+
+        {
+
+            SqlConnection con = new SqlConnection(Utility.connectionString);
+
+            string query = Utility.ReadSQLQueryFromFile("CreateBusinessCustomer.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+            
+            sQLQuery.AddParameter("@cvr", businessCustomer.cvr.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@businesscustomerID", businessCustomer.BusinesscustomerID.ToString(), SqlDbType.Int);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            return "Kunde oprettet";
-            
-           
-        }
 
+
+        }
         public string UpdateCustomer(Customer customer)
         {
             
