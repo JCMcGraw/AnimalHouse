@@ -529,8 +529,7 @@ namespace AnimalHouseUI
                 Treatment newTreatment = GetUpdatedTreatment(treatmentID, e.Item.StartDate, e.Item.EndDate);
                 bossController.treatmentController.UpdateTreatment(newTreatment);
 
-                treatmentsCache.Remove(treatmentID);
-                treatmentsCache.Add(newTreatment.treatmentID, newTreatment);
+                ReplaceOldTreatmentWithUpdated(newTreatment);
                 
             }
             else if (dialogResult == DialogResult.No)
@@ -539,7 +538,12 @@ namespace AnimalHouseUI
                 e.Item.EndDate = treatmentsCache[e.Item.TreatmentID].endTime;
             }
 
-            PlaceItems();
+            //PlaceItems();
+
+            //Customer customer = new BusinessCustomer(123123, "asdf", "asdfasdf", "asdfasf", "asdfasdf", true);
+            
+            //BusinessCustomer businessCustomer = (BusinessCustomer)customer;
+            //int cvr = businessCustomer.cvr;
         }
 
         private Treatment GetUpdatedTreatment(int treatmentID, DateTime newStartTime, DateTime newEndTime)
@@ -549,6 +553,27 @@ namespace AnimalHouseUI
                 newStartTime, newEndTime, oldTreatment.payed, oldTreatment.headline, oldTreatment.active, oldTreatment.animalID, oldTreatment.employeeID);
 
             return newTreatment;
+        }
+
+        private void ReplaceOldTreatmentWithUpdated(Treatment updatedTreatment)
+        {
+            treatmentsCache.Remove(updatedTreatment.treatmentID);
+            RemoveItemFromCalendarItemsCache(updatedTreatment.treatmentID);
+
+            AddTreatmentToCache(updatedTreatment);
+        }
+
+        private void RemoveTreatmentFromCache(int treatmentID)
+        {
+            int removeAt = -1;
+            for(removeAt = 0; removeAt < calendarItemsCache.Count; removeAt++)
+            {
+                if(calendarItemsCache[removeAt].TreatmentID == treatmentID)
+                {
+                    calendarItemsCache.RemoveAt(removeAt);
+                    break;
+                }
+            }
         }
 
         private void hourToolStripMenuItem_Click(object sender, EventArgs e)
