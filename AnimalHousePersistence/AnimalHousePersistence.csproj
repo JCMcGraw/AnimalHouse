@@ -96,10 +96,15 @@
     <Content Include="SQLQueries\GetCustomer.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQLQueries\GetManySalesByCustomerID.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQLQueries\GetManyTreatmentsByDateTime.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLQueries\GetManyTreatmentTypes.txt" />
+    <Content Include="SQLQueries\GetManyTreatmentTypes.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQLQueries\UpdateCustomer.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
