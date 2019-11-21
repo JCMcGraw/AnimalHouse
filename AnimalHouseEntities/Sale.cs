@@ -25,6 +25,11 @@ namespace AnimalHouseEntities
             saleLineItems = new List<SaleLineItem>();
         }
 
+        public void UpdateSaleID(int saleID)
+        {
+            this.saleID = saleID;
+        }
+
         public void AddSaleLineItem(SaleLineItem saleLineItem)
         {
             saleLineItems.Add(saleLineItem);

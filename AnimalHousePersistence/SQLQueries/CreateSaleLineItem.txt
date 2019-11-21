@@ -1,0 +1,3 @@
+﻿insert into SaleLineItem (Amount, Price, SaleID, ItemID)
+output inserted.SaleLineItemsID
+values (@amount, @price, @saleid, @itemid)

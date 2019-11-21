@@ -27,5 +27,11 @@ namespace AnimalHouseEntities
             Sale sale = new Sale(saleID, customer);
             return sale;
         }
+
+        public Sale CreateSale(Customer customer)
+        {
+            Sale sale = new Sale(customer);
+            return sale;
+        }
     }
 }
