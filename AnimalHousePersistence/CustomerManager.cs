@@ -49,8 +49,9 @@ namespace AnimalHousePersistence
             if (customer.GetType() == typeof(PrivateCustomer))
 
             {
-                
-                //createprivatecustomer
+                //der laves en PrivateCustomer som castes til customer
+                PrivateCustomer privateCustomer = (PrivateCustomer)customer;
+                CreatePrivateCustomer(privateCustomer);
             }
                 return customer;
 
@@ -74,21 +75,33 @@ namespace AnimalHousePersistence
 
 
         }
+
+        public void CreatePrivateCustomer(PrivateCustomer privateCustomer)
+        {
+            string query = Utility.ReadSQLQueryFromFile("CreatePrivateCustomer.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            sQLQuery.AddParameter("@privatecustomerID", privateCustomer.PrivatecustomerID.ToString(), SqlDbType.Int);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+        }
+
         public string UpdateCustomer(Customer customer)
         {
             
-
             SqlConnection con = new SqlConnection(Utility.connectionString);
 
             string query = Utility.ReadSQLQueryFromFile("UpdateCustomer.txt");
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("@phone", customer.phone.ToString(), SqlDbType.VarChar);
+            sQLQuery.AddParameter("@phone",customer.phone.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@name", customer.name.ToString(), SqlDbType.VarChar);
-            sQLQuery.AddParameter("@address", customer.address.ToString(), SqlDbType.VarChar);
-            sQLQuery.AddParameter("@email", customer.email.ToString(), SqlDbType.VarChar);
-            
+            sQLQuery.AddParameter("@address",customer.address.ToString(), SqlDbType.VarChar);
+            sQLQuery.AddParameter("@email",customer.email.ToString(), SqlDbType.VarChar);
+            sQLQuery.AddParameter("@customerID",customer.customerID.ToString(), SqlDbType.VarChar);
+
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
@@ -129,7 +142,7 @@ namespace AnimalHousePersistence
 
         public Customer GetCustomer(string phone)
         {
-            //Jeg kan ikke få det her fuck til at virke!
+         
 
             string query = Utility.ReadSQLQueryFromFile("GetCustomer.txt");
 
@@ -146,26 +159,7 @@ namespace AnimalHousePersistence
             return customer;
 
 
-          //  if (sQLQueryResult.code == 0)
-            {
-                //read datatable
-
-               // return sQLQueryResult.dataTable;
-
-
-
-            }
-
-            //if (sQLQueryResult.code==1)
-            //{
-            //    return "noget gik galt";
-            //}
-            //else
-            //{
-            //    return "noget gik helt galt";
-            //}
-
-
+          
         }
     }
 }

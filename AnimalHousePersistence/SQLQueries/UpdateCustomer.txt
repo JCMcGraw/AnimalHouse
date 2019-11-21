@@ -1,1 +1,1 @@
-﻿update Customer set Name=@name, Adress=@address, Phone=@phone, Email=@email where Phone=@phone
+﻿update customer set Name=@name, Adress=@address, Phone=@phone, Email=@email where CustomerID=@customerID

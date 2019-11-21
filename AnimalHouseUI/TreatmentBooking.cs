@@ -658,5 +658,10 @@ namespace AnimalHouseUI
             CalendarBooking.Focus();
             SendKeys.Send("{ENTER}");
         }
+
+        private void PanelHeadline_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
