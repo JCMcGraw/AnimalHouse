@@ -37,7 +37,7 @@
             this.ButtonClose = new System.Windows.Forms.Button();
             this.EndButton = new System.Windows.Forms.Button();
             this.TelefonLabel = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.CustomerNameLabel = new System.Windows.Forms.Label();
             this.SearchPhoneButton = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.FakturaButton = new System.Windows.Forms.Button();
@@ -175,15 +175,15 @@
             this.TelefonLabel.TabIndex = 7;
             this.TelefonLabel.Text = "Sample";
             // 
-            // label2
+            // CustomerNameLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe Print", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(35, 82);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(308, 47);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Sample Kunde Name";
+            this.CustomerNameLabel.AutoSize = true;
+            this.CustomerNameLabel.Font = new System.Drawing.Font("Segoe Print", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CustomerNameLabel.Location = new System.Drawing.Point(35, 82);
+            this.CustomerNameLabel.Name = "CustomerNameLabel";
+            this.CustomerNameLabel.Size = new System.Drawing.Size(308, 47);
+            this.CustomerNameLabel.TabIndex = 8;
+            this.CustomerNameLabel.Text = "Sample Kunde Name";
             // 
             // SearchPhoneButton
             // 
@@ -427,7 +427,7 @@
             this.Controls.Add(this.FakturaButton);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.SearchPhoneButton);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.CustomerNameLabel);
             this.Controls.Add(this.TelefonLabel);
             this.Controls.Add(this.EndButton);
             this.Controls.Add(this.PanelHeader);
@@ -453,7 +453,7 @@
         private System.Windows.Forms.Label LabelTitle;
         private System.Windows.Forms.Button EndButton;
         private System.Windows.Forms.Label TelefonLabel;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label CustomerNameLabel;
         private System.Windows.Forms.Button SearchPhoneButton;
         private System.Windows.Forms.Button button3;
         #endregion

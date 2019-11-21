@@ -21,7 +21,7 @@ namespace AnimalHouseUI
 
         private void SaleUI_Load(object sender, EventArgs e)
         {
-
+            CustomerNameLabel.Enabled = false;
         }
 
         #region Copy this 
@@ -149,14 +149,16 @@ namespace AnimalHouseUI
         {
             Customer customer = BossController.instance().customerController.GetCustomer(PhoneTextBox.Text);
 
+            CustomerNameLabel.Text = customer.name.ToString();
             NameTextBox.Text = customer.name.ToString();
+
+            CustomerNameLabel.Enabled = true;
         }
 
         private void SearchMedicalButton_Click(object sender, EventArgs e)
         {
 
         }
-
 
         private void EndButton_Click(object sender, EventArgs e)
         {
