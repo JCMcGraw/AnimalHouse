@@ -143,7 +143,12 @@ namespace AnimalHouseUI
 
         #endregion
 
-        private void SampleForm_Load(object sender, EventArgs e)
+        private void EndButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FakturaButton_Click(object sender, EventArgs e)
         {
 
         }
