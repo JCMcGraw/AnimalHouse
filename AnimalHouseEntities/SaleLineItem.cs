@@ -21,12 +21,16 @@ namespace AnimalHouseEntities
             this.price = price;
         }
 
-
         public SaleLineItem(Item item, int amount, decimal price)
         {
             this.item = item;
             this.amount = amount;
             this.price = price;
+        }
+
+        public void UpdateSaleLineItemID(int saleLineItemID)
+        {
+            this.saleLineItemID = saleLineItemID;
         }
     }
 }

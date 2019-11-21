@@ -1,0 +1,3 @@
+﻿insert into sale (CustomerID)
+output inserted.SaleID
+values (@customerid)

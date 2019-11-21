@@ -32,7 +32,14 @@ namespace AnimalHousePersistence
 
                             foreach (SQLParameter sqlParameter in sQLQuery.sQLParameters)
                             {
-                                command.Parameters.Add(sqlParameter.parameterName, sqlParameter.dataType).Value = sqlParameter.parameterValue;
+                                if (sqlParameter.parameterValue == null)
+                                {
+                                    command.Parameters.Add(sqlParameter.parameterName, sqlParameter.dataType).Value = DBNull.Value;
+                                }
+                                else
+                                {
+                                    command.Parameters.Add(sqlParameter.parameterName, sqlParameter.dataType).Value = sqlParameter.parameterValue;
+                                }
                             }
                             //execute sql to server and fill dataTable with returned result
                             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(command);
@@ -55,6 +62,49 @@ namespace AnimalHousePersistence
             }
         }
 
+        public static SqlConnection BeginTransaction(out SqlTransaction sqlTransaction)
+        {
+            SqlConnection connection = new SqlConnection(Utility.connectionString);
+            connection.Open();
+            sqlTransaction = connection.BeginTransaction();
 
+            return connection;
+        }
+
+        static public SQLQueryResult QueryDatabase(SQLQuery sQLQuery, SqlConnection connection, SqlTransaction sqlTransaction)
+        {
+                //initialize new DataTable
+                DataTable dataTable = new DataTable();
+
+                    try
+                    {
+                        //initialize SqlCommand
+                        using (SqlCommand command = new SqlCommand(sQLQuery.query, connection, sqlTransaction))
+                        {
+
+                            foreach (SQLParameter sqlParameter in sQLQuery.sQLParameters)
+                            {
+                                if (sqlParameter.parameterValue == null)
+                                {
+                                    command.Parameters.Add(sqlParameter.parameterName, sqlParameter.dataType).Value = DBNull.Value;
+                                }
+                                else
+                                {
+                                    command.Parameters.Add(sqlParameter.parameterName, sqlParameter.dataType).Value = sqlParameter.parameterValue;
+                                }
+                        
+                            }
+                            //execute sql to server and fill dataTable with returned result
+                            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(command);
+                            sqlDataAdapter.Fill(dataTable);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        return new SQLQueryResult(new DataTable(), 1, e.Message);
+                    }
+
+                return new SQLQueryResult(dataTable, 0, "");
+        }
     }
 }

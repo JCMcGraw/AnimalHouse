@@ -17,9 +17,23 @@ namespace AnimalHouse
             //TreatmentController.Instance().CreateTreatment(treatment);
 
             //TreatmentController.Instance().UpdateTreatment(treatment);
-                        
 
-            
+
+
+            //Customer customer = CustomerController.instance.GetCustomer("123");
+
+            //Sale sale = SaleFactory.Instance().CreateSale(customer);
+
+            //ISaleManager saleManager = new SaleManager();
+
+            //Item item = saleManager.GetAllActiveItems()[0];
+
+            //SaleLineItem saleLineItem = SaleLineItemFactory.Instance().CreateSaleLineItem(item, 2, item.price);
+            //sale.AddSaleLineItem(saleLineItem);
+
+            //saleManager.CreateSale(sale);
+
+
             Console.ReadKey();
         }
     }
