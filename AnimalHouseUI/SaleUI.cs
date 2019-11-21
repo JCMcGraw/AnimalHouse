@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AnimalHouse;
+using AnimalHouseEntities;
 
 namespace AnimalHouseUI
 {
@@ -142,6 +144,19 @@ namespace AnimalHouseUI
         }
 
         #endregion
+
+        private void SearchPhoneButton_Click(object sender, EventArgs e)
+        {
+            Customer customer = BossController.instance().customerController.GetCustomer(PhoneTextBox.Text);
+
+            NameTextBox.Text = customer.name.ToString();
+        }
+
+        private void SearchMedicalButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
         private void EndButton_Click(object sender, EventArgs e)
         {

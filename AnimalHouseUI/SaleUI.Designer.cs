@@ -38,24 +38,24 @@
             this.EndButton = new System.Windows.Forms.Button();
             this.TelefonLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.SearchPhoneButton = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.FakturaButton = new System.Windows.Forms.Button();
             this.PhoneTextBox = new System.Windows.Forms.TextBox();
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.SaleListBox = new System.Windows.Forms.ListBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.SearchMedicalButton = new System.Windows.Forms.Button();
+            this.MedicalTextBox = new System.Windows.Forms.TextBox();
             this.MedicalListBox = new System.Windows.Forms.ListBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.MomsLabel = new System.Windows.Forms.Label();
+            this.TotalInkMomsLabel = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
+            this.TotalPriceLabel = new System.Windows.Forms.Label();
+            this.UpdateMedecinLabel = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -185,19 +185,20 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "Sample Kunde Name";
             // 
-            // button2
+            // SearchPhoneButton
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
-            this.button2.BackgroundImage = global::AnimalHouseUI.Properties.Resources.icons8_search_32px;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(172, 185);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(45, 36);
-            this.button2.TabIndex = 9;
-            this.button2.UseVisualStyleBackColor = false;
+            this.SearchPhoneButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
+            this.SearchPhoneButton.BackgroundImage = global::AnimalHouseUI.Properties.Resources.icons8_search_32px;
+            this.SearchPhoneButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.SearchPhoneButton.FlatAppearance.BorderSize = 0;
+            this.SearchPhoneButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SearchPhoneButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchPhoneButton.Location = new System.Drawing.Point(172, 185);
+            this.SearchPhoneButton.Name = "SearchPhoneButton";
+            this.SearchPhoneButton.Size = new System.Drawing.Size(31, 28);
+            this.SearchPhoneButton.TabIndex = 9;
+            this.SearchPhoneButton.UseVisualStyleBackColor = false;
+            this.SearchPhoneButton.Click += new System.EventHandler(this.SearchPhoneButton_Click);
             // 
             // button3
             // 
@@ -249,26 +250,27 @@
             this.SaleListBox.Size = new System.Drawing.Size(215, 316);
             this.SaleListBox.TabIndex = 15;
             // 
-            // button5
+            // SearchMedicalButton
             // 
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
-            this.button5.BackgroundImage = global::AnimalHouseUI.Properties.Resources.icons8_search_32px;
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(798, 81);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(38, 38);
-            this.button5.TabIndex = 19;
-            this.button5.UseVisualStyleBackColor = false;
+            this.SearchMedicalButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
+            this.SearchMedicalButton.BackgroundImage = global::AnimalHouseUI.Properties.Resources.icons8_search_32px;
+            this.SearchMedicalButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.SearchMedicalButton.FlatAppearance.BorderSize = 0;
+            this.SearchMedicalButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SearchMedicalButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchMedicalButton.Location = new System.Drawing.Point(798, 82);
+            this.SearchMedicalButton.Name = "SearchMedicalButton";
+            this.SearchMedicalButton.Size = new System.Drawing.Size(29, 30);
+            this.SearchMedicalButton.TabIndex = 19;
+            this.SearchMedicalButton.UseVisualStyleBackColor = false;
+            this.SearchMedicalButton.Click += new System.EventHandler(this.SearchMedicalButton_Click);
             // 
-            // textBox3
+            // MedicalTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(636, 92);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(131, 20);
-            this.textBox3.TabIndex = 20;
+            this.MedicalTextBox.Location = new System.Drawing.Point(636, 92);
+            this.MedicalTextBox.Name = "MedicalTextBox";
+            this.MedicalTextBox.Size = new System.Drawing.Size(156, 20);
+            this.MedicalTextBox.TabIndex = 20;
             // 
             // MedicalListBox
             // 
@@ -308,25 +310,25 @@
             this.label6.TabIndex = 32;
             this.label6.Text = "Total";
             // 
-            // label14
+            // MomsLabel
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(522, 484);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(24, 13);
-            this.label14.TabIndex = 33;
-            this.label14.Text = "Pris";
+            this.MomsLabel.AutoSize = true;
+            this.MomsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MomsLabel.Location = new System.Drawing.Point(522, 484);
+            this.MomsLabel.Name = "MomsLabel";
+            this.MomsLabel.Size = new System.Drawing.Size(24, 13);
+            this.MomsLabel.TabIndex = 33;
+            this.MomsLabel.Text = "Pris";
             // 
-            // label15
+            // TotalInkMomsLabel
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(522, 511);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(24, 13);
-            this.label15.TabIndex = 34;
-            this.label15.Text = "Pris";
+            this.TotalInkMomsLabel.AutoSize = true;
+            this.TotalInkMomsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalInkMomsLabel.Location = new System.Drawing.Point(522, 511);
+            this.TotalInkMomsLabel.Name = "TotalInkMomsLabel";
+            this.TotalInkMomsLabel.Size = new System.Drawing.Size(24, 13);
+            this.TotalInkMomsLabel.TabIndex = 34;
+            this.TotalInkMomsLabel.Text = "Pris";
             // 
             // label16
             // 
@@ -348,25 +350,25 @@
             this.label17.TabIndex = 36;
             this.label17.Text = "Moms";
             // 
-            // label18
+            // TotalPriceLabel
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(522, 460);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(24, 13);
-            this.label18.TabIndex = 37;
-            this.label18.Text = "Pris";
+            this.TotalPriceLabel.AutoSize = true;
+            this.TotalPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalPriceLabel.Location = new System.Drawing.Point(522, 460);
+            this.TotalPriceLabel.Name = "TotalPriceLabel";
+            this.TotalPriceLabel.Size = new System.Drawing.Size(24, 13);
+            this.TotalPriceLabel.TabIndex = 37;
+            this.TotalPriceLabel.Text = "Pris";
             // 
-            // label19
+            // UpdateMedecinLabel
             // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(633, 460);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(194, 13);
-            this.label19.TabIndex = 38;
-            this.label19.Text = "Dato for sidste opdateret mececin priser";
+            this.UpdateMedecinLabel.AutoSize = true;
+            this.UpdateMedecinLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UpdateMedecinLabel.Location = new System.Drawing.Point(633, 460);
+            this.UpdateMedecinLabel.Name = "UpdateMedecinLabel";
+            this.UpdateMedecinLabel.Size = new System.Drawing.Size(194, 13);
+            this.UpdateMedecinLabel.TabIndex = 38;
+            this.UpdateMedecinLabel.Text = "Dato for sidste opdateret mececin priser";
             // 
             // label5
             // 
@@ -407,24 +409,24 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label19);
-            this.Controls.Add(this.label18);
+            this.Controls.Add(this.UpdateMedecinLabel);
+            this.Controls.Add(this.TotalPriceLabel);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label16);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label14);
+            this.Controls.Add(this.TotalInkMomsLabel);
+            this.Controls.Add(this.MomsLabel);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.MedicalListBox);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.MedicalTextBox);
+            this.Controls.Add(this.SearchMedicalButton);
             this.Controls.Add(this.SaleListBox);
             this.Controls.Add(this.NameTextBox);
             this.Controls.Add(this.PhoneTextBox);
             this.Controls.Add(this.FakturaButton);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.SearchPhoneButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.TelefonLabel);
             this.Controls.Add(this.EndButton);
@@ -452,7 +454,7 @@
         private System.Windows.Forms.Button EndButton;
         private System.Windows.Forms.Label TelefonLabel;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button SearchPhoneButton;
         private System.Windows.Forms.Button button3;
         #endregion
 
@@ -460,18 +462,18 @@
         private System.Windows.Forms.TextBox PhoneTextBox;
         private System.Windows.Forms.TextBox NameTextBox;
         private System.Windows.Forms.ListBox SaleListBox;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button SearchMedicalButton;
+        private System.Windows.Forms.TextBox MedicalTextBox;
         private System.Windows.Forms.ListBox MedicalListBox;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label MomsLabel;
+        private System.Windows.Forms.Label TotalInkMomsLabel;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label TotalPriceLabel;
+        private System.Windows.Forms.Label UpdateMedecinLabel;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
