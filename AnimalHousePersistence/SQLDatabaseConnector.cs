@@ -50,15 +50,15 @@ namespace AnimalHousePersistence
                     catch (Exception e)
                     {
                         sqlTransaction.Rollback();
-                        return new SQLQueryResult(new DataTable(), 1, e.Message);
+                        return new SQLQueryResult(new DataTable(), 1, e);
                     }
                 }
 
-                return new SQLQueryResult(dataTable, 0, "");
+                return new SQLQueryResult(dataTable, 0, new Exception());
             }
             catch (Exception e)
             {
-                return new SQLQueryResult( new DataTable(), 2, e.Message);
+                return new SQLQueryResult( new DataTable(), 2, e);
             }
         }
 
@@ -101,10 +101,10 @@ namespace AnimalHousePersistence
                     }
                     catch (Exception e)
                     {
-                        return new SQLQueryResult(new DataTable(), 1, e.Message);
+                        return new SQLQueryResult(new DataTable(), 1, e);
                     }
 
-                return new SQLQueryResult(dataTable, 0, "");
+                return new SQLQueryResult(dataTable, 0, new Exception());
         }
     }
 }

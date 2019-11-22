@@ -37,19 +37,25 @@ namespace AnimalHousePersistence
 
             foreach(DataRow dataRow in dataTable.Rows)
             {
-                int itemID = (int)dataRow["ItemID"];
-                string name = (string)dataRow["Name"];
-                decimal price = (decimal)dataRow["Price"];
-                int amount = (int)dataRow["Amount"];
-                bool prescription = (bool)dataRow["Prescription"];
-                bool treatment = (bool)dataRow["Treatment"];
-                bool active = (bool)dataRow["Active"];
-
-                Item item = ItemFactory.Instance().CreateItem(itemID, name, amount, price, prescription, treatment, active);
+                Item item = GetItemFromDataRow(dataRow);
                 items.Add(item);
             }
 
             return items;
+        }
+
+        private Item GetItemFromDataRow(DataRow dataRow)
+        {
+            int itemID = (int)dataRow["ItemID"];
+            string name = (string)dataRow["Name"];
+            decimal price = (decimal)dataRow["Price"];
+            int amount = (int)dataRow["Amount"];
+            bool prescription = (bool)dataRow["Prescription"];
+            bool treatment = (bool)dataRow["Treatment"];
+            bool active = (bool)dataRow["Active"];
+
+            Item item = ItemFactory.Instance().CreateItem(itemID, name, amount, price, prescription, treatment, active);
+            return item;
         }
 
         public Sale CreateSale(Sale sale)
@@ -132,8 +138,68 @@ namespace AnimalHousePersistence
 
         public List<Sale> GetManySalesByCustomerID(Customer customer)
         {
+            List<Sale> sales;
+
+            string query = Utility.ReadSQLQueryFromFile("GetManySalesByCustomerID.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            sQLQuery.AddParameter("@customerid", customer.customerID.ToString(), SqlDbType.Int);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            if (sQLQueryResult.code != 0 || sQLQueryResult.dataTable.Rows.Count == 0)
+            {
+                return new List<Sale>();
+            }
+            else
+            {
+                sales = GetSalesFromDataTable(sQLQueryResult.dataTable, customer);
+            }
+
             throw new NotImplementedException();
         }
+
+        private List<Sale> GetSalesFromDataTable(DataTable dataTable, Customer customer)
+        {
+            List<Sale> sales = new List<Sale>();
+            Sale sale = null;
+
+            foreach(DataRow dataRow in dataTable.Rows)
+            {
+                int saleID = (int)dataRow["SaleID"];
+                if(sale is null)
+                {
+                    sale = new Sale(saleID, customer);
+                }
+                else if(sale.saleID != saleID)
+                {
+                    sales.Add(sale);
+                    sale = new Sale(saleID, customer);
+                }
+
+                SaleLineItem saleLineItem = GetSaleLineItemFromDataRow(dataRow);
+                sale.AddSaleLineItem(saleLineItem);
+
+            }
+            sales.Add(sale);
+
+            return sales;
+        }
+
+        private SaleLineItem GetSaleLineItemFromDataRow(DataRow dataRow)
+        {
+            Item item = GetItemFromDataRow(dataRow);
+
+            int saleLineItemID = (int)dataRow["SaleLineItemsID"];
+            int amount = (int)dataRow["Quantity"];
+            decimal price = (decimal)dataRow["SalePrice"];
+
+            SaleLineItem saleLineItem = SaleLineItemFactory.Instance().CreateSaleLineItem(item, saleLineItemID, amount, price);
+
+            return saleLineItem;
+        }
+
 
         public string UpdateSale(Sale sale)
         {

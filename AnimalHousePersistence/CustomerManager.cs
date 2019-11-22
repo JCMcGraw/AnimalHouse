@@ -112,7 +112,7 @@ namespace AnimalHousePersistence
                 }
                 else
                 {
-                    return sQLQueryResult.message.ToString();
+                    return sQLQueryResult.exception.Message.ToString();
 
                 }
 
@@ -134,7 +134,7 @@ namespace AnimalHousePersistence
             }
             else
             {
-                return sQLQueryResult.message.ToString();
+                return sQLQueryResult.exception.Message.ToString();
 
             }
 

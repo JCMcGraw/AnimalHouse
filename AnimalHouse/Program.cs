@@ -22,11 +22,13 @@ namespace AnimalHouse
 
             //Customer customer = CustomerController.instance.GetCustomer("123");
 
-            //Sale sale = SaleFactory.Instance().CreateSale(customer);
+
+            //Sale sale = SaleFactory.Instance().CreateSale(null);
 
             //ISaleManager saleManager = new SaleManager();
+            ////saleManager.GetManySalesByCustomerID(customer);
 
-            //Item item = saleManager.GetAllActiveItems()[0];
+            ////Item item = saleManager.GetAllActiveItems()[0];
 
             //SaleLineItem saleLineItem = SaleLineItemFactory.Instance().CreateSaleLineItem(item, 2, item.price);
             //sale.AddSaleLineItem(saleLineItem);

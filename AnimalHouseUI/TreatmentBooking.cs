@@ -79,13 +79,11 @@ namespace AnimalHouseUI
             //dataRow5[1] = 2;
             //treatment.Rows.Add(dataRow5);
 
-
-            List<KeyValuePair<string, int>> treatmentTypeList = new List<KeyValuePair<string, int>>() { new KeyValuePair<string, int>("Konsultation", 0),
-                new KeyValuePair<string, int>("Operation", 1), new KeyValuePair<string, int>("Observation", 2) };
-
-            ComboBoxTreatmentType.DataSource = treatmentTypeList;
-            ComboBoxTreatmentType.DisplayMember = "Key";
-            ComboBoxTreatmentType.ValueMember = "Value";
+            List<TreatmentType> treatmentTypes = bossController.treatmentController.GetManyTreatmentTypes();
+            
+            ComboBoxTreatmentType.DataSource = treatmentTypes;
+            ComboBoxTreatmentType.DisplayMember = "name";
+            ComboBoxTreatmentType.ValueMember = "treatmentTypeID";
 
             //ComboBoxTreatmentType.DisplayMember = "treatment";
             //ComboBoxTreatmentType.ValueMember = "treatmentid";
@@ -322,16 +320,16 @@ namespace AnimalHouseUI
             {
                 if (CalendarBooking.ViewIntersects(item))
                 {
-                    if (treatmenttype == 2)
+                    if (treatmenttype == 3)
                     {
-                        if(treatmentsCache[item.TreatmentID].treatmentTypeID == 2)
+                        if(treatmentsCache[item.TreatmentID].treatmentTypeID == 3)
                         {
                             CalendarBooking.Items.Add(item);
                         }
                     }
                     else
                     {
-                        if (treatmentsCache[item.TreatmentID].treatmentTypeID != 2)
+                        if (treatmentsCache[item.TreatmentID].treatmentTypeID != 3)
                         {
                             CalendarBooking.Items.Add(item);
                         }

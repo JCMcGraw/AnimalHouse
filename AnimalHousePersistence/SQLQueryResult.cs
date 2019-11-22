@@ -11,13 +11,15 @@ namespace AnimalHousePersistence
     {
         public DataTable dataTable { get; private set; }
         public int code { get; private set; }
-        public string message { get; private set; }
+        //public string message { get; private set; }
+        public Exception exception { get; private set; }
 
-        public SQLQueryResult(DataTable dataTable, int code, string message)
+        public SQLQueryResult(DataTable dataTable, int code, Exception exception)
         {
             this.dataTable = dataTable;
             this.code = code;
-            this.message = message;
+            //this.message = message;
+            this.exception = exception;
         }
     }
 }

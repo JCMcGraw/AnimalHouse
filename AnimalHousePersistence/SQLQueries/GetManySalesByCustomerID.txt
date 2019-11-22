@@ -1,0 +1,17 @@
+﻿select
+Sale.SaleID,
+Sale.CustomerID,
+SaleLineItem.SaleLineItemsID,
+SaleLineItem.Amount As 'Quantity',
+SaleLineItem.Price As 'SalePrice',
+SaleLineItem.ItemID,
+item.Name,
+item.Price,
+item.Amount,
+item.Prescription,
+item.Treatment,
+item.Active
+from
+Sale left join SaleLineItem on Sale.SaleID = SaleLineItem.SaleID
+left join item on SaleLineItem.ItemID = item.ItemID
+Where Sale.CustomerID like @customerid
