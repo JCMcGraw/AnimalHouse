@@ -12,9 +12,9 @@ using AnimalHouseEntities;
 
 namespace AnimalHouseUI
 {
-    public partial class SaleUI : Form
+    public partial class SaleForm : Form
     {
-        public SaleUI()
+        public SaleForm()
         {
             InitializeComponent();
         }
