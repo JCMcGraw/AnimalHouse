@@ -484,7 +484,7 @@ namespace AnimalHouseUI
                 message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra {e.Item.StartDate.ToString("dd/M")} til {e.Item.EndDate.ToString("dd/M")}";
 
             }
-
+            //
             string headline = ComboBoxTreatmentType.Text;
 
             DialogResult dialogResult = MessageBox.Show(message, "Book behandling", MessageBoxButtons.YesNo);
