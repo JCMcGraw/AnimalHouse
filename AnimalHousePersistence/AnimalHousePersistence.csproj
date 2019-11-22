@@ -69,7 +69,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLQueries\CreateCustomer.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLQueries\CreateSale.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

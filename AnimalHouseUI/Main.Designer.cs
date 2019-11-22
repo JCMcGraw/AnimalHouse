@@ -34,11 +34,14 @@
             this.ButtonMinimize = new System.Windows.Forms.Button();
             this.ButtonMaximize = new System.Windows.Forms.Button();
             this.ButtonClose = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button_kunde = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.label_headline = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.button_salg = new System.Windows.Forms.Button();
+            this.button_behandling = new System.Windows.Forms.Button();
+            this.button_dyr = new System.Windows.Forms.Button();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             this.SuspendLayout();
@@ -55,7 +58,7 @@
             this.PanelHeader.Location = new System.Drawing.Point(0, 0);
             this.PanelHeader.Name = "PanelHeader";
             this.PanelHeader.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.PanelHeader.Size = new System.Drawing.Size(800, 36);
+            this.PanelHeader.Size = new System.Drawing.Size(540, 36);
             this.PanelHeader.TabIndex = 0;
             this.PanelHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelHeader_MouseDown);
             this.PanelHeader.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelHeader_MouseMove);
@@ -94,7 +97,7 @@
             this.ButtonMinimize.FlatAppearance.BorderSize = 0;
             this.ButtonMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonMinimize.Location = new System.Drawing.Point(704, 2);
+            this.ButtonMinimize.Location = new System.Drawing.Point(444, 2);
             this.ButtonMinimize.Name = "ButtonMinimize";
             this.ButtonMinimize.Size = new System.Drawing.Size(32, 32);
             this.ButtonMinimize.TabIndex = 3;
@@ -109,7 +112,7 @@
             this.ButtonMaximize.FlatAppearance.BorderSize = 0;
             this.ButtonMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonMaximize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonMaximize.Location = new System.Drawing.Point(736, 2);
+            this.ButtonMaximize.Location = new System.Drawing.Point(476, 2);
             this.ButtonMaximize.Name = "ButtonMaximize";
             this.ButtonMaximize.Size = new System.Drawing.Size(32, 32);
             this.ButtonMaximize.TabIndex = 2;
@@ -124,25 +127,26 @@
             this.ButtonClose.FlatAppearance.BorderSize = 0;
             this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonClose.Location = new System.Drawing.Point(768, 2);
+            this.ButtonClose.Location = new System.Drawing.Point(508, 2);
             this.ButtonClose.Name = "ButtonClose";
             this.ButtonClose.Size = new System.Drawing.Size(32, 32);
             this.ButtonClose.TabIndex = 1;
             this.ButtonClose.UseVisualStyleBackColor = true;
             this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
             // 
-            // button1
+            // button_kunde
             // 
-            this.button1.BackColor = System.Drawing.Color.AliceBlue;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(59, 211);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(118, 73);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Sample Button";
-            this.button1.UseVisualStyleBackColor = false;
+            this.button_kunde.BackColor = System.Drawing.Color.AliceBlue;
+            this.button_kunde.FlatAppearance.BorderSize = 0;
+            this.button_kunde.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_kunde.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_kunde.Location = new System.Drawing.Point(217, 203);
+            this.button_kunde.Name = "button_kunde";
+            this.button_kunde.Size = new System.Drawing.Size(118, 73);
+            this.button_kunde.TabIndex = 6;
+            this.button_kunde.Text = "Kunde";
+            this.button_kunde.UseVisualStyleBackColor = false;
+            this.button_kunde.Click += new System.EventHandler(this.button_kunde_Click);
             // 
             // label1
             // 
@@ -154,15 +158,15 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "Sample Label";
             // 
-            // label2
+            // label_headline
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe Print", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(35, 82);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(321, 47);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Sample Animal Name";
+            this.label_headline.AutoSize = true;
+            this.label_headline.Font = new System.Drawing.Font("Segoe Print", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_headline.Location = new System.Drawing.Point(35, 82);
+            this.label_headline.Name = "label_headline";
+            this.label_headline.Size = new System.Drawing.Size(197, 47);
+            this.label_headline.TabIndex = 8;
+            this.label_headline.Text = "AnimalHouse";
             // 
             // button2
             // 
@@ -192,17 +196,62 @@
             this.button3.TabIndex = 10;
             this.button3.UseVisualStyleBackColor = false;
             // 
+            // button_salg
+            // 
+            this.button_salg.BackColor = System.Drawing.Color.AliceBlue;
+            this.button_salg.FlatAppearance.BorderSize = 0;
+            this.button_salg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_salg.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_salg.Location = new System.Drawing.Point(341, 203);
+            this.button_salg.Name = "button_salg";
+            this.button_salg.Size = new System.Drawing.Size(118, 73);
+            this.button_salg.TabIndex = 11;
+            this.button_salg.Text = "Salg";
+            this.button_salg.UseVisualStyleBackColor = false;
+            this.button_salg.Click += new System.EventHandler(this.button_salg_Click);
+            // 
+            // button_behandling
+            // 
+            this.button_behandling.BackColor = System.Drawing.Color.AliceBlue;
+            this.button_behandling.FlatAppearance.BorderSize = 0;
+            this.button_behandling.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_behandling.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_behandling.Location = new System.Drawing.Point(217, 282);
+            this.button_behandling.Name = "button_behandling";
+            this.button_behandling.Size = new System.Drawing.Size(118, 73);
+            this.button_behandling.TabIndex = 12;
+            this.button_behandling.Text = "Behandling";
+            this.button_behandling.UseVisualStyleBackColor = false;
+            this.button_behandling.Click += new System.EventHandler(this.button_behandling_Click);
+            // 
+            // button_dyr
+            // 
+            this.button_dyr.BackColor = System.Drawing.Color.AliceBlue;
+            this.button_dyr.FlatAppearance.BorderSize = 0;
+            this.button_dyr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_dyr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_dyr.Location = new System.Drawing.Point(341, 282);
+            this.button_dyr.Name = "button_dyr";
+            this.button_dyr.Size = new System.Drawing.Size(118, 73);
+            this.button_dyr.TabIndex = 13;
+            this.button_dyr.Text = "Dyr";
+            this.button_dyr.UseVisualStyleBackColor = false;
+            this.button_dyr.Click += new System.EventHandler(this.button_dyr_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(540, 450);
+            this.Controls.Add(this.button_dyr);
+            this.Controls.Add(this.button_behandling);
+            this.Controls.Add(this.button_salg);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label_headline);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button_kunde);
             this.Controls.Add(this.PanelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Main";
@@ -223,11 +272,13 @@
         private System.Windows.Forms.Button ButtonClose;
         private System.Windows.Forms.PictureBox PictureBoxLogo;
         private System.Windows.Forms.Label LabelTitle;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_kunde;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label_headline;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-
+        private System.Windows.Forms.Button button_salg;
+        private System.Windows.Forms.Button button_behandling;
+        private System.Windows.Forms.Button button_dyr;
     }
 }
