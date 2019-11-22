@@ -21,6 +21,7 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@payed", treatment.payed.ToString(), SqlDbType.Bit);
             sQLQuery.AddParameter("@headline", treatment.headline.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@active", treatment.active.ToString(), SqlDbType.Bit);
+            sQLQuery.AddParameter("@treatmenttypeid", treatment.treatmentType.treatmentTypeID.ToString(), SqlDbType.Int);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
@@ -157,7 +158,7 @@ namespace AnimalHousePersistence
             for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
             {
                 int treatmentID;
-                TreatmentType treatmentTypeID;
+                TreatmentType treatmentType;
                 int operationRoomID;
                 int cageID;
                 int itemID;
@@ -174,11 +175,16 @@ namespace AnimalHousePersistence
                 }
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("TreatmentTypeID"))
                 {
-                    treatmentTypeID = null;
+                    treatmentType = null;
                 }
                 else
                 {
-                    treatmentTypeID = (TreatmentType)sQLQueryResult.dataTable.Rows[i]["TreatmentTypeID"];
+                    int treatmentTypeID = (int)sQLQueryResult.dataTable.Rows[i]["TreatmentTypeID"];
+                    string treatmentTypeName = (string)sQLQueryResult.dataTable.Rows[i]["Name"];
+
+                    TreatmentType newTreatmentType = TreatmentTypeFactory.Instance().CreateTreatmentType(treatmentTypeID, treatmentTypeName);
+
+                    treatmentType = newTreatmentType;
                 }
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("OperationRoomID"))
                 {
@@ -226,7 +232,7 @@ namespace AnimalHousePersistence
                 string headline = (string)sQLQueryResult.dataTable.Rows[i]["Headline"];
                 bool active = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
 
-                treatments.Add(TreatmentFactory.Instance().CreateTreatment(treatmentID, treatmentTypeID, operationRoomID, cageID, itemID, startTime, endTime, payed, headline, active, employeeID, animalID));
+                treatments.Add(TreatmentFactory.Instance().CreateTreatment(treatmentID, treatmentType, operationRoomID, cageID, itemID, startTime, endTime, payed, headline, active, employeeID, animalID));
             }
             return treatments;
         }

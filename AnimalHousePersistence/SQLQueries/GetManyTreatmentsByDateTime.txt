@@ -1,2 +1,2 @@
-﻿Select * from Treatment
+﻿Select * from Treatment left join TreatmentType on Treatment.TreatmentTypeID = TreatmentType.TreatmentTypeID
 where (StartTime < @endTime AND EndTime > @startTime AND Active=1)
