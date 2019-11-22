@@ -10,7 +10,7 @@ namespace AnimalHouseEntities
     {
         public int treatmentID { get; private set; }
 
-        public int treatmentTypeID { get; private set; }
+        public TreatmentType treatmentTypeID { get; private set; }
 
         public int operationRoomID { get; private set; }
 
@@ -32,7 +32,7 @@ namespace AnimalHouseEntities
 
         public int employeeID { get; private set; }
 
-        public Treatment(int treatmentID, int treatmentTypeID, int operationRoomID, int cageID, int itemID, DateTime startTime, DateTime endTime, bool payed, string headline, bool active, int animalID, int employeeID)
+        public Treatment(int treatmentID, TreatmentType treatmentTypeID, int operationRoomID, int cageID, int itemID, DateTime startTime, DateTime endTime, bool payed, string headline, bool active, int animalID, int employeeID)
         {
             this.treatmentID = treatmentID;
             this.treatmentTypeID = treatmentTypeID;
@@ -48,7 +48,7 @@ namespace AnimalHouseEntities
             this.employeeID = employeeID;
         }
 
-        public Treatment(int treatmentTypeID, int operationRoomID, int cageID, int itemID, DateTime startTime, DateTime endTime, bool payed, string headline, bool active, int animalID, int employeeID)
+        public Treatment(TreatmentType treatmentTypeID, int operationRoomID, int cageID, int itemID, DateTime startTime, DateTime endTime, bool payed, string headline, bool active, int animalID, int employeeID)
         {
             this.treatmentTypeID = treatmentTypeID;
             this.operationRoomID = operationRoomID;

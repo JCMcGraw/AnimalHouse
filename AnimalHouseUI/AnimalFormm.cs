@@ -12,10 +12,10 @@ using AnimalHouseEntities;
 
 namespace AnimalHouseUI
 {
-    public partial class AnimalForm : Form
+    public partial class AnimalFormm : Form
     {
         Customer customer;
-        public AnimalForm(Customer customer)
+        public AnimalFormm(Customer customer)
 
         {
             this.customer = customer;

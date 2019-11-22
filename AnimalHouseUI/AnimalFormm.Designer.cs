@@ -1,6 +1,6 @@
 ﻿namespace AnimalHouseUI
 {
-    partial class AnimalForm
+    partial class AnimalFormm
     {
         /// <summary>
         /// Required designer variable.
