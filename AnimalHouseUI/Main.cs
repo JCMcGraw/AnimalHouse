@@ -148,7 +148,7 @@ namespace AnimalHouseUI
 
         private void button_salg_Click(object sender, EventArgs e)
         {
-            SaleUI saleui = new SaleUI();
+            SaleForm saleui = new SaleForm();
             saleui.Show();
         }
 

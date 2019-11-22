@@ -268,7 +268,7 @@ namespace AnimalHouseUI
 
         private void button_dyr_Click(object sender, EventArgs e)
         {
-            AnimalFormm animalForm = new AnimalFormm(customer);
+            AnimalForm animalForm = new AnimalForm(customer);
             animalForm.Show();
         }
 
