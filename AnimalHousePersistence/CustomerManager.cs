@@ -151,15 +151,17 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            if (sQLQueryResult.code == 0)
-            {
-                return "Kunde gjort aktiv";
-            }
-            else
-            {
-                return sQLQueryResult.message.ToString();
+            return "Kunde gjort aktiv";
 
-            }
+            //if (sQLQueryResult.code == 0)
+            //{
+            //    return "Kunde gjort aktiv";
+            //}
+            //else
+            //{
+            //    return sQLQueryResult.message.ToString();
+
+            //}
 
         }
 
