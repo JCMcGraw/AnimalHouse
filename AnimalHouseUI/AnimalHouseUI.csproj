@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnimalForm.cs">
+    <Compile Include="AnimalFormm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AnimalForm.Designer.cs">
-      <DependentUpon>AnimalForm.cs</DependentUpon>
+    <Compile Include="AnimalFormm.Designer.cs">
+      <DependentUpon>AnimalFormm.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomerForm.cs">
       <SubType>Form</SubType>
@@ -58,11 +58,11 @@
     <Compile Include="CustomerForm.Designer.cs">
       <DependentUpon>CustomerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SaleUI.cs">
+    <Compile Include="SaleForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SaleUI.Designer.cs">
-      <DependentUpon>SaleUI.cs</DependentUpon>
+    <Compile Include="SaleForm.Designer.cs">
+      <DependentUpon>SaleForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -78,8 +78,8 @@
     <Compile Include="SampleForm.Designer.cs">
       <DependentUpon>SampleForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AnimalForm.resx">
-      <DependentUpon>AnimalForm.cs</DependentUpon>
+    <EmbeddedResource Include="AnimalFormm.resx">
+      <DependentUpon>AnimalFormm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerForm.resx">
       <DependentUpon>CustomerForm.cs</DependentUpon>
@@ -90,8 +90,8 @@
     <Compile Include="TreatmentBooking.Designer.cs">
       <DependentUpon>TreatmentBooking.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SaleUI.resx">
-      <DependentUpon>SaleUI.cs</DependentUpon>
+    <EmbeddedResource Include="SaleForm.resx">
+      <DependentUpon>SaleForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

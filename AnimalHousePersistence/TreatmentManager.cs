@@ -157,7 +157,7 @@ namespace AnimalHousePersistence
             for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
             {
                 int treatmentID;
-                int treatmentTypeID;
+                TreatmentType treatmentTypeID;
                 int operationRoomID;
                 int cageID;
                 int itemID;
@@ -174,11 +174,11 @@ namespace AnimalHousePersistence
                 }
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("TreatmentTypeID"))
                 {
-                    treatmentTypeID = -1;
+                    treatmentTypeID = null;
                 }
                 else
                 {
-                    treatmentTypeID = (int)sQLQueryResult.dataTable.Rows[i]["TreatmentTypeID"];
+                    treatmentTypeID = (TreatmentType)sQLQueryResult.dataTable.Rows[i]["TreatmentTypeID"];
                 }
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("OperationRoomID"))
                 {
