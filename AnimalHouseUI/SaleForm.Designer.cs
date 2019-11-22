@@ -1,6 +1,6 @@
 ﻿namespace AnimalHouseUI
 {
-    partial class SaleUI
+    partial class SaleForm
     {
         /// <summary>
         /// Required designer variable.

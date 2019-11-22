@@ -28,7 +28,7 @@ namespace AnimalHouseEntities
             this.address = address;
             this.phone = phone;
             this.email = email;
-            this.active = true;
+            this.active = active;
            // this.cvr = cvr;
         }
 
@@ -42,7 +42,7 @@ namespace AnimalHouseEntities
             this.address = address;
             this.phone = phone;
             this.email = email;
-            this.active = true;
+            this.active = active;
            // this.cvr = cvr;
         }
 

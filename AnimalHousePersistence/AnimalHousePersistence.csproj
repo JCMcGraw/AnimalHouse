@@ -77,6 +77,9 @@
     <Content Include="SQLQueries\CreateSaleLineItem.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQLQueries\CreatePrivateCustomer.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQLQueries\DeleteAnimal.txt" />
     <Content Include="SQLQueries\DeleteCustomer.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -102,11 +105,12 @@
     <Content Include="SQLQueries\GetManyTreatmentsByDateTime.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLQueries\GetManyTreatmentTypes.txt">
+    <Content Include="SQLQueries\GetManyTreatmentTypes.txt" />
+    <Content Include="SQLQueries\UndeleteCustomer.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLQueries\UpdateCustomer.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLQueries\CreateTreatment.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

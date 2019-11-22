@@ -72,5 +72,12 @@ namespace AnimalHouse
 
             return customerManager.DeleteCustomer(customer);
         }
+
+        public string UndeleteCustomer(Customer customer)
+        {
+            ICustomerManager customerManager = new CustomerManager();
+
+            return customerManager.UndeleteCustomer(customer);
+        }
     }
 }

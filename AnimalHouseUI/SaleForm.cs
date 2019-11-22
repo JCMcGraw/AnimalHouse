@@ -12,15 +12,18 @@ using AnimalHouseEntities;
 
 namespace AnimalHouseUI
 {
-    public partial class AnimalForm : Form
+    public partial class SaleForm : Form
     {
-        Customer customer;
-        public AnimalForm(Customer customer)
-
+        public SaleForm()
         {
-            this.customer = customer;
             InitializeComponent();
         }
+
+        private void SaleUI_Load(object sender, EventArgs e)
+        {
+            CustomerNameLabel.Enabled = false;
+        }
+
         #region Copy this 
 
         private const int CS_DROPSHADOW = 0x20000;
@@ -142,55 +145,30 @@ namespace AnimalHouseUI
 
         #endregion
 
-        private void AnimalForm_Load(object sender, EventArgs e)
+        private void SearchPhoneButton_Click(object sender, EventArgs e)
         {
-            
-            
-        }
-        private void button_opret_Click(object sender, EventArgs e)
-        {
+            Customer customer = BossController.instance().customerController.GetCustomer(PhoneTextBox.Text);
 
+            CustomerNameLabel.Text = customer.name.ToString();
+            NameTextBox.Text = customer.name.ToString();
 
-            
-
-
-
+            CustomerNameLabel.Enabled = true;
         }
 
-        private void Button_opret_Click_1(object sender, EventArgs e)
+        private void SearchMedicalButton_Click(object sender, EventArgs e)
         {
-            //Animal animal = new Animal(Animal_name.Text.ToString(), Animal_weight.Text.ToString(), Animal_bday.Text.ToString(),
-            //    true);
 
-            //string message = BossController.instance().animalController.CreateAnimal(animal);
-            //MessageBox.Show(message);
-            //fejl
-            Animal animal = AnimalFactory.Instance().CreateAnimal(customer.customerID,animal_name.Text.ToString(), (animal_bdate.Value), 1, Convert.ToDouble(animal_weight.Text), 1, true);
-
-            Animal message = BossController.instance().animalController.CreateAnimal(animal);
-            MessageBox.Show("dyr oprettet");
         }
 
-        private void Animal_species_SelectedIndexChanged(object sender, EventArgs e)
+        private void EndButton_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    DataView dv = new DataView(dataTableSubGroup);
-            //    dv.RowFilter = $"MainGroup = {ComboModelMain.SelectedValue}";
 
-            //    ComboModelSub.DataSource = dv.ToTable();
-            //    ComboModelSub.DisplayMember = "Category";
-            //    ComboModelSub.ValueMember = "SubGroupID";
-            //}
-            //catch
-            //{
-
-            //}
         }
 
-        private void LabelTitle_Click(object sender, EventArgs e)
+        private void FakturaButton_Click(object sender, EventArgs e)
         {
 
         }
     }
 }
+

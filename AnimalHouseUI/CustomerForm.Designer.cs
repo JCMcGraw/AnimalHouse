@@ -54,6 +54,8 @@
             this.textBox_email = new System.Windows.Forms.TextBox();
             this.textBox_cvr = new System.Windows.Forms.TextBox();
             this.label_cvr = new System.Windows.Forms.Label();
+            this.checkBox_erhverskunde = new System.Windows.Forms.CheckBox();
+            this.label_erhverskunde = new System.Windows.Forms.Label();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             this.SuspendLayout();
@@ -86,7 +88,6 @@
             this.LabelTitle.Size = new System.Drawing.Size(162, 29);
             this.LabelTitle.TabIndex = 5;
             this.LabelTitle.Text = "Animal House";
-            //this.LabelTitle.Click += new System.EventHandler(this.LabelTitle_Click);
             this.LabelTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseDown);
             this.LabelTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseMove);
             this.LabelTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseUp);
@@ -329,19 +330,39 @@
             // 
             // textBox_cvr
             // 
-            this.textBox_cvr.Location = new System.Drawing.Point(121, 211);
+            this.textBox_cvr.Enabled = false;
+            this.textBox_cvr.Location = new System.Drawing.Point(162, 211);
             this.textBox_cvr.Name = "textBox_cvr";
-            this.textBox_cvr.Size = new System.Drawing.Size(131, 20);
+            this.textBox_cvr.Size = new System.Drawing.Size(141, 20);
             this.textBox_cvr.TabIndex = 23;
             // 
             // label_cvr
             // 
             this.label_cvr.AutoSize = true;
-            this.label_cvr.Location = new System.Drawing.Point(82, 214);
+            this.label_cvr.Location = new System.Drawing.Point(127, 214);
             this.label_cvr.Name = "label_cvr";
             this.label_cvr.Size = new System.Drawing.Size(29, 13);
             this.label_cvr.TabIndex = 24;
             this.label_cvr.Text = "CVR";
+            // 
+            // checkBox_erhverskunde
+            // 
+            this.checkBox_erhverskunde.AutoSize = true;
+            this.checkBox_erhverskunde.Location = new System.Drawing.Point(106, 214);
+            this.checkBox_erhverskunde.Name = "checkBox_erhverskunde";
+            this.checkBox_erhverskunde.Size = new System.Drawing.Size(15, 14);
+            this.checkBox_erhverskunde.TabIndex = 25;
+            this.checkBox_erhverskunde.UseVisualStyleBackColor = true;
+            this.checkBox_erhverskunde.CheckedChanged += new System.EventHandler(this.checkBox_erhverskunde_CheckedChanged);
+            // 
+            // label_erhverskunde
+            // 
+            this.label_erhverskunde.AutoSize = true;
+            this.label_erhverskunde.Location = new System.Drawing.Point(30, 214);
+            this.label_erhverskunde.Name = "label_erhverskunde";
+            this.label_erhverskunde.Size = new System.Drawing.Size(73, 13);
+            this.label_erhverskunde.TabIndex = 26;
+            this.label_erhverskunde.Text = "Erhverskunde";
             // 
             // CustomerForm
             // 
@@ -349,6 +370,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(640, 542);
+            this.Controls.Add(this.label_erhverskunde);
+            this.Controls.Add(this.checkBox_erhverskunde);
             this.Controls.Add(this.label_cvr);
             this.Controls.Add(this.textBox_cvr);
             this.Controls.Add(this.label_email);
@@ -410,5 +433,7 @@
         private System.Windows.Forms.TextBox textBox_email;
         private System.Windows.Forms.TextBox textBox_cvr;
         private System.Windows.Forms.Label label_cvr;
+        private System.Windows.Forms.CheckBox checkBox_erhverskunde;
+        private System.Windows.Forms.Label label_erhverskunde;
     }
 }
