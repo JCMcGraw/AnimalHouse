@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AnimalHouseEntities;
 using System.Data;
 using System.Data.SqlClient;
+using System.Transactions;
 
 namespace AnimalHousePersistence
 {
@@ -60,80 +61,144 @@ namespace AnimalHousePersistence
 
         public Sale CreateSale(Sale sale)
         {
-            SqlTransaction sqlTransaction;
-            using (SqlConnection sqlConnection = SQLDatabaseConnector.BeginTransaction(out sqlTransaction))
+            try
             {
-                string saleQuery = Utility.ReadSQLQueryFromFile("CreateSale.txt");
+                using (TransactionScope transactionScope = new TransactionScope())
+                {
+                    using (SqlConnection sqlConnection = SQLDatabaseConnector.OpenConnection())
+                    {
+                        sale = InsertSale(sale, sqlConnection);
+                        sale = InsertSaleLineItemsInSale(sale, sqlConnection);
+                    }
+                    transactionScope.Complete();
+                }
+            }
+            catch (Exception e)
+            {
 
-                SQLQuery sQLQuery = new SQLQuery(saleQuery);
+                return sale;
+            }
 
-                string customerID;
-                if (sale.customer == null)
-                { customerID = null; }
-                else
-                { customerID = sale.customer.customerID.ToString(); }
+            return sale;
+        }
 
-                sQLQuery.AddParameter("@customerid", customerID, SqlDbType.Int);
+        private Sale InsertSale(Sale sale, SqlConnection connection)
+        {
+            string saleQuery = Utility.ReadSQLQueryFromFile("CreateSale.txt");
 
-                SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery, sqlConnection, sqlTransaction);
+            SQLQuery sQLQuery = new SQLQuery(saleQuery);
+
+            string customerID;
+            if (sale.customer == null)
+            { customerID = null; }
+            else
+            { customerID = sale.customer.customerID.ToString(); }
+
+            sQLQuery.AddParameter("@customerid", customerID, SqlDbType.Int);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery, connection);
+
+            if (sQLQueryResult.code != 0 || sQLQueryResult.dataTable.Rows.Count == 0)
+            {
+                throw sQLQueryResult.exception;
+            }
+            else
+            {
+                int saleID = (int)sQLQueryResult.dataTable.Rows[0]["SaleID"];
+                sale.UpdateSaleID(saleID);
+            }
+            return sale;
+        }
+
+        private Sale InsertSaleLineItemsInSale(Sale sale, SqlConnection connection)
+        {
+            string saleLineItemquery = Utility.ReadSQLQueryFromFile("CreateSaleLineItem.txt");
+            string updateItemAmountQuery = Utility.ReadSQLQueryFromFile("UpdateItemAmount.txt");
+            foreach (SaleLineItem saleLineItem in sale.saleLineItems)
+            {
+                SQLQuery sQLQuery = new SQLQuery(saleLineItemquery);
+                sQLQuery.AddParameter("@amount", saleLineItem.amount.ToString(), SqlDbType.Int);
+                sQLQuery.AddParameter("@price", saleLineItem.price.ToString(), SqlDbType.Decimal);
+                sQLQuery.AddParameter("@saleid", sale.saleID.ToString(), SqlDbType.Int);
+                sQLQuery.AddParameter("@itemid", saleLineItem.item.itemID.ToString(), SqlDbType.Int);
+
+                SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery, connection);
 
                 if (sQLQueryResult.code != 0 || sQLQueryResult.dataTable.Rows.Count == 0)
                 {
-                    sqlTransaction.Rollback();
-                    return sale;
+                    throw sQLQueryResult.exception;
                 }
                 else
                 {
-                    int saleID = (int)sQLQueryResult.dataTable.Rows[0]["SaleID"];
-                    sale.UpdateSaleID(saleID);
-                }
-                
-                string saleLineItemquery = Utility.ReadSQLQueryFromFile("CreateSaleLineItem.txt");
-                string updateItemAmountQuery = Utility.ReadSQLQueryFromFile("UpdateItemAmount.txt");
-                foreach (SaleLineItem saleLineItem in sale.saleLineItems)
-                {
-                    sQLQuery = new SQLQuery(saleLineItemquery);
-                    sQLQuery.AddParameter("@amount", saleLineItem.amount.ToString(), SqlDbType.Int);
-                    sQLQuery.AddParameter("@price", saleLineItem.price.ToString(), SqlDbType.Decimal);
-                    sQLQuery.AddParameter("@saleid", sale.saleID.ToString(), SqlDbType.Int);
-                    sQLQuery.AddParameter("@itemid", saleLineItem.item.itemID.ToString(), SqlDbType.Int);
+                    int saleLineItemID = (int)sQLQueryResult.dataTable.Rows[0]["SaleLineItemsID"];
+                    saleLineItem.UpdateSaleLineItemID(saleLineItemID);
 
-                    sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery, sqlConnection, sqlTransaction);
+                    SQLQuery updateAmountSQLQuery = new SQLQuery(updateItemAmountQuery);
+                    updateAmountSQLQuery.AddParameter("@decreaseamount", saleLineItem.amount.ToString(), SqlDbType.Int);
+                    updateAmountSQLQuery.AddParameter("@itemid", saleLineItem.item.itemID.ToString(), SqlDbType.Int);
 
-                    if (sQLQueryResult.code != 0 || sQLQueryResult.dataTable.Rows.Count == 0)
+                    sQLQueryResult = SQLDatabaseConnector.QueryDatabase(updateAmountSQLQuery, connection);
+
+                    if (sQLQueryResult.code != 0)
                     {
-                        sqlTransaction.Rollback();
-                        return sale;
-                    }
-                    else
-                    {
-                        int saleLineItemID = (int)sQLQueryResult.dataTable.Rows[0]["SaleLineItemsID"];
-                        saleLineItem.UpdateSaleLineItemID(saleLineItemID);
-
-                        SQLQuery updateAmountSQLQuery = new SQLQuery(updateItemAmountQuery);
-                        updateAmountSQLQuery.AddParameter("@decreaseamount", saleLineItem.amount.ToString(), SqlDbType.Int);
-                        updateAmountSQLQuery.AddParameter("@itemid", saleLineItem.item.itemID.ToString(), SqlDbType.Int);
-
-                        sQLQueryResult = SQLDatabaseConnector.QueryDatabase(updateAmountSQLQuery, sqlConnection, sqlTransaction);
-
-                        if (sQLQueryResult.code != 0)
-                        {
-                            sqlTransaction.Rollback();
-                            return sale;
-                        }
+                        throw sQLQueryResult.exception;
                     }
                 }
-
-                sqlTransaction.Commit();
             }
-
             return sale;
         }
 
 
         public string DeleteSale(Sale sale)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (TransactionScope transactionScope = new TransactionScope())
+                {
+                    using (SqlConnection sqlConnection = SQLDatabaseConnector.OpenConnection())
+                    {
+
+                        DeleteSaleLineItemsFromSale(sale, sqlConnection);
+                        DeleteSale(sale, sqlConnection);
+                        
+                    }
+                    transactionScope.Complete();
+                }
+
+            }
+            catch (Exception e)
+            {
+                return "Sale not  deleted";
+            }
+            return "Sale deleted";
+        }
+
+        private void DeleteSaleLineItemsFromSale(Sale sale, SqlConnection connection)
+        {
+            string query = Utility.ReadSQLQueryFromFile("DeleteSaleLineItemsFromSale.txt");
+            SQLQuery sQLQuery = new SQLQuery(query);
+            sQLQuery.AddParameter("@saleid", sale.saleID.ToString(), SqlDbType.Int);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery, connection);
+
+            if (sQLQueryResult.code != 0)
+            {
+                throw sQLQueryResult.exception;
+            }
+        }
+
+        private void DeleteSale(Sale sale, SqlConnection connection)
+        {
+            string query = Utility.ReadSQLQueryFromFile("DeleteSale.txt");
+            SQLQuery sQLQuery = new SQLQuery(query);
+            sQLQuery.AddParameter("@saleid", sale.saleID.ToString(), SqlDbType.Int);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery, connection);
+
+            if (sQLQueryResult.code != 0)
+            {
+                throw sQLQueryResult.exception;
+            }
         }
 
         public List<Sale> GetManySalesByCustomerID(Customer customer)
@@ -156,8 +221,7 @@ namespace AnimalHousePersistence
             {
                 sales = GetSalesFromDataTable(sQLQueryResult.dataTable, customer);
             }
-
-            throw new NotImplementedException();
+            return sales;
         }
 
         private List<Sale> GetSalesFromDataTable(DataTable dataTable, Customer customer)
@@ -203,7 +267,24 @@ namespace AnimalHousePersistence
 
         public string UpdateSale(Sale sale)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (TransactionScope transactionScope = new TransactionScope())
+                {
+                    using (SqlConnection sqlConnection = SQLDatabaseConnector.OpenConnection())
+                    {
+
+                        DeleteSaleLineItemsFromSale(sale, sqlConnection);
+                        InsertSaleLineItemsInSale(sale, sqlConnection);
+                    }
+                    transactionScope.Complete();
+                }
+            }
+            catch (Exception e)
+            {
+                return "Sale not  updated";
+            }
+            return "Sale updated";
         }
     }
 }

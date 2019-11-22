@@ -23,16 +23,27 @@ namespace AnimalHouse
             //Customer customer = CustomerController.instance.GetCustomer("123");
 
 
-            //Sale sale = SaleFactory.Instance().CreateSale(null);
+            //Sale sale = SaleFactory.Instance().CreateSale(customer);
+            
 
             //ISaleManager saleManager = new SaleManager();
-            ////saleManager.GetManySalesByCustomerID(customer);
 
-            ////Item item = saleManager.GetAllActiveItems()[0];
+            //List<Sale> sales = saleManager.GetManySalesByCustomerID(customer);
+
+            ////Sale sale = sales[sales.Count - 1];
+            ////sale.saleLineItems.Clear();
+
+            //////List<Sale> sales = saleManager.GetManySalesByCustomerID(customer);
+            //////saleManager.DeleteSale(sales[0]);
+            //Item item = saleManager.GetAllActiveItems()[0];
+            ////Item item2 = saleManager.GetAllActiveItems()[1];
 
             //SaleLineItem saleLineItem = SaleLineItemFactory.Instance().CreateSaleLineItem(item, 2, item.price);
             //sale.AddSaleLineItem(saleLineItem);
+            ////SaleLineItem saleLineItem2 = SaleLineItemFactory.Instance().CreateSaleLineItem(item2, 2, item2.price);
+            ////sale.AddSaleLineItem(saleLineItem2);
 
+            ////saleManager.UpdateSale(sale);
             //saleManager.CreateSale(sale);
 
 
