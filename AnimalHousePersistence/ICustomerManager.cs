@@ -22,6 +22,7 @@ namespace AnimalHousePersistence
         Customer GetCustomer(string phone);
         void CreateBusinessCustomer(BusinessCustomer businessCustomer);
         void CreatePrivateCustomer(PrivateCustomer privateCustomer);
+        string UndeleteCustomer(Customer customer);
 
     }
 }

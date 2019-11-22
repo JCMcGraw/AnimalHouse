@@ -140,6 +140,29 @@ namespace AnimalHousePersistence
 
         }
 
+        public string UndeleteCustomer(Customer customer)
+        {
+            string query = Utility.ReadSQLQueryFromFile("UndeleteCustomer.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            //af en eller anden grund virker det her fint med varchars og strings
+            sQLQuery.AddParameter("@customerID", customer.customerID.ToString(), SqlDbType.VarChar);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            if (sQLQueryResult.code == 0)
+            {
+                return "Kunde gjort aktiv";
+            }
+            else
+            {
+                return sQLQueryResult.message.ToString();
+
+            }
+
+        }
+
         public Customer GetCustomer(string phone)
         {
          
