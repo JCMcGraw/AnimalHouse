@@ -173,6 +173,9 @@ namespace AnimalHouseUI
 
         private void button_opret_Click(object sender, EventArgs e)
         {
+            try
+            {
+
             string cvr = textBox_cvr.Text;
             int cvrint = 0;
 
@@ -183,7 +186,6 @@ namespace AnimalHouseUI
                 {
                     customer = CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, cvrint);
 
-                    //stringen oprettes gennem bosscontrolleren og videre igennem customercontroleren
                     customer = BossController.instance().customerController.CreateCustomer(customer);
 
                     MessageBox.Show("Kunde oprettet");
@@ -195,7 +197,14 @@ namespace AnimalHouseUI
                 }
                 
             }
-            
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
 
         }
 

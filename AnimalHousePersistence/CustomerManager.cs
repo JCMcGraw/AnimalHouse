@@ -29,6 +29,11 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@email",customer.email.ToString(), SqlDbType.VarChar);
             
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+            
+            if(sQLQueryResult.code != 0)
+            {
+                throw new Exception(sQLQueryResult.exception.Message, sQLQueryResult.exception);
+            }
 
             int customerID = (int)sQLQueryResult.dataTable.Rows[0]["CustomerID"];
 

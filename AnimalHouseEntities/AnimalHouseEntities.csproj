@@ -49,6 +49,8 @@
     <Compile Include="AnimalFactory.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerFactory.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="EmployeeFactory.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemFactory.cs" />
     <Compile Include="PrivateCustomer.cs" />
@@ -59,6 +61,8 @@
     <Compile Include="SaleFactory.cs" />
     <Compile Include="SaleLineItem.cs" />
     <Compile Include="SaleLineItemFactory.cs" />
+    <Compile Include="Title.cs" />
+    <Compile Include="TitleFactory.cs" />
     <Compile Include="Treatment.cs" />
     <Compile Include="TreatmentFaktory.cs" />
     <Compile Include="TreatmentType.cs" />

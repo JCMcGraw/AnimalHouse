@@ -165,5 +165,10 @@ namespace AnimalHouseUI
             AnimalForm animalForm = new AnimalForm(customer);
             animalForm.Show();
         }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

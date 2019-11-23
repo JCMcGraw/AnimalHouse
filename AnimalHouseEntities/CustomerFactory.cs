@@ -25,14 +25,7 @@ namespace AnimalHouseEntities
 
 
         }
-        ////privat kunde
-        //public Customer CreateCustomer(string name, string address, string phone, string email, bool active)
-        //{
-
-        //    return new Customer(name, address, phone, email, true);
-        //}
-
-        //erhverskunde
+        
         public Customer CreateCustomer(string name, string address, string phone, string email, bool active, int cvr)
         {
             if (cvr!=0)
