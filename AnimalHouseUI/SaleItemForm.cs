@@ -12,18 +12,19 @@ using AnimalHouseEntities;
 
 namespace AnimalHouseUI
 {
-    public partial class SaleForm : Form
+    public partial class SaleItemForm : Form
     {
-        public SaleForm()
+        //Item item;
+
+        public SaleItemForm()
         {
             InitializeComponent();
         }
 
-        private void SaleUI_Load(object sender, EventArgs e)
+        
+        private void SaleItemForm_Load(object sender, EventArgs e)
         {
-            
 
-            LoadeAllItemsInListBox();
         }
 
         #region Copy this 
@@ -147,44 +148,12 @@ namespace AnimalHouseUI
 
         #endregion
 
-        private void SearchPhoneButton_Click(object sender, EventArgs e)
+        private void AddItemToSaleListButton_Click(object sender, EventArgs e)
         {
-            Customer customer = BossController.instance().customerController.GetCustomer(PhoneTextBox.Text);
+            //Add the item to SaleList
 
-            CustomerNameLabel.Text = customer.name.ToString();
-            NameTextBox.Text = customer.name.ToString();
 
-            CustomerNameLabel.Enabled = true;
-        }
-
-        private void SearchMedicalButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void EndButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void FakturaButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LoadeAllItemsInListBox()
-        {
-            foreach (Item item in BossController.instance().saleController.GetAllActiveItems())
-            {
-                ItemListBox.Items.Add(item.name+"        "+item.amount+"        "+item.price);
-            }
-        }
-
-        private void ItemListBox_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            SaleItemForm saleItemForm = new SaleItemForm();
-            saleItemForm.Show();
+            this.Close();
         }
     }
 }
-
