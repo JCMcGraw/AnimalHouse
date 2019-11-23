@@ -154,8 +154,8 @@ namespace AnimalHouseUI
 
         private void button_behandling_Click(object sender, EventArgs e)
         {
-            TreatmentBooking treatmentBooking = new TreatmentBooking();
-            treatmentBooking.Show();
+            TreatmentBookingForm treatmentBookingForm = new TreatmentBookingForm();
+            treatmentBookingForm.Show();
         }
 
         private void button_dyr_Click(object sender, EventArgs e)
