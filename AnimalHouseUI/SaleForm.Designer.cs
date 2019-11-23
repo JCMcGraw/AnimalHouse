@@ -46,7 +46,7 @@
             this.SaleListBox = new System.Windows.Forms.ListBox();
             this.SearchMedicalButton = new System.Windows.Forms.Button();
             this.MedicalTextBox = new System.Windows.Forms.TextBox();
-            this.MedicalListBox = new System.Windows.Forms.ListBox();
+            this.ItemListBox = new System.Windows.Forms.ListBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -59,6 +59,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             this.SuspendLayout();
@@ -258,7 +261,7 @@
             this.SearchMedicalButton.FlatAppearance.BorderSize = 0;
             this.SearchMedicalButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SearchMedicalButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchMedicalButton.Location = new System.Drawing.Point(798, 82);
+            this.SearchMedicalButton.Location = new System.Drawing.Point(793, 446);
             this.SearchMedicalButton.Name = "SearchMedicalButton";
             this.SearchMedicalButton.Size = new System.Drawing.Size(29, 30);
             this.SearchMedicalButton.TabIndex = 19;
@@ -267,18 +270,19 @@
             // 
             // MedicalTextBox
             // 
-            this.MedicalTextBox.Location = new System.Drawing.Point(636, 92);
+            this.MedicalTextBox.Location = new System.Drawing.Point(622, 453);
             this.MedicalTextBox.Name = "MedicalTextBox";
             this.MedicalTextBox.Size = new System.Drawing.Size(156, 20);
             this.MedicalTextBox.TabIndex = 20;
             // 
-            // MedicalListBox
+            // ItemListBox
             // 
-            this.MedicalListBox.FormattingEnabled = true;
-            this.MedicalListBox.Location = new System.Drawing.Point(636, 123);
-            this.MedicalListBox.Name = "MedicalListBox";
-            this.MedicalListBox.Size = new System.Drawing.Size(200, 316);
-            this.MedicalListBox.TabIndex = 21;
+            this.ItemListBox.FormattingEnabled = true;
+            this.ItemListBox.Location = new System.Drawing.Point(622, 123);
+            this.ItemListBox.Name = "ItemListBox";
+            this.ItemListBox.Size = new System.Drawing.Size(200, 316);
+            this.ItemListBox.TabIndex = 21;
+            this.ItemListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ItemListBox_MouseDoubleClick);
             // 
             // label12
             // 
@@ -364,7 +368,7 @@
             // 
             this.UpdateMedecinLabel.AutoSize = true;
             this.UpdateMedecinLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UpdateMedecinLabel.Location = new System.Drawing.Point(633, 460);
+            this.UpdateMedecinLabel.Location = new System.Drawing.Point(619, 484);
             this.UpdateMedecinLabel.Name = "UpdateMedecinLabel";
             this.UpdateMedecinLabel.Size = new System.Drawing.Size(194, 13);
             this.UpdateMedecinLabel.TabIndex = 38;
@@ -376,15 +380,15 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(371, 102);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(29, 13);
+            this.label5.Size = new System.Drawing.Size(33, 13);
             this.label5.TabIndex = 39;
-            this.label5.Text = "Vare";
+            this.label5.Text = "Navn";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(449, 102);
+            this.label7.Location = new System.Drawing.Point(462, 102);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(31, 13);
             this.label7.TabIndex = 40;
@@ -394,18 +398,51 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(522, 104);
+            this.label8.Location = new System.Drawing.Point(543, 105);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(24, 13);
             this.label8.TabIndex = 41;
             this.label8.Text = "Pris";
             // 
-            // SaleUI
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(785, 104);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(24, 13);
+            this.label1.TabIndex = 44;
+            this.label1.Text = "Pris";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(712, 102);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(31, 13);
+            this.label2.TabIndex = 43;
+            this.label2.Text = "Antal";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(634, 102);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(33, 13);
+            this.label3.TabIndex = 42;
+            this.label3.Text = "Navn";
+            // 
+            // SaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(873, 609);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
@@ -418,7 +455,7 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.MedicalListBox);
+            this.Controls.Add(this.ItemListBox);
             this.Controls.Add(this.MedicalTextBox);
             this.Controls.Add(this.SearchMedicalButton);
             this.Controls.Add(this.SaleListBox);
@@ -432,7 +469,7 @@
             this.Controls.Add(this.EndButton);
             this.Controls.Add(this.PanelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "SaleUI";
+            this.Name = "SaleForm";
             this.Text = "SampleForm";
             this.Load += new System.EventHandler(this.SaleUI_Load);
             this.PanelHeader.ResumeLayout(false);
@@ -464,7 +501,7 @@
         private System.Windows.Forms.ListBox SaleListBox;
         private System.Windows.Forms.Button SearchMedicalButton;
         private System.Windows.Forms.TextBox MedicalTextBox;
-        private System.Windows.Forms.ListBox MedicalListBox;
+        private System.Windows.Forms.ListBox ItemListBox;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label6;
@@ -477,6 +514,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 
 }

@@ -1,6 +1,6 @@
 ﻿namespace AnimalHouseUI
 {
-    partial class TreatmentBooking
+    partial class TreatmentBookingForm
     {
         /// <summary>
         /// Required designer variable.
@@ -195,7 +195,6 @@
             this.PanelHeadline.Name = "PanelHeadline";
             this.PanelHeadline.Size = new System.Drawing.Size(1111, 70);
             this.PanelHeadline.TabIndex = 11;
-            this.PanelHeadline.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelHeadline_Paint);
             // 
             // PanelDropdownBoxes
             // 
@@ -369,6 +368,8 @@
             this.CalendarBooking.ItemCreating += new System.Windows.Forms.Calendar.Calendar.CalendarItemCancelEventHandler(this.CalendarBooking_ItemCreating);
             this.CalendarBooking.ItemDeleting += new System.Windows.Forms.Calendar.Calendar.CalendarItemCancelEventHandler(this.CalendarBooking_ItemDeleting);
             this.CalendarBooking.ItemDatesChanged += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.CalendarBooking_ItemDatesChanged);
+            this.CalendarBooking.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CalendarBooking_KeyDown);
+            this.CalendarBooking.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CalendarBooking_KeyPress);
             this.CalendarBooking.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CalendarBooking_MouseClick);
             // 
             // ContextMenuStripBooking
@@ -550,7 +551,7 @@
             this.deleteToolStripMenuItem.Text = "Slet";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
-            // TreatmentBooking
+            // TreatmentBookingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -562,7 +563,7 @@
             this.Controls.Add(this.PanelHeadline);
             this.Controls.Add(this.PanelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "TreatmentBooking";
+            this.Name = "TreatmentBookingForm";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.Text = "SampleForm";
             this.PanelHeader.ResumeLayout(false);

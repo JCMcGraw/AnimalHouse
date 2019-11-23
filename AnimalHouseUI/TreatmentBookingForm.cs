@@ -6,10 +6,11 @@ using AnimalHouseEntities;
 using System.Windows.Forms.Calendar;
 using System.Data;
 using AnimalHouse;
+using System.Linq;
 
 namespace AnimalHouseUI
 {
-    public partial class TreatmentBooking : Form
+    public partial class TreatmentBookingForm : Form
     {
         BossController bossController = BossController.instance();
 
@@ -22,7 +23,7 @@ namespace AnimalHouseUI
         CalendarItem contextItem = null;
 
         
-        public TreatmentBooking()
+        public TreatmentBookingForm()
         {
             InitializeComponent();
             DummyValuesForComboboxes();
@@ -479,7 +480,7 @@ namespace AnimalHouseUI
             //TimeSpan appointmentDuration = e.Item.EndDate - e.Item.StartDate;
             string message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra kl. {e.Item.StartDate.ToString("H:mm")} til kl. {e.Item.EndDate.ToString("H:mm")} den {e.Item.StartDate.ToString("dd/M")}";
 
-            if ((int)ComboBoxTreatmentType.SelectedValue == 2)
+            if ((int)ComboBoxTreatmentType.SelectedValue == 3)
             {
                 message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra {e.Item.StartDate.ToString("dd/M")} til {e.Item.EndDate.ToString("dd/M")}";
 
@@ -514,7 +515,7 @@ namespace AnimalHouseUI
         private void CalendarBooking_ItemDatesChanged(object sender, CalendarItemEventArgs e)
         {
             string message = $"Ønsker du at ændre denne aftale til kl. {e.Item.StartDate.ToString("H:mm")}-{e.Item.EndDate.ToString("H:mm")} den {e.Item.StartDate.ToString("dd/M")}?";
-            if ((int)ComboBoxTreatmentType.SelectedValue == 2)
+            if ((int)ComboBoxTreatmentType.SelectedValue == 3)
             {
                 message = $"Ønsker du at ændre denne observation til {e.Item.StartDate.ToString("d/M")}-{e.Item.EndDate.ToString("d/M")}?";
             }
@@ -657,9 +658,33 @@ namespace AnimalHouseUI
             SendKeys.Send("{ENTER}");
         }
 
-        private void PanelHeadline_Paint(object sender, PaintEventArgs e)
+        private void CalendarBooking_KeyPress(object sender, KeyPressEventArgs e)
         {
+            //if(e.KeyChar == (char)13)
+            //{
+            //    MessageBox.Show("enter");
+            //}
+        }
 
+        private void CalendarBooking_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                //MessageBox.Show("enter");
+                if (CalendarBooking.SelectedElementStart == null)
+                {
+                    MessageBox.Show("Du har ikke valgt en tid til at indsætte en ny aftale");
+                }
+            }
+
+            if (e.KeyCode == Keys.Delete)
+            {
+                List<CalendarItem> calendarItems = CalendarBooking.GetSelectedItems().ToList<CalendarItem>();
+                if (calendarItems.Count == 0)
+                {
+                    MessageBox.Show("Du har ikke valgt nogle aftaler at slette.");
+                }
+            }
         }
     }
 }
