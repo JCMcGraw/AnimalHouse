@@ -14,6 +14,8 @@ namespace AnimalHouseUI
 {
     public partial class SaleForm : Form
     {
+        Item item;
+
         public SaleForm()
         {
             InitializeComponent();
@@ -167,6 +169,19 @@ namespace AnimalHouseUI
 
         private void FakturaButton_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void LoadeAllItemsInListBox()
+        {
+            foreach (var item in BossController.instance().saleController.GetAllActiveItems())
+            {
+                
+
+
+            }
+
+
 
         }
     }
