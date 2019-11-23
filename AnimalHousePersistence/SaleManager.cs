@@ -95,6 +95,7 @@ namespace AnimalHousePersistence
             { customerID = sale.customer.customerID.ToString(); }
 
             sQLQuery.AddParameter("@customerid", customerID, SqlDbType.Int);
+            sQLQuery.AddParameter("@salesday", sale.salesDay.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery, connection);
 
@@ -232,14 +233,15 @@ namespace AnimalHousePersistence
             foreach(DataRow dataRow in dataTable.Rows)
             {
                 int saleID = (int)dataRow["SaleID"];
-                if(sale is null)
+                DateTime salesDay = (DateTime)dataRow["SalesDay"];
+                if (sale is null)
                 {
-                    sale = new Sale(saleID, customer);
+                    sale = new Sale(saleID, customer, salesDay);
                 }
                 else if(sale.saleID != saleID)
                 {
                     sales.Add(sale);
-                    sale = new Sale(saleID, customer);
+                    sale = new Sale(saleID, customer, salesDay);
                 }
 
                 SaleLineItem saleLineItem = GetSaleLineItemFromDataRow(dataRow);

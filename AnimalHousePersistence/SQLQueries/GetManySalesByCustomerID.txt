@@ -1,6 +1,7 @@
 ﻿select
 Sale.SaleID,
 Sale.CustomerID,
+Sale.SalesDay,
 SaleLineItem.SaleLineItemsID,
 SaleLineItem.Amount As 'Quantity',
 SaleLineItem.Price As 'SalePrice',
