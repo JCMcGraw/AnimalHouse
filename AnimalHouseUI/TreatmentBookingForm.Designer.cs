@@ -369,7 +369,6 @@
             this.CalendarBooking.ItemDeleting += new System.Windows.Forms.Calendar.Calendar.CalendarItemCancelEventHandler(this.CalendarBooking_ItemDeleting);
             this.CalendarBooking.ItemDatesChanged += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.CalendarBooking_ItemDatesChanged);
             this.CalendarBooking.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CalendarBooking_KeyDown);
-            this.CalendarBooking.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CalendarBooking_KeyPress);
             this.CalendarBooking.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CalendarBooking_MouseClick);
             // 
             // ContextMenuStripBooking
