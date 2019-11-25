@@ -173,8 +173,8 @@ namespace AnimalHouseUI
 
         private void button_opret_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
 
             string cvr = textBox_cvr.Text;
             int cvrint = 0;
@@ -198,11 +198,11 @@ namespace AnimalHouseUI
                 
             }
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
 
 
 
