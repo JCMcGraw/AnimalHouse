@@ -14,16 +14,19 @@ namespace AnimalHouseUI
 {
     public partial class SaleItemForm : Form
     {
-        //Item item;
+        Item item;
+        public SaleLineItem saleLineItem;
 
-        public SaleItemForm()
+        public SaleItemForm(Item item)
         {
             InitializeComponent();
-        }
 
-        
-        private void SaleItemForm_Load(object sender, EventArgs e)
+            this.item = item;
+        }
+        private void SaleItemForm_Load_1(object sender, EventArgs e)
         {
+            NameLabel.Text = item.name.ToString();
+            PriceTextBox.Text = item.price.ToString("N2");
 
         }
 
@@ -150,10 +153,13 @@ namespace AnimalHouseUI
 
         private void AddItemToSaleListButton_Click(object sender, EventArgs e)
         {
-            //Add the item to SaleList
+           saleLineItem = new SaleLineItem(item,Convert.ToInt32(AmountTextBox.Text),Convert.ToDecimal(PriceTextBox.Text));
 
 
-            this.Close();
+            this.DialogResult = DialogResult.OK;
+           this.Close();
         }
+
+        
     }
 }

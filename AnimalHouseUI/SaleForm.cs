@@ -17,12 +17,14 @@ namespace AnimalHouseUI
         public SaleForm()
         {
             InitializeComponent();
+
+            
         }
+
+        Sale sale;
 
         private void SaleUI_Load(object sender, EventArgs e)
         {
-            
-
             LoadeAllItemsInListBox();
         }
 
@@ -174,16 +176,52 @@ namespace AnimalHouseUI
 
         private void LoadeAllItemsInListBox()
         {
-            foreach (Item item in BossController.instance().saleController.GetAllActiveItems())
-            {
-                ItemListBox.Items.Add(item.name+"        "+item.amount+"        "+item.price);
-            }
+            List<Item> items = BossController.instance().saleController.GetAllActiveItems();
+
+
+            ItemDataGridView.DataSource = items;
+            ItemDataGridView.Columns["itemID"].Visible = false;
+            ItemDataGridView.Columns["prescription"].Visible = false;
+            ItemDataGridView.Columns["active"].Visible = false;
+            ItemDataGridView.Columns["treatment"].Visible = false;
+
+
+
+            
+
+
+
         }
 
-        private void ItemListBox_MouseDoubleClick(object sender, MouseEventArgs e)
+
+        private void ItemDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            SaleItemForm saleItemForm = new SaleItemForm();
-            saleItemForm.Show();
+
+        }
+
+        private void ItemDataGridView_DoubleClick(object sender, EventArgs e)
+        {
+            DataGridViewRow row = ItemDataGridView.SelectedRows[0];
+
+            Item item = row.DataBoundItem as Item;
+            SaleItemForm saleItemForm = new SaleItemForm(item);
+
+            if (saleItemForm.ShowDialog()==DialogResult.OK)
+            {
+                SaleLineItem saleLineItem = saleItemForm.saleLineItem;
+
+                if (sale == null)
+                {
+                    sale = new Sale(null, DateTime.Now);
+                }
+
+                sale.AddSaleLineItem(saleLineItem);
+
+                DataGridViewItemList.DataSource = sale.saleLineItems;
+
+                DataGridViewItemList.Columns["saleLineItemID"].Visible = false;
+
+            }
         }
     }
 }

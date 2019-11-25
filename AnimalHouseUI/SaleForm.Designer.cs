@@ -43,10 +43,8 @@
             this.FakturaButton = new System.Windows.Forms.Button();
             this.PhoneTextBox = new System.Windows.Forms.TextBox();
             this.NameTextBox = new System.Windows.Forms.TextBox();
-            this.SaleListBox = new System.Windows.Forms.ListBox();
             this.SearchMedicalButton = new System.Windows.Forms.Button();
             this.MedicalTextBox = new System.Windows.Forms.TextBox();
-            this.ItemListBox = new System.Windows.Forms.ListBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -62,8 +60,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.ItemDataGridView = new System.Windows.Forms.DataGridView();
+            this.DataGridViewItemList = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewItemList)).BeginInit();
             this.SuspendLayout();
             // 
             // PanelHeader
@@ -245,14 +248,6 @@
             this.NameTextBox.Size = new System.Drawing.Size(124, 20);
             this.NameTextBox.TabIndex = 14;
             // 
-            // SaleListBox
-            // 
-            this.SaleListBox.FormattingEnabled = true;
-            this.SaleListBox.Location = new System.Drawing.Point(363, 123);
-            this.SaleListBox.Name = "SaleListBox";
-            this.SaleListBox.Size = new System.Drawing.Size(215, 316);
-            this.SaleListBox.TabIndex = 15;
-            // 
             // SearchMedicalButton
             // 
             this.SearchMedicalButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
@@ -274,15 +269,6 @@
             this.MedicalTextBox.Name = "MedicalTextBox";
             this.MedicalTextBox.Size = new System.Drawing.Size(156, 20);
             this.MedicalTextBox.TabIndex = 20;
-            // 
-            // ItemListBox
-            // 
-            this.ItemListBox.FormattingEnabled = true;
-            this.ItemListBox.Location = new System.Drawing.Point(622, 123);
-            this.ItemListBox.Name = "ItemListBox";
-            this.ItemListBox.Size = new System.Drawing.Size(200, 316);
-            this.ItemListBox.TabIndex = 21;
-            this.ItemListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ItemListBox_MouseDoubleClick);
             // 
             // label12
             // 
@@ -434,12 +420,60 @@
             this.label3.TabIndex = 42;
             this.label3.Text = "Navn";
             // 
+            // ItemDataGridView
+            // 
+            this.ItemDataGridView.AllowUserToAddRows = false;
+            this.ItemDataGridView.AllowUserToDeleteRows = false;
+            this.ItemDataGridView.AllowUserToResizeColumns = false;
+            this.ItemDataGridView.AllowUserToResizeRows = false;
+            this.ItemDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ItemDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.ItemDataGridView.Location = new System.Drawing.Point(637, 123);
+            this.ItemDataGridView.Name = "ItemDataGridView";
+            this.ItemDataGridView.RowHeadersVisible = false;
+            this.ItemDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ItemDataGridView.Size = new System.Drawing.Size(204, 316);
+            this.ItemDataGridView.TabIndex = 45;
+            this.ItemDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ItemDataGridView_CellContentClick);
+            this.ItemDataGridView.DoubleClick += new System.EventHandler(this.ItemDataGridView_DoubleClick);
+            // 
+            // DataGridViewItemList
+            // 
+            this.DataGridViewItemList.AllowUserToAddRows = false;
+            this.DataGridViewItemList.AllowUserToDeleteRows = false;
+            this.DataGridViewItemList.AllowUserToResizeColumns = false;
+            this.DataGridViewItemList.AllowUserToResizeRows = false;
+            this.DataGridViewItemList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridViewItemList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.DataGridViewItemList.Location = new System.Drawing.Point(363, 123);
+            this.DataGridViewItemList.Name = "DataGridViewItemList";
+            this.DataGridViewItemList.RowHeadersVisible = false;
+            this.DataGridViewItemList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DataGridViewItemList.Size = new System.Drawing.Size(204, 316);
+            this.DataGridViewItemList.TabIndex = 46;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.AliceBlue;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(92, 441);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(92, 48);
+            this.button1.TabIndex = 47;
+            this.button1.Text = "Afslut";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // SaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(873, 609);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.DataGridViewItemList);
+            this.Controls.Add(this.ItemDataGridView);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
@@ -455,10 +489,8 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.ItemListBox);
             this.Controls.Add(this.MedicalTextBox);
             this.Controls.Add(this.SearchMedicalButton);
-            this.Controls.Add(this.SaleListBox);
             this.Controls.Add(this.NameTextBox);
             this.Controls.Add(this.PhoneTextBox);
             this.Controls.Add(this.FakturaButton);
@@ -475,6 +507,8 @@
             this.PanelHeader.ResumeLayout(false);
             this.PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewItemList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -498,10 +532,8 @@
         private System.Windows.Forms.Button FakturaButton;
         private System.Windows.Forms.TextBox PhoneTextBox;
         private System.Windows.Forms.TextBox NameTextBox;
-        private System.Windows.Forms.ListBox SaleListBox;
         private System.Windows.Forms.Button SearchMedicalButton;
         private System.Windows.Forms.TextBox MedicalTextBox;
-        private System.Windows.Forms.ListBox ItemListBox;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label6;
@@ -517,6 +549,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridView ItemDataGridView;
+        private System.Windows.Forms.DataGridView DataGridViewItemList;
+        private System.Windows.Forms.Button button1;
     }
 
 }
