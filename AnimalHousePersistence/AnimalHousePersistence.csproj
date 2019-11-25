@@ -111,9 +111,11 @@
     <Content Include="SQLQueries\GetCustomer.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLQueries\GetManyAnimalsByCustomerID.txt" />
-    <Content Include="SQLQueries\GetManySalesByCustomerID.txt">
+    <Content Include="SQLQueries\GetManyAnimalsByCustomerID.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQLQueries\GetManySalesByCustomerID.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLQueries\GetManyTreatmentsByDateTime.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

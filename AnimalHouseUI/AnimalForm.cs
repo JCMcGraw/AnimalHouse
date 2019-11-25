@@ -177,7 +177,7 @@ namespace AnimalHouseUI
             //fejl
             Species species = new Species(2, "Hund");
 
-            Animal animal = AnimalFactory.Instance().CreateAnimal(customer.customerID,1,animal_name.Text.ToString(),(animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), 2, 1, true);
+            Animal animal = AnimalFactory.Instance().CreateAnimal(customer.customerID,1,animal_name.Text.ToString(),(animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), true, 1, true);
 
             Animal message = BossController.instance().animalController.CreateAnimal(animal);
             MessageBox.Show("dyr oprettet");

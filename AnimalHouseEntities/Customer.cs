@@ -8,12 +8,13 @@ namespace AnimalHouseEntities
 {
     public class Customer
     {
-       public int customerID {  get; private set; }
-       public string name { get; private set; }
+        public int customerID { get; private set; }
+        public string name { get; private set; }
         public string address { get; private set; }
         public string phone { get; private set; }
         public string email { get; private set; }
         public bool active { get; private set; }
+        public List<Animal> animals {get; private set; }
         //public string cvr { get; private set; }
 
         
@@ -51,5 +52,9 @@ namespace AnimalHouseEntities
             this.customerID = customerID;
         }
 
+        public void AddAnimalList(List<Animal> animals)
+        {
+            this.animals = animals;
+        }
     }
 }

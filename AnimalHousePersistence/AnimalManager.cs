@@ -124,7 +124,7 @@ namespace AnimalHousePersistence
 
             Species species = SpeciesFactory.Instance().GetSpecies(speciesID, speciesName);
 
-            Animal animal = new Animal((int)dataRow["CustomerID"],(int)dataRow["AnimalID"], (string)dataRow["Name"], (DateTime)dataRow["BirthYear"], species, (double)dataRow["Weight"], (int)dataRow["Gender"], (int)dataRow["EmployeeID"], (bool)dataRow["Active"]);
+            Animal animal = new Animal((int)dataRow["CustomerID"],(int)dataRow["AnimalID"], (string)dataRow["Name"], (DateTime)dataRow["BirthYear"], species, (double)dataRow["Weight"], (bool)dataRow["Gender"], (int)dataRow["EmployeeID"], (bool)dataRow["Active"]);
 
             return animal;
 
@@ -164,7 +164,7 @@ namespace AnimalHousePersistence
                    
 
                     int employeeID;
-                    if (sQLQueryResult.dataTable.Rows[i].IsNull("TreatmentID"))
+                    if (sQLQueryResult.dataTable.Rows[i].IsNull("EmployeeID"))
                     {
                         employeeID = -1;
                     }
@@ -178,13 +178,13 @@ namespace AnimalHousePersistence
                     int customerID = (int)sQLQueryResult.dataTable.Rows[i]["CustomerID"];
                     int animalID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalID"];
                     string name = (string)sQLQueryResult.dataTable.Rows[i]["SpeciesName"];
-                    DateTime birthday = (DateTime)sQLQueryResult.dataTable.Rows[i]["Birthday"];
+                    DateTime birthday = (DateTime)sQLQueryResult.dataTable.Rows[i]["BirthYear"];
                     int speciesID = (int)sQLQueryResult.dataTable.Rows[i]["Speciesid"];
                     string speciesName =(string)sQLQueryResult.dataTable.Rows[i]["SpeciesName"];
                     Species species = SpeciesFactory.Instance().GetSpecies(speciesID, speciesName);
 
-                    double weight = (double)sQLQueryResult.dataTable.Rows[i]["SpeciesID"];
-                    int gender = (int)sQLQueryResult.dataTable.Rows[i]["Gender"];
+                    double weight =Convert.ToDouble( (decimal)sQLQueryResult.dataTable.Rows[i]["Weight"]);
+                    bool gender = (bool)sQLQueryResult.dataTable.Rows[i]["Gender"];
                     
                     bool active = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
 

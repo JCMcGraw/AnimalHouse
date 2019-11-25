@@ -40,7 +40,6 @@
             this.label_headline = new System.Windows.Forms.Label();
             this.button_soeg = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.textBox_phonenumber = new System.Windows.Forms.TextBox();
             this.label_telefonnummer = new System.Windows.Forms.Label();
             this.button_rediger = new System.Windows.Forms.Button();
@@ -56,8 +55,10 @@
             this.label_cvr = new System.Windows.Forms.Label();
             this.checkBox_erhverskunde = new System.Windows.Forms.CheckBox();
             this.label_erhverskunde = new System.Windows.Forms.Label();
+            this.dataGridView_dyr = new System.Windows.Forms.DataGridView();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_dyr)).BeginInit();
             this.SuspendLayout();
             // 
             // PanelHeader
@@ -211,14 +212,6 @@
             this.button3.TabIndex = 10;
             this.button3.UseVisualStyleBackColor = false;
             // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(325, 134);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(283, 368);
-            this.listBox1.TabIndex = 11;
-            // 
             // textBox_phonenumber
             // 
             this.textBox_phonenumber.Location = new System.Drawing.Point(121, 182);
@@ -364,12 +357,21 @@
             this.label_erhverskunde.TabIndex = 26;
             this.label_erhverskunde.Text = "Erhverskunde";
             // 
+            // dataGridView_dyr
+            // 
+            this.dataGridView_dyr.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_dyr.Location = new System.Drawing.Point(336, 152);
+            this.dataGridView_dyr.Name = "dataGridView_dyr";
+            this.dataGridView_dyr.Size = new System.Drawing.Size(240, 216);
+            this.dataGridView_dyr.TabIndex = 27;
+            // 
             // CustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(640, 542);
+            this.Controls.Add(this.dataGridView_dyr);
             this.Controls.Add(this.label_erhverskunde);
             this.Controls.Add(this.checkBox_erhverskunde);
             this.Controls.Add(this.label_cvr);
@@ -385,7 +387,6 @@
             this.Controls.Add(this.button_rediger);
             this.Controls.Add(this.label_telefonnummer);
             this.Controls.Add(this.textBox_phonenumber);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button_soeg);
             this.Controls.Add(this.label_headline);
@@ -399,6 +400,7 @@
             this.PanelHeader.ResumeLayout(false);
             this.PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_dyr)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -418,8 +420,6 @@
         private System.Windows.Forms.Button button_soeg;
         private System.Windows.Forms.Button button3;
         #endregion
-
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.TextBox textBox_phonenumber;
         private System.Windows.Forms.Label label_telefonnummer;
         private System.Windows.Forms.Button button_rediger;
@@ -435,5 +435,6 @@
         private System.Windows.Forms.Label label_cvr;
         private System.Windows.Forms.CheckBox checkBox_erhverskunde;
         private System.Windows.Forms.Label label_erhverskunde;
+        private System.Windows.Forms.DataGridView dataGridView_dyr;
     }
 }
