@@ -20,14 +20,12 @@ namespace AnimalHouseUI
         public SaleItemForm(Item item)
         {
             InitializeComponent();
-
             this.item = item;
         }
         private void SaleItemForm_Load_1(object sender, EventArgs e)
         {
             NameLabel.Text = item.name.ToString();
             PriceTextBox.Text = item.price.ToString("N2");
-
         }
 
         #region Copy this 
@@ -155,11 +153,8 @@ namespace AnimalHouseUI
         {
            saleLineItem = new SaleLineItem(item,Convert.ToInt32(AmountTextBox.Text),Convert.ToDecimal(PriceTextBox.Text));
 
-
-            this.DialogResult = DialogResult.OK;
+           this.DialogResult = DialogResult.OK;
            this.Close();
         }
-
-        
     }
 }

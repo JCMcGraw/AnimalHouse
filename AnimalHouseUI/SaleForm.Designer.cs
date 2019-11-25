@@ -63,6 +63,9 @@
             this.ItemDataGridView = new System.Windows.Forms.DataGridView();
             this.DataGridViewItemList = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemDataGridView)).BeginInit();
@@ -81,7 +84,7 @@
             this.PanelHeader.Location = new System.Drawing.Point(0, 0);
             this.PanelHeader.Name = "PanelHeader";
             this.PanelHeader.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.PanelHeader.Size = new System.Drawing.Size(873, 36);
+            this.PanelHeader.Size = new System.Drawing.Size(1055, 36);
             this.PanelHeader.TabIndex = 0;
             this.PanelHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelHeader_MouseDown);
             this.PanelHeader.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelHeader_MouseMove);
@@ -120,7 +123,7 @@
             this.ButtonMinimize.FlatAppearance.BorderSize = 0;
             this.ButtonMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonMinimize.Location = new System.Drawing.Point(777, 2);
+            this.ButtonMinimize.Location = new System.Drawing.Point(959, 2);
             this.ButtonMinimize.Name = "ButtonMinimize";
             this.ButtonMinimize.Size = new System.Drawing.Size(32, 32);
             this.ButtonMinimize.TabIndex = 3;
@@ -135,7 +138,7 @@
             this.ButtonMaximize.FlatAppearance.BorderSize = 0;
             this.ButtonMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonMaximize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonMaximize.Location = new System.Drawing.Point(809, 2);
+            this.ButtonMaximize.Location = new System.Drawing.Point(991, 2);
             this.ButtonMaximize.Name = "ButtonMaximize";
             this.ButtonMaximize.Size = new System.Drawing.Size(32, 32);
             this.ButtonMaximize.TabIndex = 2;
@@ -150,7 +153,7 @@
             this.ButtonClose.FlatAppearance.BorderSize = 0;
             this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonClose.Location = new System.Drawing.Point(841, 2);
+            this.ButtonClose.Location = new System.Drawing.Point(1023, 2);
             this.ButtonClose.Name = "ButtonClose";
             this.ButtonClose.Size = new System.Drawing.Size(32, 32);
             this.ButtonClose.TabIndex = 1;
@@ -432,9 +435,8 @@
             this.ItemDataGridView.Name = "ItemDataGridView";
             this.ItemDataGridView.RowHeadersVisible = false;
             this.ItemDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ItemDataGridView.Size = new System.Drawing.Size(204, 316);
+            this.ItemDataGridView.Size = new System.Drawing.Size(294, 316);
             this.ItemDataGridView.TabIndex = 45;
-            this.ItemDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ItemDataGridView_CellContentClick);
             this.ItemDataGridView.DoubleClick += new System.EventHandler(this.ItemDataGridView_DoubleClick);
             // 
             // DataGridViewItemList
@@ -444,12 +446,16 @@
             this.DataGridViewItemList.AllowUserToResizeColumns = false;
             this.DataGridViewItemList.AllowUserToResizeRows = false;
             this.DataGridViewItemList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DataGridViewItemList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.name,
+            this.amount,
+            this.price});
             this.DataGridViewItemList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.DataGridViewItemList.Location = new System.Drawing.Point(363, 123);
+            this.DataGridViewItemList.Location = new System.Drawing.Point(280, 132);
             this.DataGridViewItemList.Name = "DataGridViewItemList";
             this.DataGridViewItemList.RowHeadersVisible = false;
             this.DataGridViewItemList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridViewItemList.Size = new System.Drawing.Size(204, 316);
+            this.DataGridViewItemList.Size = new System.Drawing.Size(309, 316);
             this.DataGridViewItemList.TabIndex = 46;
             // 
             // button1
@@ -465,12 +471,27 @@
             this.button1.Text = "Afslut";
             this.button1.UseVisualStyleBackColor = false;
             // 
+            // name
+            // 
+            this.name.HeaderText = "Navn";
+            this.name.Name = "name";
+            // 
+            // amount
+            // 
+            this.amount.HeaderText = "Antal";
+            this.amount.Name = "amount";
+            // 
+            // price
+            // 
+            this.price.HeaderText = "Pris";
+            this.price.Name = "price";
+            // 
             // SaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
-            this.ClientSize = new System.Drawing.Size(873, 609);
+            this.ClientSize = new System.Drawing.Size(1055, 609);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.DataGridViewItemList);
             this.Controls.Add(this.ItemDataGridView);
@@ -552,6 +573,9 @@
         private System.Windows.Forms.DataGridView ItemDataGridView;
         private System.Windows.Forms.DataGridView DataGridViewItemList;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn amount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn price;
     }
 
 }

@@ -14,18 +14,18 @@ namespace AnimalHouseUI
 {
     public partial class SaleForm : Form
     {
+        Sale sale;
+
         public SaleForm()
         {
             InitializeComponent();
-
-            
         }
-
-        Sale sale;
 
         private void SaleUI_Load(object sender, EventArgs e)
         {
             LoadeAllItemsInListBox();
+
+            DataGridViewItemList.AutoGenerateColumns = false;
         }
 
         #region Copy this 
@@ -166,6 +166,8 @@ namespace AnimalHouseUI
 
         private void EndButton_Click(object sender, EventArgs e)
         {
+            //BossController.instance().
+
 
         }
 
@@ -178,26 +180,13 @@ namespace AnimalHouseUI
         {
             List<Item> items = BossController.instance().saleController.GetAllActiveItems();
 
-
             ItemDataGridView.DataSource = items;
             ItemDataGridView.Columns["itemID"].Visible = false;
             ItemDataGridView.Columns["prescription"].Visible = false;
             ItemDataGridView.Columns["active"].Visible = false;
             ItemDataGridView.Columns["treatment"].Visible = false;
-
-
-
-            
-
-
-
         }
 
-
-        private void ItemDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         private void ItemDataGridView_DoubleClick(object sender, EventArgs e)
         {
@@ -217,10 +206,19 @@ namespace AnimalHouseUI
 
                 sale.AddSaleLineItem(saleLineItem);
 
+                DataGridViewItemList.Columns["Amount"].DataPropertyName = "amount";
+                DataGridViewItemList.Columns["Price"].DataPropertyName = "price";
+                
+                DataGridViewItemList.DataSource = null;
                 DataGridViewItemList.DataSource = sale.saleLineItems;
 
-                DataGridViewItemList.Columns["saleLineItemID"].Visible = false;
+                for (int i = 0; i< DataGridViewItemList.RowCount; i++)
+                {
 
+                    Item item2 = sale.saleLineItems[i].item;
+
+                    DataGridViewItemList.Rows[i].Cells["Name"].Value = item2.name;
+                } 
             }
         }
     }
