@@ -14,12 +14,21 @@ namespace AnimalHouseUI
 {
     public partial class AnimalForm : Form
     {
+        Animal animal;
         Customer customer;
      
+        public AnimalForm(Customer customer, Animal animal)
+
+        {
+            this.customer = customer;
+            this.animal = animal;
+            InitializeComponent();
+        }
         public AnimalForm(Customer customer)
 
         {
             this.customer = customer;
+
             InitializeComponent();
         }
         #region Copy this 
@@ -192,6 +201,20 @@ namespace AnimalHouseUI
         }
 
         private void LabelTitle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Button_rediger_Click(object sender, EventArgs e)
+        {
+            
+
+            string message = BossController.instance().animalController.UpdateAnimal(animal);
+            MessageBox.Show("dyr rettet");
+
+        }
+
+        private void Button_slet_Click(object sender, EventArgs e)
         {
 
         }

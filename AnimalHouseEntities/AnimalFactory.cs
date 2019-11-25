@@ -22,11 +22,15 @@ namespace AnimalHouseEntities
             }
             return instance;
         }
+        public Animal CreateAnimal(int customerID, string name, DateTime birthday, Species species, double weight, int gender, int employeeID, bool active)
+        {
 
-        //public Animal CreateAnimal(int customerid, int animalid,string name, string birthday, int species, double weight, int gender, bool active)
-        //{
-        //    return new Animal(customerid, animalid, name, birthday,species, weight, gender, active);
-        //}
+            return new Animal(customerID, name, birthday, species, weight, gender, employeeID, true);
+
+
+        }
+
+
         public Animal CreateAnimal(int customerID, int animalID,string name, DateTime birthday, Species species, double weight, int gender, int employeeID, bool active)
         {
            
@@ -34,12 +38,12 @@ namespace AnimalHouseEntities
 
             
         }
-        public Animal GetAnimal(int customerID, int animalID, string name, Species speciestype, DateTime birthday, double weight, int gender, int vetenarian, bool active)
-        {
+        //public Animal GetAnimal(int customerID, int animalID, string name, Species speciestype, DateTime birthday, double weight, int gender, int vetenarian, bool active)
+        //{
 
-            return new Animal(customerID, animalID, name, birthday, speciestype, weight, gender, vetenarian, true);
+        //    return new Animal(customerID, animalID, name, birthday, speciestype, weight, gender, vetenarian, true);
 
-        }
+        //}
 
 
 

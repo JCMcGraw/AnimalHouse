@@ -188,7 +188,7 @@ namespace AnimalHousePersistence
                     
                     bool active = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
 
-                    animals.Add(AnimalFactory.Instance().GetAnimal(customerID,animalID, name, species, birthday, weight, gender,employeeID, true));
+                    animals.Add(AnimalFactory.Instance().CreateAnimal(customerID,animalID, name, birthday, species, weight, gender,employeeID, true));
 
 
 
@@ -197,14 +197,14 @@ namespace AnimalHousePersistence
             }
         }
 
-        public List<Animal> GetManyAnimalByCustomerID(string name, string speciesname)
+        public List<Animal> GetManyAnimalByCustomerID(Customer customer)
         {
-            string query = Utility.ReadSQLQueryFromFile("GetManyTreatmentsByEmployee.txt");
+            string query = Utility.ReadSQLQueryFromFile("GetManyAnimalsByCustomerID.txt");
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("@employeeID", name.ToString(), SqlDbType.VarChar);
-            sQLQuery.AddParameter("@startTime", speciesname.ToString(), SqlDbType.VarChar);
+            sQLQuery.AddParameter("@CustomerID", customer.customerID.ToString(), SqlDbType.VarChar);
+           
             
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);

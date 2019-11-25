@@ -234,7 +234,7 @@
             this.button_rediger.TabIndex = 14;
             this.button_rediger.Text = "Rediger";
             this.button_rediger.UseVisualStyleBackColor = false;
-            //this.button_rediger.Click += new System.EventHandler(this.Button_rediger_Click);
+            this.button_rediger.Click += new System.EventHandler(this.Button_rediger_Click);
             // 
             // button_slet
             // 
@@ -249,6 +249,7 @@
             this.button_slet.TabIndex = 15;
             this.button_slet.Text = "Slet";
             this.button_slet.UseVisualStyleBackColor = false;
+            this.button_slet.Click += new System.EventHandler(this.Button_slet_Click);
             // 
             // label_navn
             // 
