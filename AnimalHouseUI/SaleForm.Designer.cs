@@ -36,10 +36,8 @@
             this.ButtonMaximize = new System.Windows.Forms.Button();
             this.ButtonClose = new System.Windows.Forms.Button();
             this.EndButton = new System.Windows.Forms.Button();
-            this.TelefonLabel = new System.Windows.Forms.Label();
             this.CustomerNameLabel = new System.Windows.Forms.Label();
             this.SearchPhoneButton = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.FakturaButton = new System.Windows.Forms.Button();
             this.PhoneTextBox = new System.Windows.Forms.TextBox();
             this.NameTextBox = new System.Windows.Forms.TextBox();
@@ -174,16 +172,6 @@
             this.EndButton.UseVisualStyleBackColor = false;
             this.EndButton.Click += new System.EventHandler(this.EndButton_Click);
             // 
-            // TelefonLabel
-            // 
-            this.TelefonLabel.AutoSize = true;
-            this.TelefonLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TelefonLabel.Location = new System.Drawing.Point(38, 135);
-            this.TelefonLabel.Name = "TelefonLabel";
-            this.TelefonLabel.Size = new System.Drawing.Size(63, 20);
-            this.TelefonLabel.TabIndex = 7;
-            this.TelefonLabel.Text = "Sample";
-            // 
             // CustomerNameLabel
             // 
             this.CustomerNameLabel.AutoSize = true;
@@ -208,20 +196,6 @@
             this.SearchPhoneButton.TabIndex = 9;
             this.SearchPhoneButton.UseVisualStyleBackColor = false;
             this.SearchPhoneButton.Click += new System.EventHandler(this.SearchPhoneButton_Click);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
-            this.button3.BackgroundImage = global::AnimalHouseUI.Properties.Resources.icons8_arrow_pointing_left_32px;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(12, 561);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(45, 36);
-            this.button3.TabIndex = 10;
-            this.button3.UseVisualStyleBackColor = false;
             // 
             // FakturaButton
             // 
@@ -515,10 +489,8 @@
             this.Controls.Add(this.NameTextBox);
             this.Controls.Add(this.PhoneTextBox);
             this.Controls.Add(this.FakturaButton);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.SearchPhoneButton);
             this.Controls.Add(this.CustomerNameLabel);
-            this.Controls.Add(this.TelefonLabel);
             this.Controls.Add(this.EndButton);
             this.Controls.Add(this.PanelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -544,10 +516,8 @@
         private System.Windows.Forms.PictureBox PictureBoxLogo;
         private System.Windows.Forms.Label LabelTitle;
         private System.Windows.Forms.Button EndButton;
-        private System.Windows.Forms.Label TelefonLabel;
         private System.Windows.Forms.Label CustomerNameLabel;
         private System.Windows.Forms.Button SearchPhoneButton;
-        private System.Windows.Forms.Button button3;
         #endregion
 
         private System.Windows.Forms.Button FakturaButton;
