@@ -14,49 +14,42 @@ namespace AnimalHouseEntities
         public string phone { get; private set; }
         public string email { get; private set; }
         public bool active { get; private set; }
-        public string cvr { get; private set; }
+        //public string cvr { get; private set; }
 
-        //constructor UDEN customerID, UDEN cvr
+        
+
+        //constructor UDEN customerID
         public Customer(string name, string address, string phone, string email, bool active)
         {
-            
-            this.name = name;
-            this.address= address;
-            this.phone = phone;
-            this.email = email;
-            this.active = true;
-            this.cvr = cvr;
-        }
-
-        //constructor UDEN customerID, MED cvr
-        public Customer(string name, string address, string phone, string email, bool active, string cvr)
-        {
             this.customerID = customerID;
-            this.cvr = cvr;
+            //this.cvr = cvr;
             
             this.name = name;
             this.address = address;
             this.phone = phone;
             this.email = email;
-            this.active = true;
-            this.cvr = cvr;
+            this.active = active;
+           // this.cvr = cvr;
         }
 
-        //constructor MED CustomerID, uden cvr
+        //constructor MED CustomerID
         public Customer(int customerID, string name, string address, string phone, string email, bool active)
         {
             this.customerID = customerID;
-            this.cvr = cvr;
+            //this.cvr = cvr;
 
             this.name = name;
             this.address = address;
             this.phone = phone;
             this.email = email;
-            this.active = true;
-            this.cvr = cvr;
+            this.active = active;
+           // this.cvr = cvr;
         }
 
-
+        public void UpdateID(int customerID)
+        {
+            this.customerID = customerID;
+        }
 
     }
 }

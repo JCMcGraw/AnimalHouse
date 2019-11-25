@@ -39,7 +39,7 @@ namespace AnimalHouse
 
         }
 
-        public string CreateCustomer(Customer customer)
+        public Customer CreateCustomer(Customer customer)
         {
 
 
@@ -71,6 +71,13 @@ namespace AnimalHouse
             ICustomerManager customerManager = new CustomerManager();
 
             return customerManager.DeleteCustomer(customer);
+        }
+
+        public string UndeleteCustomer(Customer customer)
+        {
+            ICustomerManager customerManager = new CustomerManager();
+
+            return customerManager.UndeleteCustomer(customer);
         }
     }
 }

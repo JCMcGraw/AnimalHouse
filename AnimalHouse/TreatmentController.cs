@@ -67,5 +67,11 @@ namespace AnimalHouse
             List<Treatment> getManyTreatmentsByDateTime = treatmentManager.GetManyTreatmentsByDateTime(startTime, endTime);
             return getManyTreatmentsByDateTime;
         }
+
+        public List<TreatmentType> GetManyTreatmentTypes()
+        {
+            List<TreatmentType> getManyTreatmentTypes = treatmentManager.GetManyTreatmentTypes();
+            return getManyTreatmentTypes;
+        }
     }
 }

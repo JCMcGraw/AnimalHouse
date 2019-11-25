@@ -15,6 +15,7 @@ namespace AnimalHouseUI
 {
     public partial class CustomerForm : Form
     {
+        Customer customer;
         public CustomerForm()
         {
             InitializeComponent();
@@ -153,7 +154,7 @@ namespace AnimalHouseUI
 
         private void button_soeg_Click(object sender, EventArgs e)
         {
-            
+            button_opret.Enabled = false;
             Customer customer = BossController.instance().customerController.GetCustomer(textBox_phonenumber.Text);
             
             textBox_navn.Text = customer.name.ToString();
@@ -166,54 +167,152 @@ namespace AnimalHouseUI
 
            button_dyr.Enabled = true;
             label_headline.Text = customer.name.ToString();
+
+            CheckCustomerDeletion();
         }
 
         private void button_opret_Click(object sender, EventArgs e)
         {
-            //Kunden skabes direkte fra entity-laget, men igennem factoryen
-            Customer customer =CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, textBox_cvr.Text.ToString());
+            //try
+            //{
 
-            //stringen oprettes gennem bosscontrolleren og videre igennem customercontroleren
-            string message= BossController.instance().customerController.CreateCustomer(customer);
-            MessageBox.Show(message);
+            string cvr = textBox_cvr.Text;
+            int cvrint = 0;
+
+            if (cvr != "")
+            {
+                cvrint = Convert.ToInt32(cvr);
+                if (cvrint.ToString().Length==8)
+                {
+                    customer = CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, cvrint);
+
+                    customer = BossController.instance().customerController.CreateCustomer(customer);
+
+                    MessageBox.Show("Kunde oprettet");
+
+                }
+                else
+                {
+                    MessageBox.Show("Ugyldigt CVR-nummer.");
+                }
+                
+            }
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+
 
 
         }
 
         private void button_rediger_Click(object sender, EventArgs e)
         {
-            //Lav en "er du sikker"-popup
+            var confirm = MessageBox.Show("Er du sikker på du vil rette denne kunde?", "Bekræft redigering", MessageBoxButtons.YesNo);
 
-            //skaf en kunde fra databasen så du kan finde hans customerID
-            Customer customer = new Customer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, textBox_cvr.Text.ToString());
+            if (confirm == DialogResult.Yes)
+            {
+                //skaf en kunde fra databasen så du kan finde hans customerID
+                customer = BossController.instance().customerController.GetCustomer(textBox_phonenumber.Text.ToString());
 
-            //string message=customer.name.ToString();
-            string message = BossController.instance().customerController.UpdateCustomer(customer);
-            MessageBox.Show(message);
+                string name = textBox_navn.Text.ToString();
+                string phone = textBox_phonenumber.Text.ToString();
+                string address = textBox_adresse.Text.ToString();
+                string email = textBox_email.Text.ToString();
+                int customerID = customer.customerID;
+                
 
-           
+                Customer tmpcustomer = new Customer(customerID, name, address, phone, email, true);
+
+                string message = BossController.instance().customerController.UpdateCustomer(tmpcustomer);
+                MessageBox.Show(message);
+
+            }
+
+            textBox_phonenumber.Clear();
+            textBox_navn.Clear();
+            textBox_adresse.Clear();
+            textBox_email.Clear();
+            textBox_cvr.Clear();
+            LabelTitle.Text = "Administrer kunde";
+
+            button_opret.Enabled = true;
+            button_rediger.Enabled = false;
+            button_dyr.Enabled = false;
+            button_slet.Enabled = false;
+
+
         }
 
         private void button_slet_Click(object sender, EventArgs e)
             //lav en "er du sikker" popup
         {
-            Customer customer = new Customer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, textBox_cvr.Text.ToString());
+            var confirm=MessageBox.Show("Er du sikker på du vil slette denne kunde?", "Bekræft sletning", MessageBoxButtons.YesNo);
 
-            string message = BossController.instance().customerController.DeleteCustomer(customer);
-            MessageBox.Show(message);
+            if (confirm==DialogResult.Yes)
+            {
+                customer = BossController.instance().customerController.GetCustomer(textBox_phonenumber.Text.ToString());
 
-           
+                string message = BossController.instance().customerController.DeleteCustomer(customer);
+                MessageBox.Show(message);
+
+            }
+
+            textBox_phonenumber.Clear();
+            textBox_navn.Clear();
+            textBox_adresse.Clear();
+            textBox_email.Clear();
+            textBox_cvr.Clear();
+            LabelTitle.Text = "Administrer kunde";
+
+            button_opret.Enabled = true;
+            button_rediger.Enabled = false;
+            button_dyr.Enabled = false;
+            button_slet.Enabled = false;
+
 
         }
 
-        private void Button_dyr_Click(object sender, EventArgs e)
+        private void button_dyr_Click(object sender, EventArgs e)
         {
-            
+            AnimalForm animalForm = new AnimalForm(customer);
+            animalForm.Show();
         }
 
-        private void LabelTitle_Click(object sender, EventArgs e)
+        private void checkBox_erhverskunde_CheckedChanged(object sender, EventArgs e)
         {
+            if (checkBox_erhverskunde.Checked==true)
+                {
+                textBox_cvr.Enabled = true;
+            }
+            else
+            {
+                textBox_cvr.Enabled = false;
+            }
+        }
+
+        private void CheckCustomerDeletion()
+        {
+            customer = BossController.instance().customerController.GetCustomer(textBox_phonenumber.Text.ToString());
+            if (customer.active == false)
+            {
+                var confirm = MessageBox.Show("Denne kunde er slettet, vil du reaktivere?", "Kunde slettet",MessageBoxButtons.YesNoCancel);
+
+                if (confirm == DialogResult.Yes)
+                {
+                    customer = BossController.instance().customerController.GetCustomer(textBox_phonenumber.Text.ToString());
+
+                    string message = BossController.instance().customerController.UndeleteCustomer(customer);
+                    MessageBox.Show(message);
+
+                }
+            }
 
         }
+
+
+        
     }
 }

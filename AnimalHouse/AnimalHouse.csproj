@@ -46,8 +46,10 @@
     <Compile Include="AnimalController.cs" />
     <Compile Include="BossController.cs" />
     <Compile Include="CustomerController.cs" />
+    <Compile Include="EmployeeController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaleController.cs" />
     <Compile Include="TreatmentController.cs" />
   </ItemGroup>
   <ItemGroup>

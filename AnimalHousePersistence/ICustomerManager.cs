@@ -16,10 +16,13 @@ namespace AnimalHousePersistence
     public interface ICustomerManager
     {
 
-       string  CreateCustomer(Customer customer);
+       Customer  CreateCustomer(Customer customer);
         string UpdateCustomer(Customer customer);
         string DeleteCustomer(Customer customer);
         Customer GetCustomer(string phone);
+        void CreateBusinessCustomer(BusinessCustomer businessCustomer);
+        void CreatePrivateCustomer(PrivateCustomer privateCustomer);
+        string UndeleteCustomer(Customer customer);
 
     }
 }

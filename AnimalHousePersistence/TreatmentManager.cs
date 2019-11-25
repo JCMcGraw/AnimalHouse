@@ -21,6 +21,7 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@payed", treatment.payed.ToString(), SqlDbType.Bit);
             sQLQuery.AddParameter("@headline", treatment.headline.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@active", treatment.active.ToString(), SqlDbType.Bit);
+            sQLQuery.AddParameter("@treatmenttypeid", treatment.treatmentType.treatmentTypeID.ToString(), SqlDbType.Int);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
@@ -135,14 +136,29 @@ namespace AnimalHousePersistence
             return treatments;
         }
 
+        public List<TreatmentType> GetManyTreatmentTypes()
+        {
+            string query = Utility.ReadSQLQueryFromFile("GetManyTreatmentTypes.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            List<TreatmentType> treatments = new List<TreatmentType>();
+
+            treatments = GetTreatmentTypeList(sQLQueryResult);
+
+            return treatments;
+        }
+
         public List<Treatment> GetTreatmentList(SQLQueryResult sQLQueryResult)
         {
-
             List<Treatment> treatments = new List<Treatment>();
+
             for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
             {
                 int treatmentID;
-                int treatmentTypeID;
+                TreatmentType treatmentType;
                 int operationRoomID;
                 int cageID;
                 int itemID;
@@ -159,11 +175,16 @@ namespace AnimalHousePersistence
                 }
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("TreatmentTypeID"))
                 {
-                    treatmentTypeID = -1;
+                    treatmentType = null;
                 }
                 else
                 {
-                    treatmentTypeID = (int)sQLQueryResult.dataTable.Rows[i]["TreatmentTypeID"];
+                    int treatmentTypeID = (int)sQLQueryResult.dataTable.Rows[i]["TreatmentTypeID"];
+                    string treatmentTypeName = (string)sQLQueryResult.dataTable.Rows[i]["Name"];
+
+                    TreatmentType newTreatmentType = TreatmentTypeFactory.Instance().CreateTreatmentType(treatmentTypeID, treatmentTypeName);
+
+                    treatmentType = newTreatmentType;
                 }
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("OperationRoomID"))
                 {
@@ -211,9 +232,33 @@ namespace AnimalHousePersistence
                 string headline = (string)sQLQueryResult.dataTable.Rows[i]["Headline"];
                 bool active = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
 
-                treatments.Add(TreatmentFactory.Instance().CreateTreatment(treatmentID, treatmentTypeID, operationRoomID, cageID, itemID, startTime, endTime, payed, headline, active, employeeID, animalID));
+                treatments.Add(TreatmentFactory.Instance().CreateTreatment(treatmentID, treatmentType, operationRoomID, cageID, itemID, startTime, endTime, payed, headline, active, employeeID, animalID));
             }
             return treatments;
+        }
+
+        public List<TreatmentType> GetTreatmentTypeList(SQLQueryResult sQLQueryResult)
+        {
+            List<TreatmentType> treatmentTypes = new List<TreatmentType>();
+
+            for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
+            {
+                int treatmentTypeID;
+
+                if (sQLQueryResult.dataTable.Rows[i].IsNull("TreatmentTypeID"))
+                {
+                    treatmentTypeID = -1;
+                }
+                else
+                {
+                    treatmentTypeID = (int)sQLQueryResult.dataTable.Rows[i]["TreatmentTypeID"];
+                }
+
+                string name = (string)sQLQueryResult.dataTable.Rows[i]["Name"];
+
+                treatmentTypes.Add(TreatmentTypeFactory.Instance().CreateTreatmentType(treatmentTypeID, name));
+            }
+            return treatmentTypes;
         }
     }
 }

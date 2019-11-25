@@ -35,6 +35,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,12 +49,24 @@
     <Compile Include="AnimalFactory.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerFactory.cs" />
+    <Compile Include="Employee.cs" />
+    <Compile Include="EmployeeFactory.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="ItemFactory.cs" />
+    <Compile Include="PrivateCustomer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Species.cs" />
-    <Compile Include="SpeciesFactory.cs" />
+    <Compile Include="BusinessCustomer.cs" />
+    <Compile Include="Sale.cs" />
+    <Compile Include="SaleFactory.cs" />
+    <Compile Include="SaleLineItem.cs" />
+    <Compile Include="SaleLineItemFactory.cs" />
+    <Compile Include="Title.cs" />
+    <Compile Include="TitleFactory.cs" />
     <Compile Include="Treatment.cs" />
     <Compile Include="TreatmentFaktory.cs" />
+    <Compile Include="TreatmentType.cs" />
+    <Compile Include="TreatmentTypeFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

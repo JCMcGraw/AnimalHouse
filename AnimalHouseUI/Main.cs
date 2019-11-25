@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AnimalHouseEntities;
+using AnimalHouse;
 
 namespace AnimalHouseUI
 {
@@ -136,5 +138,37 @@ namespace AnimalHouseUI
         }
 
         #endregion
+
+        private void button_kunde_Click(object sender, EventArgs e)
+        {
+            CustomerForm customerForm = new CustomerForm();
+            customerForm.Show();
+
+        }
+
+        private void button_salg_Click(object sender, EventArgs e)
+        {
+            SaleForm saleui = new SaleForm();
+            saleui.Show();
+        }
+
+        private void button_behandling_Click(object sender, EventArgs e)
+        {
+            TreatmentBookingForm treatmentBookingForm = new TreatmentBookingForm();
+            treatmentBookingForm.Show();
+        }
+
+        private void button_dyr_Click(object sender, EventArgs e)
+        {
+            Customer customer = BossController.instance().customerController.GetCustomer(123.ToString());
+
+            AnimalForm animalForm = new AnimalForm(customer);
+            animalForm.Show();
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
