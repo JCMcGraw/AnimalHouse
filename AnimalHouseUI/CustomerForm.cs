@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AnimalHouse;
 using AnimalHouseEntities;
+using System.Text.RegularExpressions;
 
 
 namespace AnimalHouseUI
@@ -173,15 +174,34 @@ namespace AnimalHouseUI
 
         private void button_opret_Click(object sender, EventArgs e)
         {
+           
             try
             {
+                //Tjekker for at se om emailen er gyldig. 
 
-            string cvr = textBox_cvr.Text;
+                //if (CheckForValidEmail((string)label_email.Text) == false)
+                //{
+                //    MessageBox.Show("Ugyldig E-mailadresse");
+                //    return;
+                //}
+
+                //tjekker om cvrnummeret består af tal
+                string cvr = textBox_cvr.Text;
+
+                if (CheckForCVRdegit(cvr)==false)
+                {
+                    MessageBox.Show("CVR-nummer må kun bestå af tal");
+                    return;
+                }
+              
+            
             int cvrint = 0;
 
             if (cvr != "")
             {
-                cvrint = Convert.ToInt32(cvr);
+                    
+                    //Hvis ikke cvr-nummeret består af noget bliver det lavet om til inten cvrint som er 0.
+                    cvrint = Convert.ToInt32(cvr);
                 if (cvrint.ToString().Length==8)
                 {
                     customer = CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, cvrint);
@@ -193,7 +213,7 @@ namespace AnimalHouseUI
                 }
                 else
                 {
-                    MessageBox.Show("Ugyldigt CVR-nummer.");
+                    MessageBox.Show("CVR-nummeret skal bestå af 8 tal.");
                 }
                 
             }
@@ -229,19 +249,11 @@ namespace AnimalHouseUI
                 string message = BossController.instance().customerController.UpdateCustomer(tmpcustomer);
                 MessageBox.Show(message);
 
+                ResetForm();
+
             }
 
-            textBox_phonenumber.Clear();
-            textBox_navn.Clear();
-            textBox_adresse.Clear();
-            textBox_email.Clear();
-            textBox_cvr.Clear();
-            LabelTitle.Text = "Administrer kunde";
-
-            button_opret.Enabled = true;
-            button_rediger.Enabled = false;
-            button_dyr.Enabled = false;
-            button_slet.Enabled = false;
+            
 
 
         }
@@ -260,17 +272,7 @@ namespace AnimalHouseUI
 
             }
 
-            textBox_phonenumber.Clear();
-            textBox_navn.Clear();
-            textBox_adresse.Clear();
-            textBox_email.Clear();
-            textBox_cvr.Clear();
-            LabelTitle.Text = "Administrer kunde";
-
-            button_opret.Enabled = true;
-            button_rediger.Enabled = false;
-            button_dyr.Enabled = false;
-            button_slet.Enabled = false;
+            ResetForm();
 
 
         }
@@ -311,8 +313,39 @@ namespace AnimalHouseUI
             }
 
         }
+        private void ResetForm()
+        {
+            textBox_phonenumber.Clear();
+            textBox_navn.Clear();
+            textBox_adresse.Clear();
+            textBox_email.Clear();
+            textBox_cvr.Clear();
+
+            //Denne label gider ikke opdatere, for some reason
+            LabelTitle.Text = "Administrer kunde";
+
+            button_opret.Enabled = true;
+            button_rediger.Enabled = false;
+            button_dyr.Enabled = false;
+            button_slet.Enabled = false;
+        }
+
+         private bool CheckForValidEmail(string email)
+        {
+            if (Regex.IsMatch(email, @"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", RegexOptions.IgnoreCase))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        private bool CheckForCVRdegit(string cvr)
+        {
+            return cvr.All(char.IsDigit);
+        }
 
 
-        
     }
 }

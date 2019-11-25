@@ -75,7 +75,7 @@ namespace AnimalHousePersistence
             }
             catch (Exception e)
             {
-
+                
                 return sale;
             }
 
