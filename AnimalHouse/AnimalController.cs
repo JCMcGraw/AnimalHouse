@@ -35,7 +35,12 @@ namespace AnimalHouse
 
             return createAnimal;
         }
-
+        public List<Animal> GetManyAnimalByCustomerID(Customer customer)
+        {
+            IAnimalManager animalManager = new AnimalManager();
+            List<Animal>animals = animalManager.GetManyAnimalByCustomerID(customer);
+            return animals;
+        }
 
         public string UpdateAnimal(Animal animal)
         {
