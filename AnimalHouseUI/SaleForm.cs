@@ -15,6 +15,7 @@ namespace AnimalHouseUI
     public partial class SaleForm : Form
     {
         Sale sale;
+        Customer customer;
 
         public SaleForm()
         {
@@ -151,7 +152,7 @@ namespace AnimalHouseUI
 
         private void SearchPhoneButton_Click(object sender, EventArgs e)
         {
-            Customer customer = BossController.instance().customerController.GetCustomer(PhoneTextBox.Text);
+            customer = BossController.instance().customerController.GetCustomer(PhoneTextBox.Text);
 
             CustomerNameLabel.Text = customer.name.ToString();
             NameTextBox.Text = customer.name.ToString();
@@ -166,7 +167,7 @@ namespace AnimalHouseUI
 
         private void EndButton_Click(object sender, EventArgs e)
         {
-            //BossController.instance().
+            BossController.instance().saleController.CreateSale(sale);
 
 
         }
@@ -201,7 +202,7 @@ namespace AnimalHouseUI
 
                 if (sale == null)
                 {
-                    sale = new Sale(null, DateTime.Now);
+                    sale = new Sale(customer, DateTime.Now);
                 }
 
                 sale.AddSaleLineItem(saleLineItem);
