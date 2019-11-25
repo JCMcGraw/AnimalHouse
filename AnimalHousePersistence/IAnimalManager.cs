@@ -26,7 +26,7 @@ namespace AnimalHousePersistence
 
         //List<Animal>GetAnimalList(int ani);
 
-        List<Animal>GetManyAnimalByCustomerID(string name, string speciesname);
+        List<Animal>GetManyAnimalByCustomerID(Customer customer);
 
         //Species GetSpecies(Species species);
         //List<Species> GetSpecies(Species species);
