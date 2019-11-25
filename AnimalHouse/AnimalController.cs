@@ -57,6 +57,6 @@ namespace AnimalHouse
             Animal getAnimal = animalManager.GetAnimal(animalID);
             return getAnimal;
         }
-
+     
     }
 }

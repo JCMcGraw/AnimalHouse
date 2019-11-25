@@ -15,6 +15,7 @@ namespace AnimalHouseUI
     public partial class AnimalForm : Form
     {
         Customer customer;
+     
         public AnimalForm(Customer customer)
 
         {
@@ -165,7 +166,9 @@ namespace AnimalHouseUI
             //string message = BossController.instance().animalController.CreateAnimal(animal);
             //MessageBox.Show(message);
             //fejl
-            Animal animal = AnimalFactory.Instance().CreateAnimal(customer.customerID,animal_name.Text.ToString(), (animal_bdate.Value), 1, Convert.ToDouble(animal_weight.Text), 1, true);
+            Species species = new Species(2, "Hund");
+
+            Animal animal = AnimalFactory.Instance().CreateAnimal(customer.customerID,1,animal_name.Text.ToString(),(animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), 2, 1, true);
 
             Animal message = BossController.instance().animalController.CreateAnimal(animal);
             MessageBox.Show("dyr oprettet");
@@ -192,5 +195,13 @@ namespace AnimalHouseUI
         {
 
         }
+
+        //private void Button_rediger_Click(object sender, EventArgs e)
+        //{
+        //    Animal animal = AnimalFactory.Instance().UpdateAnimal(customer.customerID, animal_name.Text.ToString(), (animal_bdate.Value),animal_species.SelectedItem, Convert.ToDouble(animal_weight.Text), animal_gender.SelectedItem, true);
+
+        //    Animal message = BossController.instance().animalController.UpdateAnimal(animal);
+        //    //MessageBox.Show("dyr rettet");
+        //}
     }
 }

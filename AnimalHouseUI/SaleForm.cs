@@ -14,6 +14,9 @@ namespace AnimalHouseUI
 {
     public partial class SaleForm : Form
     {
+        Sale sale;
+        Customer customer;
+
         public SaleForm()
         {
             InitializeComponent();
@@ -21,9 +24,9 @@ namespace AnimalHouseUI
 
         private void SaleUI_Load(object sender, EventArgs e)
         {
-            
-
             LoadeAllItemsInListBox();
+
+            DataGridViewItemList.AutoGenerateColumns = false;
         }
 
         #region Copy this 
@@ -149,7 +152,7 @@ namespace AnimalHouseUI
 
         private void SearchPhoneButton_Click(object sender, EventArgs e)
         {
-            Customer customer = BossController.instance().customerController.GetCustomer(PhoneTextBox.Text);
+            customer = BossController.instance().customerController.GetCustomer(PhoneTextBox.Text);
 
             CustomerNameLabel.Text = customer.name.ToString();
             NameTextBox.Text = customer.name.ToString();
@@ -164,6 +167,8 @@ namespace AnimalHouseUI
 
         private void EndButton_Click(object sender, EventArgs e)
         {
+            BossController.instance().saleController.CreateSale(sale);
+
 
         }
 
@@ -174,16 +179,48 @@ namespace AnimalHouseUI
 
         private void LoadeAllItemsInListBox()
         {
-            foreach (Item item in BossController.instance().saleController.GetAllActiveItems())
-            {
-                ItemListBox.Items.Add(item.name+"        "+item.amount+"        "+item.price);
-            }
+            List<Item> items = BossController.instance().saleController.GetAllActiveItems();
+
+            ItemDataGridView.DataSource = items;
+            ItemDataGridView.Columns["itemID"].Visible = false;
+            ItemDataGridView.Columns["prescription"].Visible = false;
+            ItemDataGridView.Columns["active"].Visible = false;
+            ItemDataGridView.Columns["treatment"].Visible = false;
         }
 
-        private void ItemListBox_MouseDoubleClick(object sender, MouseEventArgs e)
+
+        private void ItemDataGridView_DoubleClick(object sender, EventArgs e)
         {
-            SaleItemForm saleItemForm = new SaleItemForm();
-            saleItemForm.Show();
+            DataGridViewRow row = ItemDataGridView.SelectedRows[0];
+
+            Item item = row.DataBoundItem as Item;
+            SaleItemForm saleItemForm = new SaleItemForm(item);
+
+            if (saleItemForm.ShowDialog()==DialogResult.OK)
+            {
+                SaleLineItem saleLineItem = saleItemForm.saleLineItem;
+
+                if (sale == null)
+                {
+                    sale = new Sale(customer, DateTime.Now);
+                }
+
+                sale.AddSaleLineItem(saleLineItem);
+
+                DataGridViewItemList.Columns["Amount"].DataPropertyName = "amount";
+                DataGridViewItemList.Columns["Price"].DataPropertyName = "price";
+                
+                DataGridViewItemList.DataSource = null;
+                DataGridViewItemList.DataSource = sale.saleLineItems;
+
+                for (int i = 0; i< DataGridViewItemList.RowCount; i++)
+                {
+
+                    Item item2 = sale.saleLineItems[i].item;
+
+                    DataGridViewItemList.Rows[i].Cells["Name"].Value = item2.name;
+                } 
+            }
         }
     }
 }

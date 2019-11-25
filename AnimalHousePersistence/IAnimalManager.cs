@@ -21,5 +21,15 @@ namespace AnimalHousePersistence
 
         Animal GetAnimal(int animalID);
 
+       
+        List<Animal> GetAnimalList(SQLQueryResult sQLQueryResult);
+
+        //List<Animal>GetAnimalList(int ani);
+
+        List<Animal>GetManyAnimalByCustomerID(string name, string speciesname);
+
+        //Species GetSpecies(Species species);
+        //List<Species> GetSpecies(Species species);
+
     }
 }

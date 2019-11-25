@@ -24,13 +24,38 @@ namespace AnimalHouse
             return instance;
         }
 
+        ISaleManager saleManager = new SaleManager();
+
         public List<Item> GetAllActiveItems()
         {
-            ISaleManager saleManager = new SaleManager();
 
             List<Item> items = saleManager.GetAllActiveItems();
 
             return items;
+        }
+
+        public Sale CreateSale(Sale sale)
+        {
+            Sale saleWithID = saleManager.CreateSale(sale);
+            return saleWithID;
+        }
+
+        public string UpdateSale(Sale sale)
+        {
+            string returncode = saleManager.UpdateSale(sale);
+            return returncode;
+        }
+
+        public string DeleteSale(Sale sale)
+        {
+            string returncode = saleManager.DeleteSale(sale);
+            return returncode;
+        }
+
+        public List<Sale> GetManySalesByCustomerID(Customer customer)
+        {
+            List<Sale> sales = saleManager.GetManySalesByCustomerID(customer);
+            return sales;
         }
     }
 }

@@ -52,6 +52,7 @@
     <Compile Include="AnimalForm.Designer.cs">
       <DependentUpon>AnimalForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="animal_gender\SelectedIndexChanged.cs" />
     <Compile Include="CustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>

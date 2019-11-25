@@ -11,17 +11,20 @@ namespace AnimalHouseEntities
         public int saleID { get; private set; }
         public List<SaleLineItem> saleLineItems { get; private set; }
         public Customer customer { get; private set; }
+        public DateTime salesDay { get; private set; }
 
-        public Sale(int saleID, Customer customer)
+        public Sale(int saleID, Customer customer, DateTime salesDay)
         {
             this.saleID = saleID;
             this.customer = customer;
+            this.salesDay = salesDay;
             saleLineItems = new List<SaleLineItem>();
         }
 
-        public Sale(Customer customer)
+        public Sale(Customer customer, DateTime salesDay)
         {
             this.customer = customer;
+            this.salesDay = salesDay;
             saleLineItems = new List<SaleLineItem>();
         }
 

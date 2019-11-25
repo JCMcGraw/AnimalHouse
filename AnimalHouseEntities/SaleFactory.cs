@@ -22,15 +22,15 @@ namespace AnimalHouseEntities
             return instance;
         }
 
-        public Sale CreateSale(int saleID, Customer customer)
+        public Sale CreateSale(int saleID, Customer customer, DateTime salesDay)
         {
-            Sale sale = new Sale(saleID, customer);
+            Sale sale = new Sale(saleID, customer, salesDay);
             return sale;
         }
 
-        public Sale CreateSale(Customer customer)
+        public Sale CreateSale(Customer customer, DateTime salesDay)
         {
-            Sale sale = new Sale(customer);
+            Sale sale = new Sale(customer, salesDay);
             return sale;
         }
     }
