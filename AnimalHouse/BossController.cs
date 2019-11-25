@@ -9,7 +9,7 @@ namespace AnimalHouse
 {
     public class BossController
     {
-        private BossController(){ }
+        private BossController() { }
 
         private static BossController bossController = null;
 
@@ -53,6 +53,14 @@ namespace AnimalHouse
                 return SaleController.Instance();
             }
 
+        }
+
+        public EmployeeController employeeController
+        {
+            get
+            {
+                return EmployeeController.Instance();
+            }
         }
     }
 }

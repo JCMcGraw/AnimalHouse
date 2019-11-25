@@ -35,50 +35,23 @@ namespace AnimalHouseUI
 
         private void DummyValuesForComboboxes()
         {
-            //DataTable employees = new DataTable();
-            //employees.Columns.Add("employee", typeof(string));
-            //employees.Columns.Add("employeeid", typeof(int));
+            List<Employee> employees = bossController.employeeController.GetAllEmployees();
 
-            //DataRow dataRow = employees.NewRow();
-            //dataRow[0] = "Alle";
-            //dataRow[1] = -1;
-            //employees.Rows.Add(dataRow);
-            //DataRow dataRow1 = employees.NewRow();
-            //dataRow1[0] = "Ole Ernst";
-            //dataRow1[1] = 0;
-            //employees.Rows.Add(dataRow1);
-            //DataRow dataRow2 = employees.NewRow();
-            //dataRow2[0] = "Poul Bundgaard";
-            //dataRow2[1] = 1;
-            //employees.Rows.Add(dataRow2);
-            //DataRow dataRow3 = employees.NewRow();
-            //dataRow3[0] = "Dirch Passer";
-            //dataRow3[1] = 2;
-            //employees.Rows.Add(dataRow3);
+            List<Employee> vets = new List<Employee>();
 
-            List<KeyValuePair<string, int>> employeeList = new List<KeyValuePair<string, int>>() { new KeyValuePair<string, int>("Alle", -1),
-                new KeyValuePair<string, int>("Ole Ernst", 1), new KeyValuePair<string, int>("Dirch Passer", 2), new KeyValuePair<string, int>("Poul Bundgaard", 3) };
+            vets.Add(new Employee(-1, "Alle", true, -1, new Title("Dyrlæge", -1)));
 
-            ComboBoxEmployee.DataSource = employeeList;
-            ComboBoxEmployee.DisplayMember = "Key";
-            ComboBoxEmployee.ValueMember = "Value";
+            foreach(var employee in employees)
+            {
+                if (employee.title.titleID == 1)
+                {
+                    vets.Add(employee);
+                }
+            }
 
-            //DataTable treatment = new DataTable();
-            //treatment.Columns.Add("treatment", typeof(string));
-            //treatment.Columns.Add("treatmentid", typeof(int));
+            ComboBoxEmployee.DataSource = vets;
+            ComboBoxEmployee.DisplayMember = "name";
 
-            //DataRow dataRow6 = treatment.NewRow();
-            //dataRow6[0] = "Konsultation";
-            //dataRow6[1] = 0;
-            //treatment.Rows.Add(dataRow6);
-            //DataRow dataRow4 = treatment.NewRow();
-            //dataRow4[0] = "Operation";
-            //dataRow4[1] = 1;
-            //treatment.Rows.Add(dataRow4);
-            //DataRow dataRow5 = treatment.NewRow();
-            //dataRow5[0] = "Observation";
-            //dataRow5[1] = 2;
-            //treatment.Rows.Add(dataRow5);
 
             List<TreatmentType> treatmentTypes = bossController.treatmentController.GetManyTreatmentTypes();
             
