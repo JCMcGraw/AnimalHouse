@@ -1,3 +1,2 @@
 ﻿Select * from Animal join Species on animal.speciesID = Species.speciesID
-where (animalid=@animalid)
- 
+where (CustomerID= @CustomerID)

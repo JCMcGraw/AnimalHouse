@@ -49,6 +49,8 @@
     <Compile Include="CustomerFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Species.cs" />
+    <Compile Include="SpeciesFactory.cs" />
     <Compile Include="Treatment.cs" />
     <Compile Include="TreatmentFaktory.cs" />
   </ItemGroup>

@@ -48,8 +48,6 @@
             this.animal_weight = new System.Windows.Forms.TextBox();
             this.label_email = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.owner_phone = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.animalAge_label = new System.Windows.Forms.Label();
             this.owner_label = new System.Windows.Forms.Label();
@@ -209,7 +207,7 @@
             // 
             // animal_name
             // 
-            this.animal_name.Location = new System.Drawing.Point(43, 174);
+            this.animal_name.Location = new System.Drawing.Point(43, 171);
             this.animal_name.Name = "animal_name";
             this.animal_name.Size = new System.Drawing.Size(99, 20);
             this.animal_name.TabIndex = 12;
@@ -217,7 +215,7 @@
             // label_telefonnummer
             // 
             this.label_telefonnummer.AutoSize = true;
-            this.label_telefonnummer.Location = new System.Drawing.Point(40, 202);
+            this.label_telefonnummer.Location = new System.Drawing.Point(40, 246);
             this.label_telefonnummer.Name = "label_telefonnummer";
             this.label_telefonnummer.Size = new System.Drawing.Size(20, 13);
             this.label_telefonnummer.TabIndex = 13;
@@ -236,6 +234,7 @@
             this.button_rediger.TabIndex = 14;
             this.button_rediger.Text = "Rediger";
             this.button_rediger.UseVisualStyleBackColor = false;
+            //this.button_rediger.Click += new System.EventHandler(this.Button_rediger_Click);
             // 
             // button_slet
             // 
@@ -263,7 +262,7 @@
             // label_adresse
             // 
             this.label_adresse.AutoSize = true;
-            this.label_adresse.Location = new System.Drawing.Point(40, 251);
+            this.label_adresse.Location = new System.Drawing.Point(158, 155);
             this.label_adresse.Name = "label_adresse";
             this.label_adresse.Size = new System.Drawing.Size(61, 13);
             this.label_adresse.TabIndex = 20;
@@ -279,7 +278,7 @@
             // label_email
             // 
             this.label_email.AutoSize = true;
-            this.label_email.Location = new System.Drawing.Point(159, 251);
+            this.label_email.Location = new System.Drawing.Point(40, 201);
             this.label_email.Name = "label_email";
             this.label_email.Size = new System.Drawing.Size(26, 13);
             this.label_email.TabIndex = 22;
@@ -288,28 +287,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(40, 158);
+            this.label1.Location = new System.Drawing.Point(40, 155);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(33, 13);
             this.label1.TabIndex = 23;
             this.label1.Text = "Navn";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(159, 158);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
-            this.label2.TabIndex = 24;
-            this.label2.Text = "Ejer, telefon";
-            // 
-            // owner_phone
-            // 
-            this.owner_phone.Enabled = false;
-            this.owner_phone.Location = new System.Drawing.Point(162, 174);
-            this.owner_phone.Name = "owner_phone";
-            this.owner_phone.Size = new System.Drawing.Size(99, 20);
-            this.owner_phone.TabIndex = 25;
             // 
             // label3
             // 
@@ -353,7 +335,7 @@
             "Papegøje",
             "Slange",
             "Skildpadde"});
-            this.animal_species.Location = new System.Drawing.Point(43, 218);
+            this.animal_species.Location = new System.Drawing.Point(43, 262);
             this.animal_species.Name = "animal_species";
             this.animal_species.Size = new System.Drawing.Size(99, 21);
             this.animal_species.TabIndex = 30;
@@ -372,7 +354,7 @@
             "Papegøje",
             "Slange",
             "Skildpadde"});
-            this.comboBox1.Location = new System.Drawing.Point(43, 312);
+            this.comboBox1.Location = new System.Drawing.Point(161, 262);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(99, 21);
             this.comboBox1.TabIndex = 31;
@@ -380,7 +362,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(41, 296);
+            this.label4.Location = new System.Drawing.Point(158, 246);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 13);
             this.label4.TabIndex = 32;
@@ -390,23 +372,17 @@
             // 
             this.animal_gender.FormattingEnabled = true;
             this.animal_gender.Items.AddRange(new object[] {
-            "Hund",
-            "Kat",
-            "Kanin",
-            "Marsvin",
-            "Hamster",
-            "Kanariefugl",
-            "Papegøje",
-            "Slange",
-            "Skildpadde"});
-            this.animal_gender.Location = new System.Drawing.Point(162, 267);
+            "ukendt",
+            "han",
+            "hun"});
+            this.animal_gender.Location = new System.Drawing.Point(43, 217);
             this.animal_gender.Name = "animal_gender";
             this.animal_gender.Size = new System.Drawing.Size(99, 21);
             this.animal_gender.TabIndex = 33;
             // 
             // animal_bdate
             // 
-            this.animal_bdate.Location = new System.Drawing.Point(44, 267);
+            this.animal_bdate.Location = new System.Drawing.Point(162, 171);
             this.animal_bdate.Name = "animal_bdate";
             this.animal_bdate.Size = new System.Drawing.Size(98, 20);
             this.animal_bdate.TabIndex = 34;
@@ -425,8 +401,6 @@
             this.Controls.Add(this.owner_label);
             this.Controls.Add(this.animalAge_label);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.owner_phone);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label_email);
             this.Controls.Add(this.label_adresse);
@@ -478,8 +452,6 @@
         private System.Windows.Forms.TextBox animal_weight;
         private System.Windows.Forms.Label label_email;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox owner_phone;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label animalAge_label;
         private System.Windows.Forms.Label owner_label;
