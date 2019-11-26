@@ -177,7 +177,7 @@ namespace AnimalHousePersistence
 
                     int customerID = (int)sQLQueryResult.dataTable.Rows[i]["CustomerID"];
                     int animalID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalID"];
-                    string name = (string)sQLQueryResult.dataTable.Rows[i]["SpeciesName"];
+                    string name = (string)sQLQueryResult.dataTable.Rows[i]["Name"];
                     DateTime birthday = (DateTime)sQLQueryResult.dataTable.Rows[i]["BirthYear"];
                     int speciesID = (int)sQLQueryResult.dataTable.Rows[i]["Speciesid"];
                     string speciesName =(string)sQLQueryResult.dataTable.Rows[i]["SpeciesName"];
@@ -215,6 +215,7 @@ namespace AnimalHousePersistence
 
             return animals;
         }
+
         public List<Species> GetSpecies(SQLQueryResult sQLQueryResult)
         {
             List<Species> species = new List<Species>();
