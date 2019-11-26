@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AnimalHouse;
 using AnimalHouseEntities;
+using System.Text.RegularExpressions;
 
 
 namespace AnimalHouseUI
@@ -140,7 +141,7 @@ namespace AnimalHouseUI
         }
 
         #endregion
-       
+
 
         //private void SampleForm_Load(object sender, EventArgs e)
         //{
@@ -149,63 +150,31 @@ namespace AnimalHouseUI
 
         private void CustomerForm_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button_soeg_Click(object sender, EventArgs e)
         {
             button_opret.Enabled = false;
             Customer customer = BossController.instance().customerController.GetCustomer(textBox_phonenumber.Text);
-            
+
             textBox_navn.Text = customer.name.ToString();
             textBox_adresse.Text = customer.address.ToString();
             textBox_email.Text = customer.email.ToString();
+
+            List<Animal> animals= BossController.instance().animalController.GetManyAnimalByCustomerID(customer);
+            customer.AddAnimalList(animals);
+
+            dataGridView_dyr.DataSource = animals;
 
             button_rediger.Enabled = true;
 
             button_slet.Enabled = true;
 
-           button_dyr.Enabled = true;
+            button_dyr.Enabled = true;
             label_headline.Text = customer.name.ToString();
 
-            CheckCustomerDeletion();
-        }
-
-        private void button_opret_Click(object sender, EventArgs e)
-        {
-            //try
-            //{
-
-            string cvr = textBox_cvr.Text;
-            int cvrint = 0;
-
-            if (cvr != "")
-            {
-                cvrint = Convert.ToInt32(cvr);
-                if (cvrint.ToString().Length==8)
-                {
-                    customer = CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, cvrint);
-
-                    customer = BossController.instance().customerController.CreateCustomer(customer);
-
-                    MessageBox.Show("Kunde oprettet");
-
-                }
-                else
-                {
-                    MessageBox.Show("Ugyldigt CVR-nummer.");
-                }
-                
-            }
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-
-
-
+            //  CheckCustomerDeletion();
         }
 
         private void button_rediger_Click(object sender, EventArgs e)
@@ -222,36 +191,25 @@ namespace AnimalHouseUI
                 string address = textBox_adresse.Text.ToString();
                 string email = textBox_email.Text.ToString();
                 int customerID = customer.customerID;
-                
+
 
                 Customer tmpcustomer = new Customer(customerID, name, address, phone, email, true);
 
                 string message = BossController.instance().customerController.UpdateCustomer(tmpcustomer);
                 MessageBox.Show(message);
 
+                ResetForm();
+
             }
-
-            textBox_phonenumber.Clear();
-            textBox_navn.Clear();
-            textBox_adresse.Clear();
-            textBox_email.Clear();
-            textBox_cvr.Clear();
-            LabelTitle.Text = "Administrer kunde";
-
-            button_opret.Enabled = true;
-            button_rediger.Enabled = false;
-            button_dyr.Enabled = false;
-            button_slet.Enabled = false;
-
 
         }
 
         private void button_slet_Click(object sender, EventArgs e)
-            //lav en "er du sikker" popup
+        //lav en "er du sikker" popup
         {
-            var confirm=MessageBox.Show("Er du sikker på du vil slette denne kunde?", "Bekræft sletning", MessageBoxButtons.YesNo);
+            var confirm = MessageBox.Show("Er du sikker på du vil slette denne kunde?", "Bekræft sletning", MessageBoxButtons.YesNo);
 
-            if (confirm==DialogResult.Yes)
+            if (confirm == DialogResult.Yes)
             {
                 customer = BossController.instance().customerController.GetCustomer(textBox_phonenumber.Text.ToString());
 
@@ -260,20 +218,11 @@ namespace AnimalHouseUI
 
             }
 
-            textBox_phonenumber.Clear();
-            textBox_navn.Clear();
-            textBox_adresse.Clear();
-            textBox_email.Clear();
-            textBox_cvr.Clear();
-            LabelTitle.Text = "Administrer kunde";
-
-            button_opret.Enabled = true;
-            button_rediger.Enabled = false;
-            button_dyr.Enabled = false;
-            button_slet.Enabled = false;
+            ResetForm();
 
 
         }
+
 
         private void button_dyr_Click(object sender, EventArgs e)
         {
@@ -281,10 +230,11 @@ namespace AnimalHouseUI
             animalForm.Show();
         }
 
+
         private void checkBox_erhverskunde_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox_erhverskunde.Checked==true)
-                {
+            if (checkBox_erhverskunde.Checked == true)
+            {
                 textBox_cvr.Enabled = true;
             }
             else
@@ -293,12 +243,13 @@ namespace AnimalHouseUI
             }
         }
 
+
         private void CheckCustomerDeletion()
         {
             customer = BossController.instance().customerController.GetCustomer(textBox_phonenumber.Text.ToString());
             if (customer.active == false)
             {
-                var confirm = MessageBox.Show("Denne kunde er slettet, vil du reaktivere?", "Kunde slettet",MessageBoxButtons.YesNoCancel);
+                var confirm = MessageBox.Show("Denne kunde er slettet, vil du reaktivere?", "Kunde slettet", MessageBoxButtons.YesNoCancel);
 
                 if (confirm == DialogResult.Yes)
                 {
@@ -312,7 +263,99 @@ namespace AnimalHouseUI
 
         }
 
+        private void ResetForm()
+        {
+            textBox_phonenumber.Clear();
+            textBox_navn.Clear();
+            textBox_adresse.Clear();
+            textBox_email.Clear();
+            textBox_cvr.Clear();
 
-        
+            //Denne label gider ikke opdatere, for some reason
+            LabelTitle.Text = "Administrer kunde";
+
+            button_opret.Enabled = true;
+            button_rediger.Enabled = false;
+            button_dyr.Enabled = false;
+            button_slet.Enabled = false;
+        }
+
+
+
+        private bool CheckForValidEmail(string email)
+        {
+            if (Regex.IsMatch(email, @"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", RegexOptions.IgnoreCase))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+
+        //Private bool CheckForCVRdegit(string cvr)
+        //{
+        //    return cvr.All(char.IsDigit);
+        //}
+
+        private void button_opret_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                //Tjekker for at se om emailen er gyldig. 
+
+                //if (CheckForValidEmail((string)label_email.Text) == false)
+                //{
+                //    MessageBox.Show("Ugyldig E-mailadresse");
+                //    return;
+                //}
+
+                //tjekker om cvrnummeret består af tal
+                string cvr = textBox_cvr.Text;
+
+                //if (CheckForCVRdegit(cvr) == false)
+                //{
+                //    MessageBox.Show("CVR-nummer må kun bestå af tal");
+                //    return;
+                //}
+
+
+                int cvrint = 0;
+
+                if (cvr != "")
+                {
+
+                    //Hvis ikke cvr-nummeret består af noget bliver det lavet om til inten cvrint som er 0.
+                    cvrint = Convert.ToInt32(cvr);
+                    if (cvrint.ToString().Length == 8)
+                    {
+                        customer = CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, cvrint);
+
+                        customer = BossController.instance().customerController.CreateCustomer(customer);
+
+                        MessageBox.Show("Kunde oprettet");
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("CVR-nummeret skal bestå af 8 tal.");
+                    }
+
+
+                }
+
+
+            }
+            catch
+            {
+                MessageBox.Show("Noget gik galt");
+            }
+
+
+        }
     }
 }
