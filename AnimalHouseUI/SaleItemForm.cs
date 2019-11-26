@@ -24,6 +24,12 @@ namespace AnimalHouseUI
         }
         private void SaleItemForm_Load_1(object sender, EventArgs e)
         {
+            if (item.prescription == true)
+            {
+
+            }
+
+
             NameLabel.Text = item.name.ToString();
             PriceTextBox.Text = item.price.ToString("N2");
         }
