@@ -56,6 +56,8 @@
             this.checkBox_erhverskunde = new System.Windows.Forms.CheckBox();
             this.label_erhverskunde = new System.Windows.Forms.Label();
             this.dataGridView_dyr = new System.Windows.Forms.DataGridView();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.speciestype = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_dyr)).BeginInit();
@@ -167,7 +169,7 @@
             // 
             this.label_dyr.AutoSize = true;
             this.label_dyr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_dyr.Location = new System.Drawing.Point(321, 109);
+            this.label_dyr.Location = new System.Drawing.Point(338, 129);
             this.label_dyr.Name = "label_dyr";
             this.label_dyr.Size = new System.Drawing.Size(33, 20);
             this.label_dyr.TabIndex = 7;
@@ -359,11 +361,31 @@
             // 
             // dataGridView_dyr
             // 
+            this.dataGridView_dyr.AllowUserToAddRows = false;
+            this.dataGridView_dyr.AllowUserToDeleteRows = false;
+            this.dataGridView_dyr.AllowUserToOrderColumns = true;
+            this.dataGridView_dyr.AllowUserToResizeColumns = false;
+            this.dataGridView_dyr.AllowUserToResizeRows = false;
+            this.dataGridView_dyr.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridView_dyr.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_dyr.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.name,
+            this.speciestype});
             this.dataGridView_dyr.Location = new System.Drawing.Point(336, 152);
             this.dataGridView_dyr.Name = "dataGridView_dyr";
-            this.dataGridView_dyr.Size = new System.Drawing.Size(240, 216);
+            this.dataGridView_dyr.RowHeadersVisible = false;
+            this.dataGridView_dyr.Size = new System.Drawing.Size(206, 350);
             this.dataGridView_dyr.TabIndex = 27;
+            // 
+            // name
+            // 
+            this.name.HeaderText = "Navn";
+            this.name.Name = "name";
+            // 
+            // speciestype
+            // 
+            this.speciestype.HeaderText = "Art";
+            this.speciestype.Name = "speciestype";
             // 
             // CustomerForm
             // 
@@ -436,5 +458,7 @@
         private System.Windows.Forms.CheckBox checkBox_erhverskunde;
         private System.Windows.Forms.Label label_erhverskunde;
         private System.Windows.Forms.DataGridView dataGridView_dyr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn speciestype;
     }
 }
