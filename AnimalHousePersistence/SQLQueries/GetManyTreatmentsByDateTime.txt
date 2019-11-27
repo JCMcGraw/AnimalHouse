@@ -1,2 +1,5 @@
-﻿Select * from Treatment left join TreatmentType on Treatment.TreatmentTypeID = TreatmentType.TreatmentTypeID
-where (StartTime < @endTime AND EndTime > @startTime AND Active=1)
+﻿Select Treatment.*,TreatmentType.*,Employee.EmployeeID as EmployeeID, Employee.Name as Employeename, Employee.TitleID, Title.Name as Titlename from Treatment 
+left join TreatmentType on Treatment.TreatmentTypeID = TreatmentType.TreatmentTypeID
+left join Employee on Treatment.EmployeeID = Employee.EmployeeID
+left join Title on title.TitleID = Employee.TitleID 
+where (StartTime < @endTime AND EndTime > @startTime AND Treatment.Active=1)
