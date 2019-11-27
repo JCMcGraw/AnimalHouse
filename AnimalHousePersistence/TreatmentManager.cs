@@ -244,7 +244,7 @@ namespace AnimalHousePersistence
                 employee = EmployeeFactory.Instance().CreateEmployee(employeeID,name,true,titleID,title);
                  
 
-                treatments.Add(TreatmentFactory.Instance().CreateTreatment(treatmentID, treatmentType, operationRoomID, cageID, itemID, startTime, endTime, payed, headline, active, animalID, employeeID));
+                treatments.Add(TreatmentFactory.Instance().CreateTreatment(treatmentID, treatmentType, operationRoomID, cageID, itemID, startTime, endTime, payed, headline, active, animalID, employee));
             }
             return treatments;
         }
