@@ -56,8 +56,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.animal_gender = new System.Windows.Forms.ComboBox();
             this.animal_bdate = new System.Windows.Forms.DateTimePicker();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // PanelHeader
@@ -167,7 +171,7 @@
             // 
             this.label_dyr.AutoSize = true;
             this.label_dyr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_dyr.Location = new System.Drawing.Point(321, 109);
+            this.label_dyr.Location = new System.Drawing.Point(321, 148);
             this.label_dyr.Name = "label_dyr";
             this.label_dyr.Size = new System.Drawing.Size(61, 20);
             this.label_dyr.TabIndex = 7;
@@ -200,9 +204,9 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(325, 134);
+            this.listBox1.Location = new System.Drawing.Point(325, 381);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(283, 368);
+            this.listBox1.Size = new System.Drawing.Size(283, 121);
             this.listBox1.TabIndex = 11;
             // 
             // animal_name
@@ -389,12 +393,41 @@
             this.animal_bdate.Size = new System.Drawing.Size(98, 20);
             this.animal_bdate.TabIndex = 34;
             // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(325, 176);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(283, 147);
+            this.listBox2.TabIndex = 35;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(321, 358);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 20);
+            this.label2.TabIndex = 36;
+            this.label2.Text = "Recepter";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(161, 56);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 79);
+            this.pictureBox1.TabIndex = 37;
+            this.pictureBox1.TabStop = false;
+            // 
             // AnimalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(640, 542);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.listBox2);
             this.Controls.Add(this.animal_bdate);
             this.Controls.Add(this.animal_gender);
             this.Controls.Add(this.label4);
@@ -425,6 +458,7 @@
             this.PanelHeader.ResumeLayout(false);
             this.PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -462,6 +496,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox animal_gender;
         private System.Windows.Forms.DateTimePicker animal_bdate;
+        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 
     #region Windows Form Designer generated code
