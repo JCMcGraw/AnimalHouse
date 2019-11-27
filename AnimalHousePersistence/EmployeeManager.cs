@@ -19,17 +19,12 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-           employees= GetEmployeeList(sQLQueryResult);
-            //Først skal der hentes en employee ud af databasen
-
-            //Så skal den employee puttes ned i en anden metode der laver en liste af indkommende employees
-
+            employees= GetEmployeeList(sQLQueryResult);
 
             return employees;
         }
 
         public List<Employee> GetEmployeeList(SQLQueryResult sQLQueryResult)
-
         {
             List<Employee> employees = new List<Employee>();
 
@@ -46,15 +41,11 @@ namespace AnimalHousePersistence
                 name = (string)sQLQueryResult.dataTable.Rows[i]["Employeename"];
                 titleID = (int)sQLQueryResult.dataTable.Rows[i]["TitleID"];
                 titleName = (string)sQLQueryResult.dataTable.Rows[i]["TitleName"];
-               
 
                 Title newtitle = TitleFactory.Instance().CreateTitle(titleName, titleID);
                 title = newtitle;
 
-             employees.Add(EmployeeFactory.Instance().CreateEmployee(employeeID, name, active, titleID, title));
-
-             
-
+                employees.Add(EmployeeFactory.Instance().CreateEmployee(employeeID, name, active, titleID, title));
             }
             return employees;
         }
