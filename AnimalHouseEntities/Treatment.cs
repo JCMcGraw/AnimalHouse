@@ -16,7 +16,7 @@ namespace AnimalHouseEntities
 
         public int cageID { get; private set; }
 
-        public int itemID { get; private set; }
+        public Item item { get; private set; }
 
         public DateTime startTime { get; private set; }
 
@@ -32,13 +32,13 @@ namespace AnimalHouseEntities
 
         public Employee employee { get; private set; }
 
-        public Treatment(int treatmentID, TreatmentType treatmentType, int operationRoomID, int cageID, int itemID, DateTime startTime, DateTime endTime, bool payed, string headline, bool active, int animalID, Employee employee)
+        public Treatment(int treatmentID, TreatmentType treatmentType, int operationRoomID, int cageID, Item item, DateTime startTime, DateTime endTime, bool payed, string headline, bool active, int animalID, Employee employee)
         {
             this.treatmentID = treatmentID;
             this.treatmentType = treatmentType;
             this.operationRoomID = operationRoomID;
             this.cageID = cageID;
-            this.itemID = itemID;
+            this.item = item;
             this.startTime = startTime;
             this.endTime = endTime;
             this.payed = payed;
@@ -48,12 +48,12 @@ namespace AnimalHouseEntities
             this.employee = employee;
         }
 
-        public Treatment(TreatmentType treatmentType, int operationRoomID, int cageID, int itemID, DateTime startTime, DateTime endTime, bool payed, string headline, bool active, int animalID, Employee employee)
+        public Treatment(TreatmentType treatmentType, int operationRoomID, int cageID, Item item, DateTime startTime, DateTime endTime, bool payed, string headline, bool active, int animalID, Employee employee)
         {
             this.treatmentType = treatmentType;
             this.operationRoomID = operationRoomID;
             this.cageID = cageID;
-            this.itemID = itemID;
+            this.item = item;
             this.startTime = startTime;
             this.endTime = endTime;
             this.payed = payed;

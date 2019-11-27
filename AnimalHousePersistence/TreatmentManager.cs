@@ -163,8 +163,7 @@ namespace AnimalHousePersistence
                 Employee employee;
                 int operationRoomID;
                 int cageID;
-                int itemID;
-                //int employeeID;
+                Item item;
                 int animalID;
                 Title title;
 
@@ -207,11 +206,19 @@ namespace AnimalHousePersistence
                 }
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("ItemID"))
                 {
-                    itemID = -1;
+                    item = null;
                 }
                 else
                 {
-                    itemID = (int)sQLQueryResult.dataTable.Rows[i]["ItemID"];
+                    int itemID = (int)sQLQueryResult.dataTable.Rows[i]["ItemID"];
+                    string name = (string)sQLQueryResult.dataTable.Rows[i]["ItemName"];
+                    decimal price = (decimal)sQLQueryResult.dataTable.Rows[i]["Price"];
+                    int amount = (int)sQLQueryResult.dataTable.Rows[i]["Amount"];
+                    bool prescription = (bool)sQLQueryResult.dataTable.Rows[i]["Prescription"];
+                    bool treatment = (bool)sQLQueryResult.dataTable.Rows[i]["ItemTreatment"];
+                    bool itemActive = (bool)sQLQueryResult.dataTable.Rows[i]["ItemActive"];
+
+                    item = ItemFactory.Instance().CreateItem(itemID,name,amount,price,prescription,treatment,itemActive);
                 }
 
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("EmployeeID"))
@@ -245,7 +252,7 @@ namespace AnimalHousePersistence
                 
                  
 
-                treatments.Add(TreatmentFactory.Instance().CreateTreatment(treatmentID, treatmentType, operationRoomID, cageID, itemID, startTime, endTime, payed, headline, active, animalID, employee));
+                treatments.Add(TreatmentFactory.Instance().CreateTreatment(treatmentID, treatmentType, operationRoomID, cageID, item, startTime, endTime, payed, headline, active, animalID, employee));
             }
             return treatments;
         }
