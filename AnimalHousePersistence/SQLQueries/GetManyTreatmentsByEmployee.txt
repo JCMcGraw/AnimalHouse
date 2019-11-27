@@ -1,5 +1,6 @@
-﻿Select * from Treatment
-where (EmployeeID = @employeeID AND StartTime < @endTime AND EndTime > @startTime AND Active=1)
-
-
-
+﻿Select Treatment.*,TreatmentType.*,Employee.EmployeeID as EmployeeID, Employee.Name as Employeename, Employee.TitleID, Title.Name as Titlename,Item.Name as ItemName,Item.Active as ItemActive,Item.Amount,Item.Price, Item.Prescription,Item.Treatment as ItemTreatment from Treatment 
+left join TreatmentType on Treatment.TreatmentTypeID = TreatmentType.TreatmentTypeID
+left join Employee on Treatment.EmployeeID = Employee.EmployeeID
+left join Title on title.TitleID = Employee.TitleID 
+left join Item on Treatment.ItemID = Item.ItemID
+where (Treatment.EmployeeID = @employeeID AND StartTime < @endTime AND EndTime > @startTime AND Employee.Active=1)
