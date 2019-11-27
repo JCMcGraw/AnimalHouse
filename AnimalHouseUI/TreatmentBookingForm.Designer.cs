@@ -79,6 +79,7 @@
             this.ButtonMaximize = new System.Windows.Forms.Button();
             this.ButtonClose = new System.Windows.Forms.Button();
             this.ChooseAnimalButton = new System.Windows.Forms.Button();
+            this.itemToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.PanelHeader.SuspendLayout();
             this.PanelHeadline.SuspendLayout();
             this.PanelDropdownBoxes.SuspendLayout();
@@ -470,6 +471,7 @@
             this.CalendarBooking.ItemCreating += new System.Windows.Forms.Calendar.Calendar.CalendarItemCancelEventHandler(this.CalendarBooking_ItemCreating);
             this.CalendarBooking.ItemDeleting += new System.Windows.Forms.Calendar.Calendar.CalendarItemCancelEventHandler(this.CalendarBooking_ItemDeleting);
             this.CalendarBooking.ItemDatesChanged += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.CalendarBooking_ItemDatesChanged);
+            this.CalendarBooking.ItemMouseHover += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.CalendarBooking_ItemMouseHover);
             this.CalendarBooking.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CalendarBooking_KeyDown);
             this.CalendarBooking.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CalendarBooking_MouseClick);
             // 
@@ -644,5 +646,6 @@
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.Button ButtonCreateTreatment;
         private System.Windows.Forms.Button ChooseAnimalButton;
+        private System.Windows.Forms.ToolTip itemToolTip;
     }
 }
