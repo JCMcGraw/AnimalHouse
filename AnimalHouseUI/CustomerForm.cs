@@ -150,7 +150,7 @@ namespace AnimalHouseUI
 
         private void CustomerForm_Load(object sender, EventArgs e)
         {
-
+            dataGridView_dyr.AutoGenerateColumns = false;
         }
 
         private void button_soeg_Click(object sender, EventArgs e)
@@ -162,19 +162,35 @@ namespace AnimalHouseUI
             textBox_adresse.Text = customer.address.ToString();
             textBox_email.Text = customer.email.ToString();
 
-            List<Animal> animals= BossController.instance().animalController.GetManyAnimalByCustomerID(customer);
-            customer.AddAnimalList(animals);
+            
 
-            dataGridView_dyr.DataSource = animals;
+            //danner en liste af dyr der hedder animals. Denne liste bliver dannet et sted på animalmanager og der bruges en customer
+            List<Animal> animals= BossController.instance().animalController.GetManyAnimalByCustomerID(customer);
+
+            //tilknytter listen af dyr til kunden
+            customer.AddAnimalList(animals);
+            
+            dataGridView_dyr.DataSource = customer.animals;
+
+
+
+            dataGridView_dyr.Columns["name"].DataPropertyName = "Name";
+          
+
+
+            for (int i = 0; i < dataGridView_dyr.RowCount; i++)
+            {
+                Species tmpspecies = animals[i].Species;
+
+                dataGridView_dyr.Rows[i].Cells["speciestype"].Value = tmpspecies.speciesType;
+            }
 
             button_rediger.Enabled = true;
-
             button_slet.Enabled = true;
-
             button_dyr.Enabled = true;
             label_headline.Text = customer.name.ToString();
 
-            //  CheckCustomerDeletion();
+              CheckCustomerDeletion();
         }
 
         private void button_rediger_Click(object sender, EventArgs e)
@@ -205,7 +221,7 @@ namespace AnimalHouseUI
         }
 
         private void button_slet_Click(object sender, EventArgs e)
-        //lav en "er du sikker" popup
+       
         {
             var confirm = MessageBox.Show("Er du sikker på du vil slette denne kunde?", "Bekræft sletning", MessageBoxButtons.YesNo);
 
@@ -294,6 +310,16 @@ namespace AnimalHouseUI
             }
         }
 
+        private void LoadeAllItemsInListBox()
+        {
+            List<Animal> animals = BossController.instance().animalController.GetManyAnimalByCustomerID(customer);
+
+            customer.AddAnimalList(animals);
+
+            dataGridView_dyr.DataSource = animals;
+            dataGridView_dyr.Columns["animalID"].Visible = false;
+          
+        }
 
 
         //Private bool CheckForCVRdegit(string cvr)
