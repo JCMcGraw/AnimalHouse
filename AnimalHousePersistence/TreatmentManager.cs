@@ -22,6 +22,7 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@headline", treatment.headline.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@active", treatment.active.ToString(), SqlDbType.Bit);
             sQLQuery.AddParameter("@treatmenttypeid", treatment.treatmentType.treatmentTypeID.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@employeeid", treatment.employee.employeeID.ToString(), SqlDbType.Int);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
@@ -163,7 +164,7 @@ namespace AnimalHousePersistence
                 int operationRoomID;
                 int cageID;
                 int itemID;
-                int employeeID;
+                //int employeeID;
                 int animalID;
                 Title title;
 
@@ -215,11 +216,17 @@ namespace AnimalHousePersistence
 
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("EmployeeID"))
                 {
-                    employeeID = -1;
+                    employee = null;
                 }
                 else
                 {
-                    employeeID = (int)sQLQueryResult.dataTable.Rows[i]["EmployeeID"];
+                    int employeeID = (int)sQLQueryResult.dataTable.Rows[i]["EmployeeID"];
+                    string name = (string)sQLQueryResult.dataTable.Rows[i]["Employeename"];
+                    int titleID = (int)sQLQueryResult.dataTable.Rows[i]["TitleID"];
+                    string titleName = (string)sQLQueryResult.dataTable.Rows[i]["TitleName"];
+
+                    title = TitleFactory.Instance().CreateTitle(titleName, titleID);
+                    employee = EmployeeFactory.Instance().CreateEmployee(employeeID, name, true, titleID, title);
                 }
 
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("AnimalID"))
@@ -235,13 +242,7 @@ namespace AnimalHousePersistence
                 bool payed = (bool)sQLQueryResult.dataTable.Rows[i]["Payed"];
                 string headline = (string)sQLQueryResult.dataTable.Rows[i]["Headline"];
                 bool active = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
-                employeeID = (int)sQLQueryResult.dataTable.Rows[i]["EmployeeID"];
-                string name = (string)sQLQueryResult.dataTable.Rows[i]["Employeename"];
-                int titleID = (int)sQLQueryResult.dataTable.Rows[i]["TitleID"];
-                string titleName = (string)sQLQueryResult.dataTable.Rows[i]["TitleName"];
-
-                title = TitleFactory.Instance().CreateTitle(titleName, titleID);
-                employee = EmployeeFactory.Instance().CreateEmployee(employeeID,name,true,titleID,title);
+                
                  
 
                 treatments.Add(TreatmentFactory.Instance().CreateTreatment(treatmentID, treatmentType, operationRoomID, cageID, itemID, startTime, endTime, payed, headline, active, animalID, employee));
