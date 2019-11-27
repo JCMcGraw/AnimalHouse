@@ -58,10 +58,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.ItemDataGridView = new System.Windows.Forms.DataGridView();
             this.DataGridViewItemList = new System.Windows.Forms.DataGridView();
-            this.NewSaleButton = new System.Windows.Forms.Button();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NewSaleButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -417,20 +417,6 @@
             this.DataGridViewItemList.Size = new System.Drawing.Size(298, 316);
             this.DataGridViewItemList.TabIndex = 46;
             // 
-            // NewSaleButton
-            // 
-            this.NewSaleButton.BackColor = System.Drawing.Color.AliceBlue;
-            this.NewSaleButton.FlatAppearance.BorderSize = 0;
-            this.NewSaleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.NewSaleButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewSaleButton.Location = new System.Drawing.Point(200, 552);
-            this.NewSaleButton.Name = "NewSaleButton";
-            this.NewSaleButton.Size = new System.Drawing.Size(92, 48);
-            this.NewSaleButton.TabIndex = 47;
-            this.NewSaleButton.Text = "Nyt Salg";
-            this.NewSaleButton.UseVisualStyleBackColor = false;
-            this.NewSaleButton.Click += new System.EventHandler(this.NewSaleButton_Click);
-            // 
             // name
             // 
             this.name.HeaderText = "Navn";
@@ -446,6 +432,20 @@
             // 
             this.price.HeaderText = "Pris";
             this.price.Name = "price";
+            // 
+            // NewSaleButton
+            // 
+            this.NewSaleButton.BackColor = System.Drawing.Color.AliceBlue;
+            this.NewSaleButton.FlatAppearance.BorderSize = 0;
+            this.NewSaleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.NewSaleButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NewSaleButton.Location = new System.Drawing.Point(200, 552);
+            this.NewSaleButton.Name = "NewSaleButton";
+            this.NewSaleButton.Size = new System.Drawing.Size(92, 48);
+            this.NewSaleButton.TabIndex = 47;
+            this.NewSaleButton.Text = "Nyt Salg";
+            this.NewSaleButton.UseVisualStyleBackColor = false;
+            this.NewSaleButton.Click += new System.EventHandler(this.NewSaleButton_Click);
             // 
             // label4
             // 
