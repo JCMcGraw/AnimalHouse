@@ -207,12 +207,12 @@ namespace AnimalHouseUI
                 ItemDataGridView.Columns["itemAmount"].DataPropertyName = "amount";
                 ItemDataGridView.Columns["itemPrice"].DataPropertyName = "price";
 
+                //ItemDataGridView.DataSource = null;
                 items = BossController.instance().saleController.GetAllActiveItems();
                 ItemDataGridView.DataSource = items;
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -278,11 +278,11 @@ namespace AnimalHouseUI
                     amount = Convert.ToInt32(DataGridViewItemList.Rows[i].Cells["Amount"].Value);
                 }
 
-                TotalPriceLabel.Text = Convert.ToString(sale.Price(price, amount));
+                TotalPriceLabel.Text = Convert.ToString(sale.Price(price, amount))+" Kr";
 
-                MomsLabel.Text = Convert.ToString(sale.Moms(sale.Price(price, amount)));
+                MomsLabel.Text = Convert.ToString(sale.Moms(sale.Price(price, amount)))+" Kr";
 
-                TotalInkMomsLabel.Text = Convert.ToString(sale.TotalPriceInkMoms(sale.Price(price, amount), sale.Moms(sale.Price(price, amount))));
+                TotalInkMomsLabel.Text = Convert.ToString(sale.TotalPriceInkMoms(sale.Price(price, amount), sale.Moms(sale.Price(price, amount))))+" Kr";
             }
             catch (Exception)
             {
@@ -299,9 +299,9 @@ namespace AnimalHouseUI
                 PhoneTextBox.Text = "";
                 AdressTextBox.Text = "";
                 EmailTextBox.Text = "";
-                TotalPriceLabel.Text = "0";
-                MomsLabel.Text = "0";
-                TotalInkMomsLabel.Text = "0";
+                TotalPriceLabel.Text = "";
+                MomsLabel.Text = "";
+                TotalInkMomsLabel.Text = "";
                  
                 sale = new Sale(customer,DateTime.Now);
                 DataGridViewItemList.DataSource = null;
