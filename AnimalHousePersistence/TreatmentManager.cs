@@ -23,6 +23,7 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@active", treatment.active.ToString(), SqlDbType.Bit);
             sQLQuery.AddParameter("@treatmenttypeid", treatment.treatmentType.treatmentTypeID.ToString(), SqlDbType.Int);
             sQLQuery.AddParameter("@employeeid", treatment.employee.employeeID.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@itemid", treatment.item.itemID.ToString(), SqlDbType.Int);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
