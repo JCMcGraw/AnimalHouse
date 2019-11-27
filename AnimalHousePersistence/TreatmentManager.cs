@@ -89,8 +89,8 @@ namespace AnimalHousePersistence
             SQLQuery sQLQuery = new SQLQuery(query);
 
             sQLQuery.AddParameter("@employeeID", employeeID.ToString(), SqlDbType.Int);
-            sQLQuery.AddParameter("@startTime", startTime.ToString("yyyy-MM-ddThh:mm:ss"), SqlDbType.DateTime);
-            sQLQuery.AddParameter("@endTime", endTime.ToString("yyyy-MM-ddThh:mm:ss"), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@startTime", startTime.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@endTime", endTime.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
@@ -108,8 +108,8 @@ namespace AnimalHousePersistence
             SQLQuery sQLQuery = new SQLQuery(query);
 
             sQLQuery.AddParameter("@animalID", animalID.ToString(), SqlDbType.Int);
-            sQLQuery.AddParameter("@startTime", startTime.ToString("yyyy-MM-ddThh:mm:ss"), SqlDbType.DateTime);
-            sQLQuery.AddParameter("@endTime", endTime.ToString("yyyy-MM-ddThh:mm:ss"), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@startTime", startTime.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@endTime", endTime.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
@@ -126,8 +126,8 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("@startTime", startTime.ToString("yyyy-MM-ddThh:mm:ss"), SqlDbType.DateTime);
-            sQLQuery.AddParameter("@endTime", endTime.ToString("yyyy-MM-ddThh:mm:ss"), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@startTime", startTime.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@endTime", endTime.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 

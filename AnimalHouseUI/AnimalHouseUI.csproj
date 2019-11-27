@@ -91,6 +91,12 @@
     <EmbeddedResource Include="CustomerForm.resx">
       <DependentUpon>CustomerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <Compile Include="SelectEmployeeForTreatmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectEmployeeForTreatmentForm.Designer.cs">
+      <DependentUpon>SelectEmployeeForTreatmentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TreatmentBookingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SampleForm.resx">
       <DependentUpon>SampleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectEmployeeForTreatmentForm.resx">
+      <DependentUpon>SelectEmployeeForTreatmentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TreatmentBookingForm.resx">
       <DependentUpon>TreatmentBookingForm.cs</DependentUpon>
