@@ -54,5 +54,23 @@ namespace AnimalHouseEntities
                 }
             }
         }
+
+        public decimal Price(decimal price, int amount)
+        {
+            decimal total = price * amount;
+            return Math.Round(total, 2);
+        }
+
+        public decimal Moms(decimal totalPrice)
+        {
+            decimal momsPrice = (totalPrice * 1.25m) - totalPrice;
+            return Math.Round(momsPrice, 2);
+        }
+
+        public decimal TotalPriceInkMoms(decimal price, decimal momsPrice)
+        {
+            decimal totalPriceInkMoms = price + momsPrice;
+            return Math.Round(totalPriceInkMoms, 2);
+        }
     }
 }

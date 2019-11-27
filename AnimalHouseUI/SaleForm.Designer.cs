@@ -58,13 +58,13 @@
             this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NewSaleButton = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.AdressTextBox = new System.Windows.Forms.TextBox();
             this.EmailTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemDataGridView)).BeginInit();
@@ -177,7 +177,7 @@
             // 
             this.CustomerNameLabel.AutoSize = true;
             this.CustomerNameLabel.Font = new System.Drawing.Font("Segoe Print", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CustomerNameLabel.Location = new System.Drawing.Point(16, 56);
+            this.CustomerNameLabel.Location = new System.Drawing.Point(16, 67);
             this.CustomerNameLabel.Name = "CustomerNameLabel";
             this.CustomerNameLabel.Size = new System.Drawing.Size(106, 47);
             this.CustomerNameLabel.TabIndex = 8;
@@ -221,9 +221,9 @@
             // 
             // SearchItemTextBox
             // 
-            this.SearchItemTextBox.Location = new System.Drawing.Point(580, 105);
+            this.SearchItemTextBox.Location = new System.Drawing.Point(595, 119);
             this.SearchItemTextBox.Name = "SearchItemTextBox";
-            this.SearchItemTextBox.Size = new System.Drawing.Size(156, 20);
+            this.SearchItemTextBox.Size = new System.Drawing.Size(153, 20);
             this.SearchItemTextBox.TabIndex = 20;
             this.SearchItemTextBox.TextChanged += new System.EventHandler(this.SearchItemTextBox_TextChanged);
             // 
@@ -241,7 +241,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(307, 472);
+            this.label6.Location = new System.Drawing.Point(378, 472);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(31, 13);
             this.label6.TabIndex = 32;
@@ -251,27 +251,31 @@
             // 
             this.MomsLabel.AutoSize = true;
             this.MomsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MomsLabel.Location = new System.Drawing.Point(383, 496);
+            this.MomsLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.MomsLabel.Location = new System.Drawing.Point(415, 496);
             this.MomsLabel.Name = "MomsLabel";
-            this.MomsLabel.Size = new System.Drawing.Size(13, 13);
+            this.MomsLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.MomsLabel.Size = new System.Drawing.Size(0, 13);
             this.MomsLabel.TabIndex = 33;
-            this.MomsLabel.Text = "0";
+            this.MomsLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // TotalInkMomsLabel
             // 
             this.TotalInkMomsLabel.AutoSize = true;
             this.TotalInkMomsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalInkMomsLabel.Location = new System.Drawing.Point(383, 523);
+            this.TotalInkMomsLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.TotalInkMomsLabel.Location = new System.Drawing.Point(415, 523);
             this.TotalInkMomsLabel.Name = "TotalInkMomsLabel";
-            this.TotalInkMomsLabel.Size = new System.Drawing.Size(13, 13);
+            this.TotalInkMomsLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.TotalInkMomsLabel.Size = new System.Drawing.Size(0, 13);
             this.TotalInkMomsLabel.TabIndex = 34;
-            this.TotalInkMomsLabel.Text = "0";
+            this.TotalInkMomsLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(256, 523);
+            this.label16.Location = new System.Drawing.Point(327, 523);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(82, 13);
             this.label16.TabIndex = 35;
@@ -281,7 +285,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(303, 496);
+            this.label17.Location = new System.Drawing.Point(374, 496);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(35, 13);
             this.label17.TabIndex = 36;
@@ -291,17 +295,19 @@
             // 
             this.TotalPriceLabel.AutoSize = true;
             this.TotalPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalPriceLabel.Location = new System.Drawing.Point(383, 472);
+            this.TotalPriceLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.TotalPriceLabel.Location = new System.Drawing.Point(415, 472);
             this.TotalPriceLabel.Name = "TotalPriceLabel";
-            this.TotalPriceLabel.Size = new System.Drawing.Size(13, 13);
+            this.TotalPriceLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.TotalPriceLabel.Size = new System.Drawing.Size(0, 13);
             this.TotalPriceLabel.TabIndex = 37;
-            this.TotalPriceLabel.Text = "0";
+            this.TotalPriceLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // UpdateMedecinLabel
             // 
             this.UpdateMedecinLabel.AutoSize = true;
             this.UpdateMedecinLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UpdateMedecinLabel.Location = new System.Drawing.Point(562, 587);
+            this.UpdateMedecinLabel.Location = new System.Drawing.Point(562, 592);
             this.UpdateMedecinLabel.Name = "UpdateMedecinLabel";
             this.UpdateMedecinLabel.Size = new System.Drawing.Size(194, 13);
             this.UpdateMedecinLabel.TabIndex = 38;
@@ -360,7 +366,7 @@
             this.DataGridViewItemList.Name = "DataGridViewItemList";
             this.DataGridViewItemList.RowHeadersVisible = false;
             this.DataGridViewItemList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridViewItemList.Size = new System.Drawing.Size(235, 316);
+            this.DataGridViewItemList.Size = new System.Drawing.Size(234, 316);
             this.DataGridViewItemList.TabIndex = 46;
             // 
             // name
@@ -394,36 +400,6 @@
             this.NewSaleButton.Text = "Nyt Salg";
             this.NewSaleButton.UseVisualStyleBackColor = false;
             this.NewSaleButton.Click += new System.EventHandler(this.NewSaleButton_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(426, 472);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(17, 13);
-            this.label4.TabIndex = 48;
-            this.label4.Text = "Kr";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(426, 496);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(17, 13);
-            this.label9.TabIndex = 49;
-            this.label9.Text = "Kr";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(426, 523);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(17, 13);
-            this.label10.TabIndex = 50;
-            this.label10.Text = "Kr";
             // 
             // AdressTextBox
             // 
@@ -459,19 +435,49 @@
             this.label2.TabIndex = 54;
             this.label2.Text = "E-mail";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(592, 103);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 13);
+            this.label3.TabIndex = 55;
+            this.label3.Text = "Søg ";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(234, 129);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(71, 13);
+            this.label5.TabIndex = 56;
+            this.label5.Text = "Vare i Kurven";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(512, 129);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(59, 13);
+            this.label7.TabIndex = 57;
+            this.label7.Text = "Hylde Vare";
+            // 
             // SaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(768, 614);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.EmailTextBox);
             this.Controls.Add(this.AdressTextBox);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.NewSaleButton);
             this.Controls.Add(this.DataGridViewItemList);
             this.Controls.Add(this.ItemDataGridView);
@@ -531,9 +537,6 @@
         private System.Windows.Forms.DataGridView ItemDataGridView;
         private System.Windows.Forms.DataGridView DataGridViewItemList;
         private System.Windows.Forms.Button NewSaleButton;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn amount;
         private System.Windows.Forms.DataGridViewTextBoxColumn price;
@@ -544,6 +547,9 @@
         private System.Windows.Forms.TextBox EmailTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label7;
     }
 
 }

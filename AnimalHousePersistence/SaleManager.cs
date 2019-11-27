@@ -12,7 +12,6 @@ namespace AnimalHousePersistence
 {
     public class SaleManager : ISaleManager
     {
-
         public List<Item> GetAllActiveItems()
         {
             string query = Utility.ReadSQLQueryFromFile("GetAllActiveItems.txt");
