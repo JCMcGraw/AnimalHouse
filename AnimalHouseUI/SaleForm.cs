@@ -252,7 +252,7 @@ namespace AnimalHouseUI
 
                             DataGridViewItemList.Rows[i].Cells["Name"].Value = item2.name;
 
-                            FillPriceInLable();
+                            FillPriceInLable(item2.price,item2.amount);
                         }
                     }
                 }
@@ -268,28 +268,26 @@ namespace AnimalHouseUI
             }
         }
 
-        private void FillPriceInLable()
+        private void FillPriceInLable(decimal price,int amount)
         {
-            decimal price = 0;
-            int amount = 0;
-            decimal total =0;
-            decimal moms = 0;
-
-            for (int i = 0; i < DataGridViewItemList.RowCount; i++)
+            try
             {
-                price = Convert.ToInt32(DataGridViewItemList.Rows[i].Cells["Price"].Value);
-                amount = Convert.ToInt32(DataGridViewItemList.Rows[i].Cells["Amount"].Value);
+                for (int i = 0; i < DataGridViewItemList.RowCount; i++)
+                {
+                    price = Convert.ToInt32(DataGridViewItemList.Rows[i].Cells["Price"].Value);
+                    amount = Convert.ToInt32(DataGridViewItemList.Rows[i].Cells["Amount"].Value);
+                }
 
-                total = price * amount;
+                TotalPriceLabel.Text = Convert.ToString(sale.Price(price, amount));
+
+                MomsLabel.Text = Convert.ToString(sale.Moms(sale.Price(price, amount)));
+
+                TotalInkMomsLabel.Text = Convert.ToString(sale.TotalPriceInkMoms(sale.Price(price, amount), sale.Moms(sale.Price(price, amount))));
             }
-         
-            TotalPriceLabel.Text = total.ToString();
-
-            moms =(total * 1.25m) - total;
-
-            MomsLabel.Text = moms.ToString();
-
-            TotalInkMomsLabel.Text = Convert.ToString(moms + total);
+            catch (Exception)
+            {
+                MessageBox.Show("noget gik galt");
+            }
         }
 
         private void NewSaleButton_Click(object sender, EventArgs e)
@@ -322,7 +320,6 @@ namespace AnimalHouseUI
                 if (SearchItemTextBox.Text == "")
                 {
                     ItemDataGridView.DataSource = items;
-
                 }
                 else
                 {
@@ -332,7 +329,6 @@ namespace AnimalHouseUI
             }
             catch (Exception)
             {
-
                 MessageBox.Show("Noget gik galt");
             }
         }        
