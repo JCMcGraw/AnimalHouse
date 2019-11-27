@@ -10,8 +10,11 @@ namespace AnimalHouseEntities
     {
 
         public int customerID { get; private set; }
+
         public int animalID { get; private set; }
+
         public string name { get; private set; }
+
         public DateTime birthday { get; private set; }
 
         public Species Species { get; private set; }
@@ -19,8 +22,11 @@ namespace AnimalHouseEntities
         //public int species { get; private set; }
         
         public double weight { get; private set; }
+
         public bool gender { get; private set; }
+
         public int employeeid { get; private set; }
+
         public bool active { get; private set; }
 
         public Animal(int customerID, int animalID, string name, DateTime birthday, Species SpeciesType, double weight, bool gender,int employeeID, bool active)
@@ -47,7 +53,6 @@ namespace AnimalHouseEntities
             this.active = active;
         }
 
-       
         public void UpdateID(int animalid)
         {
             this.animalID = animalid;
@@ -56,6 +61,5 @@ namespace AnimalHouseEntities
         {
             this.animalID = animalid;
         }
-
     }
 }
