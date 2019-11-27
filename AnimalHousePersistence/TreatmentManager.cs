@@ -22,6 +22,8 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@headline", treatment.headline.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@active", treatment.active.ToString(), SqlDbType.Bit);
             sQLQuery.AddParameter("@treatmenttypeid", treatment.treatmentType.treatmentTypeID.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@employeeid", treatment.employee.employeeID.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@itemid", treatment.item.itemID.ToString(), SqlDbType.Int);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
@@ -159,11 +161,12 @@ namespace AnimalHousePersistence
             {
                 int treatmentID;
                 TreatmentType treatmentType;
+                Employee employee;
                 int operationRoomID;
                 int cageID;
-                int itemID;
-                int employeeID;
+                Item item;
                 int animalID;
+                Title title;
 
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("TreatmentID"))
                 {
@@ -204,20 +207,36 @@ namespace AnimalHousePersistence
                 }
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("ItemID"))
                 {
-                    itemID = -1;
+                    item = null;
                 }
                 else
                 {
-                    itemID = (int)sQLQueryResult.dataTable.Rows[i]["ItemID"];
+                    int itemID = (int)sQLQueryResult.dataTable.Rows[i]["ItemID"];
+                    string name = (string)sQLQueryResult.dataTable.Rows[i]["ItemName"];
+                    decimal price = (decimal)sQLQueryResult.dataTable.Rows[i]["Price"];
+                    int amount = (int)sQLQueryResult.dataTable.Rows[i]["Amount"];
+                    bool prescription = (bool)sQLQueryResult.dataTable.Rows[i]["Prescription"];
+                    bool treatment = (bool)sQLQueryResult.dataTable.Rows[i]["ItemTreatment"];
+                    bool itemActive = (bool)sQLQueryResult.dataTable.Rows[i]["ItemActive"];
+
+                    item = ItemFactory.Instance().CreateItem(itemID,name,amount,price,prescription,treatment,itemActive);
                 }
+
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("EmployeeID"))
                 {
-                    employeeID = -1;
+                    employee = null;
                 }
                 else
                 {
-                    employeeID = (int)sQLQueryResult.dataTable.Rows[i]["EmployeeID"];
+                    int employeeID = (int)sQLQueryResult.dataTable.Rows[i]["EmployeeID"];
+                    string name = (string)sQLQueryResult.dataTable.Rows[i]["Employeename"];
+                    int titleID = (int)sQLQueryResult.dataTable.Rows[i]["TitleID"];
+                    string titleName = (string)sQLQueryResult.dataTable.Rows[i]["TitleName"];
+
+                    title = TitleFactory.Instance().CreateTitle(titleName, titleID);
+                    employee = EmployeeFactory.Instance().CreateEmployee(employeeID, name, true, titleID, title);
                 }
+
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("AnimalID"))
                 {
                     animalID = -1;
@@ -231,8 +250,10 @@ namespace AnimalHousePersistence
                 bool payed = (bool)sQLQueryResult.dataTable.Rows[i]["Payed"];
                 string headline = (string)sQLQueryResult.dataTable.Rows[i]["Headline"];
                 bool active = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
+                
+                 
 
-                treatments.Add(TreatmentFactory.Instance().CreateTreatment(treatmentID, treatmentType, operationRoomID, cageID, itemID, startTime, endTime, payed, headline, active, employeeID, animalID));
+                treatments.Add(TreatmentFactory.Instance().CreateTreatment(treatmentID, treatmentType, operationRoomID, cageID, item, startTime, endTime, payed, headline, active, animalID, employee));
             }
             return treatments;
         }

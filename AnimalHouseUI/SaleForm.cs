@@ -16,19 +16,20 @@ namespace AnimalHouseUI
     {
         Sale sale;
         Customer customer;
-        
-        //List<Item> items;
+        List<Item> items;
 
         public SaleForm()
         {
             InitializeComponent();
         }
 
-        private void SaleUI_Load(object sender, EventArgs e)
+        private void SaleForm_Load(object sender, EventArgs e)
         {
             LoadeAllItemsInListBox();
+            sale = new Sale(customer,DateTime.Now);
 
             DataGridViewItemList.AutoGenerateColumns = false;
+            ItemDataGridView.AutoGenerateColumns = false;
         }
 
         #region Copy this 
@@ -160,16 +161,15 @@ namespace AnimalHouseUI
 
                 CustomerNameLabel.Text = customer.name.ToString();
                 CustomerNameLabel.Enabled = true;
+                AdressTextBox.Text = customer.address;
+                EmailTextBox.Text = customer.email;
+
+                sale.SetCustomer(customer);
             }
             catch (Exception)
             {
                 MessageBox.Show("Prøv igen ");
             }
-        }
-
-        private void SearchMedicalButton_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void EndButton_Click(object sender, EventArgs e)
@@ -203,17 +203,17 @@ namespace AnimalHouseUI
         {
             try
             {
-                List<Item> items = BossController.instance().saleController.GetAllActiveItems();
+                ItemDataGridView.Columns["ItemName"].DataPropertyName = "name";
+                ItemDataGridView.Columns["itemAmount"].DataPropertyName = "amount";
+                ItemDataGridView.Columns["itemPrice"].DataPropertyName = "price";
 
+                items = BossController.instance().saleController.GetAllActiveItems();
                 ItemDataGridView.DataSource = items;
-                ItemDataGridView.Columns["itemID"].Visible = false;
-                ItemDataGridView.Columns["prescription"].Visible = false;
-                ItemDataGridView.Columns["active"].Visible = false;
-                ItemDataGridView.Columns["treatment"].Visible = false;
             }
             catch (Exception)
             {
-                MessageBox.Show("Kunne ikke finde Varene");
+
+                throw;
             }
         }
 
@@ -292,35 +292,50 @@ namespace AnimalHouseUI
             TotalInkMomsLabel.Text = Convert.ToString(moms + total);
         }
 
-        private void SearchItemTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            try
-            {
-                if (e.KeyChar == (char)13)
-                {
-                    //DataView dataView = (DataView)items;
-
-                    //dataView.RowFilter = string.Format("Name like '%{0}%'or Presciption like '%{0}%'", SearchItemTextBox.Text);
-                    //ItemDataGridView.DataSource = dataView.ToTable();
-                }
-            }
-            catch (Exception )
-            {
-                MessageBox.Show("noget gik galt");
-            }
-        }
-
         private void NewSaleButton_Click(object sender, EventArgs e)
         {
             try
             {
+                customer = null;
+                CustomerNameLabel.Text = "";
+                PhoneTextBox.Text = "";
+                AdressTextBox.Text = "";
+                EmailTextBox.Text = "";
+                TotalPriceLabel.Text = "0";
+                MomsLabel.Text = "0";
+                TotalInkMomsLabel.Text = "0";
+                 
+                sale = new Sale(customer,DateTime.Now);
                 DataGridViewItemList.DataSource = null;
+                SearchItemTextBox.Text = "";
             }
             catch (Exception)
             {
                 MessageBox.Show("noget gik galt");
             }
         }
+
+        private void SearchItemTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (SearchItemTextBox.Text == "")
+                {
+                    ItemDataGridView.DataSource = items;
+
+                }
+                else
+                {
+                    List<Item> itemss = items.Where(x => x.name.ToLower().Contains(SearchItemTextBox.Text.ToLower())).ToList<Item>();
+                    ItemDataGridView.DataSource = itemss;
+                }
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Noget gik galt");
+            }
+        }        
     }
 }
 

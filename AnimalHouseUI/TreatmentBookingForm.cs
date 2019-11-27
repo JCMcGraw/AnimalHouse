@@ -454,6 +454,22 @@ namespace AnimalHouseUI
             return newSelectedStartDate;
         }
 
+        private List<Treatment> GetDoubleBookings(DateTime startTime, DateTime endTime)
+        {
+            List<Treatment> treatments = new List<Treatment>();
+
+            foreach(var treatment in treatmentsCache)
+            {
+                if ((treatment.Value.endTime > startTime && treatment.Value.endTime <  endTime) || (treatment.Value.startTime > startTime && treatment.Value.startTime < endTime)||
+                    (treatment.Value.startTime < startTime && treatment.Value.endTime > endTime))
+                {
+                    treatments.Add(treatment.Value);
+                }
+            }
+
+            return treatments;
+        }
+
         private void CalendarBooking_ItemCreating(object sender, CalendarItemCancelEventArgs e)
         {
             //question string for verifying items
@@ -462,7 +478,6 @@ namespace AnimalHouseUI
             if ((int)ComboBoxTreatmentType.SelectedValue == 3)
             {
                 message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra {e.Item.StartDate.ToString("dd/M")} til {e.Item.EndDate.ToString("dd/M")}";
-
             }
             
             string headline = ComboBoxTreatmentType.Text;
@@ -471,8 +486,11 @@ namespace AnimalHouseUI
             DialogResult dialogResult = MessageBox.Show(message, "Book behandling", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+                //dummy item for testing
+                Item item = ItemFactory.Instance().CreateItem(9, "Vaccination", 1, 399m, false, true, true);
+
                 //create new treatment
-                Treatment treatment = TreatmentFactory.Instance().CreateTreatment((TreatmentType)ComboBoxTreatmentType.SelectedItem, -1, -1, -1, e.Item.StartDate, e.Item.EndDate, false, headline, true, -1, -1);
+                Treatment treatment = TreatmentFactory.Instance().CreateTreatment((TreatmentType)ComboBoxTreatmentType.SelectedItem, -1, -1, item, e.Item.StartDate, e.Item.EndDate, false, headline, true, -1, (Employee)ComboBoxEmployee.SelectedItem);
 
                 //add treatment to database and get treatment with treatment ID
                 Treatment treatmentWithID = bossController.treatmentController.CreateTreatment(treatment);
@@ -535,8 +553,8 @@ namespace AnimalHouseUI
         private Treatment GetUpdatedTreatment(int treatmentID, DateTime newStartTime, DateTime newEndTime)
         {
             Treatment oldTreatment = treatmentsCache[treatmentID];
-            Treatment newTreatment = TreatmentFactory.Instance().CreateTreatment(treatmentID, oldTreatment.treatmentType, oldTreatment.operationRoomID, oldTreatment.cageID, oldTreatment.itemID,
-                newStartTime, newEndTime, oldTreatment.payed, oldTreatment.headline, oldTreatment.active, oldTreatment.animalID, oldTreatment.employeeID);
+            Treatment newTreatment = TreatmentFactory.Instance().CreateTreatment(treatmentID, oldTreatment.treatmentType, oldTreatment.operationRoomID, oldTreatment.cageID, oldTreatment.item,
+                newStartTime, newEndTime, oldTreatment.payed, oldTreatment.headline, oldTreatment.active, oldTreatment.animalID, oldTreatment.employee);
 
             return newTreatment;
         }
