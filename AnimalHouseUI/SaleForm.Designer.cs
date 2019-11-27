@@ -40,7 +40,6 @@
             this.SearchPhoneButton = new System.Windows.Forms.Button();
             this.FakturaButton = new System.Windows.Forms.Button();
             this.PhoneTextBox = new System.Windows.Forms.TextBox();
-            this.SearchItemButton = new System.Windows.Forms.Button();
             this.SearchItemTextBox = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -50,13 +49,10 @@
             this.label17 = new System.Windows.Forms.Label();
             this.TotalPriceLabel = new System.Windows.Forms.Label();
             this.UpdateMedecinLabel = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.ItemDataGridView = new System.Windows.Forms.DataGridView();
+            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataGridViewItemList = new System.Windows.Forms.DataGridView();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,6 +61,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.AdressTextBox = new System.Windows.Forms.TextBox();
+            this.EmailTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemDataGridView)).BeginInit();
@@ -83,7 +83,7 @@
             this.PanelHeader.Location = new System.Drawing.Point(0, 0);
             this.PanelHeader.Name = "PanelHeader";
             this.PanelHeader.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.PanelHeader.Size = new System.Drawing.Size(875, 36);
+            this.PanelHeader.Size = new System.Drawing.Size(768, 36);
             this.PanelHeader.TabIndex = 0;
             this.PanelHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelHeader_MouseDown);
             this.PanelHeader.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelHeader_MouseMove);
@@ -122,7 +122,7 @@
             this.ButtonMinimize.FlatAppearance.BorderSize = 0;
             this.ButtonMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonMinimize.Location = new System.Drawing.Point(779, 2);
+            this.ButtonMinimize.Location = new System.Drawing.Point(672, 2);
             this.ButtonMinimize.Name = "ButtonMinimize";
             this.ButtonMinimize.Size = new System.Drawing.Size(32, 32);
             this.ButtonMinimize.TabIndex = 3;
@@ -137,7 +137,7 @@
             this.ButtonMaximize.FlatAppearance.BorderSize = 0;
             this.ButtonMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonMaximize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonMaximize.Location = new System.Drawing.Point(811, 2);
+            this.ButtonMaximize.Location = new System.Drawing.Point(704, 2);
             this.ButtonMaximize.Name = "ButtonMaximize";
             this.ButtonMaximize.Size = new System.Drawing.Size(32, 32);
             this.ButtonMaximize.TabIndex = 2;
@@ -152,7 +152,7 @@
             this.ButtonClose.FlatAppearance.BorderSize = 0;
             this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonClose.Location = new System.Drawing.Point(843, 2);
+            this.ButtonClose.Location = new System.Drawing.Point(736, 2);
             this.ButtonClose.Name = "ButtonClose";
             this.ButtonClose.Size = new System.Drawing.Size(32, 32);
             this.ButtonClose.TabIndex = 1;
@@ -165,11 +165,11 @@
             this.EndButton.FlatAppearance.BorderSize = 0;
             this.EndButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EndButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EndButton.Location = new System.Drawing.Point(435, 552);
+            this.EndButton.Location = new System.Drawing.Point(369, 552);
             this.EndButton.Name = "EndButton";
             this.EndButton.Size = new System.Drawing.Size(92, 48);
             this.EndButton.TabIndex = 6;
-            this.EndButton.Text = "Afslut";
+            this.EndButton.Text = "Gem Salg";
             this.EndButton.UseVisualStyleBackColor = false;
             this.EndButton.Click += new System.EventHandler(this.EndButton_Click);
             // 
@@ -204,7 +204,7 @@
             this.FakturaButton.FlatAppearance.BorderSize = 0;
             this.FakturaButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.FakturaButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FakturaButton.Location = new System.Drawing.Point(312, 552);
+            this.FakturaButton.Location = new System.Drawing.Point(246, 552);
             this.FakturaButton.Name = "FakturaButton";
             this.FakturaButton.Size = new System.Drawing.Size(92, 48);
             this.FakturaButton.TabIndex = 11;
@@ -219,28 +219,13 @@
             this.PhoneTextBox.Size = new System.Drawing.Size(123, 20);
             this.PhoneTextBox.TabIndex = 12;
             // 
-            // SearchItemButton
-            // 
-            this.SearchItemButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
-            this.SearchItemButton.BackgroundImage = global::AnimalHouseUI.Properties.Resources.icons8_search_32px;
-            this.SearchItemButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.SearchItemButton.FlatAppearance.BorderSize = 0;
-            this.SearchItemButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SearchItemButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchItemButton.Location = new System.Drawing.Point(742, 73);
-            this.SearchItemButton.Name = "SearchItemButton";
-            this.SearchItemButton.Size = new System.Drawing.Size(36, 30);
-            this.SearchItemButton.TabIndex = 19;
-            this.SearchItemButton.UseVisualStyleBackColor = false;
-            this.SearchItemButton.Click += new System.EventHandler(this.SearchMedicalButton_Click);
-            // 
             // SearchItemTextBox
             // 
-            this.SearchItemTextBox.Location = new System.Drawing.Point(567, 80);
+            this.SearchItemTextBox.Location = new System.Drawing.Point(580, 105);
             this.SearchItemTextBox.Name = "SearchItemTextBox";
             this.SearchItemTextBox.Size = new System.Drawing.Size(156, 20);
             this.SearchItemTextBox.TabIndex = 20;
-            this.SearchItemTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SearchItemTextBox_KeyPress);
+            this.SearchItemTextBox.TextChanged += new System.EventHandler(this.SearchItemTextBox_TextChanged);
             // 
             // label12
             // 
@@ -256,7 +241,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(373, 472);
+            this.label6.Location = new System.Drawing.Point(307, 472);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(31, 13);
             this.label6.TabIndex = 32;
@@ -266,7 +251,7 @@
             // 
             this.MomsLabel.AutoSize = true;
             this.MomsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MomsLabel.Location = new System.Drawing.Point(449, 496);
+            this.MomsLabel.Location = new System.Drawing.Point(383, 496);
             this.MomsLabel.Name = "MomsLabel";
             this.MomsLabel.Size = new System.Drawing.Size(13, 13);
             this.MomsLabel.TabIndex = 33;
@@ -276,7 +261,7 @@
             // 
             this.TotalInkMomsLabel.AutoSize = true;
             this.TotalInkMomsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalInkMomsLabel.Location = new System.Drawing.Point(449, 523);
+            this.TotalInkMomsLabel.Location = new System.Drawing.Point(383, 523);
             this.TotalInkMomsLabel.Name = "TotalInkMomsLabel";
             this.TotalInkMomsLabel.Size = new System.Drawing.Size(13, 13);
             this.TotalInkMomsLabel.TabIndex = 34;
@@ -286,7 +271,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(322, 523);
+            this.label16.Location = new System.Drawing.Point(256, 523);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(82, 13);
             this.label16.TabIndex = 35;
@@ -296,7 +281,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(369, 496);
+            this.label17.Location = new System.Drawing.Point(303, 496);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(35, 13);
             this.label17.TabIndex = 36;
@@ -306,7 +291,7 @@
             // 
             this.TotalPriceLabel.AutoSize = true;
             this.TotalPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalPriceLabel.Location = new System.Drawing.Point(449, 472);
+            this.TotalPriceLabel.Location = new System.Drawing.Point(383, 472);
             this.TotalPriceLabel.Name = "TotalPriceLabel";
             this.TotalPriceLabel.Size = new System.Drawing.Size(13, 13);
             this.TotalPriceLabel.TabIndex = 37;
@@ -316,71 +301,11 @@
             // 
             this.UpdateMedecinLabel.AutoSize = true;
             this.UpdateMedecinLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UpdateMedecinLabel.Location = new System.Drawing.Point(667, 587);
+            this.UpdateMedecinLabel.Location = new System.Drawing.Point(562, 587);
             this.UpdateMedecinLabel.Name = "UpdateMedecinLabel";
             this.UpdateMedecinLabel.Size = new System.Drawing.Size(194, 13);
             this.UpdateMedecinLabel.TabIndex = 38;
             this.UpdateMedecinLabel.Text = "Dato for sidste opdateret mececin priser";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(224, 120);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(33, 13);
-            this.label5.TabIndex = 39;
-            this.label5.Text = "Navn";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(331, 120);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(31, 13);
-            this.label7.TabIndex = 40;
-            this.label7.Text = "Antal";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(432, 120);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(24, 13);
-            this.label8.TabIndex = 41;
-            this.label8.Text = "Pris";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(785, 120);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(24, 13);
-            this.label1.TabIndex = 44;
-            this.label1.Text = "Pris";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(683, 120);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 13);
-            this.label2.TabIndex = 43;
-            this.label2.Text = "Antal";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(564, 120);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 13);
-            this.label3.TabIndex = 42;
-            this.label3.Text = "Navn";
             // 
             // ItemDataGridView
             // 
@@ -389,14 +314,35 @@
             this.ItemDataGridView.AllowUserToResizeColumns = false;
             this.ItemDataGridView.AllowUserToResizeRows = false;
             this.ItemDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ItemDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ItemName,
+            this.itemAmount,
+            this.itemPrice});
             this.ItemDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.ItemDataGridView.Location = new System.Drawing.Point(567, 145);
+            this.ItemDataGridView.Location = new System.Drawing.Point(515, 145);
             this.ItemDataGridView.Name = "ItemDataGridView";
             this.ItemDataGridView.RowHeadersVisible = false;
             this.ItemDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ItemDataGridView.Size = new System.Drawing.Size(294, 316);
+            this.ItemDataGridView.Size = new System.Drawing.Size(233, 316);
             this.ItemDataGridView.TabIndex = 45;
             this.ItemDataGridView.DoubleClick += new System.EventHandler(this.ItemDataGridView_DoubleClick);
+            // 
+            // ItemName
+            // 
+            this.ItemName.HeaderText = "Navn";
+            this.ItemName.Name = "ItemName";
+            // 
+            // itemAmount
+            // 
+            this.itemAmount.HeaderText = "Antal";
+            this.itemAmount.Name = "itemAmount";
+            this.itemAmount.Width = 50;
+            // 
+            // itemPrice
+            // 
+            this.itemPrice.HeaderText = "Pris";
+            this.itemPrice.Name = "itemPrice";
+            this.itemPrice.Width = 80;
             // 
             // DataGridViewItemList
             // 
@@ -414,7 +360,7 @@
             this.DataGridViewItemList.Name = "DataGridViewItemList";
             this.DataGridViewItemList.RowHeadersVisible = false;
             this.DataGridViewItemList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridViewItemList.Size = new System.Drawing.Size(298, 316);
+            this.DataGridViewItemList.Size = new System.Drawing.Size(235, 316);
             this.DataGridViewItemList.TabIndex = 46;
             // 
             // name
@@ -427,11 +373,13 @@
             this.amount.HeaderText = "Antal";
             this.amount.Name = "amount";
             this.amount.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.amount.Width = 50;
             // 
             // price
             // 
             this.price.HeaderText = "Pris";
             this.price.Name = "price";
+            this.price.Width = 80;
             // 
             // NewSaleButton
             // 
@@ -439,7 +387,7 @@
             this.NewSaleButton.FlatAppearance.BorderSize = 0;
             this.NewSaleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.NewSaleButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewSaleButton.Location = new System.Drawing.Point(200, 552);
+            this.NewSaleButton.Location = new System.Drawing.Point(134, 552);
             this.NewSaleButton.Name = "NewSaleButton";
             this.NewSaleButton.Size = new System.Drawing.Size(92, 48);
             this.NewSaleButton.TabIndex = 47;
@@ -451,7 +399,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(492, 472);
+            this.label4.Location = new System.Drawing.Point(426, 472);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(17, 13);
             this.label4.TabIndex = 48;
@@ -461,7 +409,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(492, 496);
+            this.label9.Location = new System.Drawing.Point(426, 496);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(17, 13);
             this.label9.TabIndex = 49;
@@ -471,30 +419,62 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(492, 523);
+            this.label10.Location = new System.Drawing.Point(426, 523);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(17, 13);
             this.label10.TabIndex = 50;
             this.label10.Text = "Kr";
+            // 
+            // AdressTextBox
+            // 
+            this.AdressTextBox.Location = new System.Drawing.Point(24, 195);
+            this.AdressTextBox.Name = "AdressTextBox";
+            this.AdressTextBox.Size = new System.Drawing.Size(123, 20);
+            this.AdressTextBox.TabIndex = 51;
+            // 
+            // EmailTextBox
+            // 
+            this.EmailTextBox.Location = new System.Drawing.Point(24, 243);
+            this.EmailTextBox.Name = "EmailTextBox";
+            this.EmailTextBox.Size = new System.Drawing.Size(123, 20);
+            this.EmailTextBox.TabIndex = 52;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(21, 179);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 13);
+            this.label1.TabIndex = 53;
+            this.label1.Text = "Adresse";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(21, 227);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 54;
+            this.label2.Text = "E-mail";
             // 
             // SaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
-            this.ClientSize = new System.Drawing.Size(875, 612);
+            this.ClientSize = new System.Drawing.Size(768, 614);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.EmailTextBox);
+            this.Controls.Add(this.AdressTextBox);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.NewSaleButton);
             this.Controls.Add(this.DataGridViewItemList);
             this.Controls.Add(this.ItemDataGridView);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.UpdateMedecinLabel);
             this.Controls.Add(this.TotalPriceLabel);
             this.Controls.Add(this.label17);
@@ -504,7 +484,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.SearchItemTextBox);
-            this.Controls.Add(this.SearchItemButton);
             this.Controls.Add(this.PhoneTextBox);
             this.Controls.Add(this.FakturaButton);
             this.Controls.Add(this.SearchPhoneButton);
@@ -514,7 +493,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SaleForm";
             this.Text = "SampleForm";
-            this.Load += new System.EventHandler(this.SaleUI_Load);
+            this.Load += new System.EventHandler(this.SaleForm_Load);
             this.PanelHeader.ResumeLayout(false);
             this.PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).EndInit();
@@ -540,7 +519,6 @@
 
         private System.Windows.Forms.Button FakturaButton;
         private System.Windows.Forms.TextBox PhoneTextBox;
-        private System.Windows.Forms.Button SearchItemButton;
         private System.Windows.Forms.TextBox SearchItemTextBox;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label6;
@@ -550,21 +528,22 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label TotalPriceLabel;
         private System.Windows.Forms.Label UpdateMedecinLabel;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView ItemDataGridView;
         private System.Windows.Forms.DataGridView DataGridViewItemList;
         private System.Windows.Forms.Button NewSaleButton;
-        private System.Windows.Forms.DataGridViewTextBoxColumn name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn amount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn price;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn amount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn itemAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn itemPrice;
+        private System.Windows.Forms.TextBox AdressTextBox;
+        private System.Windows.Forms.TextBox EmailTextBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 
 }

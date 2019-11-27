@@ -38,6 +38,11 @@ namespace AnimalHouseEntities
             saleLineItems.Add(saleLineItem);
         }
 
+        public void SetCustomer(Customer customer)
+        {
+            this.customer = customer;
+        }
+
         public void DeleteSaleLineItem(SaleLineItem saleLineItem)
         {
             for(int i = 0; i < saleLineItems.Count; i++)
