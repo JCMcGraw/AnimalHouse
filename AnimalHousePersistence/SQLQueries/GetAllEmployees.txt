@@ -1,4 +1,5 @@
 ﻿select Employee.EmployeeID as EmployeeID, Employee.Name as Employeename, Employee.TitleID, Employee.Name as Titlename from employee
-join Title on title.TitleID = Employee.TitleID
+join Title on title.TitleID = Employee.TitleID 
 where Employee.Active=1
+
 
