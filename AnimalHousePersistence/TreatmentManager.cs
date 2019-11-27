@@ -159,11 +159,13 @@ namespace AnimalHousePersistence
             {
                 int treatmentID;
                 TreatmentType treatmentType;
+                Employee employee;
                 int operationRoomID;
                 int cageID;
                 int itemID;
                 int employeeID;
                 int animalID;
+                Title title;
 
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("TreatmentID"))
                 {
@@ -210,6 +212,7 @@ namespace AnimalHousePersistence
                 {
                     itemID = (int)sQLQueryResult.dataTable.Rows[i]["ItemID"];
                 }
+
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("EmployeeID"))
                 {
                     employeeID = -1;
@@ -218,6 +221,7 @@ namespace AnimalHousePersistence
                 {
                     employeeID = (int)sQLQueryResult.dataTable.Rows[i]["EmployeeID"];
                 }
+
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("AnimalID"))
                 {
                     animalID = -1;
@@ -231,6 +235,14 @@ namespace AnimalHousePersistence
                 bool payed = (bool)sQLQueryResult.dataTable.Rows[i]["Payed"];
                 string headline = (string)sQLQueryResult.dataTable.Rows[i]["Headline"];
                 bool active = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
+                employeeID = (int)sQLQueryResult.dataTable.Rows[i]["EmployeeID"];
+                string name = (string)sQLQueryResult.dataTable.Rows[i]["Employeename"];
+                int titleID = (int)sQLQueryResult.dataTable.Rows[i]["TitleID"];
+                string titleName = (string)sQLQueryResult.dataTable.Rows[i]["TitleName"];
+
+                title = TitleFactory.Instance().CreateTitle(titleName, titleID);
+                employee = EmployeeFactory.Instance().CreateEmployee(employeeID,name,true,titleID,title);
+                 
 
                 treatments.Add(TreatmentFactory.Instance().CreateTreatment(treatmentID, treatmentType, operationRoomID, cageID, itemID, startTime, endTime, payed, headline, active, employeeID, animalID));
             }
