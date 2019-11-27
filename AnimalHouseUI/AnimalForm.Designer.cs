@@ -52,7 +52,7 @@
             this.animalAge_label = new System.Windows.Forms.Label();
             this.owner_label = new System.Windows.Forms.Label();
             this.animal_species = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.animal_employee = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.animal_gender = new System.Windows.Forms.ComboBox();
             this.animal_bdate = new System.Windows.Forms.DateTimePicker();
@@ -342,10 +342,10 @@
             this.animal_species.TabIndex = 30;
             this.animal_species.SelectedIndexChanged += new System.EventHandler(this.Animal_species_SelectedIndexChanged);
             // 
-            // comboBox1
+            // animal_employee
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.animal_employee.FormattingEnabled = true;
+            this.animal_employee.Items.AddRange(new object[] {
             "Hund",
             "Kat",
             "Kanin",
@@ -355,10 +355,10 @@
             "Papegøje",
             "Slange",
             "Skildpadde"});
-            this.comboBox1.Location = new System.Drawing.Point(161, 262);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(99, 21);
-            this.comboBox1.TabIndex = 31;
+            this.animal_employee.Location = new System.Drawing.Point(161, 262);
+            this.animal_employee.Name = "animal_employee";
+            this.animal_employee.Size = new System.Drawing.Size(99, 21);
+            this.animal_employee.TabIndex = 31;
             // 
             // label4
             // 
@@ -380,6 +380,7 @@
             this.animal_gender.Name = "animal_gender";
             this.animal_gender.Size = new System.Drawing.Size(99, 21);
             this.animal_gender.TabIndex = 33;
+            this.animal_gender.SelectedIndexChanged += new System.EventHandler(this.Animal_gender_SelectedIndexChanged);
             // 
             // animal_bdate
             // 
@@ -397,7 +398,7 @@
             this.Controls.Add(this.animal_bdate);
             this.Controls.Add(this.animal_gender);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.animal_employee);
             this.Controls.Add(this.animal_species);
             this.Controls.Add(this.owner_label);
             this.Controls.Add(this.animalAge_label);
@@ -457,7 +458,7 @@
         private System.Windows.Forms.Label animalAge_label;
         private System.Windows.Forms.Label owner_label;
         private System.Windows.Forms.ComboBox animal_species;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox animal_employee;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox animal_gender;
         private System.Windows.Forms.DateTimePicker animal_bdate;

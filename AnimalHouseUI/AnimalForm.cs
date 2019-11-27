@@ -16,13 +16,20 @@ namespace AnimalHouseUI
     {
         Animal animal;
         Customer customer;
-     
-        public AnimalForm(Customer customer, Animal animal)
+
+        private DataTable Animal_Gender = new DataTable();
+
+        public AnimalForm(Animal animal,Customer customer)
 
         {
             this.customer = customer;
             this.animal = animal;
             InitializeComponent();
+        }
+        private void SetStatusComboBoxToDefault()
+        {
+            animal_gender.SelectedIndex = 0;
+            
         }
         public AnimalForm(Customer customer)
 
@@ -154,8 +161,18 @@ namespace AnimalHouseUI
 
         private void AnimalForm_Load(object sender, EventArgs e)
         {
-            
-            
+
+            //Animal animal = AnimalController.Instance().GetAnimal(animalID);
+
+            //string name = animal_name.Text.ToString();
+            //DateTime Birthday = animal_bdat.();
+            //Species Speciesname = animal_species.Text.ToString();
+            //double weight = animal_weight.Text.ToString();
+            //bool gender = textBox_email.Text.ToString();
+            //int employeeID = animal_employee.SelectedIndex.ToString();
+
+
+
         }
         private void button_opret_Click(object sender, EventArgs e)
         {
@@ -207,10 +224,37 @@ namespace AnimalHouseUI
 
         private void Button_rediger_Click(object sender, EventArgs e)
         {
-            
+            //animal = BossController.instance().animalController.GetAnimal(animalID);
 
-            string message = BossController.instance().animalController.UpdateAnimal(animal);
-            MessageBox.Show("dyr rettet");
+            //string name = animal_name.Text.ToString();
+            //DateTime birthday = animal_bdate.Value;
+            ////pecies SpeciesType = animal_species.SelectedIndex;
+            //double weight = Convert.ToDouble(animal_weight.Text);
+            //bool gender = Convert.ToBoolean(animal_gender.SelectedIndex);
+
+
+            //Animal animal = new Animal(customerid, animalid, name, birthday, speciestype, weight, gender,employeeID, true);
+
+            //string message = BossController.instance().animalController.UpdateAnimal(animal);
+            //MessageBox.Show(message);
+
+            //Animal Testanimal = new Animal(123,2,"samson",,species, 4, true, 2, true);
+
+            //Species species = new Species(2, "Hund");
+
+
+            //Customer customer = new Customer("123", "Niels", "asdasd 9", "234234",true);
+            //Species species = new Species(2, "Hund");
+
+         
+         
+
+
+            //Animal animal = new Animal()
+
+            //Animal message = BossController.instance().animalController.UpdateAnimal(animal);
+            //MessageBox.Show("dyr oprettet");
+
 
         }
 
@@ -219,12 +263,11 @@ namespace AnimalHouseUI
 
         }
 
-        //private void Button_rediger_Click(object sender, EventArgs e)
-        //{
-        //    Animal animal = AnimalFactory.Instance().UpdateAnimal(customer.customerID, animal_name.Text.ToString(), (animal_bdate.Value),animal_species.SelectedItem, Convert.ToDouble(animal_weight.Text), animal_gender.SelectedItem, true);
+        private void Animal_gender_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
 
-        //    Animal message = BossController.instance().animalController.UpdateAnimal(animal);
-        //    //MessageBox.Show("dyr rettet");
-        //}
+       
     }
 }

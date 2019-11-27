@@ -376,6 +376,7 @@
             this.dataGridView_dyr.RowHeadersVisible = false;
             this.dataGridView_dyr.Size = new System.Drawing.Size(206, 350);
             this.dataGridView_dyr.TabIndex = 27;
+            this.dataGridView_dyr.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_dyr_CellContentClick);
             // 
             // name
             // 
