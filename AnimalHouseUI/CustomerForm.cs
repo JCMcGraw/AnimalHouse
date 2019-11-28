@@ -270,6 +270,7 @@ namespace AnimalHouseUI
             
             DataGridViewRow row = dataGridView_dyr.SelectedRows[0];
 
+           
             Animal animal = row.DataBoundItem as Animal;
 
             AnimalForm animalForm = new AnimalForm(customer, animal);
