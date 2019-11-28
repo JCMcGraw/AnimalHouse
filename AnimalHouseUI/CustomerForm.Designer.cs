@@ -374,6 +374,7 @@
             this.dataGridView_dyr.Location = new System.Drawing.Point(336, 152);
             this.dataGridView_dyr.Name = "dataGridView_dyr";
             this.dataGridView_dyr.RowHeadersVisible = false;
+            this.dataGridView_dyr.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_dyr.Size = new System.Drawing.Size(206, 350);
             this.dataGridView_dyr.TabIndex = 27;
             // 
