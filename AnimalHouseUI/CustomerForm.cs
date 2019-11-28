@@ -16,9 +16,11 @@ namespace AnimalHouseUI
 {
     public partial class CustomerForm : Form
     {
+        
         Customer customer;
         public CustomerForm()
         {
+           
             InitializeComponent();
         }
         #region Copy this 
@@ -405,6 +407,21 @@ namespace AnimalHouseUI
             {
                 return false;
             }
+        }
+
+        private void DataGridView_dyr_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var dgv = dataGridView_dyr;
+            if(e.ColumnIndex == 10)
+            {
+                int r = dgv.CurrentRow.Index;
+
+                
+                //Animal animal = BossController.instance().animalController.GetAnimal();
+                //animalname = Convert.ToString(dgv[0,r]).Value);
+
+            }
+            
         }
     }
 }
