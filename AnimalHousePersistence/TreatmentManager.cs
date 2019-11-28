@@ -153,7 +153,7 @@ namespace AnimalHousePersistence
             return treatments;
         }
 
-        public List<Treatment> GetTreatmentList(SQLQueryResult sQLQueryResult)
+        private List<Treatment> GetTreatmentList(SQLQueryResult sQLQueryResult)
         {
             List<Treatment> treatments = new List<Treatment>();
 
@@ -251,14 +251,12 @@ namespace AnimalHousePersistence
                 string headline = (string)sQLQueryResult.dataTable.Rows[i]["Headline"];
                 bool active = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
                 
-                 
-
                 treatments.Add(TreatmentFactory.Instance().CreateTreatment(treatmentID, treatmentType, operationRoomID, cageID, item, startTime, endTime, payed, headline, active, animalID, employee));
             }
             return treatments;
         }
 
-        public List<TreatmentType> GetTreatmentTypeList(SQLQueryResult sQLQueryResult)
+        private List<TreatmentType> GetTreatmentTypeList(SQLQueryResult sQLQueryResult)
         {
             List<TreatmentType> treatmentTypes = new List<TreatmentType>();
 
