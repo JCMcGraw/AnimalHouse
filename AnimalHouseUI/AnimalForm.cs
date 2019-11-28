@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AnimalHouse;
 using AnimalHouseEntities;
+using System.ComponentModel;
 
 namespace AnimalHouseUI
 {
@@ -16,13 +17,20 @@ namespace AnimalHouseUI
     {
         Animal animal;
         Customer customer;
-     
-        public AnimalForm(Customer customer, Animal animal)
+
+        private DataTable Animal_Gender = new DataTable();
+
+        public AnimalForm(Customer customer,Animal animal)
 
         {
             this.customer = customer;
             this.animal = animal;
             InitializeComponent();
+        }
+        private void SetStatusComboBoxToDefault()
+        {
+            animal_gender.SelectedIndex = 0;
+            
         }
         public AnimalForm(Customer customer)
 
@@ -30,6 +38,8 @@ namespace AnimalHouseUI
             this.customer = customer;
 
             InitializeComponent();
+
+            
         }
         #region Copy this 
 
@@ -154,8 +164,25 @@ namespace AnimalHouseUI
 
         private void AnimalForm_Load(object sender, EventArgs e)
         {
+            BossController.instance().animalController.GetSpecies();
+            if( animal != null)
+            {
+                animal_name.Text = animal.name;
+                animal_bdate.Text = Convert.ToString(animal.birthday);
+                //animal_species.Text = Convert.ToString(animal.Species);
+                animal_weight.Text = Convert.ToString(animal.weight);
+                //animal_gender.SelectedIndex = Convert.ToInt32(animal.gender);
+                //animal_employee.SelectedIndex = Convert.ToInt32(animal.employeeid);
+               
+            }
+           
+
             
-            
+
+       
+
+
+
         }
         private void button_opret_Click(object sender, EventArgs e)
         {
@@ -169,15 +196,12 @@ namespace AnimalHouseUI
 
         private void Button_opret_Click_1(object sender, EventArgs e)
         {
-            //Animal animal = new Animal(Animal_name.Text.ToString(), Animal_weight.Text.ToString(), Animal_bday.Text.ToString(),
-            //    true);
-
-            //string message = BossController.instance().animalController.CreateAnimal(animal);
-            //MessageBox.Show(message);
-            //fejl
+       
             Species species = new Species(2, "Hund");
 
-            Animal animal = AnimalFactory.Instance().CreateAnimal(customer.customerID,1,animal_name.Text.ToString(),(animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), true, 1, true);
+            Animal animal = AnimalFactory.Instance().CreateAnimal(123, 10, animal_name.Text.ToString(), (animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), true, 1, true);
+
+            //Animal animal = AnimalFactory.Instance().CreateAnimal(customer.customerID,1,animal_name.Text.ToString(),(animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), true, 1, true);
 
             Animal message = BossController.instance().animalController.CreateAnimal(animal);
             MessageBox.Show("dyr oprettet");
@@ -185,19 +209,7 @@ namespace AnimalHouseUI
 
         private void Animal_species_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    DataView dv = new DataView(dataTableSubGroup);
-            //    dv.RowFilter = $"MainGroup = {ComboModelMain.SelectedValue}";
-
-            //    ComboModelSub.DataSource = dv.ToTable();
-            //    ComboModelSub.DisplayMember = "Category";
-            //    ComboModelSub.ValueMember = "SubGroupID";
-            //}
-            //catch
-            //{
-
-            //}
+           
         }
 
         private void LabelTitle_Click(object sender, EventArgs e)
@@ -209,22 +221,54 @@ namespace AnimalHouseUI
         {
             
 
-            string message = BossController.instance().animalController.UpdateAnimal(animal);
-            MessageBox.Show("dyr rettet");
+
+            string name = animal_name.Text.ToString();
+            DateTime birthday = animal_bdate.Value;
+            ////Species SpeciesType = animal_species.SelectedIndex;
+            Species species = animal.Species;
+            double weight = Convert.ToDouble(animal_weight.Text);
+            //bool gender = Convert.ToBoolean(animal_gender.SelectedIndex);
+            int employeeID = Convert.ToInt32(animal_employee.SelectedIndex);
+
+
+            Animal tmpanimal = new Animal(customer.customerID, animal.animalID, name, birthday, species, weight, true, employeeID, true);
+
+            string message = BossController.instance().animalController.UpdateAnimal(tmpanimal);
+            MessageBox.Show(message);
+
+
+
+
+
+
+
 
         }
 
         private void Button_slet_Click(object sender, EventArgs e)
         {
+            var confirm = MessageBox.Show("Fjern dette dyr?", "Bekræft sletning", MessageBoxButtons.YesNo);
+
+            if (confirm == DialogResult.Yes)
+            {
+                //animal = BossController.instance().animalController.GetAnimal();
+
+                string message = BossController.instance().animalController.DeleteAnimal(animal);
+                MessageBox.Show(message);
+
+            }
+            
 
         }
 
-        //private void Button_rediger_Click(object sender, EventArgs e)
-        //{
-        //    Animal animal = AnimalFactory.Instance().UpdateAnimal(customer.customerID, animal_name.Text.ToString(), (animal_bdate.Value),animal_species.SelectedItem, Convert.ToDouble(animal_weight.Text), animal_gender.SelectedItem, true);
+        private void Animal_gender_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
 
-        //    Animal message = BossController.instance().animalController.UpdateAnimal(animal);
-        //    //MessageBox.Show("dyr rettet");
-        //}
+        private void PictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

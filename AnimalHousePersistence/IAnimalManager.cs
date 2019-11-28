@@ -28,8 +28,9 @@ namespace AnimalHousePersistence
 
         List<Animal>GetManyAnimalByCustomerID(Customer customer);
 
-        //Species GetSpecies(Species species);
-        //List<Species> GetSpecies(Species species);
+        
+        //List<Species> GetSpecies();
 
+        List<Species> GetAllSpecies();
     }
 }

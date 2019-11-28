@@ -62,6 +62,12 @@ namespace AnimalHouse
             Animal getAnimal = animalManager.GetAnimal(animalID);
             return getAnimal;
         }
-     
+        public List<Species> GetSpecies()
+        {
+            IAnimalManager animalManager = new AnimalManager();
+            List<Species> animals = animalManager.GetAllSpecies();
+            return animals;
+        }
+
     }
 }

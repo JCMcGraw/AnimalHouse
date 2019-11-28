@@ -1,1 +1,1 @@
-﻿update Animal set Active =0 where animalID=@AnimalID
+﻿update Animal set Active =0 where animalID=@customerID

@@ -38,19 +38,11 @@ namespace AnimalHousePersistence
             animal.UpdateID(animalID);
 
             return animal;
+
         }
-        //if (sQLQueryResult.code == 0)
-        //{
-        //    //read datatable
-        //}
-        //else
-        //{
-
-        //}
-
-        //return "OK";
-
         
+
+
 
         public string UpdateAnimal(Animal animal)
         {
@@ -60,9 +52,9 @@ namespace AnimalHousePersistence
 
             sQLQuery.AddParameter("@name", animal.name.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@birthday", animal.birthday.ToString(), SqlDbType.VarChar);
-            sQLQuery.AddParameter("@species", animal.Species.speciesid.ToString(), SqlDbType.Int);
-            sQLQuery.AddParameter("@gender", animal.gender.ToString(), SqlDbType.Char);
-            sQLQuery.AddParameter("@gender", animal.employeeid.ToString(), SqlDbType.Char);
+            //sQLQuery.AddParameter("@species", animal.Species.speciesid.ToString(), SqlDbType.Int);
+            //sQLQuery.AddParameter("@gender", animal.gender.ToString(), SqlDbType.Char);
+            sQLQuery.AddParameter("@employeeid", animal.employeeid.ToString(), SqlDbType.Char);
             sQLQuery.AddParameter("@weight", animal.weight.ToString(), SqlDbType.VarChar);
           
 
@@ -221,9 +213,6 @@ namespace AnimalHousePersistence
             List<Species> species = new List<Species>();
 
             {
-                string query = Utility.ReadSQLQueryFromFile("GetSpecies.txt");
-
-                SQLQuery sQLQuery = new SQLQuery(query);
 
                 for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
                 {
@@ -240,7 +229,24 @@ namespace AnimalHousePersistence
                 }
             }
 
-       
+        public List<Species> GetAllSpecies()
+        {
+            string query = Utility.ReadSQLQueryFromFile("GetSpecies.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            
+
+
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            List<Species> allspecies = new List<Species>();
+
+            allspecies = GetSpecies(sQLQueryResult);
+
+            return allspecies;
+        }
 
     }
 }

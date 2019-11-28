@@ -8,7 +8,7 @@ namespace AnimalHouseEntities
 {
     public class Animal
     {
-
+        //lav customer om til object
         public int customerID { get; private set; }
 
         public int animalID { get; private set; }

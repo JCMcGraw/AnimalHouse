@@ -16,9 +16,11 @@ namespace AnimalHouseUI
 {
     public partial class CustomerForm : Form
     {
+        
         Customer customer;
         public CustomerForm()
         {
+           
             InitializeComponent();
         }
         #region Copy this 
@@ -151,6 +153,7 @@ namespace AnimalHouseUI
         private void CustomerForm_Load(object sender, EventArgs e)
         {
             dataGridView_dyr.AutoGenerateColumns = false;
+            dataGridView_dyr.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         private void button_soeg_Click(object sender, EventArgs e)
@@ -162,6 +165,7 @@ namespace AnimalHouseUI
             textBox_adresse.Text = customer.address.ToString();
             textBox_email.Text = customer.email.ToString();
 
+            
             
 
             //danner en liste af dyr der hedder animals. Denne liste bliver dannet et sted på animalmanager og der bruges en customer
@@ -259,6 +263,19 @@ namespace AnimalHouseUI
             }
         }
 
+        private void dataGridView_dyr_DoubleClick(object sender, EventArgs e)
+        {
+            //hvorfor kan jeg ikke få den til at åbne en ny animalform?
+            //og hvordan får jeg den til at vælge en hel row, fremfor en cell?
+            
+            DataGridViewRow row = dataGridView_dyr.SelectedRows[0];
+
+            Animal animal = row.DataBoundItem as Animal;
+
+            AnimalForm animalForm = new AnimalForm(customer, animal);
+            animalForm.Show();
+        }
+
 
         private void CheckCustomerDeletion()
         {
@@ -298,16 +315,11 @@ namespace AnimalHouseUI
 
 
 
-        private bool CheckForValidEmail(string email)
+       
+
+        public bool CheckForCVRdegit(string cvr)
         {
-            if (Regex.IsMatch(email, @"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", RegexOptions.IgnoreCase))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return cvr.All(char.IsDigit);
         }
 
         private void LoadeAllItemsInListBox()
@@ -322,66 +334,93 @@ namespace AnimalHouseUI
         }
 
 
-        //Private bool CheckForCVRdegit(string cvr)
-        //{
-        //    return cvr.All(char.IsDigit);
-        //}
+        
 
         private void button_opret_Click(object sender, EventArgs e)
         {
 
-            try
+            //Tjekker for at se om emailen er gyldig. 
+
+            if (CheckForValidEmail((string)textBox_email.Text.ToString()) == false)
             {
-                //Tjekker for at se om emailen er gyldig. 
+                MessageBox.Show("Ugyldig E-mailadresse");
+                return;
+            }
 
-                //if (CheckForValidEmail((string)label_email.Text) == false)
+
+
+
+            // tjekker om cvrnummeret består af tal
+            string cvr = textBox_cvr.Text;
+            int cvrint = 0;
+
+            if (checkBox_erhverskunde.Checked==true&& CheckForCVRdegit(cvr) == false)
+            {
+                
+                
+                
+
+
+                
+                //if (cvr != "")
                 //{
-                //    MessageBox.Show("Ugyldig E-mailadresse");
-                //    return;
-                //}
 
-                //tjekker om cvrnummeret består af tal
-                string cvr = textBox_cvr.Text;
-
-                //if (CheckForCVRdegit(cvr) == false)
-                //{
-                //    MessageBox.Show("CVR-nummer må kun bestå af tal");
-                //    return;
-                //}
-
-
-                int cvrint = 0;
-
-                if (cvr != "")
+                //Hvis ikke cvr-nummeret består af noget bliver det lavet om til inten cvrint som er 0.
+                
+                if (cvr.ToString().Length == 8)
                 {
-
-                    //Hvis ikke cvr-nummeret består af noget bliver det lavet om til inten cvrint som er 0.
                     cvrint = Convert.ToInt32(cvr);
-                    if (cvrint.ToString().Length == 8)
-                    {
-                        customer = CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, cvrint);
-
-                        customer = BossController.instance().customerController.CreateCustomer(customer);
-
-                        MessageBox.Show("Kunde oprettet");
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("CVR-nummeret skal bestå af 8 tal.");
-                    }
-
 
                 }
+                else
+                {
+                    MessageBox.Show("CVR-nummeret skal bestå af 8 tal.");
+                    return;
+                }
 
-
+                MessageBox.Show("CVR-nummer må kun bestå af tal");
+                return;
             }
-            catch
+            //{
+                customer = CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, cvrint);
+
+                customer = BossController.instance().customerController.CreateCustomer(customer);
+
+                MessageBox.Show("Kunde oprettet");
+
+            //}
+
+
+            //}
+
+
+        }
+
+        public bool CheckForValidEmail(string email)
+        {
+            if (Regex.IsMatch(email, @"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", RegexOptions.IgnoreCase))
             {
-                MessageBox.Show("Noget gik galt");
+                return true;
             }
+            else
+            {
+                return false;
+            }
+        }
 
+        private void DataGridView_dyr_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var dgv = dataGridView_dyr;
+            if(e.ColumnIndex == 10)
+            {
+                int r = dgv.CurrentRow.Index;
 
+                
+                //Animal animal = BossController.instance().animalController.GetAnimal();
+                //animalname = Convert.ToString(dgv[0,r]).Value);
+
+            }
+            
         }
     }
 }
