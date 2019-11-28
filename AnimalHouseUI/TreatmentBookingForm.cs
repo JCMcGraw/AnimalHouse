@@ -542,7 +542,7 @@ namespace AnimalHouseUI
                 message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra {e.Item.StartDate.ToString("dd/M")} til {e.Item.EndDate.ToString("dd/M")}";
             }
             
-            string headline = ComboBoxTreatmentType.Text;
+            string headline = $"{ComboBoxTreatmentType.Text}, {selectedEmployee.name}";
 
 
             DialogResult dialogResult = MessageBox.Show(message, "Book behandling", MessageBoxButtons.YesNo);
@@ -552,7 +552,7 @@ namespace AnimalHouseUI
                 Item item = ItemFactory.Instance().CreateItem(9, "Vaccination", 1, 399m, false, true, true);
 
                 //create new treatment
-                Treatment treatment = TreatmentFactory.Instance().CreateTreatment((TreatmentType)ComboBoxTreatmentType.SelectedItem, -1, -1, item, e.Item.StartDate, e.Item.EndDate, false, headline, true, -1, (Employee)ComboBoxEmployee.SelectedItem);
+                Treatment treatment = TreatmentFactory.Instance().CreateTreatment((TreatmentType)ComboBoxTreatmentType.SelectedItem, -1, -1, item, e.Item.StartDate, e.Item.EndDate, false, headline, true, -1, selectedEmployee);
 
                 //add treatment to database and get treatment with treatment ID
                 Treatment treatmentWithID = bossController.treatmentController.CreateTreatment(treatment);
@@ -753,6 +753,11 @@ namespace AnimalHouseUI
             {
                 //animal = customerForm.selectedAnimal;
             }
+        }
+
+        private void CalendarBooking_ItemMouseHover(object sender, CalendarItemEventArgs e)
+        {
+            //itemToolTip.Show(e.Item.Text,CalendarBooking);
         }
     }
 }
