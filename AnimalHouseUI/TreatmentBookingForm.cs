@@ -14,6 +14,8 @@ namespace AnimalHouseUI
     {
         BossController bossController = BossController.instance();
 
+        Animal animal;
+
         Dictionary<int, Treatment> treatmentsCache = new Dictionary<int, Treatment>();
 
         DateTime treatmentCacheDateStart = DateTime.Today;
@@ -26,28 +28,20 @@ namespace AnimalHouseUI
         public TreatmentBookingForm()
         {
             InitializeComponent();
-            DummyValuesForComboboxes();
+            SetValuesForComboboxes();
             ComboBoxEmployee.SelectedIndex = 0;
             ComboBoxTreatmentType.SelectedIndex = 0;
 
             SelectCurrentWeek();
         }
 
-        private void DummyValuesForComboboxes()
+        private void SetValuesForComboboxes()
         {
             List<Employee> employees = bossController.employeeController.GetAllEmployees();
 
-            List<Employee> vets = new List<Employee>();
+            List<Employee> vets = employees.Where(x => x.title.titleID == 1).ToList<Employee>();
 
-            vets.Add(new Employee(-1, "Alle", true, -1, new Title("Dyrlæge", -1)));
-
-            foreach(var employee in employees)
-            {
-                if (employee.title.titleID == 1)
-                {
-                    vets.Add(employee);
-                }
-            }
+            vets.Insert(0, new Employee(-1, "Alle", true, -1, new Title("Dyrlæge", -1)));
 
             ComboBoxEmployee.DataSource = vets;
             ComboBoxEmployee.DisplayMember = "name";
@@ -58,9 +52,6 @@ namespace AnimalHouseUI
             ComboBoxTreatmentType.DataSource = treatmentTypes;
             ComboBoxTreatmentType.DisplayMember = "name";
             ComboBoxTreatmentType.ValueMember = "treatmentTypeID";
-
-            //ComboBoxTreatmentType.DisplayMember = "treatment";
-            //ComboBoxTreatmentType.ValueMember = "treatmentid";
         }
 
         #region form methods
@@ -271,6 +262,7 @@ namespace AnimalHouseUI
 
                 CalendarItem calendarItem = new CalendarItem(CalendarBooking, treatment.startTime, treatment.endTime, treatment.headline);
                 calendarItem.TreatmentID = treatment.treatmentID;
+                calendarItem.EmployeeID = treatment.employee.employeeID;
                 calendarItemsCache.Add(calendarItem);
             }
         }
@@ -294,6 +286,8 @@ namespace AnimalHouseUI
                 }
                 catch { }
             }
+
+            CalendarBooking.Items.Clear();
             foreach (CalendarItem item in calendarItemsCache)
             {
                 if (CalendarBooking.ViewIntersects(item))
@@ -309,7 +303,16 @@ namespace AnimalHouseUI
                     {
                         if (treatmentsCache[item.TreatmentID].treatmentType.treatmentTypeID != 3)
                         {
-                            CalendarBooking.Items.Add(item);
+                            Employee selectedEmployee = (Employee)ComboBoxEmployee.SelectedItem;
+
+                            if (selectedEmployee.employeeID == -1)
+                            {
+                                CalendarBooking.Items.Add(item);
+                            }
+                            else if(item.EmployeeID == selectedEmployee.employeeID)
+                            {
+                                CalendarBooking.Items.Add(item);
+                            }
                         }
                     }
                 }
@@ -454,24 +457,83 @@ namespace AnimalHouseUI
             return newSelectedStartDate;
         }
 
-        private List<Treatment> GetDoubleBookings(DateTime startTime, DateTime endTime)
+        private List<Employee> GetAllAvailableEmployeesForConsultationOrOperation(List<Employee> employees, DateTime SuggestedStartTime, DateTime SuggestedEndTime)
         {
-            List<Treatment> treatments = new List<Treatment>();
+            List<Employee> availableEmployees = new List<Employee>();
+            List<Treatment> treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(SuggestedStartTime.Date, SuggestedStartTime.Date.AddDays(1));
 
-            foreach(var treatment in treatmentsCache)
+
+            foreach(Employee employee in employees)
             {
-                if ((treatment.Value.endTime > startTime && treatment.Value.endTime <  endTime) || (treatment.Value.startTime > startTime && treatment.Value.startTime < endTime)||
-                    (treatment.Value.startTime < startTime && treatment.Value.endTime > endTime))
+                if (CheckAvailabilityForConsultationOrOperation(employee, SuggestedStartTime, SuggestedEndTime, treatments) == true && employee.employeeID != -1)
                 {
-                    treatments.Add(treatment.Value);
+                    availableEmployees.Add(employee);
                 }
             }
 
-            return treatments;
+            return availableEmployees;
+        }
+
+        private bool CheckAvailabilityForConsultationOrOperation(Employee employee, DateTime SuggestedStartTime, DateTime SuggestedEndTime, List<Treatment> treatments = null)
+        {
+            if(treatments == null)
+            {
+                treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(SuggestedStartTime.Date, SuggestedStartTime.Date.AddDays(1));
+            }
+
+            foreach(Treatment treatment in treatments)
+            {
+                if (treatment.employee.employeeID == employee.employeeID)
+                {
+                    if ((treatment.startTime >= SuggestedStartTime && treatment.startTime < SuggestedEndTime) || (treatment.endTime > SuggestedStartTime && treatment.endTime <= SuggestedEndTime) ||
+                        (treatment.startTime <= SuggestedStartTime && treatment.endTime >= SuggestedEndTime))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
         private void CalendarBooking_ItemCreating(object sender, CalendarItemCancelEventArgs e)
         {
+            Employee selectedEmployee = (Employee)ComboBoxEmployee.SelectedItem;
+
+            bool employeeAvailable = true;
+
+            //if employee is selected in combobox check availability to avoid double bookings
+            if (selectedEmployee.employeeID != -1)
+            {
+                employeeAvailable = CheckAvailabilityForConsultationOrOperation(selectedEmployee, e.Item.StartDate, e.Item.EndDate);
+
+                if (employeeAvailable == false)
+                {
+                    MessageBox.Show($"{selectedEmployee.name} er ikke fri i det valgte tidsrum, vælg venligst et andet tidspunkt");
+                    e.Cancel = true;
+                    return;
+                }
+            }
+            //else check all employees for availability and show form with selection option to select employee
+            else
+            {
+                List<Employee> availableEmployees = GetAllAvailableEmployeesForConsultationOrOperation((List<Employee>)ComboBoxEmployee.DataSource, e.Item.StartDate, e.Item.EndDate);
+                SelectEmployeeForTreatmentForm selectEmployeeForTreatmentForm = new SelectEmployeeForTreatmentForm(availableEmployees);
+                selectEmployeeForTreatmentForm.ShowDialog();
+
+                if (selectEmployeeForTreatmentForm.DialogResult == DialogResult.OK)
+                {
+                    selectedEmployee = selectEmployeeForTreatmentForm.selectedEmployee;
+                }
+                else
+                {
+                    MessageBox.Show($"Der blev ikke valgt en dyrlæge, prøv venligst igen");
+                    e.Cancel = true;
+                    return;
+                }
+            }
+
+
             //question string for verifying items
             string message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra kl. {e.Item.StartDate.ToString("H:mm")} til kl. {e.Item.EndDate.ToString("H:mm")} den {e.Item.StartDate.ToString("dd/M")}";
             //altered question string if treatment type is Observation
@@ -674,6 +736,22 @@ namespace AnimalHouseUI
                 {
                     MessageBox.Show("Du har ikke valgt nogle aftaler at slette.");
                 }
+            }
+        }
+
+        private void ComboBoxEmployee_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PlaceItems();
+        }
+
+        private void ChooseAnimalButton_Click(object sender, EventArgs e)
+        {
+            CustomerForm customerForm = new CustomerForm();
+            customerForm.ShowDialog();
+
+            if (customerForm.DialogResult == DialogResult.OK)
+            {
+                //animal = customerForm.selectedAnimal;
             }
         }
     }
