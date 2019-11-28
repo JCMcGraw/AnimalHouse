@@ -76,7 +76,7 @@
             this.PanelHeader.Location = new System.Drawing.Point(0, 0);
             this.PanelHeader.Name = "PanelHeader";
             this.PanelHeader.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.PanelHeader.Size = new System.Drawing.Size(640, 36);
+            this.PanelHeader.Size = new System.Drawing.Size(730, 36);
             this.PanelHeader.TabIndex = 0;
             this.PanelHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelHeader_MouseDown);
             this.PanelHeader.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelHeader_MouseMove);
@@ -116,7 +116,7 @@
             this.ButtonMinimize.FlatAppearance.BorderSize = 0;
             this.ButtonMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonMinimize.Location = new System.Drawing.Point(544, 2);
+            this.ButtonMinimize.Location = new System.Drawing.Point(634, 2);
             this.ButtonMinimize.Name = "ButtonMinimize";
             this.ButtonMinimize.Size = new System.Drawing.Size(32, 32);
             this.ButtonMinimize.TabIndex = 3;
@@ -131,7 +131,7 @@
             this.ButtonMaximize.FlatAppearance.BorderSize = 0;
             this.ButtonMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonMaximize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonMaximize.Location = new System.Drawing.Point(576, 2);
+            this.ButtonMaximize.Location = new System.Drawing.Point(666, 2);
             this.ButtonMaximize.Name = "ButtonMaximize";
             this.ButtonMaximize.Size = new System.Drawing.Size(32, 32);
             this.ButtonMaximize.TabIndex = 2;
@@ -146,7 +146,7 @@
             this.ButtonClose.FlatAppearance.BorderSize = 0;
             this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonClose.Location = new System.Drawing.Point(608, 2);
+            this.ButtonClose.Location = new System.Drawing.Point(698, 2);
             this.ButtonClose.Name = "ButtonClose";
             this.ButtonClose.Size = new System.Drawing.Size(32, 32);
             this.ButtonClose.TabIndex = 1;
@@ -171,7 +171,7 @@
             // 
             this.label_dyr.AutoSize = true;
             this.label_dyr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_dyr.Location = new System.Drawing.Point(321, 148);
+            this.label_dyr.Location = new System.Drawing.Point(431, 59);
             this.label_dyr.Name = "label_dyr";
             this.label_dyr.Size = new System.Drawing.Size(61, 20);
             this.label_dyr.TabIndex = 7;
@@ -181,7 +181,7 @@
             // 
             this.AnimalName_Label.AutoSize = true;
             this.AnimalName_Label.Font = new System.Drawing.Font("Segoe Print", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AnimalName_Label.Location = new System.Drawing.Point(35, 56);
+            this.AnimalName_Label.Location = new System.Drawing.Point(36, 67);
             this.AnimalName_Label.Name = "AnimalName_Label";
             this.AnimalName_Label.Size = new System.Drawing.Size(91, 47);
             this.AnimalName_Label.TabIndex = 8;
@@ -204,14 +204,14 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(325, 381);
+            this.listBox1.Location = new System.Drawing.Point(435, 372);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(283, 121);
             this.listBox1.TabIndex = 11;
             // 
             // animal_name
             // 
-            this.animal_name.Location = new System.Drawing.Point(43, 171);
+            this.animal_name.Location = new System.Drawing.Point(44, 268);
             this.animal_name.Name = "animal_name";
             this.animal_name.Size = new System.Drawing.Size(99, 20);
             this.animal_name.TabIndex = 12;
@@ -219,7 +219,7 @@
             // label_telefonnummer
             // 
             this.label_telefonnummer.AutoSize = true;
-            this.label_telefonnummer.Location = new System.Drawing.Point(40, 246);
+            this.label_telefonnummer.Location = new System.Drawing.Point(46, 343);
             this.label_telefonnummer.Name = "label_telefonnummer";
             this.label_telefonnummer.Size = new System.Drawing.Size(20, 13);
             this.label_telefonnummer.TabIndex = 13;
@@ -232,7 +232,7 @@
             this.button_rediger.FlatAppearance.BorderSize = 0;
             this.button_rediger.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_rediger.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_rediger.Location = new System.Drawing.Point(167, 341);
+            this.button_rediger.Location = new System.Drawing.Point(291, 420);
             this.button_rediger.Name = "button_rediger";
             this.button_rediger.Size = new System.Drawing.Size(118, 73);
             this.button_rediger.TabIndex = 14;
@@ -258,7 +258,7 @@
             // label_navn
             // 
             this.label_navn.AutoSize = true;
-            this.label_navn.Location = new System.Drawing.Point(159, 202);
+            this.label_navn.Location = new System.Drawing.Point(165, 299);
             this.label_navn.Name = "label_navn";
             this.label_navn.Size = new System.Drawing.Size(33, 13);
             this.label_navn.TabIndex = 18;
@@ -267,7 +267,7 @@
             // label_adresse
             // 
             this.label_adresse.AutoSize = true;
-            this.label_adresse.Location = new System.Drawing.Point(158, 155);
+            this.label_adresse.Location = new System.Drawing.Point(164, 252);
             this.label_adresse.Name = "label_adresse";
             this.label_adresse.Size = new System.Drawing.Size(61, 13);
             this.label_adresse.TabIndex = 20;
@@ -275,7 +275,7 @@
             // 
             // animal_weight
             // 
-            this.animal_weight.Location = new System.Drawing.Point(162, 218);
+            this.animal_weight.Location = new System.Drawing.Point(167, 315);
             this.animal_weight.Name = "animal_weight";
             this.animal_weight.Size = new System.Drawing.Size(99, 20);
             this.animal_weight.TabIndex = 19;
@@ -283,7 +283,7 @@
             // label_email
             // 
             this.label_email.AutoSize = true;
-            this.label_email.Location = new System.Drawing.Point(40, 201);
+            this.label_email.Location = new System.Drawing.Point(46, 298);
             this.label_email.Name = "label_email";
             this.label_email.Size = new System.Drawing.Size(26, 13);
             this.label_email.TabIndex = 22;
@@ -292,7 +292,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(40, 155);
+            this.label1.Location = new System.Drawing.Point(46, 252);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(33, 13);
             this.label1.TabIndex = 23;
@@ -302,7 +302,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label3.Location = new System.Drawing.Point(40, 109);
+            this.label3.Location = new System.Drawing.Point(79, 109);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(30, 17);
             this.label3.TabIndex = 27;
@@ -312,7 +312,7 @@
             // 
             this.animalAge_label.AutoSize = true;
             this.animalAge_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.animalAge_label.Location = new System.Drawing.Point(61, 109);
+            this.animalAge_label.Location = new System.Drawing.Point(41, 109);
             this.animalAge_label.Name = "animalAge_label";
             this.animalAge_label.Size = new System.Drawing.Size(41, 17);
             this.animalAge_label.TabIndex = 28;
@@ -321,7 +321,7 @@
             // owner_label
             // 
             this.owner_label.AutoSize = true;
-            this.owner_label.Location = new System.Drawing.Point(40, 134);
+            this.owner_label.Location = new System.Drawing.Point(41, 135);
             this.owner_label.Name = "owner_label";
             this.owner_label.Size = new System.Drawing.Size(25, 13);
             this.owner_label.TabIndex = 29;
@@ -340,7 +340,7 @@
             "Papegøje",
             "Slange",
             "Skildpadde"});
-            this.animal_species.Location = new System.Drawing.Point(43, 262);
+            this.animal_species.Location = new System.Drawing.Point(44, 361);
             this.animal_species.Name = "animal_species";
             this.animal_species.Size = new System.Drawing.Size(99, 21);
             this.animal_species.TabIndex = 30;
@@ -359,7 +359,7 @@
             "Papegøje",
             "Slange",
             "Skildpadde"});
-            this.animal_employee.Location = new System.Drawing.Point(161, 262);
+            this.animal_employee.Location = new System.Drawing.Point(169, 361);
             this.animal_employee.Name = "animal_employee";
             this.animal_employee.Size = new System.Drawing.Size(99, 21);
             this.animal_employee.TabIndex = 31;
@@ -367,7 +367,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(158, 246);
+            this.label4.Location = new System.Drawing.Point(164, 343);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(55, 13);
             this.label4.TabIndex = 32;
@@ -377,10 +377,9 @@
             // 
             this.animal_gender.FormattingEnabled = true;
             this.animal_gender.Items.AddRange(new object[] {
-            "ukendt",
             "han",
             "hun"});
-            this.animal_gender.Location = new System.Drawing.Point(43, 217);
+            this.animal_gender.Location = new System.Drawing.Point(44, 315);
             this.animal_gender.Name = "animal_gender";
             this.animal_gender.Size = new System.Drawing.Size(99, 21);
             this.animal_gender.TabIndex = 33;
@@ -388,7 +387,7 @@
             // 
             // animal_bdate
             // 
-            this.animal_bdate.Location = new System.Drawing.Point(162, 171);
+            this.animal_bdate.Location = new System.Drawing.Point(169, 268);
             this.animal_bdate.Name = "animal_bdate";
             this.animal_bdate.Size = new System.Drawing.Size(98, 20);
             this.animal_bdate.TabIndex = 34;
@@ -396,16 +395,16 @@
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(325, 176);
+            this.listBox2.Location = new System.Drawing.Point(435, 82);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(283, 147);
+            this.listBox2.Size = new System.Drawing.Size(283, 264);
             this.listBox2.TabIndex = 35;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(321, 358);
+            this.label2.Location = new System.Drawing.Point(431, 349);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(75, 20);
             this.label2.TabIndex = 36;
@@ -413,18 +412,19 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(161, 56);
+            this.pictureBox1.Location = new System.Drawing.Point(140, 67);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 79);
+            this.pictureBox1.Size = new System.Drawing.Size(128, 121);
             this.pictureBox1.TabIndex = 37;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
             // AnimalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
-            this.ClientSize = new System.Drawing.Size(640, 542);
+            this.ClientSize = new System.Drawing.Size(730, 542);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.listBox2);

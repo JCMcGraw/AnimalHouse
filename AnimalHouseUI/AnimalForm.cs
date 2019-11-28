@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AnimalHouse;
 using AnimalHouseEntities;
+using System.ComponentModel;
 
 namespace AnimalHouseUI
 {
@@ -37,6 +38,8 @@ namespace AnimalHouseUI
             this.customer = customer;
 
             InitializeComponent();
+
+            
         }
         #region Copy this 
 
@@ -161,15 +164,22 @@ namespace AnimalHouseUI
 
         private void AnimalForm_Load(object sender, EventArgs e)
         {
+            BossController.instance().animalController.GetSpecies();
+            if( animal != null)
+            {
+                animal_name.Text = animal.name;
+                animal_bdate.Text = Convert.ToString(animal.birthday);
+                animal_species.Text = Convert.ToString(animal.Species);
+                animal_weight.Text = Convert.ToString(animal.weight);
+                animal_gender.SelectedIndex = Convert.ToInt32(animal_gender);
+                animal_employee.SelectedIndex = Convert.ToInt32(animal_employee);
+               
+            }
+           
 
-            //Animal animal = AnimalController.Instance().GetAnimal(animalID);
+            
 
-            //string name = animal_name.Text.ToString();
-            //DateTime Birthday = animal_bdat.();
-            //Species Speciesname = animal_species.Text.ToString();
-            //double weight = animal_weight.Text.ToString();
-            //bool gender = textBox_email.Text.ToString();
-            //int employeeID = animal_employee.SelectedIndex.ToString();
+       
 
 
 
@@ -186,15 +196,12 @@ namespace AnimalHouseUI
 
         private void Button_opret_Click_1(object sender, EventArgs e)
         {
-            //Animal animal = new Animal(Animal_name.Text.ToString(), Animal_weight.Text.ToString(), Animal_bday.Text.ToString(),
-            //    true);
-
-            //string message = BossController.instance().animalController.CreateAnimal(animal);
-            //MessageBox.Show(message);
-            //fejl
+       
             Species species = new Species(2, "Hund");
 
-            Animal animal = AnimalFactory.Instance().CreateAnimal(customer.customerID,1,animal_name.Text.ToString(),(animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), true, 1, true);
+            Animal animal = AnimalFactory.Instance().CreateAnimal(123, 10, animal_name.Text.ToString(), (animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), true, 1, true);
+
+            //Animal animal = AnimalFactory.Instance().CreateAnimal(customer.customerID,1,animal_name.Text.ToString(),(animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), true, 1, true);
 
             Animal message = BossController.instance().animalController.CreateAnimal(animal);
             MessageBox.Show("dyr oprettet");
@@ -202,19 +209,7 @@ namespace AnimalHouseUI
 
         private void Animal_species_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    DataView dv = new DataView(dataTableSubGroup);
-            //    dv.RowFilter = $"MainGroup = {ComboModelMain.SelectedValue}";
-
-            //    ComboModelSub.DataSource = dv.ToTable();
-            //    ComboModelSub.DisplayMember = "Category";
-            //    ComboModelSub.ValueMember = "SubGroupID";
-            //}
-            //catch
-            //{
-
-            //}
+           
         }
 
         private void LabelTitle_Click(object sender, EventArgs e)
@@ -224,42 +219,45 @@ namespace AnimalHouseUI
 
         private void Button_rediger_Click(object sender, EventArgs e)
         {
-            //animal = BossController.instance().animalController.GetAnimal(animalID);
+            
 
-            //string name = animal_name.Text.ToString();
-            //DateTime birthday = animal_bdate.Value;
-            ////pecies SpeciesType = animal_species.SelectedIndex;
-            //double weight = Convert.ToDouble(animal_weight.Text);
+
+            string name = animal_name.Text.ToString();
+            DateTime birthday = animal_bdate.Value;
+            ////Species SpeciesType = animal_species.SelectedIndex;
+            Species species = animal.Species;
+            double weight = Convert.ToDouble(animal_weight.Text);
             //bool gender = Convert.ToBoolean(animal_gender.SelectedIndex);
+            int employeeID = Convert.ToInt32(animal_employee.SelectedIndex);
 
 
-            //Animal animal = new Animal(customerid, animalid, name, birthday, speciestype, weight, gender,employeeID, true);
+            Animal tmpanimal = new Animal(customer.customerID, animal.animalID, name, birthday, species, weight, true, employeeID, true);
 
-            //string message = BossController.instance().animalController.UpdateAnimal(animal);
-            //MessageBox.Show(message);
-
-            //Animal Testanimal = new Animal(123,2,"samson",,species, 4, true, 2, true);
-
-            //Species species = new Species(2, "Hund");
+            string message = BossController.instance().animalController.UpdateAnimal(tmpanimal);
+            MessageBox.Show(message);
 
 
-            //Customer customer = new Customer("123", "Niels", "asdasd 9", "234234",true);
-            //Species species = new Species(2, "Hund");
-
-         
-         
 
 
-            //Animal animal = new Animal()
 
-            //Animal message = BossController.instance().animalController.UpdateAnimal(animal);
-            //MessageBox.Show("dyr oprettet");
+
 
 
         }
 
         private void Button_slet_Click(object sender, EventArgs e)
         {
+            var confirm = MessageBox.Show("Fjern dette dyr?", "Bekræft sletning", MessageBoxButtons.YesNo);
+
+            if (confirm == DialogResult.Yes)
+            {
+                //animal = BossController.instance().animalController.GetAnimal();
+
+                string message = BossController.instance().animalController.DeleteAnimal(animal);
+                MessageBox.Show(message);
+
+            }
+            
 
         }
 
@@ -268,6 +266,9 @@ namespace AnimalHouseUI
            
         }
 
-       
+        private void PictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

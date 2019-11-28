@@ -123,6 +123,7 @@
     <Content Include="SQLQueries\GetManyTreatmentTypes.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQLQueries\GetSpecies.txt" />
     <Content Include="SQLQueries\UndeleteCustomer.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

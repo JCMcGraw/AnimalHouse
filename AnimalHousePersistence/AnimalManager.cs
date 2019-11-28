@@ -38,19 +38,11 @@ namespace AnimalHousePersistence
             animal.UpdateID(animalID);
 
             return animal;
+
         }
-        //if (sQLQueryResult.code == 0)
-        //{
-        //    //read datatable
-        //}
-        //else
-        //{
-
-        //}
-
-        //return "OK";
-
         
+
+
 
         public string UpdateAnimal(Animal animal)
         {
@@ -240,7 +232,24 @@ namespace AnimalHousePersistence
                 }
             }
 
-       
+        public List<Species> GetAllSpecies()
+        {
+            string query = Utility.ReadSQLQueryFromFile("GetAllSpecies.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            
+
+
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            List<Species> allspecies = new List<Species>();
+
+            allspecies = GetSpecies(sQLQueryResult);
+
+            return allspecies;
+        }
 
     }
 }
