@@ -36,10 +36,6 @@
             System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             this.PanelHeader = new System.Windows.Forms.Panel();
             this.LabelTitle = new System.Windows.Forms.Label();
-            this.PictureBoxLogo = new System.Windows.Forms.PictureBox();
-            this.ButtonMinimize = new System.Windows.Forms.Button();
-            this.ButtonMaximize = new System.Windows.Forms.Button();
-            this.ButtonClose = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.PanelHeadline = new System.Windows.Forms.Panel();
             this.PanelDropdownBoxes = new System.Windows.Forms.Panel();
@@ -51,9 +47,7 @@
             this.ButtonCreateTreatment = new System.Windows.Forms.Button();
             this.ButtonDelete = new System.Windows.Forms.Button();
             this.PanelMonthView = new System.Windows.Forms.Panel();
-            this.MonthViewBooking = new System.Windows.Forms.Calendar.MonthView();
             this.PanelCalendar = new System.Windows.Forms.Panel();
-            this.CalendarBooking = new System.Windows.Forms.Calendar.Calendar();
             this.ContextMenuStripBooking = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.redTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.yellowTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,14 +72,21 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.editItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CalendarBooking = new System.Windows.Forms.Calendar.Calendar();
+            this.MonthViewBooking = new System.Windows.Forms.Calendar.MonthView();
+            this.PictureBoxLogo = new System.Windows.Forms.PictureBox();
+            this.ButtonMinimize = new System.Windows.Forms.Button();
+            this.ButtonMaximize = new System.Windows.Forms.Button();
+            this.ButtonClose = new System.Windows.Forms.Button();
+            this.ChooseAnimalButton = new System.Windows.Forms.Button();
             this.PanelHeader.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             this.PanelHeadline.SuspendLayout();
             this.PanelDropdownBoxes.SuspendLayout();
             this.PanelBottom.SuspendLayout();
             this.PanelMonthView.SuspendLayout();
             this.PanelCalendar.SuspendLayout();
             this.ContextMenuStripBooking.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // PanelHeader
@@ -120,62 +121,6 @@
             this.LabelTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseMove);
             this.LabelTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseUp);
             // 
-            // PictureBoxLogo
-            // 
-            this.PictureBoxLogo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.PictureBoxLogo.Image = global::AnimalHouseUI.Properties.Resources.dog_sit_64px;
-            this.PictureBoxLogo.Location = new System.Drawing.Point(0, 2);
-            this.PictureBoxLogo.Name = "PictureBoxLogo";
-            this.PictureBoxLogo.Size = new System.Drawing.Size(50, 32);
-            this.PictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.PictureBoxLogo.TabIndex = 1;
-            this.PictureBoxLogo.TabStop = false;
-            // 
-            // ButtonMinimize
-            // 
-            this.ButtonMinimize.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ButtonMinimize.BackgroundImage = global::AnimalHouseUI.Properties.Resources.icons8_minimize_window_32px;
-            this.ButtonMinimize.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ButtonMinimize.FlatAppearance.BorderSize = 0;
-            this.ButtonMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonMinimize.Location = new System.Drawing.Point(1015, 2);
-            this.ButtonMinimize.Name = "ButtonMinimize";
-            this.ButtonMinimize.Size = new System.Drawing.Size(32, 32);
-            this.ButtonMinimize.TabIndex = 3;
-            this.ButtonMinimize.UseVisualStyleBackColor = true;
-            this.ButtonMinimize.Click += new System.EventHandler(this.ButtonMinimize_Click);
-            // 
-            // ButtonMaximize
-            // 
-            this.ButtonMaximize.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ButtonMaximize.BackgroundImage = global::AnimalHouseUI.Properties.Resources.icons8_maximize_button_32px;
-            this.ButtonMaximize.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ButtonMaximize.FlatAppearance.BorderSize = 0;
-            this.ButtonMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonMaximize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonMaximize.Location = new System.Drawing.Point(1047, 2);
-            this.ButtonMaximize.Name = "ButtonMaximize";
-            this.ButtonMaximize.Size = new System.Drawing.Size(32, 32);
-            this.ButtonMaximize.TabIndex = 2;
-            this.ButtonMaximize.UseVisualStyleBackColor = true;
-            this.ButtonMaximize.Click += new System.EventHandler(this.ButtonMaximize_Click);
-            // 
-            // ButtonClose
-            // 
-            this.ButtonClose.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ButtonClose.BackgroundImage = global::AnimalHouseUI.Properties.Resources.icons8_close_window_32px;
-            this.ButtonClose.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ButtonClose.FlatAppearance.BorderSize = 0;
-            this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonClose.Location = new System.Drawing.Point(1079, 2);
-            this.ButtonClose.Name = "ButtonClose";
-            this.ButtonClose.Size = new System.Drawing.Size(32, 32);
-            this.ButtonClose.TabIndex = 1;
-            this.ButtonClose.UseVisualStyleBackColor = true;
-            this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -203,9 +148,9 @@
             this.PanelDropdownBoxes.Controls.Add(this.ComboBoxTreatmentType);
             this.PanelDropdownBoxes.Controls.Add(this.ComboBoxEmployee);
             this.PanelDropdownBoxes.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PanelDropdownBoxes.Location = new System.Drawing.Point(603, 0);
+            this.PanelDropdownBoxes.Location = new System.Drawing.Point(597, 0);
             this.PanelDropdownBoxes.Name = "PanelDropdownBoxes";
-            this.PanelDropdownBoxes.Size = new System.Drawing.Size(508, 70);
+            this.PanelDropdownBoxes.Size = new System.Drawing.Size(514, 70);
             this.PanelDropdownBoxes.TabIndex = 15;
             // 
             // LabelTreatmentType
@@ -250,9 +195,11 @@
             this.ComboBoxEmployee.Name = "ComboBoxEmployee";
             this.ComboBoxEmployee.Size = new System.Drawing.Size(196, 28);
             this.ComboBoxEmployee.TabIndex = 12;
+            this.ComboBoxEmployee.SelectedIndexChanged += new System.EventHandler(this.ComboBoxEmployee_SelectedIndexChanged);
             // 
             // PanelBottom
             // 
+            this.PanelBottom.Controls.Add(this.ChooseAnimalButton);
             this.PanelBottom.Controls.Add(this.ButtonCreateTreatment);
             this.PanelBottom.Controls.Add(this.ButtonDelete);
             this.PanelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -267,7 +214,7 @@
             this.ButtonCreateTreatment.FlatAppearance.BorderSize = 0;
             this.ButtonCreateTreatment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonCreateTreatment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonCreateTreatment.Location = new System.Drawing.Point(271, 15);
+            this.ButtonCreateTreatment.Location = new System.Drawing.Point(388, 15);
             this.ButtonCreateTreatment.Name = "ButtonCreateTreatment";
             this.ButtonCreateTreatment.Size = new System.Drawing.Size(118, 73);
             this.ButtonCreateTreatment.TabIndex = 14;
@@ -281,7 +228,7 @@
             this.ButtonDelete.FlatAppearance.BorderSize = 0;
             this.ButtonDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonDelete.Location = new System.Drawing.Point(395, 15);
+            this.ButtonDelete.Location = new System.Drawing.Point(512, 15);
             this.ButtonDelete.Name = "ButtonDelete";
             this.ButtonDelete.Size = new System.Drawing.Size(118, 73);
             this.ButtonDelete.TabIndex = 13;
@@ -299,30 +246,6 @@
             this.PanelMonthView.Size = new System.Drawing.Size(261, 426);
             this.PanelMonthView.TabIndex = 12;
             // 
-            // MonthViewBooking
-            // 
-            this.MonthViewBooking.ArrowsColor = System.Drawing.SystemColors.Window;
-            this.MonthViewBooking.ArrowsSelectedColor = System.Drawing.Color.Gold;
-            this.MonthViewBooking.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
-            this.MonthViewBooking.DayBackgroundColor = System.Drawing.Color.Empty;
-            this.MonthViewBooking.DayGrayedText = System.Drawing.SystemColors.GrayText;
-            this.MonthViewBooking.DaySelectedBackgroundColor = System.Drawing.SystemColors.Highlight;
-            this.MonthViewBooking.DaySelectedColor = System.Drawing.SystemColors.WindowText;
-            this.MonthViewBooking.DaySelectedTextColor = System.Drawing.SystemColors.HighlightText;
-            this.MonthViewBooking.ItemPadding = new System.Windows.Forms.Padding(2);
-            this.MonthViewBooking.Location = new System.Drawing.Point(20, 6);
-            this.MonthViewBooking.MonthTitleColor = System.Drawing.SystemColors.ActiveCaption;
-            this.MonthViewBooking.MonthTitleColorInactive = System.Drawing.SystemColors.InactiveCaption;
-            this.MonthViewBooking.MonthTitleTextColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.MonthViewBooking.MonthTitleTextColorInactive = System.Drawing.SystemColors.InactiveCaptionText;
-            this.MonthViewBooking.Name = "MonthViewBooking";
-            this.MonthViewBooking.SelectionMode = System.Windows.Forms.Calendar.MonthView.MonthViewSelection.WorkWeek;
-            this.MonthViewBooking.Size = new System.Drawing.Size(229, 294);
-            this.MonthViewBooking.TabIndex = 0;
-            this.MonthViewBooking.Text = "monthView1";
-            this.MonthViewBooking.TodayBorderColor = System.Drawing.Color.Maroon;
-            this.MonthViewBooking.SelectionChanged += new System.EventHandler(this.MonthViewBooking_SelectionChanged);
-            // 
             // PanelCalendar
             // 
             this.PanelCalendar.Controls.Add(this.CalendarBooking);
@@ -332,44 +255,6 @@
             this.PanelCalendar.Padding = new System.Windows.Forms.Padding(10);
             this.PanelCalendar.Size = new System.Drawing.Size(850, 426);
             this.PanelCalendar.TabIndex = 0;
-            // 
-            // CalendarBooking
-            // 
-            this.CalendarBooking.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CalendarBooking.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("08:00:00");
-            this.CalendarBooking.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange1,
-        calendarHighlightRange2,
-        calendarHighlightRange3,
-        calendarHighlightRange4,
-        calendarHighlightRange5};
-            this.CalendarBooking.Location = new System.Drawing.Point(10, 10);
-            this.CalendarBooking.Name = "CalendarBooking";
-            this.CalendarBooking.Size = new System.Drawing.Size(830, 406);
-            this.CalendarBooking.TabIndex = 0;
-            this.CalendarBooking.Text = "calendar1";
-            this.CalendarBooking.TimeScale = System.Windows.Forms.Calendar.CalendarTimeScale.FifteenMinutes;
-            this.CalendarBooking.LoadItems += new System.Windows.Forms.Calendar.Calendar.CalendarLoadEventHandler(this.CalendarBooking_LoadItems);
-            this.CalendarBooking.ItemCreating += new System.Windows.Forms.Calendar.Calendar.CalendarItemCancelEventHandler(this.CalendarBooking_ItemCreating);
-            this.CalendarBooking.ItemDeleting += new System.Windows.Forms.Calendar.Calendar.CalendarItemCancelEventHandler(this.CalendarBooking_ItemDeleting);
-            this.CalendarBooking.ItemDatesChanged += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.CalendarBooking_ItemDatesChanged);
-            this.CalendarBooking.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CalendarBooking_KeyDown);
-            this.CalendarBooking.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CalendarBooking_MouseClick);
             // 
             // ContextMenuStripBooking
             // 
@@ -550,6 +435,138 @@
             this.deleteToolStripMenuItem.Text = "Slet";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
+            // CalendarBooking
+            // 
+            this.CalendarBooking.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.CalendarBooking.Font = new System.Drawing.Font("Segoe UI", 9F);
+            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("08:00:00");
+            this.CalendarBooking.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
+        calendarHighlightRange1,
+        calendarHighlightRange2,
+        calendarHighlightRange3,
+        calendarHighlightRange4,
+        calendarHighlightRange5};
+            this.CalendarBooking.Location = new System.Drawing.Point(10, 10);
+            this.CalendarBooking.Name = "CalendarBooking";
+            this.CalendarBooking.Size = new System.Drawing.Size(830, 406);
+            this.CalendarBooking.TabIndex = 0;
+            this.CalendarBooking.Text = "calendar1";
+            this.CalendarBooking.TimeScale = System.Windows.Forms.Calendar.CalendarTimeScale.FifteenMinutes;
+            this.CalendarBooking.LoadItems += new System.Windows.Forms.Calendar.Calendar.CalendarLoadEventHandler(this.CalendarBooking_LoadItems);
+            this.CalendarBooking.ItemCreating += new System.Windows.Forms.Calendar.Calendar.CalendarItemCancelEventHandler(this.CalendarBooking_ItemCreating);
+            this.CalendarBooking.ItemDeleting += new System.Windows.Forms.Calendar.Calendar.CalendarItemCancelEventHandler(this.CalendarBooking_ItemDeleting);
+            this.CalendarBooking.ItemDatesChanged += new System.Windows.Forms.Calendar.Calendar.CalendarItemEventHandler(this.CalendarBooking_ItemDatesChanged);
+            this.CalendarBooking.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CalendarBooking_KeyDown);
+            this.CalendarBooking.MouseClick += new System.Windows.Forms.MouseEventHandler(this.CalendarBooking_MouseClick);
+            // 
+            // MonthViewBooking
+            // 
+            this.MonthViewBooking.ArrowsColor = System.Drawing.SystemColors.Window;
+            this.MonthViewBooking.ArrowsSelectedColor = System.Drawing.Color.Gold;
+            this.MonthViewBooking.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
+            this.MonthViewBooking.DayBackgroundColor = System.Drawing.Color.Empty;
+            this.MonthViewBooking.DayGrayedText = System.Drawing.SystemColors.GrayText;
+            this.MonthViewBooking.DaySelectedBackgroundColor = System.Drawing.SystemColors.Highlight;
+            this.MonthViewBooking.DaySelectedColor = System.Drawing.SystemColors.WindowText;
+            this.MonthViewBooking.DaySelectedTextColor = System.Drawing.SystemColors.HighlightText;
+            this.MonthViewBooking.ItemPadding = new System.Windows.Forms.Padding(2);
+            this.MonthViewBooking.Location = new System.Drawing.Point(20, 6);
+            this.MonthViewBooking.MonthTitleColor = System.Drawing.SystemColors.ActiveCaption;
+            this.MonthViewBooking.MonthTitleColorInactive = System.Drawing.SystemColors.InactiveCaption;
+            this.MonthViewBooking.MonthTitleTextColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.MonthViewBooking.MonthTitleTextColorInactive = System.Drawing.SystemColors.InactiveCaptionText;
+            this.MonthViewBooking.Name = "MonthViewBooking";
+            this.MonthViewBooking.SelectionMode = System.Windows.Forms.Calendar.MonthView.MonthViewSelection.WorkWeek;
+            this.MonthViewBooking.Size = new System.Drawing.Size(229, 294);
+            this.MonthViewBooking.TabIndex = 0;
+            this.MonthViewBooking.Text = "monthView1";
+            this.MonthViewBooking.TodayBorderColor = System.Drawing.Color.Maroon;
+            this.MonthViewBooking.SelectionChanged += new System.EventHandler(this.MonthViewBooking_SelectionChanged);
+            // 
+            // PictureBoxLogo
+            // 
+            this.PictureBoxLogo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.PictureBoxLogo.Image = global::AnimalHouseUI.Properties.Resources.dog_sit_64px;
+            this.PictureBoxLogo.Location = new System.Drawing.Point(0, 2);
+            this.PictureBoxLogo.Name = "PictureBoxLogo";
+            this.PictureBoxLogo.Size = new System.Drawing.Size(50, 32);
+            this.PictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PictureBoxLogo.TabIndex = 1;
+            this.PictureBoxLogo.TabStop = false;
+            // 
+            // ButtonMinimize
+            // 
+            this.ButtonMinimize.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButtonMinimize.BackgroundImage = global::AnimalHouseUI.Properties.Resources.icons8_minimize_window_32px;
+            this.ButtonMinimize.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ButtonMinimize.FlatAppearance.BorderSize = 0;
+            this.ButtonMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonMinimize.Location = new System.Drawing.Point(1015, 2);
+            this.ButtonMinimize.Name = "ButtonMinimize";
+            this.ButtonMinimize.Size = new System.Drawing.Size(32, 32);
+            this.ButtonMinimize.TabIndex = 3;
+            this.ButtonMinimize.UseVisualStyleBackColor = true;
+            this.ButtonMinimize.Click += new System.EventHandler(this.ButtonMinimize_Click);
+            // 
+            // ButtonMaximize
+            // 
+            this.ButtonMaximize.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButtonMaximize.BackgroundImage = global::AnimalHouseUI.Properties.Resources.icons8_maximize_button_32px;
+            this.ButtonMaximize.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ButtonMaximize.FlatAppearance.BorderSize = 0;
+            this.ButtonMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonMaximize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonMaximize.Location = new System.Drawing.Point(1047, 2);
+            this.ButtonMaximize.Name = "ButtonMaximize";
+            this.ButtonMaximize.Size = new System.Drawing.Size(32, 32);
+            this.ButtonMaximize.TabIndex = 2;
+            this.ButtonMaximize.UseVisualStyleBackColor = true;
+            this.ButtonMaximize.Click += new System.EventHandler(this.ButtonMaximize_Click);
+            // 
+            // ButtonClose
+            // 
+            this.ButtonClose.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButtonClose.BackgroundImage = global::AnimalHouseUI.Properties.Resources.icons8_close_window_32px;
+            this.ButtonClose.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ButtonClose.FlatAppearance.BorderSize = 0;
+            this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonClose.Location = new System.Drawing.Point(1079, 2);
+            this.ButtonClose.Name = "ButtonClose";
+            this.ButtonClose.Size = new System.Drawing.Size(32, 32);
+            this.ButtonClose.TabIndex = 1;
+            this.ButtonClose.UseVisualStyleBackColor = true;
+            this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
+            // 
+            // ChooseAnimalButton
+            // 
+            this.ChooseAnimalButton.BackColor = System.Drawing.Color.AliceBlue;
+            this.ChooseAnimalButton.FlatAppearance.BorderSize = 0;
+            this.ChooseAnimalButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ChooseAnimalButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChooseAnimalButton.Location = new System.Drawing.Point(264, 15);
+            this.ChooseAnimalButton.Name = "ChooseAnimalButton";
+            this.ChooseAnimalButton.Size = new System.Drawing.Size(118, 73);
+            this.ChooseAnimalButton.TabIndex = 15;
+            this.ChooseAnimalButton.Text = "Vælg dyr til behandling";
+            this.ChooseAnimalButton.UseVisualStyleBackColor = false;
+            this.ChooseAnimalButton.Click += new System.EventHandler(this.ChooseAnimalButton_Click);
+            // 
             // TreatmentBookingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -567,7 +584,6 @@
             this.Text = "SampleForm";
             this.PanelHeader.ResumeLayout(false);
             this.PanelHeader.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).EndInit();
             this.PanelHeadline.ResumeLayout(false);
             this.PanelHeadline.PerformLayout();
             this.PanelDropdownBoxes.ResumeLayout(false);
@@ -576,6 +592,7 @@
             this.PanelMonthView.ResumeLayout(false);
             this.PanelCalendar.ResumeLayout(false);
             this.ContextMenuStripBooking.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -626,5 +643,6 @@
         private System.Windows.Forms.ToolStripMenuItem minutes20ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.Button ButtonCreateTreatment;
+        private System.Windows.Forms.Button ChooseAnimalButton;
     }
 }

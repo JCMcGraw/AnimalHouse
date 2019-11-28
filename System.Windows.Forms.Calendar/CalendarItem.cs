@@ -54,6 +54,7 @@ namespace System.Windows.Forms.Calendar
         private object _tag;
         private string _text;
         private int _treatmentID;
+        private int _employeeID;
         #endregion
 
         #region Ctor
@@ -479,6 +480,12 @@ namespace System.Windows.Forms.Calendar
         {
             get { return _treatmentID; }
             set { _treatmentID = value; }
+        }
+
+        public int EmployeeID
+        {
+            get { return _employeeID; }
+            set { _employeeID = value; }
         }
 
         /// <summary>
