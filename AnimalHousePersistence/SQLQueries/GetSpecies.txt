@@ -1,1 +1,1 @@
-﻿select speciesName from species
+﻿select * from species

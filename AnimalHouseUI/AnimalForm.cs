@@ -20,7 +20,7 @@ namespace AnimalHouseUI
 
         private DataTable Animal_Gender = new DataTable();
 
-        public AnimalForm(Animal animal,Customer customer)
+        public AnimalForm(Customer customer,Animal animal)
 
         {
             this.customer = customer;
@@ -169,10 +169,10 @@ namespace AnimalHouseUI
             {
                 animal_name.Text = animal.name;
                 animal_bdate.Text = Convert.ToString(animal.birthday);
-                animal_species.Text = Convert.ToString(animal.Species);
+                //animal_species.Text = Convert.ToString(animal.Species);
                 animal_weight.Text = Convert.ToString(animal.weight);
-                animal_gender.SelectedIndex = Convert.ToInt32(animal_gender);
-                animal_employee.SelectedIndex = Convert.ToInt32(animal_employee);
+                //animal_gender.SelectedIndex = Convert.ToInt32(animal.gender);
+                //animal_employee.SelectedIndex = Convert.ToInt32(animal.employeeid);
                
             }
            

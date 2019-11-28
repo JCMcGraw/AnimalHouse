@@ -213,9 +213,6 @@ namespace AnimalHousePersistence
             List<Species> species = new List<Species>();
 
             {
-                string query = Utility.ReadSQLQueryFromFile("GetSpecies.txt");
-
-                SQLQuery sQLQuery = new SQLQuery(query);
 
                 for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
                 {
@@ -234,7 +231,7 @@ namespace AnimalHousePersistence
 
         public List<Species> GetAllSpecies()
         {
-            string query = Utility.ReadSQLQueryFromFile("GetAllSpecies.txt");
+            string query = Utility.ReadSQLQueryFromFile("GetSpecies.txt");
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
