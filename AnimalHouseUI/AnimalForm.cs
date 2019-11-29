@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AnimalHouse;
 using AnimalHouseEntities;
-using System.ComponentModel;
+
 
 namespace AnimalHouseUI
 {
@@ -18,7 +18,7 @@ namespace AnimalHouseUI
         Animal animal;
         Customer customer;
 
-        private DataTable Animal_Gender = new DataTable();
+        //private DataTable Animal_Gender = new DataTable();
 
         public AnimalForm(Customer customer,Animal animal)
 
@@ -167,6 +167,10 @@ namespace AnimalHouseUI
             BossController.instance().animalController.GetSpecies();
             if( animal != null)
             {
+                AnimalName_Label.Text = animal.name;
+                animalAge_label.Text = Convert.ToString(animal.birthday);
+                animalSpecies_label.Text = Convert.ToString(animal.Species);
+
                 animal_name.Text = animal.name;
                 animal_bdate.Text = Convert.ToString(animal.birthday);
                 //animal_species.Text = Convert.ToString(animal.Species);
@@ -220,7 +224,7 @@ namespace AnimalHouseUI
         private void Button_rediger_Click(object sender, EventArgs e)
         {
             
-
+            
 
             string name = animal_name.Text.ToString();
             DateTime birthday = animal_bdate.Value;
@@ -255,8 +259,9 @@ namespace AnimalHouseUI
 
                 string message = BossController.instance().animalController.DeleteAnimal(animal);
                 MessageBox.Show(message);
-
+                this.Close();
             }
+            
             
 
         }

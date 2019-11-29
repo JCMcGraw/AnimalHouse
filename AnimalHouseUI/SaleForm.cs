@@ -25,11 +25,11 @@ namespace AnimalHouseUI
 
         private void SaleForm_Load(object sender, EventArgs e)
         {
-            LoadeAllItemsInListBox();
-            sale = new Sale(customer,DateTime.Now);
-
             DataGridViewItemList.AutoGenerateColumns = false;
             ItemDataGridView.AutoGenerateColumns = false;
+
+            LoadeAllItemsInListBox();
+            sale = new Sale(customer,DateTime.Now);
         }
 
         #region Copy this 
@@ -207,7 +207,6 @@ namespace AnimalHouseUI
                 ItemDataGridView.Columns["itemAmount"].DataPropertyName = "amount";
                 ItemDataGridView.Columns["itemPrice"].DataPropertyName = "price";
 
-                //ItemDataGridView.DataSource = null;
                 items = BossController.instance().saleController.GetAllActiveItems();
                 ItemDataGridView.DataSource = items;
             }
@@ -331,7 +330,12 @@ namespace AnimalHouseUI
             {
                 MessageBox.Show("Noget gik galt");
             }
-        }        
+        }
+
+        private void ItemDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
 

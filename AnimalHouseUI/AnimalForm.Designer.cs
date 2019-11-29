@@ -48,9 +48,9 @@
             this.animal_weight = new System.Windows.Forms.TextBox();
             this.label_email = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.animalSpecies_label = new System.Windows.Forms.Label();
             this.animalAge_label = new System.Windows.Forms.Label();
-            this.owner_label = new System.Windows.Forms.Label();
+            this.animal_owner = new System.Windows.Forms.Label();
             this.animal_species = new System.Windows.Forms.ComboBox();
             this.animal_employee = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -298,15 +298,15 @@
             this.label1.TabIndex = 23;
             this.label1.Text = "Navn";
             // 
-            // label3
+            // animalSpecies_label
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label3.Location = new System.Drawing.Point(79, 109);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(30, 17);
-            this.label3.TabIndex = 27;
-            this.label3.Text = "Art,";
+            this.animalSpecies_label.AutoSize = true;
+            this.animalSpecies_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.animalSpecies_label.Location = new System.Drawing.Point(79, 109);
+            this.animalSpecies_label.Name = "animalSpecies_label";
+            this.animalSpecies_label.Size = new System.Drawing.Size(30, 17);
+            this.animalSpecies_label.TabIndex = 27;
+            this.animalSpecies_label.Text = "Art,";
             // 
             // animalAge_label
             // 
@@ -318,14 +318,14 @@
             this.animalAge_label.TabIndex = 28;
             this.animalAge_label.Text = "Alder";
             // 
-            // owner_label
+            // animal_owner
             // 
-            this.owner_label.AutoSize = true;
-            this.owner_label.Location = new System.Drawing.Point(41, 135);
-            this.owner_label.Name = "owner_label";
-            this.owner_label.Size = new System.Drawing.Size(25, 13);
-            this.owner_label.TabIndex = 29;
-            this.owner_label.Text = "Ejer";
+            this.animal_owner.AutoSize = true;
+            this.animal_owner.Location = new System.Drawing.Point(41, 135);
+            this.animal_owner.Name = "animal_owner";
+            this.animal_owner.Size = new System.Drawing.Size(25, 13);
+            this.animal_owner.TabIndex = 29;
+            this.animal_owner.Text = "Ejer";
             // 
             // animal_species
             // 
@@ -433,9 +433,9 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.animal_employee);
             this.Controls.Add(this.animal_species);
-            this.Controls.Add(this.owner_label);
+            this.Controls.Add(this.animal_owner);
             this.Controls.Add(this.animalAge_label);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.animalSpecies_label);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label_email);
             this.Controls.Add(this.label_adresse);
@@ -488,9 +488,9 @@
         private System.Windows.Forms.TextBox animal_weight;
         private System.Windows.Forms.Label label_email;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label animalSpecies_label;
         private System.Windows.Forms.Label animalAge_label;
-        private System.Windows.Forms.Label owner_label;
+        private System.Windows.Forms.Label animal_owner;
         private System.Windows.Forms.ComboBox animal_species;
         private System.Windows.Forms.ComboBox animal_employee;
         private System.Windows.Forms.Label label4;

@@ -32,7 +32,7 @@ namespace AnimalHouseUI
             ComboBoxEmployee.SelectedIndex = 0;
             ComboBoxTreatmentType.SelectedIndex = 0;
 
-            SelectCurrentWeek();
+            SelectWeek(DateTime.Today);
         }
 
         private void SetValuesForComboboxes()
@@ -187,7 +187,7 @@ namespace AnimalHouseUI
             {
                 if (ComboBoxTreatmentType.Text == "Observation")
                 {
-                    CalendarRangeStart = GetFirstDayOfWeek( MonthViewBooking.SelectionStart);
+                    CalendarRangeStart = GetFirstDayOfWeek(MonthViewBooking.SelectionStart);
                     CalendarRangeEnd = CalendarRangeStart.AddDays(19);
                 }
                 else
@@ -269,10 +269,6 @@ namespace AnimalHouseUI
 
         private void CalendarBooking_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-            {
-                ContextMenuStripBooking.Show(Cursor.Position);
-            }
         }
 
         private void PlaceItems()
@@ -379,49 +375,51 @@ namespace AnimalHouseUI
         {
             if (ComboBoxTreatmentType.Text == "Observation")
             {
+                PanelViewSelection.Visible = false;
+                radioButtonWeekView.Checked = true;
                 //set view to day view
                 CalendarBooking.SetViewRange(MonthViewBooking.SelectionStart, MonthViewBooking.SelectionStart.AddDays(14));
             }
             else
             {
+                PanelViewSelection.Visible = true;
                 //set view to detailed view
                 CalendarBooking.SetViewRange(MonthViewBooking.SelectionStart, MonthViewBooking.SelectionEnd);
             }
         }
 
-        private void SelectCurrentWeek()
+        private void SelectWeek(DateTime today)
         {
-            DateTime today = DateTime.Today;
 
             switch (today.DayOfWeek)
             {
                 case DayOfWeek.Sunday:
-                    MonthViewBooking.SelectionStart = DateTime.Today.AddDays(1);
-                    MonthViewBooking.SelectionEnd = DateTime.Today.AddDays(5);
+                    MonthViewBooking.SelectionStart = today.AddDays(1);
+                    MonthViewBooking.SelectionEnd = today.AddDays(5);
                     break;
                 case DayOfWeek.Monday:
-                    MonthViewBooking.SelectionStart = DateTime.Today;
-                    MonthViewBooking.SelectionEnd = DateTime.Today.AddDays(4);
+                    MonthViewBooking.SelectionStart = today;
+                    MonthViewBooking.SelectionEnd = today.AddDays(4);
                     break;
                 case DayOfWeek.Tuesday:
-                    MonthViewBooking.SelectionStart = DateTime.Today.AddDays(-1);
-                    MonthViewBooking.SelectionEnd = DateTime.Today.AddDays(3);
+                    MonthViewBooking.SelectionStart = today.AddDays(-1);
+                    MonthViewBooking.SelectionEnd = today.AddDays(3);
                     break;
                 case DayOfWeek.Wednesday:
-                    MonthViewBooking.SelectionStart = DateTime.Today.AddDays(-2);
-                    MonthViewBooking.SelectionEnd = DateTime.Today.AddDays(2);
+                    MonthViewBooking.SelectionStart = today.AddDays(-2);
+                    MonthViewBooking.SelectionEnd = today.AddDays(2);
                     break;
                 case DayOfWeek.Thursday:
-                    MonthViewBooking.SelectionStart = DateTime.Today.AddDays(-2);
-                    MonthViewBooking.SelectionEnd = DateTime.Today.AddDays(1);
+                    MonthViewBooking.SelectionStart = today.AddDays(-3);
+                    MonthViewBooking.SelectionEnd = today.AddDays(1);
                     break;
                 case DayOfWeek.Friday:
-                    MonthViewBooking.SelectionStart = DateTime.Today.AddDays(-4);
-                    MonthViewBooking.SelectionEnd = DateTime.Today;
+                    MonthViewBooking.SelectionStart = today.AddDays(-4);
+                    MonthViewBooking.SelectionEnd = today;
                     break;
                 case DayOfWeek.Saturday:
-                    MonthViewBooking.SelectionStart = DateTime.Today.AddDays(-5);
-                    MonthViewBooking.SelectionEnd = DateTime.Today.AddDays(-1);
+                    MonthViewBooking.SelectionStart = today.AddDays(-5);
+                    MonthViewBooking.SelectionEnd = today.AddDays(-1);
                     break;
             }
         }
@@ -542,7 +540,7 @@ namespace AnimalHouseUI
                 message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra {e.Item.StartDate.ToString("dd/M")} til {e.Item.EndDate.ToString("dd/M")}";
             }
             
-            string headline = ComboBoxTreatmentType.Text;
+            string headline = $"{ComboBoxTreatmentType.Text}, {selectedEmployee.name}";
 
 
             DialogResult dialogResult = MessageBox.Show(message, "Book behandling", MessageBoxButtons.YesNo);
@@ -552,7 +550,7 @@ namespace AnimalHouseUI
                 Item item = ItemFactory.Instance().CreateItem(9, "Vaccination", 1, 399m, false, true, true);
 
                 //create new treatment
-                Treatment treatment = TreatmentFactory.Instance().CreateTreatment((TreatmentType)ComboBoxTreatmentType.SelectedItem, -1, -1, item, e.Item.StartDate, e.Item.EndDate, false, headline, true, -1, (Employee)ComboBoxEmployee.SelectedItem);
+                Treatment treatment = TreatmentFactory.Instance().CreateTreatment((TreatmentType)ComboBoxTreatmentType.SelectedItem, -1, -1, item, e.Item.StartDate, e.Item.EndDate, false, headline, true, -1, selectedEmployee);
 
                 //add treatment to database and get treatment with treatment ID
                 Treatment treatmentWithID = bossController.treatmentController.CreateTreatment(treatment);
@@ -577,6 +575,12 @@ namespace AnimalHouseUI
         //actions for calendaritems dates/times changed
         private void CalendarBooking_ItemDatesChanged(object sender, CalendarItemEventArgs e)
         {
+            //check if times haven't been changed
+            if (e.Item.StartDate == treatmentsCache[e.Item.TreatmentID].startTime && e.Item.EndDate == treatmentsCache[e.Item.TreatmentID].endTime)
+            {
+                return;
+            }
+
             //question string for verifying new datetimes
             string message = $"Ønsker du at ændre denne aftale til kl. {e.Item.StartDate.ToString("H:mm")}-{e.Item.EndDate.ToString("H:mm")} den {e.Item.StartDate.ToString("dd/M")}?";
             //altered question string if treatment type is Observation
@@ -752,6 +756,42 @@ namespace AnimalHouseUI
             if (customerForm.DialogResult == DialogResult.OK)
             {
                 //animal = customerForm.selectedAnimal;
+            }
+        }
+
+        private void CalendarBooking_ItemMouseHover(object sender, CalendarItemEventArgs e)
+        {
+            //itemToolTip.Show(e.Item.Text,CalendarBooking);
+        }
+
+        private void radioButtonWeekView_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonWeekView.Checked == true)
+            {
+                MonthViewBooking.SelectionMode = MonthView.MonthViewSelection.WorkWeek;
+                SelectWeek(MonthViewBooking.SelectionStart);
+            }
+            else
+            {
+                MonthViewBooking.SelectionMode = MonthView.MonthViewSelection.Day;
+
+                if (MonthViewBooking.SelectionStart < DateTime.Now && MonthViewBooking.SelectionEnd > DateTime.Now)
+                {
+                    MonthViewBooking.SelectionStart = DateTime.Today;
+                    MonthViewBooking.SelectionEnd = DateTime.Today;
+                }
+                else
+                {
+                    MonthViewBooking.SelectionEnd = MonthViewBooking.SelectionStart;
+                }
+            }
+        }
+
+        private void CalendarBooking_ItemClick(object sender, CalendarItemEventArgs e)
+        {
+            if (e.MouseEventArgs.Button == MouseButtons.Right)
+            {
+                ContextMenuStripBooking.Show(Cursor.Position);
             }
         }
     }

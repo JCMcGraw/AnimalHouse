@@ -51,12 +51,16 @@
   <ItemGroup>
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TreatmentManagerUnitTest.cs" />
+    <Compile Include="TreatmentUnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AnimalHouseEntities\AnimalHouseEntities.csproj">
+      <Project>{333dca3f-6627-4364-995d-d0458e3b65ef}</Project>
+      <Name>AnimalHouseEntities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AnimalHousePersistence\AnimalHousePersistence.csproj">
       <Project>{0251eddd-f40b-4de2-9697-67d86e520d87}</Project>
       <Name>AnimalHousePersistence</Name>
