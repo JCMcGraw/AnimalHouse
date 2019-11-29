@@ -79,5 +79,12 @@ namespace AnimalHouse
 
             return customerManager.UndeleteCustomer(customer);
         }
+
+        public int GetBusinessCustomerCVR(Customer customer)
+
+        {
+            ICustomerManager customerManager = new CustomerManager();
+            return customerManager.GetBusinessCustomerCVR(customer);
+        }
     }
 }

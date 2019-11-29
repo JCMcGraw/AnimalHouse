@@ -21,8 +21,6 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-          
-
             sQLQuery.AddParameter("@phone", customer.phone.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@name", customer.name.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@address",customer.address.ToString(), SqlDbType.VarChar);
@@ -47,7 +45,6 @@ namespace AnimalHousePersistence
 
                 BusinessCustomer businessCustomer = (BusinessCustomer)customer;
                 CreateBusinessCustomer(businessCustomer);
-                
 
             }
 
@@ -189,5 +186,34 @@ namespace AnimalHousePersistence
 
           
         }
+
+        public int GetBusinessCustomerCVR(Customer customer)
+        {
+            string query = Utility.ReadSQLQueryFromFile("GetBusinesscustomerCVR.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            sQLQuery.AddParameter("@customerID", customer.customerID.ToString(), SqlDbType.VarChar);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            int cvr;
+            try
+            {
+                DataRow dataRow = sQLQueryResult.dataTable.Rows[0];
+                cvr = (int)dataRow["CVR"];
+            }
+            catch
+            {
+                 cvr=0;
+            }
+
+            
+
+            return cvr;
+
+        }
+
+
     }
 }

@@ -165,8 +165,7 @@ namespace AnimalHouseUI
             textBox_adresse.Text = customer.address.ToString();
             textBox_email.Text = customer.email.ToString();
 
-            
-            
+            CheckForBusinesscustomer(customer);
 
             //danner en liste af dyr der hedder animals. Denne liste bliver dannet et sted på animalmanager og der bruges en customer
             List<Animal> animals= BossController.instance().animalController.GetManyAnimalByCustomerID(customer);
@@ -176,11 +175,7 @@ namespace AnimalHouseUI
             
             dataGridView_dyr.DataSource = customer.animals;
 
-
-
             dataGridView_dyr.Columns["name"].DataPropertyName = "Name";
-          
-
 
             for (int i = 0; i < dataGridView_dyr.RowCount; i++)
             {
@@ -241,9 +236,58 @@ namespace AnimalHouseUI
 
             ResetForm();
 
-
         }
 
+        private void button_opret_Click(object sender, EventArgs e)
+        {
+
+            //Tjekker for at se om emailen er gyldig. 
+
+            if (CheckForValidEmail((string)textBox_email.Text.ToString()) == false)
+            {
+                MessageBox.Show("Ugyldig E-mailadresse");
+                return;
+            }
+
+
+
+
+            // tjekker om cvrnummeret består af tal
+            string cvr = textBox_cvr.Text;
+
+            //opretter en ny int og sætter den til 0
+            int cvrint = 0;
+
+            if (checkBox_erhverskunde.Checked == true && CheckForCVRdegit(cvr) == false)
+            {
+
+                //Hvis ikke cvr-nummeret består af noget bliver det lavet om til inten cvrint som er 0.
+
+                if (cvr.ToString().Length == 8)
+                {
+                    //hvis cvrboxen er chacket af og tallet er i orden erstattes nullet med det nye cvr-nummer
+                    cvrint = Convert.ToInt32(cvr);
+
+                }
+                else
+                {
+                    MessageBox.Show("CVR-nummeret skal bestå af 8 tal.");
+                    return;
+                }
+
+                MessageBox.Show("CVR-nummer må kun bestå af tal");
+                return;
+            }
+
+            //her opretter vi selve kunden
+            customer = CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, cvrint);
+
+            //her skriver vi den oprettede kunde ind i databasen
+            customer = BossController.instance().customerController.CreateCustomer(customer);
+
+            MessageBox.Show("Kunde oprettet");
+
+        }
 
         private void button_dyr_Click(object sender, EventArgs e)
         {
@@ -314,10 +358,6 @@ namespace AnimalHouseUI
             button_slet.Enabled = false;
         }
 
-
-
-       
-
         public bool CheckForCVRdegit(string cvr)
         {
             return cvr.All(char.IsDigit);
@@ -334,67 +374,17 @@ namespace AnimalHouseUI
           
         }
 
-
-        
-
-        private void button_opret_Click(object sender, EventArgs e)
+        public void CheckForBusinesscustomer(Customer customer)
         {
+           
 
-            //Tjekker for at se om emailen er gyldig. 
+            int cvr=BossController.instance().customerController.GetBusinessCustomerCVR(customer);
 
-            if (CheckForValidEmail((string)textBox_email.Text.ToString()) == false)
+            if (cvr!=0)
             {
-                MessageBox.Show("Ugyldig E-mailadresse");
-                return;
+                textBox_cvr.Text = cvr.ToString();
+
             }
-
-
-
-
-            // tjekker om cvrnummeret består af tal
-            string cvr = textBox_cvr.Text;
-            int cvrint = 0;
-
-            if (checkBox_erhverskunde.Checked==true&& CheckForCVRdegit(cvr) == false)
-            {
-                
-                
-                
-
-
-                
-                //if (cvr != "")
-                //{
-
-                //Hvis ikke cvr-nummeret består af noget bliver det lavet om til inten cvrint som er 0.
-                
-                if (cvr.ToString().Length == 8)
-                {
-                    cvrint = Convert.ToInt32(cvr);
-
-                }
-                else
-                {
-                    MessageBox.Show("CVR-nummeret skal bestå af 8 tal.");
-                    return;
-                }
-
-                MessageBox.Show("CVR-nummer må kun bestå af tal");
-                return;
-            }
-            //{
-                customer = CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, cvrint);
-
-                customer = BossController.instance().customerController.CreateCustomer(customer);
-
-                MessageBox.Show("Kunde oprettet");
-
-            //}
-
-
-            //}
-
-
         }
 
         public bool CheckForValidEmail(string email)
