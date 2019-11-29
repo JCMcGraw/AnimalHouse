@@ -80,6 +80,7 @@ namespace System.Windows.Forms.Calendar
         /// <param name="sender"></param>
         /// <param name="e"></param>
         public delegate void CalendarItemEventHandler(object sender, CalendarItemEventArgs e);
+        
 
         /// <summary>
         /// Delegate that supports cancelable item-related events
@@ -157,7 +158,7 @@ namespace System.Windows.Forms.Calendar
         /// </summary>
         [Description("Occurs when an item is clicked")]
         public event CalendarItemEventHandler ItemClick;
-
+        
         /// <summary>
         /// Occurs when an item is double-clicked
         /// </summary>
@@ -1802,7 +1803,7 @@ namespace System.Windows.Forms.Calendar
                 itemOnState.SetIsResizingEndDate(false);
                 itemOnState.SetIsResizingStartDate(false);
                 Invalidate(itemOnState);
-                OnItemClick(new CalendarItemEventArgs(itemOnState));
+                OnItemClick(new CalendarItemEventArgs(itemOnState, e));
                 itemOnState = null;
             }
             SetState(CalendarState.Idle);

@@ -269,10 +269,6 @@ namespace AnimalHouseUI
 
         private void CalendarBooking_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-            {
-                ContextMenuStripBooking.Show(Cursor.Position);
-            }
         }
 
         private void PlaceItems()
@@ -788,6 +784,14 @@ namespace AnimalHouseUI
                 {
                     MonthViewBooking.SelectionEnd = MonthViewBooking.SelectionStart;
                 }
+            }
+        }
+
+        private void CalendarBooking_ItemClick(object sender, CalendarItemEventArgs e)
+        {
+            if (e.MouseEventArgs.Button == MouseButtons.Right)
+            {
+                ContextMenuStripBooking.Show(Cursor.Position);
             }
         }
     }
