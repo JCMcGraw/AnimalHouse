@@ -79,5 +79,11 @@ namespace AnimalHouse
             List<Cage> getAllCages = treatmentManager.GetAllCages();
             return getAllCages;
         }
+
+        public List<OperationRoom> GetAllOperationRooms()
+        {
+            List<OperationRoom> getAllOperationRooms = treatmentManager.GetAllOperationRooms();
+            return getAllOperationRooms;
+        }
     }
 }

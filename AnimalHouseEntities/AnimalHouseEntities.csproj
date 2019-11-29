@@ -55,6 +55,8 @@
     <Compile Include="EmployeeFactory.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemFactory.cs" />
+    <Compile Include="OperationRoom.cs" />
+    <Compile Include="OperationRoomFactory.cs" />
     <Compile Include="PrivateCustomer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -26,5 +26,7 @@ namespace AnimalHousePersistence
         List<TreatmentType> GetManyTreatmentTypes();
 
         List<Cage> GetAllCages();
+
+        List<OperationRoom> GetAllOperationRooms();
     }
 }

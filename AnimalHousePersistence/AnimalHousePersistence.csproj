@@ -103,6 +103,7 @@
     <Content Include="SQLQueries\GetAllEmployees.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQLQueries\GetAllOperationRooms.txt" />
     <Content Include="SQLQueries\GetAnimal.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
