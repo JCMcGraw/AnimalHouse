@@ -153,6 +153,20 @@ namespace AnimalHousePersistence
             return treatments;
         }
 
+        public List<Cage> GetAllCages()
+        {
+            string query = Utility.ReadSQLQueryFromFile("GetAllCages.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            List<Cage> cages = new List<Cage>();
+            cages = GetCageList(sQLQueryResult); 
+
+            return cages;
+        }
+
         private List<Treatment> GetTreatmentList(SQLQueryResult sQLQueryResult)
         {
             List<Treatment> treatments = new List<Treatment>();
@@ -278,6 +292,27 @@ namespace AnimalHousePersistence
                 treatmentTypes.Add(TreatmentTypeFactory.Instance().CreateTreatmentType(treatmentTypeID, name));
             }
             return treatmentTypes;
+        }
+
+        private List<Cage> GetCageList(SQLQueryResult sQLQueryResult)
+        {
+            List<Cage> cages = new List<Cage>();
+
+            for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
+            {
+                int cageID;
+
+                if (sQLQueryResult.dataTable.Rows[i].IsNull("CageID"))
+                {
+                    cageID = -1;
+                }
+                else
+                {
+                    cageID = (int)sQLQueryResult.dataTable.Rows[i]["CageID"];
+                }
+                cages.Add(CageFactory.Instance().CreateCage(cageID));
+            }
+            return cages;
         }
     }
 }
