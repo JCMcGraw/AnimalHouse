@@ -24,6 +24,7 @@ namespace AnimalHousePersistence
         void CreatePrivateCustomer(PrivateCustomer privateCustomer);
         string UndeleteCustomer(Customer customer);
         int GetBusinessCustomerCVR(Customer customer);
+        bool CheckUniquePhone(string phone);
 
     }
 }

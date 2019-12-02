@@ -10,12 +10,8 @@ namespace AnimalHousePersistence
 {
     public class AnimalManager : IAnimalManager
     {
-        
-        
-
         //Species species;
         public Animal CreateAnimal(Animal animal)
-
         {
             string query = Utility.ReadSQLQueryFromFile("CreateAnimal.txt");
 
@@ -30,7 +26,6 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@active", "1", SqlDbType.TinyInt);
             sQLQuery.AddParameter("@employeeid", animal.employeeid.ToString(), SqlDbType.TinyInt);
 
-
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
             int animalID = (int)sQLQueryResult.dataTable.Rows[0]["AnimalID"];
@@ -38,11 +33,7 @@ namespace AnimalHousePersistence
             animal.UpdateID(animalID);
 
             return animal;
-
         }
-        
-
-
 
         public string UpdateAnimal(Animal animal)
         {
@@ -57,11 +48,7 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@employeeid", animal.employeeid.ToString(), SqlDbType.Char);
             sQLQuery.AddParameter("@weight", animal.weight.ToString(), SqlDbType.VarChar);
           
-
-
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
-
-
 
             if (sQLQueryResult.code == 0)
             {
@@ -94,9 +81,8 @@ namespace AnimalHousePersistence
 
             }
             return "OK";
-
-
         }
+
         public Animal GetAnimal(int animalID)
         {
 
@@ -153,9 +139,8 @@ namespace AnimalHousePersistence
 
                 for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
                 {
-                   
-
                     int employeeID;
+
                     if (sQLQueryResult.dataTable.Rows[i].IsNull("EmployeeID"))
                     {
                         employeeID = -1;
@@ -164,8 +149,6 @@ namespace AnimalHousePersistence
                     {
                         employeeID = (int)sQLQueryResult.dataTable.Rows[i]["EmployeeID"];
                     }
-
-
 
                     int customerID = (int)sQLQueryResult.dataTable.Rows[i]["CustomerID"];
                     int animalID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalID"];
@@ -181,9 +164,6 @@ namespace AnimalHousePersistence
                     bool active = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
 
                     animals.Add(AnimalFactory.Instance().CreateAnimal(customerID,animalID, name, birthday, species, weight, gender,employeeID, true));
-
-
-
                 }
                 return animals;
             }
@@ -235,10 +215,6 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            
-
-
-
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
             List<Species> allspecies = new List<Species>();
@@ -248,6 +224,46 @@ namespace AnimalHousePersistence
             return allspecies;
         }
 
+        //MedicalRecord
+        public List<MedicalRecord> GetAllMedicalRecordByAnimal(int animalID)
+        {
+            string query = Utility.ReadSQLQueryFromFile("GetAllMedicalRecordByAnimal.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            sQLQuery.AddParameter("@animalID", animalID.ToString(), SqlDbType.Int);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            List<MedicalRecord> medicalRecords = new List<MedicalRecord>();
+            medicalRecords = GetAllMedicalRecordByAnimalList(sQLQueryResult);
+
+            return medicalRecords;
+        }
+
+        private List<MedicalRecord> GetAllMedicalRecordByAnimalList(SQLQueryResult sQLQueryResult)
+        {
+            List<MedicalRecord> medicalRecords = new List<MedicalRecord>();
+
+            for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
+            {
+                int MedicalRecordID;
+
+                if (sQLQueryResult.dataTable.Rows[i].IsNull("AnimalID"))
+                {
+                    MedicalRecordID = -1;
+                }
+                else
+                {
+                    MedicalRecordID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalID"];
+                }
+
+                string entry = (string)sQLQueryResult.dataTable.Rows[i]["Entry"];
+
+                medicalRecords.Add(MedicalRecordFactory.Instance().CreateMedicalRecord(MedicalRecordID,entry));
+            }
+            return medicalRecords;
+        }
     }
 }
 

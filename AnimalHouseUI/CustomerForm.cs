@@ -240,21 +240,28 @@ namespace AnimalHouseUI
 
         private void button_opret_Click(object sender, EventArgs e)
         {
+          
+            //Tjekker for at se om emailen er gyldig.--------------- HUSK AT UDKOMMENTER
 
-            //Tjekker for at se om emailen er gyldig. 
+            //if (CheckForValidEmail(textBox_email.Text.ToString()) == false)
+            //{
+            //    MessageBox.Show("Ugyldig E-mailadresse");
+            //    return;
+            //}
 
-            if (CheckForValidEmail((string)textBox_email.Text.ToString()) == false)
+           
+            if (CheckUniquePhone(textBox_phonenumber.Text.ToString()) == false) 
             {
-                MessageBox.Show("Ugyldig E-mailadresse");
+                MessageBox.Show("Telefonnummeret er allerede i brug");
                 return;
-            }
 
+            }
 
 
 
             // tjekker om cvrnummeret består af tal
             string cvr = textBox_cvr.Text;
-
+            
             //opretter en ny int og sætter den til 0
             int cvrint = 0;
 
@@ -266,7 +273,7 @@ namespace AnimalHouseUI
                 if (cvr.ToString().Length == 8)
                 {
                     //hvis cvrboxen er chacket af og tallet er i orden erstattes nullet med det nye cvr-nummer
-                    cvrint = Convert.ToInt32(cvr);
+                    cvrint =Convert.ToInt32(textBox_cvr.Text);
 
                 }
                 else
@@ -279,8 +286,12 @@ namespace AnimalHouseUI
                 return;
             }
 
-            //her opretter vi selve kunden
-            customer = CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, cvrint);
+            if (checkBox_erhverskunde.Checked == true && CheckForCVRdegit(cvr) == true)
+            {
+                cvrint =Convert.ToInt32( textBox_cvr.Text);
+            }
+
+               customer = CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, cvrint);
 
             //her skriver vi den oprettede kunde ind i databasen
             customer = BossController.instance().customerController.CreateCustomer(customer);
@@ -309,15 +320,10 @@ namespace AnimalHouseUI
         }
 
         private void dataGridView_dyr_DoubleClick(object sender, EventArgs e)
-        {
-            //hvorfor kan jeg ikke få den til at åbne en ny animalform?
-            //og hvordan får jeg den til at vælge en hel row, fremfor en cell?
-            
+        { 
             DataGridViewRow row = dataGridView_dyr.SelectedRows[0];
 
-           
             Animal animal = row.DataBoundItem as Animal;
-
             AnimalForm animalForm = new AnimalForm(customer, animal);
             animalForm.Show();
         }
@@ -378,7 +384,6 @@ namespace AnimalHouseUI
         public void CheckForBusinesscustomer(Customer customer)
         {
            
-
             int cvr=BossController.instance().customerController.GetBusinessCustomerCVR(customer);
 
             if (cvr!=0)
@@ -400,19 +405,10 @@ namespace AnimalHouseUI
             }
         }
 
-        private void DataGridView_dyr_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        public bool CheckUniquePhone(string phone)
         {
-            var dgv = dataGridView_dyr;
-            if(e.ColumnIndex == 10)
-            {
-                int r = dgv.CurrentRow.Index;
-
-                
-                //Animal animal = BossController.instance().animalController.GetAnimal();
-                //animalname = Convert.ToString(dgv[0,r]).Value);
-
-            }
-            
-        }
+            return BossController.instance().customerController.CheckUniquePhone(phone);
+                     }
+        
     }
 }
