@@ -225,45 +225,45 @@ namespace AnimalHousePersistence
         }
 
         //MedicalRecord
-        public List<MedicalRecord> GetAllMedicalRecordByAnimal(int animalID)
-        {
-            string query = Utility.ReadSQLQueryFromFile("GetAllMedicalRecordByAnimal.txt");
+        //public List<MedicalRecord> GetAllMedicalRecordByAnimal(int animalID)
+        //{
+        //    string query = Utility.ReadSQLQueryFromFile("GetAllMedicalRecordByAnimal.txt");
 
-            SQLQuery sQLQuery = new SQLQuery(query);
+        //    SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("@animalID", animalID.ToString(), SqlDbType.Int);
+        //    sQLQuery.AddParameter("@animalID", animalID.ToString(), SqlDbType.Int);
 
-            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+        //    SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            List<MedicalRecord> medicalRecords = new List<MedicalRecord>();
-            medicalRecords = GetAllMedicalRecordByAnimalList(sQLQueryResult);
+        //    List<MedicalRecord> medicalRecords = new List<MedicalRecord>();
+        //    medicalRecords = GetAllMedicalRecordByAnimalList(sQLQueryResult);
 
-            return medicalRecords;
-        }
+        //    return medicalRecords;
+        //}
 
-        private List<MedicalRecord> GetAllMedicalRecordByAnimalList(SQLQueryResult sQLQueryResult)
-        {
-            List<MedicalRecord> medicalRecords = new List<MedicalRecord>();
+        //private List<MedicalRecord> GetAllMedicalRecordByAnimalList(SQLQueryResult sQLQueryResult)
+        //{
+        //    List<MedicalRecord> medicalRecords = new List<MedicalRecord>();
 
-            for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
-            {
-                int MedicalRecordID;
+        //    for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
+        //    {
+        //        int MedicalRecordID;
 
-                if (sQLQueryResult.dataTable.Rows[i].IsNull("AnimalID"))
-                {
-                    MedicalRecordID = -1;
-                }
-                else
-                {
-                    MedicalRecordID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalID"];
-                }
+        //        if (sQLQueryResult.dataTable.Rows[i].IsNull("AnimalID"))
+        //        {
+        //            MedicalRecordID = -1;
+        //        }
+        //        else
+        //        {
+        //            MedicalRecordID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalID"];
+        //        }
 
-                string entry = (string)sQLQueryResult.dataTable.Rows[i]["Entry"];
+        //        string entry = (string)sQLQueryResult.dataTable.Rows[i]["Entry"];
 
-                medicalRecords.Add(MedicalRecordFactory.Instance().CreateMedicalRecord(MedicalRecordID,entry));
-            }
-            return medicalRecords;
-        }
+        //        medicalRecords.Add(MedicalRecordFactory.Instance().CreateMedicalRecord(MedicalRecordID,entry));
+        //    }
+        //    return medicalRecords;
+        //}
     }
 }
 

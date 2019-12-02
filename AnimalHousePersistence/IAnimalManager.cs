@@ -34,6 +34,6 @@ namespace AnimalHousePersistence
         List<Species> GetAllSpecies();
 
 
-        List<MedicalRecord> GetAllMedicalRecordByAnimal(int animalID);
+        //List<MedicalRecord> GetAllMedicalRecordByAnimal(int animalID);
     }
 }
