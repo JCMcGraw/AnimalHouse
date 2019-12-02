@@ -384,12 +384,10 @@ namespace AnimalHouseUI
         public void CheckForBusinesscustomer(Customer customer)
         {
            
-            int cvr=BossController.instance().customerController.GetBusinessCustomerCVR(customer);
-
-            if (cvr!=0)
+            if(customer.GetType()==typeof(BusinessCustomer))
             {
-                textBox_cvr.Text = cvr.ToString();
-
+                
+                textBox_cvr.Text = ((BusinessCustomer)customer).cvr.ToString();
             }
         }
 

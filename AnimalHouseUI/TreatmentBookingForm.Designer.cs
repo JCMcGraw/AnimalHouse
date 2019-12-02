@@ -83,6 +83,7 @@
             this.editItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.button_startbehandling = new System.Windows.Forms.Button();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             this.PanelHeadline.SuspendLayout();
@@ -260,6 +261,7 @@
             // 
             // PanelBottom
             // 
+            this.PanelBottom.Controls.Add(this.button_startbehandling);
             this.PanelBottom.Controls.Add(this.ChooseAnimalButton);
             this.PanelBottom.Controls.Add(this.ButtonCreateTreatment);
             this.PanelBottom.Controls.Add(this.ButtonDelete);
@@ -611,6 +613,20 @@
             this.deleteToolStripMenuItem.Text = "Slet";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
+            // button_startbehandling
+            // 
+            this.button_startbehandling.BackColor = System.Drawing.Color.AliceBlue;
+            this.button_startbehandling.FlatAppearance.BorderSize = 0;
+            this.button_startbehandling.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_startbehandling.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_startbehandling.Location = new System.Drawing.Point(636, 15);
+            this.button_startbehandling.Name = "button_startbehandling";
+            this.button_startbehandling.Size = new System.Drawing.Size(118, 73);
+            this.button_startbehandling.TabIndex = 16;
+            this.button_startbehandling.Text = "Start Behandling";
+            this.button_startbehandling.UseVisualStyleBackColor = false;
+            this.button_startbehandling.Click += new System.EventHandler(this.button_startbehandling_Click);
+            // 
             // TreatmentBookingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -694,5 +710,6 @@
         private System.Windows.Forms.Panel PanelViewSelection;
         private System.Windows.Forms.RadioButton radioButtonDayView;
         private System.Windows.Forms.RadioButton radioButtonWeekView;
+        private System.Windows.Forms.Button button_startbehandling;
     }
 }
