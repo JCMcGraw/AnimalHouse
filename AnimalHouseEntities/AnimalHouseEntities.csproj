@@ -51,10 +51,13 @@
     <Compile Include="CageFactory.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerFactory.cs" />
+    <Compile Include="CustomExceptions.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="EmployeeFactory.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="ItemFactory.cs" />
+    <Compile Include="MedicalRecord.cs" />
+    <Compile Include="MedicalRecordFactory.cs" />
     <Compile Include="OperationRoom.cs" />
     <Compile Include="OperationRoomFactory.cs" />
     <Compile Include="PrivateCustomer.cs" />
