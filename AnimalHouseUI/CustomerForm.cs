@@ -424,5 +424,10 @@ namespace AnimalHouseUI
             }
             
         }
+
+        private void DataGridView_dyr_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

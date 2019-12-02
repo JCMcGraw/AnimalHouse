@@ -28,7 +28,7 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@weight", animal.weight.ToString(), SqlDbType.Float);
             sQLQuery.AddParameter("@gender", animal.gender.ToString(), SqlDbType.TinyInt);
             sQLQuery.AddParameter("@active", "1", SqlDbType.TinyInt);
-            sQLQuery.AddParameter("@employeeid", animal.employeeid.ToString(), SqlDbType.TinyInt);
+            sQLQuery.AddParameter("@employeeid", animal.Employee.employeeID.ToString(), SqlDbType.Int);
 
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
@@ -51,10 +51,10 @@ namespace AnimalHousePersistence
             SQLQuery sQLQuery = new SQLQuery(query);
 
             sQLQuery.AddParameter("@name", animal.name.ToString(), SqlDbType.VarChar);
-            sQLQuery.AddParameter("@birthday", animal.birthday.ToString(), SqlDbType.VarChar);
+            //sQLQuery.AddParameter("@birthday", animal.birthday.ToString(), SqlDbType.VarChar);
             //sQLQuery.AddParameter("@species", animal.Species.speciesid.ToString(), SqlDbType.Int);
             //sQLQuery.AddParameter("@gender", animal.gender.ToString(), SqlDbType.Char);
-            sQLQuery.AddParameter("@employeeid", animal.employeeid.ToString(), SqlDbType.Char);
+            sQLQuery.AddParameter("@employeeid", animal.Employee.employeeID.ToString(), SqlDbType.Int);
             sQLQuery.AddParameter("@weight", animal.weight.ToString(), SqlDbType.VarChar);
           
 
@@ -71,7 +71,7 @@ namespace AnimalHousePersistence
             {
 
             }
-            return "OK";
+            return "Fejl";
         }
 
         public string DeleteAnimal(Animal animal)
@@ -93,7 +93,7 @@ namespace AnimalHousePersistence
             {
 
             }
-            return "OK";
+            return "FEJL";
 
 
         }
@@ -116,7 +116,13 @@ namespace AnimalHousePersistence
 
             Species species = SpeciesFactory.Instance().GetSpecies(speciesID, speciesName);
 
-            Animal animal = new Animal((int)dataRow["CustomerID"],(int)dataRow["AnimalID"], (string)dataRow["Name"], (DateTime)dataRow["BirthYear"], species, (double)dataRow["Weight"], (bool)dataRow["Gender"], (int)dataRow["EmployeeID"], (bool)dataRow["Active"]);
+            string name = sQLQueryResult.dataTable.Rows[0]["SpeciesName"].ToString();
+
+            int employeeID = (int)sQLQueryResult.dataTable.Rows[0]["SpeciesID"];
+
+            Employee employee = EmployeeFactory.Instance().GetEmployee(employeeID, name);
+
+            Animal animal = new Animal((int)dataRow["CustomerID"],(int)dataRow["AnimalID"], (string)dataRow["Name"], (DateTime)dataRow["BirthYear"], species, (double)dataRow["Weight"], (bool)dataRow["Gender"], employee, (bool)dataRow["Active"]);
 
             return animal;
 
@@ -177,10 +183,13 @@ namespace AnimalHousePersistence
 
                     double weight =Convert.ToDouble( (decimal)sQLQueryResult.dataTable.Rows[i]["Weight"]);
                     bool gender = (bool)sQLQueryResult.dataTable.Rows[i]["Gender"];
+
+                    //int employeeID = (int)sQLQueryResult.dataTable.Rows[i]["employeeID"];
                     
+                    Employee employee = EmployeeFactory.Instance().GetEmployee(employeeID, name);
                     bool active = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
 
-                    animals.Add(AnimalFactory.Instance().CreateAnimal(customerID,animalID, name, birthday, species, weight, gender,employeeID, true));
+                    animals.Add(AnimalFactory.Instance().CreateAnimal(customerID,animalID, name, birthday, species, weight, gender,employee, true));
 
 
 

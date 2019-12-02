@@ -58,10 +58,8 @@
             this.animal_bdate = new System.Windows.Forms.DateTimePicker();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // PanelHeader
@@ -228,7 +226,6 @@
             // button_rediger
             // 
             this.button_rediger.BackColor = System.Drawing.Color.AliceBlue;
-            this.button_rediger.Enabled = false;
             this.button_rediger.FlatAppearance.BorderSize = 0;
             this.button_rediger.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_rediger.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -243,7 +240,6 @@
             // button_slet
             // 
             this.button_slet.BackColor = System.Drawing.Color.AliceBlue;
-            this.button_slet.Enabled = false;
             this.button_slet.FlatAppearance.BorderSize = 0;
             this.button_slet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_slet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -302,7 +298,7 @@
             // 
             this.animalSpecies_label.AutoSize = true;
             this.animalSpecies_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.animalSpecies_label.Location = new System.Drawing.Point(79, 109);
+            this.animalSpecies_label.Location = new System.Drawing.Point(40, 131);
             this.animalSpecies_label.Name = "animalSpecies_label";
             this.animalSpecies_label.Size = new System.Drawing.Size(30, 17);
             this.animalSpecies_label.TabIndex = 27;
@@ -312,7 +308,7 @@
             // 
             this.animalAge_label.AutoSize = true;
             this.animalAge_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.animalAge_label.Location = new System.Drawing.Point(41, 109);
+            this.animalAge_label.Location = new System.Drawing.Point(41, 114);
             this.animalAge_label.Name = "animalAge_label";
             this.animalAge_label.Size = new System.Drawing.Size(41, 17);
             this.animalAge_label.TabIndex = 28;
@@ -321,7 +317,7 @@
             // animal_owner
             // 
             this.animal_owner.AutoSize = true;
-            this.animal_owner.Location = new System.Drawing.Point(41, 135);
+            this.animal_owner.Location = new System.Drawing.Point(41, 148);
             this.animal_owner.Name = "animal_owner";
             this.animal_owner.Size = new System.Drawing.Size(25, 13);
             this.animal_owner.TabIndex = 29;
@@ -410,22 +406,12 @@
             this.label2.TabIndex = 36;
             this.label2.Text = "Recepter";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(140, 67);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(128, 121);
-            this.pictureBox1.TabIndex = 37;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
-            // 
             // AnimalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(730, 542);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.animal_bdate);
@@ -458,7 +444,6 @@
             this.PanelHeader.ResumeLayout(false);
             this.PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -498,7 +483,6 @@
         private System.Windows.Forms.DateTimePicker animal_bdate;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 
     #region Windows Form Designer generated code

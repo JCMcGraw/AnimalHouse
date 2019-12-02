@@ -331,7 +331,12 @@ namespace AnimalHouseUI
             {
                 MessageBox.Show("Noget gik galt");
             }
-        }        
+        }
+
+        private void ItemDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
 

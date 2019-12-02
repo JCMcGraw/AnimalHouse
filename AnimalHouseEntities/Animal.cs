@@ -25,11 +25,11 @@ namespace AnimalHouseEntities
 
         public bool gender { get; private set; }
 
-        public int employeeid { get; private set; }
+        public Employee Employee { get; private set; }
 
         public bool active { get; private set; }
 
-        public Animal(int customerID, int animalID, string name, DateTime birthday, Species SpeciesType, double weight, bool gender,int employeeID, bool active)
+        public Animal(int customerID, int animalID, string name, DateTime birthday, Species SpeciesType, double weight, bool gender,Employee employeeID, bool active)
         {
             this.customerID = customerID;
             this.animalID = animalID;
@@ -38,10 +38,10 @@ namespace AnimalHouseEntities
             this.Species = SpeciesType;
             this.weight = weight;
             this.gender = gender;
-            this.employeeid = employeeID;
+            this.Employee = employeeID;
             this.active = active;
         }
-        public Animal(int customerID, string name, DateTime birthday, Species speciesType, double weight, bool gender,int employeeID, bool active)
+        public Animal(int customerID, string name, DateTime birthday, Species speciesType, double weight, bool gender,Employee employeeID, bool active)
         {
             this.customerID = customerID;
             this.name = name;
@@ -49,7 +49,7 @@ namespace AnimalHouseEntities
             this.Species = speciesType;
             this.weight = weight;
             this.gender = gender;
-            this.employeeid = employeeID;
+            this.Employee = employeeID;
             this.active = active;
         }
 

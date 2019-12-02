@@ -331,6 +331,7 @@
             this.ItemDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ItemDataGridView.Size = new System.Drawing.Size(233, 316);
             this.ItemDataGridView.TabIndex = 45;
+            this.ItemDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ItemDataGridView_CellContentClick);
             this.ItemDataGridView.DoubleClick += new System.EventHandler(this.ItemDataGridView_DoubleClick);
             // 
             // ItemName

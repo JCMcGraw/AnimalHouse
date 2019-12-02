@@ -1,1 +1,1 @@
-﻿update Animal set Name=@name, Birthday=@birthday, Weight=@weight, EmployerID=@employerID where AnimalID=@customerID
+﻿update Animal set Name=@name, Weight=@weight, EmployerID=@employerID where AnimalID=@customerID
