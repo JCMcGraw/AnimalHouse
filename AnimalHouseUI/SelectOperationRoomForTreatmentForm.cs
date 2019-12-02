@@ -7,29 +7,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing.Printing;
 using AnimalHouseEntities;
-using AnimalHouse;
 
 namespace AnimalHouseUI
 {
-    public partial class StockForm : Form
+    public partial class SelectOperationRoomForTreatmentForm : Form
     {
-        List<Item> allItems;
-        List<Item> items;
-        BossController bossController = BossController.instance();
-
-        public StockForm()
+        List<OperationRoom> operationRooms;
+        public OperationRoom selectedOperationRoom { get; private set; }
+        public SelectOperationRoomForTreatmentForm(List<OperationRoom> operationRooms)
         {
             InitializeComponent();
+            this.operationRooms = operationRooms;
+
+            SelectRoomCombobox.DataSource = operationRooms;
+            SelectRoomCombobox.DisplayMember = "operationRoomID";
             
-            ItemDataGridView.AutoGenerateColumns = false;
-
-            LoadAllItemsInListBox();
-            AmountComboBox.SelectedIndex = 9;
         }
-
-        #region Copy this 
+        #region Form Functions 
 
         private const int CS_DROPSHADOW = 0x20000;
         protected override CreateParams CreateParams
@@ -148,96 +143,19 @@ namespace AnimalHouseUI
             this.Close();
         }
 
+
         #endregion
 
-        private void LoadAllItemsInListBox()
+        private void SelectButton_Click(object sender, EventArgs e)
         {
-            ItemDataGridView.Columns["itemName"].DataPropertyName = "name";
-            ItemDataGridView.Columns["itemAmount"].DataPropertyName = "amount";
-            ItemDataGridView.Columns["itemPrice"].DataPropertyName = "price";
-            try
-            {
-                allItems = bossController.saleController.GetAllActiveItems();
-                ShowAllItems();
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
-            }
+            this.DialogResult = DialogResult.OK;
+            selectedOperationRoom = (OperationRoom)SelectRoomCombobox.SelectedItem;
+            this.Close();
         }
 
-        private void ShowAllItems()
+        private void CancelButton_Click(object sender, EventArgs e)
         {
-            items = allItems.Where(item => item.treatment == false).ToList<Item>();
-
-            ItemDataGridView.DataSource = items;
-        }
-
-        private void ShowItemsUnderLimit(int limit)
-        {
-            items = allItems.Where(item => item.treatment == false && item.amount <= limit).ToList<Item>();
-
-            ItemDataGridView.DataSource = items;
-        }
-
-        private void AmountCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (AmountCheckBox.Checked == false)
-            {
-                ShowAllItems();
-            }
-            else
-            {
-                ShowItemsUnderLimit(Convert.ToInt32(AmountComboBox.SelectedItem));
-            }
-        }
-
-        private void AmountComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (AmountCheckBox.Checked == true)
-            {
-                ShowItemsUnderLimit(Convert.ToInt32(AmountComboBox.SelectedItem.ToString()));
-            }
-        }
-
-
-        private PrintDocument docToPrint = new PrintDocument();
-
-        private void PrintButton_Click(object sender, EventArgs e)
-        {
-            string printText = GetStringOfItemList();
-            docToPrint.PrintPage += delegate (object sender1, PrintPageEventArgs e1)
-            {
-                e1.Graphics.DrawString(printText, new Font("Times New Roman", 14), new SolidBrush(Color.Black), new RectangleF(10, 10, docToPrint.DefaultPageSettings.PrintableArea.Width, docToPrint.DefaultPageSettings.PrintableArea.Height));
-
-            };
-
-            PrintDialog PrintDialog1 = new PrintDialog();
-            PrintDialog1.AllowSomePages = true;
-
-            PrintDialog1.ShowHelp = true;
-            
-            PrintDialog1.Document = docToPrint;
-
-            DialogResult result = PrintDialog1.ShowDialog();
-
-            // If the result is OK then print the document.
-            if (result == DialogResult.OK)
-            {
-                docToPrint.Print();
-            }
-        }
-
-        private string GetStringOfItemList()
-        {
-            StringBuilder stringBuilder = new StringBuilder();
-
-            foreach(Item item in items)
-            {
-                stringBuilder.Append(item.ToString() + "\n");
-            }
-
-            return stringBuilder.ToString();
+            this.Close();
         }
     }
 }

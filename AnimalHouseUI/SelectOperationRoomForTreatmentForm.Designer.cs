@@ -1,6 +1,6 @@
 ﻿namespace AnimalHouseUI
 {
-    partial class SelectEmployeeForTreatmentForm
+    partial class SelectOperationRoomForTreatmentForm
     {
         /// <summary>
         /// Required designer variable.
@@ -20,7 +20,7 @@
             base.Dispose(disposing);
         }
 
-       #region Copy this
+        #region Copy this
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -38,7 +38,8 @@
             this.SelectButton = new System.Windows.Forms.Button();
             this.InfoLabel = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
-            this.SelectVetCombobox = new System.Windows.Forms.ComboBox();
+            this.SelectRoomCombobox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             this.SuspendLayout();
@@ -68,9 +69,9 @@
             this.LabelTitle.ForeColor = System.Drawing.Color.White;
             this.LabelTitle.Location = new System.Drawing.Point(92, 3);
             this.LabelTitle.Name = "LabelTitle";
-            this.LabelTitle.Size = new System.Drawing.Size(166, 29);
+            this.LabelTitle.Size = new System.Drawing.Size(177, 29);
             this.LabelTitle.TabIndex = 5;
-            this.LabelTitle.Text = "Vælg Dyrlæge";
+            this.LabelTitle.Text = "Operationsstue";
             this.LabelTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseDown);
             this.LabelTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseMove);
             this.LabelTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseUp);
@@ -151,9 +152,9 @@
             this.InfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InfoLabel.Location = new System.Drawing.Point(93, 63);
             this.InfoLabel.Name = "InfoLabel";
-            this.InfoLabel.Size = new System.Drawing.Size(130, 20);
+            this.InfoLabel.Size = new System.Drawing.Size(179, 20);
             this.InfoLabel.TabIndex = 7;
-            this.InfoLabel.Text = "Vælg en dyrlæge";
+            this.InfoLabel.Text = "Vælg en operationsstue";
             // 
             // CancelButton
             // 
@@ -169,28 +170,39 @@
             this.CancelButton.UseVisualStyleBackColor = false;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
-            // SelectVetCombobox
+            // SelectRoomCombobox
             // 
-            this.SelectVetCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.SelectVetCombobox.FormattingEnabled = true;
-            this.SelectVetCombobox.Location = new System.Drawing.Point(88, 101);
-            this.SelectVetCombobox.Name = "SelectVetCombobox";
-            this.SelectVetCombobox.Size = new System.Drawing.Size(195, 21);
-            this.SelectVetCombobox.TabIndex = 9;
+            this.SelectRoomCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SelectRoomCombobox.FormattingEnabled = true;
+            this.SelectRoomCombobox.Location = new System.Drawing.Point(157, 99);
+            this.SelectRoomCombobox.Name = "SelectRoomCombobox";
+            this.SelectRoomCombobox.Size = new System.Drawing.Size(79, 21);
+            this.SelectRoomCombobox.TabIndex = 9;
             // 
-            // SelectEmployeeForTreatmentForm
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(79, 100);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 20);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Stue nr.";
+            // 
+            // SelectOperationRoomForTreatmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(394, 223);
-            this.Controls.Add(this.SelectVetCombobox);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.SelectRoomCombobox);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.InfoLabel);
             this.Controls.Add(this.SelectButton);
             this.Controls.Add(this.PanelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "SelectEmployeeForTreatmentForm";
+            this.Name = "SelectOperationRoomForTreatmentForm";
             this.Text = "SampleForm";
             this.PanelHeader.ResumeLayout(false);
             this.PanelHeader.PerformLayout();
@@ -213,6 +225,7 @@
 
         private System.Windows.Forms.Label InfoLabel;
         private System.Windows.Forms.Button CancelButton;
-        private System.Windows.Forms.ComboBox SelectVetCombobox;
+        private System.Windows.Forms.ComboBox SelectRoomCombobox;
+        private System.Windows.Forms.Label label1;
     }
 }

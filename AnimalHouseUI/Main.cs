@@ -170,11 +170,6 @@ namespace AnimalHouseUI
         {
 
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            StockForm stockForm = new StockForm();
-            stockForm.Show();
-        }
+        
     }
 }
