@@ -22,6 +22,11 @@ namespace AnimalHousePersistence
             {
                 errorMessage = Localization.ErrorMessages.NoItemsFound + GetErrorMessage(exception.InnerException);
             }
+            //peders
+            if(exception is NoCustomerFoundException)
+            {
+                
+            }
             else if (exception is SqlException)
             {
                 switch(((SqlException)exception).Number)

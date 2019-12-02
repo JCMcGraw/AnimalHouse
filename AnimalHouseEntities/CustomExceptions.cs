@@ -22,4 +22,21 @@ namespace AnimalHouseEntities
         { }
 
     }
+
+    public class NoCustomerFoundException : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public NoCustomerFoundException()
+        { }
+
+        public NoCustomerFoundException(string message)
+            : base(message)
+        { }
+
+        public NoCustomerFoundException(string message, Exception inner)
+            : base(message, inner)
+        { }
+
+    }
 }
