@@ -73,5 +73,17 @@ namespace AnimalHouse
             List<TreatmentType> getManyTreatmentTypes = treatmentManager.GetManyTreatmentTypes();
             return getManyTreatmentTypes;
         }
+
+        public List<Cage> GetAllCages()
+        {
+            List<Cage> getAllCages = treatmentManager.GetAllCages();
+            return getAllCages;
+        }
+
+        public List<OperationRoom> GetAllOperationRooms()
+        {
+            List<OperationRoom> getAllOperationRooms = treatmentManager.GetAllOperationRooms();
+            return getAllOperationRooms;
+        }
     }
 }

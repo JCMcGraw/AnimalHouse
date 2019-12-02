@@ -153,6 +153,35 @@ namespace AnimalHousePersistence
             return treatments;
         }
 
+        public List<Cage> GetAllCages()
+        {
+            string query = Utility.ReadSQLQueryFromFile("GetAllCages.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            List<Cage> cages = new List<Cage>();
+            cages = GetCageList(sQLQueryResult); 
+
+            return cages;
+        }
+
+        public List<OperationRoom> GetAllOperationRooms()
+        {
+            string query = Utility.ReadSQLQueryFromFile("GetAllOperationRooms.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            List<OperationRoom> operationRooms = new List<OperationRoom>();
+            operationRooms = GetAllOperationRooms(sQLQueryResult);
+
+            return operationRooms;
+
+        }
+
         private List<Treatment> GetTreatmentList(SQLQueryResult sQLQueryResult)
         {
             List<Treatment> treatments = new List<Treatment>();
@@ -278,6 +307,48 @@ namespace AnimalHousePersistence
                 treatmentTypes.Add(TreatmentTypeFactory.Instance().CreateTreatmentType(treatmentTypeID, name));
             }
             return treatmentTypes;
+        }
+
+        private List<Cage> GetCageList(SQLQueryResult sQLQueryResult)
+        {
+            List<Cage> cages = new List<Cage>();
+
+            for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
+            {
+                int cageID;
+
+                if (sQLQueryResult.dataTable.Rows[i].IsNull("CageID"))
+                {
+                    cageID = -1;
+                }
+                else
+                {
+                    cageID = (int)sQLQueryResult.dataTable.Rows[i]["CageID"];
+                }
+                cages.Add(CageFactory.Instance().CreateCage(cageID));
+            }
+            return cages;
+        }
+
+        private List<OperationRoom> GetAllOperationRooms(SQLQueryResult sQLQueryResult)
+        {
+            List<OperationRoom> operationRooms = new List<OperationRoom>();
+
+            for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
+            {
+                int operationRoomID;
+
+                if (sQLQueryResult.dataTable.Rows[i].IsNull("OperationRoomID"))
+                {
+                    operationRoomID = -1;
+                }
+                else
+                {
+                    operationRoomID = (int)sQLQueryResult.dataTable.Rows[i]["OperationRoomID"];
+                }
+                operationRooms.Add(OperationRoomFactory.Instance().CreateOperationRoom(operationRoomID));
+            }
+            return operationRooms;
         }
     }
 }
