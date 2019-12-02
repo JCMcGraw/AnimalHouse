@@ -22,9 +22,9 @@ namespace AnimalHouseEntities
             return instance;
         }
 
-        public Item CreateItem(int itemID, string name, int amount, decimal price, bool prescription, bool treatment, bool active)
+        public Item CreateItem(int itemID, string name, int amount, decimal price, decimal costPrice, bool prescription, bool treatment, bool active)
         {
-            Item item = new Item(itemID, name, amount, price, prescription, treatment, active);
+            Item item = new Item(itemID, name, amount, price,costPrice, prescription, treatment, active);
             return item;
         }
     }

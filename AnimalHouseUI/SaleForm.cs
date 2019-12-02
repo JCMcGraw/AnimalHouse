@@ -249,7 +249,7 @@ namespace AnimalHouseUI
 
                             DataGridViewItemList.Rows[i].Cells["Name"].Value = item2.name;
 
-                            FillPriceInLable(item2.price,item2.amount);
+                            FillPriceInLable(item2.price, item2.amount);
                         }
                     }
                 }
@@ -257,7 +257,6 @@ namespace AnimalHouseUI
                 {
                     MessageBox.Show("Du skal finde en kunde før du kan tilføje vare til et salg");
                 }
-
             }
             catch (Exception)
             {

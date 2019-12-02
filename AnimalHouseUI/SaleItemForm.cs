@@ -29,7 +29,6 @@ namespace AnimalHouseUI
 
             }
 
-
             NameLabel.Text = item.name.ToString();
             PriceTextBox.Text = item.price.ToString("N2");
         }
@@ -159,18 +158,15 @@ namespace AnimalHouseUI
         {
             if  (item.amount<1)
             {
-                MessageBox.Show("Der er ikke flere tilbage");
+                MessageBox.Show("Der er ikke det ønskede tilbage på lageret");
             }
             else
             {
+                saleLineItem = new SaleLineItem(item, Convert.ToInt32(AmountTextBox.Text), Convert.ToDecimal(PriceTextBox.Text));
 
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
-
-
-           saleLineItem = new SaleLineItem(item,Convert.ToInt32(AmountTextBox.Text),Convert.ToDecimal(PriceTextBox.Text));
-
-           this.DialogResult = DialogResult.OK;
-           this.Close();
         }
     }
 }

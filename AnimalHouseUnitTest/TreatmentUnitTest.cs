@@ -10,7 +10,7 @@ namespace AnimalHouseUnitTest
     public class TreatmentUnitTest
     {
         static Employee employee = new Employee(1,"jens",false,1,new Title("",1));
-        static Item item = new Item(6,"hej",3,50,true,true,true);
+        static Item item = new Item(6,"hej",3,50,40,true,true,true);
         static TreatmentType treatmentType = new TreatmentType(1,"hej");
 
         int treatmentID = 0;

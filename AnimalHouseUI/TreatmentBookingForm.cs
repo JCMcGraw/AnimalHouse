@@ -547,7 +547,7 @@ namespace AnimalHouseUI
             if (dialogResult == DialogResult.Yes)
             {
                 //dummy item for testing
-                Item item = ItemFactory.Instance().CreateItem(9, "Vaccination", 1, 399m, false, true, true);
+                Item item = ItemFactory.Instance().CreateItem(9, "Vaccination", 1, 399m,300m, false, true, true);
 
                 //create new treatment
                 Treatment treatment = TreatmentFactory.Instance().CreateTreatment((TreatmentType)ComboBoxTreatmentType.SelectedItem, null, null, item, e.Item.StartDate, e.Item.EndDate, false, headline, true, -1, selectedEmployee);
