@@ -20,7 +20,7 @@ namespace AnimalHouseEntities
             }
             return instance;
         }
-        public Species GetSpecies(int speciesID, string speciesName)
+        public Species CreateSpecies(int speciesID, string speciesName)
         {
             return new Species(speciesID, speciesName);
         }

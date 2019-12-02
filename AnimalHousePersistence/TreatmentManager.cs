@@ -191,11 +191,12 @@ namespace AnimalHousePersistence
                 int treatmentID;
                 TreatmentType treatmentType;
                 Employee employee;
-                int operationRoomID;
-                int cageID;
+                OperationRoom operationRoom;
+                Cage cage;
                 Item item;
                 int animalID;
                 Title title;
+                
 
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("TreatmentID"))
                 {
@@ -220,20 +221,31 @@ namespace AnimalHousePersistence
                 }
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("OperationRoomID"))
                 {
-                    operationRoomID = -1;
+                    operationRoom = null;
                 }
                 else
                 {
-                    operationRoomID = (int)sQLQueryResult.dataTable.Rows[i]["OperationRoomID"];
+                    int operationRoomID = (int)sQLQueryResult.dataTable.Rows[i]["OperationRoomID"];
+
+                    operationRoom = OperationRoomFactory.Instance().CreateOperationRoom(operationRoomID);
                 }
+
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("CageID"))
                 {
-                    cageID = -1;
+                    cage = null;
                 }
                 else
                 {
-                    cageID = (int)sQLQueryResult.dataTable.Rows[i]["CageID"];
+                    int cageID = (int)sQLQueryResult.dataTable.Rows[i]["CageID"];
+                    int speciesID = (int)sQLQueryResult.dataTable.Rows[i]["SpeciesID"];
+                    string speciesName = (string)sQLQueryResult.dataTable.Rows[i]["SpeciesName"];
+
+                    Species species = SpeciesFactory.Instance().CreateSpecies(speciesID, speciesName);
+
+                    cage = CageFactory.Instance().CreateCage(cageID,species);
                 }
+
+
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("ItemID"))
                 {
                     item = null;
@@ -280,7 +292,7 @@ namespace AnimalHousePersistence
                 string headline = (string)sQLQueryResult.dataTable.Rows[i]["Headline"];
                 bool active = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
                 
-                treatments.Add(TreatmentFactory.Instance().CreateTreatment(treatmentID, treatmentType, operationRoomID, cageID, item, startTime, endTime, payed, headline, active, animalID, employee));
+                treatments.Add(TreatmentFactory.Instance().CreateTreatment(treatmentID, treatmentType, operationRoom, cage, item, startTime, endTime, payed, headline, active, animalID, employee));
             }
             return treatments;
         }
@@ -315,17 +327,13 @@ namespace AnimalHousePersistence
 
             for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
             {
-                int cageID;
+                int cageID = (int)sQLQueryResult.dataTable.Rows[i]["CageID"];
+                int speciesID = (int)sQLQueryResult.dataTable.Rows[i]["SpeciesID"];
+                string speciesName = (string)sQLQueryResult.dataTable.Rows[i]["SpeciesName"];
 
-                if (sQLQueryResult.dataTable.Rows[i].IsNull("CageID"))
-                {
-                    cageID = -1;
-                }
-                else
-                {
-                    cageID = (int)sQLQueryResult.dataTable.Rows[i]["CageID"];
-                }
-                cages.Add(CageFactory.Instance().CreateCage(cageID));
+                Species species = SpeciesFactory.Instance().CreateSpecies(speciesID, speciesName);
+
+                cages.Add(CageFactory.Instance().CreateCage(cageID,species));
             }
             return cages;
         }

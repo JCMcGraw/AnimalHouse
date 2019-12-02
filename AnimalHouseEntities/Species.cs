@@ -10,7 +10,9 @@ namespace AnimalHouseEntities
     {
         
         public int speciesid { get; private set;}
+
         public string speciesType { get; private set; }
+
         public Species(int speciesID, string speciesType)
         {
             this.speciesid = speciesID;

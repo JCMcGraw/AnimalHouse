@@ -12,9 +12,9 @@ namespace AnimalHouseEntities
 
         public TreatmentType treatmentType { get; private set; }
 
-        public int operationRoomID { get; private set; }
+        public OperationRoom operationRoom { get; private set; }
 
-        public int cageID { get; private set; }
+        public Cage cage { get; private set; }
 
         public Item item { get; private set; }
 
@@ -32,12 +32,12 @@ namespace AnimalHouseEntities
 
         public Employee employee { get; private set; }
 
-        public Treatment(int treatmentID, TreatmentType treatmentType, int operationRoomID, int cageID, Item item, DateTime startTime, DateTime endTime, bool payed, string headline, bool active, int animalID, Employee employee)
+        public Treatment(int treatmentID, TreatmentType treatmentType, OperationRoom operationRoomID, Cage cage, Item item, DateTime startTime, DateTime endTime, bool payed, string headline, bool active, int animalID, Employee employee)
         {
             this.treatmentID = treatmentID;
             this.treatmentType = treatmentType;
-            this.operationRoomID = operationRoomID;
-            this.cageID = cageID;
+            this.operationRoom = operationRoom;
+            this.cage = cage;
             this.item = item;
             this.startTime = startTime;
             this.endTime = endTime;
@@ -48,11 +48,11 @@ namespace AnimalHouseEntities
             this.employee = employee;
         }
 
-        public Treatment(TreatmentType treatmentType, int operationRoomID, int cageID, Item item, DateTime startTime, DateTime endTime, bool payed, string headline, bool active, int animalID, Employee employee)
+        public Treatment(TreatmentType treatmentType, OperationRoom operationRoomID, Cage cage, Item item, DateTime startTime, DateTime endTime, bool payed, string headline, bool active, int animalID, Employee employee)
         {
             this.treatmentType = treatmentType;
-            this.operationRoomID = operationRoomID;
-            this.cageID = cageID;
+            this.operationRoom = operationRoom;
+            this.cage = cage;
             this.item = item;
             this.startTime = startTime;
             this.endTime = endTime;

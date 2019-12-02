@@ -245,7 +245,6 @@ namespace AnimalHouseUI
 
                         for (int i = 0; i < DataGridViewItemList.RowCount; i++)
                         {
-
                             Item item2 = sale.saleLineItems[i].item;
 
                             DataGridViewItemList.Rows[i].Cells["Name"].Value = item2.name;
