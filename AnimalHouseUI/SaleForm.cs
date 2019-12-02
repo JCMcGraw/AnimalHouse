@@ -334,6 +334,12 @@ namespace AnimalHouseUI
         {
 
         }
+
+        private void ShowStockButton_Click(object sender, EventArgs e)
+        {
+            StockForm stockForm = new StockForm();
+            stockForm.Show();
+        }
     }
 }
 

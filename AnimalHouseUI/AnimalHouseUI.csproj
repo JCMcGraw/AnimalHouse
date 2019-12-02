@@ -94,6 +94,12 @@
     <Compile Include="SampleForm.Designer.cs">
       <DependentUpon>SampleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SelectOperationRoomForTreatmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectOperationRoomForTreatmentForm.Designer.cs">
+      <DependentUpon>SelectOperationRoomForTreatmentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TreatmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SelectEmployeeForTreatmentForm.resx">
       <DependentUpon>SelectEmployeeForTreatmentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectOperationRoomForTreatmentForm.resx">
+      <DependentUpon>SelectOperationRoomForTreatmentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StockForm.resx">
       <DependentUpon>StockForm.cs</DependentUpon>
