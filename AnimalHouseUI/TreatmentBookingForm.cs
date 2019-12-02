@@ -792,7 +792,22 @@ namespace AnimalHouseUI
             if (e.MouseEventArgs.Button == MouseButtons.Right)
             {
                 ContextMenuStripBooking.Show(Cursor.Position);
+                
             }
+
+        }
+
+        private void CalendarBooking_ItemDoubleClick(object sender, CalendarItemEventArgs e)
+        {
+
+          
+            int treatmentID = e.Item.TreatmentID;
+            Treatment treatment = treatmentsCache[treatmentID];
+
+            
+            TreatmentForm treatmentform = new TreatmentForm(treatment);
+            treatmentform.Show();
+           
         }
     }
 }

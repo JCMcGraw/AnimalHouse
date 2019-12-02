@@ -47,13 +47,6 @@ namespace AnimalHouse
 
             return customerManager.CreateCustomer(customer);
 
-             
-
-            //CustomerFactory customerfactory = new CustomerFactory();
-
-            //Customer customer = new Customer(name, address, phone, email, true);
-
-            //return customerfactory.CreateCustomer(phone, name, address, email);
         }
 
 
@@ -63,7 +56,6 @@ namespace AnimalHouse
 
             return customerManager.UpdateCustomer(customer);
 
-            
         }
 
         public string DeleteCustomer(Customer customer)
@@ -85,6 +77,12 @@ namespace AnimalHouse
         {
             ICustomerManager customerManager = new CustomerManager();
             return customerManager.GetBusinessCustomerCVR(customer);
+        }
+
+        public bool CheckUniquePhone(string phone)
+        {
+            ICustomerManager customerManager = new CustomerManager();
+            return customerManager.CheckUniquePhone(phone);
         }
     }
 }

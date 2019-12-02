@@ -7,14 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AnimalHouseEntities;
+using AnimalHouse;
 
 namespace AnimalHouseUI
 {
-    public partial class SampleForm : Form
+    public partial class TreatmentForm : Form
     {
-        public SampleForm()
+        public Treatment treatment { get; private set; }
+
+        Animal animal;
+        TreatmentType treatmentType;
+        Customer customer;
+
+        public TreatmentForm(Treatment treatment)
         {
             InitializeComponent();
+            this.treatment = treatment;
+            this.treatmentType = treatment.treatmentType;
+            
+            //this.animal = BossController.instance().animalController.GetAnimal(treatment.animalID);
+
+          
         }
 
         #region Copy this 
@@ -138,11 +152,21 @@ namespace AnimalHouseUI
 
         #endregion
 
-        private void SampleForm_Load(object sender, EventArgs e)
+        private void TreatmentForm_Load(object sender, EventArgs e)
+        {
+            Animal animal = BossController.instance().animalController.GetAnimal(treatment.animalID);
+            label_header.Text = animal.name.ToString();
+            //label_underheadline.Text = animal.name.ToString();
+        }
+
+        private void TreatmentForm_Load_1(object sender, EventArgs e)
         {
 
         }
+
+        private void button_gem_Click(object sender, EventArgs e)
+        {
+            //noget kode der gemmer entryet i medicalrecord
+        }
     }
-
-
 }

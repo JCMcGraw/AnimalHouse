@@ -1,1 +1,1 @@
-﻿insert into PrivateCustomer (CustomerID) values (@privatecustomerID)
+﻿insert into PrivateCustomer values (@customerID)
