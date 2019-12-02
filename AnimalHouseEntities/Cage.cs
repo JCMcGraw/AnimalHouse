@@ -10,9 +10,12 @@ namespace AnimalHouseEntities
     {
         public int CageID { get; private set; }
 
-        public Cage(int cageID)
+        public Species species { get; private set; }
+
+        public Cage(int cageID,Species species)
         {
             this.CageID = cageID;
+            this.species = species;
         }
     }
 }

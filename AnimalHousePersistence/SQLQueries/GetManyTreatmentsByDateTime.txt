@@ -1,6 +1,17 @@
-﻿Select Treatment.*,TreatmentType.*,Employee.EmployeeID as EmployeeID, Employee.Name as Employeename, Employee.TitleID, Title.Name as Titlename,Item.Name as ItemName,Item.Active as ItemActive,Item.Amount,Item.Price, Item.Prescription,Item.Treatment as ItemTreatment from Treatment 
+﻿Select Treatment.*,TreatmentType.*,
+Employee.EmployeeID as EmployeeID
+,Employee.Name as Employeename
+,Employee.TitleID
+,Title.Name as Titlename
+,Item.Name as ItemName
+,Item.Active as ItemActive
+,Item.Treatment as ItemTreatment
+,Item.Amount,Item.Price, Item.Prescription,Species.SpeciesID,Species.SpeciesName 
+from Treatment 
 left join TreatmentType on Treatment.TreatmentTypeID = TreatmentType.TreatmentTypeID
 left join Employee on Treatment.EmployeeID = Employee.EmployeeID
 left join Title on title.TitleID = Employee.TitleID 
 left join Item on Treatment.ItemID = Item.ItemID
+left join Cage on Treatment.CageID = Cage.CageID
+left join Species on Cage.SpeciesID = Species.SpeciesID
 where (StartTime < @endTime AND EndTime > @startTime AND Treatment.Active=1)

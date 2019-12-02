@@ -22,9 +22,9 @@ namespace AnimalHouseEntities
             return instance;
         }
 
-        public Cage CreateCage(int cageID)
+        public Cage CreateCage(int cageID,Species species)
         {
-            return new Cage(cageID);
+            return new Cage(cageID,species);
         }
     }
 }

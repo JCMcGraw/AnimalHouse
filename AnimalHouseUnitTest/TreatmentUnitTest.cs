@@ -18,7 +18,7 @@ namespace AnimalHouseUnitTest
         [TestMethod]
         public void CreateTreatmentTestMethod()
         {
-            Treatment treatment = new Treatment(treatmentType, 1, 1, item, DateTime.Now, DateTime.Now, true, "", true, 3, employee);
+            Treatment treatment = new Treatment(treatmentType, null, null, item, DateTime.Now, DateTime.Now, true, "", true, 3, employee);
 
             TreatmentManager treatmentManager = new TreatmentManager();
             Treatment treatmentt = treatmentManager.CreateTreatment(treatment);
@@ -29,7 +29,7 @@ namespace AnimalHouseUnitTest
         [TestMethod]
         public void UpdateTreatment()
         {
-            Treatment treatment = new Treatment(treatmentID,treatmentType, 1, 1, item, DateTime.Now, DateTime.Now, true, "", true, 3, employee);
+            Treatment treatment = new Treatment(treatmentID,treatmentType, null, null, item, DateTime.Now, DateTime.Now, true, "", true, 3, employee);
 
             TreatmentManager treatmentManager = new TreatmentManager();
             string treatmentt = treatmentManager.UpdateTreatment(treatment);
@@ -39,7 +39,7 @@ namespace AnimalHouseUnitTest
         [TestMethod]
         public void DeleteTreatment()
         {
-            Treatment treatment = new Treatment(treatmentID, treatmentType, 1, 1, item, DateTime.Now, DateTime.Now, true, "", true, 3, employee);
+            Treatment treatment = new Treatment(treatmentID, treatmentType, null, null, item, DateTime.Now, DateTime.Now, true, "", true, 3, employee);
 
             TreatmentManager treatmentManager = new TreatmentManager();
             string treatmentt = treatmentManager.DeleteTreatment(treatmentID);
