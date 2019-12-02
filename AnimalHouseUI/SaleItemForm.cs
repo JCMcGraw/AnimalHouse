@@ -157,6 +157,16 @@ namespace AnimalHouseUI
 
         private void AddItemToSaleListButton_Click(object sender, EventArgs e)
         {
+            if  (item.amount<1)
+            {
+                MessageBox.Show("Der er ikke flere tilbage");
+            }
+            else
+            {
+
+            }
+
+
            saleLineItem = new SaleLineItem(item,Convert.ToInt32(AmountTextBox.Text),Convert.ToDecimal(PriceTextBox.Text));
 
            this.DialogResult = DialogResult.OK;
