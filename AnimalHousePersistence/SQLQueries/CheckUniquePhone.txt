@@ -1,0 +1,2 @@
+﻿select count(*) as counter from  Customer where phone=@phone
+            

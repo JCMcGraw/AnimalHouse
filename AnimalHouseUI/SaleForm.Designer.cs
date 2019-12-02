@@ -65,6 +65,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.ShowStockButton = new System.Windows.Forms.Button();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemDataGridView)).BeginInit();
@@ -466,12 +467,27 @@
             this.label7.TabIndex = 57;
             this.label7.Text = "Hylde Vare";
             // 
+            // ShowStockButton
+            // 
+            this.ShowStockButton.BackColor = System.Drawing.Color.AliceBlue;
+            this.ShowStockButton.FlatAppearance.BorderSize = 0;
+            this.ShowStockButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ShowStockButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ShowStockButton.Location = new System.Drawing.Point(629, 467);
+            this.ShowStockButton.Name = "ShowStockButton";
+            this.ShowStockButton.Size = new System.Drawing.Size(119, 33);
+            this.ShowStockButton.TabIndex = 58;
+            this.ShowStockButton.Text = "Lagerstatus";
+            this.ShowStockButton.UseVisualStyleBackColor = false;
+            this.ShowStockButton.Click += new System.EventHandler(this.ShowStockButton_Click);
+            // 
             // SaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(768, 614);
+            this.Controls.Add(this.ShowStockButton);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
@@ -551,6 +567,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button ShowStockButton;
     }
 
 }

@@ -9,8 +9,11 @@ namespace AnimalHouseEntities
     public class Sale
     {
         public int saleID { get; private set; }
+
         public List<SaleLineItem> saleLineItems { get; private set; }
+
         public Customer customer { get; private set; }
+
         public DateTime salesDay { get; private set; }
 
         public Sale(int saleID, Customer customer, DateTime salesDay)

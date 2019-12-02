@@ -58,6 +58,7 @@
             this.dataGridView_dyr = new System.Windows.Forms.DataGridView();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.speciestype = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_dyr)).BeginInit();
@@ -374,10 +375,8 @@
             this.dataGridView_dyr.Location = new System.Drawing.Point(336, 152);
             this.dataGridView_dyr.Name = "dataGridView_dyr";
             this.dataGridView_dyr.RowHeadersVisible = false;
-            this.dataGridView_dyr.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_dyr.Size = new System.Drawing.Size(206, 350);
             this.dataGridView_dyr.TabIndex = 27;
-            this.dataGridView_dyr.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_dyr_CellContentClick_1);
             this.dataGridView_dyr.DoubleClick += new System.EventHandler(this.dataGridView_dyr_DoubleClick);
             // 
             // name
@@ -463,5 +462,6 @@
         private System.Windows.Forms.DataGridView dataGridView_dyr;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn speciestype;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

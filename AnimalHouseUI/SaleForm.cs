@@ -25,11 +25,11 @@ namespace AnimalHouseUI
 
         private void SaleForm_Load(object sender, EventArgs e)
         {
-            LoadeAllItemsInListBox();
-            sale = new Sale(customer,DateTime.Now);
-
             DataGridViewItemList.AutoGenerateColumns = false;
             ItemDataGridView.AutoGenerateColumns = false;
+
+            LoadAllItemsInListBox();
+            sale = new Sale(customer,DateTime.Now);
         }
 
         #region Copy this 
@@ -199,21 +199,19 @@ namespace AnimalHouseUI
 
         }
 
-        private void LoadeAllItemsInListBox()
+        private void LoadAllItemsInListBox()
         {
-            try
-            {
                 ItemDataGridView.Columns["ItemName"].DataPropertyName = "name";
                 ItemDataGridView.Columns["itemAmount"].DataPropertyName = "amount";
                 ItemDataGridView.Columns["itemPrice"].DataPropertyName = "price";
-
-                //ItemDataGridView.DataSource = null;
+            try
+            {
                 items = BossController.instance().saleController.GetAllActiveItems();
                 ItemDataGridView.DataSource = items;
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                throw;
+                MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
             }
         }
 
@@ -247,12 +245,11 @@ namespace AnimalHouseUI
 
                         for (int i = 0; i < DataGridViewItemList.RowCount; i++)
                         {
-
                             Item item2 = sale.saleLineItems[i].item;
 
                             DataGridViewItemList.Rows[i].Cells["Name"].Value = item2.name;
 
-                            FillPriceInLable(item2.price,item2.amount);
+                            FillPriceInLable(item2.price, item2.amount);
                         }
                     }
                 }
@@ -260,7 +257,6 @@ namespace AnimalHouseUI
                 {
                     MessageBox.Show("Du skal finde en kunde før du kan tilføje vare til et salg");
                 }
-
             }
             catch (Exception)
             {
@@ -336,6 +332,12 @@ namespace AnimalHouseUI
         private void ItemDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void ShowStockButton_Click(object sender, EventArgs e)
+        {
+            StockForm stockForm = new StockForm();
+            stockForm.Show();
         }
     }
 }

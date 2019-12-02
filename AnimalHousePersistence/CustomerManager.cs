@@ -21,8 +21,6 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-          
-
             sQLQuery.AddParameter("@phone", customer.phone.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@name", customer.name.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@address",customer.address.ToString(), SqlDbType.VarChar);
@@ -38,16 +36,13 @@ namespace AnimalHousePersistence
             int customerID = (int)sQLQueryResult.dataTable.Rows[0]["CustomerID"];
 
             customer.UpdateID(customerID);
-            
-
+        
             if (customer.GetType()==typeof(BusinessCustomer))
 
             {
              //der laves en BusinessCustomer som castes til customer
-
                 BusinessCustomer businessCustomer = (BusinessCustomer)customer;
                 CreateBusinessCustomer(businessCustomer);
-                
 
             }
 
@@ -73,11 +68,9 @@ namespace AnimalHousePersistence
             SQLQuery sQLQuery = new SQLQuery(query);
             
             sQLQuery.AddParameter("@cvr", businessCustomer.cvr.ToString(), SqlDbType.Int);
-            sQLQuery.AddParameter("@businesscustomerID", businessCustomer.BusinesscustomerID.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@businesscustomerID", businessCustomer.customerID.ToString(), SqlDbType.Int);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
-
-
 
         }
 
@@ -87,7 +80,7 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("@privatecustomerID", privateCustomer.PrivatecustomerID.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@customerID", privateCustomer.customerID.ToString(), SqlDbType.Int);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
         }
@@ -170,7 +163,6 @@ namespace AnimalHousePersistence
 
         public Customer GetCustomer(string phone)
         {
-         
 
             string query = Utility.ReadSQLQueryFromFile("GetCustomer.txt");
 
@@ -180,14 +172,68 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            DataRow dataRow = sQLQueryResult.dataTable.Rows[0];
+            if(sQLQueryResult.code == 0 || sQLQueryResult.dataTable.Rows.Count > 0)
+            {
+                DataRow dataRow = sQLQueryResult.dataTable.Rows[0];
 
-            Customer customer = new Customer((int)dataRow["CustomerID"],(string)dataRow["Name"], (string)dataRow["Adress"], (string)dataRow["Phone"],(string)dataRow["Email"], (bool)dataRow["Active"]);
+            Customer customer = CustomerFactory.Instance().CreateCustomer((int)dataRow["CustomerID"],(string)dataRow["Name"], (string)dataRow["Adress"], (string)dataRow["Phone"],(string)dataRow["Email"], (bool)dataRow["Active"], (int)dataRow["cvr"]);
 
-            return customer;
+                return customer;
+            }
+            else
+            {
+                throw new NoCustomerFoundException("", sQLQueryResult.exception);
+            }
 
 
           
+        }
+
+        public int GetBusinessCustomerCVR(Customer customer)
+        {
+            string query = Utility.ReadSQLQueryFromFile("GetBusinesscustomerCVR.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            sQLQuery.AddParameter("@customerID", customer.customerID.ToString(), SqlDbType.VarChar);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            int cvr;
+            try
+            {
+                DataRow dataRow = sQLQueryResult.dataTable.Rows[0];
+                cvr = (int)dataRow["CVR"];
+            }
+            catch
+            {
+                 cvr=0;
+            }
+            return cvr;
+
+        }
+
+        public bool CheckUniquePhone(string phone)
+        {
+            SqlConnection con = new SqlConnection(Utility.connectionString);
+
+            string query = Utility.ReadSQLQueryFromFile("CheckUniquePhone.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            sQLQuery.AddParameter("@phone", phone, SqlDbType.VarChar);
+            
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            //hvis nummeret allerede findes sender den false afsted. Den sender altid en false afsted
+
+            if ((int)sQLQueryResult.dataTable.Rows[0]["counter"] == 0)
+            {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
     }
 }

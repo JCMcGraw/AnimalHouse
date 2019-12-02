@@ -29,7 +29,6 @@ namespace AnimalHouseUI
 
             }
 
-
             NameLabel.Text = item.name.ToString();
             PriceTextBox.Text = item.price.ToString("N2");
         }
@@ -157,10 +156,17 @@ namespace AnimalHouseUI
 
         private void AddItemToSaleListButton_Click(object sender, EventArgs e)
         {
-           saleLineItem = new SaleLineItem(item,Convert.ToInt32(AmountTextBox.Text),Convert.ToDecimal(PriceTextBox.Text));
+            if  (item.amount<1)
+            {
+                MessageBox.Show("Der er ikke det ønskede tilbage på lageret");
+            }
+            else
+            {
+                saleLineItem = new SaleLineItem(item, Convert.ToInt32(AmountTextBox.Text), Convert.ToDecimal(PriceTextBox.Text));
 
-           this.DialogResult = DialogResult.OK;
-           this.Close();
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
         }
     }
 }

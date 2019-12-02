@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.PanelHeader = new System.Windows.Forms.Panel();
             this.LabelTitle = new System.Windows.Forms.Label();
             this.PictureBoxLogo = new System.Windows.Forms.PictureBox();
@@ -37,11 +38,11 @@
             this.button_kunde = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label_headline = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.button_salg = new System.Windows.Forms.Button();
             this.button_behandling = new System.Windows.Forms.Button();
             this.button_dyr = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             this.SuspendLayout();
@@ -168,34 +169,6 @@
             this.label_headline.TabIndex = 8;
             this.label_headline.Text = "AnimalHouse";
             // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
-            this.button2.BackgroundImage = global::AnimalHouseUI.Properties.Resources.icons8_search_32px;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(59, 300);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(45, 36);
-            this.button2.TabIndex = 9;
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
-            this.button3.BackgroundImage = global::AnimalHouseUI.Properties.Resources.icons8_arrow_pointing_left_32px;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(59, 353);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(45, 36);
-            this.button3.TabIndex = 10;
-            this.button3.UseVisualStyleBackColor = false;
-            // 
             // button_salg
             // 
             this.button_salg.BackColor = System.Drawing.Color.AliceBlue;
@@ -238,6 +211,34 @@
             this.button_dyr.UseVisualStyleBackColor = false;
             this.button_dyr.Click += new System.EventHandler(this.button_dyr_Click);
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
+            this.button3.BackgroundImage = global::AnimalHouseUI.Properties.Resources.icons8_arrow_pointing_left_32px;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(59, 353);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(45, 36);
+            this.button3.TabIndex = 10;
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
+            this.button2.BackgroundImage = global::AnimalHouseUI.Properties.Resources.icons8_search_32px;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(59, 300);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(45, 36);
+            this.button2.TabIndex = 9;
+            this.button2.UseVisualStyleBackColor = false;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -254,6 +255,7 @@
             this.Controls.Add(this.button_kunde);
             this.Controls.Add(this.PanelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
             this.Text = "SampleForm";
             this.Load += new System.EventHandler(this.Main_Load);

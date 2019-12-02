@@ -24,6 +24,7 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@treatmenttypeid", treatment.treatmentType.treatmentTypeID.ToString(), SqlDbType.Int);
             sQLQuery.AddParameter("@employeeid", treatment.employee.employeeID.ToString(), SqlDbType.Int);
             sQLQuery.AddParameter("@itemid", treatment.item.itemID.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@operationroomid", treatment.operationRoom.operationRoomID.ToString(), SqlDbType.Int);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
@@ -153,7 +154,36 @@ namespace AnimalHousePersistence
             return treatments;
         }
 
-        public List<Treatment> GetTreatmentList(SQLQueryResult sQLQueryResult)
+        public List<Cage> GetAllCages()
+        {
+            string query = Utility.ReadSQLQueryFromFile("GetAllCages.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            List<Cage> cages = new List<Cage>();
+            cages = GetCageList(sQLQueryResult); 
+
+            return cages;
+        }
+
+        public List<OperationRoom> GetAllOperationRooms()
+        {
+            string query = Utility.ReadSQLQueryFromFile("GetAllOperationRooms.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            List<OperationRoom> operationRooms = new List<OperationRoom>();
+            operationRooms = GetAllOperationRooms(sQLQueryResult);
+
+            return operationRooms;
+
+        }
+
+        private List<Treatment> GetTreatmentList(SQLQueryResult sQLQueryResult)
         {
             List<Treatment> treatments = new List<Treatment>();
 
@@ -162,11 +192,12 @@ namespace AnimalHousePersistence
                 int treatmentID;
                 TreatmentType treatmentType;
                 Employee employee;
-                int operationRoomID;
-                int cageID;
+                OperationRoom operationRoom;
+                Cage cage;
                 Item item;
                 int animalID;
                 Title title;
+                
 
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("TreatmentID"))
                 {
@@ -191,20 +222,31 @@ namespace AnimalHousePersistence
                 }
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("OperationRoomID"))
                 {
-                    operationRoomID = -1;
+                    operationRoom = null;
                 }
                 else
                 {
-                    operationRoomID = (int)sQLQueryResult.dataTable.Rows[i]["OperationRoomID"];
+                    int operationRoomID = (int)sQLQueryResult.dataTable.Rows[i]["OperationRoomID"];
+
+                    operationRoom = OperationRoomFactory.Instance().CreateOperationRoom(operationRoomID);
                 }
+
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("CageID"))
                 {
-                    cageID = -1;
+                    cage = null;
                 }
                 else
                 {
-                    cageID = (int)sQLQueryResult.dataTable.Rows[i]["CageID"];
+                    int cageID = (int)sQLQueryResult.dataTable.Rows[i]["CageID"];
+                    int speciesID = (int)sQLQueryResult.dataTable.Rows[i]["SpeciesID"];
+                    string speciesName = (string)sQLQueryResult.dataTable.Rows[i]["SpeciesName"];
+
+                    Species species = SpeciesFactory.Instance().CreateSpecies(speciesID, speciesName);
+
+                    cage = CageFactory.Instance().CreateCage(cageID,species);
                 }
+
+
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("ItemID"))
                 {
                     item = null;
@@ -214,12 +256,13 @@ namespace AnimalHousePersistence
                     int itemID = (int)sQLQueryResult.dataTable.Rows[i]["ItemID"];
                     string name = (string)sQLQueryResult.dataTable.Rows[i]["ItemName"];
                     decimal price = (decimal)sQLQueryResult.dataTable.Rows[i]["Price"];
+                    decimal costPrice = (decimal)sQLQueryResult.dataTable.Rows[i]["PostPrice"];
                     int amount = (int)sQLQueryResult.dataTable.Rows[i]["Amount"];
                     bool prescription = (bool)sQLQueryResult.dataTable.Rows[i]["Prescription"];
                     bool treatment = (bool)sQLQueryResult.dataTable.Rows[i]["ItemTreatment"];
                     bool itemActive = (bool)sQLQueryResult.dataTable.Rows[i]["ItemActive"];
 
-                    item = ItemFactory.Instance().CreateItem(itemID,name,amount,price,prescription,treatment,itemActive);
+                    item = ItemFactory.Instance().CreateItem(itemID,name,amount,price,costPrice,prescription,treatment,itemActive);
                 }
 
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("EmployeeID"))
@@ -251,14 +294,12 @@ namespace AnimalHousePersistence
                 string headline = (string)sQLQueryResult.dataTable.Rows[i]["Headline"];
                 bool active = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
                 
-                 
-
-                treatments.Add(TreatmentFactory.Instance().CreateTreatment(treatmentID, treatmentType, operationRoomID, cageID, item, startTime, endTime, payed, headline, active, animalID, employee));
+                treatments.Add(TreatmentFactory.Instance().CreateTreatment(treatmentID, treatmentType, operationRoom, cage, item, startTime, endTime, payed, headline, active, animalID, employee));
             }
             return treatments;
         }
 
-        public List<TreatmentType> GetTreatmentTypeList(SQLQueryResult sQLQueryResult)
+        private List<TreatmentType> GetTreatmentTypeList(SQLQueryResult sQLQueryResult)
         {
             List<TreatmentType> treatmentTypes = new List<TreatmentType>();
 
@@ -280,6 +321,44 @@ namespace AnimalHousePersistence
                 treatmentTypes.Add(TreatmentTypeFactory.Instance().CreateTreatmentType(treatmentTypeID, name));
             }
             return treatmentTypes;
+        }
+
+        private List<Cage> GetCageList(SQLQueryResult sQLQueryResult)
+        {
+            List<Cage> cages = new List<Cage>();
+
+            for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
+            {
+                int cageID = (int)sQLQueryResult.dataTable.Rows[i]["CageID"];
+                int speciesID = (int)sQLQueryResult.dataTable.Rows[i]["SpeciesID"];
+                string speciesName = (string)sQLQueryResult.dataTable.Rows[i]["SpeciesName"];
+
+                Species species = SpeciesFactory.Instance().CreateSpecies(speciesID, speciesName);
+
+                cages.Add(CageFactory.Instance().CreateCage(cageID,species));
+            }
+            return cages;
+        }
+
+        private List<OperationRoom> GetAllOperationRooms(SQLQueryResult sQLQueryResult)
+        {
+            List<OperationRoom> operationRooms = new List<OperationRoom>();
+
+            for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
+            {
+                int operationRoomID;
+
+                if (sQLQueryResult.dataTable.Rows[i].IsNull("OperationRoomID"))
+                {
+                    operationRoomID = -1;
+                }
+                else
+                {
+                    operationRoomID = (int)sQLQueryResult.dataTable.Rows[i]["OperationRoomID"];
+                }
+                operationRooms.Add(OperationRoomFactory.Instance().CreateOperationRoom(operationRoomID));
+            }
+            return operationRooms;
         }
     }
 }

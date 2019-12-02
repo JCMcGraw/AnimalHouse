@@ -16,23 +16,31 @@ namespace AnimalHouseUI
 
         Animal animal;
 
+        List<OperationRoom> operationRooms;
+
         Dictionary<int, Treatment> treatmentsCache = new Dictionary<int, Treatment>();
 
         DateTime treatmentCacheDateStart = DateTime.Today;
         DateTime treatmentCacheDateEnd = DateTime.Today;
 
         List<CalendarItem> calendarItemsCache = new List<CalendarItem>();
-        CalendarItem contextItem = null;
+        //CalendarItem contextItem = null;
 
         
         public TreatmentBookingForm()
         {
             InitializeComponent();
             SetValuesForComboboxes();
+            SetOperationRooms();
             ComboBoxEmployee.SelectedIndex = 0;
             ComboBoxTreatmentType.SelectedIndex = 0;
 
-            SelectCurrentWeek();
+            SelectWeek(DateTime.Today);
+        }
+
+        private void SetOperationRooms()
+        {
+            operationRooms = bossController.treatmentController.GetAllOperationRooms();
         }
 
         private void SetValuesForComboboxes()
@@ -187,7 +195,7 @@ namespace AnimalHouseUI
             {
                 if (ComboBoxTreatmentType.Text == "Observation")
                 {
-                    CalendarRangeStart = GetFirstDayOfWeek( MonthViewBooking.SelectionStart);
+                    CalendarRangeStart = GetFirstDayOfWeek(MonthViewBooking.SelectionStart);
                     CalendarRangeEnd = CalendarRangeStart.AddDays(19);
                 }
                 else
@@ -269,10 +277,6 @@ namespace AnimalHouseUI
 
         private void CalendarBooking_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
-            {
-                ContextMenuStripBooking.Show(Cursor.Position);
-            }
         }
 
         private void PlaceItems()
@@ -379,49 +383,51 @@ namespace AnimalHouseUI
         {
             if (ComboBoxTreatmentType.Text == "Observation")
             {
+                PanelViewSelection.Visible = false;
+                radioButtonWeekView.Checked = true;
                 //set view to day view
                 CalendarBooking.SetViewRange(MonthViewBooking.SelectionStart, MonthViewBooking.SelectionStart.AddDays(14));
             }
             else
             {
+                PanelViewSelection.Visible = true;
                 //set view to detailed view
                 CalendarBooking.SetViewRange(MonthViewBooking.SelectionStart, MonthViewBooking.SelectionEnd);
             }
         }
 
-        private void SelectCurrentWeek()
+        private void SelectWeek(DateTime today)
         {
-            DateTime today = DateTime.Today;
 
             switch (today.DayOfWeek)
             {
                 case DayOfWeek.Sunday:
-                    MonthViewBooking.SelectionStart = DateTime.Today.AddDays(1);
-                    MonthViewBooking.SelectionEnd = DateTime.Today.AddDays(5);
+                    MonthViewBooking.SelectionStart = today.AddDays(1);
+                    MonthViewBooking.SelectionEnd = today.AddDays(5);
                     break;
                 case DayOfWeek.Monday:
-                    MonthViewBooking.SelectionStart = DateTime.Today;
-                    MonthViewBooking.SelectionEnd = DateTime.Today.AddDays(4);
+                    MonthViewBooking.SelectionStart = today;
+                    MonthViewBooking.SelectionEnd = today.AddDays(4);
                     break;
                 case DayOfWeek.Tuesday:
-                    MonthViewBooking.SelectionStart = DateTime.Today.AddDays(-1);
-                    MonthViewBooking.SelectionEnd = DateTime.Today.AddDays(3);
+                    MonthViewBooking.SelectionStart = today.AddDays(-1);
+                    MonthViewBooking.SelectionEnd = today.AddDays(3);
                     break;
                 case DayOfWeek.Wednesday:
-                    MonthViewBooking.SelectionStart = DateTime.Today.AddDays(-2);
-                    MonthViewBooking.SelectionEnd = DateTime.Today.AddDays(2);
+                    MonthViewBooking.SelectionStart = today.AddDays(-2);
+                    MonthViewBooking.SelectionEnd = today.AddDays(2);
                     break;
                 case DayOfWeek.Thursday:
-                    MonthViewBooking.SelectionStart = DateTime.Today.AddDays(-2);
-                    MonthViewBooking.SelectionEnd = DateTime.Today.AddDays(1);
+                    MonthViewBooking.SelectionStart = today.AddDays(-3);
+                    MonthViewBooking.SelectionEnd = today.AddDays(1);
                     break;
                 case DayOfWeek.Friday:
-                    MonthViewBooking.SelectionStart = DateTime.Today.AddDays(-4);
-                    MonthViewBooking.SelectionEnd = DateTime.Today;
+                    MonthViewBooking.SelectionStart = today.AddDays(-4);
+                    MonthViewBooking.SelectionEnd = today;
                     break;
                 case DayOfWeek.Saturday:
-                    MonthViewBooking.SelectionStart = DateTime.Today.AddDays(-5);
-                    MonthViewBooking.SelectionEnd = DateTime.Today.AddDays(-1);
+                    MonthViewBooking.SelectionStart = today.AddDays(-5);
+                    MonthViewBooking.SelectionEnd = today.AddDays(-1);
                     break;
             }
         }
@@ -457,6 +463,45 @@ namespace AnimalHouseUI
             return newSelectedStartDate;
         }
 
+        private List<OperationRoom> GetAllAvailableOperationRooms(List<OperationRoom> operationRooms, DateTime SuggestedStartTime, DateTime SuggestedEndTime)
+        {
+            List<OperationRoom> availableOperationRooms = new List<OperationRoom>();
+            List<Treatment> treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(SuggestedStartTime.Date, SuggestedStartTime.Date.AddDays(1));
+
+
+            foreach (OperationRoom operationRoom in operationRooms)
+            {
+                if (CheckAvailabilityForOperationRooms(operationRoom, SuggestedStartTime, SuggestedEndTime, treatments) == true)
+                {
+                    availableOperationRooms.Add(operationRoom);
+                }
+            }
+
+            return availableOperationRooms;
+        }
+
+        private bool CheckAvailabilityForOperationRooms(OperationRoom operationRoom, DateTime SuggestedStartTime, DateTime SuggestedEndTime, List<Treatment> treatments = null)
+        {
+            if (treatments == null)
+            {
+                treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(SuggestedStartTime.Date, SuggestedStartTime.Date.AddDays(1));
+            }
+
+            foreach (Treatment treatment in treatments)
+            {
+                if (treatment.operationRoom.operationRoomID == operationRoom.operationRoomID)
+                {
+                    if ((treatment.startTime >= SuggestedStartTime && treatment.startTime < SuggestedEndTime) || (treatment.endTime > SuggestedStartTime && treatment.endTime <= SuggestedEndTime) ||
+                        (treatment.startTime <= SuggestedStartTime && treatment.endTime >= SuggestedEndTime))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+        
         private List<Employee> GetAllAvailableEmployeesForConsultationOrOperation(List<Employee> employees, DateTime SuggestedStartTime, DateTime SuggestedEndTime)
         {
             List<Employee> availableEmployees = new List<Employee>();
@@ -499,43 +544,80 @@ namespace AnimalHouseUI
         private void CalendarBooking_ItemCreating(object sender, CalendarItemCancelEventArgs e)
         {
             Employee selectedEmployee = (Employee)ComboBoxEmployee.SelectedItem;
+            OperationRoom selectedOperationRoom = null;
 
             bool employeeAvailable = true;
 
-            //if employee is selected in combobox check availability to avoid double bookings
-            if (selectedEmployee.employeeID != -1)
+            if(((TreatmentType)ComboBoxTreatmentType.SelectedItem).treatmentTypeID != 3)
             {
-                employeeAvailable = CheckAvailabilityForConsultationOrOperation(selectedEmployee, e.Item.StartDate, e.Item.EndDate);
-
-                if (employeeAvailable == false)
+                //if employee is selected in combobox check availability to avoid double bookings
+                if (selectedEmployee.employeeID != -1)
                 {
-                    MessageBox.Show($"{selectedEmployee.name} er ikke fri i det valgte tidsrum, vælg venligst et andet tidspunkt");
-                    e.Cancel = true;
-                    return;
+                    employeeAvailable = CheckAvailabilityForConsultationOrOperation(selectedEmployee, e.Item.StartDate, e.Item.EndDate);
+
+                    if (employeeAvailable == false)
+                    {
+                        MessageBox.Show($"{selectedEmployee.name} er ikke fri i det valgte tidsrum, vælg venligst et andet tidspunkt");
+                        e.Cancel = true;
+                        return;
+                    }
+                }
+                //else check all employees for availability and show form with selection option to select employee
+                else
+                {
+                    List<Employee> availableEmployees = GetAllAvailableEmployeesForConsultationOrOperation((List<Employee>)ComboBoxEmployee.DataSource, e.Item.StartDate, e.Item.EndDate);
+                    SelectEmployeeForTreatmentForm selectEmployeeForTreatmentForm = new SelectEmployeeForTreatmentForm(availableEmployees);
+                    selectEmployeeForTreatmentForm.ShowDialog();
+
+                    if (selectEmployeeForTreatmentForm.DialogResult == DialogResult.OK)
+                    {
+                        selectedEmployee = selectEmployeeForTreatmentForm.selectedEmployee;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Der blev ikke valgt en dyrlæge, prøv venligst igen");
+                        e.Cancel = true;
+                        return;
+                    }
                 }
             }
-            //else check all employees for availability and show form with selection option to select employee
-            else
+            
+            //check availability of operating rooms if treatment type is operation
+            if (((TreatmentType)ComboBoxTreatmentType.SelectedItem).treatmentTypeID == 2)
             {
-                List<Employee> availableEmployees = GetAllAvailableEmployeesForConsultationOrOperation((List<Employee>)ComboBoxEmployee.DataSource, e.Item.StartDate, e.Item.EndDate);
-                SelectEmployeeForTreatmentForm selectEmployeeForTreatmentForm = new SelectEmployeeForTreatmentForm(availableEmployees);
-                selectEmployeeForTreatmentForm.ShowDialog();
+                List<OperationRoom> availableOperationRooms = GetAllAvailableOperationRooms(operationRooms, e.Item.StartDate, e.Item.EndDate);
 
-                if (selectEmployeeForTreatmentForm.DialogResult == DialogResult.OK)
+                if (availableOperationRooms.Count == 0)
                 {
-                    selectedEmployee = selectEmployeeForTreatmentForm.selectedEmployee;
+                    MessageBox.Show("Der er ikke nogle operationsstuer ledige på dette tidspunkt.");
+                    e.Cancel = true;
+                    return;
                 }
                 else
                 {
-                    MessageBox.Show($"Der blev ikke valgt en dyrlæge, prøv venligst igen");
-                    e.Cancel = true;
-                    return;
+
+                    SelectOperationRoomForTreatmentForm selectOperationRoomForTreatmentForm = new SelectOperationRoomForTreatmentForm(operationRooms);
+                    selectOperationRoomForTreatmentForm.ShowDialog();
+                    if (selectOperationRoomForTreatmentForm.DialogResult == DialogResult.OK)
+                    {
+                        selectedOperationRoom = selectOperationRoomForTreatmentForm.selectedOperationRoom;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Der blev ikke valgt en operationsstue, prøv venligst igen");
+                        e.Cancel = true;
+                        return;
+                    }
                 }
             }
 
+            if (((TreatmentType)ComboBoxTreatmentType.SelectedItem).treatmentTypeID == 3)
+            {
 
-            //question string for verifying items
-            string message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra kl. {e.Item.StartDate.ToString("H:mm")} til kl. {e.Item.EndDate.ToString("H:mm")} den {e.Item.StartDate.ToString("dd/M")}";
+            }
+
+                //question string for verifying items
+                string message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra kl. {e.Item.StartDate.ToString("H:mm")} til kl. {e.Item.EndDate.ToString("H:mm")} den {e.Item.StartDate.ToString("dd/M")}";
             //altered question string if treatment type is Observation
             if ((int)ComboBoxTreatmentType.SelectedValue == 3)
             {
@@ -549,10 +631,10 @@ namespace AnimalHouseUI
             if (dialogResult == DialogResult.Yes)
             {
                 //dummy item for testing
-                Item item = ItemFactory.Instance().CreateItem(9, "Vaccination", 1, 399m, false, true, true);
+                Item item = ItemFactory.Instance().CreateItem(9, "Vaccination", 1, 399m,300m, false, true, true);
 
                 //create new treatment
-                Treatment treatment = TreatmentFactory.Instance().CreateTreatment((TreatmentType)ComboBoxTreatmentType.SelectedItem, -1, -1, item, e.Item.StartDate, e.Item.EndDate, false, headline, true, -1, selectedEmployee);
+                Treatment treatment = TreatmentFactory.Instance().CreateTreatment((TreatmentType)ComboBoxTreatmentType.SelectedItem, selectedOperationRoom, null, item, e.Item.StartDate, e.Item.EndDate, false, headline, true, -1, selectedEmployee);
 
                 //add treatment to database and get treatment with treatment ID
                 Treatment treatmentWithID = bossController.treatmentController.CreateTreatment(treatment);
@@ -577,6 +659,12 @@ namespace AnimalHouseUI
         //actions for calendaritems dates/times changed
         private void CalendarBooking_ItemDatesChanged(object sender, CalendarItemEventArgs e)
         {
+            //check if times haven't been changed
+            if (e.Item.StartDate == treatmentsCache[e.Item.TreatmentID].startTime && e.Item.EndDate == treatmentsCache[e.Item.TreatmentID].endTime)
+            {
+                return;
+            }
+
             //question string for verifying new datetimes
             string message = $"Ønsker du at ændre denne aftale til kl. {e.Item.StartDate.ToString("H:mm")}-{e.Item.EndDate.ToString("H:mm")} den {e.Item.StartDate.ToString("dd/M")}?";
             //altered question string if treatment type is Observation
@@ -615,7 +703,7 @@ namespace AnimalHouseUI
         private Treatment GetUpdatedTreatment(int treatmentID, DateTime newStartTime, DateTime newEndTime)
         {
             Treatment oldTreatment = treatmentsCache[treatmentID];
-            Treatment newTreatment = TreatmentFactory.Instance().CreateTreatment(treatmentID, oldTreatment.treatmentType, oldTreatment.operationRoomID, oldTreatment.cageID, oldTreatment.item,
+            Treatment newTreatment = TreatmentFactory.Instance().CreateTreatment(treatmentID, oldTreatment.treatmentType, oldTreatment.operationRoom, oldTreatment.cage, oldTreatment.item,
                 newStartTime, newEndTime, oldTreatment.payed, oldTreatment.headline, oldTreatment.active, oldTreatment.animalID, oldTreatment.employee);
 
             return newTreatment;
@@ -758,6 +846,81 @@ namespace AnimalHouseUI
         private void CalendarBooking_ItemMouseHover(object sender, CalendarItemEventArgs e)
         {
             //itemToolTip.Show(e.Item.Text,CalendarBooking);
+        }
+
+        private void radioButtonWeekView_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonWeekView.Checked == true)
+            {
+                MonthViewBooking.SelectionMode = MonthView.MonthViewSelection.WorkWeek;
+                SelectWeek(MonthViewBooking.SelectionStart);
+            }
+            else
+            {
+                MonthViewBooking.SelectionMode = MonthView.MonthViewSelection.Day;
+
+                if (MonthViewBooking.SelectionStart < DateTime.Now && MonthViewBooking.SelectionEnd > DateTime.Now)
+                {
+                    MonthViewBooking.SelectionStart = DateTime.Today;
+                    MonthViewBooking.SelectionEnd = DateTime.Today;
+                }
+                else
+                {
+                    MonthViewBooking.SelectionEnd = MonthViewBooking.SelectionStart;
+                }
+            }
+        }
+
+        private void CalendarBooking_ItemClick(object sender, CalendarItemEventArgs e)
+        {
+            if (e.MouseEventArgs.Button == MouseButtons.Right)
+            {
+                ContextMenuStripBooking.Show(Cursor.Position);
+                
+            }
+
+        }
+
+        private void CalendarBooking_ItemDoubleClick(object sender, CalendarItemEventArgs e)
+        {
+
+            int treatmentID = e.Item.TreatmentID;
+            Treatment treatment = treatmentsCache[treatmentID];
+
+
+            TreatmentForm treatmentform = new TreatmentForm(treatment);
+            treatmentform.Show();
+
+        }
+
+        private void button_startbehandling_Click(object sender, EventArgs e)
+        {
+            StartTreatment();
+        }
+
+        public void StartTreatment()
+            {
+            
+            List<CalendarItem> calendaritems=(List<CalendarItem>)CalendarBooking.GetSelectedItems();
+            if (calendaritems.Count==0)
+            {
+                MessageBox.Show("Der er ikke valgt nogen aftale");
+            }
+            else if (calendaritems.Count>1)
+            {
+                MessageBox.Show("Der kan kun vælges en enkelt aftalte");
+
+            }
+            else
+            {
+                int treatmentID = calendaritems[0].TreatmentID;
+                Treatment treatment = treatmentsCache[treatmentID];
+
+            
+                TreatmentForm treatmentform = new TreatmentForm(treatment);
+                treatmentform.Show();
+            }
+            
         }
     }
 }

@@ -31,11 +31,11 @@
         {
             this.PanelHeader = new System.Windows.Forms.Panel();
             this.LabelTitle = new System.Windows.Forms.Label();
-            this.SelectButton = new System.Windows.Forms.Button();
             this.PictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.ButtonMinimize = new System.Windows.Forms.Button();
             this.ButtonMaximize = new System.Windows.Forms.Button();
             this.ButtonClose = new System.Windows.Forms.Button();
+            this.SelectButton = new System.Windows.Forms.Button();
             this.InfoLabel = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
             this.SelectVetCombobox = new System.Windows.Forms.ComboBox();
@@ -74,20 +74,6 @@
             this.LabelTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseDown);
             this.LabelTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseMove);
             this.LabelTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseUp);
-            // 
-            // SelectButton
-            // 
-            this.SelectButton.BackColor = System.Drawing.Color.AliceBlue;
-            this.SelectButton.FlatAppearance.BorderSize = 0;
-            this.SelectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SelectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SelectButton.Location = new System.Drawing.Point(68, 143);
-            this.SelectButton.Name = "SelectButton";
-            this.SelectButton.Size = new System.Drawing.Size(118, 51);
-            this.SelectButton.TabIndex = 6;
-            this.SelectButton.Text = "Vælg";
-            this.SelectButton.UseVisualStyleBackColor = false;
-            this.SelectButton.Click += new System.EventHandler(this.SelectButton_Click);
             // 
             // PictureBoxLogo
             // 
@@ -145,6 +131,20 @@
             this.ButtonClose.UseVisualStyleBackColor = true;
             this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
             // 
+            // SelectButton
+            // 
+            this.SelectButton.BackColor = System.Drawing.Color.AliceBlue;
+            this.SelectButton.FlatAppearance.BorderSize = 0;
+            this.SelectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SelectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SelectButton.Location = new System.Drawing.Point(68, 143);
+            this.SelectButton.Name = "SelectButton";
+            this.SelectButton.Size = new System.Drawing.Size(118, 51);
+            this.SelectButton.TabIndex = 6;
+            this.SelectButton.Text = "Vælg";
+            this.SelectButton.UseVisualStyleBackColor = false;
+            this.SelectButton.Click += new System.EventHandler(this.SelectButton_Click);
+            // 
             // InfoLabel
             // 
             this.InfoLabel.AutoSize = true;
@@ -171,6 +171,7 @@
             // 
             // SelectVetCombobox
             // 
+            this.SelectVetCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SelectVetCombobox.FormattingEnabled = true;
             this.SelectVetCombobox.Location = new System.Drawing.Point(88, 101);
             this.SelectVetCombobox.Name = "SelectVetCombobox";

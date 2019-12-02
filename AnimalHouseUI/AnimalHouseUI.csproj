@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>AnimalHouse.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -59,6 +62,12 @@
     <Compile Include="CustomerForm.Designer.cs">
       <DependentUpon>CustomerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ErrorManager.cs" />
+    <Compile Include="Localization\ErrorMessages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorMessages.resx</DependentUpon>
+    </Compile>
     <Compile Include="SaleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +94,18 @@
     <Compile Include="SampleForm.Designer.cs">
       <DependentUpon>SampleForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SelectOperationRoomForTreatmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectOperationRoomForTreatmentForm.Designer.cs">
+      <DependentUpon>SelectOperationRoomForTreatmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TreatmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TreatmentForm.Designer.cs">
+      <DependentUpon>TreatmentForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AnimalForm.resx">
       <DependentUpon>AnimalForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -97,12 +118,22 @@
     <Compile Include="SelectEmployeeForTreatmentForm.Designer.cs">
       <DependentUpon>SelectEmployeeForTreatmentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="StockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StockForm.Designer.cs">
+      <DependentUpon>StockForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TreatmentBookingForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TreatmentBookingForm.Designer.cs">
       <DependentUpon>TreatmentBookingForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Localization\ErrorMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="SaleForm.resx">
       <DependentUpon>SaleForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -128,8 +159,17 @@
     <EmbeddedResource Include="SelectEmployeeForTreatmentForm.resx">
       <DependentUpon>SelectEmployeeForTreatmentForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SelectOperationRoomForTreatmentForm.resx">
+      <DependentUpon>SelectOperationRoomForTreatmentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StockForm.resx">
+      <DependentUpon>StockForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TreatmentBookingForm.resx">
       <DependentUpon>TreatmentBookingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TreatmentForm.resx">
+      <DependentUpon>TreatmentForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -178,6 +218,10 @@
       <Project>{25649f08-3046-4891-adb8-7ea787b57063}</Project>
       <Name>System.Windows.Forms.Calendar</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AnimalHouse.ico" />
+    <None Include="Resources\AnimalHouse.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

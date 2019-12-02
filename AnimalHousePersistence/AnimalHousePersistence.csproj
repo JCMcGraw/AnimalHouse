@@ -54,6 +54,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="ICustomerManager.cs" />
+    <Compile Include="Localization\ErrorMessages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorMessages.resx</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SaleManager.cs" />
@@ -68,6 +73,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SQLQueries\CheckUniquePhone.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQLQueries\CreateBusinessCustomer.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -81,7 +89,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLQueries\CreatePrivateCustomer.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLQueries\DeleteAnimal.txt" />
     <Content Include="SQLQueries\DeleteCustomer.txt">
@@ -99,7 +107,16 @@
     <Content Include="SQLQueries\GetAllActiveItems.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQLQueries\GetAllCages.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQLQueries\GetAllEmployees.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQLQueries\GetAllMedicalRecordByAnimal.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQLQueries\GetAllOperationRooms.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLQueries\GetAnimal.txt">
@@ -108,8 +125,11 @@
     <Content Include="SQLQueries\CreateAnimal.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQLQueries\GetBusinesscustomerCVR.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQLQueries\GetCustomer.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLQueries\GetManyAnimalsByCustomerID.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -157,6 +177,14 @@
       <Project>{333dca3f-6627-4364-995d-d0458e3b65ef}</Project>
       <Name>AnimalHouseEntities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\ErrorMessages.de.resx" />
+    <EmbeddedResource Include="Localization\ErrorMessages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
