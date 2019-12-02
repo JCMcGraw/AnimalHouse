@@ -46,10 +46,8 @@
   <ItemGroup>
     <Compile Include="AnimalManager.cs" />
     <Compile Include="EmployeeManager.cs" />
-    <Compile Include="ErrorManager.cs" />
     <Compile Include="IAnimalManager.cs" />
     <Compile Include="IEmployeeManager.cs" />
-    <Compile Include="IErrorManager.cs" />
     <Compile Include="ISaleManager.cs" />
     <Compile Include="ITreatmentManager.cs" />
     <Compile Include="CustomerManager.cs">

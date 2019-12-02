@@ -162,7 +162,7 @@ namespace AnimalHouseUI
             }
             catch (Exception exception)
             {
-                MessageBox.Show(bossController.errorController.GetErrorMessage(exception));
+                MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
             }
         }
 

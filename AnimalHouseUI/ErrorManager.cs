@@ -3,16 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AnimalHouseEntities;
 using System.Data.SqlClient;
-using System.Resources;
-using System.Threading;
+using AnimalHouseEntities;
 
-
-namespace AnimalHousePersistence
+namespace AnimalHouseUI
 {
-    public class ErrorManager : IErrorManager
+    public class ErrorManager
     {
+        private ErrorManager() { }
+
+        private static ErrorManager errorManager = null;
+
+        public static ErrorManager Instance()
+        {
+            if (errorManager == null)
+            {
+                errorManager = new ErrorManager();
+            }
+            return errorManager;
+        }
 
         public string GetErrorMessage(Exception exception)
         {
@@ -23,13 +32,13 @@ namespace AnimalHousePersistence
                 errorMessage = Localization.ErrorMessages.NoItemsFound + GetErrorMessage(exception.InnerException);
             }
             //peders
-            if(exception is NoCustomerFoundException)
+            if (exception is NoCustomerFoundException)
             {
-                
+
             }
             else if (exception is SqlException)
             {
-                switch(((SqlException)exception).Number)
+                switch (((SqlException)exception).Number)
                 {
                     case -1:
                     case -2:
