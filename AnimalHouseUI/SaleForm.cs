@@ -28,7 +28,7 @@ namespace AnimalHouseUI
             DataGridViewItemList.AutoGenerateColumns = false;
             ItemDataGridView.AutoGenerateColumns = false;
 
-            LoadeAllItemsInListBox();
+            LoadAllItemsInListBox();
             sale = new Sale(customer,DateTime.Now);
         }
 
@@ -199,20 +199,19 @@ namespace AnimalHouseUI
 
         }
 
-        private void LoadeAllItemsInListBox()
+        private void LoadAllItemsInListBox()
         {
-            try
-            {
                 ItemDataGridView.Columns["ItemName"].DataPropertyName = "name";
                 ItemDataGridView.Columns["itemAmount"].DataPropertyName = "amount";
                 ItemDataGridView.Columns["itemPrice"].DataPropertyName = "price";
-
+            try
+            {
                 items = BossController.instance().saleController.GetAllActiveItems();
                 ItemDataGridView.DataSource = items;
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                throw;
+                MessageBox.Show(BossController.instance().errorController.GetErrorMessage(exception));
             }
         }
 

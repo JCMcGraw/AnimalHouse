@@ -51,6 +51,7 @@
     <Compile Include="CageFactory.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerFactory.cs" />
+    <Compile Include="CustomExceptions.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="EmployeeFactory.cs" />
     <Compile Include="Item.cs" />

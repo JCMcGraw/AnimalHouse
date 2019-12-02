@@ -14,21 +14,21 @@ namespace AnimalHousePersistence
     {
         public List<Item> GetAllActiveItems()
         {
-            string query = Utility.ReadSQLQueryFromFile("GetAllActiveItems.txt");
+                string query = Utility.ReadSQLQueryFromFile("GetAllActiveItems.txt");
 
-            SQLQuery sQLQuery = new SQLQuery(query);
+                SQLQuery sQLQuery = new SQLQuery(query);
 
-            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+                SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            if (sQLQueryResult.code == 0)
-            {
-                List<Item> items = GetListOfItemsFromDatatable(sQLQueryResult.dataTable);
-                return items;
-            }
-            else
-            {
-                return new List<Item>();
-            }
+                if (sQLQueryResult.code == 0)
+                {
+                    List<Item> items = GetListOfItemsFromDatatable(sQLQueryResult.dataTable);
+                    return items;
+                }
+                else
+                {
+                    throw new NoItemsFoundException("", sQLQueryResult.exception);
+                }
         }
 
         private List<Item> GetListOfItemsFromDatatable(DataTable dataTable)
@@ -130,18 +130,21 @@ namespace AnimalHousePersistence
                 }
                 else
                 {
-                    int saleLineItemID = (int)sQLQueryResult.dataTable.Rows[0]["SaleLineItemsID"];
-                    saleLineItem.UpdateSaleLineItemID(saleLineItemID);
-
-                    SQLQuery updateAmountSQLQuery = new SQLQuery(updateItemAmountQuery);
-                    updateAmountSQLQuery.AddParameter("@decreaseamount", saleLineItem.amount.ToString(), SqlDbType.Int);
-                    updateAmountSQLQuery.AddParameter("@itemid", saleLineItem.item.itemID.ToString(), SqlDbType.Int);
-
-                    sQLQueryResult = SQLDatabaseConnector.QueryDatabase(updateAmountSQLQuery, connection);
-
-                    if (sQLQueryResult.code != 0)
+                    if (saleLineItem.item.treatment == false)
                     {
-                        throw sQLQueryResult.exception;
+                        int saleLineItemID = (int)sQLQueryResult.dataTable.Rows[0]["SaleLineItemsID"];
+                        saleLineItem.UpdateSaleLineItemID(saleLineItemID);
+
+                        SQLQuery updateAmountSQLQuery = new SQLQuery(updateItemAmountQuery);
+                        updateAmountSQLQuery.AddParameter("@decreaseamount", saleLineItem.amount.ToString(), SqlDbType.Int);
+                        updateAmountSQLQuery.AddParameter("@itemid", saleLineItem.item.itemID.ToString(), SqlDbType.Int);
+
+                        sQLQueryResult = SQLDatabaseConnector.QueryDatabase(updateAmountSQLQuery, connection);
+
+                        if (sQLQueryResult.code != 0)
+                        {
+                            throw sQLQueryResult.exception;
+                        }
                     }
                 }
             }

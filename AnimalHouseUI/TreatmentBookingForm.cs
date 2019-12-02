@@ -800,14 +800,43 @@ namespace AnimalHouseUI
         private void CalendarBooking_ItemDoubleClick(object sender, CalendarItemEventArgs e)
         {
 
-          
             int treatmentID = e.Item.TreatmentID;
             Treatment treatment = treatmentsCache[treatmentID];
 
-            
+
             TreatmentForm treatmentform = new TreatmentForm(treatment);
             treatmentform.Show();
-           
+
+        }
+
+        private void button_startbehandling_Click(object sender, EventArgs e)
+        {
+            StartTreatment();
+        }
+
+        public void StartTreatment()
+            {
+            
+            List<CalendarItem> calendaritems=(List<CalendarItem>)CalendarBooking.GetSelectedItems();
+            if (calendaritems.Count==0)
+            {
+                MessageBox.Show("Der er ikke valgt nogen aftale");
+            }
+            else if (calendaritems.Count>1)
+            {
+                MessageBox.Show("Der kan kun vælges en enkelt aftalte");
+
+            }
+            else
+            {
+                int treatmentID = calendaritems[0].TreatmentID;
+                Treatment treatment = treatmentsCache[treatmentID];
+
+            
+                TreatmentForm treatmentform = new TreatmentForm(treatment);
+                treatmentform.Show();
+            }
+            
         }
     }
 }

@@ -28,9 +28,7 @@ namespace AnimalHouse
 
         public List<Item> GetAllActiveItems()
         {
-
             List<Item> items = saleManager.GetAllActiveItems();
-
             return items;
         }
 

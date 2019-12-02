@@ -26,5 +26,10 @@ namespace AnimalHouseEntities
             this.treatment = treatment;
             this.active = active;
         }
+
+        public override string ToString()
+        {
+            return $"{name}\t{price.ToString("N2")}\t{amount}";
+        }
     }
 }

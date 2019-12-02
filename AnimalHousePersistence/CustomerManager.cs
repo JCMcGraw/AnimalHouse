@@ -163,7 +163,6 @@ namespace AnimalHousePersistence
 
         public Customer GetCustomer(string phone)
         {
-         
 
             string query = Utility.ReadSQLQueryFromFile("GetCustomer.txt");
 
@@ -173,11 +172,20 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            DataRow dataRow = sQLQueryResult.dataTable.Rows[0];
+            if(sQLQueryResult.code == 0 || sQLQueryResult.dataTable.Rows.Count > 0)
+            {
+                DataRow dataRow = sQLQueryResult.dataTable.Rows[0];
 
-            Customer customer = new Customer((int)dataRow["CustomerID"],(string)dataRow["Name"], (string)dataRow["Adress"], (string)dataRow["Phone"],(string)dataRow["Email"], (bool)dataRow["Active"]);
+            Customer customer = CustomerFactory.Instance().CreateCustomer((int)dataRow["CustomerID"],(string)dataRow["Name"], (string)dataRow["Adress"], (string)dataRow["Phone"],(string)dataRow["Email"], (bool)dataRow["Active"], (int)dataRow["cvr"]);
 
-            return customer;
+                return customer;
+            }
+            else
+            {
+                throw new NoCustomerFoundException("", sQLQueryResult.exception);
+            }
+
+
           
         }
 

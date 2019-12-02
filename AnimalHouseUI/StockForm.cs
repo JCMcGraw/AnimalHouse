@@ -7,17 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing.Printing;
 using AnimalHouseEntities;
 using AnimalHouse;
 
 namespace AnimalHouseUI
 {
-    public partial class Main : Form
+    public partial class StockForm : Form
     {
-        public Main()
+        List<Item> allItems;
+        List<Item> items;
+        BossController bossController = BossController.instance();
+
+        public StockForm()
         {
             InitializeComponent();
+            
+            ItemDataGridView.AutoGenerateColumns = false;
+
+            LoadAllItemsInListBox();
+            AmountComboBox.SelectedIndex = 9;
         }
+
         #region Copy this 
 
         private const int CS_DROPSHADOW = 0x20000;
@@ -139,42 +150,94 @@ namespace AnimalHouseUI
 
         #endregion
 
-        private void button_kunde_Click(object sender, EventArgs e)
+        private void LoadAllItemsInListBox()
         {
-            CustomerForm customerForm = new CustomerForm();
-            customerForm.Show();
-
+            ItemDataGridView.Columns["itemName"].DataPropertyName = "name";
+            ItemDataGridView.Columns["itemAmount"].DataPropertyName = "amount";
+            ItemDataGridView.Columns["itemPrice"].DataPropertyName = "price";
+            try
+            {
+                allItems = bossController.saleController.GetAllActiveItems();
+                ShowAllItems();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(bossController.errorController.GetErrorMessage(exception));
+            }
         }
 
-        private void button_salg_Click(object sender, EventArgs e)
+        private void ShowAllItems()
         {
-            SaleForm saleui = new SaleForm();
-            saleui.Show();
+            items = allItems.Where(item => item.treatment == false).ToList<Item>();
+
+            ItemDataGridView.DataSource = items;
         }
 
-        private void button_behandling_Click(object sender, EventArgs e)
+        private void ShowItemsUnderLimit(int limit)
         {
-            TreatmentBookingForm treatmentBookingForm = new TreatmentBookingForm();
-            treatmentBookingForm.Show();
+            items = allItems.Where(item => item.treatment == false && item.amount <= limit).ToList<Item>();
+
+            ItemDataGridView.DataSource = items;
         }
 
-        private void button_dyr_Click(object sender, EventArgs e)
+        private void AmountCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Customer customer = BossController.instance().customerController.GetCustomer(123.ToString());
-
-            AnimalForm animalForm = new AnimalForm(customer);
-            animalForm.Show();
+            if (AmountCheckBox.Checked == false)
+            {
+                ShowAllItems();
+            }
+            else
+            {
+                ShowItemsUnderLimit(Convert.ToInt32(AmountComboBox.SelectedItem));
+            }
         }
 
-        private void Main_Load(object sender, EventArgs e)
+        private void AmountComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (AmountCheckBox.Checked == true)
+            {
+                ShowItemsUnderLimit(Convert.ToInt32(AmountComboBox.SelectedText));
+            }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private PrintDocument docToPrint = new PrintDocument();
+
+        private void PrintButton_Click(object sender, EventArgs e)
         {
-            StockForm stockForm = new StockForm();
-            stockForm.Show();
+            string printText = GetStringOfItemList();
+            docToPrint.PrintPage += delegate (object sender1, PrintPageEventArgs e1)
+            {
+                e1.Graphics.DrawString(printText, new Font("Times New Roman", 14), new SolidBrush(Color.Black), new RectangleF(10, 10, docToPrint.DefaultPageSettings.PrintableArea.Width, docToPrint.DefaultPageSettings.PrintableArea.Height));
+
+            };
+
+            PrintDialog PrintDialog1 = new PrintDialog();
+            PrintDialog1.AllowSomePages = true;
+
+            PrintDialog1.ShowHelp = true;
+            
+            PrintDialog1.Document = docToPrint;
+
+            DialogResult result = PrintDialog1.ShowDialog();
+
+            // If the result is OK then print the document.
+            if (result == DialogResult.OK)
+            {
+                docToPrint.Print();
+            }
+        }
+
+        private string GetStringOfItemList()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            foreach(Item item in items)
+            {
+                stringBuilder.Append(item.ToString() + "\n");
+            }
+
+            return stringBuilder.ToString();
         }
     }
 }
