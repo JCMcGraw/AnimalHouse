@@ -16,7 +16,7 @@ namespace AnimalHouseEntities
 
         public decimal price { get; private set; }
 
-        public decimal costPrice { get; private set; }
+        //public decimal costPrice { get; private set; }
 
         public bool prescription { get; private set; }
 
@@ -24,13 +24,13 @@ namespace AnimalHouseEntities
 
         public bool active { get; private set; }
 
-        public Item(int itemID, string name, int amount, decimal price, decimal costPrice, bool prescription, bool treatment, bool active)
+        public Item(int itemID, string name, int amount, decimal price, /*decimal costPrice,*/ bool prescription, bool treatment, bool active)
         {
             this.itemID = itemID;
             this.name = name;
             this.amount = amount;
             this.price = price;
-            this.costPrice = costPrice;
+            //this.costPrice = costPrice;
             this.prescription = prescription;
             this.treatment = treatment;
             this.active = active;
