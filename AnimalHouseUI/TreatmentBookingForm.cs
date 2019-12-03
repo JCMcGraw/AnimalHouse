@@ -7,6 +7,7 @@ using System.Windows.Forms.Calendar;
 using System.Data;
 using AnimalHouse;
 using System.Linq;
+using System.Threading;
 
 namespace AnimalHouseUI
 {
@@ -921,19 +922,22 @@ namespace AnimalHouseUI
         private void CalendarBooking_ItemDoubleClick(object sender, CalendarItemEventArgs e)
         {
             BlueCollor();
+            RemoveCustomerFromWaitingRoom(nr);
+
+
             int treatmentID = e.Item.TreatmentID;
             Treatment treatment = treatmentsCache[treatmentID];
 
 
             TreatmentForm treatmentform = new TreatmentForm(treatment);
             treatmentform.Show();
-
         }
 
         private void button_startbehandling_Click(object sender, EventArgs e)
         {
             StartTreatment();
             BlueCollor();
+            RemoveCustomerFromWaitingRoom(nr);
         }
 
         public void StartTreatment()
@@ -959,16 +963,26 @@ namespace AnimalHouseUI
 
         private void AnkommetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-
-
-
             RedCollor();
+
+            Thread waitingRoom = new Thread(() => AddCustomerToWaitingRoom(nr));
+            waitingRoom.Start();
+            CheckForIllegalCrossThreadCalls = false;
         }
 
-        private void ItemToolTip_Popup(object sender, PopupEventArgs e)
+        List<int> kunder = new List<int>();
+        int nr = 0;
+
+        private void AddCustomerToWaitingRoom(int nr)
+        { 
+            kunder.Add(nr++);
+            WaitingRoomLable.Text = kunder.LongCount().ToString();  
+        }
+
+        private void RemoveCustomerFromWaitingRoom(int nr)
         {
-            //Skal fjernes
+            kunder.Remove(nr--);
+            WaitingRoomLable.Text = kunder.LongCount().ToString();
         }
 
         private void ContextMenuStripBooking_Opening(object sender, System.ComponentModel.CancelEventArgs e)
@@ -992,7 +1006,6 @@ namespace AnimalHouseUI
                 item.ApplyColor(Color.Blue);
                 CalendarBooking.Invalidate(item);
             }
-
         }
     }
 }
