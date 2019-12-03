@@ -34,6 +34,7 @@ namespace AnimalHousePersistence
             }
 
             int customerID = (int)sQLQueryResult.dataTable.Rows[0]["CustomerID"];
+        
 
             customer.UpdateID(customerID);
         
@@ -98,7 +99,7 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@name", customer.name.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@address",customer.address.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@email",customer.email.ToString(), SqlDbType.VarChar);
-            sQLQuery.AddParameter("@customerID",customer.customerID.ToString(), SqlDbType.VarChar);
+            sQLQuery.AddParameter("@customerID",customer.customerID.ToString(), SqlDbType.Int);
 
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
@@ -176,7 +177,9 @@ namespace AnimalHousePersistence
             {
                 DataRow dataRow = sQLQueryResult.dataTable.Rows[0];
 
+
             Customer customer = CustomerFactory.Instance().CreateCustomer((int)dataRow["CustomerID"],(string)dataRow["Name"], (string)dataRow["Adress"], (string)dataRow["Phone"],(string)dataRow["Email"], (bool)dataRow["Active"], (int)dataRow["cvr"]);
+             //   Customer tmpcustomer = CustomerFactory.Instance().CreateCustomer(99, "poul", "pvej", "6669", "pmail", true, 0);
 
                 return customer;
             }

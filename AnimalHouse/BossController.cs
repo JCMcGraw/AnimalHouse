@@ -26,7 +26,7 @@ namespace AnimalHouse
         {
             get
             {
-                return CustomerController.instance;
+                return CustomerController.Instance;
             }
         }
 

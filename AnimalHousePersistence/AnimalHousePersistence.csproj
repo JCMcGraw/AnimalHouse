@@ -82,7 +82,9 @@
     <Content Include="SQLQueries\CreateCustomer.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLQueries\CreateMedicalRecordEntry.txt" />
+    <Content Include="SQLQueries\CreateMedicalRecordEntry.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQLQueries\CreateSale.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

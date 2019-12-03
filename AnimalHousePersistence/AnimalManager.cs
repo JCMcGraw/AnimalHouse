@@ -132,9 +132,9 @@ namespace AnimalHousePersistence
             List<Animal> animals = new List<Animal>();
 
             {
-                string query = Utility.ReadSQLQueryFromFile("GetManyAnimalsByCustomerID.txt");
+               // string query = Utility.ReadSQLQueryFromFile("GetManyAnimalsByCustomerID.txt");
 
-                SQLQuery sQLQuery = new SQLQuery(query);
+                //SQLQuery sQLQuery = new SQLQuery(query);
 
                 for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
                 {
@@ -272,7 +272,7 @@ namespace AnimalHousePersistence
             Treatment treatment = medicalRecord.treatment;
 
 
-            string query = Utility.ReadSQLQueryFromFile("CreateMedicalRecordEntry");
+            string query = Utility.ReadSQLQueryFromFile("CreateMedicalRecordEntry.txt");
             SQLQuery sQLQuery = new SQLQuery(query);
 
             //Test---! Skal udkommenteres og nedestående skal slettes!
@@ -283,7 +283,7 @@ namespace AnimalHousePersistence
 
             //Test---! Skal slettes igen og overstående skal udkommenteres!
 
-            sQLQuery.AddParameter("@entry", "Operationen gik som planlagt.", SqlDbType.VarChar);
+            sQLQuery.AddParameter("@entry", (string)medicalRecord.entry, SqlDbType.VarChar);
             sQLQuery.AddParameter("@animalID", 3.ToString(), SqlDbType.Int);
             sQLQuery.AddParameter("@treatmentID", 1015.ToString(), SqlDbType.Int);
 

@@ -161,9 +161,12 @@ namespace AnimalHouseUI
             button_opret.Enabled = false;
             Customer customer = BossController.instance().customerController.GetCustomer(textBox_phonenumber.Text);
 
+
             textBox_navn.Text = customer.name.ToString();
             textBox_adresse.Text = customer.address.ToString();
             textBox_email.Text = customer.email.ToString();
+
+            MessageBox.Show("customerid er " + customer.customerID);
 
             CheckForBusinesscustomer(customer);
 
@@ -198,18 +201,20 @@ namespace AnimalHouseUI
 
             if (confirm == DialogResult.Yes)
             {
-                //skaf en kunde fra databasen så du kan finde hans customerID
-                customer = BossController.instance().customerController.GetCustomer(textBox_phonenumber.Text.ToString());
+                string phone = textBox_phonenumber.Text.ToString();
+                customer = BossController.instance().customerController.GetCustomer(phone);
 
                 string name = textBox_navn.Text.ToString();
-                string phone = textBox_phonenumber.Text.ToString();
+                
                 string address = textBox_adresse.Text.ToString();
                 string email = textBox_email.Text.ToString();
                 int customerID = customer.customerID;
+                int cvr = 0;
 
-            
+                MessageBox.Show(customerID.ToString());
+                Customer tmpcustomer = CustomerFactory.Instance().CreateCustomer(customerID, name, address, phone, email, true, cvr);
 
-                Customer tmpcustomer = new Customer(customerID, name, address, phone, email, true);
+               // Customer tmpcustomer = new Customer(name, address, phone,email,true);
 
                 string message = BossController.instance().customerController.UpdateCustomer(tmpcustomer);
                 MessageBox.Show(message);
@@ -256,8 +261,6 @@ namespace AnimalHouseUI
                 return;
 
             }
-
-
 
             // tjekker om cvrnummeret består af tal
             string cvr = textBox_cvr.Text;
@@ -306,7 +309,6 @@ namespace AnimalHouseUI
             animalForm.Show();
         }
 
-
         private void checkBox_erhverskunde_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox_erhverskunde.Checked == true)
@@ -327,7 +329,6 @@ namespace AnimalHouseUI
             AnimalForm animalForm = new AnimalForm(customer, animal);
             animalForm.Show();
         }
-
 
         private void CheckCustomerDeletion()
         {
