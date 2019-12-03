@@ -284,34 +284,55 @@ namespace AnimalHouseUI
         }
         private void LoadeAllItemsInComboBox()
         {
-            try
+
+         
+            //List<Species> species = BossController.instance().animalController.GetSpecies();
+
+            //List<Species> SpeciesType = species.Where(x => x.speciesid.speciesType == 1).ToList<Employee>();
+
+            //SpeciesType.Insert(0, new Species(-1,new SpecieTitle"Dyrlæge"));
+
+            //animal_employee.DataSource = vets;
+            //animal_employee.DisplayMember = "name";
+
+
+
+         
+            List<Employee> employees = BossController.instance().employeeController.GetAllEmployees();
+
+            List<Employee> vets = employees.Where(x => x.title.titleID == 1).ToList<Employee>();
+
+            vets.Insert(0, new Employee(-1,"Alle",true, -1, new Title("Dyrlæge", -1)));
+
+            animal_employee.DataSource = vets;
+            animal_employee.DisplayMember = "name";
+
+
+        }
+        public bool selectGender
+        {
+            get
             {
-                species = BossController.instance().animalController.GetSpecies();
-                animal_species.DataSource = species;
-                animal_species.ValueMember = "SpeciesID";
-                animal_species.DisplayMember = "Name";
-
-
-
-
-                employees = BossController.instance().employeeController.GetAllEmployees();
-                animal_employee.DataSource = employees;
-                animal_employee.ValueMember = "EmployerID";
-                animal_employee.DisplayMember = "Name";
-
+                return animal_gender.SelectedIndex == 0;
             }
-            catch (Exception)
+            set
             {
-                throw;
+                animal_gender.SelectedIndex = value ? 0 : 1;
             }
         }
+
 
         private void Animal_gender_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+            
         }
 
         private void PictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Animal_employee_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

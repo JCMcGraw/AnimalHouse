@@ -359,6 +359,7 @@
             this.animal_employee.Name = "animal_employee";
             this.animal_employee.Size = new System.Drawing.Size(99, 21);
             this.animal_employee.TabIndex = 31;
+            this.animal_employee.SelectedIndexChanged += new System.EventHandler(this.Animal_employee_SelectedIndexChanged);
             // 
             // label4
             // 
