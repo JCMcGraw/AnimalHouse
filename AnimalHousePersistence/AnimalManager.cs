@@ -114,7 +114,7 @@ namespace AnimalHousePersistence
 
             int speciesID = (int)sQLQueryResult.dataTable.Rows[0]["SpeciesID"];
 
-            Species species = SpeciesFactory.Instance().GetSpecies(speciesID, speciesName);
+            Species species = SpeciesFactory.Instance().CreateSpecies(speciesID, speciesName);
 
             string name = sQLQueryResult.dataTable.Rows[0]["SpeciesName"].ToString();
 
@@ -179,7 +179,7 @@ namespace AnimalHousePersistence
                     DateTime birthday = (DateTime)sQLQueryResult.dataTable.Rows[i]["BirthYear"];
                     int speciesID = (int)sQLQueryResult.dataTable.Rows[i]["Speciesid"];
                     string speciesName =(string)sQLQueryResult.dataTable.Rows[i]["SpeciesName"];
-                    Species species = SpeciesFactory.Instance().GetSpecies(speciesID, speciesName);
+                    Species species = SpeciesFactory.Instance().CreateSpecies(speciesID, speciesName);
 
                     double weight =Convert.ToDouble( (decimal)sQLQueryResult.dataTable.Rows[i]["Weight"]);
                     bool gender = (bool)sQLQueryResult.dataTable.Rows[i]["Gender"];
@@ -229,7 +229,7 @@ namespace AnimalHousePersistence
                     int speciesID = (int)sQLQueryResult.dataTable.Rows[i]["SpeciesID"];
                     string speciesName = (String)sQLQueryResult.dataTable.Rows[i]["SpeciesName"];
 
-                    species.Add(SpeciesFactory.Instance().GetSpecies(speciesID, speciesName));
+                    species.Add(SpeciesFactory.Instance().CreateSpecies(speciesID, speciesName));
 
 
                     
