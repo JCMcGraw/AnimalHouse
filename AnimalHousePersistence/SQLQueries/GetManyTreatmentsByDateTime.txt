@@ -5,6 +5,7 @@ Employee.EmployeeID as EmployeeID
 ,Title.Name as Titlename
 ,Item.Name as ItemName
 ,Item.Active as ItemActive
+,Item.CostPrice
 ,Item.Treatment as ItemTreatment
 ,Item.Amount,Item.Price, Item.Prescription,Species.SpeciesID,Species.SpeciesName 
 from Treatment 

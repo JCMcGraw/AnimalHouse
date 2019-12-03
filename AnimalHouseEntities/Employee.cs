@@ -22,6 +22,12 @@ namespace AnimalHouseEntities
             this.titleID = titleID;
             this.title = title;
         }
+        public Employee(int employeeID, string name)
+        {
+            this.employeeID = employeeID;
+            this.name = name;
+           
+        }
 
     }
 }

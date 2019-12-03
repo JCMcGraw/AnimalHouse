@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange6 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange7 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange8 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange9 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange10 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             this.PanelHeader = new System.Windows.Forms.Panel();
             this.LabelTitle = new System.Windows.Forms.Label();
             this.PictureBoxLogo = new System.Windows.Forms.PictureBox();
@@ -48,6 +48,7 @@
             this.ComboBoxTreatmentType = new System.Windows.Forms.ComboBox();
             this.ComboBoxEmployee = new System.Windows.Forms.ComboBox();
             this.PanelBottom = new System.Windows.Forms.Panel();
+            this.button_startbehandling = new System.Windows.Forms.Button();
             this.ChooseAnimalButton = new System.Windows.Forms.Button();
             this.ButtonCreateTreatment = new System.Windows.Forms.Button();
             this.ButtonDelete = new System.Windows.Forms.Button();
@@ -80,10 +81,10 @@
             this.minutes10ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.minutes5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.ankommetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.button_startbehandling = new System.Windows.Forms.Button();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             this.PanelHeadline.SuspendLayout();
@@ -271,6 +272,20 @@
             this.PanelBottom.Size = new System.Drawing.Size(1111, 113);
             this.PanelBottom.TabIndex = 6;
             // 
+            // button_startbehandling
+            // 
+            this.button_startbehandling.BackColor = System.Drawing.Color.AliceBlue;
+            this.button_startbehandling.FlatAppearance.BorderSize = 0;
+            this.button_startbehandling.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_startbehandling.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_startbehandling.Location = new System.Drawing.Point(636, 15);
+            this.button_startbehandling.Name = "button_startbehandling";
+            this.button_startbehandling.Size = new System.Drawing.Size(118, 73);
+            this.button_startbehandling.TabIndex = 16;
+            this.button_startbehandling.Text = "Start Behandling";
+            this.button_startbehandling.UseVisualStyleBackColor = false;
+            this.button_startbehandling.Click += new System.EventHandler(this.button_startbehandling_Click);
+            // 
             // ChooseAnimalButton
             // 
             this.ChooseAnimalButton.BackColor = System.Drawing.Color.AliceBlue;
@@ -397,27 +412,27 @@
             // 
             this.CalendarBooking.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CalendarBooking.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange6.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange6.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange6.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange7.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange7.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange7.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange8.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange8.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange8.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange9.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange9.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange9.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange10.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange10.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange10.StartTime = System.TimeSpan.Parse("08:00:00");
             this.CalendarBooking.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange1,
-        calendarHighlightRange2,
-        calendarHighlightRange3,
-        calendarHighlightRange4,
-        calendarHighlightRange5};
+        calendarHighlightRange6,
+        calendarHighlightRange7,
+        calendarHighlightRange8,
+        calendarHighlightRange9,
+        calendarHighlightRange10};
             this.CalendarBooking.Location = new System.Drawing.Point(10, 10);
             this.CalendarBooking.Name = "CalendarBooking";
             this.CalendarBooking.Size = new System.Drawing.Size(830, 406);
@@ -446,10 +461,12 @@
             this.patternToolStripMenuItem,
             this.timescaleToolStripMenuItem,
             this.toolStripMenuItem2,
+            this.ankommetToolStripMenuItem,
             this.editItemToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.ContextMenuStripBooking.Name = "contextMenuStrip1";
-            this.ContextMenuStripBooking.Size = new System.Drawing.Size(149, 214);
+            this.ContextMenuStripBooking.Size = new System.Drawing.Size(181, 258);
+            this.ContextMenuStripBooking.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuStripBooking_Opening);
             // 
             // redTagToolStripMenuItem
             // 
@@ -599,6 +616,13 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(145, 6);
             // 
+            // ankommetToolStripMenuItem
+            // 
+            this.ankommetToolStripMenuItem.Name = "ankommetToolStripMenuItem";
+            this.ankommetToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.ankommetToolStripMenuItem.Text = "Ankommet";
+            this.ankommetToolStripMenuItem.Click += new System.EventHandler(this.AnkommetToolStripMenuItem_Click);
+            // 
             // editItemToolStripMenuItem
             // 
             this.editItemToolStripMenuItem.Name = "editItemToolStripMenuItem";
@@ -613,19 +637,9 @@
             this.deleteToolStripMenuItem.Text = "Slet";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
-            // button_startbehandling
+            // itemToolTip
             // 
-            this.button_startbehandling.BackColor = System.Drawing.Color.AliceBlue;
-            this.button_startbehandling.FlatAppearance.BorderSize = 0;
-            this.button_startbehandling.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_startbehandling.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_startbehandling.Location = new System.Drawing.Point(636, 15);
-            this.button_startbehandling.Name = "button_startbehandling";
-            this.button_startbehandling.Size = new System.Drawing.Size(118, 73);
-            this.button_startbehandling.TabIndex = 16;
-            this.button_startbehandling.Text = "Start Behandling";
-            this.button_startbehandling.UseVisualStyleBackColor = false;
-            this.button_startbehandling.Click += new System.EventHandler(this.button_startbehandling_Click);
+            this.itemToolTip.Popup += new System.Windows.Forms.PopupEventHandler(this.ItemToolTip_Popup);
             // 
             // TreatmentBookingForm
             // 
@@ -711,5 +725,6 @@
         private System.Windows.Forms.RadioButton radioButtonDayView;
         private System.Windows.Forms.RadioButton radioButtonWeekView;
         private System.Windows.Forms.Button button_startbehandling;
+        private System.Windows.Forms.ToolStripMenuItem ankommetToolStripMenuItem;
     }
 }

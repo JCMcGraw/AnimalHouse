@@ -1,1 +1,1 @@
-﻿Select * from Cage
+﻿Select * from Cage join species on cage.speciesid = species.speciesid

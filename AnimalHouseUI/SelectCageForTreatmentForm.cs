@@ -7,32 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.Calendar;
 using AnimalHouseEntities;
-using AnimalHouse;
 
 namespace AnimalHouseUI
 {
-    public partial class TreatmentForm : Form
+    public partial class SelectCageForTreatmentForm : Form
     {
-        public Treatment treatment { get; private set; }
-
-        Animal animal;
-        TreatmentType treatmentType;
-        Customer customer;
-
-        public TreatmentForm(Treatment treatment)
+        List<Cage> cages;
+        public Cage selectedCage { get; private set; }
+        public SelectCageForTreatmentForm(List<Cage> cages)
         {
             InitializeComponent();
-            this.treatment = treatment;
-            this.treatmentType = treatment.treatmentType;
-            
-            //this.animal = BossController.instance().animalController.GetAnimal(treatment.animalID);
+            this.cages = cages;
 
-          
+            SelectCageCombobox.DataSource = cages;
+            SelectCageCombobox.DisplayMember = "Species";
+            SelectCageCombobox.Format += (s, e) => {
+                e.Value = "bur " + ((Cage)e.ListItem).CageID + " (" + ((Species)e.Value).speciesType + ")";
+            };
+
         }
-
-        #region Copy this 
+        #region Form Functions 
 
         private const int CS_DROPSHADOW = 0x20000;
         protected override CreateParams CreateParams
@@ -151,24 +146,19 @@ namespace AnimalHouseUI
             this.Close();
         }
 
+
         #endregion
 
-        private void TreatmentForm_Load(object sender, EventArgs e)
+        private void SelectButton_Click(object sender, EventArgs e)
         {
-            Animal animal = BossController.instance().animalController.GetAnimal(treatment.animalID);
-            label_header.Text = animal.name.ToString();
-            //label_underheadline.Text = animal.name.ToString();
+            this.DialogResult = DialogResult.OK;
+            selectedCage = (Cage)SelectCageCombobox.SelectedItem;
+            this.Close();
         }
 
-        private void TreatmentForm_Load_1(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button_gem_Click(object sender, EventArgs e)
-        {
-            MedicalRecord medicalRecord = MedicalRecordFactory.Instance().CreateMedicalRecord(1, textBox_entry.Text.ToString(), animal, treatment);
-            BossController.instance().animalController.CreateMedicalRecordEntry(medicalRecord);
+            this.Close();
         }
     }
 }

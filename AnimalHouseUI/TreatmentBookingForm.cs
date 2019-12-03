@@ -17,6 +17,7 @@ namespace AnimalHouseUI
         Animal animal;
 
         List<OperationRoom> operationRooms;
+        List<Cage> cages;
 
         Dictionary<int, Treatment> treatmentsCache = new Dictionary<int, Treatment>();
 
@@ -32,6 +33,7 @@ namespace AnimalHouseUI
             InitializeComponent();
             SetValuesForComboboxes();
             SetOperationRooms();
+            SetCages();
             ComboBoxEmployee.SelectedIndex = 0;
             ComboBoxTreatmentType.SelectedIndex = 0;
 
@@ -41,6 +43,11 @@ namespace AnimalHouseUI
         private void SetOperationRooms()
         {
             operationRooms = bossController.treatmentController.GetAllOperationRooms();
+        }
+
+        private void SetCages()
+        {
+            cages = bossController.treatmentController.GetAllCages();
         }
 
         private void SetValuesForComboboxes()
@@ -270,7 +277,14 @@ namespace AnimalHouseUI
 
                 CalendarItem calendarItem = new CalendarItem(CalendarBooking, treatment.startTime, treatment.endTime, treatment.headline);
                 calendarItem.TreatmentID = treatment.treatmentID;
-                calendarItem.EmployeeID = treatment.employee.employeeID;
+                if (treatment.employee == null)
+                {
+                    calendarItem.EmployeeID = -1;
+                }
+                else
+                {
+                    calendarItem.EmployeeID = treatment.employee.employeeID;
+                }
                 calendarItemsCache.Add(calendarItem);
             }
         }
@@ -528,7 +542,7 @@ namespace AnimalHouseUI
 
             foreach(Treatment treatment in treatments)
             {
-                if (treatment.employee.employeeID == employee.employeeID)
+                if (treatment.employee != null && treatment.employee.employeeID == employee.employeeID)
                 {
                     if ((treatment.startTime >= SuggestedStartTime && treatment.startTime < SuggestedEndTime) || (treatment.endTime > SuggestedStartTime && treatment.endTime <= SuggestedEndTime) ||
                         (treatment.startTime <= SuggestedStartTime && treatment.endTime >= SuggestedEndTime))
@@ -543,16 +557,18 @@ namespace AnimalHouseUI
 
         private void CalendarBooking_ItemCreating(object sender, CalendarItemCancelEventArgs e)
         {
-            Employee selectedEmployee = (Employee)ComboBoxEmployee.SelectedItem;
+            Employee selectedEmployee = null;
             OperationRoom selectedOperationRoom = null;
+            Cage selectedCage = null;
 
             bool employeeAvailable = true;
 
             if(((TreatmentType)ComboBoxTreatmentType.SelectedItem).treatmentTypeID != 3)
             {
                 //if employee is selected in combobox check availability to avoid double bookings
-                if (selectedEmployee.employeeID != -1)
+                if (((Employee)ComboBoxEmployee.SelectedItem).employeeID != -1)
                 {
+                    selectedEmployee = (Employee)ComboBoxEmployee.SelectedItem;
                     employeeAvailable = CheckAvailabilityForConsultationOrOperation(selectedEmployee, e.Item.StartDate, e.Item.EndDate);
 
                     if (employeeAvailable == false)
@@ -613,6 +629,19 @@ namespace AnimalHouseUI
 
             if (((TreatmentType)ComboBoxTreatmentType.SelectedItem).treatmentTypeID == 3)
             {
+                SelectCageForTreatmentForm selectCageForTreatmentForm = new SelectCageForTreatmentForm(cages);
+                selectCageForTreatmentForm.ShowDialog();
+
+                if (selectCageForTreatmentForm.DialogResult == DialogResult.OK)
+                {
+                    selectedCage = selectCageForTreatmentForm.selectedCage;
+                }
+                else
+                {
+                    MessageBox.Show($"Der blev ikke valgt et observationsbur, prøv venligst igen");
+                    e.Cancel = true;
+                    return;
+                }
 
             }
 
@@ -623,15 +652,23 @@ namespace AnimalHouseUI
             {
                 message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra {e.Item.StartDate.ToString("dd/M")} til {e.Item.EndDate.ToString("dd/M")}";
             }
-            
-            string headline = $"{ComboBoxTreatmentType.Text}, {selectedEmployee.name}";
+
+            string headline;
+            if (((TreatmentType)ComboBoxTreatmentType.SelectedItem).treatmentTypeID == 3)
+            {
+                headline = $"{ComboBoxTreatmentType.Text}";
+            }
+            else
+            {
+                headline = $"{ComboBoxTreatmentType.Text}, {selectedEmployee.name}";
+            }
 
 
             DialogResult dialogResult = MessageBox.Show(message, "Book behandling", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 //dummy item for testing
-                Item item = ItemFactory.Instance().CreateItem(9, "Vaccination", 1, 399m,300m, false, true, true);
+                Item item = ItemFactory.Instance().CreateItem(9, "Vaccination", 1, 399m, 299m, false, true, true);
 
                 //create new treatment
                 Treatment treatment = TreatmentFactory.Instance().CreateTreatment((TreatmentType)ComboBoxTreatmentType.SelectedItem, selectedOperationRoom, null, item, e.Item.StartDate, e.Item.EndDate, false, headline, true, -1, selectedEmployee);
@@ -883,7 +920,7 @@ namespace AnimalHouseUI
 
         private void CalendarBooking_ItemDoubleClick(object sender, CalendarItemEventArgs e)
         {
-
+            BlueCollor();
             int treatmentID = e.Item.TreatmentID;
             Treatment treatment = treatmentsCache[treatmentID];
 
@@ -896,11 +933,11 @@ namespace AnimalHouseUI
         private void button_startbehandling_Click(object sender, EventArgs e)
         {
             StartTreatment();
+            BlueCollor();
         }
 
         public void StartTreatment()
-            {
-            
+        {
             List<CalendarItem> calendaritems=(List<CalendarItem>)CalendarBooking.GetSelectedItems();
             if (calendaritems.Count==0)
             {
@@ -909,18 +946,53 @@ namespace AnimalHouseUI
             else if (calendaritems.Count>1)
             {
                 MessageBox.Show("Der kan kun vælges en enkelt aftalte");
-
             }
             else
             {
                 int treatmentID = calendaritems[0].TreatmentID;
                 Treatment treatment = treatmentsCache[treatmentID];
 
-            
                 TreatmentForm treatmentform = new TreatmentForm(treatment);
                 treatmentform.Show();
             }
-            
+        }
+
+        private void AnkommetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+
+
+
+            RedCollor();
+        }
+
+        private void ItemToolTip_Popup(object sender, PopupEventArgs e)
+        {
+            //Skal fjernes
+        }
+
+        private void ContextMenuStripBooking_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //skal Fjernes
+        }
+
+        private void RedCollor()
+        {
+            foreach (CalendarItem item in CalendarBooking.GetSelectedItems())
+            {
+                item.ApplyColor(Color.Red);
+                CalendarBooking.Invalidate(item);
+            }
+        }
+
+        private void BlueCollor()
+        {
+            foreach (CalendarItem item in CalendarBooking.GetSelectedItems())
+            {
+                item.ApplyColor(Color.Blue);
+                CalendarBooking.Invalidate(item);
+            }
+
         }
     }
 }
