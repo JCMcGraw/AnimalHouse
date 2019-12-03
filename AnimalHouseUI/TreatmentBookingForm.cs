@@ -17,6 +17,7 @@ namespace AnimalHouseUI
         Animal animal;
 
         List<OperationRoom> operationRooms;
+        List<Cage> cages;
 
         Dictionary<int, Treatment> treatmentsCache = new Dictionary<int, Treatment>();
 
@@ -32,6 +33,7 @@ namespace AnimalHouseUI
             InitializeComponent();
             SetValuesForComboboxes();
             SetOperationRooms();
+            SetCages();
             ComboBoxEmployee.SelectedIndex = 0;
             ComboBoxTreatmentType.SelectedIndex = 0;
 
@@ -41,6 +43,11 @@ namespace AnimalHouseUI
         private void SetOperationRooms()
         {
             operationRooms = bossController.treatmentController.GetAllOperationRooms();
+        }
+
+        private void SetCages()
+        {
+            cages = bossController.treatmentController.GetAllCages();
         }
 
         private void SetValuesForComboboxes()
@@ -545,6 +552,7 @@ namespace AnimalHouseUI
         {
             Employee selectedEmployee = (Employee)ComboBoxEmployee.SelectedItem;
             OperationRoom selectedOperationRoom = null;
+            Cage selectedCage = null;
 
             bool employeeAvailable = true;
 
@@ -613,6 +621,19 @@ namespace AnimalHouseUI
 
             if (((TreatmentType)ComboBoxTreatmentType.SelectedItem).treatmentTypeID == 3)
             {
+                SelectCageForTreatmentForm selectCageForTreatmentForm = new SelectCageForTreatmentForm(cages);
+                selectCageForTreatmentForm.ShowDialog();
+
+                if (selectCageForTreatmentForm.DialogResult == DialogResult.OK)
+                {
+                    selectedCage = selectCageForTreatmentForm.selectedCage;
+                }
+                else
+                {
+                    MessageBox.Show($"Der blev ikke valgt et observationsbur, prøv venligst igen");
+                    e.Cancel = true;
+                    return;
+                }
 
             }
 

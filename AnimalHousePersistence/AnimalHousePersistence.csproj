@@ -108,7 +108,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLQueries\GetAllCages.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLQueries\GetAllEmployees.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
