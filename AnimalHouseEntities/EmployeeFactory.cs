@@ -30,5 +30,9 @@ namespace AnimalHouseEntities
         {
             return new Employee(employeeID, name, active, titleID, title);
         }
+        public Employee GetEmployee(int employeeID, string name)
+        {
+            return new Employee(employeeID, name);
+        }
     }
 }

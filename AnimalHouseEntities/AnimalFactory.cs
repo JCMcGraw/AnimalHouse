@@ -22,19 +22,19 @@ namespace AnimalHouseEntities
             }
             return instance;
         }
-        public Animal CreateAnimal(int customerID, string name, DateTime birthday, Species species, double weight, bool gender, int employeeID, bool active)
+        public Animal CreateAnimal(int customerID, string name, DateTime birthday, Species species, double weight, bool gender, Employee employee, bool active)
         {
 
-            return new Animal(customerID, name, birthday, species, weight, gender, employeeID, true);
+            return new Animal(customerID, name, birthday, species, weight, gender, employee, true);
 
 
         }
 
 
-        public Animal CreateAnimal(int customerID, int animalID,string name, DateTime birthday, Species species, double weight, bool gender, int employeeID, bool active)
+        public Animal CreateAnimal(int customerID, int animalID,string name, DateTime birthday, Species species, double weight, bool gender, Employee employee, bool active)
         {
            
-                return new Animal(customerID, animalID, name, birthday, species, weight, gender, employeeID,true);
+                return new Animal(customerID, animalID, name, birthday, species, weight, gender, employee,true);
 
             
         }

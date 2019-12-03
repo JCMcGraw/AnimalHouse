@@ -49,13 +49,13 @@ namespace AnimalHousePersistence
             int itemID = (int)dataRow["ItemID"];
             string name = (string)dataRow["Name"];
             decimal price = (decimal)dataRow["Price"];
-            decimal costPrice = (decimal)dataRow["CostPrice"];
+            //decimal costPrice = (decimal)dataRow["CostPrice"];
             int amount = (int)dataRow["Amount"];
             bool prescription = (bool)dataRow["Prescription"];
             bool treatment = (bool)dataRow["Treatment"];
             bool active = (bool)dataRow["Active"];
 
-            Item item = ItemFactory.Instance().CreateItem(itemID, name, amount, price,costPrice, prescription, treatment, active);
+            Item item = ItemFactory.Instance().CreateItem(itemID, name, amount, price,/*costPrice,*/ prescription, treatment, active);
             return item;
         }
 

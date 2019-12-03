@@ -17,6 +17,9 @@ namespace AnimalHouseUI
     {
         Animal animal;
         Customer customer;
+        //Employee employee;
+        List<Employee> employees;
+        List<Species> species;
 
         //private DataTable Animal_Gender = new DataTable();
 
@@ -29,7 +32,8 @@ namespace AnimalHouseUI
         }
         private void SetStatusComboBoxToDefault()
         {
-            animal_gender.SelectedIndex = 0;
+            animal_gender.SelectedIndex=0;
+            animal_species.SelectedIndex = 0;
             
         }
         public AnimalForm(Customer customer)
@@ -164,12 +168,14 @@ namespace AnimalHouseUI
 
         private void AnimalForm_Load(object sender, EventArgs e)
         {
+            LoadeAllItemsInComboBox();
             BossController.instance().animalController.GetSpecies();
             if( animal != null)
             {
+                animal_owner.Text = customer.name;
                 AnimalName_Label.Text = animal.name;
                 animalAge_label.Text = Convert.ToString(animal.birthday);
-                animalSpecies_label.Text = Convert.ToString(animal.Species);
+                animalSpecies_label.Text = animal.Species.speciesType.ToString();
 
                 animal_name.Text = animal.name;
                 animal_bdate.Text = Convert.ToString(animal.birthday);
@@ -200,15 +206,24 @@ namespace AnimalHouseUI
 
         private void Button_opret_Click_1(object sender, EventArgs e)
         {
-       
-            Species species = new Species(2, "Hund");
 
-            Animal animal = AnimalFactory.Instance().CreateAnimal(123, 10, animal_name.Text.ToString(), (animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), true, 1, true);
+            //Species species = new Species(2, "Hund");
 
-            //Animal animal = AnimalFactory.Instance().CreateAnimal(customer.customerID,1,animal_name.Text.ToString(),(animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), true, 1, true);
+            //Animal animal = AnimalFactory.Instance().CreateAnimal(123, 10, animal_name.Text.ToString(), (animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), true, employee, true);
 
-            Animal message = BossController.instance().animalController.CreateAnimal(animal);
-            MessageBox.Show("dyr oprettet");
+            //Animal animal = AnimalFactory.Instance().CreateAnimal(customer.customerID, 1, animal_name.Text.ToString(), (animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), true, 1, true); ; ;
+
+            //Animal message = BossController.instance().animalController.CreateAnimal(animal);
+            //MessageBox.Show("dyr oprettet");
+            int speciesID = Convert.ToInt32(animal_species.SelectedIndex);
+            Species species = animal.Species;
+            bool gender = Convert.ToBoolean(animal_gender.SelectedIndex);
+            int employeeID = Convert.ToInt32(animal_employee.SelectedIndex);
+            Employee employee = animal.Employee;
+
+            animal = AnimalFactory.Instance().CreateAnimal(customer.customerID, animal_name.Text.ToString(), (animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), true, employee, true);
+
+            animal = BossController.instance().animalController.CreateAnimal(animal);
         }
 
         private void Animal_species_SelectedIndexChanged(object sender, EventArgs e)
@@ -228,14 +243,16 @@ namespace AnimalHouseUI
 
             string name = animal_name.Text.ToString();
             DateTime birthday = animal_bdate.Value;
-            ////Species SpeciesType = animal_species.SelectedIndex;
+            int speciesID = Convert.ToInt32(animal_species.SelectedIndex);
             Species species = animal.Species;
             double weight = Convert.ToDouble(animal_weight.Text);
-            //bool gender = Convert.ToBoolean(animal_gender.SelectedIndex);
+            bool gender = Convert.ToBoolean(animal_gender.SelectedIndex);
             int employeeID = Convert.ToInt32(animal_employee.SelectedIndex);
+            Employee employee = animal.Employee;
 
 
-            Animal tmpanimal = new Animal(customer.customerID, animal.animalID, name, birthday, species, weight, true, employeeID, true);
+
+            Animal tmpanimal = new Animal(customer.customerID, animal.animalID, name, birthday, species, weight, true, employee, true);
 
             string message = BossController.instance().animalController.UpdateAnimal(tmpanimal);
             MessageBox.Show(message);
@@ -264,6 +281,24 @@ namespace AnimalHouseUI
             
             
 
+        }
+        private void LoadeAllItemsInComboBox()
+        {
+            try
+            {
+                species = BossController.instance().animalController.GetSpecies();
+                animal_species.DataSource = species;
+
+                
+                
+                employees = BossController.instance().employeeController.GetAllEmployees();
+                animal_employee.DataSource = employees;
+                
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         private void Animal_gender_SelectedIndexChanged(object sender, EventArgs e)
