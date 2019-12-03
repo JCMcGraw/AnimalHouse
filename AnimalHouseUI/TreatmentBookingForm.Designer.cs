@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange6 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange7 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange8 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange9 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange10 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             this.PanelHeader = new System.Windows.Forms.Panel();
             this.LabelTitle = new System.Windows.Forms.Label();
             this.PictureBoxLogo = new System.Windows.Forms.PictureBox();
@@ -54,6 +54,7 @@
             this.ButtonDelete = new System.Windows.Forms.Button();
             this.PanelMonthView = new System.Windows.Forms.Panel();
             this.PanelViewSelection = new System.Windows.Forms.Panel();
+            this.WaitingRoomLable = new System.Windows.Forms.Label();
             this.radioButtonDayView = new System.Windows.Forms.RadioButton();
             this.radioButtonWeekView = new System.Windows.Forms.RadioButton();
             this.MonthViewBooking = new System.Windows.Forms.Calendar.MonthView();
@@ -341,6 +342,7 @@
             // 
             // PanelViewSelection
             // 
+            this.PanelViewSelection.Controls.Add(this.WaitingRoomLable);
             this.PanelViewSelection.Controls.Add(this.radioButtonDayView);
             this.PanelViewSelection.Controls.Add(this.radioButtonWeekView);
             this.PanelViewSelection.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -348,6 +350,15 @@
             this.PanelViewSelection.Name = "PanelViewSelection";
             this.PanelViewSelection.Size = new System.Drawing.Size(261, 100);
             this.PanelViewSelection.TabIndex = 1;
+            // 
+            // WaitingRoomLable
+            // 
+            this.WaitingRoomLable.AutoSize = true;
+            this.WaitingRoomLable.Location = new System.Drawing.Point(201, 25);
+            this.WaitingRoomLable.Name = "WaitingRoomLable";
+            this.WaitingRoomLable.Size = new System.Drawing.Size(35, 13);
+            this.WaitingRoomLable.TabIndex = 2;
+            this.WaitingRoomLable.Text = "label1";
             // 
             // radioButtonDayView
             // 
@@ -412,27 +423,27 @@
             // 
             this.CalendarBooking.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CalendarBooking.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange6.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange6.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange6.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange7.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange7.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange7.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange8.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange8.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange8.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange9.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange9.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange9.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange10.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange10.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange10.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("08:00:00");
             this.CalendarBooking.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange6,
-        calendarHighlightRange7,
-        calendarHighlightRange8,
-        calendarHighlightRange9,
-        calendarHighlightRange10};
+        calendarHighlightRange1,
+        calendarHighlightRange2,
+        calendarHighlightRange3,
+        calendarHighlightRange4,
+        calendarHighlightRange5};
             this.CalendarBooking.Location = new System.Drawing.Point(10, 10);
             this.CalendarBooking.Name = "CalendarBooking";
             this.CalendarBooking.Size = new System.Drawing.Size(830, 406);
@@ -465,7 +476,7 @@
             this.editItemToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.ContextMenuStripBooking.Name = "contextMenuStrip1";
-            this.ContextMenuStripBooking.Size = new System.Drawing.Size(181, 258);
+            this.ContextMenuStripBooking.Size = new System.Drawing.Size(149, 236);
             this.ContextMenuStripBooking.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuStripBooking_Opening);
             // 
             // redTagToolStripMenuItem
@@ -637,10 +648,6 @@
             this.deleteToolStripMenuItem.Text = "Slet";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
-            // itemToolTip
-            // 
-            this.itemToolTip.Popup += new System.Windows.Forms.PopupEventHandler(this.ItemToolTip_Popup);
-            // 
             // TreatmentBookingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -726,5 +733,6 @@
         private System.Windows.Forms.RadioButton radioButtonWeekView;
         private System.Windows.Forms.Button button_startbehandling;
         private System.Windows.Forms.ToolStripMenuItem ankommetToolStripMenuItem;
+        private System.Windows.Forms.Label WaitingRoomLable;
     }
 }
