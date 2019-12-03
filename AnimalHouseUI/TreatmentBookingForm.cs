@@ -17,6 +17,7 @@ namespace AnimalHouseUI
         Animal animal;
 
         List<OperationRoom> operationRooms;
+        List<Cage> cages;
 
         Dictionary<int, Treatment> treatmentsCache = new Dictionary<int, Treatment>();
 
@@ -32,6 +33,7 @@ namespace AnimalHouseUI
             InitializeComponent();
             SetValuesForComboboxes();
             SetOperationRooms();
+            SetCages();
             ComboBoxEmployee.SelectedIndex = 0;
             ComboBoxTreatmentType.SelectedIndex = 0;
 
@@ -41,6 +43,11 @@ namespace AnimalHouseUI
         private void SetOperationRooms()
         {
             operationRooms = bossController.treatmentController.GetAllOperationRooms();
+        }
+
+        private void SetCages()
+        {
+            cages = bossController.treatmentController.GetAllCages();
         }
 
         private void SetValuesForComboboxes()
@@ -545,6 +552,7 @@ namespace AnimalHouseUI
         {
             Employee selectedEmployee = (Employee)ComboBoxEmployee.SelectedItem;
             OperationRoom selectedOperationRoom = null;
+            Cage selectedCage = null;
 
             bool employeeAvailable = true;
 
@@ -613,6 +621,19 @@ namespace AnimalHouseUI
 
             if (((TreatmentType)ComboBoxTreatmentType.SelectedItem).treatmentTypeID == 3)
             {
+                SelectCageForTreatmentForm selectCageForTreatmentForm = new SelectCageForTreatmentForm(cages);
+                selectCageForTreatmentForm.ShowDialog();
+
+                if (selectCageForTreatmentForm.DialogResult == DialogResult.OK)
+                {
+                    selectedCage = selectCageForTreatmentForm.selectedCage;
+                }
+                else
+                {
+                    MessageBox.Show($"Der blev ikke valgt et observationsbur, prøv venligst igen");
+                    e.Cancel = true;
+                    return;
+                }
 
             }
 
@@ -631,7 +652,7 @@ namespace AnimalHouseUI
             if (dialogResult == DialogResult.Yes)
             {
                 //dummy item for testing
-                Item item = ItemFactory.Instance().CreateItem(9, "Vaccination", 1, 399m, false, true, true);
+                Item item = ItemFactory.Instance().CreateItem(9, "Vaccination", 1, 399m, 299m, false, true, true);
 
                 //create new treatment
                 Treatment treatment = TreatmentFactory.Instance().CreateTreatment((TreatmentType)ComboBoxTreatmentType.SelectedItem, selectedOperationRoom, null, item, e.Item.StartDate, e.Item.EndDate, false, headline, true, -1, selectedEmployee);

@@ -256,13 +256,13 @@ namespace AnimalHousePersistence
                     int itemID = (int)sQLQueryResult.dataTable.Rows[i]["ItemID"];
                     string name = (string)sQLQueryResult.dataTable.Rows[i]["ItemName"];
                     decimal price = (decimal)sQLQueryResult.dataTable.Rows[i]["Price"];
-                    //decimal costPrice = (decimal)sQLQueryResult.dataTable.Rows[i]["CostPrice"];
+                    decimal costPrice = (decimal)sQLQueryResult.dataTable.Rows[i]["CostPrice"];
                     int amount = (int)sQLQueryResult.dataTable.Rows[i]["Amount"];
                     bool prescription = (bool)sQLQueryResult.dataTable.Rows[i]["Prescription"];
                     bool treatment = (bool)sQLQueryResult.dataTable.Rows[i]["ItemTreatment"];
                     bool itemActive = (bool)sQLQueryResult.dataTable.Rows[i]["ItemActive"];
 
-                    item = ItemFactory.Instance().CreateItem(itemID,name,amount,price,/*costPrice*/prescription,treatment,itemActive);
+                    item = ItemFactory.Instance().CreateItem(itemID,name,amount,price,costPrice,prescription,treatment,itemActive);
                 }
 
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("EmployeeID"))
