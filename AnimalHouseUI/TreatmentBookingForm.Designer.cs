@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange6 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange7 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange8 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange9 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange10 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             this.PanelHeader = new System.Windows.Forms.Panel();
             this.LabelTitle = new System.Windows.Forms.Label();
             this.PictureBoxLogo = new System.Windows.Forms.PictureBox();
@@ -81,10 +81,10 @@
             this.minutes10ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.minutes5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.ankommetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.ankommetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             this.PanelHeadline.SuspendLayout();
@@ -412,27 +412,27 @@
             // 
             this.CalendarBooking.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CalendarBooking.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange6.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange6.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange6.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange7.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange7.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange7.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange8.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange8.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange8.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange9.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange9.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange9.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange10.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange10.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange10.StartTime = System.TimeSpan.Parse("08:00:00");
             this.CalendarBooking.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange1,
-        calendarHighlightRange2,
-        calendarHighlightRange3,
-        calendarHighlightRange4,
-        calendarHighlightRange5};
+        calendarHighlightRange6,
+        calendarHighlightRange7,
+        calendarHighlightRange8,
+        calendarHighlightRange9,
+        calendarHighlightRange10};
             this.CalendarBooking.Location = new System.Drawing.Point(10, 10);
             this.CalendarBooking.Name = "CalendarBooking";
             this.CalendarBooking.Size = new System.Drawing.Size(830, 406);
@@ -466,46 +466,47 @@
             this.deleteToolStripMenuItem});
             this.ContextMenuStripBooking.Name = "contextMenuStrip1";
             this.ContextMenuStripBooking.Size = new System.Drawing.Size(181, 258);
+            this.ContextMenuStripBooking.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuStripBooking_Opening);
             // 
             // redTagToolStripMenuItem
             // 
             this.redTagToolStripMenuItem.Name = "redTagToolStripMenuItem";
-            this.redTagToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.redTagToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.redTagToolStripMenuItem.Text = "Marker rød";
             this.redTagToolStripMenuItem.Click += new System.EventHandler(this.redTagToolStripMenuItem_Click);
             // 
             // yellowTagToolStripMenuItem
             // 
             this.yellowTagToolStripMenuItem.Name = "yellowTagToolStripMenuItem";
-            this.yellowTagToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.yellowTagToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.yellowTagToolStripMenuItem.Text = "Marker gul";
             this.yellowTagToolStripMenuItem.Click += new System.EventHandler(this.yellowTagToolStripMenuItem_Click);
             // 
             // greenTagToolStripMenuItem
             // 
             this.greenTagToolStripMenuItem.Name = "greenTagToolStripMenuItem";
-            this.greenTagToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.greenTagToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.greenTagToolStripMenuItem.Text = "Marker grøn";
             this.greenTagToolStripMenuItem.Click += new System.EventHandler(this.greenTagToolStripMenuItem_Click);
             // 
             // blueTagToolStripMenuItem
             // 
             this.blueTagToolStripMenuItem.Name = "blueTagToolStripMenuItem";
-            this.blueTagToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.blueTagToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.blueTagToolStripMenuItem.Text = "Marker Blå";
             this.blueTagToolStripMenuItem.Click += new System.EventHandler(this.blueTagToolStripMenuItem_Click);
             // 
             // otherColorTagToolStripMenuItem
             // 
             this.otherColorTagToolStripMenuItem.Name = "otherColorTagToolStripMenuItem";
-            this.otherColorTagToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.otherColorTagToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.otherColorTagToolStripMenuItem.Text = "Andre farver...";
             this.otherColorTagToolStripMenuItem.Click += new System.EventHandler(this.otherColorTagToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(145, 6);
             // 
             // patternToolStripMenuItem
             // 
@@ -517,7 +518,7 @@
             this.toolStripMenuItem3,
             this.noneToolStripMenuItem});
             this.patternToolStripMenuItem.Name = "patternToolStripMenuItem";
-            this.patternToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.patternToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.patternToolStripMenuItem.Text = "Mønster";
             // 
             // diagonalToolStripMenuItem
@@ -565,7 +566,7 @@
             this.minutes10ToolStripMenuItem,
             this.minutes5ToolStripMenuItem});
             this.timescaleToolStripMenuItem.Name = "timescaleToolStripMenuItem";
-            this.timescaleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.timescaleToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.timescaleToolStripMenuItem.Text = "Tidsintervaller";
             // 
             // hourToolStripMenuItem
@@ -613,28 +614,32 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(145, 6);
+            // 
+            // ankommetToolStripMenuItem
+            // 
+            this.ankommetToolStripMenuItem.Name = "ankommetToolStripMenuItem";
+            this.ankommetToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.ankommetToolStripMenuItem.Text = "Ankommet";
+            this.ankommetToolStripMenuItem.Click += new System.EventHandler(this.AnkommetToolStripMenuItem_Click);
             // 
             // editItemToolStripMenuItem
             // 
             this.editItemToolStripMenuItem.Name = "editItemToolStripMenuItem";
-            this.editItemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editItemToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.editItemToolStripMenuItem.Text = "Rediger tekst";
             this.editItemToolStripMenuItem.Click += new System.EventHandler(this.editItemToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.deleteToolStripMenuItem.Text = "Slet";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
-            // ankommetToolStripMenuItem
+            // itemToolTip
             // 
-            this.ankommetToolStripMenuItem.Name = "ankommetToolStripMenuItem";
-            this.ankommetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.ankommetToolStripMenuItem.Text = "Ankommet";
-            this.ankommetToolStripMenuItem.Click += new System.EventHandler(this.AnkommetToolStripMenuItem_Click);
+            this.itemToolTip.Popup += new System.Windows.Forms.PopupEventHandler(this.ItemToolTip_Popup);
             // 
             // TreatmentBookingForm
             // 
