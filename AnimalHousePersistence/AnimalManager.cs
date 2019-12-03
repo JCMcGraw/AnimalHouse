@@ -106,27 +106,6 @@ namespace AnimalHousePersistence
 
             return animal;
 
-
-            //  if (sQLQueryResult.code == 0)
-            {
-                //read datatable
-
-                // return sQLQueryResult.dataTable;
-
-
-
-            }
-
-            //if (sQLQueryResult.code==1)
-            //{
-            //    return "noget gik galt";
-            //}
-            //else
-            //{
-            //    return "noget gik helt galt";
-            //}
-
-
         }
         public List<Animal> GetAnimalList(SQLQueryResult sQLQueryResult)
         {
@@ -222,6 +201,61 @@ namespace AnimalHousePersistence
             allspecies = GetSpecies(sQLQueryResult);
 
             return allspecies;
+        }
+
+        public List<string> GetAllJounalEntriesByAnimalID(Animal animal)
+        {
+            
+
+            string query = Utility.ReadSQLQueryFromFile("GetAllJounalEntriesByAnimalID");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            sQLQuery.AddParameter("@animalid", animal.animalID.ToString(), SqlDbType.Int);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            List<string> entries = new List<string>();
+
+            entries = GetJournalList(sQLQueryResult);
+
+            return entries;
+        }
+
+        public List<string>GetJournalList(SQLQueryResult sQLQueryResult)
+        {
+            List<string> entries = new List<string>();
+
+            for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
+            {
+                entries.Add((string)sQLQueryResult.dataTable.Rows[i]["Entry"]);
+            }
+            return entries;
+        }
+
+        public void CreateMedicalRecordEntry(MedicalRecord medicalRecord)
+        {
+            Animal animal = medicalRecord.animal;
+            Treatment treatment = medicalRecord.treatment;
+
+
+            string query = Utility.ReadSQLQueryFromFile("CreateMedicalRecordEntry");
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            //Test---! Skal udkommenteres og nedestående skal slettes!
+           
+            //sQLQuery.AddParameter("@entry", medicalRecord.entry.ToString(), SqlDbType.VarChar);
+            //sQLQuery.AddParameter("@animalID", animal.animalID.ToString(), SqlDbType.Int);
+            //sQLQuery.AddParameter("@treatmentID", treatment.treatmentID.ToString(), SqlDbType.Int);
+
+            //Test---! Skal slettes igen og overstående skal udkommenteres!
+
+            sQLQuery.AddParameter("@entry", "Operationen gik som planlagt.", SqlDbType.VarChar);
+            sQLQuery.AddParameter("@animalID", 3.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@treatmentID", 1015.ToString(), SqlDbType.Int);
+
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
         }
 
         //MedicalRecord

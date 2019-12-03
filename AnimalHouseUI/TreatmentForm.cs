@@ -166,7 +166,8 @@ namespace AnimalHouseUI
 
         private void button_gem_Click(object sender, EventArgs e)
         {
-            //noget kode der gemmer entryet i medicalrecord
+            MedicalRecord medicalRecord = MedicalRecordFactory.Instance().CreateMedicalRecord(1, textBox_entry.Text.ToString(), animal, treatment);
+            BossController.instance().animalController.CreateMedicalRecordEntry(medicalRecord);
         }
     }
 }

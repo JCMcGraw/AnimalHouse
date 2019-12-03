@@ -1,0 +1,2 @@
+﻿insert into MedicalRecord (Entry, AnimalID, TreatmentID)
+values (@entry, @animalID, @treatmentID)

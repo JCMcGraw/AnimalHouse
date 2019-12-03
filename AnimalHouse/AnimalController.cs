@@ -69,6 +69,12 @@ namespace AnimalHouse
             return animals;
         }
 
+        public void CreateMedicalRecordEntry(MedicalRecord medicalRecord)
+        {
+            IAnimalManager animalManager = new AnimalManager();
+            animalManager.CreateMedicalRecordEntry(medicalRecord);
+        }
+
         //public List<MedicalRecord> GetAllMedicalRecordByAnimal(int animalID)
         //{
         //    IAnimalManager animalManager = new AnimalManager();
