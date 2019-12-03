@@ -953,12 +953,14 @@ namespace AnimalHouseUI
 
                 TreatmentForm treatmentform = new TreatmentForm(treatment);
                 treatmentform.Show();
+
+                BlueCollor();
             }
         }
 
         private void AnkommetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //BlueCollor();
+            RedCollor();
         }
 
         private void ItemToolTip_Popup(object sender, PopupEventArgs e)
@@ -971,23 +973,23 @@ namespace AnimalHouseUI
 
         }
 
-        //private void RedCollor()
-        //{
-        //    foreach (CalendarItem item in CalendarBooking.GetSelectedItems())
-        //    {
-        //        item.ApplyColor(Color.Red);
-        //        CalendarBooking.Invalidate(item);
-        //    }
-        //}
+        private void RedCollor()
+        {
+            foreach (CalendarItem item in CalendarBooking.GetSelectedItems())
+            {
+                item.ApplyColor(Color.Red);
+                CalendarBooking.Invalidate(item);
+            }
+        }
 
-        //private void BlueCollor()
-        //{
-        //    foreach (CalendarItem item in CalendarBooking.GetSelectedItems())
-        //    {
-        //        item.ApplyColor(Color.Blue);
-        //        CalendarBooking.Invalidate(item);
-        //    }
+        private void BlueCollor()
+        {
+            foreach (CalendarItem item in CalendarBooking.GetSelectedItems())
+            {
+                item.ApplyColor(Color.Blue);
+                CalendarBooking.Invalidate(item);
+            }
 
-        //}
+        }
     }
 }
