@@ -277,7 +277,14 @@ namespace AnimalHouseUI
 
                 CalendarItem calendarItem = new CalendarItem(CalendarBooking, treatment.startTime, treatment.endTime, treatment.headline);
                 calendarItem.TreatmentID = treatment.treatmentID;
-                calendarItem.EmployeeID = treatment.employee.employeeID;
+                if (treatment.employee == null)
+                {
+                    calendarItem.EmployeeID = -1;
+                }
+                else
+                {
+                    calendarItem.EmployeeID = treatment.employee.employeeID;
+                }
                 calendarItemsCache.Add(calendarItem);
             }
         }
@@ -535,7 +542,7 @@ namespace AnimalHouseUI
 
             foreach(Treatment treatment in treatments)
             {
-                if (treatment.employee.employeeID == employee.employeeID)
+                if (treatment.employee != null && treatment.employee.employeeID == employee.employeeID)
                 {
                     if ((treatment.startTime >= SuggestedStartTime && treatment.startTime < SuggestedEndTime) || (treatment.endTime > SuggestedStartTime && treatment.endTime <= SuggestedEndTime) ||
                         (treatment.startTime <= SuggestedStartTime && treatment.endTime >= SuggestedEndTime))
@@ -550,7 +557,7 @@ namespace AnimalHouseUI
 
         private void CalendarBooking_ItemCreating(object sender, CalendarItemCancelEventArgs e)
         {
-            Employee selectedEmployee = (Employee)ComboBoxEmployee.SelectedItem;
+            Employee selectedEmployee = null;
             OperationRoom selectedOperationRoom = null;
             Cage selectedCage = null;
 
@@ -559,8 +566,9 @@ namespace AnimalHouseUI
             if(((TreatmentType)ComboBoxTreatmentType.SelectedItem).treatmentTypeID != 3)
             {
                 //if employee is selected in combobox check availability to avoid double bookings
-                if (selectedEmployee.employeeID != -1)
+                if (((Employee)ComboBoxEmployee.SelectedItem).employeeID != -1)
                 {
+                    selectedEmployee = (Employee)ComboBoxEmployee.SelectedItem;
                     employeeAvailable = CheckAvailabilityForConsultationOrOperation(selectedEmployee, e.Item.StartDate, e.Item.EndDate);
 
                     if (employeeAvailable == false)
@@ -644,8 +652,16 @@ namespace AnimalHouseUI
             {
                 message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra {e.Item.StartDate.ToString("dd/M")} til {e.Item.EndDate.ToString("dd/M")}";
             }
-            
-            string headline = $"{ComboBoxTreatmentType.Text}, {selectedEmployee.name}";
+
+            string headline;
+            if (((TreatmentType)ComboBoxTreatmentType.SelectedItem).treatmentTypeID == 3)
+            {
+                headline = $"{ComboBoxTreatmentType.Text}";
+            }
+            else
+            {
+                headline = $"{ComboBoxTreatmentType.Text}, {selectedEmployee.name}";
+            }
 
 
             DialogResult dialogResult = MessageBox.Show(message, "Book behandling", MessageBoxButtons.YesNo);
