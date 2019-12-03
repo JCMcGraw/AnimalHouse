@@ -55,7 +55,7 @@ namespace AnimalHousePersistence
             bool treatment = (bool)dataRow["Treatment"];
             bool active = (bool)dataRow["Active"];
 
-            Item item = ItemFactory.Instance().CreateItem(itemID, name, amount, price,costPrice, prescription, treatment, active);
+            Item item = ItemFactory.Instance().CreateItem(itemID, name, amount, price, costPrice, prescription, treatment, active);
             return item;
         }
 

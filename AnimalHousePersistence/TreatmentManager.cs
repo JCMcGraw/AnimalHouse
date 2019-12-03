@@ -22,9 +22,25 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@headline", treatment.headline.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@active", treatment.active.ToString(), SqlDbType.Bit);
             sQLQuery.AddParameter("@treatmenttypeid", treatment.treatmentType.treatmentTypeID.ToString(), SqlDbType.Int);
-            sQLQuery.AddParameter("@employeeid", treatment.employee.employeeID.ToString(), SqlDbType.Int);
             sQLQuery.AddParameter("@itemid", treatment.item.itemID.ToString(), SqlDbType.Int);
-            sQLQuery.AddParameter("@operationroomid", treatment.operationRoom.operationRoomID.ToString(), SqlDbType.Int);
+
+            if (treatment.employee == null)
+            {
+                sQLQuery.AddParameter("@employeeid", null, SqlDbType.Int);
+            }
+            else
+            {
+                sQLQuery.AddParameter("@employeeid", treatment.employee.employeeID.ToString(), SqlDbType.Int);
+            }
+
+            if (treatment.operationRoom == null)
+            {
+                sQLQuery.AddParameter("@operationroomid", null, SqlDbType.Int);
+            }
+            else
+            {
+                sQLQuery.AddParameter("@operationroomid", treatment.operationRoom.operationRoomID.ToString(), SqlDbType.Int);
+            }
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
@@ -256,7 +272,7 @@ namespace AnimalHousePersistence
                     int itemID = (int)sQLQueryResult.dataTable.Rows[i]["ItemID"];
                     string name = (string)sQLQueryResult.dataTable.Rows[i]["ItemName"];
                     decimal price = (decimal)sQLQueryResult.dataTable.Rows[i]["Price"];
-                    decimal costPrice = (decimal)sQLQueryResult.dataTable.Rows[i]["PostPrice"];
+                    decimal costPrice = (decimal)sQLQueryResult.dataTable.Rows[i]["CostPrice"];
                     int amount = (int)sQLQueryResult.dataTable.Rows[i]["Amount"];
                     bool prescription = (bool)sQLQueryResult.dataTable.Rows[i]["Prescription"];
                     bool treatment = (bool)sQLQueryResult.dataTable.Rows[i]["ItemTreatment"];

@@ -48,11 +48,13 @@
             this.ComboBoxTreatmentType = new System.Windows.Forms.ComboBox();
             this.ComboBoxEmployee = new System.Windows.Forms.ComboBox();
             this.PanelBottom = new System.Windows.Forms.Panel();
+            this.button_startbehandling = new System.Windows.Forms.Button();
             this.ChooseAnimalButton = new System.Windows.Forms.Button();
             this.ButtonCreateTreatment = new System.Windows.Forms.Button();
             this.ButtonDelete = new System.Windows.Forms.Button();
             this.PanelMonthView = new System.Windows.Forms.Panel();
             this.PanelViewSelection = new System.Windows.Forms.Panel();
+            this.WaitingRoomLable = new System.Windows.Forms.Label();
             this.radioButtonDayView = new System.Windows.Forms.RadioButton();
             this.radioButtonWeekView = new System.Windows.Forms.RadioButton();
             this.MonthViewBooking = new System.Windows.Forms.Calendar.MonthView();
@@ -80,10 +82,10 @@
             this.minutes10ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.minutes5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.ankommetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.button_startbehandling = new System.Windows.Forms.Button();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             this.PanelHeadline.SuspendLayout();
@@ -271,6 +273,20 @@
             this.PanelBottom.Size = new System.Drawing.Size(1111, 113);
             this.PanelBottom.TabIndex = 6;
             // 
+            // button_startbehandling
+            // 
+            this.button_startbehandling.BackColor = System.Drawing.Color.AliceBlue;
+            this.button_startbehandling.FlatAppearance.BorderSize = 0;
+            this.button_startbehandling.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_startbehandling.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_startbehandling.Location = new System.Drawing.Point(636, 15);
+            this.button_startbehandling.Name = "button_startbehandling";
+            this.button_startbehandling.Size = new System.Drawing.Size(118, 73);
+            this.button_startbehandling.TabIndex = 16;
+            this.button_startbehandling.Text = "Start Behandling";
+            this.button_startbehandling.UseVisualStyleBackColor = false;
+            this.button_startbehandling.Click += new System.EventHandler(this.button_startbehandling_Click);
+            // 
             // ChooseAnimalButton
             // 
             this.ChooseAnimalButton.BackColor = System.Drawing.Color.AliceBlue;
@@ -326,6 +342,7 @@
             // 
             // PanelViewSelection
             // 
+            this.PanelViewSelection.Controls.Add(this.WaitingRoomLable);
             this.PanelViewSelection.Controls.Add(this.radioButtonDayView);
             this.PanelViewSelection.Controls.Add(this.radioButtonWeekView);
             this.PanelViewSelection.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -333,6 +350,15 @@
             this.PanelViewSelection.Name = "PanelViewSelection";
             this.PanelViewSelection.Size = new System.Drawing.Size(261, 100);
             this.PanelViewSelection.TabIndex = 1;
+            // 
+            // WaitingRoomLable
+            // 
+            this.WaitingRoomLable.AutoSize = true;
+            this.WaitingRoomLable.Location = new System.Drawing.Point(201, 25);
+            this.WaitingRoomLable.Name = "WaitingRoomLable";
+            this.WaitingRoomLable.Size = new System.Drawing.Size(35, 13);
+            this.WaitingRoomLable.TabIndex = 2;
+            this.WaitingRoomLable.Text = "label1";
             // 
             // radioButtonDayView
             // 
@@ -446,10 +472,12 @@
             this.patternToolStripMenuItem,
             this.timescaleToolStripMenuItem,
             this.toolStripMenuItem2,
+            this.ankommetToolStripMenuItem,
             this.editItemToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.ContextMenuStripBooking.Name = "contextMenuStrip1";
-            this.ContextMenuStripBooking.Size = new System.Drawing.Size(149, 214);
+            this.ContextMenuStripBooking.Size = new System.Drawing.Size(149, 236);
+            this.ContextMenuStripBooking.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuStripBooking_Opening);
             // 
             // redTagToolStripMenuItem
             // 
@@ -599,6 +627,13 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(145, 6);
             // 
+            // ankommetToolStripMenuItem
+            // 
+            this.ankommetToolStripMenuItem.Name = "ankommetToolStripMenuItem";
+            this.ankommetToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.ankommetToolStripMenuItem.Text = "Ankommet";
+            this.ankommetToolStripMenuItem.Click += new System.EventHandler(this.AnkommetToolStripMenuItem_Click);
+            // 
             // editItemToolStripMenuItem
             // 
             this.editItemToolStripMenuItem.Name = "editItemToolStripMenuItem";
@@ -612,20 +647,6 @@
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.deleteToolStripMenuItem.Text = "Slet";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
-            // 
-            // button_startbehandling
-            // 
-            this.button_startbehandling.BackColor = System.Drawing.Color.AliceBlue;
-            this.button_startbehandling.FlatAppearance.BorderSize = 0;
-            this.button_startbehandling.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_startbehandling.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_startbehandling.Location = new System.Drawing.Point(636, 15);
-            this.button_startbehandling.Name = "button_startbehandling";
-            this.button_startbehandling.Size = new System.Drawing.Size(118, 73);
-            this.button_startbehandling.TabIndex = 16;
-            this.button_startbehandling.Text = "Start Behandling";
-            this.button_startbehandling.UseVisualStyleBackColor = false;
-            this.button_startbehandling.Click += new System.EventHandler(this.button_startbehandling_Click);
             // 
             // TreatmentBookingForm
             // 
@@ -711,5 +732,7 @@
         private System.Windows.Forms.RadioButton radioButtonDayView;
         private System.Windows.Forms.RadioButton radioButtonWeekView;
         private System.Windows.Forms.Button button_startbehandling;
+        private System.Windows.Forms.ToolStripMenuItem ankommetToolStripMenuItem;
+        private System.Windows.Forms.Label WaitingRoomLable;
     }
 }
