@@ -288,12 +288,17 @@ namespace AnimalHouseUI
             {
                 species = BossController.instance().animalController.GetSpecies();
                 animal_species.DataSource = species;
+                animal_species.ValueMember = "SpeciesID";
+                animal_species.DisplayMember = "Name";
 
-                
-                
+
+
+
                 employees = BossController.instance().employeeController.GetAllEmployees();
                 animal_employee.DataSource = employees;
-                
+                animal_employee.ValueMember = "EmployerID";
+                animal_employee.DisplayMember = "Name";
+
             }
             catch (Exception)
             {

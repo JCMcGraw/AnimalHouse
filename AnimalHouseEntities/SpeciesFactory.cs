@@ -24,5 +24,9 @@ namespace AnimalHouseEntities
         {
             return new Species(speciesID, speciesName);
         }
+        public Species GetSpecies(int speciesID, string name)
+        {
+            return new Species(speciesID, name);
+        }
     }
 }
