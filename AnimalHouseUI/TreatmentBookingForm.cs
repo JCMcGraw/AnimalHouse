@@ -920,7 +920,7 @@ namespace AnimalHouseUI
 
         private void CalendarBooking_ItemDoubleClick(object sender, CalendarItemEventArgs e)
         {
-
+            BlueCollor();
             int treatmentID = e.Item.TreatmentID;
             Treatment treatment = treatmentsCache[treatmentID];
 
@@ -933,6 +933,7 @@ namespace AnimalHouseUI
         private void button_startbehandling_Click(object sender, EventArgs e)
         {
             StartTreatment();
+            BlueCollor();
         }
 
         public void StartTreatment()
@@ -953,24 +954,26 @@ namespace AnimalHouseUI
 
                 TreatmentForm treatmentform = new TreatmentForm(treatment);
                 treatmentform.Show();
-
-                BlueCollor();
             }
         }
 
         private void AnkommetToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+
+
+
             RedCollor();
         }
 
         private void ItemToolTip_Popup(object sender, PopupEventArgs e)
         {
-
+            //Skal fjernes
         }
 
         private void ContextMenuStripBooking_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            //skal Fjernes
         }
 
         private void RedCollor()

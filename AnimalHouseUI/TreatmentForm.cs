@@ -169,16 +169,8 @@ namespace AnimalHouseUI
         {
             //noget kode der gemmer entryet i medicalrecord
 
+           
 
-        }
-
-        private void GreenCollor()
-        {
-            //foreach (CalendarItem item in CalendarBooking.GetSelectedItems())
-            //{
-            //    item.ApplyColor(Color.Red);
-            //    CalendarBooking.Invalidate(item);
-            //}
         }
     }
 }
