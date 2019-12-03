@@ -48,6 +48,7 @@
             this.ComboBoxTreatmentType = new System.Windows.Forms.ComboBox();
             this.ComboBoxEmployee = new System.Windows.Forms.ComboBox();
             this.PanelBottom = new System.Windows.Forms.Panel();
+            this.button_startbehandling = new System.Windows.Forms.Button();
             this.ChooseAnimalButton = new System.Windows.Forms.Button();
             this.ButtonCreateTreatment = new System.Windows.Forms.Button();
             this.ButtonDelete = new System.Windows.Forms.Button();
@@ -83,7 +84,7 @@
             this.editItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.button_startbehandling = new System.Windows.Forms.Button();
+            this.ankommetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             this.PanelHeadline.SuspendLayout();
@@ -271,6 +272,20 @@
             this.PanelBottom.Size = new System.Drawing.Size(1111, 113);
             this.PanelBottom.TabIndex = 6;
             // 
+            // button_startbehandling
+            // 
+            this.button_startbehandling.BackColor = System.Drawing.Color.AliceBlue;
+            this.button_startbehandling.FlatAppearance.BorderSize = 0;
+            this.button_startbehandling.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_startbehandling.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_startbehandling.Location = new System.Drawing.Point(636, 15);
+            this.button_startbehandling.Name = "button_startbehandling";
+            this.button_startbehandling.Size = new System.Drawing.Size(118, 73);
+            this.button_startbehandling.TabIndex = 16;
+            this.button_startbehandling.Text = "Start Behandling";
+            this.button_startbehandling.UseVisualStyleBackColor = false;
+            this.button_startbehandling.Click += new System.EventHandler(this.button_startbehandling_Click);
+            // 
             // ChooseAnimalButton
             // 
             this.ChooseAnimalButton.BackColor = System.Drawing.Color.AliceBlue;
@@ -446,50 +461,51 @@
             this.patternToolStripMenuItem,
             this.timescaleToolStripMenuItem,
             this.toolStripMenuItem2,
+            this.ankommetToolStripMenuItem,
             this.editItemToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.ContextMenuStripBooking.Name = "contextMenuStrip1";
-            this.ContextMenuStripBooking.Size = new System.Drawing.Size(149, 214);
+            this.ContextMenuStripBooking.Size = new System.Drawing.Size(181, 258);
             // 
             // redTagToolStripMenuItem
             // 
             this.redTagToolStripMenuItem.Name = "redTagToolStripMenuItem";
-            this.redTagToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.redTagToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.redTagToolStripMenuItem.Text = "Marker rød";
             this.redTagToolStripMenuItem.Click += new System.EventHandler(this.redTagToolStripMenuItem_Click);
             // 
             // yellowTagToolStripMenuItem
             // 
             this.yellowTagToolStripMenuItem.Name = "yellowTagToolStripMenuItem";
-            this.yellowTagToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.yellowTagToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.yellowTagToolStripMenuItem.Text = "Marker gul";
             this.yellowTagToolStripMenuItem.Click += new System.EventHandler(this.yellowTagToolStripMenuItem_Click);
             // 
             // greenTagToolStripMenuItem
             // 
             this.greenTagToolStripMenuItem.Name = "greenTagToolStripMenuItem";
-            this.greenTagToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.greenTagToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.greenTagToolStripMenuItem.Text = "Marker grøn";
             this.greenTagToolStripMenuItem.Click += new System.EventHandler(this.greenTagToolStripMenuItem_Click);
             // 
             // blueTagToolStripMenuItem
             // 
             this.blueTagToolStripMenuItem.Name = "blueTagToolStripMenuItem";
-            this.blueTagToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.blueTagToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.blueTagToolStripMenuItem.Text = "Marker Blå";
             this.blueTagToolStripMenuItem.Click += new System.EventHandler(this.blueTagToolStripMenuItem_Click);
             // 
             // otherColorTagToolStripMenuItem
             // 
             this.otherColorTagToolStripMenuItem.Name = "otherColorTagToolStripMenuItem";
-            this.otherColorTagToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.otherColorTagToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.otherColorTagToolStripMenuItem.Text = "Andre farver...";
             this.otherColorTagToolStripMenuItem.Click += new System.EventHandler(this.otherColorTagToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(145, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
             // patternToolStripMenuItem
             // 
@@ -501,7 +517,7 @@
             this.toolStripMenuItem3,
             this.noneToolStripMenuItem});
             this.patternToolStripMenuItem.Name = "patternToolStripMenuItem";
-            this.patternToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.patternToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.patternToolStripMenuItem.Text = "Mønster";
             // 
             // diagonalToolStripMenuItem
@@ -549,7 +565,7 @@
             this.minutes10ToolStripMenuItem,
             this.minutes5ToolStripMenuItem});
             this.timescaleToolStripMenuItem.Name = "timescaleToolStripMenuItem";
-            this.timescaleToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.timescaleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.timescaleToolStripMenuItem.Text = "Tidsintervaller";
             // 
             // hourToolStripMenuItem
@@ -597,35 +613,28 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(145, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
             // 
             // editItemToolStripMenuItem
             // 
             this.editItemToolStripMenuItem.Name = "editItemToolStripMenuItem";
-            this.editItemToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.editItemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.editItemToolStripMenuItem.Text = "Rediger tekst";
             this.editItemToolStripMenuItem.Click += new System.EventHandler(this.editItemToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.deleteToolStripMenuItem.Text = "Slet";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
-            // button_startbehandling
+            // ankommetToolStripMenuItem
             // 
-            this.button_startbehandling.BackColor = System.Drawing.Color.AliceBlue;
-            this.button_startbehandling.FlatAppearance.BorderSize = 0;
-            this.button_startbehandling.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_startbehandling.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_startbehandling.Location = new System.Drawing.Point(636, 15);
-            this.button_startbehandling.Name = "button_startbehandling";
-            this.button_startbehandling.Size = new System.Drawing.Size(118, 73);
-            this.button_startbehandling.TabIndex = 16;
-            this.button_startbehandling.Text = "Start Behandling";
-            this.button_startbehandling.UseVisualStyleBackColor = false;
-            this.button_startbehandling.Click += new System.EventHandler(this.button_startbehandling_Click);
+            this.ankommetToolStripMenuItem.Name = "ankommetToolStripMenuItem";
+            this.ankommetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ankommetToolStripMenuItem.Text = "Ankommet";
+            this.ankommetToolStripMenuItem.Click += new System.EventHandler(this.AnkommetToolStripMenuItem_Click);
             // 
             // TreatmentBookingForm
             // 
@@ -711,5 +720,6 @@
         private System.Windows.Forms.RadioButton radioButtonDayView;
         private System.Windows.Forms.RadioButton radioButtonWeekView;
         private System.Windows.Forms.Button button_startbehandling;
+        private System.Windows.Forms.ToolStripMenuItem ankommetToolStripMenuItem;
     }
 }
