@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.Calendar;
 using AnimalHouseEntities;
 using AnimalHouse;
 
@@ -167,6 +168,9 @@ namespace AnimalHouseUI
         private void button_gem_Click(object sender, EventArgs e)
         {
             //noget kode der gemmer entryet i medicalrecord
+
+           
+
         }
     }
 }

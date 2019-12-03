@@ -920,7 +920,7 @@ namespace AnimalHouseUI
 
         private void CalendarBooking_ItemDoubleClick(object sender, CalendarItemEventArgs e)
         {
-
+            BlueCollor();
             int treatmentID = e.Item.TreatmentID;
             Treatment treatment = treatmentsCache[treatmentID];
 
@@ -933,11 +933,11 @@ namespace AnimalHouseUI
         private void button_startbehandling_Click(object sender, EventArgs e)
         {
             StartTreatment();
+            BlueCollor();
         }
 
         public void StartTreatment()
-            {
-            
+        {
             List<CalendarItem> calendaritems=(List<CalendarItem>)CalendarBooking.GetSelectedItems();
             if (calendaritems.Count==0)
             {
@@ -946,27 +946,53 @@ namespace AnimalHouseUI
             else if (calendaritems.Count>1)
             {
                 MessageBox.Show("Der kan kun vælges en enkelt aftalte");
-
             }
             else
             {
                 int treatmentID = calendaritems[0].TreatmentID;
                 Treatment treatment = treatmentsCache[treatmentID];
 
-            
                 TreatmentForm treatmentform = new TreatmentForm(treatment);
                 treatmentform.Show();
             }
-            
         }
 
         private void AnkommetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+
+
+
+            RedCollor();
+        }
+
+        private void ItemToolTip_Popup(object sender, PopupEventArgs e)
+        {
+            //Skal fjernes
+        }
+
+        private void ContextMenuStripBooking_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //skal Fjernes
+        }
+
+        private void RedCollor()
         {
             foreach (CalendarItem item in CalendarBooking.GetSelectedItems())
             {
                 item.ApplyColor(Color.Red);
                 CalendarBooking.Invalidate(item);
             }
+        }
+
+        private void BlueCollor()
+        {
+            foreach (CalendarItem item in CalendarBooking.GetSelectedItems())
+            {
+                item.ApplyColor(Color.Blue);
+                CalendarBooking.Invalidate(item);
+            }
+
         }
     }
 }
