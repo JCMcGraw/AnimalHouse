@@ -42,6 +42,15 @@ namespace AnimalHousePersistence
                 sQLQuery.AddParameter("@operationroomid", treatment.operationRoom.operationRoomID.ToString(), SqlDbType.Int);
             }
 
+            if (treatment.cage == null)
+            {
+                sQLQuery.AddParameter("@cageid", null, SqlDbType.Int);
+            }
+            else
+            {
+                sQLQuery.AddParameter("@cageid", treatment.cage.CageID.ToString(), SqlDbType.Int);
+            }
+
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
             int treatmentID = (int)sQLQueryResult.dataTable.Rows[0]["TreatmentID"];

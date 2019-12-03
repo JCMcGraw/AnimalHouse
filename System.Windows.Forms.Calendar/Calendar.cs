@@ -1414,9 +1414,9 @@ namespace System.Windows.Forms.Calendar
 
         protected override void OnDoubleClick(EventArgs e)
         {
-            base.OnDoubleClick(e);
+            //base.OnDoubleClick(e);
 
-            CreateItemOnSelection(string.Empty, true);
+            //CreateItemOnSelection(string.Empty, true);
         }
 
         protected virtual void OnDayHeaderClick(CalendarDayEventArgs e)
@@ -1615,6 +1615,12 @@ namespace System.Windows.Forms.Calendar
             if (item != null)
             {
                 OnItemDoubleClick(new CalendarItemEventArgs(item));
+            }
+            else
+            {
+                base.OnDoubleClick(e);
+
+                CreateItemOnSelection(string.Empty, true);
             }
         }
 
