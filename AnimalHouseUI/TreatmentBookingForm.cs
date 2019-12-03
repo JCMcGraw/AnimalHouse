@@ -922,5 +922,14 @@ namespace AnimalHouseUI
             }
             
         }
+
+        private void AnkommetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (CalendarItem item in CalendarBooking.GetSelectedItems())
+            {
+                item.ApplyColor(Color.Red);
+                CalendarBooking.Invalidate(item);
+            }
+        }
     }
 }
