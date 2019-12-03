@@ -30,6 +30,7 @@ namespace AnimalHouseEntities
             this.name = name;
             this.amount = amount;
             this.price = price;
+            this.costPrice = costPrice;
             this.prescription = prescription;
             this.treatment = treatment;
             this.active = active;
