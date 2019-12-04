@@ -37,11 +37,12 @@
             this.ButtonClose = new System.Windows.Forms.Button();
             this.PrintButton = new System.Windows.Forms.Button();
             this.ItemDataGridView = new System.Windows.Forms.DataGridView();
-            this.AmountCheckBox = new System.Windows.Forms.CheckBox();
-            this.AmountComboBox = new System.Windows.Forms.ComboBox();
             this.itemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmountCheckBox = new System.Windows.Forms.CheckBox();
+            this.AmountComboBox = new System.Windows.Forms.ComboBox();
+            this.TotalValueLabel = new System.Windows.Forms.Label();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemDataGridView)).BeginInit();
@@ -164,6 +165,22 @@
             this.ItemDataGridView.Size = new System.Drawing.Size(303, 216);
             this.ItemDataGridView.TabIndex = 11;
             // 
+            // itemName
+            // 
+            this.itemName.HeaderText = "Vare";
+            this.itemName.Name = "itemName";
+            // 
+            // itemPrice
+            // 
+            this.itemPrice.HeaderText = "Pris";
+            this.itemPrice.Name = "itemPrice";
+            // 
+            // itemAmount
+            // 
+            this.itemAmount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.itemAmount.HeaderText = "Antal";
+            this.itemAmount.Name = "itemAmount";
+            // 
             // AmountCheckBox
             // 
             this.AmountCheckBox.AutoSize = true;
@@ -202,21 +219,14 @@
             this.AmountComboBox.TabIndex = 13;
             this.AmountComboBox.SelectedIndexChanged += new System.EventHandler(this.AmountComboBox_SelectedIndexChanged);
             // 
-            // itemName
+            // TotalValueLabel
             // 
-            this.itemName.HeaderText = "Vare";
-            this.itemName.Name = "itemName";
-            // 
-            // itemPrice
-            // 
-            this.itemPrice.HeaderText = "Pris";
-            this.itemPrice.Name = "itemPrice";
-            // 
-            // itemAmount
-            // 
-            this.itemAmount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.itemAmount.HeaderText = "Antal";
-            this.itemAmount.Name = "itemAmount";
+            this.TotalValueLabel.AutoSize = true;
+            this.TotalValueLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalValueLabel.Location = new System.Drawing.Point(68, 368);
+            this.TotalValueLabel.Name = "TotalValueLabel";
+            this.TotalValueLabel.Size = new System.Drawing.Size(0, 20);
+            this.TotalValueLabel.TabIndex = 14;
             // 
             // StockForm
             // 
@@ -224,6 +234,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(510, 450);
+            this.Controls.Add(this.TotalValueLabel);
             this.Controls.Add(this.AmountComboBox);
             this.Controls.Add(this.AmountCheckBox);
             this.Controls.Add(this.ItemDataGridView);
@@ -258,5 +269,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn itemName;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemAmount;
+        private System.Windows.Forms.Label TotalValueLabel;
     }
 }

@@ -564,6 +564,13 @@ namespace AnimalHouseUI
 
             bool employeeAvailable = true;
 
+            if (animal == null)
+            {
+                MessageBox.Show("Du skal vælge et dyr, inden du opretter en aftale");
+                e.Cancel = true;
+                return;
+            }
+
             if(((TreatmentType)ComboBoxTreatmentType.SelectedItem).treatmentTypeID != 3)
             {
                 //if employee is selected in combobox check availability to avoid double bookings
@@ -672,7 +679,7 @@ namespace AnimalHouseUI
                 Item item = ItemFactory.Instance().CreateItem(9, "Vaccination", 1, 399m, 299m, false, true, true);
 
                 //create new treatment
-                Treatment treatment = TreatmentFactory.Instance().CreateTreatment((TreatmentType)ComboBoxTreatmentType.SelectedItem, selectedOperationRoom, selectedCage, item, e.Item.StartDate, e.Item.EndDate, false, headline, true, -1, selectedEmployee);
+                Treatment treatment = TreatmentFactory.Instance().CreateTreatment((TreatmentType)ComboBoxTreatmentType.SelectedItem, selectedOperationRoom, selectedCage, item, e.Item.StartDate, e.Item.EndDate, false, headline, true, animal, selectedEmployee);
 
                 //add treatment to database and get treatment with treatment ID
                 Treatment treatmentWithID = bossController.treatmentController.CreateTreatment(treatment);
@@ -742,7 +749,7 @@ namespace AnimalHouseUI
         {
             Treatment oldTreatment = treatmentsCache[treatmentID];
             Treatment newTreatment = TreatmentFactory.Instance().CreateTreatment(treatmentID, oldTreatment.treatmentType, oldTreatment.operationRoom, oldTreatment.cage, oldTreatment.item,
-                newStartTime, newEndTime, oldTreatment.payed, oldTreatment.headline, oldTreatment.active, oldTreatment.animalID, oldTreatment.employee);
+                newStartTime, newEndTime, oldTreatment.payed, oldTreatment.headline, oldTreatment.active, oldTreatment.animal, oldTreatment.employee);
 
             return newTreatment;
         }
