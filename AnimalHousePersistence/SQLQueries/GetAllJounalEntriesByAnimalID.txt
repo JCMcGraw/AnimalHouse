@@ -1,0 +1,1 @@
+﻿select Entry from MedicalRecord where AnimalID=@animalID

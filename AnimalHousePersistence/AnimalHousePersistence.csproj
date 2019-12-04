@@ -83,6 +83,9 @@
     <Content Include="SQLQueries\CreateCustomer.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQLQueries\CreateMedicalRecordEntry.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQLQueries\CreateSale.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -114,6 +117,7 @@
     <Content Include="SQLQueries\GetAllEmployees.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQLQueries\GetAllJounalEntriesByAnimalID.txt" />
     <Content Include="SQLQueries\GetAllMedicalRecordByAnimal.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

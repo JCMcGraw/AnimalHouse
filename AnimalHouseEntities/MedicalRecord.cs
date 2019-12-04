@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AnimalHouseEntities;
 
 namespace AnimalHouseEntities
 {
@@ -12,10 +13,16 @@ namespace AnimalHouseEntities
 
         public string entry { get; private set; }
 
-        public MedicalRecord(int medicalRecordID, string entry)
+        public Animal animal { get; private set; }
+        public Treatment treatment { get; private set; }
+
+        public MedicalRecord(int medicalRecordID, string entry, Animal animal, Treatment treatment)
         {
             this.medicalRecordID = medicalRecordID;
             this.entry = entry;
+            this.animal = animal;
+            this.treatment = treatment;
+
         }
     }
 }
