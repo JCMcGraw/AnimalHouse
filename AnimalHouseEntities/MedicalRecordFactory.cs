@@ -22,9 +22,17 @@ namespace AnimalHouseEntities
             return instance;
         }
 
+        //MEdicalRecord MED medicalRecordID
         public MedicalRecord CreateMedicalRecord(int medicalRecordID,string entry, Animal animal, Treatment treatment)
         {
             MedicalRecord medicalRecord = new MedicalRecord(medicalRecordID,entry, animal, treatment);
+            return medicalRecord;
+        }
+
+        //MedicalRecord UDEN medicalRecordID
+        public MedicalRecord CreateMedicalRecord(string entry, Animal animal, Treatment treatment)
+        {
+            MedicalRecord medicalRecord = new MedicalRecord(entry, animal, treatment);
             return medicalRecord;
         }
     }

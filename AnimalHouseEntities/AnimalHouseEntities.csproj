@@ -49,7 +49,9 @@
     <Compile Include="AnimalFactory.cs" />
     <Compile Include="Cage.cs" />
     <Compile Include="CageFactory.cs" />
-    <Compile Include="Customer.cs" />
+    <Compile Include="Customer.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="CustomerFactory.cs" />
     <Compile Include="CustomExceptions.cs" />
     <Compile Include="Employee.cs" />

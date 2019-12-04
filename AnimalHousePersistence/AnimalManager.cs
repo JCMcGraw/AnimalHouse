@@ -292,20 +292,15 @@ namespace AnimalHousePersistence
             string query = Utility.ReadSQLQueryFromFile("CreateMedicalRecordEntry.txt");
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            //Test---! Skal udkommenteres og nedestående skal slettes!
            
-            //sQLQuery.AddParameter("@entry", medicalRecord.entry.ToString(), SqlDbType.VarChar);
-            //sQLQuery.AddParameter("@animalID", animal.animalID.ToString(), SqlDbType.Int);
-            //sQLQuery.AddParameter("@treatmentID", treatment.treatmentID.ToString(), SqlDbType.Int);
-
-            //Test---! Skal slettes igen og overstående skal udkommenteres!
-
-            sQLQuery.AddParameter("@entry", (string)medicalRecord.entry, SqlDbType.VarChar);
-            sQLQuery.AddParameter("@animalID", 3.ToString(), SqlDbType.Int);
-            sQLQuery.AddParameter("@treatmentID", 1015.ToString(), SqlDbType.Int);
-
+            sQLQuery.AddParameter("@entry", medicalRecord.entry.ToString(), SqlDbType.VarChar);
+            sQLQuery.AddParameter("@animalID", animal.animalID.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@treatmentID", treatment.treatmentID.ToString(), SqlDbType.Int);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+            int medicalrecordID = (int)sQLQueryResult.dataTable.Rows[0]["MedicalRecordID"];
+
+            medicalRecord.UpdateMedicalRecordID(medicalrecordID);
         }
 
         public List<Prescription> GetAllPrescriptionByAnimal(int animalID)
