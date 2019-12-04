@@ -13,7 +13,7 @@ namespace AnimalHouse
 
         private static BossController bossController = null;
 
-        public static BossController instance()
+        public static BossController Instance()
         {
             if (bossController == null)
             {

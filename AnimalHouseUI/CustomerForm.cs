@@ -161,7 +161,7 @@ namespace AnimalHouseUI
         private void button_soeg_Click(object sender, EventArgs e)
         {
             button_opret.Enabled = false;
-            Customer customer = BossController.instance().customerController.GetCustomer(textBox_phonenumber.Text);
+            Customer customer = BossController.Instance().customerController.GetCustomer(textBox_phonenumber.Text);
 
 
             textBox_navn.Text = customer.name.ToString();
@@ -173,7 +173,7 @@ namespace AnimalHouseUI
             CheckForBusinesscustomer(customer);
 
             //danner en liste af dyr der hedder animals. Denne liste bliver dannet et sted på animalmanager og der bruges en customer
-            List<Animal> animals= BossController.instance().animalController.GetManyAnimalByCustomerID(customer);
+            List<Animal> animals= BossController.Instance().animalController.GetManyAnimalByCustomerID(customer);
 
             //tilknytter listen af dyr til kunden
             customer.AddAnimalList(animals);
@@ -204,7 +204,7 @@ namespace AnimalHouseUI
             if (confirm == DialogResult.Yes)
             {
                 string phone = textBox_phonenumber.Text.ToString();
-                customer = BossController.instance().customerController.GetCustomer(phone);
+                customer = BossController.Instance().customerController.GetCustomer(phone);
 
                 string name = textBox_navn.Text.ToString();
                 
@@ -215,7 +215,7 @@ namespace AnimalHouseUI
 
                 Customer tmpcustomer = CustomerFactory.Instance().CreateCustomer(customerID, name, address, phone, email, true, cvr);
 
-                string message = BossController.instance().customerController.UpdateCustomer(tmpcustomer);
+                string message = BossController.Instance().customerController.UpdateCustomer(tmpcustomer);
                 MessageBox.Show(message);
 
                 ResetForm();
@@ -231,9 +231,9 @@ namespace AnimalHouseUI
 
             if (confirm == DialogResult.Yes)
             {
-                customer = BossController.instance().customerController.GetCustomer(textBox_phonenumber.Text.ToString());
+                customer = BossController.Instance().customerController.GetCustomer(textBox_phonenumber.Text.ToString());
 
-                string message = BossController.instance().customerController.DeleteCustomer(customer);
+                string message = BossController.Instance().customerController.DeleteCustomer(customer);
                 MessageBox.Show(message);
 
             }
@@ -296,7 +296,7 @@ namespace AnimalHouseUI
                customer = CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, cvrint);
 
             //her skriver vi den oprettede kunde ind i databasen
-            customer = BossController.instance().customerController.CreateCustomer(customer);
+            customer = BossController.Instance().customerController.CreateCustomer(customer);
 
             MessageBox.Show("Kunde oprettet");
 
@@ -341,16 +341,16 @@ namespace AnimalHouseUI
 
         private void CheckCustomerDeletion()
         {
-            customer = BossController.instance().customerController.GetCustomer(textBox_phonenumber.Text.ToString());
+            customer = BossController.Instance().customerController.GetCustomer(textBox_phonenumber.Text.ToString());
             if (customer.active == false)
             {
                 var confirm = MessageBox.Show("Denne kunde er slettet, vil du reaktivere?", "Kunde slettet", MessageBoxButtons.YesNoCancel);
 
                 if (confirm == DialogResult.Yes)
                 {
-                    customer = BossController.instance().customerController.GetCustomer(textBox_phonenumber.Text.ToString());
+                    customer = BossController.Instance().customerController.GetCustomer(textBox_phonenumber.Text.ToString());
 
-                    string message = BossController.instance().customerController.UndeleteCustomer(customer);
+                    string message = BossController.Instance().customerController.UndeleteCustomer(customer);
                     MessageBox.Show(message);
 
                 }
@@ -382,7 +382,7 @@ namespace AnimalHouseUI
 
         private void LoadeAllItemsInListBox()
         {
-            List<Animal> animals = BossController.instance().animalController.GetManyAnimalByCustomerID(customer);
+            List<Animal> animals = BossController.Instance().animalController.GetManyAnimalByCustomerID(customer);
 
             customer.AddAnimalList(animals);
 
@@ -415,7 +415,7 @@ namespace AnimalHouseUI
 
         public bool CheckUniquePhone(string phone)
         {
-            return BossController.instance().customerController.CheckUniquePhone(phone);
+            return BossController.Instance().customerController.CheckUniquePhone(phone);
                      }
         
     }

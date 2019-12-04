@@ -13,7 +13,7 @@ namespace AnimalHouseUI
 {
     public partial class TreatmentBookingForm : Form
     {
-        BossController bossController = BossController.instance();
+        BossController bossController = BossController.Instance();
 
         Animal animal;
 
