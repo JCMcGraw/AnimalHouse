@@ -402,6 +402,29 @@ namespace AnimalHousePersistence
             }
             return prescriptions;
         }
+
+        public Prescription CreatePrescription(Prescription prescription)
+        {
+            string query = Utility.ReadSQLQueryFromFile("CreatePrescription.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+            
+
+            sQLQuery.AddParameter("@amount", prescription.amount.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@employeeID", prescription.employee.employeeID.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@animalID", prescription.animal.animalID.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@itemID", prescription.item.itemID.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@prescriptionDay", prescription.prescriptionDay.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
+
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            int prescriptionID = (int)sQLQueryResult.dataTable.Rows[0]["PrescriptionID"];
+
+            prescription.UpdateID(prescriptionID);
+
+            return prescription;
+        }
     }
 }
 

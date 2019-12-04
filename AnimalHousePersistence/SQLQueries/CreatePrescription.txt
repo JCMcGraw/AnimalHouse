@@ -1,0 +1,3 @@
+﻿insert into Prescription (Amount, EmployeeID, AnimalID, ItemID, PrescriptionDay)
+output inserted.PrescriptionID
+values (@amount,@employeeID,@animalID, @itemID, @prescriptionDay)

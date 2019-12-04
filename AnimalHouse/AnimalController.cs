@@ -81,5 +81,12 @@ namespace AnimalHouse
             List<Prescription> getAllPrescriptionByAnimal = animalManager.GetAllPrescriptionByAnimal(animalID);
             return getAllPrescriptionByAnimal;
         }
+
+        public Prescription CreatePrescription(Prescription prescription)
+        {
+            IAnimalManager animalManager = new AnimalManager();
+            
+            return animalManager.CreatePrescription(prescription);
+        }
     }
 }

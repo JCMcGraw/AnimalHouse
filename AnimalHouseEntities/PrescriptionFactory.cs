@@ -22,9 +22,16 @@ namespace AnimalHouseEntities
             return instance;
         }
 
+        //Prescription MED prescriptionID
         public Prescription CreatePrescription(int prescriptionID, int amount, DateTime prescriptionDay, Employee employee, Animal animal, Item item)
         {
             return new Prescription(prescriptionID, amount,prescriptionDay, employee, animal, item);
+        }
+
+        //Prescription UDEN prescriptionID
+        public Prescription CreatePrescription(int amount, DateTime prescriptionDay, Employee employee, Animal animal, Item item)
+        {
+            return new Prescription(amount, prescriptionDay, employee, animal, item);
         }
     }
 }
