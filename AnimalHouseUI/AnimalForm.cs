@@ -29,6 +29,8 @@ namespace AnimalHouseUI
             this.customer = customer;
             this.animal = animal;
             InitializeComponent();
+
+            //MessageBox.Show(animal.gender.ToString());
         }
         private void SetStatusComboBoxToDefault()
         {
@@ -179,9 +181,9 @@ namespace AnimalHouseUI
 
                 animal_name.Text = animal.name;
                 animal_bdate.Text = Convert.ToString(animal.birthday);
-                //animal_species.Text = Convert.ToString(animal.Species);
+                animal_species.Text = Convert.ToString(animal.Species.speciesType);
                 animal_weight.Text = Convert.ToString(animal.weight);
-                //animal_gender.SelectedIndex = Convert.ToInt32(animal.gender);
+                animal_gender.SelectedIndex = Convert.ToInt32(animal.gender);
                 //animal_employee.SelectedIndex = Convert.ToInt32(animal.employeeid);
                
             }
