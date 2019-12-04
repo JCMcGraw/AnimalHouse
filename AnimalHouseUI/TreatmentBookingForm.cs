@@ -316,6 +316,10 @@ namespace AnimalHouseUI
                         if(treatmentsCache[item.TreatmentID].treatmentType.treatmentTypeID == 3)
                         {
                             CalendarBooking.Items.Add(item);
+                            //if (Status==1)
+                            //{
+                            //    //BlueCollor();
+                            //} 
                         }
                     }
                     else
@@ -327,10 +331,20 @@ namespace AnimalHouseUI
                             if (selectedEmployee.employeeID == -1)
                             {
                                 CalendarBooking.Items.Add(item);
+
+                                //if (Status==1)
+                                //{
+                                //    //BlueCollor();
+                                //}
                             }
                             else if(item.EmployeeID == selectedEmployee.employeeID)
                             {
                                 CalendarBooking.Items.Add(item);
+
+                                //if (Status==1)
+                                //{
+                                //    //BlueCollor();
+                                //}
                             }
                         }
                     }
