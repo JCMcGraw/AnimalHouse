@@ -25,10 +25,10 @@ namespace AnimalHouseUI
         {
             InitializeComponent();
             this.treatment = treatment;
-            this.treatmentType = treatment.treatmentType;
-            
-            //this.animal = BossController.instance().animalController.GetAnimal(treatment.animalID);
 
+            this.animal = BossController.instance().animalController.GetAnimal(treatment.animalID);
+            this.customer = animal.customer;
+            this.treatmentType = treatment.treatmentType;
           
         }
 
@@ -168,8 +168,12 @@ namespace AnimalHouseUI
         private void button_gem_Click(object sender, EventArgs e)
         {
             //ligenu er det bare et statist medicalrecordID, der bliver lavet
-            MedicalRecord medicalRecord = MedicalRecordFactory.Instance().CreateMedicalRecord(1, textBox_entry.Text.ToString(), animal, treatment);
-            BossController.instance().animalController.CreateMedicalRecordEntry(medicalRecord);
+            // MedicalRecord medicalRecord = MedicalRecordFactory.Instance().CreateMedicalRecord(1, textBox_entry.Text.ToString(), animal, treatment);
+            string entry = textBox_entry.Text.ToString();
+
+            MedicalRecord medicalRecord = MedicalRecordFactory.Instance().CreateMedicalRecord(entry, animal, treatment);
+                
+                BossController.instance().animalController.CreateMedicalRecordEntry(medicalRecord);
         }
     }
 }
