@@ -166,7 +166,7 @@ namespace AnimalHouseUI
             textBox_adresse.Text = customer.address.ToString();
             textBox_email.Text = customer.email.ToString();
 
-            MessageBox.Show("customerid er " + customer.customerID);
+          
 
             CheckForBusinesscustomer(customer);
 
@@ -211,10 +211,7 @@ namespace AnimalHouseUI
                 int customerID = customer.customerID;
                 int cvr = 0;
 
-                MessageBox.Show(customerID.ToString());
                 Customer tmpcustomer = CustomerFactory.Instance().CreateCustomer(customerID, name, address, phone, email, true, cvr);
-
-               // Customer tmpcustomer = new Customer(name, address, phone,email,true);
 
                 string message = BossController.instance().customerController.UpdateCustomer(tmpcustomer);
                 MessageBox.Show(message);
