@@ -160,7 +160,7 @@ namespace AnimalHouseUI
 
         private void button_dyr_Click(object sender, EventArgs e)
         {
-            Customer customer = BossController.instance().customerController.GetCustomer(123.ToString());
+            Customer customer = BossController.Instance().customerController.GetCustomer(123.ToString());
 
             AnimalForm animalForm = new AnimalForm(customer);
             animalForm.Show();

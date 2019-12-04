@@ -17,7 +17,7 @@ namespace AnimalHouseUI
     {
         List<Item> allItems;
         List<Item> items;
-        BossController bossController = BossController.instance();
+        BossController bossController = BossController.Instance();
 
         public StockForm()
         {
