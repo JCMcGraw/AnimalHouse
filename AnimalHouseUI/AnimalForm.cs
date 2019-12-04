@@ -18,7 +18,7 @@ namespace AnimalHouseUI
         Animal animal;
         Customer customer;
         //Employee employee;
-        List<Employee> employees;
+        List<Employee> employee;
         List<Species> species;
 
         //private DataTable Animal_Gender = new DataTable();
@@ -342,5 +342,7 @@ namespace AnimalHouseUI
         {
 
         }
+       
+       
     }
 }
