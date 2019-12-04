@@ -1,2 +1,10 @@
-﻿Select * from Animal join Species on animal.speciesID = Species.speciesID
-where (CustomerID= @CustomerID)
+﻿Select Animal.*,
+Species.speciesname,
+Customer.name as customername,
+customer.adress,
+customer.phone,
+customer.email,
+customer.active
+
+from Animal join Species on animal.speciesID = Species.speciesID join Customer on animal.CustomerID=Customer.customerID
+where (Animal.CustomerID= @CustomerID)

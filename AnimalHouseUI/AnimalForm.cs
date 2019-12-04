@@ -225,7 +225,7 @@ namespace AnimalHouseUI
             }
                 
 
-            animal = AnimalFactory.Instance().CreateAnimal(customer.customerID, animal_name.Text.ToString(), (animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), true, employee, true);
+            animal = AnimalFactory.Instance().CreateAnimal(customer, animal_name.Text.ToString(), (animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), true, employee, true);
 
             animal = BossController.instance().animalController.CreateAnimal(animal);
         }
@@ -256,7 +256,7 @@ namespace AnimalHouseUI
 
 
 
-            Animal tmpanimal = new Animal(customer.customerID, animal.animalID, name, birthday, species, weight, true, employee, true);
+            Animal tmpanimal = new Animal(customer, animal.animalID, name, birthday, species, weight, true, employee, true);
 
             string message = BossController.instance().animalController.UpdateAnimal(tmpanimal);
             MessageBox.Show(message);

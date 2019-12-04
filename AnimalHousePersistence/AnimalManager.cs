@@ -21,7 +21,7 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("@customerid", animal.customerID.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@customerid", animal.customer.customerID.ToString(), SqlDbType.Int);
             sQLQuery.AddParameter("@species", animal.Species.speciesid.ToString(), SqlDbType.Int);
             sQLQuery.AddParameter("@birthday", animal.birthday.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
             sQLQuery.AddParameter("@name", animal.name.ToString(), SqlDbType.VarChar);
@@ -110,6 +110,14 @@ namespace AnimalHousePersistence
 
             DataRow dataRow = sQLQueryResult.dataTable.Rows[0];
 
+            int CustomerID = (int)sQLQueryResult.dataTable.Rows[0]["CustomerID"];
+            string customerName = (string)sQLQueryResult.dataTable.Rows[0]["customername"];
+            string customeradress = (string)sQLQueryResult.dataTable.Rows[0]["Adress"];
+            string customerphone = (string)sQLQueryResult.dataTable.Rows[0]["Phone"];
+            string customeremail = (string)sQLQueryResult.dataTable.Rows[0]["Email"];
+            bool customeractive = (bool)sQLQueryResult.dataTable.Rows[0]["Active"];
+            Customer customer = CustomerFactory.Instance().CreateCustomer(CustomerID, customerName, customeradress, customerphone, customeremail, customeractive, 0);
+
             string speciesName = sQLQueryResult.dataTable.Rows[0]["SpeciesName"].ToString();
 
             int speciesID = (int)sQLQueryResult.dataTable.Rows[0]["SpeciesID"];
@@ -122,7 +130,7 @@ namespace AnimalHousePersistence
 
             Employee employee = EmployeeFactory.Instance().GetEmployee(employeeID, name);
 
-            Animal animal = new Animal((int)dataRow["CustomerID"],(int)dataRow["AnimalID"], (string)dataRow["Name"], (DateTime)dataRow["BirthYear"], species, (double)dataRow["Weight"], (bool)dataRow["Gender"], employee, (bool)dataRow["Active"]);
+            Animal animal = new Animal(customer,(int)dataRow["AnimalID"], (string)dataRow["Name"], (DateTime)dataRow["BirthYear"], species, (double)dataRow["Weight"], (bool)dataRow["Gender"], employee, (bool)dataRow["Active"]);
 
             return animal;
 
@@ -151,8 +159,13 @@ namespace AnimalHousePersistence
                     }
 
 
-
-                    int customerID = (int)sQLQueryResult.dataTable.Rows[i]["CustomerID"];
+                    int CustomerID = (int)sQLQueryResult.dataTable.Rows[i]["CustomerID"];
+                    string customerName = (string)sQLQueryResult.dataTable.Rows[i]["customername"];
+                    string customeradress = (string)sQLQueryResult.dataTable.Rows[i]["Adress"];
+                    string customerphone = (string)sQLQueryResult.dataTable.Rows[i]["Phone"];
+                    string customeremail = (string)sQLQueryResult.dataTable.Rows[i]["Email"];
+                    bool customeractive = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
+                    Customer customer = CustomerFactory.Instance().CreateCustomer(CustomerID,customerName,customeradress,customerphone,customeremail,customeractive,0);
                     int animalID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalID"];
                     string name = (string)sQLQueryResult.dataTable.Rows[i]["Name"];
                     DateTime birthday = (DateTime)sQLQueryResult.dataTable.Rows[i]["BirthYear"];
@@ -168,7 +181,7 @@ namespace AnimalHousePersistence
                     Employee employee = EmployeeFactory.Instance().GetEmployee(employeeID, name);
                     bool active = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
 
-                    animals.Add(AnimalFactory.Instance().CreateAnimal(customerID,animalID, name, birthday, species, weight, gender,employee, true));
+                    animals.Add(AnimalFactory.Instance().CreateAnimal(customer,animalID, name, birthday, species, weight, gender,employee, true));
 
 
 
