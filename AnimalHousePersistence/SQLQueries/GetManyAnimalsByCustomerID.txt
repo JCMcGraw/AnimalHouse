@@ -4,7 +4,12 @@ Customer.name as customername,
 customer.adress,
 customer.phone,
 customer.email,
-customer.active
+customer.active,
+Employee.Name as EmployeeName,
+Employee.Active as EmployeeActive,
+Employee.TitleID,
+Title.Name as TitleName
 
 from Animal join Species on animal.speciesID = Species.speciesID join Customer on animal.CustomerID=Customer.customerID
+left join Employee on Animal.EmployeeID = Employee.EmployeeID left join Title on Employee.TitleID = Title.TitleID
 where Animal.CustomerID=@customerid and Animal.Active=1  

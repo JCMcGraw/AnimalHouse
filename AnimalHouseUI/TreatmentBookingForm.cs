@@ -570,6 +570,42 @@ namespace AnimalHouseUI
             return true;
         }
 
+        private List<Cage> GetAllAvailableCages(List<Cage> cages, DateTime SuggestedStartTime, DateTime SuggestedEndTime, Animal animal)
+        {
+            List<Cage> availableCages = new List<Cage>();
+            List<Treatment> treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(SuggestedStartTime.Date.AddDays(-7), SuggestedEndTime.Date.AddDays(7));
+
+
+            foreach (Cage cage in cages)
+            {
+                if (animal.Species.speciesid == cage.species.speciesid && CheckAvailabilityForCages(cage, SuggestedStartTime.Date.AddDays(-7), SuggestedEndTime.Date.AddDays(7)) == true)
+                {
+                    availableCages.Add(cage);
+                }
+            }
+
+            return availableCages;
+        }
+
+        private bool CheckAvailabilityForCages(Cage cage, DateTime SuggestedStartTime, DateTime SuggestedEndTime)
+        {
+            List<Treatment> treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(SuggestedStartTime.Date, SuggestedEndTime.Date);
+
+            foreach (Treatment treatment in treatments)
+            {
+                if (treatment.treatmentType.treatmentTypeID == 3 && treatment.cage != null && treatment.cage.CageID == cage.CageID)
+                {
+                    if ((treatment.startTime >= SuggestedStartTime && treatment.startTime < SuggestedEndTime) || (treatment.endTime > SuggestedStartTime && treatment.endTime <= SuggestedEndTime) ||
+                        (treatment.startTime <= SuggestedStartTime && treatment.endTime >= SuggestedEndTime))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
         private void CalendarBooking_ItemCreating(object sender, CalendarItemCancelEventArgs e)
         {
             Employee selectedEmployee = null;
@@ -651,7 +687,16 @@ namespace AnimalHouseUI
 
             if (((TreatmentType)ComboBoxTreatmentType.SelectedItem).treatmentTypeID == 3)
             {
-                SelectCageForTreatmentForm selectCageForTreatmentForm = new SelectCageForTreatmentForm(cages);
+                List<Cage> selectedCages = GetAllAvailableCages(cages, e.Item.StartDate, e.Item.EndDate, animal);
+
+                if (selectedCages.Count == 0)
+                {
+                    MessageBox.Show("Der er ikke nogle ledige bure i den periode.");
+                    e.Cancel = true;
+                    return;
+                }
+
+                SelectCageForTreatmentForm selectCageForTreatmentForm = new SelectCageForTreatmentForm(selectedCages);
                 selectCageForTreatmentForm.ShowDialog();
 
                 if (selectCageForTreatmentForm.DialogResult == DialogResult.OK)
@@ -899,6 +944,15 @@ namespace AnimalHouseUI
             if (customerForm.DialogResult == DialogResult.OK)
             {
                 animal = customerForm.selectedAnimal;
+                AnimalLabel.Text = $"{animal.name} ({animal.Species.speciesType})";
+                if(animal.Employee != null)
+                {
+                    int selectAnimalEmployeeIndex = ComboBoxEmployee.FindStringExact(animal.Employee.name);
+                    if (selectAnimalEmployeeIndex > -1)
+                    {
+                        ComboBoxEmployee.SelectedIndex = selectAnimalEmployeeIndex;
+                    }
+                }
             }
         }
 

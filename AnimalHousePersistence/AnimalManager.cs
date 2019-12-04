@@ -150,16 +150,23 @@ namespace AnimalHousePersistence
 
                 for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
                 {
-                   
 
-                    int employeeID;
+                    Employee employee = null;
                     if (sQLQueryResult.dataTable.Rows[i].IsNull("EmployeeID"))
                     {
-                        employeeID = -1;
                     }
                     else
                     {
-                        employeeID = (int)sQLQueryResult.dataTable.Rows[i]["EmployeeID"];
+                        string titleName = (string)sQLQueryResult.dataTable.Rows[i]["TitleName"];
+                        int titleID = (int)sQLQueryResult.dataTable.Rows[i]["TitleID"];
+                        Title title = TitleFactory.Instance().CreateTitle(titleName, titleID);
+
+                        string employeeName = (string)sQLQueryResult.dataTable.Rows[i]["EmployeeName"];
+                        int employeeID = (int)sQLQueryResult.dataTable.Rows[i]["EmployeeID"];
+                        bool employeeActive = (bool)sQLQueryResult.dataTable.Rows[i]["EmployeeActive"];
+
+
+                        employee = EmployeeFactory.Instance().CreateEmployee(employeeID, employeeName, employeeActive, titleID, title);
                     }
 
 
@@ -182,7 +189,6 @@ namespace AnimalHousePersistence
 
                     //int employeeID = (int)sQLQueryResult.dataTable.Rows[i]["employeeID"];
                     
-                    Employee employee = EmployeeFactory.Instance().GetEmployee(employeeID, name);
                     bool active = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
 
                     animals.Add(AnimalFactory.Instance().CreateAnimal(customer,animalID, name, birthday, species, weight, gender,employee, true));
