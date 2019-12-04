@@ -326,16 +326,6 @@
             // animal_species
             // 
             this.animal_species.FormattingEnabled = true;
-            this.animal_species.Items.AddRange(new object[] {
-            "Hund",
-            "Kat",
-            "Kanin",
-            "Marsvin",
-            "Hamster",
-            "Kanariefugl",
-            "Papegøje",
-            "Slange",
-            "Skildpadde"});
             this.animal_species.Location = new System.Drawing.Point(44, 361);
             this.animal_species.Name = "animal_species";
             this.animal_species.Size = new System.Drawing.Size(99, 21);
