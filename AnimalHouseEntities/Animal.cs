@@ -9,7 +9,7 @@ namespace AnimalHouseEntities
     public class Animal
     {
         //lav customer om til object
-        public int customerID { get; private set; }
+        public Customer customer { get; private set; }
 
         public int animalID { get; private set; }
 
@@ -29,27 +29,27 @@ namespace AnimalHouseEntities
 
         public bool active { get; private set; }
 
-        public Animal(int customerID, int animalID, string name, DateTime birthday, Species SpeciesType, double weight, bool gender,Employee employeeID, bool active)
+        public Animal(Customer customer, int animalID, string name, DateTime birthday, Species SpeciesType, double weight, bool gender,Employee employee, bool active)
         {
-            this.customerID = customerID;
+            this.customer = customer;
             this.animalID = animalID;
             this.name = name;
             this.birthday = birthday;
             this.Species = SpeciesType;
             this.weight = weight;
             this.gender = gender;
-            this.Employee = employeeID;
+            this.Employee = employee;
             this.active = active;
         }
-        public Animal(int customerID, string name, DateTime birthday, Species speciesType, double weight, bool gender,Employee employeeID, bool active)
+        public Animal(Customer customer, string name, DateTime birthday, Species speciesType, double weight, bool gender,Employee employee, bool active)
         {
-            this.customerID = customerID;
+            this.customer = customer;
             this.name = name;
             this.birthday = birthday;
             this.Species = speciesType;
             this.weight = weight;
             this.gender = gender;
-            this.Employee = employeeID;
+            this.Employee = employee;
             this.active = active;
         }
 

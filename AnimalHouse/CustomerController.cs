@@ -14,7 +14,7 @@ namespace AnimalHouse
         private CustomerController()
             {}
         private static CustomerController customerController = null;
-        public static CustomerController instance
+        public static CustomerController Instance
         {
             get
             {

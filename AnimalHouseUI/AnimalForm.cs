@@ -215,13 +215,17 @@ namespace AnimalHouseUI
 
             //Animal message = BossController.instance().animalController.CreateAnimal(animal);
             //MessageBox.Show("dyr oprettet");
-            int speciesID = Convert.ToInt32(animal_species.SelectedIndex);
-            Species species = animal.Species;
+            //int speciesID = Convert.ToInt32(animal_species.SelectedIndex);
+            Species species = (Species)animal_species.SelectedItem;
             bool gender = Convert.ToBoolean(animal_gender.SelectedIndex);
-            int employeeID = Convert.ToInt32(animal_employee.SelectedIndex);
-            Employee employee = animal.Employee;
+            Employee employee = null;
+            if (animal_employee.SelectedIndex != 0)
+            {
+                employee = (Employee)animal_employee.SelectedItem;
+            }
+                
 
-            animal = AnimalFactory.Instance().CreateAnimal(customer.customerID, animal_name.Text.ToString(), (animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), true, employee, true);
+            animal = AnimalFactory.Instance().CreateAnimal(customer, animal_name.Text.ToString(), (animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), true, employee, true);
 
             animal = BossController.instance().animalController.CreateAnimal(animal);
         }
@@ -252,7 +256,7 @@ namespace AnimalHouseUI
 
 
 
-            Animal tmpanimal = new Animal(customer.customerID, animal.animalID, name, birthday, species, weight, true, employee, true);
+            Animal tmpanimal = new Animal(customer, animal.animalID, name, birthday, species, weight, true, employee, true);
 
             string message = BossController.instance().animalController.UpdateAnimal(tmpanimal);
             MessageBox.Show(message);
@@ -284,29 +288,55 @@ namespace AnimalHouseUI
         }
         private void LoadeAllItemsInComboBox()
         {
-            try
-            {
-                species = BossController.instance().animalController.GetSpecies();
-                animal_species.DataSource = species;
 
-                
-                
-                employees = BossController.instance().employeeController.GetAllEmployees();
-                animal_employee.DataSource = employees;
-                
-            }
-            catch (Exception)
+         
+            List<Species> species = BossController.instance().animalController.GetSpecies();
+
+            //List<Species> SpeciesType = species.Where(x => x.speciesid.speciesType == 1).ToList<Employee>();
+
+            //SpeciesType.Insert(0, new Species(-1,new SpecieTitle"Dyrlæge"));
+
+            animal_species.DataSource = species;
+            animal_species.DisplayMember = "speciesType";
+
+
+
+
+            List<Employee> employees = BossController.instance().employeeController.GetAllEmployees();
+
+
+            List<Employee> vets = employees.Where(x => x.title.titleID == 1).ToList<Employee>();
+            vets.Insert(0, new Employee(-1, "ingen", true, -1, new Title("Dyrlæge", -1)));
+
+            animal_employee.DataSource = vets;
+            animal_employee.DisplayMember = "name";
+
+
+        }
+        public bool selectGender
+        {
+            get
             {
-                throw;
+                return animal_gender.SelectedIndex == 0;
+            }
+            set
+            {
+                animal_gender.SelectedIndex = value ? 0 : 1;
             }
         }
+
 
         private void Animal_gender_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+            
         }
 
         private void PictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Animal_employee_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

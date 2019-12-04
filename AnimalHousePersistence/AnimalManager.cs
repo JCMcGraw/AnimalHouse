@@ -21,13 +21,13 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("@customerid", animal.customerID.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@customerid", animal.customer.customerID.ToString(), SqlDbType.Int);
             sQLQuery.AddParameter("@species", animal.Species.speciesid.ToString(), SqlDbType.Int);
             sQLQuery.AddParameter("@birthday", animal.birthday.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
             sQLQuery.AddParameter("@name", animal.name.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@weight", animal.weight.ToString(), SqlDbType.Float);
-            sQLQuery.AddParameter("@gender", animal.gender.ToString(), SqlDbType.TinyInt);
-            sQLQuery.AddParameter("@active", "1", SqlDbType.TinyInt);
+            sQLQuery.AddParameter("@gender", animal.gender.ToString(), SqlDbType.Bit);
+            sQLQuery.AddParameter("@active", "True", SqlDbType.Bit);
             sQLQuery.AddParameter("@employeeid", animal.Employee.employeeID.ToString(), SqlDbType.Int);
 
 
@@ -110,6 +110,14 @@ namespace AnimalHousePersistence
 
             DataRow dataRow = sQLQueryResult.dataTable.Rows[0];
 
+            int CustomerID = (int)sQLQueryResult.dataTable.Rows[0]["CustomerID"];
+            string customerName = (string)sQLQueryResult.dataTable.Rows[0]["customername"];
+            string customeradress = (string)sQLQueryResult.dataTable.Rows[0]["Adress"];
+            string customerphone = (string)sQLQueryResult.dataTable.Rows[0]["Phone"];
+            string customeremail = (string)sQLQueryResult.dataTable.Rows[0]["Email"];
+            bool customeractive = (bool)sQLQueryResult.dataTable.Rows[0]["Active"];
+            Customer customer = CustomerFactory.Instance().CreateCustomer(CustomerID, customerName, customeradress, customerphone, customeremail, customeractive, 0);
+
             string speciesName = sQLQueryResult.dataTable.Rows[0]["SpeciesName"].ToString();
 
             int speciesID = (int)sQLQueryResult.dataTable.Rows[0]["SpeciesID"];
@@ -122,30 +130,9 @@ namespace AnimalHousePersistence
 
             Employee employee = EmployeeFactory.Instance().GetEmployee(employeeID, name);
 
-            Animal animal = new Animal((int)dataRow["CustomerID"],(int)dataRow["AnimalID"], (string)dataRow["Name"], (DateTime)dataRow["BirthYear"], species, (double)dataRow["Weight"], (bool)dataRow["Gender"], employee, (bool)dataRow["Active"]);
+            Animal animal = new Animal(customer,(int)dataRow["AnimalID"], (string)dataRow["Name"], (DateTime)dataRow["BirthYear"], species, (double)dataRow["Weight"], (bool)dataRow["Gender"], employee, (bool)dataRow["Active"]);
 
             return animal;
-
-
-            //  if (sQLQueryResult.code == 0)
-            {
-                //read datatable
-
-                // return sQLQueryResult.dataTable;
-
-
-
-            }
-
-            //if (sQLQueryResult.code==1)
-            //{
-            //    return "noget gik galt";
-            //}
-            //else
-            //{
-            //    return "noget gik helt galt";
-            //}
-
 
         }
         public List<Animal> GetAnimalList(SQLQueryResult sQLQueryResult)
@@ -153,9 +140,9 @@ namespace AnimalHousePersistence
             List<Animal> animals = new List<Animal>();
 
             {
-                string query = Utility.ReadSQLQueryFromFile("GetManyAnimalsByCustomerID.txt");
+               // string query = Utility.ReadSQLQueryFromFile("GetManyAnimalsByCustomerID.txt");
 
-                SQLQuery sQLQuery = new SQLQuery(query);
+                //SQLQuery sQLQuery = new SQLQuery(query);
 
                 for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
                 {
@@ -172,8 +159,13 @@ namespace AnimalHousePersistence
                     }
 
 
-
-                    int customerID = (int)sQLQueryResult.dataTable.Rows[i]["CustomerID"];
+                    int CustomerID = (int)sQLQueryResult.dataTable.Rows[i]["CustomerID"];
+                    string customerName = (string)sQLQueryResult.dataTable.Rows[i]["customername"];
+                    string customeradress = (string)sQLQueryResult.dataTable.Rows[i]["Adress"];
+                    string customerphone = (string)sQLQueryResult.dataTable.Rows[i]["Phone"];
+                    string customeremail = (string)sQLQueryResult.dataTable.Rows[i]["Email"];
+                    bool customeractive = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
+                    Customer customer = CustomerFactory.Instance().CreateCustomer(CustomerID,customerName,customeradress,customerphone,customeremail,customeractive,0);
                     int animalID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalID"];
                     string name = (string)sQLQueryResult.dataTable.Rows[i]["Name"];
                     DateTime birthday = (DateTime)sQLQueryResult.dataTable.Rows[i]["BirthYear"];
@@ -189,7 +181,7 @@ namespace AnimalHousePersistence
                     Employee employee = EmployeeFactory.Instance().GetEmployee(employeeID, name);
                     bool active = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
 
-                    animals.Add(AnimalFactory.Instance().CreateAnimal(customerID,animalID, name, birthday, species, weight, gender,employee, true));
+                    animals.Add(AnimalFactory.Instance().CreateAnimal(customer,animalID, name, birthday, species, weight, gender,employee, true));
 
 
 
@@ -257,6 +249,101 @@ namespace AnimalHousePersistence
             return allspecies;
         }
 
+        public List<string> GetAllJounalEntriesByAnimalID(Animal animal)
+        {
+            
+
+            string query = Utility.ReadSQLQueryFromFile("GetAllJounalEntriesByAnimalID");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            sQLQuery.AddParameter("@animalid", animal.animalID.ToString(), SqlDbType.Int);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            List<string> entries = new List<string>();
+
+            entries = GetJournalList(sQLQueryResult);
+
+            return entries;
+        }
+
+        public List<string>GetJournalList(SQLQueryResult sQLQueryResult)
+        {
+            List<string> entries = new List<string>();
+
+            for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
+            {
+                entries.Add((string)sQLQueryResult.dataTable.Rows[i]["Entry"]);
+            }
+            return entries;
+        }
+
+        public void CreateMedicalRecordEntry(MedicalRecord medicalRecord)
+        {
+            Animal animal = medicalRecord.animal;
+            Treatment treatment = medicalRecord.treatment;
+
+
+            string query = Utility.ReadSQLQueryFromFile("CreateMedicalRecordEntry.txt");
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            //Test---! Skal udkommenteres og nedestående skal slettes!
+           
+            //sQLQuery.AddParameter("@entry", medicalRecord.entry.ToString(), SqlDbType.VarChar);
+            //sQLQuery.AddParameter("@animalID", animal.animalID.ToString(), SqlDbType.Int);
+            //sQLQuery.AddParameter("@treatmentID", treatment.treatmentID.ToString(), SqlDbType.Int);
+
+            //Test---! Skal slettes igen og overstående skal udkommenteres!
+
+            sQLQuery.AddParameter("@entry", (string)medicalRecord.entry, SqlDbType.VarChar);
+            sQLQuery.AddParameter("@animalID", 3.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@treatmentID", 1015.ToString(), SqlDbType.Int);
+
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+        }
+
+        //MedicalRecord
+        //public List<MedicalRecord> GetAllMedicalRecordByAnimal(int animalID)
+        //{
+        //    string query = Utility.ReadSQLQueryFromFile("GetAllMedicalRecordByAnimal.txt");
+
+        //    SQLQuery sQLQuery = new SQLQuery(query);
+
+        //    sQLQuery.AddParameter("@animalID", animalID.ToString(), SqlDbType.Int);
+
+        //    SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+        //    List<MedicalRecord> medicalRecords = new List<MedicalRecord>();
+        //    medicalRecords = GetAllMedicalRecordByAnimalList(sQLQueryResult);
+
+        //    return medicalRecords;
+        //}
+
+        //private List<MedicalRecord> GetAllMedicalRecordByAnimalList(SQLQueryResult sQLQueryResult)
+        //{
+        //    List<MedicalRecord> medicalRecords = new List<MedicalRecord>();
+
+        //    for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
+        //    {
+        //        int MedicalRecordID;
+
+        //        if (sQLQueryResult.dataTable.Rows[i].IsNull("AnimalID"))
+        //        {
+        //            MedicalRecordID = -1;
+        //        }
+        //        else
+        //        {
+        //            MedicalRecordID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalID"];
+        //        }
+
+        //        string entry = (string)sQLQueryResult.dataTable.Rows[i]["Entry"];
+
+        //        medicalRecords.Add(MedicalRecordFactory.Instance().CreateMedicalRecord(MedicalRecordID,entry));
+        //    }
+        //    return medicalRecords;
+        //}
     }
 }
 

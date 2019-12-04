@@ -48,6 +48,7 @@
     <Compile Include="EmployeeManager.cs" />
     <Compile Include="IAnimalManager.cs" />
     <Compile Include="IEmployeeManager.cs" />
+    <Compile Include="IItemManager.cs" />
     <Compile Include="ISaleManager.cs" />
     <Compile Include="ITreatmentManager.cs" />
     <Compile Include="CustomerManager.cs">
@@ -82,6 +83,9 @@
     <Content Include="SQLQueries\CreateCustomer.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQLQueries\CreateMedicalRecordEntry.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQLQueries\CreateSale.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -113,6 +117,7 @@
     <Content Include="SQLQueries\GetAllEmployees.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQLQueries\GetAllJounalEntriesByAnimalID.txt" />
     <Content Include="SQLQueries\GetAllMedicalRecordByAnimal.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -178,7 +183,9 @@
       <Name>AnimalHouseEntities</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Medicin\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Localization\ErrorMessages.de.resx" />
     <EmbeddedResource Include="Localization\ErrorMessages.resx">
