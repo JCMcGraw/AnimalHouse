@@ -60,6 +60,8 @@
     <Compile Include="MedicalRecordFactory.cs" />
     <Compile Include="OperationRoom.cs" />
     <Compile Include="OperationRoomFactory.cs" />
+    <Compile Include="Prescription.cs" />
+    <Compile Include="PrescriptionFactory.cs" />
     <Compile Include="PrivateCustomer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
