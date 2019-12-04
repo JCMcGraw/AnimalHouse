@@ -884,7 +884,7 @@ namespace AnimalHouseUI
 
             if (customerForm.DialogResult == DialogResult.OK)
             {
-                //animal = customerForm.selectedAnimal;
+                animal = customerForm.selectedAnimal;
             }
         }
 

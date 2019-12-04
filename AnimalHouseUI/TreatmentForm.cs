@@ -26,7 +26,7 @@ namespace AnimalHouseUI
             InitializeComponent();
             this.treatment = treatment;
 
-            this.animal = BossController.instance().animalController.GetAnimal(treatment.animalID);
+            this.animal = BossController.instance().animalController.GetAnimal(treatment.animal.animalID);
             this.customer = animal.customer;
             this.treatmentType = treatment.treatmentType;
           
@@ -155,7 +155,7 @@ namespace AnimalHouseUI
 
         private void TreatmentForm_Load(object sender, EventArgs e)
         {
-            Animal animal = BossController.instance().animalController.GetAnimal(treatment.animalID);
+            Animal animal = BossController.instance().animalController.GetAnimal(treatment.animal.animalID);
             label_header.Text = animal.name.ToString();
             //label_underheadline.Text = animal.name.ToString();
         }
