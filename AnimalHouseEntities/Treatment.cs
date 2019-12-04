@@ -28,11 +28,11 @@ namespace AnimalHouseEntities
 
         public bool active { get; private set; }
 
-        public int animalID { get; private set; }
+        public Animal animal { get; private set; }
 
         public Employee employee { get; private set; }
 
-        public Treatment(int treatmentID, TreatmentType treatmentType, OperationRoom operationRoom, Cage cage, Item item, DateTime startTime, DateTime endTime, bool payed, string headline, bool active, int animalID, Employee employee)
+        public Treatment(int treatmentID, TreatmentType treatmentType, OperationRoom operationRoom, Cage cage, Item item, DateTime startTime, DateTime endTime, bool payed, string headline, bool active, Animal animal, Employee employee)
         {
             this.treatmentID = treatmentID;
             this.treatmentType = treatmentType;
@@ -44,11 +44,11 @@ namespace AnimalHouseEntities
             this.payed = payed;
             this.headline = headline;
             this.active = active;
-            this.animalID = animalID;
+            this.animal = animal;
             this.employee = employee;
         }
 
-        public Treatment(TreatmentType treatmentType, OperationRoom operationRoom, Cage cage, Item item, DateTime startTime, DateTime endTime, bool payed, string headline, bool active, int animalID, Employee employee)
+        public Treatment(TreatmentType treatmentType, OperationRoom operationRoom, Cage cage, Item item, DateTime startTime, DateTime endTime, bool payed, string headline, bool active, Animal animal, Employee employee)
         {
             this.treatmentType = treatmentType;
             this.operationRoom = operationRoom;
@@ -59,7 +59,7 @@ namespace AnimalHouseEntities
             this.payed = payed;
             this.headline = headline;
             this.active = active;
-            this.animalID = animalID;
+            this.animal = animal;
             this.employee = employee;
         }
 

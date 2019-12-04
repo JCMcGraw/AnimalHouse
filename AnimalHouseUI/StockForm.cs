@@ -154,7 +154,7 @@ namespace AnimalHouseUI
         {
             ItemDataGridView.Columns["itemName"].DataPropertyName = "name";
             ItemDataGridView.Columns["itemAmount"].DataPropertyName = "amount";
-            ItemDataGridView.Columns["itemPrice"].DataPropertyName = "price";
+            ItemDataGridView.Columns["itemPrice"].DataPropertyName = "costPrice";
             try
             {
                 allItems = bossController.saleController.GetAllActiveItems();
@@ -171,6 +171,8 @@ namespace AnimalHouseUI
             items = allItems.Where(item => item.treatment == false).ToList<Item>();
 
             ItemDataGridView.DataSource = items;
+
+            ShowTotalStockValue();
         }
 
         private void ShowItemsUnderLimit(int limit)
@@ -178,6 +180,8 @@ namespace AnimalHouseUI
             items = allItems.Where(item => item.treatment == false && item.amount <= limit).ToList<Item>();
 
             ItemDataGridView.DataSource = items;
+
+            ShowTotalStockValue();
         }
 
         private void AmountCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -198,6 +202,23 @@ namespace AnimalHouseUI
             {
                 ShowItemsUnderLimit(Convert.ToInt32(AmountComboBox.SelectedItem.ToString()));
             }
+        }
+
+        private void ShowTotalStockValue()
+        {
+            decimal totalStockValue = GetTotalStockValue();
+
+            TotalValueLabel.Text = $"Total værdi: {totalStockValue.ToString("N2")}";
+        }
+
+        private decimal GetTotalStockValue()
+        {
+            decimal totalStockValue = 0;
+            foreach (Item item in items)
+            {
+                totalStockValue += item.GetTotalStockValue();
+            }
+            return totalStockValue;
         }
 
 
@@ -236,6 +257,8 @@ namespace AnimalHouseUI
             {
                 stringBuilder.Append(item.ToString() + "\n");
             }
+
+            stringBuilder.Append($"\nTotal værdi: {GetTotalStockValue().ToString("N2")}");
 
             return stringBuilder.ToString();
         }

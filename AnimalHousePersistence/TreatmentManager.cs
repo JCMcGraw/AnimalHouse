@@ -42,6 +42,15 @@ namespace AnimalHousePersistence
                 sQLQuery.AddParameter("@operationroomid", treatment.operationRoom.operationRoomID.ToString(), SqlDbType.Int);
             }
 
+            if (treatment.cage == null)
+            {
+                sQLQuery.AddParameter("@cageid", null, SqlDbType.Int);
+            }
+            else
+            {
+                sQLQuery.AddParameter("@cageid", treatment.cage.CageID.ToString(), SqlDbType.Int);
+            }
+
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
             int treatmentID = (int)sQLQueryResult.dataTable.Rows[0]["TreatmentID"];
@@ -296,6 +305,42 @@ namespace AnimalHousePersistence
                     employee = EmployeeFactory.Instance().CreateEmployee(employeeID, name, true, titleID, title);
                 }
 
+                animalID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalID"];
+                int animalTitleID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalEmployeeTitleID"];
+                string animalTitleName = (string)sQLQueryResult.dataTable.Rows[i]["AnimalEmployeeTitle"];
+
+                Title animalEmployeeTitle = TitleFactory.Instance().CreateTitle(animalTitleName, animalTitleID);
+
+                int animalEmployeeID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalEmployeeID"];
+                string animalEmployeeName = (string)sQLQueryResult.dataTable.Rows[i]["AnimalEmployeeName"];
+                bool animalEmployeeActive = (bool)sQLQueryResult.dataTable.Rows[i]["AnimalEmployeeActive"];
+
+
+                Employee animalEmployee = EmployeeFactory.Instance().CreateEmployee(animalEmployeeID, animalEmployeeName, animalEmployeeActive, animalEmployeeTitle.titleID, animalEmployeeTitle);
+
+                int animalSpeciesID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalSpeciesID"];
+                string animalSpeciesName = (string)sQLQueryResult.dataTable.Rows[i]["AnimalSpeciesName"];
+
+                Species animalSpecies = SpeciesFactory.Instance().CreateSpecies(animalSpeciesID, animalSpeciesName);
+
+                int customerID = (int)sQLQueryResult.dataTable.Rows[i]["CustomerID"];
+                string customerName = (string)sQLQueryResult.dataTable.Rows[i]["CustomerName"];
+                string customerAddress = (string)sQLQueryResult.dataTable.Rows[i]["Adress"];
+                string customerPhone = (string)sQLQueryResult.dataTable.Rows[i]["Phone"];
+                string customerEmail = (string)sQLQueryResult.dataTable.Rows[i]["Email"];
+                bool customerActive = (bool)sQLQueryResult.dataTable.Rows[i]["CustomerActive"];
+
+                Customer customer = CustomerFactory.Instance().CreateCustomer(customerID, customerName, customerAddress, customerPhone, customerEmail, customerActive, 0);
+
+
+                string animalName = (string)sQLQueryResult.dataTable.Rows[i]["AnimalName"];
+                DateTime animalBirthday = (DateTime)sQLQueryResult.dataTable.Rows[i]["BirthYear"];
+                bool animalGender = (bool)sQLQueryResult.dataTable.Rows[i]["Gender"];
+                double animalWeight = Convert.ToDouble((decimal)sQLQueryResult.dataTable.Rows[i]["Weight"]);
+                bool animalActive = (bool)sQLQueryResult.dataTable.Rows[i]["AnimalActive"];
+
+                Animal animal = AnimalFactory.Instance().CreateAnimal(customer, animalID, animalName, animalBirthday, animalSpecies, animalWeight, animalGender, animalEmployee, animalActive);
+
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("AnimalID"))
                 {
                     animalID = -1;
@@ -310,7 +355,7 @@ namespace AnimalHousePersistence
                 string headline = (string)sQLQueryResult.dataTable.Rows[i]["Headline"];
                 bool active = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
                 
-                treatments.Add(TreatmentFactory.Instance().CreateTreatment(treatmentID, treatmentType, operationRoom, cage, item, startTime, endTime, payed, headline, active, animalID, employee));
+                treatments.Add(TreatmentFactory.Instance().CreateTreatment(treatmentID, treatmentType, operationRoom, cage, item, startTime, endTime, payed, headline, active, animal, employee));
             }
             return treatments;
         }

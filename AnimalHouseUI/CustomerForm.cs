@@ -18,6 +18,8 @@ namespace AnimalHouseUI
     {
         
         Customer customer;
+
+        public Animal selectedAnimal;
         public CustomerForm()
         {
            
@@ -323,8 +325,18 @@ namespace AnimalHouseUI
             DataGridViewRow row = dataGridView_dyr.SelectedRows[0];
 
             Animal animal = row.DataBoundItem as Animal;
-            AnimalForm animalForm = new AnimalForm(customer, animal);
-            animalForm.Show();
+
+            if(this.Modal == true)
+            {
+                this.DialogResult = DialogResult.OK;
+                selectedAnimal = animal;
+                this.Close();
+            }
+            else
+            {
+                AnimalForm animalForm = new AnimalForm(customer, animal);
+                animalForm.Show();
+            }
         }
 
         private void CheckCustomerDeletion()

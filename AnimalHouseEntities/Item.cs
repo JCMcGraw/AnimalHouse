@@ -40,5 +40,10 @@ namespace AnimalHouseEntities
         {
             return $"{name}\t{price.ToString("N2")}\t{amount}";
         }
+
+        public decimal GetTotalStockValue()
+        {
+            return costPrice * amount;
+        }
     }
 }
