@@ -95,7 +95,9 @@
     <Content Include="SQLQueries\CreatePrivateCustomer.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLQueries\DeleteAnimal.txt" />
+    <Content Include="SQLQueries\DeleteAnimal.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQLQueries\DeleteCustomer.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -124,6 +126,7 @@
     <Content Include="SQLQueries\GetAllOperationRooms.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQLQueries\GetAllPrescriptionByAnimal.txt" />
     <Content Include="SQLQueries\GetAnimal.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -154,7 +157,9 @@
     <Content Include="SQLQueries\UndeleteCustomer.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLQueries\UpdateAnimal.txt" />
+    <Content Include="SQLQueries\UpdateAnimal.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQLQueries\UpdateCustomer.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

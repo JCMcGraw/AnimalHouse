@@ -7,4 +7,4 @@ customer.email,
 customer.active
 
 from Animal join Species on animal.speciesID = Species.speciesID join Customer on animal.CustomerID=Customer.customerID
-where (Animal.CustomerID= @CustomerID)
+where Animal.CustomerID=@customerid and Animal.Active=1  
