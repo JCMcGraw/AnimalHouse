@@ -38,6 +38,10 @@ namespace AnimalHousePersistence
             animal.UpdateID(animalID);
 
             return animal;
+           
+           
+
+
 
         }
         
@@ -50,7 +54,7 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("@name", animal.name.ToString(), SqlDbType.VarChar);
+            sQLQuery.AddParameter("@animalID", animal.animalID.ToString(), SqlDbType.Int);
             //sQLQuery.AddParameter("@birthday", animal.birthday.ToString(), SqlDbType.VarChar);
             //sQLQuery.AddParameter("@species", animal.Species.speciesid.ToString(), SqlDbType.Int);
             //sQLQuery.AddParameter("@gender", animal.gender.ToString(), SqlDbType.Char);
@@ -65,13 +69,13 @@ namespace AnimalHousePersistence
 
             if (sQLQueryResult.code == 0)
             {
-                return "dyret er rettet";
+                return "Dyr rettet";
             }
             else
             {
+                return sQLQueryResult.exception.Message.ToString();
 
             }
-            return "Fejl";
         }
 
         public string DeleteAnimal(Animal animal)
@@ -93,7 +97,7 @@ namespace AnimalHousePersistence
             {
 
             }
-            return "FEJL";
+            return sQLQueryResult.exception.Message.ToString();
 
 
         }
