@@ -935,7 +935,6 @@ namespace AnimalHouseUI
             int treatmentID = e.Item.TreatmentID;
             Treatment treatment = treatmentsCache[treatmentID];
 
-
             TreatmentForm treatmentform = new TreatmentForm(treatment);
             treatmentform.Show();
         }
