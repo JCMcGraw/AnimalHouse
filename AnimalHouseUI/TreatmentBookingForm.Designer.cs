@@ -632,6 +632,7 @@
             this.ankommetToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.ankommetToolStripMenuItem.Text = "Ankommet";
             this.ankommetToolStripMenuItem.Click += new System.EventHandler(this.AnkommetToolStripMenuItem_Click);
+            //this.ankommetToolStripMenuItem.Click += new System.Windows.Forms.Calendar.CalendarItemCancelEventArgs(this.AnkommetToolStripMenuItem_Click);
             // 
             // editItemToolStripMenuItem
             // 
