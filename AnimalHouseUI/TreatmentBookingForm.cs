@@ -297,6 +297,7 @@ namespace AnimalHouseUI
         private void PlaceItems()
         {
             int treatmenttype = 0;
+            Treatment treatment;
             if(ComboBoxTreatmentType.SelectedValue != null)
             {
                 try
@@ -318,7 +319,7 @@ namespace AnimalHouseUI
                             CalendarBooking.Items.Add(item);
 
                             //Skifter farve
-                            //ChangeColor(item.status);
+                            ChangeColor();
                         }
                     }
                     else
@@ -332,14 +333,14 @@ namespace AnimalHouseUI
                                 CalendarBooking.Items.Add(item);
 
                                 //Skifter farve
-                                //ChangeColor(item.status);
+                                ChangeColor();
                             }
                             else if(item.EmployeeID == selectedEmployee.employeeID)
                             {
                                 CalendarBooking.Items.Add(item);
 
                                 //Skifter farve
-                                //ChangeColor(item.status);
+                                ChangeColor();
                             }
                         }
                     }
@@ -1010,11 +1011,15 @@ namespace AnimalHouseUI
 
             TreatmentForm treatmentform = new TreatmentForm(treatment);
             treatmentform.Show();
+            UpdateTreatmentStatus(2);
+            ChangeColor();
         }
 
         private void button_startbehandling_Click(object sender, EventArgs e)
         {
             StartTreatment();
+            UpdateTreatmentStatus(2);
+            ChangeColor();
         }
 
         public void StartTreatment()
@@ -1041,11 +1046,21 @@ namespace AnimalHouseUI
 
         private void AnkommetToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            UpdateTreatmentStatus(1);
+            ChangeColor();
+        }
+
+        private void ContextMenuStripBooking_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //skal Fjernes
+        }
+
+        private void UpdateTreatmentStatus(int status)
+        {
             List<CalendarItem> calendaritems = (List<CalendarItem>)CalendarBooking.GetSelectedItems();
 
             int treatmentID = calendaritems[0].TreatmentID;
-            int status = 1;
-
+            
             //get updated treatment
             Treatment newTreatment = GetUpdatedTreatmentStatus(treatmentID, status);
             //update treatment in database
@@ -1057,26 +1072,29 @@ namespace AnimalHouseUI
             treatmentsCache.Add(newTreatment.treatmentID, newTreatment);
         }
 
-        private void ContextMenuStripBooking_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        private void ChangeColor()
         {
-            //skal Fjernes
-        }
+            int status = 1;
 
-        private void ChangeColor(Treatment treatment
-            )
-        {
-            if (treatment.status == 1)
+            if (status == 1)
             {
                 RedCollor();
             }
-            if (treatment.status == 2)
+            if (status == 2)
             {
                 BlueCollor();
             }
-            else if (treatment.status == 3)
+            else if (status == 3)
             {
                 GreenCollor();
             }
+        }
+
+        private void UpdateCalender()
+        {
+
+
+
         }
 
         private void RedCollor()
