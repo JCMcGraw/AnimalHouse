@@ -297,7 +297,7 @@ namespace AnimalHouseUI
         private void PlaceItems()
         {
             int treatmenttype = 0;
-            Treatment treatment;
+         
             if(ComboBoxTreatmentType.SelectedValue != null)
             {
                 try
@@ -319,7 +319,7 @@ namespace AnimalHouseUI
                             CalendarBooking.Items.Add(item);
 
                             //Skifter farve
-                            ChangeColor();
+                            //ChangeColor();
                         }
                     }
                     else
@@ -333,14 +333,14 @@ namespace AnimalHouseUI
                                 CalendarBooking.Items.Add(item);
 
                                 //Skifter farve
-                                ChangeColor();
+                                //ChangeColor();
                             }
                             else if(item.EmployeeID == selectedEmployee.employeeID)
                             {
                                 CalendarBooking.Items.Add(item);
 
                                 //Skifter farve
-                                ChangeColor();
+                                //ChangeColor();
                             }
                         }
                     }
@@ -1012,14 +1012,14 @@ namespace AnimalHouseUI
             TreatmentForm treatmentform = new TreatmentForm(treatment);
             treatmentform.Show();
             UpdateTreatmentStatus(2);
-            ChangeColor();
+            ChangeColor(2);
         }
 
         private void button_startbehandling_Click(object sender, EventArgs e)
         {
             StartTreatment();
             UpdateTreatmentStatus(2);
-            ChangeColor();
+            ChangeColor(2);
         }
 
         public void StartTreatment()
@@ -1047,7 +1047,7 @@ namespace AnimalHouseUI
         private void AnkommetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UpdateTreatmentStatus(1);
-            ChangeColor();
+            ChangeColor(1);
         }
 
         private void ContextMenuStripBooking_Opening(object sender, System.ComponentModel.CancelEventArgs e)
@@ -1072,9 +1072,9 @@ namespace AnimalHouseUI
             treatmentsCache.Add(newTreatment.treatmentID, newTreatment);
         }
 
-        private void ChangeColor()
+        private void ChangeColor(int status)
         {
-            int status = 1;
+            //int status = 1;
 
             if (status == 1)
             {
@@ -1090,12 +1090,27 @@ namespace AnimalHouseUI
             }
         }
 
-        private void UpdateCalender()
-        {
+        //Thread updateCalender = new Thread(() => UpdateCalender());
+        //updateCalender.Start();
 
 
+        //private void UpdateCalender()
+        //{
+        //    CheckForIllegalCrossThreadCalls = false;
+        //    List<CalendarItem> calendaritems = (List<CalendarItem>)CalendarBooking.GetSelectedItems();
 
-        }
+        //    Treatment newTreatment;
+
+        //    foreach (CalendarItem item in CalendarBooking.GetAllBookings())
+        //    {
+        //        int status = calendaritems[11].Status;
+
+        //        if (status != newTreatment.status )
+        //        {
+        //            ChangeColor(newTreatment.status);
+        //        }
+        //    }
+        //}
 
         private void RedCollor()
         {
