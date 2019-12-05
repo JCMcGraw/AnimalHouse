@@ -999,9 +999,7 @@ namespace AnimalHouseUI
             if (e.MouseEventArgs.Button == MouseButtons.Right)
             {
                 ContextMenuStripBooking.Show(Cursor.Position);
-                
             }
-
         }
 
         private void CalendarBooking_ItemDoubleClick(object sender, CalendarItemEventArgs e)
@@ -1012,14 +1010,14 @@ namespace AnimalHouseUI
             TreatmentForm treatmentform = new TreatmentForm(treatment);
             treatmentform.Show();
             UpdateTreatmentStatus(2);
-            ChangeColor(2);
+            //ChangeColor(2);
         }
 
         private void button_startbehandling_Click(object sender, EventArgs e)
         {
             StartTreatment();
             UpdateTreatmentStatus(2);
-            ChangeColor(2);
+            //ChangeColor(2);
         }
 
         public void StartTreatment()
@@ -1038,7 +1036,6 @@ namespace AnimalHouseUI
                 int treatmentID = calendaritems[0].TreatmentID;
                 Treatment treatment = treatmentsCache[treatmentID];
 
-               
                 TreatmentForm treatmentform = new TreatmentForm(treatment);
                 treatmentform.Show();
             }
@@ -1047,7 +1044,7 @@ namespace AnimalHouseUI
         private void AnkommetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UpdateTreatmentStatus(1);
-            ChangeColor(1);
+            //ChangeColor(1);
         }
 
         private void ContextMenuStripBooking_Opening(object sender, System.ComponentModel.CancelEventArgs e)
@@ -1056,7 +1053,7 @@ namespace AnimalHouseUI
         }
 
         private void UpdateTreatmentStatus(int status)
-        {
+        { 
             List<CalendarItem> calendaritems = (List<CalendarItem>)CalendarBooking.GetSelectedItems();
 
             int treatmentID = calendaritems[0].TreatmentID;
@@ -1074,8 +1071,6 @@ namespace AnimalHouseUI
 
         private void ChangeColor(int status)
         {
-            //int status = 1;
-
             if (status == 1)
             {
                 RedCollor();
@@ -1093,19 +1088,19 @@ namespace AnimalHouseUI
         //Thread updateCalender = new Thread(() => UpdateCalender());
         //updateCalender.Start();
 
-
         //private void UpdateCalender()
         //{
         //    CheckForIllegalCrossThreadCalls = false;
+
         //    List<CalendarItem> calendaritems = (List<CalendarItem>)CalendarBooking.GetSelectedItems();
 
-        //    Treatment newTreatment;
+        //    //Treatment newTreatment;
 
         //    foreach (CalendarItem item in CalendarBooking.GetAllBookings())
         //    {
-        //        int status = calendaritems[11].Status;
+        //        int status = item.status;
 
-        //        if (status != newTreatment.status )
+        //        if (status != status)
         //        {
         //            ChangeColor(newTreatment.status);
         //        }
