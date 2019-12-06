@@ -337,14 +337,6 @@ namespace AnimalHousePersistence
                 Item item;
                 Title title;
 
-                if (sQLQueryResult.dataTable.Rows[i].IsNull("OperationRoomID"))
-                {
-                    prescriptionID = -1;
-                }
-                else
-                {
-                    prescriptionID = (int)sQLQueryResult.dataTable.Rows[i]["OperationRoomID"];
-                }
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("EmployeeID"))
                 {
                     employee = null;
@@ -371,7 +363,7 @@ namespace AnimalHousePersistence
                     string phone = (string)sQLQueryResult.dataTable.Rows[i]["Phone"];
                     string email = (string)sQLQueryResult.dataTable.Rows[i]["Email"];
                     bool activeCustomer = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
-                    int cvr = (int)sQLQueryResult.dataTable.Rows[i]["CVR"];
+                    int cvr = 0; //(int)sQLQueryResult.dataTable.Rows[i]["CVR"];
                     string name = (string)sQLQueryResult.dataTable.Rows[i]["Name"];
                     DateTime birthYear = (DateTime)sQLQueryResult.dataTable.Rows[i]["BirthYear"];
                     int speciesID = (int)sQLQueryResult.dataTable.Rows[i]["SpeciesID"];
@@ -405,6 +397,7 @@ namespace AnimalHousePersistence
 
                 int amount = (int)sQLQueryResult.dataTable.Rows[i]["Amount"];
                 DateTime prescriptionDay = (DateTime)sQLQueryResult.dataTable.Rows[i]["PrescriptionDay"];
+                prescriptionID = (int)sQLQueryResult.dataTable.Rows[i]["PrescriptionID"];
 
                 prescriptions.Add(PrescriptionFactory.Instance().CreatePrescription(prescriptionID, amount, prescriptionDay,employee, animal, item));
             }
