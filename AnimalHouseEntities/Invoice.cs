@@ -25,7 +25,7 @@ namespace AnimalHouseEntities
             // Get an XGraphics object for drawing
             XGraphics gfx = XGraphics.FromPdfPage(page);
 
-            // Opret skrift størelse og sill
+            // Opret skrift størelse og stil
             XFont companyAndDebtor = new XFont("Calibri", 10, XFontStyle.Regular);
             XFont fakture = new XFont("Calibri", 20, XFontStyle.Bold);
             XFont smallHeadLine = new XFont("Calibri", 10, XFontStyle.Bold);
@@ -124,7 +124,7 @@ namespace AnimalHouseEntities
             decimal totalPrice = 0;
             for (int i = 0; i < sale.saleLineItems.Count; i++)
             {
-                
+
                 //Her bliver Variablen sat til 15. så hver gange der bliver kørt GetLeaseOrders(tilføjet en ny vare linje bliver der pludset 15 til y aksens position)
                 lineSpace = 15 * i;
 
@@ -139,10 +139,10 @@ namespace AnimalHouseEntities
                     XStringFormats.Center);
 
                 //Stykpris
-                gfx.DrawString((sale.saleLineItems[i].price.ToString()+ " Kr"), companyAndDebtor, XBrushes.Black,
+                gfx.DrawString((sale.saleLineItems[i].price.ToString() + " Kr"), companyAndDebtor, XBrushes.Black,
                    new XRect(90, -110 + lineSpace, page.Width, page.Height),
                    XStringFormats.Center);
-                 totalPrice = totalPrice+(sale.Price(sale.saleLineItems[i].item.price, sale.saleLineItems[i].amount));
+                totalPrice = totalPrice + (sale.Price(sale.saleLineItems[i].item.price, sale.saleLineItems[i].amount));
 
                 //I alt
                 decimal priceSum = sale.Price(sale.saleLineItems[i].price, sale.saleLineItems[i].amount);
@@ -150,7 +150,7 @@ namespace AnimalHouseEntities
                    new XRect(200, -110 + lineSpace, page.Width, page.Height),
                    XStringFormats.Center);
                 totalPrice = totalPrice + (sale.Price(sale.saleLineItems[i].item.price, sale.saleLineItems[i].amount));
-
+            }
                 //Hvis det er erhvers person
                 if (sale.customer.GetType()==typeof(BusinessCustomer))
                 {
@@ -205,7 +205,7 @@ namespace AnimalHouseEntities
                         new XRect(400, 15 + lineSpace, page.Width, page.Height),
                         XStringFormats.CenterLeft);
                 }
-            }
+           
 
             gfx.DrawString("___________________________________________________________________________________________ ", smallHeadLine, XBrushes.Black,
                 new XRect(80, -100 + lineSpace, page.Width, page.Height),
