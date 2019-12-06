@@ -343,6 +343,7 @@ namespace AnimalHouseUI
             StockForm stockForm = new StockForm();
             stockForm.Show();
         }
+
     }
 }
 

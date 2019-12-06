@@ -435,7 +435,7 @@ namespace AnimalHousePersistence
 
         public List<Prescription> GetUnpaidPrescriptionByCustomer(Customer customer)
         {
-            string query = Utility.ReadSQLQueryFromFile("GetUnpaidPrescriptionByCustomer.txt");
+            string query = Utility.ReadSQLQueryFromFile("GetUnpaidPrescriptionsByCustomer.txt");
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
