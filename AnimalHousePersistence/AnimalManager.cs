@@ -28,7 +28,14 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@weight", animal.weight.ToString(), SqlDbType.Float);
             sQLQuery.AddParameter("@gender", animal.gender.ToString(), SqlDbType.Bit);
             sQLQuery.AddParameter("@active", "True", SqlDbType.Bit);
-            sQLQuery.AddParameter("@employeeid", animal.Employee.employeeID.ToString(), SqlDbType.Int);
+            if(animal.Employee == null)
+            {
+                sQLQuery.AddParameter("@employeeid", null, SqlDbType.Int);
+            }
+            else
+            {
+                sQLQuery.AddParameter("@employeeid", animal.Employee.employeeID.ToString(), SqlDbType.Int);
+            }
 
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);

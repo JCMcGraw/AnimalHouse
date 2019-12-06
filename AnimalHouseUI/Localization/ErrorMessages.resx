@@ -123,6 +123,9 @@
   <data name="NetworkError" xml:space="preserve">
     <value>Der var et problem med netværksforbindelsen. Tjek din internetforbindelse, og prøv igen. </value>
   </data>
+  <data name="NoCustomerFound" xml:space="preserve">
+    <value>Der blev ikke fundet nogle kunder.</value>
+  </data>
   <data name="NoItemsFound" xml:space="preserve">
     <value>Ingen varer blev fundet. </value>
   </data>

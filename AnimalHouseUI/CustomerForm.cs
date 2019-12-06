@@ -161,7 +161,16 @@ namespace AnimalHouseUI
         private void button_soeg_Click(object sender, EventArgs e)
         {
             button_opret.Enabled = false;
-            Customer customer = BossController.Instance().customerController.GetCustomer(textBox_phonenumber.Text);
+            try
+            {
+                Customer customer = BossController.Instance().customerController.GetCustomer(textBox_phonenumber.Text);
+            }
+            catch(Exception exception)
+            {
+                string errorMessage = ErrorManager.Instance().GetErrorMessage(exception);
+                MessageBox.Show(errorMessage);
+                return;
+            }
 
 
             textBox_navn.Text = customer.name.ToString();

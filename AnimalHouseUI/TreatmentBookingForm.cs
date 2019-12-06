@@ -529,7 +529,7 @@ namespace AnimalHouseUI
 
             foreach (Treatment treatment in treatments)
             {
-                if (treatment.operationRoom.operationRoomID == operationRoom.operationRoomID)
+                if (treatment.operationRoom != null && treatment.operationRoom.operationRoomID == operationRoom.operationRoomID)
                 {
                     if ((treatment.startTime >= SuggestedStartTime && treatment.startTime < SuggestedEndTime) || (treatment.endTime > SuggestedStartTime && treatment.endTime <= SuggestedEndTime) ||
                         (treatment.startTime <= SuggestedStartTime && treatment.endTime >= SuggestedEndTime))
