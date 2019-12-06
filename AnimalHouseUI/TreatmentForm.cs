@@ -197,7 +197,7 @@ namespace AnimalHouseUI
             Prescription prescription = PrescriptionFactory.Instance().CreatePrescription(amount, prescriptionDay, employee, animal, item);
            prescription= BossController.Instance().animalController.CreatePrescription(prescription);
 
-            MessageBox.Show(prescription.prescriptionID.ToString());
+            MessageBox.Show(prescription.item.name.ToString()+" Udstedet til "+animal.name.ToString());
         }
 
         public void LoadAllItemsInComboBox()
