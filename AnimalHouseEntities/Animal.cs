@@ -20,7 +20,10 @@ namespace AnimalHouseEntities
         public Species Species { get; private set; }
         //public Species species { get; private set; }
         //public int species { get; private set; }
-        
+
+        public List<Prescription> prescriptions { get; private set; }
+
+
         public double weight { get; private set; }
 
         public bool gender { get; private set; }
@@ -60,6 +63,10 @@ namespace AnimalHouseEntities
         public void GetAnimalList(int animalid)
         {
             this.animalID = animalid;
+        }
+        public void AddPrescriptionList(List<Prescription> prescriptions)
+        {
+            this.prescriptions = prescriptions;
         }
     }
 }

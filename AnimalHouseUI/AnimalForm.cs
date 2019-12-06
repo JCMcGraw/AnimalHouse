@@ -18,7 +18,7 @@ namespace AnimalHouseUI
         Animal animal;
         Customer customer;
         //Employee employee;
-        List<Employee> employees;
+        List<Employee> employee;
         List<Species> species;
 
         //private DataTable Animal_Gender = new DataTable();
@@ -29,7 +29,7 @@ namespace AnimalHouseUI
             this.customer = customer;
             this.animal = animal;
             InitializeComponent();
-
+            animal_prescription.AutoGenerateColumns = false;
             //MessageBox.Show(animal.gender.ToString());
         }
         private void SetStatusComboBoxToDefault()
@@ -184,14 +184,36 @@ namespace AnimalHouseUI
                 animal_species.Text = Convert.ToString(animal.Species.speciesType);
                 animal_weight.Text = Convert.ToString(animal.weight);
                 animal_gender.SelectedIndex = Convert.ToInt32(animal.gender);
-                //animal_employee.SelectedIndex = Convert.ToInt32(animal.employeeid);
-               
+                //animal_employee.SelectedIndex = Convert.ToInt32(animal.employeeid);//sasa
+                List<Prescription> prescriptions = BossController.Instance().animalController.GetAllPrescriptionByAnimal(animal.animalID);
+
+                //tilknytter listen af dyr til kunden
+                animal.AddPrescriptionList(prescriptions);
+
+                animal_prescription.DataSource = customer.animals;
+
+                //animal_prescription.Columns["amount"].DataPropertyName = "amount";
+
+                //animal_prescription.Columns["date"].DataPropertyName = "prescriptionDay";
+                for (int i = 0; i < prescriptions.Count; i++)
+                {
+                    Prescription tmpprescription = prescriptions[i];
+
+                    animal_prescription.Rows[i].Cells["name"].Value = tmpprescription.item.name;
+                    animal_prescription.Rows[i].Cells["date"].Value = tmpprescription.prescriptionDay;
+                    animal_prescription.Rows[i].Cells["amount"].Value = tmpprescription.amount;
+                }
+
             }
-           
 
-            
 
-       
+
+         
+
+
+
+
+
 
 
 
@@ -313,6 +335,25 @@ namespace AnimalHouseUI
             animal_employee.DataSource = vets;
             animal_employee.DisplayMember = "name";
 
+            LoadPrescription();
+
+           
+
+
+        }
+
+        private void LoadPrescription()
+
+        {
+            if(animal == null)
+            {
+                return;
+            }
+            List<Prescription> prescription = BossController.Instance().animalController.GetAllPrescriptionByAnimal(animal.animalID);
+
+            animal.AddPrescriptionList(prescription);
+
+            
 
         }
         public bool selectGender
@@ -339,6 +380,11 @@ namespace AnimalHouseUI
         }
 
         private void Animal_employee_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
