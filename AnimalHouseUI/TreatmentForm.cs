@@ -176,11 +176,12 @@ namespace AnimalHouseUI
 
         private void button_gem_Click(object sender, EventArgs e)
         {
-           string entry = textBox_entry.Text.ToString();
+            string entry = textBox_entry.Text.ToString();
 
             MedicalRecord medicalRecord = MedicalRecordFactory.Instance().CreateMedicalRecord(entry, treatment.animal, treatment);
                 
-                BossController.Instance().animalController.CreateMedicalRecordEntry(medicalRecord);
+            BossController.Instance().animalController.CreateMedicalRecordEntry(medicalRecord);
+            //UpdateStatus(3);
         }
 
         private void button_recept_Click(object sender, EventArgs e)

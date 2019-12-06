@@ -40,7 +40,7 @@
             this.ButtonMinimize = new System.Windows.Forms.Button();
             this.ButtonMaximize = new System.Windows.Forms.Button();
             this.ButtonClose = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.AnimalLabel = new System.Windows.Forms.Label();
             this.PanelHeadline = new System.Windows.Forms.Panel();
             this.PanelDropdownBoxes = new System.Windows.Forms.Panel();
             this.LabelTreatmentType = new System.Windows.Forms.Label();
@@ -185,20 +185,19 @@
             this.ButtonClose.UseVisualStyleBackColor = true;
             this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
             // 
-            // label2
+            // AnimalLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe Print", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 10);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(321, 47);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Sample Animal Name";
+            this.AnimalLabel.AutoSize = true;
+            this.AnimalLabel.Font = new System.Drawing.Font("Segoe Print", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AnimalLabel.Location = new System.Drawing.Point(12, 10);
+            this.AnimalLabel.Name = "AnimalLabel";
+            this.AnimalLabel.Size = new System.Drawing.Size(0, 47);
+            this.AnimalLabel.TabIndex = 8;
             // 
             // PanelHeadline
             // 
             this.PanelHeadline.Controls.Add(this.PanelDropdownBoxes);
-            this.PanelHeadline.Controls.Add(this.label2);
+            this.PanelHeadline.Controls.Add(this.AnimalLabel);
             this.PanelHeadline.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelHeadline.Location = new System.Drawing.Point(0, 36);
             this.PanelHeadline.Name = "PanelHeadline";
@@ -633,6 +632,7 @@
             this.ankommetToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.ankommetToolStripMenuItem.Text = "Ankommet";
             this.ankommetToolStripMenuItem.Click += new System.EventHandler(this.AnkommetToolStripMenuItem_Click);
+            //this.ankommetToolStripMenuItem.Click += new System.Windows.Forms.Calendar.CalendarItemCancelEventArgs(this.AnkommetToolStripMenuItem_Click);
             // 
             // editItemToolStripMenuItem
             // 
@@ -688,7 +688,7 @@
         private System.Windows.Forms.Button ButtonClose;
         private System.Windows.Forms.PictureBox PictureBoxLogo;
         private System.Windows.Forms.Label LabelTitle;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label AnimalLabel;
         private System.Windows.Forms.Panel PanelHeadline;
         private System.Windows.Forms.ComboBox ComboBoxEmployee;
         private System.Windows.Forms.Label LabelEmployee;
