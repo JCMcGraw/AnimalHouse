@@ -41,7 +41,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.textBox_entry = new System.Windows.Forms.TextBox();
-            this.button_gem = new System.Windows.Forms.Button();
+            this.button_gemogafslut = new System.Windows.Forms.Button();
             this.label_skrivjournal = new System.Windows.Forms.Label();
             this.label_underheadline2 = new System.Windows.Forms.Label();
             this.comboBox_recept = new System.Windows.Forms.ComboBox();
@@ -208,19 +208,19 @@
             this.textBox_entry.Size = new System.Drawing.Size(464, 263);
             this.textBox_entry.TabIndex = 11;
             // 
-            // button_gem
+            // button_gemogafslut
             // 
-            this.button_gem.BackColor = System.Drawing.Color.AliceBlue;
-            this.button_gem.FlatAppearance.BorderSize = 0;
-            this.button_gem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_gem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_gem.Location = new System.Drawing.Point(167, 309);
-            this.button_gem.Name = "button_gem";
-            this.button_gem.Size = new System.Drawing.Size(118, 73);
-            this.button_gem.TabIndex = 12;
-            this.button_gem.Text = "Gem";
-            this.button_gem.UseVisualStyleBackColor = false;
-            this.button_gem.Click += new System.EventHandler(this.button_gem_Click);
+            this.button_gemogafslut.BackColor = System.Drawing.Color.AliceBlue;
+            this.button_gemogafslut.FlatAppearance.BorderSize = 0;
+            this.button_gemogafslut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_gemogafslut.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_gemogafslut.Location = new System.Drawing.Point(167, 309);
+            this.button_gemogafslut.Name = "button_gemogafslut";
+            this.button_gemogafslut.Size = new System.Drawing.Size(118, 73);
+            this.button_gemogafslut.TabIndex = 12;
+            this.button_gemogafslut.Text = "Gem og Afslut";
+            this.button_gemogafslut.UseVisualStyleBackColor = false;
+            this.button_gemogafslut.Click += new System.EventHandler(this.button_gem_Click);
             // 
             // label_skrivjournal
             // 
@@ -269,7 +269,7 @@
             this.Controls.Add(this.comboBox_recept);
             this.Controls.Add(this.label_underheadline2);
             this.Controls.Add(this.label_skrivjournal);
-            this.Controls.Add(this.button_gem);
+            this.Controls.Add(this.button_gemogafslut);
             this.Controls.Add(this.textBox_entry);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -305,7 +305,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox textBox_entry;
-        private System.Windows.Forms.Button button_gem;
+        private System.Windows.Forms.Button button_gemogafslut;
         private System.Windows.Forms.Label label_skrivjournal;
         private System.Windows.Forms.Label label_underheadline2;
         private System.Windows.Forms.ComboBox comboBox_recept;

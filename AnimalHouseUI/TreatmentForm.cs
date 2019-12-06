@@ -182,23 +182,37 @@ namespace AnimalHouseUI
                 
             BossController.Instance().animalController.CreateMedicalRecordEntry(medicalRecord);
             //UpdateStatus(3);
+
+            MessageBox.Show("Behandling gemt");
+            this.Close();
         }
 
         private void button_recept_Click(object sender, EventArgs e)
         {
             Item prescriptionItem = (Item)comboBox_recept.SelectedItem;
-            //Overvej om amount skal være andet end 1
+            
+            SaleItemForm saleItemForm = new SaleItemForm(prescriptionItem);
 
-            int amount = 1;
-            DateTime prescriptionDay = DateTime.Now;
-            Employee employee = treatment.employee;
-            Animal animal = treatment.animal;
-            Item item = prescriptionItem;
+            
+            if (saleItemForm.ShowDialog() == DialogResult.OK)
+            {
+                int amount = saleItemForm.saleLineItem.amount;
 
-            Prescription prescription = PrescriptionFactory.Instance().CreatePrescription(amount, prescriptionDay, employee, animal, item);
-           prescription= BossController.Instance().animalController.CreatePrescription(prescription);
 
-            MessageBox.Show(prescription.item.name.ToString()+" Udstedet til "+animal.name.ToString());
+
+                DateTime prescriptionDay = DateTime.Now;
+                Employee employee = treatment.employee;
+                Animal animal = treatment.animal;
+                Item item = prescriptionItem;
+
+                Prescription prescription = PrescriptionFactory.Instance().CreatePrescription(amount, prescriptionDay, employee, animal, item);
+                prescription = BossController.Instance().animalController.CreatePrescription(prescription);
+
+                MessageBox.Show(prescription.item.name.ToString() + " Udstedet til " + animal.name.ToString());
+            }
+            
+
+           
         }
 
         public void LoadAllItemsInComboBox()
