@@ -189,7 +189,10 @@ namespace AnimalHouseUI
         {
             try
             {
-
+                //Jeg er i tvivl om det smartste her er at lave en ny invoice-klasse eller om jeg bare skulle
+                //lave en createpdf-metode på salemanageren i stedet
+                Invoice invoice = new Invoice();
+                invoice.CreatePDF(sale);
             }
             catch (Exception)
             {

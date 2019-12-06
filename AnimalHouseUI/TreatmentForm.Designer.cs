@@ -45,7 +45,7 @@
             this.label_skrivjournal = new System.Windows.Forms.Label();
             this.label_underheadline2 = new System.Windows.Forms.Label();
             this.comboBox_recept = new System.Windows.Forms.ComboBox();
-            this.label_vaelg_recept = new System.Windows.Forms.Label();
+            this.label_vaelg_medicin = new System.Windows.Forms.Label();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             this.SuspendLayout();
@@ -250,14 +250,14 @@
             this.comboBox_recept.Size = new System.Drawing.Size(245, 21);
             this.comboBox_recept.TabIndex = 15;
             // 
-            // label_vaelg_recept
+            // label_vaelg_medicin
             // 
-            this.label_vaelg_recept.AutoSize = true;
-            this.label_vaelg_recept.Location = new System.Drawing.Point(40, 214);
-            this.label_vaelg_recept.Name = "label_vaelg_recept";
-            this.label_vaelg_recept.Size = new System.Drawing.Size(65, 13);
-            this.label_vaelg_recept.TabIndex = 16;
-            this.label_vaelg_recept.Text = "Vælg recept";
+            this.label_vaelg_medicin.AutoSize = true;
+            this.label_vaelg_medicin.Location = new System.Drawing.Point(40, 214);
+            this.label_vaelg_medicin.Name = "label_vaelg_medicin";
+            this.label_vaelg_medicin.Size = new System.Drawing.Size(71, 13);
+            this.label_vaelg_medicin.TabIndex = 16;
+            this.label_vaelg_medicin.Text = "Vælg medicin";
             // 
             // TreatmentForm
             // 
@@ -265,7 +265,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(800, 464);
-            this.Controls.Add(this.label_vaelg_recept);
+            this.Controls.Add(this.label_vaelg_medicin);
             this.Controls.Add(this.comboBox_recept);
             this.Controls.Add(this.label_underheadline2);
             this.Controls.Add(this.label_skrivjournal);
@@ -309,6 +309,6 @@
         private System.Windows.Forms.Label label_skrivjournal;
         private System.Windows.Forms.Label label_underheadline2;
         private System.Windows.Forms.ComboBox comboBox_recept;
-        private System.Windows.Forms.Label label_vaelg_recept;
+        private System.Windows.Forms.Label label_vaelg_medicin;
     }
 }
