@@ -9,7 +9,7 @@ namespace AnimalHouseEntities
     public class Prescription
     {
         public int prescriptionID { get; private set; }
-
+        //halløj
         public int amount { get; private set; }
 
         public DateTime prescriptionDay { get; private set; }
