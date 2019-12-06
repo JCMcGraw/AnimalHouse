@@ -22,7 +22,9 @@ namespace AnimalHousePersistence
 
                 if (sQLQueryResult.code == 0)
                 {
+                    
                     List<Item> items = GetListOfItemsFromDatatable(sQLQueryResult.dataTable);
+                if (items.Count == 0) { throw new NoItemsFoundException("1"); }
                     return items;
                 }
                 else

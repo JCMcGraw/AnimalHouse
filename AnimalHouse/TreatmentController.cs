@@ -74,6 +74,12 @@ namespace AnimalHouse
             return getManyTreatmentsForSendingRminders;
         }
 
+        public List<Treatment> GetUnpaidTreatmentsByCustomer(Customer customer)
+        {
+            List<Treatment> unpaidTreatmentsByCustomer = treatmentManager.GetUnpaidTreatmentsByCustomer(customer);
+            return unpaidTreatmentsByCustomer;
+        }
+
         public List<TreatmentType> GetManyTreatmentTypes()
         {
             List<TreatmentType> getManyTreatmentTypes = treatmentManager.GetManyTreatmentTypes();

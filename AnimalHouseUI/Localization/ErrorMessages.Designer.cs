@@ -79,6 +79,15 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Der blev ikke fundet nogle kunder..
+        /// </summary>
+        internal static string NoCustomerFound {
+            get {
+                return ResourceManager.GetString("NoCustomerFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ingen varer blev fundet. .
         /// </summary>
         internal static string NoItemsFound {

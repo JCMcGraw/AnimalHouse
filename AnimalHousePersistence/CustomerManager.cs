@@ -173,7 +173,7 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            if(sQLQueryResult.code == 0 || sQLQueryResult.dataTable.Rows.Count > 0)
+            if(sQLQueryResult.code == 0 && sQLQueryResult.dataTable.Rows.Count > 0)
             {
                 DataRow dataRow = sQLQueryResult.dataTable.Rows[0];
 

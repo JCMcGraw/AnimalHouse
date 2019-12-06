@@ -167,7 +167,7 @@ namespace AnimalHouseUI
             MedicalRecord medicalRecord = MedicalRecordFactory.Instance().CreateMedicalRecord(entry, treatment.animal, treatment);
                 
             BossController.Instance().animalController.CreateMedicalRecordEntry(medicalRecord);
-            //UpdateStatus(3);
+            UpdateTreatmentStatus(3);
 
             MessageBox.Show("Behandling gemt");
             this.Close();
@@ -178,6 +178,7 @@ namespace AnimalHouseUI
             Item prescriptionItem = (Item)comboBox_recept.SelectedItem;
             
             SaleItemForm saleItemForm = new SaleItemForm(prescriptionItem);
+            saleItemForm.RemovePriceOption();
 
             
             if (saleItemForm.ShowDialog() == DialogResult.OK)

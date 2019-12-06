@@ -53,7 +53,7 @@ namespace AnimalHousePersistence
                     //complete and commit transaction
                     transactionScope.Complete();
                 }
-                return new SQLQueryResult(dataTable, 0, new Exception());
+                return new SQLQueryResult(dataTable, 0, null);
             }
             catch (Exception e)
             {
