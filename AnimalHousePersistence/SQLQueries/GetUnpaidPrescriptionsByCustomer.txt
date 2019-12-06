@@ -4,6 +4,7 @@
 ,Item.CostPrice
 ,Item.Amount as ItemAmount,Item.Prescription
 ,Item.Treatment as ItemTreatment,Animal.CustomerID
+,Item.Active as ItemActive
 ,Animal.Name as AnimalName
 ,Animal.BirthYear
 ,Animal.SpeciesID
@@ -12,6 +13,8 @@
 ,Animal.Active as AnimalActive
 ,Employee.Active as EmployeeActive
 ,Employee.Name as EmployeeName
+,Title.TitleID
+,Title.Name as TitleName
 ,Species.SpeciesName as SpeciesName
 ,Customer.Active as CustomerActive
 ,Customer.Adress

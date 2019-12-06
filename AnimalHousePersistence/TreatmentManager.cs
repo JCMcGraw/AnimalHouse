@@ -169,11 +169,11 @@ namespace AnimalHousePersistence
 
         public List<Treatment> GetUnpaidTreatmentsByCustomer(Customer customer)
         {
-            string query = Utility.ReadSQLQueryFromFile("GetUpdatedTreatmentsByDateCustomer.txt");
+            string query = Utility.ReadSQLQueryFromFile("GetUnpaidTreatmentsByCustomer.txt");
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("@customerid", customer.customerID.ToString(), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@customerid", customer.customerID.ToString(), SqlDbType.Int);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
