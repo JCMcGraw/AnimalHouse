@@ -44,6 +44,7 @@ namespace AnimalHouseUI
         private void TreatmentBookingForm_Load(object sender, EventArgs e)
         {
             Thread updateCalender = new Thread(() => UpdateCalender());
+            updateCalender.IsBackground = true;
             updateCalender.Start();
         }
 
@@ -223,7 +224,8 @@ namespace AnimalHouseUI
 
                 if (CheckCacheDates(CacheRangeStart, CacheRangeEnd) == false)
                 {
-                    UpdateTreatmentCache(CacheRangeStart, CacheRangeEnd);
+                    UpdateCacheRange(CacheRangeStart, CacheRangeEnd);
+                    UpdateTreatmentCache(treatmentCacheDateStart, treatmentCacheDateEnd);
                 }
 
                 CalendarBooking.SetViewRange(CalendarRangeStart, CalendarRangeEnd);
@@ -250,31 +252,35 @@ namespace AnimalHouseUI
 
         }
 
-        private void UpdateTreatmentCache(DateTime CalendarRangeStart, DateTime CalendarRangeEnd)
+        static readonly object locker = new object();
+        private void UpdateTreatmentCache(DateTime CalendarRangeStart, DateTime CalendarRangeEnd, List<Treatment> treatments = null)
         {
-            List<Treatment> treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(CalendarRangeStart, CalendarRangeEnd);
-            UpdateCacheRange(CalendarRangeStart, CalendarRangeEnd);
-
-            foreach (var treatment in treatments)
+            lock (locker)
             {
-                AddTreatmentToCache(treatment);
+                if (treatments == null)
+                {
+                    treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(CalendarRangeStart, CalendarRangeEnd);
+                }
+
+                treatmentsCache.Clear();
+                calendarItemsCache.Clear();
+                UpdateCacheRange(CalendarRangeStart, CalendarRangeEnd);
+
+                foreach (var treatment in treatments)
+                {
+                    AddTreatmentToCache(treatment);
+                }
+
+                if (InvokeRequired)
+                {
+                    //BeginInvoke(new MethodInvoker(PlaceItems));
+                }
+                else
+                {
+                    PlaceItems();
+                }
             }
 
-            PlaceItems();
-        }
-
-        private void UpdateTreatmentCache(DateTime CalendarRangeStart, DateTime CalendarRangeEnd, List<Treatment> treatments)
-        {
-            treatmentsCache.Clear();
-            calendarItemsCache.Clear();
-            UpdateCacheRange(CalendarRangeStart, CalendarRangeEnd);
-
-            foreach (var treatment in treatments)
-            {
-                AddTreatmentToCache(treatment);
-            }
-
-            PlaceItems();
         }
 
 
@@ -1022,6 +1028,12 @@ namespace AnimalHouseUI
             int treatmentID = e.Item.TreatmentID;
             Treatment treatment = treatmentsCache[treatmentID];
 
+            if(treatment.status == 0)
+            {
+                MessageBox.Show("Denne patient er ikke ankommet endnu.");
+                return;
+            }
+
             TreatmentForm treatmentform = new TreatmentForm(treatment);
             treatmentform.Show();
             UpdateTreatmentStatus(2);
@@ -1094,15 +1106,24 @@ namespace AnimalHouseUI
 
         private void UpdateCalender()
         {
-            CheckForIllegalCrossThreadCalls = false;
-
             while (true)
             {
                 Thread.Sleep(30000);
 
-                List<Treatment> treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(treatmentCacheDateStart,treatmentCacheDateEnd);
+                List<Treatment> treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(treatmentCacheDateStart, treatmentCacheDateEnd);
                 UpdateTreatmentCache(treatmentCacheDateStart, treatmentCacheDateEnd, treatments);
+
+                if (InvokeRequired)
+                {
+                    BeginInvoke(new MethodInvoker(RefreshMonthView));
+                }
             }
+        }
+
+        private void RefreshMonthView()
+        {
+            DateTime monthViewStart = MonthViewBooking.SelectionStart;
+            MonthViewBooking.SelectionStart = monthViewStart;
         }
     }
 }

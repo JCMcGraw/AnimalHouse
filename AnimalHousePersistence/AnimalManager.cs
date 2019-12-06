@@ -329,7 +329,7 @@ namespace AnimalHousePersistence
 
             return prescription;
         }
-
+        
         private List<Prescription> GetAllPrescriptionList(SQLQueryResult sQLQueryResult)
         {
             List<Prescription> prescriptions = new List<Prescription>();
@@ -428,6 +428,23 @@ namespace AnimalHousePersistence
             int prescriptionID = (int)sQLQueryResult.dataTable.Rows[0]["PrescriptionID"];
 
             prescription.UpdateID(prescriptionID);
+
+            return prescription;
+        }
+
+
+        public List<Prescription> GetUnpaidPrescriptionByCustomer(Customer customer)
+        {
+            string query = Utility.ReadSQLQueryFromFile("GetUnpaidPrescriptionByCustomer.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            sQLQuery.AddParameter("@customerid", customer.customerID.ToString(), SqlDbType.Int);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            List<Prescription> prescription = new List<Prescription>();
+            prescription = GetAllPrescriptionList(sQLQueryResult);
 
             return prescription;
         }

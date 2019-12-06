@@ -33,6 +33,8 @@ namespace AnimalHousePersistence
 
         List<Species> GetAllSpecies();
 
+        List<Prescription> GetUnpaidPrescriptionByCustomer(Customer customer);
+
 
         //List<MedicalRecord> GetAllMedicalRecordByAnimal(int animalID);
        void CreateMedicalRecordEntry(MedicalRecord medicalRecord);

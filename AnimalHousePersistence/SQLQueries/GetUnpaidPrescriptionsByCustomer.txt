@@ -1,0 +1,28 @@
+﻿Select Prescription.*
+,Item.Name as ItemName
+,Item.Price as ItemPrice
+,Item.CostPrice
+,Item.Amount as ItemAmount,Item.Prescription
+,Item.Treatment as ItemTreatment,Animal.CustomerID
+,Animal.Name as AnimalName
+,Animal.BirthYear
+,Animal.SpeciesID
+,Animal.Weight
+,Animal.Gender
+,Animal.Active as AnimalActive
+,Employee.Active as EmployeeActive
+,Employee.Name as EmployeeName
+,Species.SpeciesName as SpeciesName
+,Customer.Active as CustomerActive
+,Customer.Adress
+,Customer.Email
+,Customer.Name as CustomerName
+,Customer.Phone
+from Prescription
+left join Employee on Prescription.EmployeeID = Employee.EmployeeID
+left join Title on Employee.TitleID = Title.TitleID
+left join Animal on Prescription.AnimalID = Animal.AnimalID
+left join Species on Animal.SpeciesID = Species.SpeciesID
+left join Customer on Animal.CustomerID = Customer.CustomerID
+left join Item on Prescription.ItemID = Item.ItemID
+where Animal.CustomerID = @customerid

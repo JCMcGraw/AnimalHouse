@@ -23,6 +23,8 @@ namespace AnimalHousePersistence
 
         List<Treatment> GetManyTreatmentsByDateTime(DateTime startTime, DateTime endTime);
 
+        List<Treatment> GetUnpaidTreatmentsByCustomer(Customer customer);
+
         List<Treatment> GetManyTreatmentsForSendingRminders(DateTime startTime, DateTime endTime);
 
         List<TreatmentType> GetManyTreatmentTypes();

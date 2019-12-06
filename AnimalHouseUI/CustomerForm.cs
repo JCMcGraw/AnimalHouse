@@ -163,7 +163,7 @@ namespace AnimalHouseUI
             button_opret.Enabled = false;
             try
             {
-                Customer customer = BossController.Instance().customerController.GetCustomer(textBox_phonenumber.Text);
+                customer = BossController.Instance().customerController.GetCustomer(textBox_phonenumber.Text);
             }
             catch(Exception exception)
             {
