@@ -7,24 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.Calendar;
 using AnimalHouseEntities;
 using AnimalHouse;
 
 namespace AnimalHouseUI
 {
-    public partial class TreatmentForm : Form
+    public partial class SendReminderForm : Form
     {
-        public Treatment treatment { get; private set; }
+        BossController bossController = BossController.Instance();
+        List<Treatment> treatments;
 
-        public TreatmentForm(Treatment treatment)
+        public SendReminderForm()
         {
             InitializeComponent();
-            this.treatment = treatment;
-          
+            RemindersDataGridView.AutoGenerateColumns = false;
         }
 
-        #region Copy this 
+        #region Form Functions 
 
         private const int CS_DROPSHADOW = 0x20000;
         protected override CreateParams CreateParams
@@ -143,106 +142,91 @@ namespace AnimalHouseUI
             this.Close();
         }
 
+
         #endregion
 
-        private void TreatmentForm_Load_1(object sender, EventArgs e)
+        private void GetRemindersToSend_Click(object sender, EventArgs e)
         {
-            string animalName= treatment.animal.name.ToString();
-            string underheadline = treatment.animal.Species.speciesType+", " + treatment.treatmentType.name.ToString();
-            string underheadline2 = "Ejet af: "+treatment.animal.customer.name.ToString();
-
-            label_header.Text = animalName;
-            label_underheadline.Text = underheadline;
-            label_underheadline2.Text = underheadline2;
-
-            //husk at slette alt det jazz i itemmanager
-
-            LoadAllItemsInComboBox();
+            FillDataGridView();
         }
 
-        private void button_gem_Click(object sender, EventArgs e)
+        private void FillDataGridView()
         {
-            string entry = textBox_entry.Text.ToString();
+            DateTime startDate, endDate;
 
-            MedicalRecord medicalRecord = MedicalRecordFactory.Instance().CreateMedicalRecord(entry, treatment.animal, treatment);
-                
-            BossController.Instance().animalController.CreateMedicalRecordEntry(medicalRecord);
-            //UpdateStatus(3);
+            GetTheWeekFromAYearAgo(out startDate, out endDate);
 
-            MessageBox.Show("Behandling gemt");
-            this.Close();
+            treatments = bossController.treatmentController.GetManyTreatmentsForSendingRminders(startDate, endDate);
+
+            RemindersDataGridView.DataSource = treatments;
+            EnterDataInDataGridViewCells();
         }
 
-        private void button_recept_Click(object sender, EventArgs e)
+        private void EnterDataInDataGridViewCells()
         {
-            Item prescriptionItem = (Item)comboBox_recept.SelectedItem;
-            
-            SaleItemForm saleItemForm = new SaleItemForm(prescriptionItem);
-
-            
-            if (saleItemForm.ShowDialog() == DialogResult.OK)
+            for(int i = 0; i < treatments.Count; i++)
             {
-                int amount = saleItemForm.saleLineItem.amount;
-
-
-
-                DateTime prescriptionDay = DateTime.Now;
-                Employee employee = treatment.employee;
-                Animal animal = treatment.animal;
-                Item item = prescriptionItem;
-
-                Prescription prescription = PrescriptionFactory.Instance().CreatePrescription(amount, prescriptionDay, employee, animal, item);
-                prescription = BossController.Instance().animalController.CreatePrescription(prescription);
-
-                MessageBox.Show(prescription.item.name.ToString() + " Udstedet til " + animal.name.ToString());
+                RemindersDataGridView.Rows[i].Cells["Customer"].Value = treatments[i].animal.customer.name;
+                RemindersDataGridView.Rows[i].Cells["Email"].Value = treatments[i].animal.customer.email;
+                RemindersDataGridView.Rows[i].Cells["Animal"].Value = treatments[i].animal.name;
+                RemindersDataGridView.Rows[i].Cells["Species"].Value = treatments[i].animal.Species.speciesType;
+                RemindersDataGridView.Rows[i].Cells["LatestVisit"].Value = treatments[i].endTime.ToString("d/M/yyyy");
             }
-            
-
-           
         }
 
-        public void LoadAllItemsInComboBox()
+        private void GetTheWeekFromAYearAgo(out DateTime startDate, out DateTime endDate)
         {
-            List<Item> prescriptionItemList = GetPerscriptionList();
-            comboBox_recept.DataSource = prescriptionItemList;
-            comboBox_recept.DisplayMember = "name";
-        }
-
-        public List<Item>GetPerscriptionList()
-        {
-            List<Item> itemList = BossController.Instance().saleController.GetAllActiveItems();
-            List<Item> prescriptionItemList = new List<Item>();
-
-            
-            foreach (Item item in itemList)
+            DateTime oneYearAgo = DateTime.Today.AddYears(-1);
+            switch (oneYearAgo.DayOfWeek)
             {
-                if (item.active==true&&item.prescription==true)
-                {
-                    prescriptionItemList.Add(item);
-                }
+                case DayOfWeek.Sunday:
+                    startDate = oneYearAgo.AddDays(-6);
+                    endDate = oneYearAgo.AddDays(1);
+                    break;
+                case DayOfWeek.Monday:
+                    startDate = oneYearAgo;
+                    endDate = oneYearAgo.AddDays(7);
+                    break;
+                case DayOfWeek.Tuesday:
+                    startDate = oneYearAgo.AddDays(-1);
+                    endDate = oneYearAgo.AddDays(6);
+                    break;
+                case DayOfWeek.Wednesday:
+                    startDate = oneYearAgo.AddDays(-2);
+                    endDate = oneYearAgo.AddDays(5);
+                    break;
+                case DayOfWeek.Thursday:
+                    startDate = oneYearAgo.AddDays(-3);
+                    endDate = oneYearAgo.AddDays(4);
+                    break;
+                case DayOfWeek.Friday:
+                    startDate = oneYearAgo.AddDays(-4);
+                    endDate = oneYearAgo.AddDays(3);
+                    break;
+                default:
+                    startDate = oneYearAgo.AddDays(-5);
+                    endDate = oneYearAgo.AddDays(2);
+                    break;
+                    
             }
-
-            return prescriptionItemList;
         }
 
-        private void UpdateTreatmentStatus(int status)
+        private void SendToAllButton_Click(object sender, EventArgs e)
         {
-            int treatmentID = treatment.treatmentID;
-
-            //get updated treatment
-            Treatment newTreatment = GetUpdatedTreatmentStatus(treatmentID, status);
-            //update treatment in database
-            
-            BossController.Instance().treatmentController.UpdateTreatment(newTreatment);
+            DialogResult dialogResult = MessageBox.Show($"Ønsker du at sende påmindelser til {treatments.Count} kunder?", "Book behandling", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                MessageBox.Show("Påmindelser sendt!");
+            }
         }
 
-        private Treatment GetUpdatedTreatmentStatus(int treatmentID, int status)
+        private void SendToChosenButton_Click(object sender, EventArgs e)
         {
-            Treatment oldTreatment = treatment;
-            Treatment newTreatment = TreatmentFactory.Instance().CreateTreatment(treatmentID, oldTreatment.treatmentType, oldTreatment.operationRoom, oldTreatment.cage, oldTreatment.item,
-                oldTreatment.startTime, oldTreatment.endTime, oldTreatment.payed, oldTreatment.headline, oldTreatment.active, oldTreatment.animal, oldTreatment.employee, status);
-
-            return newTreatment;
+            DialogResult dialogResult = MessageBox.Show($"Ønsker du at sende påmindelser til {RemindersDataGridView.SelectedRows.Count} kunder?", "Book behandling", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                MessageBox.Show("Påmindelser sendt!");
+            }
         }
     }
 }

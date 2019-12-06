@@ -68,6 +68,12 @@ namespace AnimalHouse
             return getManyTreatmentsByDateTime;
         }
 
+        public List<Treatment> GetManyTreatmentsForSendingRminders(DateTime startTime, DateTime endTime)
+        {
+            List<Treatment> getManyTreatmentsForSendingRminders = treatmentManager.GetManyTreatmentsForSendingRminders(startTime, endTime);
+            return getManyTreatmentsForSendingRminders;
+        }
+
         public List<TreatmentType> GetManyTreatmentTypes()
         {
             List<TreatmentType> getManyTreatmentTypes = treatmentManager.GetManyTreatmentTypes();

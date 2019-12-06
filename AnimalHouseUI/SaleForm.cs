@@ -193,6 +193,7 @@ namespace AnimalHouseUI
                 //lave en createpdf-metode på salemanageren i stedet
                 Invoice invoice = new Invoice();
                 invoice.CreatePDF(sale);
+
             }
             catch (Exception)
             {

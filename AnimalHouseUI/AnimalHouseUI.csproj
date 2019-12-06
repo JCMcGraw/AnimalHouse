@@ -106,6 +106,12 @@
     <Compile Include="SelectOperationRoomForTreatmentForm.Designer.cs">
       <DependentUpon>SelectOperationRoomForTreatmentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SendReminderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SendReminderForm.Designer.cs">
+      <DependentUpon>SendReminderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TreatmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SelectOperationRoomForTreatmentForm.resx">
       <DependentUpon>SelectOperationRoomForTreatmentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SendReminderForm.resx">
+      <DependentUpon>SendReminderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StockForm.resx">
       <DependentUpon>StockForm.cs</DependentUpon>

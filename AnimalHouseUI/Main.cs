@@ -170,6 +170,11 @@ namespace AnimalHouseUI
         {
 
         }
-        
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SendReminderForm sendReminderForm = new SendReminderForm();
+            sendReminderForm.Show();
+        }
     }
 }
