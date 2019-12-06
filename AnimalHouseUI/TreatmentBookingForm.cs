@@ -41,6 +41,12 @@ namespace AnimalHouseUI
             SelectWeek(DateTime.Today);
         }
 
+        private void TreatmentBookingForm_Load(object sender, EventArgs e)
+        {
+            Thread updateCalender = new Thread(() => UpdateCalender());
+            updateCalender.Start();
+        }
+
         private void SetOperationRooms()
         {
             operationRooms = bossController.treatmentController.GetAllOperationRooms();
@@ -257,6 +263,20 @@ namespace AnimalHouseUI
             PlaceItems();
         }
 
+        private void UpdateTreatmentCache(DateTime CalendarRangeStart, DateTime CalendarRangeEnd, List<Treatment> treatments)
+        {
+            treatmentsCache.Clear();
+            calendarItemsCache.Clear();
+            UpdateCacheRange(CalendarRangeStart, CalendarRangeEnd);
+
+            foreach (var treatment in treatments)
+            {
+                AddTreatmentToCache(treatment);
+            }
+
+            PlaceItems();
+        }
+
 
         private void UpdateCacheRange(DateTime CacheRangeStart, DateTime CacheRangeEnd)
         {
@@ -316,10 +336,9 @@ namespace AnimalHouseUI
                     {
                         if(treatmentsCache[item.TreatmentID].treatmentType.treatmentTypeID == 3)
                         {
+                            
+                            ChangeColor(treatmentsCache[item.TreatmentID].status,item);
                             CalendarBooking.Items.Add(item);
-
-                            //Skifter farve
-                            //ChangeColor();
                         }
                     }
                     else
@@ -330,17 +349,13 @@ namespace AnimalHouseUI
 
                             if (selectedEmployee.employeeID == -1)
                             {
+                                ChangeColor(treatmentsCache[item.TreatmentID].status, item);
                                 CalendarBooking.Items.Add(item);
-
-                                //Skifter farve
-                                //ChangeColor();
                             }
                             else if(item.EmployeeID == selectedEmployee.employeeID)
                             {
+                                ChangeColor(treatmentsCache[item.TreatmentID].status, item);
                                 CalendarBooking.Items.Add(item);
-
-                                //Skifter farve
-                                //ChangeColor();
                             }
                         }
                     }
@@ -1010,14 +1025,12 @@ namespace AnimalHouseUI
             TreatmentForm treatmentform = new TreatmentForm(treatment);
             treatmentform.Show();
             UpdateTreatmentStatus(2);
-            //ChangeColor(2);
         }
 
         private void button_startbehandling_Click(object sender, EventArgs e)
         {
             StartTreatment();
             UpdateTreatmentStatus(2);
-            //ChangeColor(2);
         }
 
         public void StartTreatment()
@@ -1044,12 +1057,6 @@ namespace AnimalHouseUI
         private void AnkommetToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UpdateTreatmentStatus(1);
-            //ChangeColor(1);
-        }
-
-        private void ContextMenuStripBooking_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            //skal Fjernes
         }
 
         private void UpdateTreatmentStatus(int status)
@@ -1069,68 +1076,32 @@ namespace AnimalHouseUI
             treatmentsCache.Add(newTreatment.treatmentID, newTreatment);
         }
 
-        private void ChangeColor(int status)
+        private void ChangeColor(int status,CalendarItem calendarItem)
         {
             if (status == 1)
             {
-                RedCollor();
+                calendarItem.ApplyColor(Color.Red);
             }
             if (status == 2)
             {
-                BlueCollor();
+                calendarItem.ApplyColor(Color.Blue);
             }
             else if (status == 3)
             {
-                GreenCollor();
+                calendarItem.ApplyColor(Color.Green);
             }
         }
 
-        //Thread updateCalender = new Thread(() => UpdateCalender());
-        //updateCalender.Start();
-
-        //private void UpdateCalender()
-        //{
-        //    CheckForIllegalCrossThreadCalls = false;
-
-        //    List<CalendarItem> calendaritems = (List<CalendarItem>)CalendarBooking.GetSelectedItems();
-
-        //    //Treatment newTreatment;
-
-        //    foreach (CalendarItem item in CalendarBooking.GetAllBookings())
-        //    {
-        //        int status = item.status;
-
-        //        if (status != status)
-        //        {
-        //            ChangeColor(newTreatment.status);
-        //        }
-        //    }
-        //}
-
-        private void RedCollor()
+        private void UpdateCalender()
         {
-            foreach (CalendarItem item in CalendarBooking.GetSelectedItems())
-            {
-                item.ApplyColor(Color.Red);
-                CalendarBooking.Invalidate(item);
-            }
-        }
+            CheckForIllegalCrossThreadCalls = false;
 
-        private void BlueCollor()
-        {
-            foreach (CalendarItem item in CalendarBooking.GetSelectedItems())
+            while (true)
             {
-                item.ApplyColor(Color.Blue);
-                CalendarBooking.Invalidate(item);
-            }
-        }
+                Thread.Sleep(30000);
 
-        private void GreenCollor()
-        {
-            foreach (CalendarItem item in CalendarBooking.GetSelectedItems())
-            {
-                item.ApplyColor(Color.Green);
-                CalendarBooking.Invalidate(item);
+                List<Treatment> treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(treatmentCacheDateStart,treatmentCacheDateEnd);
+                UpdateTreatmentCache(treatmentCacheDateStart, treatmentCacheDateEnd, treatments);
             }
         }
     }
