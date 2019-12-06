@@ -168,5 +168,9 @@ namespace AnimalHouseUI
                 this.Close();
             }
         }
+        public void RemovePriceOption()
+        {
+            PriceTextBox.Enabled = false;
+        }
     }
 }
