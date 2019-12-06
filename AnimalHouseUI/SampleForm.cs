@@ -137,11 +137,6 @@ namespace AnimalHouseUI
         }
 
         #endregion
-
-        private void SampleForm_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 
 

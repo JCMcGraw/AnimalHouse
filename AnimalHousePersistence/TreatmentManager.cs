@@ -425,5 +425,23 @@ namespace AnimalHousePersistence
             }
             return operationRooms;
         }
+
+        public List<Treatment> GetManyTreatmentsForSendingRminders(DateTime startTime, DateTime endTime)
+        {
+            string query = Utility.ReadSQLQueryFromFile("SendReminder.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            sQLQuery.AddParameter("@startTime", startTime.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@endTime", endTime.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            List<Treatment> treatments = new List<Treatment>();
+
+            treatments = GetTreatmentList(sQLQueryResult);
+
+            return treatments;
+        }
     }
 }

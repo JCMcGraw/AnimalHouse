@@ -12,13 +12,18 @@ using AnimalHouse;
 
 namespace AnimalHouseUI
 {
-    public partial class Main : Form
+    public partial class SendReminderForm : Form
     {
-        public Main()
+        BossController bossController = BossController.Instance();
+        List<Treatment> treatments;
+
+        public SendReminderForm()
         {
             InitializeComponent();
+            RemindersDataGridView.AutoGenerateColumns = false;
         }
-        #region Copy this 
+
+        #region Form Functions 
 
         private const int CS_DROPSHADOW = 0x20000;
         protected override CreateParams CreateParams
@@ -137,44 +142,91 @@ namespace AnimalHouseUI
             this.Close();
         }
 
+
         #endregion
 
-        private void button_kunde_Click(object sender, EventArgs e)
+        private void GetRemindersToSend_Click(object sender, EventArgs e)
         {
-            CustomerForm customerForm = new CustomerForm();
-            customerForm.Show();
-
+            FillDataGridView();
         }
 
-        private void button_salg_Click(object sender, EventArgs e)
+        private void FillDataGridView()
         {
-            SaleForm saleui = new SaleForm();
-            saleui.Show();
+            DateTime startDate, endDate;
+
+            GetTheWeekFromAYearAgo(out startDate, out endDate);
+
+            treatments = bossController.treatmentController.GetManyTreatmentsForSendingRminders(startDate, endDate);
+
+            RemindersDataGridView.DataSource = treatments;
+            EnterDataInDataGridViewCells();
         }
 
-        private void button_behandling_Click(object sender, EventArgs e)
+        private void EnterDataInDataGridViewCells()
         {
-            TreatmentBookingForm treatmentBookingForm = new TreatmentBookingForm();
-            treatmentBookingForm.Show();
+            for(int i = 0; i < treatments.Count; i++)
+            {
+                RemindersDataGridView.Rows[i].Cells["Customer"].Value = treatments[i].animal.customer.name;
+                RemindersDataGridView.Rows[i].Cells["Email"].Value = treatments[i].animal.customer.email;
+                RemindersDataGridView.Rows[i].Cells["Animal"].Value = treatments[i].animal.name;
+                RemindersDataGridView.Rows[i].Cells["Species"].Value = treatments[i].animal.Species.speciesType;
+                RemindersDataGridView.Rows[i].Cells["LatestVisit"].Value = treatments[i].endTime.ToString("d/M/yyyy");
+            }
         }
 
-        private void button_dyr_Click(object sender, EventArgs e)
+        private void GetTheWeekFromAYearAgo(out DateTime startDate, out DateTime endDate)
         {
-            Customer customer = BossController.Instance().customerController.GetCustomer(123.ToString());
-
-            AnimalForm animalForm = new AnimalForm(customer);
-            animalForm.Show();
+            DateTime oneYearAgo = DateTime.Today.AddYears(-1);
+            switch (oneYearAgo.DayOfWeek)
+            {
+                case DayOfWeek.Sunday:
+                    startDate = oneYearAgo.AddDays(-6);
+                    endDate = oneYearAgo.AddDays(1);
+                    break;
+                case DayOfWeek.Monday:
+                    startDate = oneYearAgo;
+                    endDate = oneYearAgo.AddDays(7);
+                    break;
+                case DayOfWeek.Tuesday:
+                    startDate = oneYearAgo.AddDays(-1);
+                    endDate = oneYearAgo.AddDays(6);
+                    break;
+                case DayOfWeek.Wednesday:
+                    startDate = oneYearAgo.AddDays(-2);
+                    endDate = oneYearAgo.AddDays(5);
+                    break;
+                case DayOfWeek.Thursday:
+                    startDate = oneYearAgo.AddDays(-3);
+                    endDate = oneYearAgo.AddDays(4);
+                    break;
+                case DayOfWeek.Friday:
+                    startDate = oneYearAgo.AddDays(-4);
+                    endDate = oneYearAgo.AddDays(3);
+                    break;
+                default:
+                    startDate = oneYearAgo.AddDays(-5);
+                    endDate = oneYearAgo.AddDays(2);
+                    break;
+                    
+            }
         }
 
-        private void Main_Load(object sender, EventArgs e)
+        private void SendToAllButton_Click(object sender, EventArgs e)
         {
-
+            DialogResult dialogResult = MessageBox.Show($"Ønsker du at sende påmindelser til {treatments.Count} kunder?", "Book behandling", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                MessageBox.Show("Påmindelser sendt!");
+            }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void SendToChosenButton_Click(object sender, EventArgs e)
         {
-            SendReminderForm sendReminderForm = new SendReminderForm();
-            sendReminderForm.Show();
+            DialogResult dialogResult = MessageBox.Show($"Ønsker du at sende påmindelser til {RemindersDataGridView.SelectedRows.Count} kunder?", "Book behandling", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                MessageBox.Show("Påmindelser sendt!");
+            }
         }
     }
 }
