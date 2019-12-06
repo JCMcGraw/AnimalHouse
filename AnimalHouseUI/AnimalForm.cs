@@ -29,7 +29,7 @@ namespace AnimalHouseUI
             this.customer = customer;
             this.animal = animal;
             InitializeComponent();
-
+            animal_prescription.AutoGenerateColumns = false;
             //MessageBox.Show(animal.gender.ToString());
         }
         private void SetStatusComboBoxToDefault()
@@ -187,11 +187,29 @@ namespace AnimalHouseUI
                 //animal_employee.SelectedIndex = Convert.ToInt32(animal.employeeid);
                
             }
-           
+            List<Prescription> prescriptions = BossController.Instance().animalController.GetAllPrescriptionByAnimal(animal.animalID);
 
-            
+            //tilknytter listen af dyr til kunden
+            animal.AddPrescriptionList(prescriptions);
 
-       
+            animal_prescription.DataSource = customer.animals;
+
+            animal_prescription.Columns["amount"].DataPropertyName = "amount";
+
+            animal_prescription.Columns["date"].DataPropertyName = "prescriptionDay";
+
+
+            for (int i = 0; i < prescriptions.Count; i++)
+            {
+                Prescription tmpprescription = prescriptions[i];
+
+                animal_prescription.Rows[i].Cells["name"].Value = tmpprescription.item.name;
+            }
+
+
+
+
+
 
 
 
@@ -321,12 +339,11 @@ namespace AnimalHouseUI
         }
         private void LoadPrescription()
         {
-            //List<Prescription> prescription = BossController.instance().animalController.GetManyAnimalByCustomerID(customer);
+            List<Prescription> prescription = BossController.Instance().animalController.GetAllPrescriptionByAnimal(animal.animalID);
 
-            //customer.AddAnimalList(animals);
+            animal.AddPrescriptionList(prescription);
 
-            //dataGridView_dyr.DataSource = animals;
-            //dataGridView_dyr.Columns["animalID"].Visible = false;
+            
 
         }
         public bool selectGender

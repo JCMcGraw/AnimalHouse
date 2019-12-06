@@ -315,6 +315,8 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
+            sQLQuery.AddParameter("@animalID", animalID.ToString(), SqlDbType.Int);
+
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
             List<Prescription> prescription = new List<Prescription>();

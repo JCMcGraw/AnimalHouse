@@ -125,7 +125,9 @@
     <Content Include="SQLQueries\GetAllOperationRooms.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLQueries\GetAllPrescriptionByAnimal.txt" />
+    <Content Include="SQLQueries\GetAllPrescriptionByAnimal.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQLQueries\GetAnimal.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
