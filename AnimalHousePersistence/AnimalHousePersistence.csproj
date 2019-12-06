@@ -50,6 +50,7 @@
     <Compile Include="IEmployeeManager.cs" />
     <Compile Include="IItemManager.cs" />
     <Compile Include="ISaleManager.cs" />
+    <Compile Include="ItemManager.cs" />
     <Compile Include="ITreatmentManager.cs" />
     <Compile Include="CustomerManager.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -178,6 +179,7 @@
     <Content Include="SQLQueries\UpdateItemAmount.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQLQueries\UpdateMedicinCostPrice.txt" />
     <Content Include="SQLQueries\UpdateTreatment.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

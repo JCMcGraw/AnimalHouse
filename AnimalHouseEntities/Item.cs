@@ -45,5 +45,6 @@ namespace AnimalHouseEntities
         {
             return costPrice * amount;
         }
+        
     }
 }

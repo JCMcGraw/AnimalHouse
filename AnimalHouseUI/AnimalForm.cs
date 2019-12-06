@@ -313,6 +313,20 @@ namespace AnimalHouseUI
             animal_employee.DataSource = vets;
             animal_employee.DisplayMember = "name";
 
+            LoadPrescription();
+
+           
+
+
+        }
+        private void LoadPrescription()
+        {
+            //List<Prescription> prescription = BossController.instance().animalController.GetManyAnimalByCustomerID(customer);
+
+            //customer.AddAnimalList(animals);
+
+            //dataGridView_dyr.DataSource = animals;
+            //dataGridView_dyr.Columns["animalID"].Visible = false;
 
         }
         public bool selectGender
@@ -342,7 +356,10 @@ namespace AnimalHouseUI
         {
 
         }
-       
-       
+
+        private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
