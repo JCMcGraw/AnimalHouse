@@ -40,7 +40,6 @@
             this.label_headline = new System.Windows.Forms.Label();
             this.button_salg = new System.Windows.Forms.Button();
             this.button_behandling = new System.Windows.Forms.Button();
-            this.button_dyr = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -198,20 +197,6 @@
             this.button_behandling.UseVisualStyleBackColor = false;
             this.button_behandling.Click += new System.EventHandler(this.button_behandling_Click);
             // 
-            // button_dyr
-            // 
-            this.button_dyr.BackColor = System.Drawing.Color.AliceBlue;
-            this.button_dyr.FlatAppearance.BorderSize = 0;
-            this.button_dyr.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_dyr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_dyr.Location = new System.Drawing.Point(341, 282);
-            this.button_dyr.Name = "button_dyr";
-            this.button_dyr.Size = new System.Drawing.Size(118, 73);
-            this.button_dyr.TabIndex = 13;
-            this.button_dyr.Text = "Dyr";
-            this.button_dyr.UseVisualStyleBackColor = false;
-            this.button_dyr.Click += new System.EventHandler(this.button_dyr_Click);
-            // 
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
@@ -246,7 +231,7 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(341, 365);
+            this.button1.Location = new System.Drawing.Point(341, 282);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(118, 73);
             this.button1.TabIndex = 14;
@@ -261,7 +246,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(540, 450);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.button_dyr);
             this.Controls.Add(this.button_behandling);
             this.Controls.Add(this.button_salg);
             this.Controls.Add(this.button3);
@@ -298,7 +282,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button_salg;
         private System.Windows.Forms.Button button_behandling;
-        private System.Windows.Forms.Button button_dyr;
         private System.Windows.Forms.Button button1;
     }
 }
