@@ -20,6 +20,7 @@ namespace AnimalHouseEntities
 
         public Item item { get; private set; }
 
+        //Constructor MED prescriptionID
         public Prescription(int prescriptionID, int amount,DateTime prescriptionDay, Employee employee, Animal animal, Item item)
         {
             this.prescriptionID = prescriptionID;
@@ -30,5 +31,19 @@ namespace AnimalHouseEntities
             this.item = item;
         }
 
+        //ConstructorUDEN prescriptionID
+        public Prescription(int amount, DateTime prescriptionDay, Employee employee, Animal animal, Item item)
+        {
+            this.amount = amount;
+            this.prescriptionDay = prescriptionDay;
+            this.employee = employee;
+            this.animal = animal;
+            this.item = item;
+        }
+
+        public void UpdateID(int prescriptionID)
+        {
+            this.prescriptionID = prescriptionID;
+        }
     }
 }

@@ -1,4 +1,4 @@
 ﻿insert into Treatment
-(StartTime, EndTime, Payed,TreatmentTypeID,Headline,Active, EmployeeID,ItemID,OperationRoomID,CageID)
+(StartTime, EndTime, Payed,TreatmentTypeID,Headline,Active, EmployeeID,ItemID,OperationRoomID,CageID,AnimalID,Status)
 output inserted.TreatmentID
-values (@startTime,@endTime,@payed,@treatmenttypeid,@headline,@active, @employeeid,@itemid,@operationroomid,@cageid)
+values (@startTime,@endTime,@payed,@treatmenttypeid,@headline,@active, @employeeid,@itemid,@operationroomid,@cageid,@animalid,@status)

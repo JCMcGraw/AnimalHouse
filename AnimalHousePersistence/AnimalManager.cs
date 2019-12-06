@@ -150,16 +150,23 @@ namespace AnimalHousePersistence
 
                 for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
                 {
-                   
 
-                    int employeeID;
+                    Employee employee = null;
                     if (sQLQueryResult.dataTable.Rows[i].IsNull("EmployeeID"))
                     {
-                        employeeID = -1;
                     }
                     else
                     {
-                        employeeID = (int)sQLQueryResult.dataTable.Rows[i]["EmployeeID"];
+                        string titleName = (string)sQLQueryResult.dataTable.Rows[i]["TitleName"];
+                        int titleID = (int)sQLQueryResult.dataTable.Rows[i]["TitleID"];
+                        Title title = TitleFactory.Instance().CreateTitle(titleName, titleID);
+
+                        string employeeName = (string)sQLQueryResult.dataTable.Rows[i]["EmployeeName"];
+                        int employeeID = (int)sQLQueryResult.dataTable.Rows[i]["EmployeeID"];
+                        bool employeeActive = (bool)sQLQueryResult.dataTable.Rows[i]["EmployeeActive"];
+
+
+                        employee = EmployeeFactory.Instance().CreateEmployee(employeeID, employeeName, employeeActive, titleID, title);
                     }
 
 
@@ -182,7 +189,6 @@ namespace AnimalHousePersistence
 
                     //int employeeID = (int)sQLQueryResult.dataTable.Rows[i]["employeeID"];
                     
-                    Employee employee = EmployeeFactory.Instance().GetEmployee(employeeID, name);
                     bool active = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
 
                     animals.Add(AnimalFactory.Instance().CreateAnimal(customer,animalID, name, birthday, species, weight, gender,employee, true));
@@ -401,6 +407,29 @@ namespace AnimalHousePersistence
                 prescriptions.Add(PrescriptionFactory.Instance().CreatePrescription(prescriptionID, amount, prescriptionDay,employee, animal, item));
             }
             return prescriptions;
+        }
+
+        public Prescription CreatePrescription(Prescription prescription)
+        {
+            string query = Utility.ReadSQLQueryFromFile("CreatePrescription.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+            
+
+            sQLQuery.AddParameter("@amount", prescription.amount.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@employeeID", prescription.employee.employeeID.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@animalID", prescription.animal.animalID.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@itemID", prescription.item.itemID.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@prescriptionDay", prescription.prescriptionDay.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
+
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            int prescriptionID = (int)sQLQueryResult.dataTable.Rows[0]["PrescriptionID"];
+
+            prescription.UpdateID(prescriptionID);
+
+            return prescription;
         }
     }
 }

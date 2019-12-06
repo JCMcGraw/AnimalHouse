@@ -17,18 +17,10 @@ namespace AnimalHouseUI
     {
         public Treatment treatment { get; private set; }
 
-        Animal animal;
-        TreatmentType treatmentType;
-        Customer customer;
-
         public TreatmentForm(Treatment treatment)
         {
             InitializeComponent();
             this.treatment = treatment;
-
-            this.animal = BossController.instance().animalController.GetAnimal(treatment.animal.animalID);
-            this.customer = animal.customer;
-            this.treatmentType = treatment.treatmentType;
           
         }
 
@@ -153,27 +145,90 @@ namespace AnimalHouseUI
 
         #endregion
 
-        private void TreatmentForm_Load(object sender, EventArgs e)
-        {
-            Animal animal = BossController.instance().animalController.GetAnimal(treatment.animal.animalID);
-            label_header.Text = animal.name.ToString();
-            //label_underheadline.Text = animal.name.ToString();
-        }
-
         private void TreatmentForm_Load_1(object sender, EventArgs e)
         {
+            string animalName= treatment.animal.name.ToString();
+            string underheadline = treatment.animal.Species.speciesType+", " + treatment.treatmentType.name.ToString();
+            string underheadline2 = "Ejet af: "+treatment.animal.customer.name.ToString();
 
+            label_header.Text = animalName;
+            label_underheadline.Text = underheadline;
+            label_underheadline2.Text = underheadline2;
+
+            //husk at slette alt det jazz i itemmanager
+
+            LoadAllItemsInComboBox();
         }
 
         private void button_gem_Click(object sender, EventArgs e)
         {
-            //ligenu er det bare et statist medicalrecordID, der bliver lavet
-            // MedicalRecord medicalRecord = MedicalRecordFactory.Instance().CreateMedicalRecord(1, textBox_entry.Text.ToString(), animal, treatment);
             string entry = textBox_entry.Text.ToString();
 
-            MedicalRecord medicalRecord = MedicalRecordFactory.Instance().CreateMedicalRecord(entry, animal, treatment);
+            MedicalRecord medicalRecord = MedicalRecordFactory.Instance().CreateMedicalRecord(entry, treatment.animal, treatment);
                 
-                BossController.instance().animalController.CreateMedicalRecordEntry(medicalRecord);
+            BossController.Instance().animalController.CreateMedicalRecordEntry(medicalRecord);
+            UpdateTreatmentStatus(3);
+        }
+
+        private void button_recept_Click(object sender, EventArgs e)
+        {
+            Item prescriptionItem = (Item)comboBox_recept.SelectedItem;
+            //Overvej om amount skal være andet end 1
+
+            int amount = 1;
+            DateTime prescriptionDay = DateTime.Now;
+            Employee employee = treatment.employee;
+            Animal animal = treatment.animal;
+            Item item = prescriptionItem;
+
+            Prescription prescription = PrescriptionFactory.Instance().CreatePrescription(amount, prescriptionDay, employee, animal, item);
+           prescription= BossController.Instance().animalController.CreatePrescription(prescription);
+
+            MessageBox.Show(prescription.item.name.ToString()+" Udstedet til "+animal.name.ToString());
+        }
+
+        public void LoadAllItemsInComboBox()
+        {
+            List<Item> prescriptionItemList = GetPerscriptionList();
+            comboBox_recept.DataSource = prescriptionItemList;
+            comboBox_recept.DisplayMember = "name";
+        }
+
+        public List<Item>GetPerscriptionList()
+        {
+            List<Item> itemList = BossController.Instance().saleController.GetAllActiveItems();
+            List<Item> prescriptionItemList = new List<Item>();
+
+            
+            foreach (Item item in itemList)
+            {
+                if (item.active==true&&item.prescription==true)
+                {
+                    prescriptionItemList.Add(item);
+                }
+            }
+
+            return prescriptionItemList;
+        }
+
+        private void UpdateTreatmentStatus(int status)
+        {
+            int treatmentID = treatment.treatmentID;
+
+            //get updated treatment
+            Treatment newTreatment = GetUpdatedTreatmentStatus(treatmentID, status);
+            //update treatment in database
+            
+            BossController.Instance().treatmentController.UpdateTreatment(newTreatment);
+        }
+
+        private Treatment GetUpdatedTreatmentStatus(int treatmentID, int status)
+        {
+            Treatment oldTreatment = treatment;
+            Treatment newTreatment = TreatmentFactory.Instance().CreateTreatment(treatmentID, oldTreatment.treatmentType, oldTreatment.operationRoom, oldTreatment.cage, oldTreatment.item,
+                oldTreatment.startTime, oldTreatment.endTime, oldTreatment.payed, oldTreatment.headline, oldTreatment.active, oldTreatment.animal, oldTreatment.employee, status);
+
+            return newTreatment;
         }
     }
 }

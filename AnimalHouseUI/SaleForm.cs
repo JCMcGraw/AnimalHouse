@@ -157,7 +157,7 @@ namespace AnimalHouseUI
         {
             try
             {
-                customer = BossController.instance().customerController.GetCustomer(PhoneTextBox.Text);
+                customer = BossController.Instance().customerController.GetCustomer(PhoneTextBox.Text);
 
                 CustomerNameLabel.Text = customer.name.ToString();
                 CustomerNameLabel.Enabled = true;
@@ -176,7 +176,7 @@ namespace AnimalHouseUI
         {
             try
             {
-                BossController.instance().saleController.CreateSale(sale);
+                BossController.Instance().saleController.CreateSale(sale);
                 MessageBox.Show("Salg Oprettet");
             }
             catch (Exception)
@@ -189,7 +189,10 @@ namespace AnimalHouseUI
         {
             try
             {
-
+                //Jeg er i tvivl om det smartste her er at lave en ny invoice-klasse eller om jeg bare skulle
+                //lave en createpdf-metode på salemanageren i stedet
+                Invoice invoice = new Invoice();
+                invoice.CreatePDF(sale);
             }
             catch (Exception)
             {
@@ -206,7 +209,7 @@ namespace AnimalHouseUI
                 ItemDataGridView.Columns["itemPrice"].DataPropertyName = "price";
             try
             {
-                items = BossController.instance().saleController.GetAllActiveItems();
+                items = BossController.Instance().saleController.GetAllActiveItems();
                 ItemDataGridView.DataSource = items;
             }
             catch (Exception exception)

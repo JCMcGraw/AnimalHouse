@@ -171,7 +171,7 @@ namespace AnimalHouseUI
         private void AnimalForm_Load(object sender, EventArgs e)
         {
             LoadeAllItemsInComboBox();
-            BossController.instance().animalController.GetSpecies();
+            BossController.Instance().animalController.GetSpecies();
             if( animal != null)
             {
                 animal_owner.Text = customer.name;
@@ -229,7 +229,7 @@ namespace AnimalHouseUI
 
             animal = AnimalFactory.Instance().CreateAnimal(customer, animal_name.Text.ToString(), (animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), true, employee, true);
 
-            animal = BossController.instance().animalController.CreateAnimal(animal);
+            animal = BossController.Instance().animalController.CreateAnimal(animal);
         }
 
         private void Animal_species_SelectedIndexChanged(object sender, EventArgs e)
@@ -260,7 +260,7 @@ namespace AnimalHouseUI
 
             Animal tmpanimal = new Animal(customer, animal.animalID, name, birthday, species, weight, true, employee, true);
 
-            string message = BossController.instance().animalController.UpdateAnimal(tmpanimal);
+            string message = BossController.Instance().animalController.UpdateAnimal(tmpanimal);
             MessageBox.Show(message);
 
 
@@ -280,7 +280,7 @@ namespace AnimalHouseUI
             {
                 //animal = BossController.instance().animalController.GetAnimal();
 
-                string message = BossController.instance().animalController.DeleteAnimal(animal);
+                string message = BossController.Instance().animalController.DeleteAnimal(animal);
                 MessageBox.Show(message);
                 this.Close();
             }
@@ -292,7 +292,7 @@ namespace AnimalHouseUI
         {
 
          
-            List<Species> species = BossController.instance().animalController.GetSpecies();
+            List<Species> species = BossController.Instance().animalController.GetSpecies();
 
             //List<Species> SpeciesType = species.Where(x => x.speciesid.speciesType == 1).ToList<Employee>();
 
@@ -304,7 +304,7 @@ namespace AnimalHouseUI
 
 
 
-            List<Employee> employees = BossController.instance().employeeController.GetAllEmployees();
+            List<Employee> employees = BossController.Instance().employeeController.GetAllEmployees();
 
 
             List<Employee> vets = employees.Where(x => x.title.titleID == 1).ToList<Employee>();

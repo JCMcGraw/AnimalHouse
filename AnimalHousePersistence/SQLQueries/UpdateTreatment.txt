@@ -4,4 +4,5 @@ StartTime = @startTime
 ,Payed = @payed
 ,Headline = @headline
 ,Active = @active
+,Status = @status
 where TreatmentID = @treatmentID
