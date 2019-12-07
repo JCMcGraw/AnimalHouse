@@ -71,8 +71,7 @@ namespace AnimalHouseEntities
             gfx.DrawString("7100 Vejle", companyAndDebtor, XBrushes.Black,
                 new XRect(-60, -280, page.Width, page.Height),
                 XStringFormats.CenterRight);
-            //Her Laves navnet på filen
-            string filename = "Faktura"+sale.saleID.ToString()+".pdf";
+            
 
             //BankOplysninger------------------------------------------------------------------------------------------------------------------------------
             gfx.DrawString("Bank ", companyAndDebtor, XBrushes.Black,
@@ -210,6 +209,9 @@ namespace AnimalHouseEntities
             gfx.DrawString("___________________________________________________________________________________________ ", smallHeadLine, XBrushes.Black,
                 new XRect(80, -100 + lineSpace, page.Width, page.Height),
                 XStringFormats.CenterLeft);
+
+            //Her Laves navnet på filen
+            string filename = "Faktura" + sale.saleID.ToString() + ".pdf";
 
             //Dette er til at gemme pdf
             document.Save(filename);
