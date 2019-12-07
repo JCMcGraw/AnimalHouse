@@ -38,7 +38,6 @@
             this.label_dyr = new System.Windows.Forms.Label();
             this.AnimalName_Label = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.animal_name = new System.Windows.Forms.TextBox();
             this.label_telefonnummer = new System.Windows.Forms.Label();
             this.button_rediger = new System.Windows.Forms.Button();
@@ -56,10 +55,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.animal_gender = new System.Windows.Forms.ComboBox();
             this.animal_bdate = new System.Windows.Forms.DateTimePicker();
-            this.listBox2 = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.animal_prescription = new System.Windows.Forms.DataGridView();
+            this.animal_medicalrecords = new System.Windows.Forms.DataGridView();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.animal_prescription)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.animal_medicalrecords)).BeginInit();
             this.SuspendLayout();
             // 
             // PanelHeader
@@ -198,14 +203,6 @@
             this.button3.Size = new System.Drawing.Size(45, 36);
             this.button3.TabIndex = 10;
             this.button3.UseVisualStyleBackColor = false;
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(435, 372);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(283, 121);
-            this.listBox1.TabIndex = 11;
             // 
             // animal_name
             // 
@@ -379,14 +376,6 @@
             this.animal_bdate.Size = new System.Drawing.Size(98, 20);
             this.animal_bdate.TabIndex = 34;
             // 
-            // listBox2
-            // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(435, 82);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(283, 264);
-            this.listBox2.TabIndex = 35;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -397,14 +386,51 @@
             this.label2.TabIndex = 36;
             this.label2.Text = "Recepter";
             // 
+            // animal_prescription
+            // 
+            this.animal_prescription.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.animal_prescription.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.name,
+            this.amount,
+            this.date});
+            this.animal_prescription.Location = new System.Drawing.Point(435, 373);
+            this.animal_prescription.Name = "animal_prescription";
+            this.animal_prescription.RowHeadersVisible = false;
+            this.animal_prescription.Size = new System.Drawing.Size(263, 129);
+            this.animal_prescription.TabIndex = 37;
+            // 
+            // animal_medicalrecords
+            // 
+            this.animal_medicalrecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.animal_medicalrecords.Location = new System.Drawing.Point(435, 83);
+            this.animal_medicalrecords.Name = "animal_medicalrecords";
+            this.animal_medicalrecords.Size = new System.Drawing.Size(263, 252);
+            this.animal_medicalrecords.TabIndex = 38;
+            // 
+            // name
+            // 
+            this.name.HeaderText = "Medicin";
+            this.name.Name = "name";
+            // 
+            // amount
+            // 
+            this.amount.HeaderText = "Antal";
+            this.amount.Name = "amount";
+            // 
+            // date
+            // 
+            this.date.HeaderText = "Dato";
+            this.date.Name = "date";
+            // 
             // AnimalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(730, 542);
+            this.Controls.Add(this.animal_medicalrecords);
+            this.Controls.Add(this.animal_prescription);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.listBox2);
             this.Controls.Add(this.animal_bdate);
             this.Controls.Add(this.animal_gender);
             this.Controls.Add(this.label4);
@@ -422,7 +448,6 @@
             this.Controls.Add(this.button_rediger);
             this.Controls.Add(this.label_telefonnummer);
             this.Controls.Add(this.animal_name);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.AnimalName_Label);
             this.Controls.Add(this.label_dyr);
@@ -435,6 +460,8 @@
             this.PanelHeader.ResumeLayout(false);
             this.PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.animal_prescription)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.animal_medicalrecords)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -453,8 +480,6 @@
         private System.Windows.Forms.Label AnimalName_Label;
         private System.Windows.Forms.Button button3;
         #endregion
-
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.TextBox animal_name;
         private System.Windows.Forms.Label label_telefonnummer;
         private System.Windows.Forms.Button button_rediger;
@@ -472,8 +497,12 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox animal_gender;
         private System.Windows.Forms.DateTimePicker animal_bdate;
-        private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridView animal_prescription;
+        private System.Windows.Forms.DataGridView animal_medicalrecords;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn amount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn date;
     }
 
     #region Windows Form Designer generated code

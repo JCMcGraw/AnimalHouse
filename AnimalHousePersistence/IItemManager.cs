@@ -9,6 +9,6 @@ namespace AnimalHousePersistence
 {
     interface IItemManager
     {
-       
+        string UpdateMedicinPrice(Item item);
     }
 }

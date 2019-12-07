@@ -50,6 +50,7 @@
     <Compile Include="IEmployeeManager.cs" />
     <Compile Include="IItemManager.cs" />
     <Compile Include="ISaleManager.cs" />
+    <Compile Include="ItemManager.cs" />
     <Compile Include="ITreatmentManager.cs" />
     <Compile Include="CustomerManager.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -124,7 +125,9 @@
     <Content Include="SQLQueries\GetAllOperationRooms.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLQueries\GetAllPrescriptionByAnimal.txt" />
+    <Content Include="SQLQueries\GetAllPrescriptionByAnimal.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQLQueries\GetAnimal.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -151,6 +154,12 @@
     </Content>
     <Content Include="SQLQueries\GetSpecies.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQLQueries\GetUnpaidPrescriptionsByCustomer.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQLQueries\GetUnpaidTreatmentsByCustomer.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLQueries\SendReminder.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -179,6 +188,7 @@
     <Content Include="SQLQueries\UpdateItemAmount.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQLQueries\UpdateMedicinCostPrice.txt" />
     <Content Include="SQLQueries\UpdateTreatment.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

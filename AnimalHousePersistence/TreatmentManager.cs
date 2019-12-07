@@ -167,6 +167,23 @@ namespace AnimalHousePersistence
             return treatments;
         }
 
+        public List<Treatment> GetUnpaidTreatmentsByCustomer(Customer customer)
+        {
+            string query = Utility.ReadSQLQueryFromFile("GetUnpaidTreatmentsByCustomer.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            sQLQuery.AddParameter("@customerid", customer.customerID.ToString(), SqlDbType.Int);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            List<Treatment> treatments = new List<Treatment>();
+
+            treatments = GetTreatmentList(sQLQueryResult);
+
+            return treatments;
+        }
+
         public List<TreatmentType> GetManyTreatmentTypes()
         {
             string query = Utility.ReadSQLQueryFromFile("GetManyTreatmentTypes.txt");

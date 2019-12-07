@@ -164,7 +164,7 @@ namespace AnimalHouseUI
 
             try
             {
-                 customer = BossController.Instance().customerController.GetCustomer(textBox_phonenumber.Text);
+                Customer customer = BossController.Instance().customerController.GetCustomer(textBox_phonenumber.Text);
             }
             catch (Exception exception)
             {
