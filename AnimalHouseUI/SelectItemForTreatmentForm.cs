@@ -194,5 +194,21 @@ namespace AnimalHouseUI
                 ItemDataGridView.DataSource = searchedItems;
             }
         }
+
+        private void SelectButton_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = ItemDataGridView.SelectedRows[0];
+
+            selectedItem = row.DataBoundItem as Item;
+
+            this.DialogResult = DialogResult.OK;
+
+            this.Close();
+        }
+
+        private void CancellingButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

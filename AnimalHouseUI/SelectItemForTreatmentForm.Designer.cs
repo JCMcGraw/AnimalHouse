@@ -147,6 +147,7 @@
             this.SelectButton.TabIndex = 6;
             this.SelectButton.Text = "Vælg behandling";
             this.SelectButton.UseVisualStyleBackColor = false;
+            this.SelectButton.Click += new System.EventHandler(this.SelectButton_Click);
             // 
             // button2
             // 
@@ -171,10 +172,12 @@
             this.itemName,
             this.itemPrice});
             this.ItemDataGridView.Location = new System.Drawing.Point(48, 103);
+            this.ItemDataGridView.MultiSelect = false;
             this.ItemDataGridView.Name = "ItemDataGridView";
             this.ItemDataGridView.ReadOnly = true;
             this.ItemDataGridView.RowHeadersVisible = false;
             this.ItemDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.ItemDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ItemDataGridView.Size = new System.Drawing.Size(284, 256);
             this.ItemDataGridView.TabIndex = 6;
             // 
@@ -212,6 +215,7 @@
             this.CancellingButton.TabIndex = 12;
             this.CancellingButton.Text = "Fortryd";
             this.CancellingButton.UseVisualStyleBackColor = false;
+            this.CancellingButton.Click += new System.EventHandler(this.CancellingButton_Click);
             // 
             // SelectItemForTreatmentForm
             // 
