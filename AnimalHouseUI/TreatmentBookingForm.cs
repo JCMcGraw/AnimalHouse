@@ -1041,7 +1041,10 @@ namespace AnimalHouseUI
 
         private void button_startbehandling_Click(object sender, EventArgs e)
         {
+          
             StartTreatment();
+            //hvis man ikke har valgt et aftale i kalanderen inden man trykker her, crasher den
+            //Update: Fiksed, sådan da! 
             UpdateTreatmentStatus(2);
         }
 
@@ -1051,6 +1054,7 @@ namespace AnimalHouseUI
             if (calendaritems.Count==0)
             {
                 MessageBox.Show("Der er ikke valgt nogen aftale");
+                return;
             }
             else if (calendaritems.Count>1)
             {
@@ -1072,11 +1076,20 @@ namespace AnimalHouseUI
         }
 
         private void UpdateTreatmentStatus(int status)
-        { 
+        {
+           
             List<CalendarItem> calendaritems = (List<CalendarItem>)CalendarBooking.GetSelectedItems();
+            int treatmentID;
+            try
+            {
+                treatmentID = calendaritems[0].TreatmentID;
 
-            int treatmentID = calendaritems[0].TreatmentID;
-            
+            }
+            catch
+            {
+               
+                return;
+            }
             //get updated treatment
             Treatment newTreatment = GetUpdatedTreatmentStatus(treatmentID, status);
             //update treatment in database
