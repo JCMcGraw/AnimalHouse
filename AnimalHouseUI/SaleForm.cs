@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AnimalHouse;
 using AnimalHouseEntities;
+using System.Diagnostics;
 
 namespace AnimalHouseUI
 {
@@ -189,10 +190,12 @@ namespace AnimalHouseUI
         {
             try
             {
-                //Jeg er i tvivl om det smartste her er at lave en ny invoice-klasse eller om jeg bare skulle
-                //lave en createpdf-metode på salemanageren i stedet
-                Invoice invoice = new Invoice();
+
+                Iinvoice invoice = new Invoice();
                 invoice.CreatePDF(sale);
+
+                string file = "Faktura" + sale.saleID.ToString() + ".pdf";
+                Process.Start(file);
 
             }
             catch (Exception)

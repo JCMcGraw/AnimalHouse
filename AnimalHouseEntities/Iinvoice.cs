@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnimalHouseEntities
 {
-    interface Iinvoice
+   public interface Iinvoice
     {
         void CreatePDF(Sale sale);
     }

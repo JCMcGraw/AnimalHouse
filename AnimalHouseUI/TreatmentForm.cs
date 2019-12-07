@@ -165,9 +165,19 @@ namespace AnimalHouseUI
             string entry = textBox_entry.Text.ToString();
 
             MedicalRecord medicalRecord = MedicalRecordFactory.Instance().CreateMedicalRecord(entry, treatment.animal, treatment);
-                
-            BossController.Instance().animalController.CreateMedicalRecordEntry(medicalRecord);
-            UpdateTreatmentStatus(3);
+
+            try
+            {
+                BossController.Instance().animalController.CreateMedicalRecordEntry(medicalRecord);
+                UpdateTreatmentStatus(3);
+
+            }
+            catch (Exception exception)
+            {
+                string errorMessage = ErrorManager.Instance().GetErrorMessage(exception);
+                MessageBox.Show(errorMessage);
+                return;
+            }
 
             MessageBox.Show("Behandling gemt");
             this.Close();
@@ -185,20 +195,27 @@ namespace AnimalHouseUI
             {
                 int amount = saleItemForm.saleLineItem.amount;
 
-
-
                 DateTime prescriptionDay = DateTime.Now;
                 Employee employee = treatment.employee;
                 Animal animal = treatment.animal;
                 Item item = prescriptionItem;
-
+                
                 Prescription prescription = PrescriptionFactory.Instance().CreatePrescription(amount, prescriptionDay, employee, animal, item);
-                prescription = BossController.Instance().animalController.CreatePrescription(prescription);
+
+                try
+                {
+                    BossController.Instance().animalController.CreatePrescription(prescription);
+                }
+                catch (Exception exception)
+                {
+                    string errorMessage = ErrorManager.Instance().GetErrorMessage(exception);
+                    MessageBox.Show(errorMessage);
+                    return;
+                }
 
                 MessageBox.Show(prescription.item.name.ToString() + " Udstedet til " + animal.name.ToString());
+               
             }
-            
-
            
         }
 
@@ -214,7 +231,6 @@ namespace AnimalHouseUI
             List<Item> itemList = BossController.Instance().saleController.GetAllActiveItems();
             List<Item> prescriptionItemList = new List<Item>();
 
-            
             foreach (Item item in itemList)
             {
                 if (item.active==true&&item.prescription==true)
@@ -233,8 +249,9 @@ namespace AnimalHouseUI
             //get updated treatment
             Treatment newTreatment = GetUpdatedTreatmentStatus(treatmentID, status);
             //update treatment in database
-            
+
             BossController.Instance().treatmentController.UpdateTreatment(newTreatment);
+            
         }
 
         private Treatment GetUpdatedTreatmentStatus(int treatmentID, int status)

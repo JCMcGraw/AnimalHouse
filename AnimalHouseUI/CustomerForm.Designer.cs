@@ -39,7 +39,6 @@
             this.label_dyr = new System.Windows.Forms.Label();
             this.label_headline = new System.Windows.Forms.Label();
             this.button_soeg = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.textBox_phonenumber = new System.Windows.Forms.TextBox();
             this.label_telefonnummer = new System.Windows.Forms.Label();
             this.button_rediger = new System.Windows.Forms.Button();
@@ -200,20 +199,6 @@
             this.button_soeg.TabIndex = 9;
             this.button_soeg.UseVisualStyleBackColor = false;
             this.button_soeg.Click += new System.EventHandler(this.button_soeg_Click);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
-            this.button3.BackgroundImage = global::AnimalHouseUI.Properties.Resources.icons8_arrow_pointing_left_32px;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(563, 508);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(45, 36);
-            this.button3.TabIndex = 10;
-            this.button3.UseVisualStyleBackColor = false;
             // 
             // textBox_phonenumber
             // 
@@ -411,7 +396,6 @@
             this.Controls.Add(this.button_rediger);
             this.Controls.Add(this.label_telefonnummer);
             this.Controls.Add(this.textBox_phonenumber);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.button_soeg);
             this.Controls.Add(this.label_headline);
             this.Controls.Add(this.label_dyr);
@@ -442,7 +426,6 @@
         private System.Windows.Forms.Label label_dyr;
         private System.Windows.Forms.Label label_headline;
         private System.Windows.Forms.Button button_soeg;
-        private System.Windows.Forms.Button button3;
         #endregion
         private System.Windows.Forms.TextBox textBox_phonenumber;
         private System.Windows.Forms.Label label_telefonnummer;
