@@ -628,6 +628,7 @@ namespace AnimalHouseUI
             Employee selectedEmployee = null;
             OperationRoom selectedOperationRoom = null;
             Cage selectedCage = null;
+            Item selectedItem = null;
 
             bool employeeAvailable = true;
 
@@ -729,8 +730,22 @@ namespace AnimalHouseUI
 
             }
 
-                //question string for verifying items
-                string message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra kl. {e.Item.StartDate.ToString("H:mm")} til kl. {e.Item.EndDate.ToString("H:mm")} den {e.Item.StartDate.ToString("dd/M")}";
+            SelectItemForTreatmentForm selectItemForTreatmentForm = new SelectItemForTreatmentForm((TreatmentType)ComboBoxTreatmentType.SelectedItem);
+            selectItemForTreatmentForm.ShowDialog();
+
+            if (selectItemForTreatmentForm.DialogResult == DialogResult.OK)
+            {
+                selectedItem = selectItemForTreatmentForm.selectedItem;
+            }
+            else
+            {
+                MessageBox.Show($"Der blev ikke valgt en behandling, prøv venligst igen");
+                e.Cancel = true;
+                return;
+            }
+
+            //question string for verifying items
+            string message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra kl. {e.Item.StartDate.ToString("H:mm")} til kl. {e.Item.EndDate.ToString("H:mm")} den {e.Item.StartDate.ToString("dd/M")}";
             //altered question string if treatment type is Observation
             if ((int)ComboBoxTreatmentType.SelectedValue == 3)
             {

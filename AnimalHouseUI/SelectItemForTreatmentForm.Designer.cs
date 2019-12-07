@@ -1,6 +1,6 @@
 ﻿namespace AnimalHouseUI
 {
-    partial class SelectEmployeeForTreatmentForm
+    partial class SelectItemForTreatmentForm
     {
         /// <summary>
         /// Required designer variable.
@@ -20,7 +20,7 @@
             base.Dispose(disposing);
         }
 
-       #region Copy this
+        #region Copy this
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -36,11 +36,15 @@
             this.ButtonMaximize = new System.Windows.Forms.Button();
             this.ButtonClose = new System.Windows.Forms.Button();
             this.SelectButton = new System.Windows.Forms.Button();
-            this.InfoLabel = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.ItemDataGridView = new System.Windows.Forms.DataGridView();
+            this.itemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SearchItemTextBox = new System.Windows.Forms.TextBox();
             this.CancellingButton = new System.Windows.Forms.Button();
-            this.SelectVetCombobox = new System.Windows.Forms.ComboBox();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // PanelHeader
@@ -55,7 +59,7 @@
             this.PanelHeader.Location = new System.Drawing.Point(0, 0);
             this.PanelHeader.Name = "PanelHeader";
             this.PanelHeader.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.PanelHeader.Size = new System.Drawing.Size(394, 36);
+            this.PanelHeader.Size = new System.Drawing.Size(400, 36);
             this.PanelHeader.TabIndex = 0;
             this.PanelHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelHeader_MouseDown);
             this.PanelHeader.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelHeader_MouseMove);
@@ -66,11 +70,11 @@
             this.LabelTitle.AutoSize = true;
             this.LabelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelTitle.ForeColor = System.Drawing.Color.White;
-            this.LabelTitle.Location = new System.Drawing.Point(92, 3);
+            this.LabelTitle.Location = new System.Drawing.Point(82, 3);
             this.LabelTitle.Name = "LabelTitle";
-            this.LabelTitle.Size = new System.Drawing.Size(166, 29);
+            this.LabelTitle.Size = new System.Drawing.Size(195, 29);
             this.LabelTitle.TabIndex = 5;
-            this.LabelTitle.Text = "Vælg Dyrlæge";
+            this.LabelTitle.Text = "Vælg behandling";
             this.LabelTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseDown);
             this.LabelTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseMove);
             this.LabelTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseUp);
@@ -94,7 +98,7 @@
             this.ButtonMinimize.FlatAppearance.BorderSize = 0;
             this.ButtonMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonMinimize.Location = new System.Drawing.Point(298, 2);
+            this.ButtonMinimize.Location = new System.Drawing.Point(304, 2);
             this.ButtonMinimize.Name = "ButtonMinimize";
             this.ButtonMinimize.Size = new System.Drawing.Size(32, 32);
             this.ButtonMinimize.TabIndex = 3;
@@ -109,7 +113,7 @@
             this.ButtonMaximize.FlatAppearance.BorderSize = 0;
             this.ButtonMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonMaximize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonMaximize.Location = new System.Drawing.Point(330, 2);
+            this.ButtonMaximize.Location = new System.Drawing.Point(336, 2);
             this.ButtonMaximize.Name = "ButtonMaximize";
             this.ButtonMaximize.Size = new System.Drawing.Size(32, 32);
             this.ButtonMaximize.TabIndex = 2;
@@ -124,7 +128,7 @@
             this.ButtonClose.FlatAppearance.BorderSize = 0;
             this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonClose.Location = new System.Drawing.Point(362, 2);
+            this.ButtonClose.Location = new System.Drawing.Point(368, 2);
             this.ButtonClose.Name = "ButtonClose";
             this.ButtonClose.Size = new System.Drawing.Size(32, 32);
             this.ButtonClose.TabIndex = 1;
@@ -137,23 +141,64 @@
             this.SelectButton.FlatAppearance.BorderSize = 0;
             this.SelectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SelectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SelectButton.Location = new System.Drawing.Point(68, 143);
+            this.SelectButton.Location = new System.Drawing.Point(64, 380);
             this.SelectButton.Name = "SelectButton";
-            this.SelectButton.Size = new System.Drawing.Size(118, 51);
+            this.SelectButton.Size = new System.Drawing.Size(118, 73);
             this.SelectButton.TabIndex = 6;
-            this.SelectButton.Text = "Vælg";
+            this.SelectButton.Text = "Vælg behandling";
             this.SelectButton.UseVisualStyleBackColor = false;
-            this.SelectButton.Click += new System.EventHandler(this.SelectButton_Click);
             // 
-            // InfoLabel
+            // button2
             // 
-            this.InfoLabel.AutoSize = true;
-            this.InfoLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.InfoLabel.Location = new System.Drawing.Point(93, 63);
-            this.InfoLabel.Name = "InfoLabel";
-            this.InfoLabel.Size = new System.Drawing.Size(130, 20);
-            this.InfoLabel.TabIndex = 7;
-            this.InfoLabel.Text = "Vælg en dyrlæge";
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
+            this.button2.BackgroundImage = global::AnimalHouseUI.Properties.Resources.icons8_search_32px;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(48, 61);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(45, 36);
+            this.button2.TabIndex = 9;
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // ItemDataGridView
+            // 
+            this.ItemDataGridView.AllowUserToAddRows = false;
+            this.ItemDataGridView.AllowUserToDeleteRows = false;
+            this.ItemDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ItemDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.itemName,
+            this.itemPrice});
+            this.ItemDataGridView.Location = new System.Drawing.Point(48, 103);
+            this.ItemDataGridView.Name = "ItemDataGridView";
+            this.ItemDataGridView.ReadOnly = true;
+            this.ItemDataGridView.RowHeadersVisible = false;
+            this.ItemDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.ItemDataGridView.Size = new System.Drawing.Size(284, 256);
+            this.ItemDataGridView.TabIndex = 6;
+            // 
+            // itemName
+            // 
+            this.itemName.HeaderText = "Behandling";
+            this.itemName.Name = "itemName";
+            this.itemName.ReadOnly = true;
+            this.itemName.Width = 200;
+            // 
+            // itemPrice
+            // 
+            this.itemPrice.HeaderText = "Pris";
+            this.itemPrice.Name = "itemPrice";
+            this.itemPrice.ReadOnly = true;
+            this.itemPrice.Width = 80;
+            // 
+            // SearchItemTextBox
+            // 
+            this.SearchItemTextBox.Location = new System.Drawing.Point(99, 71);
+            this.SearchItemTextBox.Name = "SearchItemTextBox";
+            this.SearchItemTextBox.Size = new System.Drawing.Size(142, 20);
+            this.SearchItemTextBox.TabIndex = 11;
+            this.SearchItemTextBox.TextChanged += new System.EventHandler(this.SearchItemTextBox_TextChanged);
             // 
             // CancellingButton
             // 
@@ -161,40 +206,32 @@
             this.CancellingButton.FlatAppearance.BorderSize = 0;
             this.CancellingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancellingButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CancellingButton.Location = new System.Drawing.Point(192, 143);
+            this.CancellingButton.Location = new System.Drawing.Point(188, 380);
             this.CancellingButton.Name = "CancellingButton";
-            this.CancellingButton.Size = new System.Drawing.Size(118, 51);
-            this.CancellingButton.TabIndex = 8;
+            this.CancellingButton.Size = new System.Drawing.Size(118, 73);
+            this.CancellingButton.TabIndex = 12;
             this.CancellingButton.Text = "Fortryd";
             this.CancellingButton.UseVisualStyleBackColor = false;
-            this.CancellingButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
-            // SelectVetCombobox
-            // 
-            this.SelectVetCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.SelectVetCombobox.FormattingEnabled = true;
-            this.SelectVetCombobox.Location = new System.Drawing.Point(88, 101);
-            this.SelectVetCombobox.Name = "SelectVetCombobox";
-            this.SelectVetCombobox.Size = new System.Drawing.Size(195, 21);
-            this.SelectVetCombobox.TabIndex = 9;
-            // 
-            // SelectEmployeeForTreatmentForm
+            // SelectItemForTreatmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
-            this.ClientSize = new System.Drawing.Size(394, 223);
-            this.Controls.Add(this.SelectVetCombobox);
+            this.ClientSize = new System.Drawing.Size(400, 477);
             this.Controls.Add(this.CancellingButton);
-            this.Controls.Add(this.InfoLabel);
+            this.Controls.Add(this.SearchItemTextBox);
+            this.Controls.Add(this.ItemDataGridView);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.SelectButton);
             this.Controls.Add(this.PanelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "SelectEmployeeForTreatmentForm";
+            this.Name = "SelectItemForTreatmentForm";
             this.Text = "SampleForm";
             this.PanelHeader.ResumeLayout(false);
             this.PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,10 +246,13 @@
         private System.Windows.Forms.PictureBox PictureBoxLogo;
         private System.Windows.Forms.Label LabelTitle;
         private System.Windows.Forms.Button SelectButton;
+        private System.Windows.Forms.Button button2;
         #endregion
 
-        private System.Windows.Forms.Label InfoLabel;
+        private System.Windows.Forms.DataGridView ItemDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn itemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn itemPrice;
+        private System.Windows.Forms.TextBox SearchItemTextBox;
         private System.Windows.Forms.Button CancellingButton;
-        private System.Windows.Forms.ComboBox SelectVetCombobox;
     }
 }
