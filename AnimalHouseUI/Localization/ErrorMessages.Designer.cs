@@ -61,6 +61,15 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Det var ikke muligt at redigere kunden. Muligvis er telefon -eller cvr-nummer optaget.
+        /// </summary>
+        internal static string CustomerNotUpdated {
+            get {
+                return ResourceManager.GetString("CustomerNotUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Der var et problem med databases. .
         /// </summary>
         internal static string DefaultDatabaseError {

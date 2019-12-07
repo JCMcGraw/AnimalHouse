@@ -111,9 +111,9 @@ namespace AnimalHousePersistence
                 }
                 else
                 {
-                    return sQLQueryResult.exception.Message.ToString();
+                throw new CustomerNotUpdated("", sQLQueryResult.exception);
 
-                }
+            }
 
         }
         public string DeleteCustomer(Customer customer)
@@ -164,6 +164,7 @@ namespace AnimalHousePersistence
 
         public Customer GetCustomer(string phone)
         {
+            Customer customer;
 
             string query = Utility.ReadSQLQueryFromFile("GetCustomer.txt");
 
@@ -173,23 +174,22 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            if(sQLQueryResult.code == 0 || sQLQueryResult.dataTable.Rows.Count > 0)
+            if (sQLQueryResult.code == 0 && sQLQueryResult.dataTable.Rows.Count > 0)
             {
                 DataRow dataRow = sQLQueryResult.dataTable.Rows[0];
-
-
-            Customer customer = CustomerFactory.Instance().CreateCustomer((int)dataRow["CustomerID"],(string)dataRow["Name"], (string)dataRow["Adress"], (string)dataRow["Phone"],(string)dataRow["Email"], (bool)dataRow["Active"], (int)dataRow["cvr"]);
-             //   Customer tmpcustomer = CustomerFactory.Instance().CreateCustomer(99, "poul", "pvej", "6669", "pmail", true, 0);
+                
+                customer = CustomerFactory.Instance().CreateCustomer((int)dataRow["CustomerID"], (string)dataRow["Name"], (string)dataRow["Adress"], (string)dataRow["Phone"], (string)dataRow["Email"], (bool)dataRow["Active"], (int)dataRow["cvr"]);
 
                 return customer;
             }
             else
             {
                 throw new NoCustomerFoundException("", sQLQueryResult.exception);
+
             }
 
 
-          
+
         }
 
         public int GetBusinessCustomerCVR(Customer customer)

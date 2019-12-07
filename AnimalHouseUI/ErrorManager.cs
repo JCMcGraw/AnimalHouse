@@ -36,6 +36,10 @@ namespace AnimalHouseUI
             {
                 errorMessage = Localization.ErrorMessages.NoCustomerFound;
             }
+            else if (exception is CustomerNotUpdated)
+            {
+                errorMessage=Localization.ErrorMessages.CustomerNotUpdated;
+            }
             else if (exception is SqlException)
             {
                 switch (((SqlException)exception).Number)

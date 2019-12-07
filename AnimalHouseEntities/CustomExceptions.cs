@@ -39,4 +39,22 @@ namespace AnimalHouseEntities
         { }
 
     }
+
+    public class CustomerNotUpdated : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public CustomerNotUpdated()
+        { }
+
+        public CustomerNotUpdated(string message)
+            : base(message)
+        { }
+
+        public CustomerNotUpdated(string message, Exception inner)
+            : base(message, inner)
+        { }
+
+    }
+
 }

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CustomerNotUpdated" xml:space="preserve">
+    <value>Det var ikke muligt at redigere kunden. Muligvis er telefon -eller cvr-nummer optaget</value>
+  </data>
   <data name="DefaultDatabaseError" xml:space="preserve">
     <value>Der var et problem med databases. </value>
   </data>
