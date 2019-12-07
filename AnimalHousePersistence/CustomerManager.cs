@@ -27,21 +27,21 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@email",customer.email.ToString(), SqlDbType.VarChar);
             
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
-            
-            if(sQLQueryResult.code != 0)
+
+            if (sQLQueryResult.code != 0)
             {
-                throw new Exception(sQLQueryResult.exception.Message, sQLQueryResult.exception);
+                throw new CantCreateCustomer("", sQLQueryResult.exception);
             }
 
             int customerID = (int)sQLQueryResult.dataTable.Rows[0]["CustomerID"];
         
 
             customer.UpdateID(customerID);
-        
-            if (customer.GetType()==typeof(BusinessCustomer))
+
+            if (customer.GetType() == typeof(BusinessCustomer))
 
             {
-             //der laves en BusinessCustomer som castes til customer
+                //der laves en BusinessCustomer som castes til customer
                 BusinessCustomer businessCustomer = (BusinessCustomer)customer;
                 CreateBusinessCustomer(businessCustomer);
 
@@ -54,7 +54,8 @@ namespace AnimalHousePersistence
                 PrivateCustomer privateCustomer = (PrivateCustomer)customer;
                 CreatePrivateCustomer(privateCustomer);
             }
-                return customer;
+            return customer;
+
 
         }
 
@@ -133,7 +134,7 @@ namespace AnimalHousePersistence
             }
             else
             {
-                return sQLQueryResult.exception.Message.ToString();
+                throw new CantDeleteException("", sQLQueryResult.exception);
 
             }
 

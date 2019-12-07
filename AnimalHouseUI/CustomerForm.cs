@@ -275,8 +275,20 @@ namespace AnimalHouseUI
             {
                 customer = BossController.Instance().customerController.GetCustomer(textBox_phonenumber.Text.ToString());
 
-                string message = BossController.Instance().customerController.DeleteCustomer(customer);
-                MessageBox.Show(message);
+                try
+                {
+                    
+
+                    string message = BossController.Instance().customerController.DeleteCustomer(customer);
+                    MessageBox.Show(message);
+
+                }
+                 catch (Exception exception)
+                {
+                    string errorMessage = ErrorManager.Instance().GetErrorMessage(exception);
+                    MessageBox.Show(errorMessage);
+                    return;
+                }
 
             }
 
@@ -287,21 +299,13 @@ namespace AnimalHouseUI
         private void button_opret_Click(object sender, EventArgs e)
         {
 
-            //Tjekker for at se om emailen er gyldig.
+          //  Tjekker for at se om emailen er gyldig.
 
             if (CheckForValidEmail(textBox_email.Text.ToString()) == false)
-            {
-                MessageBox.Show("Ugyldig E-mailadresse");
-                return;
-            }
-
-
-            if (CheckUniquePhone(textBox_phonenumber.Text.ToString()) == false) 
-            {
-                MessageBox.Show("Telefonnummeret er allerede i brug");
-                return;
-
-            }
+                {
+                    MessageBox.Show("Ugyldig E-mailadresse");
+                    return;
+                }
 
             // tjekker om cvrnummeret består af tal
             string cvr = textBox_cvr.Text;
@@ -334,18 +338,30 @@ namespace AnimalHouseUI
             {
                 cvrint =Convert.ToInt32( textBox_cvr.Text);
             }
+            customer = CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, cvrint);
 
-               customer = CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, cvrint);
 
-            //her skriver vi den oprettede kunde ind i databasen
-            customer = BossController.Instance().customerController.CreateCustomer(customer);
+            try
+            {
+                
+                //her skriver vi den oprettede kunde ind i databasen
+                customer = BossController.Instance().customerController.CreateCustomer(customer);
 
-            MessageBox.Show("Kunde oprettet");
+                MessageBox.Show("Kunde oprettet");
 
-            button_dyr.Enabled = true;
-            button_rediger.Enabled = true;
-           button_slet.Enabled=true;
-            label_headline.Text = textBox_navn.Text.ToString().ToString();
+                button_dyr.Enabled = true;
+                button_rediger.Enabled = true;
+                button_slet.Enabled = true;
+                label_headline.Text = textBox_navn.Text.ToString().ToString();
+
+            }
+                catch (Exception exception)
+            {
+
+                string errorMessage = ErrorManager.Instance().GetErrorMessage(exception);
+                MessageBox.Show(errorMessage);
+                return;
+            }
         }
 
         private void button_dyr_Click(object sender, EventArgs e)

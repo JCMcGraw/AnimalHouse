@@ -313,6 +313,10 @@ namespace AnimalHousePersistence
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
             int medicalrecordID = (int)sQLQueryResult.dataTable.Rows[0]["MedicalRecordID"];
 
+            if (sQLQueryResult.code!=0)
+            {
+                throw new CantUpdateTreatment("", sQLQueryResult.exception);
+            }
             medicalRecord.UpdateMedicalRecordID(medicalrecordID);
         }
 
@@ -426,6 +430,11 @@ namespace AnimalHousePersistence
 
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            if(sQLQueryResult.code!=0)
+            {
+                throw new CantCreatePrescription("", sQLQueryResult.exception);
+            }
 
             int prescriptionID = (int)sQLQueryResult.dataTable.Rows[0]["PrescriptionID"];
 

@@ -61,6 +61,42 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kunden kunne ikke oprettes, Muligvis er telefon -eller cvr-nummer ikke unikt.
+        /// </summary>
+        internal static string CantCreateCustomer {
+            get {
+                return ResourceManager.GetString("CantCreateCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Der kunne ikke udstedes recept. Medicin er muligvis ugyldig.
+        /// </summary>
+        internal static string CantCreatePrescription {
+            get {
+                return ResourceManager.GetString("CantCreatePrescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kunden kunne ikke slettes.
+        /// </summary>
+        internal static string CantDeleteException {
+            get {
+                return ResourceManager.GetString("CantDeleteException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Behandlingen kunne ikke opdateres.
+        /// </summary>
+        internal static string CantUpdateTreatment {
+            get {
+                return ResourceManager.GetString("CantUpdateTreatment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Det var ikke muligt at redigere kunden. Muligvis er telefon -eller cvr-nummer optaget.
         /// </summary>
         internal static string CustomerNotUpdated {
