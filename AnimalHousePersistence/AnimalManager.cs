@@ -415,7 +415,6 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@itemID", prescription.item.itemID.ToString(), SqlDbType.Int);
             sQLQuery.AddParameter("@prescriptionDay", prescription.prescriptionDay.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
 
-
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
             int prescriptionID = (int)sQLQueryResult.dataTable.Rows[0]["PrescriptionID"];
