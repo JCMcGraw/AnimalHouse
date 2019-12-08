@@ -176,12 +176,14 @@ namespace AnimalHouseUI
             textBox_navn.Text = customer.name.ToString();
             textBox_adresse.Text = customer.address.ToString();
             textBox_email.Text = customer.email.ToString();
+            label_headline.Text = customer.name.ToString();
 
             CheckForBusinesscustomer(customer);
+            this.Refresh();
 
             //danner en liste af dyr der hedder animals. Denne liste bliver dannet et sted på animalmanager og der bruges en customer
             List<Animal> animals= BossController.Instance().animalController.GetManyAnimalByCustomerID(customer);
-
+            
             //tilknytter listen af dyr til kunden
             customer.AddAnimalList(animals);
             
@@ -195,13 +197,12 @@ namespace AnimalHouseUI
 
                 dataGridView_dyr.Rows[i].Cells["speciestype"].Value = tmpspecies.speciesType;
             }
-
+            
             button_rediger.Enabled = true;
             button_slet.Enabled = true;
             button_dyr.Enabled = true;
-            label_headline.Text = customer.name.ToString();
-
-              CheckCustomerDeletion();
+            
+            CheckCustomerDeletion();
         }
 
         private void button_rediger_Click(object sender, EventArgs e)
