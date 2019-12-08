@@ -39,4 +39,94 @@ namespace AnimalHouseEntities
         { }
 
     }
+
+    public class CustomerNotUpdated : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public CustomerNotUpdated()
+        { }
+
+        public CustomerNotUpdated(string message)
+            : base(message)
+        { }
+
+        public CustomerNotUpdated(string message, Exception inner)
+            : base(message, inner)
+        { }
+
+
+    }
+    public class CantDeleteException : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public CantDeleteException()
+        { }
+
+        public CantDeleteException(string message)
+            : base(message)
+        { }
+
+        public CantDeleteException(string message, Exception inner)
+            : base(message, inner)
+        {
+
+        }
+
+    }
+
+    public class CantCreateCustomer : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public CantCreateCustomer()
+        { }
+
+        public CantCreateCustomer(string message)
+            : base(message)
+        { }
+
+        public CantCreateCustomer(string message, Exception inner)
+            : base(message, inner)
+        {
+
+        }
+    }
+
+    public class CantCreatePrescription : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public CantCreatePrescription()
+        { }
+
+        public CantCreatePrescription(string message)
+            : base(message)
+        { }
+
+        public CantCreatePrescription(string message, Exception inner)
+            : base(message, inner)
+        {
+            
+        }
+    }
+
+    public class CantUpdateTreatment : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public CantUpdateTreatment()
+        { }
+
+        public CantUpdateTreatment(string message)
+            : base(message)
+        { }
+
+        public CantUpdateTreatment(string message, Exception inner)
+            : base(message, inner)
+        {
+     
+        }
+    }
 }

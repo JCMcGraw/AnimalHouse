@@ -38,8 +38,6 @@
             this.button_udsted_recept = new System.Windows.Forms.Button();
             this.label_underheadline = new System.Windows.Forms.Label();
             this.label_header = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.textBox_entry = new System.Windows.Forms.TextBox();
             this.button_gemogafslut = new System.Windows.Forms.Button();
             this.label_skrivjournal = new System.Windows.Forms.Label();
@@ -172,34 +170,6 @@
             this.label_header.TabIndex = 8;
             this.label_header.Text = "Animal Name";
             // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
-            this.button2.BackgroundImage = global::AnimalHouseUI.Properties.Resources.icons8_search_32px;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(499, 397);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(45, 36);
-            this.button2.TabIndex = 9;
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
-            this.button3.BackgroundImage = global::AnimalHouseUI.Properties.Resources.icons8_arrow_pointing_left_32px;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(603, 397);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(45, 36);
-            this.button3.TabIndex = 10;
-            this.button3.UseVisualStyleBackColor = false;
-            // 
             // textBox_entry
             // 
             this.textBox_entry.Location = new System.Drawing.Point(304, 119);
@@ -228,9 +198,9 @@
             this.label_skrivjournal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_skrivjournal.Location = new System.Drawing.Point(310, 96);
             this.label_skrivjournal.Name = "label_skrivjournal";
-            this.label_skrivjournal.Size = new System.Drawing.Size(147, 20);
+            this.label_skrivjournal.Size = new System.Drawing.Size(142, 20);
             this.label_skrivjournal.TabIndex = 13;
-            this.label_skrivjournal.Text = "Skriv Journalindlæg";
+            this.label_skrivjournal.Text = "Skriv journalindlæg";
             // 
             // label_underheadline2
             // 
@@ -264,15 +234,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
-            this.ClientSize = new System.Drawing.Size(800, 464);
+            this.ClientSize = new System.Drawing.Size(800, 399);
             this.Controls.Add(this.label_vaelg_medicin);
             this.Controls.Add(this.comboBox_recept);
             this.Controls.Add(this.label_underheadline2);
             this.Controls.Add(this.label_skrivjournal);
             this.Controls.Add(this.button_gemogafslut);
             this.Controls.Add(this.textBox_entry);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.label_header);
             this.Controls.Add(this.label_underheadline);
             this.Controls.Add(this.button_udsted_recept);
@@ -300,8 +268,6 @@
         private System.Windows.Forms.Button button_udsted_recept;
         private System.Windows.Forms.Label label_underheadline;
         private System.Windows.Forms.Label label_header;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
         #endregion
 
         private System.Windows.Forms.TextBox textBox_entry;

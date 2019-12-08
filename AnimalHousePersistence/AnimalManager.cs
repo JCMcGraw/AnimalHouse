@@ -313,6 +313,10 @@ namespace AnimalHousePersistence
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
             int medicalrecordID = (int)sQLQueryResult.dataTable.Rows[0]["MedicalRecordID"];
 
+            if (sQLQueryResult.code!=0)
+            {
+                throw new CantUpdateTreatment("", sQLQueryResult.exception);
+            }
             medicalRecord.UpdateMedicalRecordID(medicalrecordID);
         }
 
@@ -404,9 +408,10 @@ namespace AnimalHousePersistence
 
                 int amount = (int)sQLQueryResult.dataTable.Rows[i]["Amount"];
                 DateTime prescriptionDay = (DateTime)sQLQueryResult.dataTable.Rows[i]["PrescriptionDay"];
+                bool payed = (bool)sQLQueryResult.dataTable.Rows[i]["Payed"];
                 prescriptionID = (int)sQLQueryResult.dataTable.Rows[i]["PrescriptionID"];
 
-                prescriptions.Add(PrescriptionFactory.Instance().CreatePrescription(prescriptionID, amount, prescriptionDay,employee, animal, item));
+                prescriptions.Add(PrescriptionFactory.Instance().CreatePrescription(prescriptionID, amount, prescriptionDay,payed,employee, animal, item));
             }
             return prescriptions;
         }
@@ -424,8 +429,12 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@itemID", prescription.item.itemID.ToString(), SqlDbType.Int);
             sQLQuery.AddParameter("@prescriptionDay", prescription.prescriptionDay.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
 
-
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            if(sQLQueryResult.code!=0)
+            {
+                throw new CantCreatePrescription("", sQLQueryResult.exception);
+            }
 
             int prescriptionID = (int)sQLQueryResult.dataTable.Rows[0]["PrescriptionID"];
 
@@ -437,7 +446,7 @@ namespace AnimalHousePersistence
 
         public List<Prescription> GetUnpaidPrescriptionByCustomer(Customer customer)
         {
-            string query = Utility.ReadSQLQueryFromFile("GetUnpaidPrescriptionByCustomer.txt");
+            string query = Utility.ReadSQLQueryFromFile("GetUnpaidPrescriptionsByCustomer.txt");
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
