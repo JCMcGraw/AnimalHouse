@@ -23,6 +23,7 @@ namespace AnimalHouseEntities
 
         public List<Prescription> prescriptions { get; private set; }
 
+        public List<MedicalRecord> medicalRecords { get; private set; }
 
         public double weight { get; private set; }
 
@@ -67,6 +68,10 @@ namespace AnimalHouseEntities
         public void AddPrescriptionList(List<Prescription> prescriptions)
         {
             this.prescriptions = prescriptions;
+        }
+        public void AddMedicalRecordEntryList(List<MedicalRecord> medicalRecords)
+        {
+            this.medicalRecords = medicalRecords;
         }
     }
 }

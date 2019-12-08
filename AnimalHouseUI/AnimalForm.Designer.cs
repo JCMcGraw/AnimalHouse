@@ -57,14 +57,15 @@
             this.animal_bdate = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.animal_prescription = new System.Windows.Forms.DataGridView();
-            this.animal_medicalrecords = new System.Windows.Forms.DataGridView();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.dato = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Titel = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.animal_prescription)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.animal_medicalrecords)).BeginInit();
             this.SuspendLayout();
             // 
             // PanelHeader
@@ -399,14 +400,6 @@
             this.animal_prescription.Size = new System.Drawing.Size(263, 129);
             this.animal_prescription.TabIndex = 37;
             // 
-            // animal_medicalrecords
-            // 
-            this.animal_medicalrecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.animal_medicalrecords.Location = new System.Drawing.Point(435, 83);
-            this.animal_medicalrecords.Name = "animal_medicalrecords";
-            this.animal_medicalrecords.Size = new System.Drawing.Size(263, 252);
-            this.animal_medicalrecords.TabIndex = 38;
-            // 
             // name
             // 
             this.name.HeaderText = "Medicin";
@@ -422,13 +415,25 @@
             this.date.HeaderText = "Dato";
             this.date.Name = "date";
             // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.dato,
+            this.Titel});
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(435, 83);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(263, 252);
+            this.listView1.TabIndex = 38;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
             // AnimalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(730, 542);
-            this.Controls.Add(this.animal_medicalrecords);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.animal_prescription);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.animal_bdate);
@@ -461,7 +466,6 @@
             this.PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.animal_prescription)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.animal_medicalrecords)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -499,10 +503,12 @@
         private System.Windows.Forms.DateTimePicker animal_bdate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView animal_prescription;
-        private System.Windows.Forms.DataGridView animal_medicalrecords;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn amount;
         private System.Windows.Forms.DataGridViewTextBoxColumn date;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader dato;
+        private System.Windows.Forms.ColumnHeader Titel;
     }
 
     #region Windows Form Designer generated code

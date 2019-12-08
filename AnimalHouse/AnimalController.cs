@@ -74,6 +74,7 @@ namespace AnimalHouse
             IAnimalManager animalManager = new AnimalManager();
             animalManager.CreateMedicalRecordEntry(medicalRecord);
         }
+      
 
         public List<Prescription> GetAllPrescriptionByAnimal(int animalID)
         {
@@ -95,5 +96,6 @@ namespace AnimalHouse
             
             return animalManager.CreatePrescription(prescription);
         }
+       
     }
 }

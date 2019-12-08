@@ -21,6 +21,8 @@ namespace AnimalHouseUI
         List<Employee> employee;
         List<Species> species;
 
+        
+
         //private DataTable Animal_Gender = new DataTable();
 
         public AnimalForm(Customer customer,Animal animal)
@@ -192,6 +194,8 @@ namespace AnimalHouseUI
 
                 animal_prescription.DataSource = customer.animals;
 
+               
+
                 //animal_prescription.Columns["amount"].DataPropertyName = "amount";
 
                 //animal_prescription.Columns["date"].DataPropertyName = "prescriptionDay";
@@ -203,6 +207,10 @@ namespace AnimalHouseUI
                     animal_prescription.Rows[i].Cells["date"].Value = tmpprescription.prescriptionDay;
                     animal_prescription.Rows[i].Cells["amount"].Value = tmpprescription.amount;
                 }
+                animal.AddMedicalRecordEntryList(animal);
+
+                animal_MedicalRecord.DataSource = customer.animals;
+
 
             }
 
