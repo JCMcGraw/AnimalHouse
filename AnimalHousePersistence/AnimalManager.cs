@@ -408,9 +408,10 @@ namespace AnimalHousePersistence
 
                 int amount = (int)sQLQueryResult.dataTable.Rows[i]["Amount"];
                 DateTime prescriptionDay = (DateTime)sQLQueryResult.dataTable.Rows[i]["PrescriptionDay"];
+                bool payed = (bool)sQLQueryResult.dataTable.Rows[i]["Payed"];
                 prescriptionID = (int)sQLQueryResult.dataTable.Rows[i]["PrescriptionID"];
 
-                prescriptions.Add(PrescriptionFactory.Instance().CreatePrescription(prescriptionID, amount, prescriptionDay,employee, animal, item));
+                prescriptions.Add(PrescriptionFactory.Instance().CreatePrescription(prescriptionID, amount, prescriptionDay,payed,employee, animal, item));
             }
             return prescriptions;
         }
