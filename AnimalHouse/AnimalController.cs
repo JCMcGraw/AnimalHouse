@@ -82,6 +82,13 @@ namespace AnimalHouse
             return getAllPrescriptionByAnimal;
         }
 
+        public List<Prescription> GetUnpaidPrescriptionByCustomer(Customer customer)
+        {
+            IAnimalManager animalManager = new AnimalManager();
+            List<Prescription> unpaidPrescriptionByCustomer = animalManager.GetUnpaidPrescriptionByCustomer(customer);
+            return unpaidPrescriptionByCustomer;
+        }
+
         public Prescription CreatePrescription(Prescription prescription)
         {
             IAnimalManager animalManager = new AnimalManager();

@@ -28,7 +28,14 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@weight", animal.weight.ToString(), SqlDbType.Float);
             sQLQuery.AddParameter("@gender", animal.gender.ToString(), SqlDbType.Bit);
             sQLQuery.AddParameter("@active", "True", SqlDbType.Bit);
-            sQLQuery.AddParameter("@employeeid", animal.Employee.employeeID.ToString(), SqlDbType.Int);
+            if(animal.Employee == null)
+            {
+                sQLQuery.AddParameter("@employeeid", null, SqlDbType.Int);
+            }
+            else
+            {
+                sQLQuery.AddParameter("@employeeid", animal.Employee.employeeID.ToString(), SqlDbType.Int);
+            }
 
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
@@ -306,6 +313,10 @@ namespace AnimalHousePersistence
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
             int medicalrecordID = (int)sQLQueryResult.dataTable.Rows[0]["MedicalRecordID"];
 
+            if (sQLQueryResult.code!=0)
+            {
+                throw new CantUpdateTreatment("", sQLQueryResult.exception);
+            }
             medicalRecord.UpdateMedicalRecordID(medicalrecordID);
         }
 
@@ -315,6 +326,8 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
+            sQLQuery.AddParameter("@animalID", animalID.ToString(), SqlDbType.Int);
+
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
             List<Prescription> prescription = new List<Prescription>();
@@ -322,7 +335,7 @@ namespace AnimalHousePersistence
 
             return prescription;
         }
-
+        
         private List<Prescription> GetAllPrescriptionList(SQLQueryResult sQLQueryResult)
         {
             List<Prescription> prescriptions = new List<Prescription>();
@@ -356,19 +369,19 @@ namespace AnimalHousePersistence
                 else
                 {
                     int customerID = (int)sQLQueryResult.dataTable.Rows[i]["CustomerID"];
-                    string nameCustomer = (string)sQLQueryResult.dataTable.Rows[i]["Name"];
+                    string nameCustomer = (string)sQLQueryResult.dataTable.Rows[i]["CustomerName"];
                     string address = (string)sQLQueryResult.dataTable.Rows[i]["Adress"];
                     string phone = (string)sQLQueryResult.dataTable.Rows[i]["Phone"];
                     string email = (string)sQLQueryResult.dataTable.Rows[i]["Email"];
-                    bool activeCustomer = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
+                    bool activeCustomer = (bool)sQLQueryResult.dataTable.Rows[i]["CustomerActive"];
                     int cvr = 0; //(int)sQLQueryResult.dataTable.Rows[i]["CVR"];
-                    string name = (string)sQLQueryResult.dataTable.Rows[i]["Name"];
+                    string name = (string)sQLQueryResult.dataTable.Rows[i]["AnimalName"];
                     DateTime birthYear = (DateTime)sQLQueryResult.dataTable.Rows[i]["BirthYear"];
                     int speciesID = (int)sQLQueryResult.dataTable.Rows[i]["SpeciesID"];
-                    string nameSpecies = (string)sQLQueryResult.dataTable.Rows[i]["Name"];
-                    double weight = (double)sQLQueryResult.dataTable.Rows[i]["Name"];
+                    string nameSpecies = (string)sQLQueryResult.dataTable.Rows[i]["SpeciesName"];
+                    double weight = Convert.ToDouble((decimal)sQLQueryResult.dataTable.Rows[i]["Weight"]);
                     bool gender = (bool)sQLQueryResult.dataTable.Rows[i]["Gender"];
-                    bool activeAnimal = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
+                    bool activeAnimal = (bool)sQLQueryResult.dataTable.Rows[i]["AnimalActive"];
 
                     Species species = SpeciesFactory.Instance().CreateSpecies(speciesID, nameSpecies);
                     Customer customer = CustomerFactory.Instance().CreateCustomer(customerID,nameCustomer,address,phone,email,activeCustomer,cvr);
@@ -383,9 +396,9 @@ namespace AnimalHousePersistence
                 {
                     int itemID = (int)sQLQueryResult.dataTable.Rows[i]["ItemID"];
                     string name = (string)sQLQueryResult.dataTable.Rows[i]["ItemName"];
-                    decimal price = (decimal)sQLQueryResult.dataTable.Rows[i]["Price"];
+                    decimal price = (decimal)sQLQueryResult.dataTable.Rows[i]["ItemPrice"];
                     decimal costPrice = (decimal)sQLQueryResult.dataTable.Rows[i]["CostPrice"];
-                    int amountItem = (int)sQLQueryResult.dataTable.Rows[i]["Amount"];
+                    int amountItem = (int)sQLQueryResult.dataTable.Rows[i]["ItemAmount"];
                     bool prescription = (bool)sQLQueryResult.dataTable.Rows[i]["Prescription"];
                     bool treatment = (bool)sQLQueryResult.dataTable.Rows[i]["ItemTreatment"];
                     bool itemActive = (bool)sQLQueryResult.dataTable.Rows[i]["ItemActive"];
@@ -417,9 +430,31 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
+            if(sQLQueryResult.code!=0)
+            {
+                throw new CantCreatePrescription("", sQLQueryResult.exception);
+            }
+
             int prescriptionID = (int)sQLQueryResult.dataTable.Rows[0]["PrescriptionID"];
 
             prescription.UpdateID(prescriptionID);
+
+            return prescription;
+        }
+
+
+        public List<Prescription> GetUnpaidPrescriptionByCustomer(Customer customer)
+        {
+            string query = Utility.ReadSQLQueryFromFile("GetUnpaidPrescriptionsByCustomer.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            sQLQuery.AddParameter("@customerid", customer.customerID.ToString(), SqlDbType.Int);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            List<Prescription> prescription = new List<Prescription>();
+            prescription = GetAllPrescriptionList(sQLQueryResult);
 
             return prescription;
         }

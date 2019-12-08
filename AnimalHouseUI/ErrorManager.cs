@@ -32,9 +32,30 @@ namespace AnimalHouseUI
                 errorMessage = Localization.ErrorMessages.NoItemsFound + GetErrorMessage(exception.InnerException);
             }
             //peders
-            if (exception is NoCustomerFoundException)
+            else if (exception is NoCustomerFoundException)
             {
+                errorMessage = Localization.ErrorMessages.NoCustomerFound;
+            }
+            else if (exception is CustomerNotUpdated)
+            {
+                errorMessage=Localization.ErrorMessages.CustomerNotUpdated;
+            }
+            else if (exception is CantDeleteException)
+                {
+                errorMessage = Localization.ErrorMessages.CantDeleteException;
 
+                }
+            else if (exception is CantCreatePrescription)
+            {
+                errorMessage = Localization.ErrorMessages.CantCreatePrescription;            }
+
+            else if (exception is CantCreateCustomer)
+            {
+                errorMessage = Localization.ErrorMessages.CantCreateCustomer;
+            }
+            else if (exception is CantCreatePrescription)
+            {
+                errorMessage = Localization.ErrorMessages.CantCreatePrescription;
             }
             else if (exception is SqlException)
             {

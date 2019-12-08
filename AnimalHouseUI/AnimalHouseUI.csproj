@@ -100,6 +100,12 @@
     <Compile Include="SelectCageForTreatmentForm.Designer.cs">
       <DependentUpon>SelectCageForTreatmentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SelectItemForTreatmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectItemForTreatmentForm.Designer.cs">
+      <DependentUpon>SelectItemForTreatmentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SelectOperationRoomForTreatmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SelectEmployeeForTreatmentForm.resx">
       <DependentUpon>SelectEmployeeForTreatmentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectItemForTreatmentForm.resx">
+      <DependentUpon>SelectItemForTreatmentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectOperationRoomForTreatmentForm.resx">
       <DependentUpon>SelectOperationRoomForTreatmentForm.cs</DependentUpon>

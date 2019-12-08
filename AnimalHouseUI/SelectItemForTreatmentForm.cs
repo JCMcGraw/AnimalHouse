@@ -7,33 +7,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AnimalHouse;
 using AnimalHouseEntities;
+using AnimalHouse;
 
 namespace AnimalHouseUI
 {
-    public partial class SaleItemForm : Form
+    public partial class SelectItemForTreatmentForm : Form
     {
-        Item item;
-        public SaleLineItem saleLineItem;
+        public List<Item> items;
+        public Item selectedItem;
 
-        public SaleItemForm(Item item)
+        BossController bossController = BossController.Instance();
+
+        public SelectItemForTreatmentForm(TreatmentType treatmentType)
         {
             InitializeComponent();
-            this.item = item;
-        }
-        private void SaleItemForm_Load_1(object sender, EventArgs e)
-        {
-            if (item.prescription == true)
-            {
+            GetAllItems();
 
+            if(treatmentType.treatmentTypeID == 3)
+            {
+                FilterObservations();
+            }
+            else
+            {
+                FilterNotObservations();
             }
 
-            NameLabel.Text = item.name.ToString();
-            PriceTextBox.Text = item.price.ToString("N2");
         }
 
-        #region Copy this 
+        #region Form methods
 
         private const int CS_DROPSHADOW = 0x20000;
         protected override CreateParams CreateParams
@@ -154,23 +156,59 @@ namespace AnimalHouseUI
 
         #endregion
 
-        private void AddItemToSaleListButton_Click(object sender, EventArgs e)
+        private void GetAllItems()
         {
-            if  (item.amount<1)
+            items = bossController.saleController.GetAllActiveItems();
+        }
+
+        private void FilterObservations()
+        {
+            items = items.Where(x => x.name.Contains("Observation") && x.treatment == true).ToList<Item>();
+            BindItemDataGrid();
+        }
+
+        private void FilterNotObservations()
+        {
+            items = items.Where(x => x.name.Contains("Observation") == false && x.treatment == true).ToList<Item>();
+            BindItemDataGrid();
+        }
+
+        private void BindItemDataGrid()
+        {
+            ItemDataGridView.Columns["ItemName"].DataPropertyName = "name";
+            ItemDataGridView.Columns["itemPrice"].DataPropertyName = "price";
+
+            items = items.OrderBy(x => x.name).ToList<Item>();
+            ItemDataGridView.DataSource = items;
+        }
+        
+        private void SearchItemTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (SearchItemTextBox.Text == "")
             {
-                MessageBox.Show("Der er ikke det ønskede tilbage på lageret");
+                ItemDataGridView.DataSource = items;
             }
             else
             {
-                saleLineItem = new SaleLineItem(item, Convert.ToInt32(AmountTextBox.Text), Convert.ToDecimal(PriceTextBox.Text));
-
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                List<Item> searchedItems = items.Where(x => x.name.ToLower().Contains(SearchItemTextBox.Text.ToLower())).ToList<Item>();
+                ItemDataGridView.DataSource = searchedItems;
             }
         }
-        public void RemovePriceOption()
+
+        private void SelectButton_Click(object sender, EventArgs e)
         {
-            PriceTextBox.Enabled = false;
+            DataGridViewRow row = ItemDataGridView.SelectedRows[0];
+
+            selectedItem = row.DataBoundItem as Item;
+
+            this.DialogResult = DialogResult.OK;
+
+            this.Close();
+        }
+
+        private void CancellingButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

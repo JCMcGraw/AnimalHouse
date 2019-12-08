@@ -78,6 +78,11 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
+            if (sQLQueryResult.code!=0)
+            {
+                throw new CantUpdateTreatment("", sQLQueryResult.exception);
+            }
+
             return "ok";
         }
 
@@ -157,6 +162,23 @@ namespace AnimalHousePersistence
 
             sQLQuery.AddParameter("@startTime", startTime.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
             sQLQuery.AddParameter("@endTime", endTime.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            List<Treatment> treatments = new List<Treatment>();
+
+            treatments = GetTreatmentList(sQLQueryResult);
+
+            return treatments;
+        }
+
+        public List<Treatment> GetUnpaidTreatmentsByCustomer(Customer customer)
+        {
+            string query = Utility.ReadSQLQueryFromFile("GetUnpaidTreatmentsByCustomer.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            sQLQuery.AddParameter("@customerid", customer.customerID.ToString(), SqlDbType.Int);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
