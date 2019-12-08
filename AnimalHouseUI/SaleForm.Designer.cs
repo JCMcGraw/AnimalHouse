@@ -53,7 +53,7 @@
             this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataGridViewItemList = new System.Windows.Forms.DataGridView();
+            this.ItemListDataGridView = new System.Windows.Forms.DataGridView();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,10 +66,22 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.ShowStockButton = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.UnPaidPrescriptionsDataGridView = new System.Windows.Forms.DataGridView();
+            this.prescriptionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prescriptionAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prescriptionPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnPaidTreatmentDataGridView = new System.Windows.Forms.DataGridView();
+            this.treatmentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.treatmentDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.treatmentPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewItemList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemListDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UnPaidPrescriptionsDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UnPaidTreatmentDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // PanelHeader
@@ -84,7 +96,7 @@
             this.PanelHeader.Location = new System.Drawing.Point(0, 0);
             this.PanelHeader.Name = "PanelHeader";
             this.PanelHeader.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.PanelHeader.Size = new System.Drawing.Size(768, 36);
+            this.PanelHeader.Size = new System.Drawing.Size(864, 36);
             this.PanelHeader.TabIndex = 0;
             this.PanelHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelHeader_MouseDown);
             this.PanelHeader.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelHeader_MouseMove);
@@ -123,7 +135,7 @@
             this.ButtonMinimize.FlatAppearance.BorderSize = 0;
             this.ButtonMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonMinimize.Location = new System.Drawing.Point(672, 2);
+            this.ButtonMinimize.Location = new System.Drawing.Point(768, 2);
             this.ButtonMinimize.Name = "ButtonMinimize";
             this.ButtonMinimize.Size = new System.Drawing.Size(32, 32);
             this.ButtonMinimize.TabIndex = 3;
@@ -138,7 +150,7 @@
             this.ButtonMaximize.FlatAppearance.BorderSize = 0;
             this.ButtonMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonMaximize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonMaximize.Location = new System.Drawing.Point(704, 2);
+            this.ButtonMaximize.Location = new System.Drawing.Point(800, 2);
             this.ButtonMaximize.Name = "ButtonMaximize";
             this.ButtonMaximize.Size = new System.Drawing.Size(32, 32);
             this.ButtonMaximize.TabIndex = 2;
@@ -153,7 +165,7 @@
             this.ButtonClose.FlatAppearance.BorderSize = 0;
             this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonClose.Location = new System.Drawing.Point(736, 2);
+            this.ButtonClose.Location = new System.Drawing.Point(832, 2);
             this.ButtonClose.Name = "ButtonClose";
             this.ButtonClose.Size = new System.Drawing.Size(32, 32);
             this.ButtonClose.TabIndex = 1;
@@ -166,7 +178,7 @@
             this.EndButton.FlatAppearance.BorderSize = 0;
             this.EndButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EndButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EndButton.Location = new System.Drawing.Point(369, 552);
+            this.EndButton.Location = new System.Drawing.Point(743, 582);
             this.EndButton.Name = "EndButton";
             this.EndButton.Size = new System.Drawing.Size(92, 48);
             this.EndButton.TabIndex = 6;
@@ -205,7 +217,7 @@
             this.FakturaButton.FlatAppearance.BorderSize = 0;
             this.FakturaButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.FakturaButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FakturaButton.Location = new System.Drawing.Point(246, 552);
+            this.FakturaButton.Location = new System.Drawing.Point(631, 582);
             this.FakturaButton.Name = "FakturaButton";
             this.FakturaButton.Size = new System.Drawing.Size(92, 48);
             this.FakturaButton.TabIndex = 11;
@@ -222,7 +234,7 @@
             // 
             // SearchItemTextBox
             // 
-            this.SearchItemTextBox.Location = new System.Drawing.Point(595, 119);
+            this.SearchItemTextBox.Location = new System.Drawing.Point(394, 137);
             this.SearchItemTextBox.Name = "SearchItemTextBox";
             this.SearchItemTextBox.Size = new System.Drawing.Size(153, 20);
             this.SearchItemTextBox.TabIndex = 20;
@@ -242,7 +254,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(378, 472);
+            this.label6.Location = new System.Drawing.Point(804, 490);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(31, 13);
             this.label6.TabIndex = 32;
@@ -253,7 +265,7 @@
             this.MomsLabel.AutoSize = true;
             this.MomsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MomsLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.MomsLabel.Location = new System.Drawing.Point(415, 496);
+            this.MomsLabel.Location = new System.Drawing.Point(789, 514);
             this.MomsLabel.Name = "MomsLabel";
             this.MomsLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.MomsLabel.Size = new System.Drawing.Size(0, 13);
@@ -265,7 +277,7 @@
             this.TotalInkMomsLabel.AutoSize = true;
             this.TotalInkMomsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TotalInkMomsLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.TotalInkMomsLabel.Location = new System.Drawing.Point(415, 523);
+            this.TotalInkMomsLabel.Location = new System.Drawing.Point(747, 541);
             this.TotalInkMomsLabel.Name = "TotalInkMomsLabel";
             this.TotalInkMomsLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.TotalInkMomsLabel.Size = new System.Drawing.Size(0, 13);
@@ -276,7 +288,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(327, 523);
+            this.label16.Location = new System.Drawing.Point(753, 541);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(82, 13);
             this.label16.TabIndex = 35;
@@ -286,7 +298,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(374, 496);
+            this.label17.Location = new System.Drawing.Point(800, 514);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(35, 13);
             this.label17.TabIndex = 36;
@@ -297,7 +309,7 @@
             this.TotalPriceLabel.AutoSize = true;
             this.TotalPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TotalPriceLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.TotalPriceLabel.Location = new System.Drawing.Point(415, 472);
+            this.TotalPriceLabel.Location = new System.Drawing.Point(789, 490);
             this.TotalPriceLabel.Name = "TotalPriceLabel";
             this.TotalPriceLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.TotalPriceLabel.Size = new System.Drawing.Size(0, 13);
@@ -308,7 +320,7 @@
             // 
             this.UpdateMedecinLabel.AutoSize = true;
             this.UpdateMedecinLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UpdateMedecinLabel.Location = new System.Drawing.Point(562, 592);
+            this.UpdateMedecinLabel.Location = new System.Drawing.Point(658, 687);
             this.UpdateMedecinLabel.Name = "UpdateMedecinLabel";
             this.UpdateMedecinLabel.Size = new System.Drawing.Size(194, 13);
             this.UpdateMedecinLabel.TabIndex = 38;
@@ -326,13 +338,12 @@
             this.itemAmount,
             this.itemPrice});
             this.ItemDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.ItemDataGridView.Location = new System.Drawing.Point(515, 145);
+            this.ItemDataGridView.Location = new System.Drawing.Point(314, 163);
             this.ItemDataGridView.Name = "ItemDataGridView";
             this.ItemDataGridView.RowHeadersVisible = false;
             this.ItemDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ItemDataGridView.Size = new System.Drawing.Size(233, 316);
             this.ItemDataGridView.TabIndex = 45;
-            this.ItemDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ItemDataGridView_CellContentClick);
             this.ItemDataGridView.DoubleClick += new System.EventHandler(this.ItemDataGridView_DoubleClick);
             // 
             // ItemName
@@ -352,24 +363,24 @@
             this.itemPrice.Name = "itemPrice";
             this.itemPrice.Width = 80;
             // 
-            // DataGridViewItemList
+            // ItemListDataGridView
             // 
-            this.DataGridViewItemList.AllowUserToAddRows = false;
-            this.DataGridViewItemList.AllowUserToDeleteRows = false;
-            this.DataGridViewItemList.AllowUserToResizeColumns = false;
-            this.DataGridViewItemList.AllowUserToResizeRows = false;
-            this.DataGridViewItemList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridViewItemList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ItemListDataGridView.AllowUserToAddRows = false;
+            this.ItemListDataGridView.AllowUserToDeleteRows = false;
+            this.ItemListDataGridView.AllowUserToResizeColumns = false;
+            this.ItemListDataGridView.AllowUserToResizeRows = false;
+            this.ItemListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ItemListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.name,
             this.amount,
             this.price});
-            this.DataGridViewItemList.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.DataGridViewItemList.Location = new System.Drawing.Point(227, 145);
-            this.DataGridViewItemList.Name = "DataGridViewItemList";
-            this.DataGridViewItemList.RowHeadersVisible = false;
-            this.DataGridViewItemList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DataGridViewItemList.Size = new System.Drawing.Size(234, 316);
-            this.DataGridViewItemList.TabIndex = 46;
+            this.ItemListDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.ItemListDataGridView.Location = new System.Drawing.Point(601, 163);
+            this.ItemListDataGridView.Name = "ItemListDataGridView";
+            this.ItemListDataGridView.RowHeadersVisible = false;
+            this.ItemListDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ItemListDataGridView.Size = new System.Drawing.Size(234, 316);
+            this.ItemListDataGridView.TabIndex = 46;
             // 
             // name
             // 
@@ -395,7 +406,7 @@
             this.NewSaleButton.FlatAppearance.BorderSize = 0;
             this.NewSaleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.NewSaleButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NewSaleButton.Location = new System.Drawing.Point(134, 552);
+            this.NewSaleButton.Location = new System.Drawing.Point(515, 582);
             this.NewSaleButton.Name = "NewSaleButton";
             this.NewSaleButton.Size = new System.Drawing.Size(92, 48);
             this.NewSaleButton.TabIndex = 47;
@@ -441,7 +452,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(592, 103);
+            this.label3.Location = new System.Drawing.Point(391, 121);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 13);
             this.label3.TabIndex = 55;
@@ -451,7 +462,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(234, 129);
+            this.label5.Location = new System.Drawing.Point(608, 147);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 13);
             this.label5.TabIndex = 56;
@@ -461,7 +472,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(512, 129);
+            this.label7.Location = new System.Drawing.Point(311, 147);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(59, 13);
             this.label7.TabIndex = 57;
@@ -473,7 +484,7 @@
             this.ShowStockButton.FlatAppearance.BorderSize = 0;
             this.ShowStockButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ShowStockButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ShowStockButton.Location = new System.Drawing.Point(629, 467);
+            this.ShowStockButton.Location = new System.Drawing.Point(428, 485);
             this.ShowStockButton.Name = "ShowStockButton";
             this.ShowStockButton.Size = new System.Drawing.Size(119, 33);
             this.ShowStockButton.TabIndex = 58;
@@ -481,12 +492,112 @@
             this.ShowStockButton.UseVisualStyleBackColor = false;
             this.ShowStockButton.Click += new System.EventHandler(this.ShowStockButton_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(21, 275);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(94, 13);
+            this.label4.TabIndex = 60;
+            this.label4.Text = "Ubetalte Recepter";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(21, 495);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(112, 13);
+            this.label8.TabIndex = 61;
+            this.label8.Text = "Ubetalte Behandlinger";
+            // 
+            // UnPaidPrescriptionsDataGridView
+            // 
+            this.UnPaidPrescriptionsDataGridView.AllowUserToAddRows = false;
+            this.UnPaidPrescriptionsDataGridView.AllowUserToDeleteRows = false;
+            this.UnPaidPrescriptionsDataGridView.AllowUserToResizeColumns = false;
+            this.UnPaidPrescriptionsDataGridView.AllowUserToResizeRows = false;
+            this.UnPaidPrescriptionsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.UnPaidPrescriptionsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.prescriptionName,
+            this.prescriptionAmount,
+            this.prescriptionPrice});
+            this.UnPaidPrescriptionsDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.UnPaidPrescriptionsDataGridView.Location = new System.Drawing.Point(24, 291);
+            this.UnPaidPrescriptionsDataGridView.Name = "UnPaidPrescriptionsDataGridView";
+            this.UnPaidPrescriptionsDataGridView.RowHeadersVisible = false;
+            this.UnPaidPrescriptionsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.UnPaidPrescriptionsDataGridView.Size = new System.Drawing.Size(233, 186);
+            this.UnPaidPrescriptionsDataGridView.TabIndex = 63;
+            this.UnPaidPrescriptionsDataGridView.DoubleClick += new System.EventHandler(this.UnPaidPrescriptionsDataGridView_DoubleClick);
+            // 
+            // prescriptionName
+            // 
+            this.prescriptionName.HeaderText = "Navn";
+            this.prescriptionName.Name = "prescriptionName";
+            // 
+            // prescriptionAmount
+            // 
+            this.prescriptionAmount.HeaderText = "Antal";
+            this.prescriptionAmount.Name = "prescriptionAmount";
+            this.prescriptionAmount.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.prescriptionAmount.Width = 50;
+            // 
+            // prescriptionPrice
+            // 
+            this.prescriptionPrice.HeaderText = "Pris";
+            this.prescriptionPrice.Name = "prescriptionPrice";
+            this.prescriptionPrice.Width = 80;
+            // 
+            // UnPaidTreatmentDataGridView
+            // 
+            this.UnPaidTreatmentDataGridView.AllowUserToAddRows = false;
+            this.UnPaidTreatmentDataGridView.AllowUserToDeleteRows = false;
+            this.UnPaidTreatmentDataGridView.AllowUserToResizeColumns = false;
+            this.UnPaidTreatmentDataGridView.AllowUserToResizeRows = false;
+            this.UnPaidTreatmentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.UnPaidTreatmentDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.treatmentName,
+            this.treatmentDay,
+            this.treatmentPrice});
+            this.UnPaidTreatmentDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.UnPaidTreatmentDataGridView.Location = new System.Drawing.Point(24, 511);
+            this.UnPaidTreatmentDataGridView.Name = "UnPaidTreatmentDataGridView";
+            this.UnPaidTreatmentDataGridView.RowHeadersVisible = false;
+            this.UnPaidTreatmentDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.UnPaidTreatmentDataGridView.Size = new System.Drawing.Size(233, 186);
+            this.UnPaidTreatmentDataGridView.TabIndex = 64;
+            this.UnPaidTreatmentDataGridView.DoubleClick += new System.EventHandler(this.UnPaidTreatmentDataGridView_DoubleClick);
+            // 
+            // treatmentName
+            // 
+            this.treatmentName.HeaderText = "Navn";
+            this.treatmentName.Name = "treatmentName";
+            // 
+            // treatmentDay
+            // 
+            this.treatmentDay.HeaderText = "Day";
+            this.treatmentDay.Name = "treatmentDay";
+            this.treatmentDay.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.treatmentDay.Width = 50;
+            // 
+            // treatmentPrice
+            // 
+            this.treatmentPrice.HeaderText = "Pris";
+            this.treatmentPrice.Name = "treatmentPrice";
+            this.treatmentPrice.Width = 80;
+            // 
             // SaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
-            this.ClientSize = new System.Drawing.Size(768, 614);
+            this.ClientSize = new System.Drawing.Size(864, 709);
+            this.Controls.Add(this.UnPaidTreatmentDataGridView);
+            this.Controls.Add(this.UnPaidPrescriptionsDataGridView);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.ShowStockButton);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
@@ -496,7 +607,7 @@
             this.Controls.Add(this.EmailTextBox);
             this.Controls.Add(this.AdressTextBox);
             this.Controls.Add(this.NewSaleButton);
-            this.Controls.Add(this.DataGridViewItemList);
+            this.Controls.Add(this.ItemListDataGridView);
             this.Controls.Add(this.ItemDataGridView);
             this.Controls.Add(this.UpdateMedecinLabel);
             this.Controls.Add(this.TotalPriceLabel);
@@ -521,7 +632,9 @@
             this.PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewItemList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ItemListDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UnPaidPrescriptionsDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.UnPaidTreatmentDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -552,11 +665,8 @@
         private System.Windows.Forms.Label TotalPriceLabel;
         private System.Windows.Forms.Label UpdateMedecinLabel;
         private System.Windows.Forms.DataGridView ItemDataGridView;
-        private System.Windows.Forms.DataGridView DataGridViewItemList;
+        private System.Windows.Forms.DataGridView ItemListDataGridView;
         private System.Windows.Forms.Button NewSaleButton;
-        private System.Windows.Forms.DataGridViewTextBoxColumn name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn amount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn price;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemName;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemAmount;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemPrice;
@@ -568,6 +678,19 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button ShowStockButton;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridView UnPaidPrescriptionsDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prescriptionName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prescriptionAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prescriptionPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn amount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn price;
+        private System.Windows.Forms.DataGridView UnPaidTreatmentDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn treatmentName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn treatmentDay;
+        private System.Windows.Forms.DataGridViewTextBoxColumn treatmentPrice;
     }
 
 }
