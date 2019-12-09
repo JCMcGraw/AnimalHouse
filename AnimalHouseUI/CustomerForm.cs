@@ -413,9 +413,7 @@ namespace AnimalHouseUI
             textBox_adresse.Clear();
             textBox_email.Clear();
             textBox_cvr.Clear();
-
-            //Denne label gider ikke opdatere, for some reason
-            
+ 
            label_headline.Text = "Administrer kunde";
             LabelTitle.Visible = true;
             button_opret.Enabled = true;
