@@ -58,6 +58,7 @@
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.speciestype = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.button_help = new System.Windows.Forms.Button();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_dyr)).BeginInit();
@@ -374,12 +375,28 @@
             this.speciestype.HeaderText = "Art";
             this.speciestype.Name = "speciestype";
             // 
+            // button_help
+            // 
+            this.button_help.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
+            this.button_help.BackgroundImage = global::AnimalHouseUI.Properties.Resources.question_mark_32px;
+            this.button_help.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button_help.FlatAppearance.BorderSize = 0;
+            this.button_help.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_help.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_help.Location = new System.Drawing.Point(583, 42);
+            this.button_help.Name = "button_help";
+            this.button_help.Size = new System.Drawing.Size(45, 36);
+            this.button_help.TabIndex = 28;
+            this.button_help.UseVisualStyleBackColor = false;
+            this.button_help.Click += new System.EventHandler(this.button_help_Click);
+            // 
             // CustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(640, 542);
+            this.Controls.Add(this.button_help);
             this.Controls.Add(this.dataGridView_dyr);
             this.Controls.Add(this.label_erhverskunde);
             this.Controls.Add(this.checkBox_erhverskunde);
@@ -446,5 +463,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn speciestype;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button button_help;
     }
 }

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using AnimalHouse;
 using AnimalHouseEntities;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 
 namespace AnimalHouseUI
@@ -237,8 +238,7 @@ namespace AnimalHouseUI
                 {
                     string message = BossController.Instance().customerController.UpdateCustomer(tmpcustomer);
                     MessageBox.Show(message);
-                    ResetForm();
-
+                  
                 }
                 catch(Exception exception)
                 {
@@ -248,8 +248,11 @@ namespace AnimalHouseUI
                 }
 
             }
-            label_headline.Text = name.ToString();
-
+            else
+            {
+                return;
+            }
+       
         }
 
         private void button_slet_Click(object sender, EventArgs e)
@@ -415,7 +418,6 @@ namespace AnimalHouseUI
             textBox_cvr.Clear();
  
            label_headline.Text = "Administrer kunde";
-            LabelTitle.Visible = true;
             button_opret.Enabled = true;
             button_rediger.Enabled = false;
             button_dyr.Enabled = false;
@@ -465,6 +467,24 @@ namespace AnimalHouseUI
         {
             return BossController.Instance().customerController.CheckUniquePhone(phone);
                      }
-        
+
+        //private void button1_Click(object sender, EventArgs e)
+        //{
+
+        //}
+
+        private void button_help_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                string file = "../../Customer-Form-Help.pdf";
+                Process.Start(file);
+            }
+        catch
+            {
+                MessageBox.Show("Filen kunne ikke findes");
+            }
+            }
     }
 }

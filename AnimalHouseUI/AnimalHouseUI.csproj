@@ -251,5 +251,8 @@
     <None Include="Resources\question_mark_32px.png" />
     <None Include="Resources\AnimalHouse.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="helpfiles\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
