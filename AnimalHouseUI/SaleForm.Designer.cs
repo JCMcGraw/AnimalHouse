@@ -320,11 +320,11 @@
             // 
             this.UpdateMedecinLabel.AutoSize = true;
             this.UpdateMedecinLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UpdateMedecinLabel.Location = new System.Drawing.Point(658, 687);
+            this.UpdateMedecinLabel.Location = new System.Drawing.Point(326, 541);
             this.UpdateMedecinLabel.Name = "UpdateMedecinLabel";
-            this.UpdateMedecinLabel.Size = new System.Drawing.Size(194, 13);
+            this.UpdateMedecinLabel.Size = new System.Drawing.Size(191, 13);
             this.UpdateMedecinLabel.TabIndex = 38;
-            this.UpdateMedecinLabel.Text = "Dato for sidste opdateret mececin priser";
+            this.UpdateMedecinLabel.Text = "Dato for sidste opdateret Medicin priser";
             // 
             // ItemDataGridView
             // 
@@ -506,7 +506,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(21, 495);
+            this.label8.Location = new System.Drawing.Point(21, 444);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(112, 13);
             this.label8.TabIndex = 61;
@@ -528,7 +528,7 @@
             this.UnPaidPrescriptionsDataGridView.Name = "UnPaidPrescriptionsDataGridView";
             this.UnPaidPrescriptionsDataGridView.RowHeadersVisible = false;
             this.UnPaidPrescriptionsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.UnPaidPrescriptionsDataGridView.Size = new System.Drawing.Size(233, 186);
+            this.UnPaidPrescriptionsDataGridView.Size = new System.Drawing.Size(233, 138);
             this.UnPaidPrescriptionsDataGridView.TabIndex = 63;
             this.UnPaidPrescriptionsDataGridView.DoubleClick += new System.EventHandler(this.UnPaidPrescriptionsDataGridView_DoubleClick);
             // 
@@ -562,11 +562,11 @@
             this.treatmentDay,
             this.treatmentPrice});
             this.UnPaidTreatmentDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.UnPaidTreatmentDataGridView.Location = new System.Drawing.Point(24, 511);
+            this.UnPaidTreatmentDataGridView.Location = new System.Drawing.Point(24, 463);
             this.UnPaidTreatmentDataGridView.Name = "UnPaidTreatmentDataGridView";
             this.UnPaidTreatmentDataGridView.RowHeadersVisible = false;
             this.UnPaidTreatmentDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.UnPaidTreatmentDataGridView.Size = new System.Drawing.Size(233, 186);
+            this.UnPaidTreatmentDataGridView.Size = new System.Drawing.Size(233, 135);
             this.UnPaidTreatmentDataGridView.TabIndex = 64;
             this.UnPaidTreatmentDataGridView.DoubleClick += new System.EventHandler(this.UnPaidTreatmentDataGridView_DoubleClick);
             // 
@@ -593,7 +593,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
-            this.ClientSize = new System.Drawing.Size(864, 709);
+            this.ClientSize = new System.Drawing.Size(864, 661);
             this.Controls.Add(this.UnPaidTreatmentDataGridView);
             this.Controls.Add(this.UnPaidPrescriptionsDataGridView);
             this.Controls.Add(this.label8);

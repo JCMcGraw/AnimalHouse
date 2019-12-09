@@ -172,7 +172,10 @@ namespace AnimalHouseUI
                 MessageBox.Show(errorMessage);
                 return;
             }
-
+            if (CheckCustomerDeletion()==false)
+            {
+                return;
+            }
             textBox_navn.Text = customer.name.ToString();
             textBox_adresse.Text = customer.address.ToString();
             textBox_email.Text = customer.email.ToString();
@@ -201,8 +204,9 @@ namespace AnimalHouseUI
             button_rediger.Enabled = true;
             button_slet.Enabled = true;
             button_dyr.Enabled = true;
-            
-            CheckCustomerDeletion();
+            label_headline.Text = customer.name.ToString();
+
+              
         }
 
         private void button_rediger_Click(object sender, EventArgs e)
@@ -218,35 +222,16 @@ namespace AnimalHouseUI
                     MessageBox.Show("Ugyldig E-mailadresse");
                     return;
                 }
-
-
-                if (CheckUniquePhone(textBox_phonenumber.Text.ToString()) == false)
-                {
-                    MessageBox.Show("Telefonnummeret er allerede i brug");
-                    return;
-
-                }
-
-                string phone = textBox_phonenumber.Text.ToString();
                 
-                try
-                {
-                    customer = BossController.Instance().customerController.GetCustomer(phone);
-                }
-                catch (Exception exception)
-                {
-                    string errorMessage = ErrorManager.Instance().GetErrorMessage(exception);
-                    MessageBox.Show(errorMessage);
-                    return;
-                }
                 string name = textBox_navn.Text.ToString();
-                
+                string phone = textBox_phonenumber.Text.ToString();
                 string address = textBox_adresse.Text.ToString();
                 string email = textBox_email.Text.ToString();
                 int customerID = customer.customerID;
                 int cvr = 0;
+                bool active = customer.active;
 
-                Customer tmpcustomer = CustomerFactory.Instance().CreateCustomer(customerID, name, address, phone, email, true, cvr);
+                Customer tmpcustomer = CustomerFactory.Instance().CreateCustomer(customerID, name, address, phone, email, active, cvr);
 
                 try
                 {
@@ -292,9 +277,7 @@ namespace AnimalHouseUI
                 }
 
             }
-
             ResetForm();
-
         }
 
         private void button_opret_Click(object sender, EventArgs e)
@@ -402,9 +385,9 @@ namespace AnimalHouseUI
             }
         }
 
-        private void CheckCustomerDeletion()
+        private bool CheckCustomerDeletion()
         {
-            customer = BossController.Instance().customerController.GetCustomer(textBox_phonenumber.Text.ToString());
+          
             if (customer.active == false)
             {
                 var confirm = MessageBox.Show("Denne kunde er slettet, vil du reaktivere?", "Kunde slettet", MessageBoxButtons.YesNoCancel);
@@ -416,9 +399,11 @@ namespace AnimalHouseUI
                     string message = BossController.Instance().customerController.UndeleteCustomer(customer);
                     MessageBox.Show(message);
 
+                    return true;
                 }
+                return false;
             }
-
+            return true;
         }
 
         private void ResetForm()
@@ -428,14 +413,14 @@ namespace AnimalHouseUI
             textBox_adresse.Clear();
             textBox_email.Clear();
             textBox_cvr.Clear();
-
-            //Denne label gider ikke opdatere, for some reason
-            LabelTitle.Text = "Administrer kunde";
-
+ 
+           label_headline.Text = "Administrer kunde";
+            LabelTitle.Visible = true;
             button_opret.Enabled = true;
             button_rediger.Enabled = false;
             button_dyr.Enabled = false;
             button_slet.Enabled = false;
+            checkBox_erhverskunde.Checked = false;
         }
 
         public bool CheckForCVRdegit(string cvr)

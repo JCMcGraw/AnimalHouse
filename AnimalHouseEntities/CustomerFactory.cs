@@ -30,12 +30,12 @@ namespace AnimalHouseEntities
         {
             if (cvr != 0)
             {
-                return new BusinessCustomer(cvr, name, address, phone, email, true);
+                return new BusinessCustomer(cvr, name, address, phone, email, active);
 
             }
             else
             {
-                return new PrivateCustomer(name, address, phone, email, true);
+                return new PrivateCustomer(name, address, phone, email, active);
             }
 
 
@@ -45,12 +45,12 @@ namespace AnimalHouseEntities
         {
             if (cvr != 0)
             {
-                return new BusinessCustomer(customerID, cvr, name, address, phone, email, true);
+                return new BusinessCustomer(customerID, cvr, name, address, phone, email, active);
 
             }
             else
             {
-                return new PrivateCustomer(customerID, name, address, phone, email, true);
+                return new PrivateCustomer(customerID, name, address, phone, email, active);
             }
         }
     }
