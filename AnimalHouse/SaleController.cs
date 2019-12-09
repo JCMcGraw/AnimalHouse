@@ -55,5 +55,12 @@ namespace AnimalHouse
             List<Sale> sales = saleManager.GetManySalesByCustomerID(customer);
             return sales;
         }
+
+        public void CreateInvoice(Sale sale)
+        {
+            Iinvoice invoice = new Invoice();
+
+            invoice.CreatePDF(sale);
+        }
     }
 }

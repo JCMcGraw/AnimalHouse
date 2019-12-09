@@ -1,15 +1,16 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using AnimalHousePersistence;
 using AnimalHouseEntities;
+using AnimalHousePersistence;
 
 namespace AnimalHouseUnitTest
 {
     [TestClass]
     public class SaleUnitTest
+
     {
-        static Customer customer = new Customer(1,"","","","",false);
-        Sale sale = new Sale(customer,DateTime.Now);
+        static Customer customer = new Customer(1, "", "", "", "", false);
+        Sale sale = new Sale(customer, DateTime.Now);
 
         [TestMethod]
         public void PriceTestMethod()
@@ -28,7 +29,7 @@ namespace AnimalHouseUnitTest
         [TestMethod]
         public void TotalPriceInkMomsTestMethod()
         {
-            decimal totalPriceInkMoms = sale.TotalPriceInkMoms(25,6.25m);
+            decimal totalPriceInkMoms = sale.TotalPriceInkMoms(25, 6.25m);
             Assert.AreEqual(31.25m, totalPriceInkMoms);
         }
     }
