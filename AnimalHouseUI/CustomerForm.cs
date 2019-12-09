@@ -222,35 +222,16 @@ namespace AnimalHouseUI
                     MessageBox.Show("Ugyldig E-mailadresse");
                     return;
                 }
-
-
-                if (CheckUniquePhone(textBox_phonenumber.Text.ToString()) == false)
-                {
-                    MessageBox.Show("Telefonnummeret er allerede i brug");
-                    return;
-
-                }
-
-                string phone = textBox_phonenumber.Text.ToString();
                 
-                try
-                {
-                    customer = BossController.Instance().customerController.GetCustomer(phone);
-                }
-                catch (Exception exception)
-                {
-                    string errorMessage = ErrorManager.Instance().GetErrorMessage(exception);
-                    MessageBox.Show(errorMessage);
-                    return;
-                }
                 string name = textBox_navn.Text.ToString();
-                
+                string phone = textBox_phonenumber.Text.ToString();
                 string address = textBox_adresse.Text.ToString();
                 string email = textBox_email.Text.ToString();
                 int customerID = customer.customerID;
                 int cvr = 0;
+                bool active = customer.active;
 
-                Customer tmpcustomer = CustomerFactory.Instance().CreateCustomer(customerID, name, address, phone, email, true, cvr);
+                Customer tmpcustomer = CustomerFactory.Instance().CreateCustomer(customerID, name, address, phone, email, active, cvr);
 
                 try
                 {
@@ -296,9 +277,7 @@ namespace AnimalHouseUI
                 }
 
             }
-
             ResetForm();
-
         }
 
         private void button_opret_Click(object sender, EventArgs e)

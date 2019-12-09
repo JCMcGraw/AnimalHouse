@@ -196,9 +196,8 @@ namespace AnimalHouseUI
         {
             try
             {
-                Iinvoice invoice = new Invoice();
-                invoice.CreatePDF(sale);
-
+                BossController.Instance().saleController.CreateInvoice(sale);
+                
                 string file = "Faktura" + sale.saleID.ToString() + ".pdf";
                 Process.Start(file);
             }
