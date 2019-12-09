@@ -266,37 +266,37 @@ namespace AnimalHousePersistence
             return allspecies;
         }
 
-        public List<string> GetAllJounalEntriesByAnimalID(Animal animal)
+        public List<MedicalRecord> GetAllJournalEntriesByAnimalID(int animalID)
         {
-            
 
-            string query = Utility.ReadSQLQueryFromFile("GetAllJounalEntriesByAnimalID");
+            string query = Utility.ReadSQLQueryFromFile("GetAllJournalEntriesByAnimalID");
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("@animalid", animal.animalID.ToString(), SqlDbType.Int);
+            sQLQuery.AddParameter("@animalid", animalID.ToString(), SqlDbType.Int);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            List<string> entries = new List<string>();
+            List<MedicalRecord> entries = new List<MedicalRecord>();
 
             entries = GetJournalList(sQLQueryResult);
 
             return entries;
         }
 
-        public List<string>GetJournalList(SQLQueryResult sQLQueryResult)
+        public List<MedicalRecord>GetJournalList(SQLQueryResult sQLQueryResult)
         {
-            List<string> entries = new List<string>();
+            List<MedicalRecord> entries = new List<MedicalRecord>();
 
             for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
             {
-                entries.Add((string)sQLQueryResult.dataTable.Rows[i]["Entry"]);
+                entries.Add((MedicalRecord)sQLQueryResult.dataTable.Rows[i]["Entry"]);
+            
             }
             return entries;
         }
 
-        public void CreateMedicalRecordEntry(MedicalRecord medicalRecord)
+        public MedicalRecord CreateMedicalRecordEntry(MedicalRecord medicalRecord)
         {
             Animal animal = medicalRecord.animal;
             Treatment treatment = medicalRecord.treatment;
@@ -318,6 +318,7 @@ namespace AnimalHousePersistence
                 throw new CantUpdateTreatment("", sQLQueryResult.exception);
             }
             medicalRecord.UpdateMedicalRecordID(medicalrecordID);
+            return medicalRecord;
         }
 
         public List<Prescription> GetAllPrescriptionByAnimal(int animalID)

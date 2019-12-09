@@ -69,7 +69,7 @@ namespace AnimalHouseEntities
         {
             this.prescriptions = prescriptions;
         }
-        public void AddMedicalRecordEntryList(List<MedicalRecord> medicalRecords)
+        public void AddMedicalRecordEntryList(List<MedicalRecord>medicalRecords)
         {
             this.medicalRecords = medicalRecords;
         }

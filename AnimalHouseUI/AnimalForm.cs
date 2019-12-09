@@ -32,6 +32,7 @@ namespace AnimalHouseUI
             this.animal = animal;
             InitializeComponent();
             animal_prescription.AutoGenerateColumns = false;
+            animal_medicalRecords.AutoGenerateColumns = false;
             //MessageBox.Show(animal.gender.ToString());
         }
         private void SetStatusComboBoxToDefault()
@@ -207,9 +208,28 @@ namespace AnimalHouseUI
                     animal_prescription.Rows[i].Cells["date"].Value = tmpprescription.prescriptionDay;
                     animal_prescription.Rows[i].Cells["amount"].Value = tmpprescription.amount;
                 }
-                animal.AddMedicalRecordEntryList(animal);
 
-                animal_MedicalRecord.DataSource = customer.animals;
+
+                //animal.AddMedicalRecordEntryList(medicalRecord);
+
+                animal_medicalRecords.DataSource = customer.animals;
+
+                List<MedicalRecord> medicalRecords = BossController.Instance().animalController.GetAllMedicalRecordByAnimal(animal.animalID);
+
+                animal.AddMedicalRecordEntryList(medicalRecords);
+
+                for (int i = 0; i < medicalRecords.Count; i++)
+                {
+                    MedicalRecord tmpmedicalrecords = medicalRecords[i];
+
+                    animal_medicalRecords.Rows[i].Cells["medicalRecordID"].Value = tmpmedicalrecords.medicalRecordID;
+                    //animal_medicalRecords.Rows[i].Cells["Entry"].Value = tmpmedicalrecords.Entry;
+                   
+                }
+
+
+
+                animal_medicalRecords.DataSource = customer.animals;
 
 
             }
@@ -344,6 +364,7 @@ namespace AnimalHouseUI
             animal_employee.DisplayMember = "name";
 
             LoadPrescription();
+            LoadMedicalRecord();
 
            
 
@@ -362,6 +383,20 @@ namespace AnimalHouseUI
             animal.AddPrescriptionList(prescription);
 
             
+
+        }
+        private void LoadMedicalRecord()
+
+        {
+            if (animal == null)
+            {
+                return;
+            }
+            List<MedicalRecord> medicalRecord = BossController.Instance().animalController.GetAllMedicalRecordByAnimal(animal.animalID);
+
+            animal.AddMedicalRecordEntryList(medicalRecord);
+
+
 
         }
         public bool selectGender

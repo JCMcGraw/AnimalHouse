@@ -118,7 +118,9 @@
     <Content Include="SQLQueries\GetAllEmployees.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLQueries\GetAllJounalEntriesByAnimalID.txt" />
+    <Content Include="SQLQueries\GetAllJournalEntriesByAnimalID.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQLQueries\GetAllMedicalRecordByAnimal.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
