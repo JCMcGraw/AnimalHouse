@@ -242,6 +242,7 @@ namespace AnimalHousePersistence
                 int treatmentID;
                 TreatmentType treatmentType;
                 Employee employee;
+                Employee animalEmployee = null;
                 OperationRoom operationRoom;
                 Cage cage;
                 Item item;
@@ -331,17 +332,20 @@ namespace AnimalHousePersistence
                 }
 
                 animalID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalID"];
-                int animalTitleID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalEmployeeTitleID"];
-                string animalTitleName = (string)sQLQueryResult.dataTable.Rows[i]["AnimalEmployeeTitle"];
+                if (!sQLQueryResult.dataTable.Rows[i].IsNull("AnimalEmployeeID"))
+                {
+                    int animalTitleID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalEmployeeTitleID"];
+                    string animalTitleName = (string)sQLQueryResult.dataTable.Rows[i]["AnimalEmployeeTitle"];
 
-                Title animalEmployeeTitle = TitleFactory.Instance().CreateTitle(animalTitleName, animalTitleID);
+                    Title animalEmployeeTitle = TitleFactory.Instance().CreateTitle(animalTitleName, animalTitleID);
 
-                int animalEmployeeID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalEmployeeID"];
-                string animalEmployeeName = (string)sQLQueryResult.dataTable.Rows[i]["AnimalEmployeeName"];
-                bool animalEmployeeActive = (bool)sQLQueryResult.dataTable.Rows[i]["AnimalEmployeeActive"];
+                    int animalEmployeeID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalEmployeeID"];
+                    string animalEmployeeName = (string)sQLQueryResult.dataTable.Rows[i]["AnimalEmployeeName"];
+                    bool animalEmployeeActive = (bool)sQLQueryResult.dataTable.Rows[i]["AnimalEmployeeActive"];
 
 
-                Employee animalEmployee = EmployeeFactory.Instance().CreateEmployee(animalEmployeeID, animalEmployeeName, animalEmployeeActive, animalEmployeeTitle.titleID, animalEmployeeTitle);
+                    animalEmployee = EmployeeFactory.Instance().CreateEmployee(animalEmployeeID, animalEmployeeName, animalEmployeeActive, animalEmployeeTitle.titleID, animalEmployeeTitle);
+                }
 
                 int animalSpeciesID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalSpeciesID"];
                 string animalSpeciesName = (string)sQLQueryResult.dataTable.Rows[i]["AnimalSpeciesName"];

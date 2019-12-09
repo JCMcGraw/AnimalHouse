@@ -628,6 +628,9 @@ namespace AnimalHouseUI
             Employee selectedEmployee = null;
             OperationRoom selectedOperationRoom = null;
             Cage selectedCage = null;
+            Item selectedItem = null;
+            int status = 0;
+            string headline;
 
             bool employeeAvailable = true;
 
@@ -729,23 +732,36 @@ namespace AnimalHouseUI
 
             }
 
-                //question string for verifying items
-                string message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra kl. {e.Item.StartDate.ToString("H:mm")} til kl. {e.Item.EndDate.ToString("H:mm")} den {e.Item.StartDate.ToString("dd/M")}";
+            SelectItemForTreatmentForm selectItemForTreatmentForm = new SelectItemForTreatmentForm((TreatmentType)ComboBoxTreatmentType.SelectedItem);
+            selectItemForTreatmentForm.ShowDialog();
+
+            if (selectItemForTreatmentForm.DialogResult == DialogResult.OK)
+            {
+                selectedItem = selectItemForTreatmentForm.selectedItem;
+            }
+            else
+            {
+                MessageBox.Show($"Der blev ikke valgt en behandling, prøv venligst igen");
+                e.Cancel = true;
+                return;
+            }
+
+            //question string for verifying items
+            string message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra kl. {e.Item.StartDate.ToString("H:mm")} til kl. {e.Item.EndDate.ToString("H:mm")} den {e.Item.StartDate.ToString("dd/M")}";
             //altered question string if treatment type is Observation
             if ((int)ComboBoxTreatmentType.SelectedValue == 3)
             {
                 message = $"Ønsker du at oprette denne {ComboBoxTreatmentType.Text} fra {e.Item.StartDate.ToString("dd/M")} til {e.Item.EndDate.ToString("dd/M")}";
             }
 
-            int status = 0;
-            string headline;
+
             if (((TreatmentType)ComboBoxTreatmentType.SelectedItem).treatmentTypeID == 3)
             {
-                headline = $"{ComboBoxTreatmentType.Text}";
+                headline = $"{ComboBoxTreatmentType.Text}, {animal.name} ({animal.Species.speciesType})";
             }
             else
             {
-                headline = $"{ComboBoxTreatmentType.Text}, {selectedEmployee.name}";
+                headline = $"{ComboBoxTreatmentType.Text}, {selectedEmployee.name}, {selectedItem.name}. {animal.name} ({animal.Species.speciesType})";
             }
             
 
@@ -754,10 +770,10 @@ namespace AnimalHouseUI
             if (dialogResult == DialogResult.Yes)
             {
                 //dummy item for testing
-                Item item = ItemFactory.Instance().CreateItem(9, "Vaccination", 1, 399m, 299m, false, true, true);
+                //Item item = ItemFactory.Instance().CreateItem(9, "Vaccination", 1, 399m, 299m, false, true, true);
 
                 //create new treatment
-                Treatment treatment = TreatmentFactory.Instance().CreateTreatment((TreatmentType)ComboBoxTreatmentType.SelectedItem, selectedOperationRoom, selectedCage, item, e.Item.StartDate, e.Item.EndDate, false, headline, true, animal, selectedEmployee,status);
+                Treatment treatment = TreatmentFactory.Instance().CreateTreatment((TreatmentType)ComboBoxTreatmentType.SelectedItem, selectedOperationRoom, selectedCage, selectedItem, e.Item.StartDate, e.Item.EndDate, false, headline, true, animal, selectedEmployee,status);
 
                 //add treatment to database and get treatment with treatment ID
                 Treatment treatmentWithID = bossController.treatmentController.CreateTreatment(treatment);
@@ -1042,31 +1058,41 @@ namespace AnimalHouseUI
         private void button_startbehandling_Click(object sender, EventArgs e)
         {
           
-            StartTreatment();
-            //hvis man ikke har valgt et aftale i kalanderen inden man trykker her, crasher den
-            //Update: Fiksed, sådan da! 
-            UpdateTreatmentStatus(2);
+            bool isValidStart = StartTreatment();
+            
+            if (isValidStart == true)
+            {
+                UpdateTreatmentStatus(2);
+            }
         }
 
-        public void StartTreatment()
+        public bool StartTreatment()
         {
             List<CalendarItem> calendaritems=(List<CalendarItem>)CalendarBooking.GetSelectedItems();
             if (calendaritems.Count==0)
             {
                 MessageBox.Show("Der er ikke valgt nogen aftale");
-                return;
+                return false;
             }
             else if (calendaritems.Count>1)
             {
                 MessageBox.Show("Der kan kun vælges en enkelt aftalte");
+                return false;
             }
             else
             {
                 int treatmentID = calendaritems[0].TreatmentID;
                 Treatment treatment = treatmentsCache[treatmentID];
 
+                if (treatment.status == 0)
+                {
+                    MessageBox.Show("Denne patient er ikke ankommet.");
+                    return false;
+                }
+
                 TreatmentForm treatmentform = new TreatmentForm(treatment);
                 treatmentform.Show();
+                return true;
             }
         }
 
@@ -1099,6 +1125,8 @@ namespace AnimalHouseUI
             treatmentsCache.Remove(treatmentID);
             //add updated treatment to cache
             treatmentsCache.Add(newTreatment.treatmentID, newTreatment);
+
+            RefreshMonthView();
         }
 
         private void ChangeColor(int status,CalendarItem calendarItem)

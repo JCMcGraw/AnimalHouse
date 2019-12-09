@@ -37,7 +37,7 @@
             this.ButtonClose = new System.Windows.Forms.Button();
             this.SelectButton = new System.Windows.Forms.Button();
             this.InfoLabel = new System.Windows.Forms.Label();
-            this.CancelButton = new System.Windows.Forms.Button();
+            this.CancellingButton = new System.Windows.Forms.Button();
             this.SelectCageCombobox = new System.Windows.Forms.ComboBox();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
@@ -155,19 +155,19 @@
             this.InfoLabel.TabIndex = 7;
             this.InfoLabel.Text = "Vælg bur";
             // 
-            // CancelButton
+            // CancellingButton
             // 
-            this.CancelButton.BackColor = System.Drawing.Color.AliceBlue;
-            this.CancelButton.FlatAppearance.BorderSize = 0;
-            this.CancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CancelButton.Location = new System.Drawing.Point(192, 143);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(118, 51);
-            this.CancelButton.TabIndex = 8;
-            this.CancelButton.Text = "Fortryd";
-            this.CancelButton.UseVisualStyleBackColor = false;
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            this.CancellingButton.BackColor = System.Drawing.Color.AliceBlue;
+            this.CancellingButton.FlatAppearance.BorderSize = 0;
+            this.CancellingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CancellingButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CancellingButton.Location = new System.Drawing.Point(192, 143);
+            this.CancellingButton.Name = "CancellingButton";
+            this.CancellingButton.Size = new System.Drawing.Size(118, 51);
+            this.CancellingButton.TabIndex = 8;
+            this.CancellingButton.Text = "Fortryd";
+            this.CancellingButton.UseVisualStyleBackColor = false;
+            this.CancellingButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // SelectCageCombobox
             // 
@@ -185,7 +185,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(394, 223);
             this.Controls.Add(this.SelectCageCombobox);
-            this.Controls.Add(this.CancelButton);
+            this.Controls.Add(this.CancellingButton);
             this.Controls.Add(this.InfoLabel);
             this.Controls.Add(this.SelectButton);
             this.Controls.Add(this.PanelHeader);
@@ -212,7 +212,7 @@
         #endregion
 
         private System.Windows.Forms.Label InfoLabel;
-        private System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.Button CancellingButton;
         private System.Windows.Forms.ComboBox SelectCageCombobox;
     }
 }

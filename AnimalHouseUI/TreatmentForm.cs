@@ -190,17 +190,17 @@ namespace AnimalHouseUI
             SaleItemForm saleItemForm = new SaleItemForm(prescriptionItem);
             saleItemForm.RemovePriceOption();
 
-            
             if (saleItemForm.ShowDialog() == DialogResult.OK)
             {
                 int amount = saleItemForm.saleLineItem.amount;
 
                 DateTime prescriptionDay = DateTime.Now;
+                bool payed = false;
                 Employee employee = treatment.employee;
                 Animal animal = treatment.animal;
                 Item item = prescriptionItem;
                 
-                Prescription prescription = PrescriptionFactory.Instance().CreatePrescription(amount, prescriptionDay, employee, animal, item);
+                Prescription prescription = PrescriptionFactory.Instance().CreatePrescription(amount, prescriptionDay,payed, employee, animal, item);
 
                 try
                 {

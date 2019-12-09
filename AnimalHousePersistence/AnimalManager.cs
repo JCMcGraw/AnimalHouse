@@ -408,9 +408,10 @@ namespace AnimalHousePersistence
 
                 int amount = (int)sQLQueryResult.dataTable.Rows[i]["Amount"];
                 DateTime prescriptionDay = (DateTime)sQLQueryResult.dataTable.Rows[i]["PrescriptionDay"];
+                bool payed = (bool)sQLQueryResult.dataTable.Rows[i]["Payed"];
                 prescriptionID = (int)sQLQueryResult.dataTable.Rows[i]["PrescriptionID"];
 
-                prescriptions.Add(PrescriptionFactory.Instance().CreatePrescription(prescriptionID, amount, prescriptionDay,employee, animal, item));
+                prescriptions.Add(PrescriptionFactory.Instance().CreatePrescription(prescriptionID, amount, prescriptionDay,payed,employee, animal, item));
             }
             return prescriptions;
         }
@@ -427,7 +428,6 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@animalID", prescription.animal.animalID.ToString(), SqlDbType.Int);
             sQLQuery.AddParameter("@itemID", prescription.item.itemID.ToString(), SqlDbType.Int);
             sQLQuery.AddParameter("@prescriptionDay", prescription.prescriptionDay.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
-
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
