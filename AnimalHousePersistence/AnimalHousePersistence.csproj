@@ -142,6 +142,7 @@
     <Content Include="SQLQueries\GetCustomer.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQLQueries\GetLastUpdate.txt" />
     <Content Include="SQLQueries\GetManyAnimalsByCustomerID.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

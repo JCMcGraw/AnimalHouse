@@ -266,10 +266,10 @@ namespace AnimalHousePersistence
             return allspecies;
         }
 
-        public List<MedicalRecord> GetAllJournalEntriesByAnimalID(int animalID)
+        public List<string> GetAllJournalEntriesByAnimalID(int animalID)
         {
 
-            string query = Utility.ReadSQLQueryFromFile("GetAllJournalEntriesByAnimalID");
+            string query = Utility.ReadSQLQueryFromFile("GetAllJournalEntriesByAnimalID.txt");
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
@@ -277,21 +277,21 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            List<MedicalRecord> entries = new List<MedicalRecord>();
+            List<string> entries = new List<string>();
 
             entries = GetJournalList(sQLQueryResult);
 
             return entries;
         }
 
-        public List<MedicalRecord>GetJournalList(SQLQueryResult sQLQueryResult)
+        public List<string> GetJournalList(SQLQueryResult sQLQueryResult)
         {
-            List<MedicalRecord> entries = new List<MedicalRecord>();
+            List<string> entries = new List<string>();
 
             for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
             {
-                entries.Add((MedicalRecord)sQLQueryResult.dataTable.Rows[i]["Entry"]);
-            
+                entries.Add((string)sQLQueryResult.dataTable.Rows[i]["Entry"]);
+
             }
             return entries;
         }

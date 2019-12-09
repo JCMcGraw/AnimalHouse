@@ -35,6 +35,10 @@ namespace AnimalHouseEntities
            
 
         }
+        public void UpdateMedicalRecordID(int medicalRecordID)
+        {
+            this.medicalRecordID = medicalRecordID;
+        }
 
        
     }

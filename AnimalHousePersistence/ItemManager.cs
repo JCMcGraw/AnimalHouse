@@ -33,6 +33,34 @@ namespace AnimalHousePersistence
                 return sQLQueryResult.exception.Message.ToString();
 
             }
+
+
+        }
+        public string GetLastUpdate(Item item)
+        {
+            string query = Utility.ReadSQLQueryFromFile("GetLastUpdate.txt");
+
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            sQLQuery.AddParameter("@CostPrice", item.costPrice.ToString(), SqlDbType.Decimal);
+
+
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+
+
+            if (sQLQueryResult.code == 0)
+            {
+                return "Prisen var sidst opdateret den...";
+            }
+            else
+            {
+                return sQLQueryResult.exception.Message.ToString();
+
+            }
+
+
         }
     }
 }

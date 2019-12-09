@@ -32,7 +32,7 @@ namespace AnimalHouseUI
             this.animal = animal;
             InitializeComponent();
             animal_prescription.AutoGenerateColumns = false;
-            animal_medicalRecords.AutoGenerateColumns = false;
+            //animal_medicalRecords.AutoGenerateColumns = false;
             //MessageBox.Show(animal.gender.ToString());
         }
         private void SetStatusComboBoxToDefault()
@@ -364,7 +364,7 @@ namespace AnimalHouseUI
             animal_employee.DisplayMember = "name";
 
             LoadPrescription();
-            LoadMedicalRecord();
+            //LoadMedicalRecord();
 
            
 
@@ -385,20 +385,20 @@ namespace AnimalHouseUI
             
 
         }
-        private void LoadMedicalRecord()
+        //private void LoadMedicalRecord()
 
-        {
-            if (animal == null)
-            {
-                return;
-            }
-            List<MedicalRecord> medicalRecord = BossController.Instance().animalController.GetAllMedicalRecordByAnimal(animal.animalID);
+        //{
+        //    if (animal == null)
+        //    {
+        //        return;
+        //    }
+        //    List<MedicalRecord> medicalRecord = BossController.Instance().animalController.GetAllMedicalRecordByAnimal(animal.animalID);
 
-            animal.AddMedicalRecordEntryList(medicalRecord);
+        //    animal.AddMedicalRecordEntryList(medicalRecord);
 
 
 
-        }
+        //}
         public bool selectGender
         {
             get
