@@ -172,7 +172,10 @@ namespace AnimalHouseUI
                 MessageBox.Show(errorMessage);
                 return;
             }
-
+            if (CheckCustomerDeletion()==false)
+            {
+                return;
+            }
             textBox_navn.Text = customer.name.ToString();
             textBox_adresse.Text = customer.address.ToString();
             textBox_email.Text = customer.email.ToString();
@@ -201,7 +204,7 @@ namespace AnimalHouseUI
             button_dyr.Enabled = true;
             label_headline.Text = customer.name.ToString();
 
-              CheckCustomerDeletion();
+              
         }
 
         private void button_rediger_Click(object sender, EventArgs e)
@@ -401,9 +404,9 @@ namespace AnimalHouseUI
             }
         }
 
-        private void CheckCustomerDeletion()
+        private bool CheckCustomerDeletion()
         {
-            customer = BossController.Instance().customerController.GetCustomer(textBox_phonenumber.Text.ToString());
+          
             if (customer.active == false)
             {
                 var confirm = MessageBox.Show("Denne kunde er slettet, vil du reaktivere?", "Kunde slettet", MessageBoxButtons.YesNoCancel);
@@ -415,9 +418,11 @@ namespace AnimalHouseUI
                     string message = BossController.Instance().customerController.UndeleteCustomer(customer);
                     MessageBox.Show(message);
 
+                    return true;
                 }
+                return false;
             }
-
+            return true;
         }
 
         private void ResetForm()
@@ -429,12 +434,14 @@ namespace AnimalHouseUI
             textBox_cvr.Clear();
 
             //Denne label gider ikke opdatere, for some reason
-            LabelTitle.Text = "Administrer kunde";
-
+            
+           label_headline.Text = "Administrer kunde";
+            LabelTitle.Visible = true;
             button_opret.Enabled = true;
             button_rediger.Enabled = false;
             button_dyr.Enabled = false;
             button_slet.Enabled = false;
+            checkBox_erhverskunde.Checked = false;
         }
 
         public bool CheckForCVRdegit(string cvr)
