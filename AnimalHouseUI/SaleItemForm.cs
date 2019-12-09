@@ -15,20 +15,22 @@ namespace AnimalHouseUI
     public partial class SaleItemForm : Form
     {
         Item item;
+        int amount;
         public SaleLineItem saleLineItem;
 
-        public SaleItemForm(Item item)
+        public SaleItemForm(Item item,int amount = -1)
         {
             InitializeComponent();
             this.item = item;
+            this.amount = amount;
         }
         private void SaleItemForm_Load_1(object sender, EventArgs e)
         {
-            if (item.prescription == true)
+            if (amount > -1)
             {
-
+                AmountTextBox.Text = amount.ToString();
+                AmountTextBox.Enabled = false;
             }
-
             NameLabel.Text = item.name.ToString();
             PriceTextBox.Text = item.price.ToString("N2");
         }
