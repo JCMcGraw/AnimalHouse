@@ -183,7 +183,7 @@ namespace AnimalHouseUI
             label_headline.Text = customer.name.ToString();
 
             CheckForBusinesscustomer(customer);
-            this.Refresh();
+          //  this.Refresh();
 
             //danner en liste af dyr der hedder animals. Denne liste bliver dannet et sted på animalmanager og der bruges en customer
             List<Animal> animals= BossController.Instance().animalController.GetManyAnimalByCustomerID(customer);
@@ -206,6 +206,8 @@ namespace AnimalHouseUI
             button_slet.Enabled = true;
             button_dyr.Enabled = true;
             label_headline.Text = customer.name.ToString();
+            checkBox_erhverskunde.Enabled = false;
+            textBox_cvr.Enabled = false;
 
               
         }
@@ -422,6 +424,8 @@ namespace AnimalHouseUI
             button_rediger.Enabled = false;
             button_dyr.Enabled = false;
             button_slet.Enabled = false;
+            checkBox_erhverskunde.Enabled = true;
+            textBox_cvr.Enabled = true;
             checkBox_erhverskunde.Checked = false;
         }
 
@@ -448,6 +452,11 @@ namespace AnimalHouseUI
             {
                 
                 textBox_cvr.Text = ((BusinessCustomer)customer).cvr.ToString();
+            }
+            else
+            {
+                checkBox_erhverskunde.Enabled = false;
+                textBox_cvr.Enabled = false;
             }
         }
 
@@ -478,7 +487,7 @@ namespace AnimalHouseUI
             try
             {
 
-                string file = "../../Customer-Form-Help.pdf";
+                string file = "../../../AnimalHouse/AnimalHouseUI/helpfiles/Customer-Form-Help.pdf";
                 Process.Start(file);
             }
         catch
