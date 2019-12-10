@@ -59,6 +59,9 @@
             this.speciestype = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.button_help = new System.Windows.Forms.Button();
+            this.label_nulstil = new System.Windows.Forms.Label();
+            this.button_nulstil = new System.Windows.Forms.Button();
+            this.label_hjaelp = new System.Windows.Forms.Label();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_dyr)).BeginInit();
@@ -390,12 +393,48 @@
             this.button_help.UseVisualStyleBackColor = false;
             this.button_help.Click += new System.EventHandler(this.button_help_Click);
             // 
+            // label_nulstil
+            // 
+            this.label_nulstil.AutoSize = true;
+            this.label_nulstil.Location = new System.Drawing.Point(586, 490);
+            this.label_nulstil.Name = "label_nulstil";
+            this.label_nulstil.Size = new System.Drawing.Size(35, 13);
+            this.label_nulstil.TabIndex = 29;
+            this.label_nulstil.Text = "Nulstil";
+            // 
+            // button_nulstil
+            // 
+            this.button_nulstil.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
+            this.button_nulstil.BackgroundImage = global::AnimalHouseUI.Properties.Resources.icons8_arrow_pointing_left_32px;
+            this.button_nulstil.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button_nulstil.FlatAppearance.BorderSize = 0;
+            this.button_nulstil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_nulstil.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_nulstil.Location = new System.Drawing.Point(576, 448);
+            this.button_nulstil.Name = "button_nulstil";
+            this.button_nulstil.Size = new System.Drawing.Size(45, 36);
+            this.button_nulstil.TabIndex = 30;
+            this.button_nulstil.UseVisualStyleBackColor = false;
+            this.button_nulstil.Click += new System.EventHandler(this.button_nulstil_Click);
+            // 
+            // label_hjaelp
+            // 
+            this.label_hjaelp.AutoSize = true;
+            this.label_hjaelp.Location = new System.Drawing.Point(586, 82);
+            this.label_hjaelp.Name = "label_hjaelp";
+            this.label_hjaelp.Size = new System.Drawing.Size(35, 13);
+            this.label_hjaelp.TabIndex = 31;
+            this.label_hjaelp.Text = "Hjælp";
+            // 
             // CustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(640, 542);
+            this.Controls.Add(this.label_hjaelp);
+            this.Controls.Add(this.button_nulstil);
+            this.Controls.Add(this.label_nulstil);
             this.Controls.Add(this.button_help);
             this.Controls.Add(this.dataGridView_dyr);
             this.Controls.Add(this.label_erhverskunde);
@@ -464,5 +503,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn speciestype;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button button_help;
+        private System.Windows.Forms.Label label_nulstil;
+        private System.Windows.Forms.Button button_nulstil;
+        private System.Windows.Forms.Label label_hjaelp;
     }
 }

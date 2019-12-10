@@ -240,6 +240,7 @@ namespace AnimalHouseUI
                 {
                     string message = BossController.Instance().customerController.UpdateCustomer(tmpcustomer);
                     MessageBox.Show(message);
+                    label_headline.Text = tmpcustomer.name.ToString();
                   
                 }
                 catch(Exception exception)
@@ -309,7 +310,7 @@ namespace AnimalHouseUI
 
                 if (cvr.ToString().Length == 8)
                 {
-                    //hvis cvrboxen er chacket af og tallet er i orden erstattes nullet med det nye cvr-nummer
+                    //hvis cvrboxen er checket af og tallet er i orden erstattes nullet med det nye cvr-nummer
                     cvrint =Convert.ToInt32(textBox_cvr.Text);
 
                 }
@@ -419,7 +420,7 @@ namespace AnimalHouseUI
             textBox_email.Clear();
             textBox_cvr.Clear();
  
-           label_headline.Text = "Administrer kunde";
+           label_headline.Text = "Administrer Kunde";
             button_opret.Enabled = true;
             button_rediger.Enabled = false;
             button_dyr.Enabled = false;
@@ -427,6 +428,7 @@ namespace AnimalHouseUI
             checkBox_erhverskunde.Enabled = true;
             textBox_cvr.Enabled = true;
             checkBox_erhverskunde.Checked = false;
+            dataGridView_dyr.DataSource = null;
         }
 
         public bool CheckForCVRdegit(string cvr)
@@ -452,6 +454,7 @@ namespace AnimalHouseUI
             {
                 
                 textBox_cvr.Text = ((BusinessCustomer)customer).cvr.ToString();
+                checkBox_erhverskunde.Checked = true;
             }
             else
             {
@@ -495,5 +498,12 @@ namespace AnimalHouseUI
                 MessageBox.Show("Filen kunne ikke findes");
             }
             }
+
+       
+
+        private void button_nulstil_Click(object sender, EventArgs e)
+        {
+            ResetForm();
+        }
     }
 }
