@@ -129,4 +129,76 @@ namespace AnimalHouseEntities
      
         }
     }
+
+    public class NoRemindersFoundException : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public NoRemindersFoundException()
+        { }
+
+        public NoRemindersFoundException(string message)
+            : base(message)
+        { }
+
+        public NoRemindersFoundException(string message, Exception inner)
+            : base(message, inner)
+        {
+
+        }
+    }
+
+    public class NoTreatmentTypesFoundException : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public NoTreatmentTypesFoundException()
+        { }
+
+        public NoTreatmentTypesFoundException(string message)
+            : base(message)
+        { }
+
+        public NoTreatmentTypesFoundException(string message, Exception inner)
+            : base(message, inner)
+        {
+
+        }
+    }
+
+    public class NoEmployeesFoundException : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public NoEmployeesFoundException()
+        { }
+
+        public NoEmployeesFoundException(string message)
+            : base(message)
+        { }
+
+        public NoEmployeesFoundException(string message, Exception inner)
+            : base(message, inner)
+        {
+
+        }
+    }
+
+    public class TreatmentNotCreatedException : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public TreatmentNotCreatedException()
+        { }
+
+        public TreatmentNotCreatedException(string message)
+            : base(message)
+        { }
+
+        public TreatmentNotCreatedException(string message, Exception inner)
+            : base(message, inner)
+        {
+
+        }
+    }
 }

@@ -25,9 +25,13 @@ namespace AnimalHouseUI
 
         public string GetErrorMessage(Exception exception)
         {
-            string errorMessage = "";
+            string errorMessage = "Der opstod en fejl i systemet. Kontakt din systemadministrator";
 
-            if (exception is NoItemsFoundException)
+            if (exception == null)
+            {
+                return "";
+            }
+            else if (exception is NoItemsFoundException)
             {
                 errorMessage = Localization.ErrorMessages.NoItemsFound + GetErrorMessage(exception.InnerException);
             }
@@ -57,6 +61,30 @@ namespace AnimalHouseUI
             {
                 errorMessage = Localization.ErrorMessages.CantCreatePrescription;
             }
+            else if (exception is NoRemindersFoundException)
+            {
+                if (exception.Message == "1")
+                {
+                    errorMessage = Localization.ErrorMessages.NoRemindersFound + GetErrorMessage(exception.InnerException);
+                }
+                else
+                {
+                    errorMessage = Localization.ErrorMessages.NoRemindersFound;
+                }
+            }
+            else if (exception is TreatmentNotCreatedException)
+            {
+                errorMessage = Localization.ErrorMessages.CantCreateTreatment + GetErrorMessage(exception.InnerException); ;
+            }
+            else if (exception is NoEmployeesFoundException)
+            {
+                errorMessage = Localization.ErrorMessages.NoEmployeesFound + GetErrorMessage(exception.InnerException); ;
+            }
+            else if (exception is NoTreatmentTypesFoundException)
+            {
+                errorMessage = Localization.ErrorMessages.NoTreatmentTypesFound + GetErrorMessage(exception.InnerException); ;
+            }
+
             else if (exception is SqlException)
             {
                 switch (((SqlException)exception).Number)

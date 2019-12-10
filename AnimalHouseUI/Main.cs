@@ -154,8 +154,13 @@ namespace AnimalHouseUI
 
         private void button_behandling_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             TreatmentBookingForm treatmentBookingForm = new TreatmentBookingForm();
-            treatmentBookingForm.Show();
+            if (treatmentBookingForm.StartingvaluesLoadedOK == true)
+            {
+                treatmentBookingForm.Show();
+            }
+            this.Cursor = Cursors.Default;
         }
 
         private void button_dyr_Click(object sender, EventArgs e)
