@@ -183,7 +183,7 @@ namespace AnimalHouseUI
             label_headline.Text = customer.name.ToString();
 
             CheckForBusinesscustomer(customer);
-          //  this.Refresh();
+         
 
             //danner en liste af dyr der hedder animals. Denne liste bliver dannet et sted på animalmanager og der bruges en customer
             List<Animal> animals= BossController.Instance().animalController.GetManyAnimalByCustomerID(customer);
@@ -436,6 +436,11 @@ namespace AnimalHouseUI
             return cvr.All(char.IsDigit);
         }
 
+        private void button_nulstil_Click(object sender, EventArgs e)
+        {
+            ResetForm();
+        }
+
         private void LoadeAllItemsInListBox()
         {
             List<Animal> animals = BossController.Instance().animalController.GetManyAnimalByCustomerID(customer);
@@ -480,10 +485,7 @@ namespace AnimalHouseUI
             return BossController.Instance().customerController.CheckUniquePhone(phone);
                      }
 
-        //private void button1_Click(object sender, EventArgs e)
-        //{
-
-        //}
+     
 
         private void button_help_Click(object sender, EventArgs e)
         {
@@ -501,9 +503,6 @@ namespace AnimalHouseUI
 
        
 
-        private void button_nulstil_Click(object sender, EventArgs e)
-        {
-            ResetForm();
-        }
+       
     }
 }
