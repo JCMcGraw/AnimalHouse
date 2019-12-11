@@ -11,6 +11,7 @@ using AnimalHouse;
 using AnimalHouseEntities;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
+using System.IO;
 
 
 namespace AnimalHouseUI
@@ -483,7 +484,7 @@ namespace AnimalHouseUI
         public bool CheckUniquePhone(string phone)
         {
             return BossController.Instance().customerController.CheckUniquePhone(phone);
-                     }
+         }
 
      
 
@@ -492,14 +493,14 @@ namespace AnimalHouseUI
             try
             {
 
-                string file = "../../../AnimalHouse/AnimalHouseUI/helpfiles/Customer-Form-Help.pdf";
-                Process.Start(file);
+                string file = Path.GetDirectoryName(Application.ExecutablePath) + "/helpfiles/Customer-Form-Help.pdf";
+                System.Diagnostics.Process.Start(file);
             }
-        catch
+            catch
             {
-                MessageBox.Show("Filen kunne ikke findes");
+                MessageBox.Show("Hjælpefilen kunne ikke findes");
             }
-            }
+        }
 
        
 

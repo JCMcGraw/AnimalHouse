@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.Calendar;
 using AnimalHouseEntities;
 using AnimalHouse;
+using System.IO;
 
 namespace AnimalHouseUI
 {
@@ -261,6 +262,20 @@ namespace AnimalHouseUI
                 oldTreatment.startTime, oldTreatment.endTime, oldTreatment.payed, oldTreatment.headline, oldTreatment.active, oldTreatment.animal, oldTreatment.employee, status);
 
             return newTreatment;
+        }
+
+        private void button_help_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                string file = Path.GetDirectoryName(Application.ExecutablePath) + "/helpfiles/Treatment_form_help.pdf";
+                System.Diagnostics.Process.Start(file);
+            }
+            catch
+            {
+                MessageBox.Show("Hjælpefilen kunne ikke findes");
+            }
         }
     }
 }
