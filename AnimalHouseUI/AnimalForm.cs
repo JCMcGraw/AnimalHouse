@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AnimalHouse;
 using AnimalHouseEntities;
+using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 
 namespace AnimalHouseUI
@@ -20,6 +22,8 @@ namespace AnimalHouseUI
         //Employee employee;
         List<Employee> employee;
         List<Species> species;
+        List<Prescription> prescriptions;
+        List<MedicalRecord> medicalRecords;
 
         
 
@@ -33,11 +37,14 @@ namespace AnimalHouseUI
             InitializeComponent();
             animal_prescription.AutoGenerateColumns = false;
 
+
+            button_create.Enabled = false;
+
             animal_name.Enabled = false;
             animal_bdate.Enabled = false;
             animal_species.Enabled = false;
             animal_gender.Enabled = false;
-            //animal_medicalRecords.AutoGenerateColumns = false;
+            animal_medicalRecords.AutoGenerateColumns = false;
             //MessageBox.Show(animal.gender.ToString());
         }
         private void SetStatusComboBoxToDefault()
@@ -52,9 +59,13 @@ namespace AnimalHouseUI
         {
             this.customer = customer;
 
+           
             InitializeComponent();
 
-            
+            button_delete.Enabled = false;
+            button_edit.Enabled = false;
+
+
         }
         #region Copy this 
 
@@ -183,9 +194,9 @@ namespace AnimalHouseUI
             BossController.Instance().animalController.GetSpecies();
             if( animal != null)
             {
-                animal_owner.Text = customer.name;
+                animal_owner.Text = "Ejer: " + customer.name;
                 AnimalName_Label.Text = animal.name;
-                animalAge_label.Text = Convert.ToString(animal.birthday);
+                
                 animalSpecies_label.Text = animal.Species.speciesType.ToString();
 
                 animal_name.Text = animal.name;
@@ -193,21 +204,16 @@ namespace AnimalHouseUI
                 animal_species.Text = Convert.ToString(animal.Species.speciesType);
                 animal_weight.Text = Convert.ToString(animal.weight);
                 animal_gender.SelectedIndex = Convert.ToInt32(animal.gender);
+                if (animal.Employee != null)
+                {
+                    animal_employee.Text = Convert.ToString(animal.Employee.name);
+                }
+               prescriptions = BossController.Instance().animalController.GetAllPrescriptionByAnimal(animal.animalID);
 
-                animal_employee.Text = Convert.ToString(animal.Employee.name);
-
-                List<Prescription> prescriptions = BossController.Instance().animalController.GetAllPrescriptionByAnimal(animal.animalID);
-
-                //tilknytter listen af dyr til kunden
                 animal.AddPrescriptionList(prescriptions);
 
-                animal_prescription.DataSource = customer.animals;
-
-               
-
-                //animal_prescription.Columns["amount"].DataPropertyName = "amount";
-
-                //animal_prescription.Columns["date"].DataPropertyName = "prescriptionDay";
+                animal_prescription.DataSource = prescriptions;
+        
                 for (int i = 0; i < prescriptions.Count; i++)
                 {
                     Prescription tmpprescription = prescriptions[i];
@@ -217,27 +223,22 @@ namespace AnimalHouseUI
                     animal_prescription.Rows[i].Cells["amount"].Value = tmpprescription.amount;
                 }
 
+                medicalRecords = BossController.Instance().animalController.GetAllMedicalRecordByAnimal(animal);
 
-                //animal.AddMedicalRecordEntryList(medicalRecord);
+                animal.AddMedicalRecordEntryList(medicalRecords);
 
-                //animal_medicalRecords.DataSource = customer.animals;
+                animal_medicalRecords.DataSource = medicalRecords;
 
-                //List<MedicalRecord> medicalRecords = BossController.Instance().animalController.GetAllMedicalRecordByAnimal(animal.animalID);
+                for (int i = 0; i < medicalRecords.Count; i++)
+                {
+                    MedicalRecord tmpMedicalRecord = medicalRecords[i];
 
-                //animal.AddMedicalRecordEntryList(medicalRecords);
-
-                //for (int i = 0; i < medicalRecords.Count; i++)
-                //{
-                //    MedicalRecord tmpmedicalrecords = medicalRecords[i];
-
-                //    animal_medicalRecords.Rows[i].Cells["medicalRecordID"].Value = tmpmedicalrecords.medicalRecordID;
-                //    //animal_medicalRecords.Rows[i].Cells["Entry"].Value = tmpmedicalrecords.Entry;
-                   
-                //}
+                    animal_medicalRecords.Rows[i].Cells["title"].Value = tmpMedicalRecord.treatment.headline;
+                    animal_medicalRecords.Rows[i].Cells["MR_date"].Value = tmpMedicalRecord.treatment.startTime;
+                  
+                }
 
 
-
-                //animal_medicalRecords.DataSource = customer.animals;
 
 
             }
@@ -267,27 +268,51 @@ namespace AnimalHouseUI
         private void Button_opret_Click_1(object sender, EventArgs e)
         {
 
-            //Species species = new Species(2, "Hund");
+            string AnimalWeight = animal_weight.Text;
 
-            //Animal animal = AnimalFactory.Instance().CreateAnimal(123, 10, animal_name.Text.ToString(), (animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), true, employee, true);
+            int animalWeight = 0;
 
-            //Animal animal = AnimalFactory.Instance().CreateAnimal(customer.customerID, 1, animal_name.Text.ToString(), (animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), true, 1, true); ; ;
-
-            //Animal message = BossController.instance().animalController.CreateAnimal(animal);
-            //MessageBox.Show("dyr oprettet");
-            //int speciesID = Convert.ToInt32(animal_species.SelectedIndex);
-            Species species = (Species)animal_species.SelectedItem;
-            bool gender = Convert.ToBoolean(animal_gender.SelectedIndex);
-            Employee employee = null;
-            if (animal_employee.SelectedIndex != 0)
+            if (CheckWeightDigit(AnimalWeight) == false)
             {
-                employee = (Employee)animal_employee.SelectedItem;
+
+                //Hvis ikke cvr-nummeret består af noget bliver det lavet om til inten cvrint som er 0.
+
+                if (AnimalWeight.ToString().Length == 8)
+                {
+                    //hvis cvrboxen er checket af og tallet er i orden erstattes nullet med det nye cvr-nummer
+                    animalWeight = Convert.ToInt32(animal_weight.Text);
+
+                }
+
+                MessageBox.Show("Vægten må kun bestå af tal");
+                return;
             }
+
+            try
+            {
+                Species species = (Species)animal_species.SelectedItem;
+                bool gender = Convert.ToBoolean(animal_gender.SelectedIndex);
+                Employee employee = null;
+                if (animal_employee.SelectedIndex != 0)
+                {
+                    employee = (Employee)animal_employee.SelectedItem;
+                }
+
+
+                animal = AnimalFactory.Instance().CreateAnimal(customer, animal_name.Text.ToString(), (animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), true, employee, true);
+
+                animal = BossController.Instance().animalController.CreateAnimal(animal);
+
+                MessageBox.Show("Dyret er oprettet");
                 
+            }
+            catch (Exception exception)
+            {
 
-            animal = AnimalFactory.Instance().CreateAnimal(customer, animal_name.Text.ToString(), (animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), true, employee, true);
-
-            animal = BossController.Instance().animalController.CreateAnimal(animal);
+                string errorMessage = ErrorManager.Instance().GetErrorMessage(exception);
+                MessageBox.Show(errorMessage);
+                return;
+            }
         }
 
         private void Animal_species_SelectedIndexChanged(object sender, EventArgs e)
@@ -302,26 +327,51 @@ namespace AnimalHouseUI
 
         private void Button_rediger_Click(object sender, EventArgs e)
         {
-            
-            
 
-            string name = animal_name.Text.ToString();
-            DateTime birthday = animal_bdate.Value;
-            Species species = animal.Species;
-            double weight = Convert.ToDouble(animal_weight.Text);
-            bool gender = Convert.ToBoolean(animal_gender.SelectedIndex);
-           
-            Employee employee = (Employee)(animal_employee.SelectedItem);
+            string AnimalWeight = animal_weight.Text;
 
+            int animalWeight = 0;
 
+            if (CheckWeightDigit(AnimalWeight) == false)
+            {
 
-            Animal tmpanimal = new Animal(customer, animal.animalID, name, birthday, species, weight, true, employee, true);
+                if (AnimalWeight.ToString().Length == 8)
+                {
+                    
+                    animalWeight = Convert.ToInt32(animal_weight.Text);
 
-            string message = BossController.Instance().animalController.UpdateAnimal(tmpanimal);
-            MessageBox.Show(message);
+                }
 
+                MessageBox.Show("Vægten må kun bestå af tal");
+                return;
+            }
 
+            try
+            {
+                string name = animal_name.Text.ToString();
+                DateTime birthday = animal_bdate.Value;
+                Species species = animal.Species;
+                double weight = Convert.ToDouble(animal_weight.Text);
+                bool gender = Convert.ToBoolean(animal_gender.SelectedIndex);
 
+                Employee employee = (Employee)(animal_employee.SelectedItem);
+
+                Animal tmpanimal = new Animal(customer, animal.animalID, name, birthday, species, weight, true, employee, true);
+
+                string message = BossController.Instance().animalController.UpdateAnimal(tmpanimal);
+                if (message == "ok")
+                {
+                    MessageBox.Show("Dyret rettet");
+                }
+            }
+            //MessageBox.Show(message);
+            catch (Exception exception)
+            {
+
+                string errorMessage = ErrorManager.Instance().GetErrorMessage(exception);
+                MessageBox.Show(errorMessage);
+                return;
+            }
 
 
 
@@ -337,9 +387,23 @@ namespace AnimalHouseUI
             {
                 //animal = BossController.instance().animalController.GetAnimal();
 
-                string message = BossController.Instance().animalController.DeleteAnimal(animal);
-                MessageBox.Show(message);
-                this.Close();
+                try
+                {
+                    string message = BossController.Instance().animalController.DeleteAnimal(animal);
+                    MessageBox.Show(message);
+                    this.Close();
+                    if (message == "ok")
+                    {
+                        MessageBox.Show("Dyret Slettet");
+                    }
+                }
+                catch (Exception exception)
+                {
+                    string errorMessage = ErrorManager.Instance().GetErrorMessage(exception);
+                    MessageBox.Show(errorMessage);
+                    return;
+                }
+
             }
             
             
@@ -417,6 +481,11 @@ namespace AnimalHouseUI
                 animal_gender.SelectedIndex = value ? 0 : 1;
             }
         }
+        public bool CheckWeightDigit(string weight)
+        {
+            return weight.All(char.IsDigit);
+        }
+      
 
 
         private void Animal_gender_SelectedIndexChanged(object sender, EventArgs e)
@@ -438,5 +507,21 @@ namespace AnimalHouseUI
         {
 
         }
+
+        private void Button_help_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                string file = "../../../AnimalHouse/AnimalHouseUI/helpfiles/Customer-Form-Help.pdf";
+                Process.Start(file);
+            }
+            catch
+            {
+                MessageBox.Show("Filen kunne ikke findes");
+            }
+        }
+
     }
 }
+
