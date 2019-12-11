@@ -19,9 +19,16 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            employees= GetEmployeeList(sQLQueryResult);
+            if (sQLQueryResult.code != 0 || sQLQueryResult.dataTable.Rows.Count == 0)
+            {
+                throw new NoEmployeesFoundException("", sQLQueryResult.exception);
+            }
+            else
+            {
+                employees = GetEmployeeList(sQLQueryResult);
 
-            return employees;
+                return employees;
+            }
         }
 
         public List<Employee> GetEmployeeList(SQLQueryResult sQLQueryResult)

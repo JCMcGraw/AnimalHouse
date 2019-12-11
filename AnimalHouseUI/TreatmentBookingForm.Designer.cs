@@ -60,31 +60,12 @@
             this.PanelCalendar = new System.Windows.Forms.Panel();
             this.CalendarBooking = new System.Windows.Forms.Calendar.Calendar();
             this.ContextMenuStripBooking = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.redTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.yellowTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.greenTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.blueTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.otherColorTagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.patternToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.diagonalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verticalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.horizontalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.noneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.timescaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hourToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.minutes30ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.minutes20ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.minutes15ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.minutes10ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.minutes5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.ankommetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.ButtonHelp = new System.Windows.Forms.Button();
+            this.StartTreatmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             this.PanelHeadline.SuspendLayout();
@@ -205,21 +186,22 @@
             // 
             // PanelDropdownBoxes
             // 
+            this.PanelDropdownBoxes.Controls.Add(this.ButtonHelp);
             this.PanelDropdownBoxes.Controls.Add(this.LabelTreatmentType);
             this.PanelDropdownBoxes.Controls.Add(this.LabelEmployee);
             this.PanelDropdownBoxes.Controls.Add(this.ComboBoxTreatmentType);
             this.PanelDropdownBoxes.Controls.Add(this.ComboBoxEmployee);
             this.PanelDropdownBoxes.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PanelDropdownBoxes.Location = new System.Drawing.Point(597, 0);
+            this.PanelDropdownBoxes.Location = new System.Drawing.Point(561, 0);
             this.PanelDropdownBoxes.Name = "PanelDropdownBoxes";
-            this.PanelDropdownBoxes.Size = new System.Drawing.Size(514, 70);
+            this.PanelDropdownBoxes.Size = new System.Drawing.Size(550, 70);
             this.PanelDropdownBoxes.TabIndex = 15;
             // 
             // LabelTreatmentType
             // 
             this.LabelTreatmentType.AutoSize = true;
             this.LabelTreatmentType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelTreatmentType.Location = new System.Drawing.Point(284, 10);
+            this.LabelTreatmentType.Location = new System.Drawing.Point(267, 13);
             this.LabelTreatmentType.Name = "LabelTreatmentType";
             this.LabelTreatmentType.Size = new System.Drawing.Size(89, 20);
             this.LabelTreatmentType.TabIndex = 13;
@@ -229,7 +211,7 @@
             // 
             this.LabelEmployee.AutoSize = true;
             this.LabelEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelEmployee.Location = new System.Drawing.Point(48, 10);
+            this.LabelEmployee.Location = new System.Drawing.Point(31, 13);
             this.LabelEmployee.Name = "LabelEmployee";
             this.LabelEmployee.Size = new System.Drawing.Size(98, 20);
             this.LabelEmployee.TabIndex = 12;
@@ -241,7 +223,7 @@
             this.ComboBoxTreatmentType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ComboBoxTreatmentType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxTreatmentType.FormattingEnabled = true;
-            this.ComboBoxTreatmentType.Location = new System.Drawing.Point(288, 33);
+            this.ComboBoxTreatmentType.Location = new System.Drawing.Point(271, 36);
             this.ComboBoxTreatmentType.Name = "ComboBoxTreatmentType";
             this.ComboBoxTreatmentType.Size = new System.Drawing.Size(196, 28);
             this.ComboBoxTreatmentType.TabIndex = 14;
@@ -253,7 +235,7 @@
             this.ComboBoxEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ComboBoxEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxEmployee.FormattingEnabled = true;
-            this.ComboBoxEmployee.Location = new System.Drawing.Point(52, 33);
+            this.ComboBoxEmployee.Location = new System.Drawing.Point(35, 36);
             this.ComboBoxEmployee.Name = "ComboBoxEmployee";
             this.ComboBoxEmployee.Size = new System.Drawing.Size(196, 28);
             this.ComboBoxEmployee.TabIndex = 12;
@@ -451,189 +433,57 @@
             // ContextMenuStripBooking
             // 
             this.ContextMenuStripBooking.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.redTagToolStripMenuItem,
-            this.yellowTagToolStripMenuItem,
-            this.greenTagToolStripMenuItem,
-            this.blueTagToolStripMenuItem,
-            this.otherColorTagToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.patternToolStripMenuItem,
-            this.timescaleToolStripMenuItem,
-            this.toolStripMenuItem2,
             this.ankommetToolStripMenuItem,
+            this.StartTreatmentToolStripMenuItem,
             this.editItemToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.ContextMenuStripBooking.Name = "contextMenuStrip1";
-            this.ContextMenuStripBooking.Size = new System.Drawing.Size(149, 236);
-            // 
-            // redTagToolStripMenuItem
-            // 
-            this.redTagToolStripMenuItem.Name = "redTagToolStripMenuItem";
-            this.redTagToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.redTagToolStripMenuItem.Text = "Marker rød";
-            this.redTagToolStripMenuItem.Click += new System.EventHandler(this.redTagToolStripMenuItem_Click);
-            // 
-            // yellowTagToolStripMenuItem
-            // 
-            this.yellowTagToolStripMenuItem.Name = "yellowTagToolStripMenuItem";
-            this.yellowTagToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.yellowTagToolStripMenuItem.Text = "Marker gul";
-            this.yellowTagToolStripMenuItem.Click += new System.EventHandler(this.yellowTagToolStripMenuItem_Click);
-            // 
-            // greenTagToolStripMenuItem
-            // 
-            this.greenTagToolStripMenuItem.Name = "greenTagToolStripMenuItem";
-            this.greenTagToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.greenTagToolStripMenuItem.Text = "Marker grøn";
-            this.greenTagToolStripMenuItem.Click += new System.EventHandler(this.greenTagToolStripMenuItem_Click);
-            // 
-            // blueTagToolStripMenuItem
-            // 
-            this.blueTagToolStripMenuItem.Name = "blueTagToolStripMenuItem";
-            this.blueTagToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.blueTagToolStripMenuItem.Text = "Marker Blå";
-            this.blueTagToolStripMenuItem.Click += new System.EventHandler(this.blueTagToolStripMenuItem_Click);
-            // 
-            // otherColorTagToolStripMenuItem
-            // 
-            this.otherColorTagToolStripMenuItem.Name = "otherColorTagToolStripMenuItem";
-            this.otherColorTagToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.otherColorTagToolStripMenuItem.Text = "Andre farver...";
-            this.otherColorTagToolStripMenuItem.Click += new System.EventHandler(this.otherColorTagToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(145, 6);
-            // 
-            // patternToolStripMenuItem
-            // 
-            this.patternToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.diagonalToolStripMenuItem,
-            this.verticalToolStripMenuItem,
-            this.horizontalToolStripMenuItem,
-            this.hatchToolStripMenuItem,
-            this.toolStripMenuItem3,
-            this.noneToolStripMenuItem});
-            this.patternToolStripMenuItem.Name = "patternToolStripMenuItem";
-            this.patternToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.patternToolStripMenuItem.Text = "Mønster";
-            // 
-            // diagonalToolStripMenuItem
-            // 
-            this.diagonalToolStripMenuItem.Name = "diagonalToolStripMenuItem";
-            this.diagonalToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
-            this.diagonalToolStripMenuItem.Text = "Diagonal";
-            // 
-            // verticalToolStripMenuItem
-            // 
-            this.verticalToolStripMenuItem.Name = "verticalToolStripMenuItem";
-            this.verticalToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
-            this.verticalToolStripMenuItem.Text = "Vertical";
-            // 
-            // horizontalToolStripMenuItem
-            // 
-            this.horizontalToolStripMenuItem.Name = "horizontalToolStripMenuItem";
-            this.horizontalToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
-            this.horizontalToolStripMenuItem.Text = "Horizontal";
-            // 
-            // hatchToolStripMenuItem
-            // 
-            this.hatchToolStripMenuItem.Name = "hatchToolStripMenuItem";
-            this.hatchToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
-            this.hatchToolStripMenuItem.Text = "Cross";
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(126, 6);
-            // 
-            // noneToolStripMenuItem
-            // 
-            this.noneToolStripMenuItem.Name = "noneToolStripMenuItem";
-            this.noneToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
-            this.noneToolStripMenuItem.Text = "None";
-            // 
-            // timescaleToolStripMenuItem
-            // 
-            this.timescaleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.hourToolStripMenuItem,
-            this.minutes30ToolStripMenuItem,
-            this.minutes20ToolStripMenuItem,
-            this.minutes15ToolStripMenuItem,
-            this.minutes10ToolStripMenuItem,
-            this.minutes5ToolStripMenuItem});
-            this.timescaleToolStripMenuItem.Name = "timescaleToolStripMenuItem";
-            this.timescaleToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
-            this.timescaleToolStripMenuItem.Text = "Tidsintervaller";
-            // 
-            // hourToolStripMenuItem
-            // 
-            this.hourToolStripMenuItem.Name = "hourToolStripMenuItem";
-            this.hourToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
-            this.hourToolStripMenuItem.Text = "1 hour";
-            this.hourToolStripMenuItem.Click += new System.EventHandler(this.hourToolStripMenuItem_Click);
-            // 
-            // minutes30ToolStripMenuItem
-            // 
-            this.minutes30ToolStripMenuItem.Name = "minutes30ToolStripMenuItem";
-            this.minutes30ToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
-            this.minutes30ToolStripMenuItem.Text = "30 minutes";
-            this.minutes30ToolStripMenuItem.Click += new System.EventHandler(this.minutesToolStripMenuItem_Click);
-            // 
-            // minutes20ToolStripMenuItem
-            // 
-            this.minutes20ToolStripMenuItem.Name = "minutes20ToolStripMenuItem";
-            this.minutes20ToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
-            this.minutes20ToolStripMenuItem.Text = "20 minutes";
-            this.minutes20ToolStripMenuItem.Click += new System.EventHandler(this.minutes20ToolStripMenuItem_Click);
-            // 
-            // minutes15ToolStripMenuItem
-            // 
-            this.minutes15ToolStripMenuItem.Name = "minutes15ToolStripMenuItem";
-            this.minutes15ToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
-            this.minutes15ToolStripMenuItem.Text = "15 minutes";
-            this.minutes15ToolStripMenuItem.Click += new System.EventHandler(this.minutes15ToolStripMenuItem_Click);
-            // 
-            // minutes10ToolStripMenuItem
-            // 
-            this.minutes10ToolStripMenuItem.Name = "minutes10ToolStripMenuItem";
-            this.minutes10ToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
-            this.minutes10ToolStripMenuItem.Text = "10 minutes";
-            this.minutes10ToolStripMenuItem.Click += new System.EventHandler(this.minutes10ToolStripMenuItem_Click);
-            // 
-            // minutes5ToolStripMenuItem
-            // 
-            this.minutes5ToolStripMenuItem.Name = "minutes5ToolStripMenuItem";
-            this.minutes5ToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
-            this.minutes5ToolStripMenuItem.Text = "5 minutes";
-            this.minutes5ToolStripMenuItem.Click += new System.EventHandler(this.minutes5ToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(145, 6);
+            this.ContextMenuStripBooking.Size = new System.Drawing.Size(181, 114);
+            this.ContextMenuStripBooking.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuStripBooking_Opening);
             // 
             // ankommetToolStripMenuItem
             // 
             this.ankommetToolStripMenuItem.Name = "ankommetToolStripMenuItem";
-            this.ankommetToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.ankommetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ankommetToolStripMenuItem.Text = "Ankommet";
             this.ankommetToolStripMenuItem.Click += new System.EventHandler(this.AnkommetToolStripMenuItem_Click);
             // 
             // editItemToolStripMenuItem
             // 
             this.editItemToolStripMenuItem.Name = "editItemToolStripMenuItem";
-            this.editItemToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.editItemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.editItemToolStripMenuItem.Text = "Rediger tekst";
             this.editItemToolStripMenuItem.Click += new System.EventHandler(this.editItemToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.deleteToolStripMenuItem.Text = "Slet";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // ButtonHelp
+            // 
+            this.ButtonHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
+            this.ButtonHelp.BackgroundImage = global::AnimalHouseUI.Properties.Resources.question_mark_32px;
+            this.ButtonHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ButtonHelp.FlatAppearance.BorderSize = 0;
+            this.ButtonHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonHelp.Location = new System.Drawing.Point(495, 20);
+            this.ButtonHelp.Name = "ButtonHelp";
+            this.ButtonHelp.Size = new System.Drawing.Size(45, 36);
+            this.ButtonHelp.TabIndex = 29;
+            this.ButtonHelp.UseVisualStyleBackColor = false;
+            this.ButtonHelp.Click += new System.EventHandler(this.ButtonHelp_Click);
+            // 
+            // StartTreatmentToolStripMenuItem
+            // 
+            this.StartTreatmentToolStripMenuItem.Name = "StartTreatmentToolStripMenuItem";
+            this.StartTreatmentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.StartTreatmentToolStripMenuItem.Text = "Start Behandling";
+            this.StartTreatmentToolStripMenuItem.Visible = false;
+            this.StartTreatmentToolStripMenuItem.Click += new System.EventHandler(this.StartTreatmentToolStripMenuItem_Click);
             // 
             // TreatmentBookingForm
             // 
@@ -690,28 +540,7 @@
         private System.Windows.Forms.Calendar.MonthView MonthViewBooking;
         private System.Windows.Forms.Calendar.Calendar CalendarBooking;
         private System.Windows.Forms.ContextMenuStrip ContextMenuStripBooking;
-        private System.Windows.Forms.ToolStripMenuItem redTagToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem yellowTagToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem greenTagToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem blueTagToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem otherColorTagToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem patternToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem diagonalToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem verticalToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem horizontalToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hatchToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem noneToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem timescaleToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hourToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem minutes30ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem minutes15ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem minutes10ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem minutes5ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem editItemToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem minutes20ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.Button ButtonCreateTreatment;
         private System.Windows.Forms.Button ChooseAnimalButton;
@@ -721,5 +550,7 @@
         private System.Windows.Forms.RadioButton radioButtonWeekView;
         private System.Windows.Forms.Button button_startbehandling;
         private System.Windows.Forms.ToolStripMenuItem ankommetToolStripMenuItem;
+        private System.Windows.Forms.Button ButtonHelp;
+        private System.Windows.Forms.ToolStripMenuItem StartTreatmentToolStripMenuItem;
     }
 }

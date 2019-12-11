@@ -123,6 +123,9 @@
   <data name="CantCreatePrescription" xml:space="preserve">
     <value>Der kunne ikke udstedes recept. Medicin er muligvis ugyldig</value>
   </data>
+  <data name="CantCreateTreatment" xml:space="preserve">
+    <value>Behandlingen blev ikke gemt! prøv igen.</value>
+  </data>
   <data name="CantDeleteException" xml:space="preserve">
     <value>Kunden kunne ikke slettes</value>
   </data>
@@ -141,7 +144,16 @@
   <data name="NoCustomerFound" xml:space="preserve">
     <value>Der blev ikke fundet nogle kunder.</value>
   </data>
+  <data name="NoEmployeesFound" xml:space="preserve">
+    <value>Der blev ikke fundet nogle medarbejdere.</value>
+  </data>
   <data name="NoItemsFound" xml:space="preserve">
     <value>Ingen varer blev fundet. </value>
+  </data>
+  <data name="NoRemindersFound" xml:space="preserve">
+    <value>Der blev ikke fundet nogle kunder, som der skal sendes påmindelser til.</value>
+  </data>
+  <data name="NoTreatmentTypesFound" xml:space="preserve">
+    <value>Behandlingstyperne kunne ikke findes.</value>
   </data>
 </root>

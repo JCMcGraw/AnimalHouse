@@ -27,7 +27,7 @@ namespace AnimalHousePersistence
 
         List<Treatment> GetManyTreatmentsForSendingRminders(DateTime startTime, DateTime endTime);
 
-        List<TreatmentType> GetManyTreatmentTypes();
+        List<TreatmentType> GetAllTreatmentTypes();
 
         List<Cage> GetAllCages();
 

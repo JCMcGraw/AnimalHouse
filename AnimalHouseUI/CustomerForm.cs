@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using AnimalHouse;
 using AnimalHouseEntities;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 
 namespace AnimalHouseUI
@@ -182,7 +183,7 @@ namespace AnimalHouseUI
             label_headline.Text = customer.name.ToString();
 
             CheckForBusinesscustomer(customer);
-            this.Refresh();
+          //  this.Refresh();
 
             //danner en liste af dyr der hedder animals. Denne liste bliver dannet et sted på animalmanager og der bruges en customer
             List<Animal> animals= BossController.Instance().animalController.GetManyAnimalByCustomerID(customer);
@@ -205,6 +206,8 @@ namespace AnimalHouseUI
             button_slet.Enabled = true;
             button_dyr.Enabled = true;
             label_headline.Text = customer.name.ToString();
+            checkBox_erhverskunde.Enabled = false;
+            textBox_cvr.Enabled = false;
 
               
         }
@@ -237,8 +240,8 @@ namespace AnimalHouseUI
                 {
                     string message = BossController.Instance().customerController.UpdateCustomer(tmpcustomer);
                     MessageBox.Show(message);
-                    ResetForm();
-
+                    label_headline.Text = tmpcustomer.name.ToString();
+                  
                 }
                 catch(Exception exception)
                 {
@@ -248,8 +251,11 @@ namespace AnimalHouseUI
                 }
 
             }
-            label_headline.Text = name.ToString();
-
+            else
+            {
+                return;
+            }
+       
         }
 
         private void button_slet_Click(object sender, EventArgs e)
@@ -304,7 +310,7 @@ namespace AnimalHouseUI
 
                 if (cvr.ToString().Length == 8)
                 {
-                    //hvis cvrboxen er chacket af og tallet er i orden erstattes nullet med det nye cvr-nummer
+                    //hvis cvrboxen er checket af og tallet er i orden erstattes nullet med det nye cvr-nummer
                     cvrint =Convert.ToInt32(textBox_cvr.Text);
 
                 }
@@ -414,13 +420,15 @@ namespace AnimalHouseUI
             textBox_email.Clear();
             textBox_cvr.Clear();
  
-           label_headline.Text = "Administrer kunde";
-            LabelTitle.Visible = true;
+           label_headline.Text = "Administrer Kunde";
             button_opret.Enabled = true;
             button_rediger.Enabled = false;
             button_dyr.Enabled = false;
             button_slet.Enabled = false;
+            checkBox_erhverskunde.Enabled = true;
+            textBox_cvr.Enabled = true;
             checkBox_erhverskunde.Checked = false;
+            dataGridView_dyr.DataSource = null;
         }
 
         public bool CheckForCVRdegit(string cvr)
@@ -446,6 +454,12 @@ namespace AnimalHouseUI
             {
                 
                 textBox_cvr.Text = ((BusinessCustomer)customer).cvr.ToString();
+                checkBox_erhverskunde.Checked = true;
+            }
+            else
+            {
+                checkBox_erhverskunde.Enabled = false;
+                textBox_cvr.Enabled = false;
             }
         }
 
@@ -465,6 +479,31 @@ namespace AnimalHouseUI
         {
             return BossController.Instance().customerController.CheckUniquePhone(phone);
                      }
-        
+
+        //private void button1_Click(object sender, EventArgs e)
+        //{
+
+        //}
+
+        private void button_help_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                string file = "../../../AnimalHouse/AnimalHouseUI/helpfiles/Customer-Form-Help.pdf";
+                Process.Start(file);
+            }
+        catch
+            {
+                MessageBox.Show("Filen kunne ikke findes");
+            }
+            }
+
+       
+
+        private void button_nulstil_Click(object sender, EventArgs e)
+        {
+            ResetForm();
+        }
     }
 }
