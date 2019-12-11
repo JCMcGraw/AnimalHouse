@@ -156,7 +156,14 @@ namespace AnimalHouseUI
 
             GetTheWeekFromAYearAgo(out startDate, out endDate);
 
-            treatments = bossController.treatmentController.GetManyTreatmentsForSendingRminders(startDate, endDate);
+            try
+            {
+                treatments = bossController.treatmentController.GetManyTreatmentsForSendingRminders(startDate, endDate);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
+            }
 
             RemindersDataGridView.DataSource = treatments;
             EnterDataInDataGridViewCells();
