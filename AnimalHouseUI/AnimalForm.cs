@@ -32,6 +32,11 @@ namespace AnimalHouseUI
             this.animal = animal;
             InitializeComponent();
             animal_prescription.AutoGenerateColumns = false;
+
+            animal_name.Enabled = false;
+            animal_bdate.Enabled = false;
+            animal_species.Enabled = false;
+            animal_gender.Enabled = false;
             //animal_medicalRecords.AutoGenerateColumns = false;
             //MessageBox.Show(animal.gender.ToString());
         }
@@ -39,6 +44,7 @@ namespace AnimalHouseUI
         {
             animal_gender.SelectedIndex=0;
             animal_species.SelectedIndex = 0;
+           
             
         }
         public AnimalForm(Customer customer)
@@ -187,7 +193,9 @@ namespace AnimalHouseUI
                 animal_species.Text = Convert.ToString(animal.Species.speciesType);
                 animal_weight.Text = Convert.ToString(animal.weight);
                 animal_gender.SelectedIndex = Convert.ToInt32(animal.gender);
-                //animal_employee.SelectedIndex = Convert.ToInt32(animal.employeeid);//sasa
+
+                animal_employee.Text = Convert.ToString(animal.Employee.name);
+
                 List<Prescription> prescriptions = BossController.Instance().animalController.GetAllPrescriptionByAnimal(animal.animalID);
 
                 //tilknytter listen af dyr til kunden
@@ -212,24 +220,24 @@ namespace AnimalHouseUI
 
                 //animal.AddMedicalRecordEntryList(medicalRecord);
 
-                animal_medicalRecords.DataSource = customer.animals;
+                //animal_medicalRecords.DataSource = customer.animals;
 
-                List<MedicalRecord> medicalRecords = BossController.Instance().animalController.GetAllMedicalRecordByAnimal(animal.animalID);
+                //List<MedicalRecord> medicalRecords = BossController.Instance().animalController.GetAllMedicalRecordByAnimal(animal.animalID);
 
-                animal.AddMedicalRecordEntryList(medicalRecords);
+                //animal.AddMedicalRecordEntryList(medicalRecords);
 
-                for (int i = 0; i < medicalRecords.Count; i++)
-                {
-                    MedicalRecord tmpmedicalrecords = medicalRecords[i];
+                //for (int i = 0; i < medicalRecords.Count; i++)
+                //{
+                //    MedicalRecord tmpmedicalrecords = medicalRecords[i];
 
-                    animal_medicalRecords.Rows[i].Cells["medicalRecordID"].Value = tmpmedicalrecords.medicalRecordID;
-                    //animal_medicalRecords.Rows[i].Cells["Entry"].Value = tmpmedicalrecords.Entry;
+                //    animal_medicalRecords.Rows[i].Cells["medicalRecordID"].Value = tmpmedicalrecords.medicalRecordID;
+                //    //animal_medicalRecords.Rows[i].Cells["Entry"].Value = tmpmedicalrecords.Entry;
                    
-                }
+                //}
 
 
 
-                animal_medicalRecords.DataSource = customer.animals;
+                //animal_medicalRecords.DataSource = customer.animals;
 
 
             }
@@ -299,12 +307,11 @@ namespace AnimalHouseUI
 
             string name = animal_name.Text.ToString();
             DateTime birthday = animal_bdate.Value;
-            int speciesID = Convert.ToInt32(animal_species.SelectedIndex);
             Species species = animal.Species;
             double weight = Convert.ToDouble(animal_weight.Text);
             bool gender = Convert.ToBoolean(animal_gender.SelectedIndex);
-            int employeeID = Convert.ToInt32(animal_employee.SelectedIndex);
-            Employee employee = animal.Employee;
+           
+            Employee employee = (Employee)(animal_employee.SelectedItem);
 
 
 
