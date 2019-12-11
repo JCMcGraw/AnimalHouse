@@ -588,7 +588,7 @@ namespace AnimalHouseUI
 
             foreach(Employee employee in employees)
             {
-                if (CheckAvailabilityForConsultationOrOperation(employee, SuggestedStartTime, SuggestedEndTime, treatments) == true && employee.employeeID != -1)
+                if (CheckAvailabilityOfEmployeeForConsultationOrOperation(employee, SuggestedStartTime, SuggestedEndTime, treatments) == true && employee.employeeID != -1)
                 {
                     availableEmployees.Add(employee);
                 }
@@ -597,7 +597,7 @@ namespace AnimalHouseUI
             return availableEmployees;
         }
 
-        private bool CheckAvailabilityForConsultationOrOperation(Employee employee, DateTime SuggestedStartTime, DateTime SuggestedEndTime, List<Treatment> treatments = null)
+        private bool CheckAvailabilityOfEmployeeForConsultationOrOperation(Employee employee, DateTime SuggestedStartTime, DateTime SuggestedEndTime, List<Treatment> treatments = null)
         {
             if(treatments == null)
             {
@@ -679,7 +679,7 @@ namespace AnimalHouseUI
                 if (((Employee)ComboBoxEmployee.SelectedItem).employeeID != -1)
                 {
                     selectedEmployee = (Employee)ComboBoxEmployee.SelectedItem;
-                    employeeAvailable = CheckAvailabilityForConsultationOrOperation(selectedEmployee, e.Item.StartDate, e.Item.EndDate);
+                    employeeAvailable = CheckAvailabilityOfEmployeeForConsultationOrOperation(selectedEmployee, e.Item.StartDate, e.Item.EndDate);
 
                     if (employeeAvailable == false)
                     {
@@ -837,6 +837,47 @@ namespace AnimalHouseUI
             PlaceItems();
         }
 
+        private bool CheckAvailabilityForTreatmentMove(CalendarItemEventArgs calendarItemEventArgs)
+        {
+            List<Treatment> treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(calendarItemEventArgs.Item.StartDate, calendarItemEventArgs.Item.EndDate);
+
+            if (treatmentsCache[calendarItemEventArgs.Item.TreatmentID].treatmentType.treatmentTypeID != 3)
+            {
+                Employee employee = treatmentsCache[calendarItemEventArgs.Item.TreatmentID].employee;
+
+                bool isEmployeeFree = CheckAvailabilityOfEmployeeForConsultationOrOperation(employee, calendarItemEventArgs.Item.StartDate, calendarItemEventArgs.Item.EndDate, treatments);
+
+                if (isEmployeeFree == false)
+                {
+                    MessageBox.Show("Medarbejderen er ikke fri i det ønskede tidsrum!");
+                    return false;
+                }
+
+                if (treatmentsCache[calendarItemEventArgs.Item.TreatmentID].treatmentType.treatmentTypeID == 2)
+                {
+
+                    if (GetAllAvailableOperationRooms(operationRooms, calendarItemEventArgs.Item.StartDate, calendarItemEventArgs.Item.EndDate).Count == 0)
+                    {
+                        MessageBox.Show("Der er ingen ledige operationsstuer i det ønskede tidsrum!");
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+
+                if (GetAllAvailableCages(cages, calendarItemEventArgs.Item.StartDate, calendarItemEventArgs.Item.EndDate, treatmentsCache[calendarItemEventArgs.Item.TreatmentID].animal).Count == 0)
+                {
+                    MessageBox.Show("Der er ingen ledige bure i det ønskede tidsrum!");
+                    return false;
+                }
+            }
+
+
+            return true;
+
+        }
+
         //actions for calendaritems dates/times changed
         private void CalendarBooking_ItemDatesChanged(object sender, CalendarItemEventArgs e)
         {
@@ -858,6 +899,23 @@ namespace AnimalHouseUI
             else if (treatmentsCache[e.Item.TreatmentID].status == 3)
             {
                 MessageBox.Show("Du kan ikke flytte en afsluttet behandling!");
+                //reset datetimes to original
+                e.Item.StartDate = treatmentsCache[e.Item.TreatmentID].startTime;
+                e.Item.EndDate = treatmentsCache[e.Item.TreatmentID].endTime;
+                PlaceItems();
+                return;
+            }
+            else if (e.Item.StartDate < DateTime.Now)
+            {
+                MessageBox.Show("Du kan ikke flytte en behandling til et tidspunkt før nu!");
+                //reset datetimes to original
+                e.Item.StartDate = treatmentsCache[e.Item.TreatmentID].startTime;
+                e.Item.EndDate = treatmentsCache[e.Item.TreatmentID].endTime;
+                PlaceItems();
+                return;
+            }
+            else if (CheckAvailabilityForTreatmentMove(e) == false)
+            {
                 //reset datetimes to original
                 e.Item.StartDate = treatmentsCache[e.Item.TreatmentID].startTime;
                 e.Item.EndDate = treatmentsCache[e.Item.TreatmentID].endTime;
