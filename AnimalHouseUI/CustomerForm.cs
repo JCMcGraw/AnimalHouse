@@ -226,7 +226,9 @@ namespace AnimalHouseUI
                     MessageBox.Show("Ugyldig E-mailadresse");
                     return;
                 }
-                
+
+               
+
                 string name = textBox_navn.Text.ToString();
                 string phone = textBox_phonenumber.Text.ToString();
                 string address = textBox_adresse.Text.ToString();
@@ -236,6 +238,8 @@ namespace AnimalHouseUI
                 bool active = customer.active;
 
                 Customer tmpcustomer = CustomerFactory.Instance().CreateCustomer(customerID, name, address, phone, email, active, cvr);
+
+              
 
                 try
                 {
@@ -270,8 +274,7 @@ namespace AnimalHouseUI
 
                 try
                 {
-                    
-
+                
                     string message = BossController.Instance().customerController.DeleteCustomer(customer);
                     MessageBox.Show(message);
 
@@ -297,6 +300,12 @@ namespace AnimalHouseUI
                     MessageBox.Show("Ugyldig E-mailadresse");
                     return;
                 }
+            if (CheckEmtyTextBoxes()==false)
+            {
+                MessageBox.Show("Alle felterne skal være udfyldt");
+                return;
+            }
+
 
             // tjekker om cvrnummeret består af tal
             string cvr = textBox_cvr.Text;
@@ -331,6 +340,7 @@ namespace AnimalHouseUI
             }
             customer = CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, cvrint);
 
+            
 
             try
             {
@@ -344,6 +354,8 @@ namespace AnimalHouseUI
                 button_rediger.Enabled = true;
                 button_slet.Enabled = true;
                 label_headline.Text = textBox_navn.Text.ToString().ToString();
+                checkBox_erhverskunde.Enabled = false;
+                textBox_cvr.Enabled = false;
 
             }
                 catch (Exception exception)
@@ -486,7 +498,16 @@ namespace AnimalHouseUI
             return BossController.Instance().customerController.CheckUniquePhone(phone);
          }
 
-     
+     public bool CheckEmtyTextBoxes()
+        {
+
+            if (string.IsNullOrEmpty(textBox_phonenumber.Text.ToString())||string.IsNullOrEmpty(textBox_navn.Text.ToString())||string.IsNullOrEmpty(textBox_adresse.Text.ToString())||string.IsNullOrEmpty(textBox_email.Text.ToString()))
+            {
+               
+                return false;
+            }
+            return true;
+        }
 
         private void button_help_Click(object sender, EventArgs e)
         {
@@ -501,9 +522,5 @@ namespace AnimalHouseUI
                 MessageBox.Show("Hjælpefilen kunne ikke findes");
             }
         }
-
-       
-
-       
-    }
+     }
 }
