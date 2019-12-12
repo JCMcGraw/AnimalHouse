@@ -7,7 +7,6 @@ namespace AnimalHouseUnitTest
 {
     [TestClass]
     public class SaleUnitTest
-
     {
         static Customer customer = new Customer(1, "", "", "", "", false);
         Sale sale = new Sale(customer, DateTime.Now);
