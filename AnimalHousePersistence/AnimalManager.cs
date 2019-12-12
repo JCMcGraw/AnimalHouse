@@ -234,6 +234,11 @@ namespace AnimalHousePersistence
             
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+            if (sQLQueryResult.code != 0)
+            {
+                throw new CantGetAnimalList("", sQLQueryResult.exception);
+               
+                    } 
 
             List<Animal> animals = new List<Animal>();
 

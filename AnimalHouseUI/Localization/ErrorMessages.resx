@@ -138,6 +138,9 @@
   <data name="CantDeleteException" xml:space="preserve">
     <value>Kunden kunne ikke slettes</value>
   </data>
+  <data name="CantGetAnimalList" xml:space="preserve">
+    <value>Kundes liste over dyr kunne ikke indlæses</value>
+  </data>
   <data name="CantUpdateTreatment" xml:space="preserve">
     <value>Behandlingen kunne ikke opdateres</value>
   </data>
