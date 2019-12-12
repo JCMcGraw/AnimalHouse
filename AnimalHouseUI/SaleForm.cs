@@ -164,21 +164,20 @@ namespace AnimalHouseUI
             try
             {
                 customer = BossController.Instance().customerController.GetCustomer(PhoneTextBox.Text);
-
-                CustomerNameLabel.Text = customer.name.ToString();
-                CustomerNameLabel.Enabled = true;
-                AdressTextBox.Text = customer.address;
-                EmailTextBox.Text = customer.email;
-
-                sale.SetCustomer(customer);
-                LoadeAllUnPaidPrescriptions(customer);
-                LoadeAllUnpaidTreatments(customer);
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-
-                throw;
+                MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
             }
+
+            CustomerNameLabel.Text = customer.name.ToString();
+            CustomerNameLabel.Enabled = true;
+            AdressTextBox.Text = customer.address;
+            EmailTextBox.Text = customer.email;
+
+            sale.SetCustomer(customer);
+            LoadeAllUnPaidPrescriptions(customer);
+            LoadeAllUnpaidTreatments(customer);
         }
 
         private void EndButton_Click(object sender, EventArgs e)
@@ -186,13 +185,15 @@ namespace AnimalHouseUI
             try
             {
                 BossController.Instance().saleController.CreateSale(sale);
-                MessageBox.Show("Salg Oprettet");
-                FakturaButton.Enabled = true;
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                MessageBox.Show("prøv igen");
+                string errorMessage = ErrorManager.Instance().GetErrorMessage(exception);
+                MessageBox.Show(errorMessage);
+                return;
             }
+            MessageBox.Show("Salg Oprettet");
+            FakturaButton.Enabled = true;
         }
 
         private void FakturaButton_Click(object sender, EventArgs e)
@@ -200,14 +201,13 @@ namespace AnimalHouseUI
             try
             {
                 BossController.Instance().saleController.CreateInvoice(sale);
-                
-                string file = "Faktura" + sale.saleID.ToString() + ".pdf";
-                Process.Start(file);
             }
             catch (Exception)
             {
-                throw;
+
             }
+            string file = "Faktura" + sale.saleID.ToString() + ".pdf";
+            Process.Start(file);
         }
 
         private void ShowStockButton_Click(object sender, EventArgs e)
@@ -376,40 +376,38 @@ namespace AnimalHouseUI
 
         private void LoadeAllUnPaidPrescriptions(Customer customer)
         {
-            //prescriptions = BossController.Instance().animalController.GetUnpaidPrescriptionByCustomer(customer);
-            //UnPaidPrescriptionsDataGridView.DataSource = prescriptions;
-
-            //for (int i = 0; i < UnPaidPrescriptionsDataGridView.RowCount; i++)
-            //{
-            //    Prescription prescription = prescriptions[i];
-
-            //    UnPaidPrescriptionsDataGridView.Rows[i].Cells["prescriptionName"].Value = prescription.item.name;
-            //    UnPaidPrescriptionsDataGridView.Rows[i].Cells["prescriptionAmount"].Value = prescription.amount;
-            //    UnPaidPrescriptionsDataGridView.Rows[i].Cells["prescriptionPrice"].Value = prescription.item.price;
-            //}
             try
             {
                 prescriptions = BossController.Instance().animalController.GetUnpaidPrescriptionByCustomer(customer);
                 UnPaidPrescriptionsDataGridView.DataSource = prescriptions;
-
-                for (int i = 0; i < UnPaidPrescriptionsDataGridView.RowCount; i++)
-                {
-                    Prescription prescription = prescriptions[i];
-
-                    UnPaidPrescriptionsDataGridView.Rows[i].Cells["prescriptionName"].Value = prescription.item.name;
-                    UnPaidPrescriptionsDataGridView.Rows[i].Cells["prescriptionAmount"].Value = prescription.amount;
-                    UnPaidPrescriptionsDataGridView.Rows[i].Cells["prescriptionPrice"].Value = prescription.item.price;
-                }
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
+            }
+
+            for (int i = 0; i < UnPaidPrescriptionsDataGridView.RowCount; i++)
+            {
+                Prescription prescription = prescriptions[i];
+
+                UnPaidPrescriptionsDataGridView.Rows[i].Cells["prescriptionName"].Value = prescription.item.name;
+                UnPaidPrescriptionsDataGridView.Rows[i].Cells["prescriptionAmount"].Value = prescription.amount;
+                UnPaidPrescriptionsDataGridView.Rows[i].Cells["prescriptionPrice"].Value = prescription.item.price;
             }
         }
 
         private void LoadeAllUnpaidTreatments(Customer customer)
         {
-            treatments = BossController.Instance().treatmentController.GetUnpaidTreatmentsByCustomer(customer);
-            UnPaidTreatmentDataGridView.DataSource = treatments;
+            try
+            {
+                treatments = BossController.Instance().treatmentController.GetUnpaidTreatmentsByCustomer(customer);
+                UnPaidTreatmentDataGridView.DataSource = treatments;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
+            }
+            
 
             for (int i = 0; i < UnPaidTreatmentDataGridView.RowCount; i++)
             {
@@ -419,23 +417,6 @@ namespace AnimalHouseUI
                 UnPaidTreatmentDataGridView.Rows[i].Cells["treatmentDay"].Value = treatment.endTime;
                 UnPaidTreatmentDataGridView.Rows[i].Cells["treatmentPrice"].Value = treatment.item.price;
             }
-            //try
-            //{
-            //    treatments = BossController.Instance().treatmentController.GetUnpaidTreatmentsByCustomer(customer);
-            //    UnPaidTreatmentDataGridView.DataSource = treatments;
-
-            //    for (int i = 0; i < UnPaidPrescriptionsDataGridView.RowCount; i++)
-            //    {
-            //        Treatment treatment = treatments[i];
-
-            //        UnPaidPrescriptionsDataGridView.Rows[i].Cells["treatmentName"].Value = treatment.item.name;
-            //        UnPaidPrescriptionsDataGridView.Rows[i].Cells["treatmentDay"].Value = treatment.endTime;
-            //        UnPaidPrescriptionsDataGridView.Rows[i].Cells["treatmentPrice"].Value = treatment.item.price;
-            //    }
-            //}
-            //catch (Exception)
-            //{
-            //}
         }
     }
 }

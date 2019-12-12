@@ -87,7 +87,7 @@ namespace AnimalHousePersistence
 
             if (sQLQueryResult.code!=0)
             {
-                throw new CantUpdateTreatment("", sQLQueryResult.exception);
+                throw new CantUpdateTreatmentException("", sQLQueryResult.exception);
             }
 
             return "ok";
@@ -102,6 +102,11 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@treatmentID", treatmentID.ToString(), SqlDbType.Int);
             
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            if(sQLQueryResult.code != 0)
+            {
+                throw new CantDeleteTreatmentException("", sQLQueryResult.exception);
+            }
 
             return "ok";
         }
@@ -172,6 +177,10 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
+            if(sQLQueryResult.code != 0)
+            {
+                throw new CantFindTreatmentsException("", sQLQueryResult.exception);
+            }
             List<Treatment> treatments = new List<Treatment>();
 
             treatments = GetTreatmentList(sQLQueryResult);
@@ -189,11 +198,18 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            List<Treatment> treatments = new List<Treatment>();
+            if (sQLQueryResult.code==0)
+            {
+                List<Treatment> treatments = new List<Treatment>();
 
-            treatments = GetTreatmentList(sQLQueryResult);
+                treatments = GetTreatmentList(sQLQueryResult);
 
-            return treatments;
+                return treatments;
+            }
+            else
+            {
+                throw new CantGetUnPaidTreatments("", sQLQueryResult.exception);
+            }
         }
 
         public List<TreatmentType> GetAllTreatmentTypes()
@@ -226,6 +242,11 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
+            if (sQLQueryResult.code != 0)
+            {
+                throw new CantFindCagesException("", sQLQueryResult.exception);
+            }
+
             List<Cage> cages = new List<Cage>();
             cages = GetCageList(sQLQueryResult); 
 
@@ -239,6 +260,11 @@ namespace AnimalHousePersistence
             SQLQuery sQLQuery = new SQLQuery(query);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            if (sQLQueryResult.code != 0)
+            {
+                throw new CantFindOperationRoomsException("", sQLQueryResult.exception);
+            }
 
             List<OperationRoom> operationRooms = new List<OperationRoom>();
             operationRooms = GetAllOperationRooms(sQLQueryResult);

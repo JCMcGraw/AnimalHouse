@@ -8,11 +8,7 @@ using AnimalHouseEntities;
 namespace AnimalHousePersistence
 {
     public interface IAnimalManager
-
     {
-
-        
-
         Animal CreateAnimal(Animal animal);
 
         string UpdateAnimal(Animal animal);
@@ -21,7 +17,7 @@ namespace AnimalHousePersistence
 
         Animal GetAnimal(int animalID);
 
-       
+     
         List<Animal> GetAnimalList(SQLQueryResult sQLQueryResult);
 
         //List<Animal>GetAnimalList(int ani);
