@@ -44,10 +44,7 @@ namespace AnimalHousePersistence
 
             sQLQuery.AddParameter("@CostPrice", item.costPrice.ToString(), SqlDbType.Decimal);
 
-
-
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
-
 
 
             if (sQLQueryResult.code == 0)
