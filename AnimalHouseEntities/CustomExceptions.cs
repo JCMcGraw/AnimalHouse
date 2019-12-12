@@ -249,4 +249,36 @@ namespace AnimalHouseEntities
         {
         }
     }
+    public class MedicalRecordEntryNotFoundException : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public MedicalRecordEntryNotFoundException()
+        { }
+
+        public MedicalRecordEntryNotFoundException(string message)
+            : base(message)
+        { }
+
+        public MedicalRecordEntryNotFoundException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
+    public class PrescriptionNotFoundException : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public PrescriptionNotFoundException()
+        { }
+
+        public PrescriptionNotFoundException(string message)
+            : base(message)
+        { }
+
+        public PrescriptionNotFoundException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
 }

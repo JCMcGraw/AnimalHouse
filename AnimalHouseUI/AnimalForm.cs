@@ -24,8 +24,9 @@ namespace AnimalHouseUI
         List<Species> species;
         List<Prescription> prescriptions;
         List<MedicalRecord> medicalRecords;
+        public MedicalRecord selectedMedicalRecord;
 
-        
+
 
         //private DataTable Animal_Gender = new DataTable();
 
@@ -190,6 +191,9 @@ namespace AnimalHouseUI
 
         private void AnimalForm_Load(object sender, EventArgs e)
         {
+            
+            //animal_medicalRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
             LoadeAllItemsInComboBox();
             BossController.Instance().animalController.GetSpecies();
             if( animal != null)
@@ -208,34 +212,60 @@ namespace AnimalHouseUI
                 {
                     animal_employee.Text = Convert.ToString(animal.Employee.name);
                 }
-               prescriptions = BossController.Instance().animalController.GetAllPrescriptionByAnimal(animal.animalID);
 
-                animal.AddPrescriptionList(prescriptions);
 
-                animal_prescription.DataSource = prescriptions;
-        
-                for (int i = 0; i < prescriptions.Count; i++)
+                try
                 {
-                    Prescription tmpprescription = prescriptions[i];
+                    prescriptions = BossController.Instance().animalController.GetAllPrescriptionByAnimal(animal.animalID);
 
-                    animal_prescription.Rows[i].Cells["name"].Value = tmpprescription.item.name;
-                    animal_prescription.Rows[i].Cells["date"].Value = tmpprescription.prescriptionDay;
-                    animal_prescription.Rows[i].Cells["amount"].Value = tmpprescription.amount;
+                    animal.AddPrescriptionList(prescriptions);
+
+                    animal_prescription.DataSource = prescriptions;
+
+                    for (int i = 0; i < prescriptions.Count; i++)
+                    {
+                        Prescription tmpprescription = prescriptions[i];
+
+                        animal_prescription.Rows[i].Cells["name"].Value = tmpprescription.item.name;
+                        animal_prescription.Rows[i].Cells["date"].Value = tmpprescription.prescriptionDay;
+                        animal_prescription.Rows[i].Cells["amount"].Value = tmpprescription.amount;
+                    }
+                }
+                catch (Exception exception)
+                {
+
+                    string errorMessage = ErrorManager.Instance().GetErrorMessage(exception);
+                    MessageBox.Show(errorMessage);
+                    return;
                 }
 
+
+
+                try
+                {
                 medicalRecords = BossController.Instance().animalController.GetAllMedicalRecordByAnimal(animal);
 
                 animal.AddMedicalRecordEntryList(medicalRecords);
 
                 animal_medicalRecords.DataSource = medicalRecords;
 
-                for (int i = 0; i < medicalRecords.Count; i++)
-                {
-                    MedicalRecord tmpMedicalRecord = medicalRecords[i];
+              
 
-                    animal_medicalRecords.Rows[i].Cells["title"].Value = tmpMedicalRecord.treatment.headline;
-                    animal_medicalRecords.Rows[i].Cells["MR_date"].Value = tmpMedicalRecord.treatment.startTime;
-                  
+                    for (int i = 0; i < medicalRecords.Count; i++)
+                    {
+                        MedicalRecord tmpMedicalRecord = medicalRecords[i];
+
+                        animal_medicalRecords.Rows[i].Cells["title"].Value = tmpMedicalRecord.treatment.headline;
+                        animal_medicalRecords.Rows[i].Cells["MR_date"].Value = tmpMedicalRecord.treatment.startTime;
+
+                    }
+                }
+                catch (Exception exception)
+                {
+
+                    string errorMessage = ErrorManager.Instance().GetErrorMessage(exception);
+                    MessageBox.Show(errorMessage);
+                    return;
                 }
 
 
@@ -254,6 +284,24 @@ namespace AnimalHouseUI
 
 
 
+        }
+        private void animal_medicalRecords_DoubleClick(object sender, EventArgs e)
+        {
+            DataGridViewRow row = animal_medicalRecords.SelectedRows[0];
+
+            MedicalRecord medicalRecord = row.DataBoundItem as MedicalRecord;
+
+            if (this.Modal == true)
+            {
+                this.DialogResult = DialogResult.OK;
+                selectedMedicalRecord = medicalRecord;
+                this.Close();
+            }
+            else
+            {
+                AnimalMREform animalMREform = new AnimalMREform(medicalRecord, animal);
+                animalMREform.Show();
+            }
         }
         private void button_opret_Click(object sender, EventArgs e)
         {
@@ -513,7 +561,7 @@ namespace AnimalHouseUI
             try
             {
 
-                string file = "../../../AnimalHouse/AnimalHouseUI/helpfiles/Customer-Form-Help.pdf";
+                string file = "../../../AnimalHouse/AnimalHouseUI/helpfiles/Animal-Form-Help.pdf";
                 Process.Start(file);
             }
             catch
@@ -522,6 +570,10 @@ namespace AnimalHouseUI
             }
         }
 
+        private void Animal_medicalRecords_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

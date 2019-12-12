@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PanelHeader = new System.Windows.Forms.Panel();
             this.LabelTitle = new System.Windows.Forms.Label();
             this.PictureBoxLogo = new System.Windows.Forms.PictureBox();
@@ -56,14 +57,14 @@
             this.animal_bdate = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.animal_prescription = new System.Windows.Forms.DataGridView();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.animal_medicalRecords = new System.Windows.Forms.DataGridView();
             this.button_help = new System.Windows.Forms.Button();
             this.label_hjaelp = new System.Windows.Forms.Label();
             this.MR_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.animal_prescription)).BeginInit();
@@ -395,35 +396,36 @@
             this.animal_prescription.Name = "animal_prescription";
             this.animal_prescription.RowHeadersVisible = false;
             this.animal_prescription.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.animal_prescription.Size = new System.Drawing.Size(263, 129);
+            this.animal_prescription.Size = new System.Drawing.Size(301, 129);
             this.animal_prescription.TabIndex = 37;
-            // 
-            // name
-            // 
-            this.name.HeaderText = "Medicin";
-            this.name.Name = "name";
-            // 
-            // amount
-            // 
-            this.amount.HeaderText = "Antal";
-            this.amount.Name = "amount";
-            // 
-            // date
-            // 
-            this.date.HeaderText = "Dato";
-            this.date.Name = "date";
             // 
             // animal_medicalRecords
             // 
+            this.animal_medicalRecords.AllowUserToAddRows = false;
+            this.animal_medicalRecords.AllowUserToDeleteRows = false;
+            this.animal_medicalRecords.AllowUserToResizeColumns = false;
+            this.animal_medicalRecords.AllowUserToResizeRows = false;
+            this.animal_medicalRecords.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.animal_medicalRecords.BackgroundColor = System.Drawing.Color.White;
             this.animal_medicalRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.animal_medicalRecords.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MR_date,
             this.title});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.animal_medicalRecords.DefaultCellStyle = dataGridViewCellStyle3;
             this.animal_medicalRecords.Location = new System.Drawing.Point(435, 83);
             this.animal_medicalRecords.Name = "animal_medicalRecords";
+            this.animal_medicalRecords.ReadOnly = true;
+            this.animal_medicalRecords.RowHeadersVisible = false;
             this.animal_medicalRecords.Size = new System.Drawing.Size(263, 252);
             this.animal_medicalRecords.TabIndex = 38;
+            this.animal_medicalRecords.DoubleClick += new System.EventHandler(this.animal_medicalRecords_DoubleClick);
             // 
             // button_help
             // 
@@ -453,11 +455,32 @@
             // 
             this.MR_date.HeaderText = "Dato";
             this.MR_date.Name = "MR_date";
+            this.MR_date.ReadOnly = true;
             // 
             // title
             // 
+            this.title.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.title.HeaderText = "Titel";
             this.title.Name = "title";
+            this.title.ReadOnly = true;
+            // 
+            // name
+            // 
+            this.name.HeaderText = "Medicin";
+            this.name.Name = "name";
+            // 
+            // amount
+            // 
+            this.amount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.amount.HeaderText = "Antal";
+            this.amount.Name = "amount";
+            this.amount.Width = 56;
+            // 
+            // date
+            // 
+            this.date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.date.HeaderText = "Dato";
+            this.date.Name = "date";
             // 
             // AnimalForm
             // 
@@ -536,14 +559,14 @@
         private System.Windows.Forms.DateTimePicker animal_bdate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView animal_prescription;
-        private System.Windows.Forms.DataGridViewTextBoxColumn name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn amount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn date;
         private System.Windows.Forms.DataGridView animal_medicalRecords;
         private System.Windows.Forms.Button button_help;
         private System.Windows.Forms.Label label_hjaelp;
         private System.Windows.Forms.DataGridViewTextBoxColumn MR_date;
         private System.Windows.Forms.DataGridViewTextBoxColumn title;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn amount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn date;
     }
 
     #region Windows Form Designer generated code

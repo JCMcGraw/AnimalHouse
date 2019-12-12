@@ -151,6 +151,15 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Journalerne kunne ikke indlæses. .
+        /// </summary>
+        internal static string MedicalRecordEntryNotFound {
+            get {
+                return ResourceManager.GetString("MedicalRecordEntryNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Der var et problem med netværksforbindelsen. Tjek din internetforbindelse, og prøv igen. .
         /// </summary>
         internal static string NetworkError {
@@ -201,6 +210,15 @@ namespace AnimalHouseUI.Localization {
         internal static string NoTreatmentTypesFound {
             get {
                 return ResourceManager.GetString("NoTreatmentTypesFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recepterne kunne ikke indlæses. .
+        /// </summary>
+        internal static string PrescriptionNotFound {
+            get {
+                return ResourceManager.GetString("PrescriptionNotFound", resourceCulture);
             }
         }
     }

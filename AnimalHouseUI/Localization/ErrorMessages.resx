@@ -147,6 +147,9 @@
   <data name="DefaultDatabaseError" xml:space="preserve">
     <value>Der var et problem med databases. </value>
   </data>
+  <data name="MedicalRecordEntryNotFound" xml:space="preserve">
+    <value>Journalerne kunne ikke indlæses. </value>
+  </data>
   <data name="NetworkError" xml:space="preserve">
     <value>Der var et problem med netværksforbindelsen. Tjek din internetforbindelse, og prøv igen. </value>
   </data>
@@ -164,5 +167,8 @@
   </data>
   <data name="NoTreatmentTypesFound" xml:space="preserve">
     <value>Behandlingstyperne kunne ikke findes.</value>
+  </data>
+  <data name="PrescriptionNotFound" xml:space="preserve">
+    <value>Recepterne kunne ikke indlæses. </value>
   </data>
 </root>

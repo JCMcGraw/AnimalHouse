@@ -297,7 +297,18 @@ namespace AnimalHousePersistence
 
             entries = GetMedicalRecordEntryList(animal, sQLQueryResult);
 
-            return entries;
+            if (sQLQueryResult.code == 0)
+            {
+                return entries;
+            }
+            else
+            {
+                throw new MedicalRecordEntryNotFoundException("", sQLQueryResult.exception);
+
+            }
+
+
+            
         }
 
         public List<MedicalRecord> GetMedicalRecordEntryList(Animal animal,SQLQueryResult sQLQueryResult)
@@ -374,7 +385,16 @@ namespace AnimalHousePersistence
             List<Prescription> prescription = new List<Prescription>();
             prescription = GetAllPrescriptionList(sQLQueryResult);
 
-            return prescription;
+            if (sQLQueryResult.code == 0)
+            {
+                return prescription;
+            }
+            else
+            {
+                throw new PrescriptionNotFoundException("", sQLQueryResult.exception);
+
+            }
+            
         }
         
         private List<Prescription> GetAllPrescriptionList(SQLQueryResult sQLQueryResult)
