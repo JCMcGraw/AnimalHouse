@@ -209,6 +209,7 @@ namespace AnimalHouseUI
             label_headline.Text = customer.name.ToString();
             checkBox_erhverskunde.Enabled = false;
             textBox_cvr.Enabled = false;
+            label_underheader.Visible = false;
 
               
         }
@@ -227,7 +228,11 @@ namespace AnimalHouseUI
                     return;
                 }
 
-               
+                if (CheckEmtyTextBoxes() == false)
+                {
+                    MessageBox.Show("Alle felterne skal være udfyldt");
+                    return;
+                }
 
                 string name = textBox_navn.Text.ToString();
                 string phone = textBox_phonenumber.Text.ToString();
@@ -442,6 +447,7 @@ namespace AnimalHouseUI
             textBox_cvr.Enabled = true;
             checkBox_erhverskunde.Checked = false;
             dataGridView_dyr.DataSource = null;
+            label_underheader.Visible = true;
         }
 
         public bool CheckForCVRdegit(string cvr)
@@ -522,5 +528,10 @@ namespace AnimalHouseUI
                 MessageBox.Show("Hjælpefilen kunne ikke findes");
             }
         }
-     }
+
+        public void UpdateDataGridView()
+        {
+            dataGridView_dyr.Update();
+        }
+    }
 }
