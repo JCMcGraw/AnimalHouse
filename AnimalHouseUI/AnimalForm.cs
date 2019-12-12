@@ -30,7 +30,7 @@ namespace AnimalHouseUI
 
         //private DataTable Animal_Gender = new DataTable();
 
-        public AnimalForm(Customer customer,Animal animal)
+        public AnimalForm(Customer customer,Animal animal, CustomerForm customerForm)
 
         {
             this.customer = customer;
@@ -55,7 +55,7 @@ namespace AnimalHouseUI
            
             
         }
-        public AnimalForm(Customer customer)
+        public AnimalForm(Customer customer, CustomerForm customerForm)
 
         {
             this.customer = customer;
@@ -316,9 +316,16 @@ namespace AnimalHouseUI
         private void Button_opret_Click_1(object sender, EventArgs e)
         {
 
+
             string AnimalWeight = animal_weight.Text;
 
             int animalWeight = 0;
+
+            if(CheckEmtyTextBoxes() == false)
+            {
+                MessageBox.Show("Alle felter skal udfyldes");
+                return;
+            }
 
             if (CheckWeightDigit(AnimalWeight) == false)
             {
@@ -352,7 +359,16 @@ namespace AnimalHouseUI
                 animal = BossController.Instance().animalController.CreateAnimal(animal);
 
                 MessageBox.Show("Dyret er oprettet");
+
+                AnimalName_Label.Text = animal.name;
+                animalSpecies_label.Text = animal.Species.speciesType.ToString();
+                animal_owner.Text = "Ejer: " + customer.name;
+
+               
+
                 
+
+
             }
             catch (Exception exception)
             {
@@ -438,11 +454,11 @@ namespace AnimalHouseUI
                 try
                 {
                     string message = BossController.Instance().animalController.DeleteAnimal(animal);
-                    MessageBox.Show(message);
                     this.Close();
                     if (message == "ok")
                     {
                         MessageBox.Show("Dyret Slettet");
+                        this.Close();
                     }
                 }
                 catch (Exception exception)
@@ -568,6 +584,16 @@ namespace AnimalHouseUI
             {
                 MessageBox.Show("Filen kunne ikke findes");
             }
+        }
+        public bool CheckEmtyTextBoxes()
+        {
+
+            if (string.IsNullOrEmpty(animal_name.Text.ToString())||animal_gender.SelectedIndex<0)
+            {
+
+                return false;
+            }
+            return true;
         }
 
         private void Animal_medicalRecords_DoubleClick(object sender, EventArgs e)
