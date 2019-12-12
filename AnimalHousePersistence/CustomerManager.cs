@@ -74,6 +74,11 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
+            if (sQLQueryResult.code != 0)
+            {
+                throw new CantCreateCustomer("", sQLQueryResult.exception);
+            }
+
         }
 
         public void CreatePrivateCustomer(PrivateCustomer privateCustomer)
@@ -188,9 +193,7 @@ namespace AnimalHousePersistence
                 throw new NoCustomerFoundException("", sQLQueryResult.exception);
 
             }
-
-
-
+            
         }
 
         public int GetBusinessCustomerCVR(Customer customer)

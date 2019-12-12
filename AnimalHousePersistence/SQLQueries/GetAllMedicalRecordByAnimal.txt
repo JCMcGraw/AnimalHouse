@@ -1,2 +1,2 @@
-﻿Select * from MedicalRecord
-where AnimalID = @animalID
+﻿Select treatment.*, medicalrecord.MedicalRecordID, medicalrecord.Entry from MedicalRecord join Treatment on MedicalRecord.TreatmentID=Treatment.TreatmentID
+where medicalrecord.AnimalID = @animalID 

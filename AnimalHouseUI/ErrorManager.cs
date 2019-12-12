@@ -84,6 +84,10 @@ namespace AnimalHouseUI
             {
                 errorMessage = Localization.ErrorMessages.NoTreatmentTypesFound + GetErrorMessage(exception.InnerException); ;
             }
+            else if (exception is AnimalNotEditedException)
+            {
+                errorMessage = Localization.ErrorMessages.AnimalNotEdited + GetErrorMessage(exception.InnerException); ;
+            }
 
             else if (exception is SqlException)
             {

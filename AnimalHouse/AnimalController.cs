@@ -68,10 +68,10 @@ namespace AnimalHouse
             List<Species> animals = animalManager.GetAllSpecies();
             return animals;
         }
-        public List<MedicalRecord> GetAllMedicalRecordByAnimal(int animalID)
+        public List<MedicalRecord> GetAllMedicalRecordByAnimal(Animal animal)
         {
             IAnimalManager animalManager = new AnimalManager();
-            List<MedicalRecord> getAllMedicalRecordByAnimal = animalManager.GetAllJournalEntriesByAnimalID(animalID);
+            List<MedicalRecord> getAllMedicalRecordByAnimal = animalManager.GetAllMedicalRecordEntriesByAnimalID(animal);
             return getAllMedicalRecordByAnimal;
         }
 

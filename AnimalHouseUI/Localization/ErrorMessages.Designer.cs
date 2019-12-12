@@ -19,7 +19,7 @@ namespace AnimalHouseUI.Localization {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class ErrorMessages {
@@ -57,6 +57,33 @@ namespace AnimalHouseUI.Localization {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dyret blev ikke oprettet. .
+        /// </summary>
+        internal static string AnimalNotCreated {
+            get {
+                return ResourceManager.GetString("AnimalNotCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dyret blev ikke slettet. .
+        /// </summary>
+        internal static string AnimalNotDeleted {
+            get {
+                return ResourceManager.GetString("AnimalNotDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dyret blev ikke rettet. .
+        /// </summary>
+        internal static string AnimalNotEdited {
+            get {
+                return ResourceManager.GetString("AnimalNotEdited", resourceCulture);
             }
         }
         
@@ -124,6 +151,15 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Journalerne kunne ikke indlæses. .
+        /// </summary>
+        internal static string MedicalRecordEntryNotFound {
+            get {
+                return ResourceManager.GetString("MedicalRecordEntryNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Der var et problem med netværksforbindelsen. Tjek din internetforbindelse, og prøv igen. .
         /// </summary>
         internal static string NetworkError {
@@ -174,6 +210,15 @@ namespace AnimalHouseUI.Localization {
         internal static string NoTreatmentTypesFound {
             get {
                 return ResourceManager.GetString("NoTreatmentTypesFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recepterne kunne ikke indlæses. .
+        /// </summary>
+        internal static string PrescriptionNotFound {
+            get {
+                return ResourceManager.GetString("PrescriptionNotFound", resourceCulture);
             }
         }
     }

@@ -201,4 +201,84 @@ namespace AnimalHouseEntities
 
         }
     }
+    public class AnimalNotEditedException : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public AnimalNotEditedException()
+        { }
+
+        public AnimalNotEditedException(string message)
+            : base(message)
+        { }
+
+        public AnimalNotEditedException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
+    public class AnimalNotDeletedException : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public AnimalNotDeletedException()
+        { }
+
+        public AnimalNotDeletedException(string message)
+            : base(message)
+        { }
+
+        public AnimalNotDeletedException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
+    public class AnimalNotCreatedException : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public AnimalNotCreatedException()
+        { }
+
+        public AnimalNotCreatedException(string message)
+            : base(message)
+        { }
+
+        public AnimalNotCreatedException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
+    public class MedicalRecordEntryNotFoundException : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public MedicalRecordEntryNotFoundException()
+        { }
+
+        public MedicalRecordEntryNotFoundException(string message)
+            : base(message)
+        { }
+
+        public MedicalRecordEntryNotFoundException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
+    public class PrescriptionNotFoundException : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public PrescriptionNotFoundException()
+        { }
+
+        public PrescriptionNotFoundException(string message)
+            : base(message)
+        { }
+
+        public PrescriptionNotFoundException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
 }

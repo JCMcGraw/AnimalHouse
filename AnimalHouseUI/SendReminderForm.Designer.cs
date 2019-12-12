@@ -156,6 +156,7 @@
             this.RemindersDataGridView.AllowUserToAddRows = false;
             this.RemindersDataGridView.AllowUserToDeleteRows = false;
             this.RemindersDataGridView.AllowUserToResizeRows = false;
+            this.RemindersDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.RemindersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.RemindersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Customer,
@@ -176,26 +177,31 @@
             // 
             this.Customer.HeaderText = "Kunde";
             this.Customer.Name = "Customer";
+            this.Customer.ReadOnly = true;
             // 
             // Email
             // 
             this.Email.HeaderText = "Email";
             this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
             // 
             // Animal
             // 
             this.Animal.HeaderText = "Dyr";
             this.Animal.Name = "Animal";
+            this.Animal.ReadOnly = true;
             // 
             // Species
             // 
             this.Species.HeaderText = "Dyreart";
             this.Species.Name = "Species";
+            this.Species.ReadOnly = true;
             // 
             // LatestVisit
             // 
             this.LatestVisit.HeaderText = "Sidste behandling";
             this.LatestVisit.Name = "LatestVisit";
+            this.LatestVisit.ReadOnly = true;
             // 
             // SendToChosenButton
             // 
