@@ -8,7 +8,6 @@ namespace AnimalHouseEntities
 {
     public class BusinessCustomer : Customer
     {
-
         public int BusinesscustomerID { get; private set; }
 
         public int cvr { get; private set; }
