@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AnimalNotCreated" xml:space="preserve">
-    <value>Dyret blev ikke oprettet. </value>
+    <value>Dyret blev ikke oprettet.  </value>
   </data>
   <data name="AnimalNotDeleted" xml:space="preserve">
     <value>Dyret blev ikke slettet. </value>
@@ -127,28 +127,43 @@
     <value>Dyret blev ikke rettet. </value>
   </data>
   <data name="CantCreateCustomer" xml:space="preserve">
-    <value>Kunden kunne ikke oprettes, Muligvis er telefon -eller cvr-nummer ikke unikt</value>
+    <value>Kunden kunne ikke oprettes, Muligvis er telefon -eller cvr-nummer ikke unikt. </value>
   </data>
   <data name="CantCreatePrescription" xml:space="preserve">
-    <value>Der kunne ikke udstedes recept. Medicin er muligvis ugyldig</value>
+    <value>Der kunne ikke udstedes recept. Medicin er muligvis ugyldig. </value>
+  </data>
+  <data name="CantCreateSale" xml:space="preserve">
+    <value>Kunne Ikke Oprette et salg.</value>
   </data>
   <data name="CantCreateTreatment" xml:space="preserve">
-    <value>Behandlingen blev ikke gemt! prøv igen.</value>
+    <value>Behandlingen blev ikke gemt! prøv igen. </value>
   </data>
   <data name="CantDeleteException" xml:space="preserve">
-    <value>Kunden kunne ikke slettes</value>
+    <value>Kunden kunne ikke slettes. </value>
+  </data>
+  <data name="CantDeleteTreatment" xml:space="preserve">
+    <value>Behandlingen kunne ikke slettes. </value>
+  </data>
+  <data name="CantFindCages" xml:space="preserve">
+    <value>Listen over bure kunne ikke findes. </value>
+  </data>
+  <data name="CantFindOperationRooms" xml:space="preserve">
+    <value>Listen over operationsstuer kunne ikke findes. </value>
+  </data>
+  <data name="CantGetUnPaidPrescription" xml:space="preserve">
+    <value>Recepten kunne ikke findes</value>
   </data>
   <data name="CantGetAnimalList" xml:space="preserve">
     <value>Kundes liste over dyr kunne ikke indlæses</value>
   </data>
   <data name="CantUpdateTreatment" xml:space="preserve">
-    <value>Behandlingen kunne ikke opdateres</value>
+    <value>Behandlingen kunne ikke opdateres. </value>
   </data>
   <data name="CustomerNotUpdated" xml:space="preserve">
-    <value>Det var ikke muligt at redigere kunden. Muligvis er telefon -eller cvr-nummer optaget</value>
+    <value>Det var ikke muligt at redigere kunden. Muligvis er telefon -eller cvr-nummer optaget.</value>
   </data>
   <data name="DefaultDatabaseError" xml:space="preserve">
-    <value>Der var et problem med databases. </value>
+    <value>Der var et problem med databasen.  </value>
   </data>
   <data name="MedicalRecordEntryNotFound" xml:space="preserve">
     <value>Journalerne kunne ikke indlæses. </value>
@@ -157,19 +172,22 @@
     <value>Der var et problem med netværksforbindelsen. Tjek din internetforbindelse, og prøv igen. </value>
   </data>
   <data name="NoCustomerFound" xml:space="preserve">
-    <value>Der blev ikke fundet nogle kunder.</value>
+    <value>Der blev ikke fundet nogle kunder. </value>
   </data>
   <data name="NoEmployeesFound" xml:space="preserve">
-    <value>Der blev ikke fundet nogle medarbejdere.</value>
+    <value>Der blev ikke fundet nogle medarbejdere. </value>
   </data>
   <data name="NoItemsFound" xml:space="preserve">
     <value>Ingen varer blev fundet. </value>
   </data>
   <data name="NoRemindersFound" xml:space="preserve">
-    <value>Der blev ikke fundet nogle kunder, som der skal sendes påmindelser til.</value>
+    <value>Der blev ikke fundet nogle kunder, som der skal sendes påmindelser til. </value>
+  </data>
+  <data name="NoTreatmentsFound" xml:space="preserve">
+    <value>Der blev ikke fundet nogle behandlinger. </value>
   </data>
   <data name="NoTreatmentTypesFound" xml:space="preserve">
-    <value>Behandlingstyperne kunne ikke findes.</value>
+    <value>Behandlingstyperne kunne ikke findes. </value>
   </data>
   <data name="PrescriptionNotFound" xml:space="preserve">
     <value>Recepterne kunne ikke indlæses. </value>
