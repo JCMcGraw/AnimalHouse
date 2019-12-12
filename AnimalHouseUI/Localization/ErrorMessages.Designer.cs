@@ -19,7 +19,7 @@ namespace AnimalHouseUI.Localization {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class ErrorMessages {
@@ -61,7 +61,7 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dyret blev ikke oprettet. .
+        ///   Looks up a localized string similar to Dyret blev ikke oprettet.  .
         /// </summary>
         internal static string AnimalNotCreated {
             get {
@@ -88,7 +88,7 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kunden kunne ikke oprettes, Muligvis er telefon -eller cvr-nummer ikke unikt.
+        ///   Looks up a localized string similar to Kunden kunne ikke oprettes, Muligvis er telefon -eller cvr-nummer ikke unikt. .
         /// </summary>
         internal static string CantCreateCustomer {
             get {
@@ -97,7 +97,7 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Der kunne ikke udstedes recept. Medicin er muligvis ugyldig.
+        ///   Looks up a localized string similar to Der kunne ikke udstedes recept. Medicin er muligvis ugyldig. .
         /// </summary>
         internal static string CantCreatePrescription {
             get {
@@ -106,7 +106,7 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Behandlingen blev ikke gemt! prøv igen..
+        ///   Looks up a localized string similar to Behandlingen blev ikke gemt! prøv igen. .
         /// </summary>
         internal static string CantCreateTreatment {
             get {
@@ -115,7 +115,7 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kunden kunne ikke slettes.
+        ///   Looks up a localized string similar to Kunden kunne ikke slettes. .
         /// </summary>
         internal static string CantDeleteException {
             get {
@@ -124,7 +124,34 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Behandlingen kunne ikke opdateres.
+        ///   Looks up a localized string similar to Behandlingen kunne ikke slettes. .
+        /// </summary>
+        internal static string CantDeleteTreatment {
+            get {
+                return ResourceManager.GetString("CantDeleteTreatment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Listen over bure kunne ikke findes. .
+        /// </summary>
+        internal static string CantFindCages {
+            get {
+                return ResourceManager.GetString("CantFindCages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Listen over operationsstuer kunne ikke findes. .
+        /// </summary>
+        internal static string CantFindOperationRooms {
+            get {
+                return ResourceManager.GetString("CantFindOperationRooms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Behandlingen kunne ikke opdateres. .
         /// </summary>
         internal static string CantUpdateTreatment {
             get {
@@ -133,7 +160,7 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Det var ikke muligt at redigere kunden. Muligvis er telefon -eller cvr-nummer optaget.
+        ///   Looks up a localized string similar to Det var ikke muligt at redigere kunden. Muligvis er telefon -eller cvr-nummer optaget..
         /// </summary>
         internal static string CustomerNotUpdated {
             get {
@@ -142,7 +169,7 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Der var et problem med databases. .
+        ///   Looks up a localized string similar to Der var et problem med databasen.  .
         /// </summary>
         internal static string DefaultDatabaseError {
             get {
@@ -169,7 +196,7 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Der blev ikke fundet nogle kunder..
+        ///   Looks up a localized string similar to Der blev ikke fundet nogle kunder. .
         /// </summary>
         internal static string NoCustomerFound {
             get {
@@ -178,7 +205,7 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Der blev ikke fundet nogle medarbejdere..
+        ///   Looks up a localized string similar to Der blev ikke fundet nogle medarbejdere. .
         /// </summary>
         internal static string NoEmployeesFound {
             get {
@@ -196,7 +223,7 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Der blev ikke fundet nogle kunder, som der skal sendes påmindelser til..
+        ///   Looks up a localized string similar to Der blev ikke fundet nogle kunder, som der skal sendes påmindelser til. .
         /// </summary>
         internal static string NoRemindersFound {
             get {
@@ -205,7 +232,16 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Behandlingstyperne kunne ikke findes..
+        ///   Looks up a localized string similar to Der blev ikke fundet nogle behandlinger. .
+        /// </summary>
+        internal static string NoTreatmentsFound {
+            get {
+                return ResourceManager.GetString("NoTreatmentsFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Behandlingstyperne kunne ikke findes. .
         /// </summary>
         internal static string NoTreatmentTypesFound {
             get {

@@ -366,7 +366,7 @@ namespace AnimalHousePersistence
 
             if (sQLQueryResult.code!=0)
             {
-                throw new CantUpdateTreatment("", sQLQueryResult.exception);
+                throw new CantUpdateTreatmentException("", sQLQueryResult.exception);
             }
             medicalRecord.UpdateMedicalRecordID(medicalrecordID);
             return medicalRecord;

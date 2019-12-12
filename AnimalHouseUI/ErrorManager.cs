@@ -27,7 +27,7 @@ namespace AnimalHouseUI
         {
             string errorMessage = "Der opstod en fejl i systemet. Kontakt din systemadministrator";
 
-            if (exception == null)
+            if (exception is null)
             {
                 return "";
             }
@@ -75,6 +75,26 @@ namespace AnimalHouseUI
             else if (exception is TreatmentNotCreatedException)
             {
                 errorMessage = Localization.ErrorMessages.CantCreateTreatment + GetErrorMessage(exception.InnerException); ;
+            }
+            else if (exception is CantUpdateTreatmentException)
+            {
+                errorMessage = Localization.ErrorMessages.CantUpdateTreatment + GetErrorMessage(exception.InnerException); ;
+            }
+            else if (exception is CantDeleteTreatmentException)
+            {
+                errorMessage = Localization.ErrorMessages.CantDeleteTreatment + GetErrorMessage(exception.InnerException); ;
+            }
+            else if (exception is CantFindTreatmentsException)
+            {
+                errorMessage = Localization.ErrorMessages.NoTreatmentsFound + GetErrorMessage(exception.InnerException); ;
+            }
+            else if (exception is CantFindCagesException)
+            {
+                errorMessage = Localization.ErrorMessages.CantFindCages + GetErrorMessage(exception.InnerException); ;
+            }
+            else if (exception is CantFindOperationRoomsException)
+            {
+                errorMessage = Localization.ErrorMessages.CantFindOperationRooms + GetErrorMessage(exception.InnerException); ;
             }
             else if (exception is NoEmployeesFoundException)
             {

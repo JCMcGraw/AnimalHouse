@@ -31,7 +31,7 @@ namespace AnimalHouseUI
         List<CalendarItem> calendarItemsCache = new List<CalendarItem>();
         //CalendarItem contextItem = null;
 
-        
+
         public TreatmentBookingForm()
         {
             InitializeComponent();
@@ -41,8 +41,18 @@ namespace AnimalHouseUI
                 StartingvaluesLoadedOK = false;
                 return;
             }
-            SetOperationRooms();
-            SetCages();
+            bool operationRoomsSetSuccessfully = SetOperationRooms();
+            if (operationRoomsSetSuccessfully == false)
+            {
+                StartingvaluesLoadedOK = false;
+                return;
+            }
+            bool cagesSetSuccessfully = SetCages();
+            if (cagesSetSuccessfully == false)
+            {
+                StartingvaluesLoadedOK = false;
+                return;
+            }
             ComboBoxEmployee.SelectedIndex = 0;
             ComboBoxTreatmentType.SelectedIndex = 0;
 
@@ -56,14 +66,32 @@ namespace AnimalHouseUI
             updateCalender.Start();
         }
 
-        private void SetOperationRooms()
+        private bool SetOperationRooms()
         {
-            operationRooms = bossController.treatmentController.GetAllOperationRooms();
+            try
+            {
+                operationRooms = bossController.treatmentController.GetAllOperationRooms();
+            }
+            catch(Exception exception)
+            {
+                MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
+                return false;
+            }
+            return true;
         }
 
-        private void SetCages()
+        private bool SetCages()
         {
-            cages = bossController.treatmentController.GetAllCages();
+            try
+            {
+                cages = bossController.treatmentController.GetAllCages();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
+                return false;
+            }
+            return true;
         }
 
         private bool SetValuesForComboboxes()
@@ -73,7 +101,7 @@ namespace AnimalHouseUI
             {
                 employees = bossController.employeeController.GetAllEmployees();
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
                 return false;
@@ -97,12 +125,12 @@ namespace AnimalHouseUI
             {
                 treatmentTypes = bossController.treatmentController.GetAllTreatmentTypes();
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
                 return false;
             }
-            
+
             ComboBoxTreatmentType.DataSource = treatmentTypes;
             ComboBoxTreatmentType.DisplayMember = "name";
             ComboBoxTreatmentType.ValueMember = "treatmentTypeID";
@@ -263,17 +291,17 @@ namespace AnimalHouseUI
                 CalendarBooking.SetViewRange(CalendarRangeStart, CalendarRangeEnd);
             }
             CalendarBooking.TimeUnitsOffset = -32;
-                
+
         }
 
         private bool CheckCacheDates(DateTime CalendarRangeStart, DateTime CalendarRangeEnd)
         {
-            if(CalendarRangeStart.Year == 1 || CalendarRangeEnd.Year == 1)
+            if (CalendarRangeStart.Year == 1 || CalendarRangeEnd.Year == 1)
             {
                 return true;
             }
 
-            if(treatmentCacheDateStart <= CalendarRangeStart && treatmentCacheDateEnd >= CalendarRangeEnd)
+            if (treatmentCacheDateStart <= CalendarRangeStart && treatmentCacheDateEnd >= CalendarRangeEnd)
             {
                 return true;
             }
@@ -291,7 +319,15 @@ namespace AnimalHouseUI
             {
                 if (treatments == null)
                 {
-                    treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(CalendarRangeStart, CalendarRangeEnd);
+                    try
+                    {
+                        treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(CalendarRangeStart, CalendarRangeEnd);
+                    }
+                    catch (Exception exception)
+                    {
+                        MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
+                        return;
+                    }
                 }
 
                 treatmentsCache.Clear();
@@ -355,8 +391,8 @@ namespace AnimalHouseUI
         private void PlaceItems()
         {
             int treatmenttype = 0;
-         
-            if(ComboBoxTreatmentType.SelectedValue != null)
+
+            if (ComboBoxTreatmentType.SelectedValue != null)
             {
                 try
                 {
@@ -372,10 +408,10 @@ namespace AnimalHouseUI
                 {
                     if (treatmenttype == 3)
                     {
-                        if(treatmentsCache[item.TreatmentID].treatmentType.treatmentTypeID == 3)
+                        if (treatmentsCache[item.TreatmentID].treatmentType.treatmentTypeID == 3)
                         {
-                            
-                            ChangeColor(treatmentsCache[item.TreatmentID].status,item);
+
+                            ChangeColor(treatmentsCache[item.TreatmentID].status, item);
                             CalendarBooking.Items.Add(item);
                         }
                     }
@@ -390,7 +426,7 @@ namespace AnimalHouseUI
                                 ChangeColor(treatmentsCache[item.TreatmentID].status, item);
                                 CalendarBooking.Items.Add(item);
                             }
-                            else if(item.EmployeeID == selectedEmployee.employeeID)
+                            else if (item.EmployeeID == selectedEmployee.employeeID)
                             {
                                 ChangeColor(treatmentsCache[item.TreatmentID].status, item);
                                 CalendarBooking.Items.Add(item);
@@ -544,7 +580,17 @@ namespace AnimalHouseUI
         private List<OperationRoom> GetAllAvailableOperationRooms(List<OperationRoom> operationRooms, DateTime SuggestedStartTime, DateTime SuggestedEndTime)
         {
             List<OperationRoom> availableOperationRooms = new List<OperationRoom>();
-            List<Treatment> treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(SuggestedStartTime.Date, SuggestedStartTime.Date.AddDays(1));
+            List<Treatment> treatments;
+            try
+            {
+                treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(SuggestedStartTime.Date, SuggestedStartTime.Date.AddDays(1));
+            }
+            catch (Exception exception)
+            {
+                //MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
+                return availableOperationRooms;
+            }
+
 
 
             foreach (OperationRoom operationRoom in operationRooms)
@@ -562,7 +608,15 @@ namespace AnimalHouseUI
         {
             if (treatments == null)
             {
-                treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(SuggestedStartTime.Date, SuggestedStartTime.Date.AddDays(1));
+                try
+                {
+                    treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(SuggestedStartTime.Date, SuggestedStartTime.Date.AddDays(1));
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
+                    return false;
+                }
             }
 
             foreach (Treatment treatment in treatments)
@@ -579,14 +633,24 @@ namespace AnimalHouseUI
 
             return true;
         }
-        
+
         private List<Employee> GetAllAvailableEmployeesForConsultationOrOperation(List<Employee> employees, DateTime SuggestedStartTime, DateTime SuggestedEndTime)
         {
             List<Employee> availableEmployees = new List<Employee>();
-            List<Treatment> treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(SuggestedStartTime.Date, SuggestedStartTime.Date.AddDays(1));
+            List<Treatment> treatments;
 
+            try
+            {
+                treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(SuggestedStartTime.Date, SuggestedStartTime.Date.AddDays(1));
 
-            foreach(Employee employee in employees)
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
+                return availableEmployees;
+            }
+
+            foreach (Employee employee in employees)
             {
                 if (CheckAvailabilityOfEmployeeForConsultationOrOperation(employee, SuggestedStartTime, SuggestedEndTime, treatments) == true && employee.employeeID != -1)
                 {
@@ -599,12 +663,20 @@ namespace AnimalHouseUI
 
         private bool CheckAvailabilityOfEmployeeForConsultationOrOperation(Employee employee, DateTime SuggestedStartTime, DateTime SuggestedEndTime, List<Treatment> treatments = null)
         {
-            if(treatments == null)
+            if (treatments == null)
             {
-                treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(SuggestedStartTime.Date, SuggestedStartTime.Date.AddDays(1));
+                try
+                {
+                    treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(SuggestedStartTime.Date, SuggestedStartTime.Date.AddDays(1));
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
+                    return false;
+                }
             }
 
-            foreach(Treatment treatment in treatments)
+            foreach (Treatment treatment in treatments)
             {
                 if (treatment.employee != null && treatment.employee.employeeID == employee.employeeID)
                 {
@@ -622,8 +694,16 @@ namespace AnimalHouseUI
         private List<Cage> GetAllAvailableCages(List<Cage> cages, DateTime SuggestedStartTime, DateTime SuggestedEndTime, Animal animal)
         {
             List<Cage> availableCages = new List<Cage>();
-            List<Treatment> treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(SuggestedStartTime.Date.AddDays(-7), SuggestedEndTime.Date.AddDays(7));
-
+            List<Treatment> treatments;
+            try
+            {
+                treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(SuggestedStartTime.Date.AddDays(-7), SuggestedEndTime.Date.AddDays(7));
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
+                return availableCages;
+            }
 
             foreach (Cage cage in cages)
             {
@@ -636,10 +716,20 @@ namespace AnimalHouseUI
             return availableCages;
         }
 
-        private bool CheckAvailabilityForCages(Cage cage, DateTime SuggestedStartTime, DateTime SuggestedEndTime)
+        private bool CheckAvailabilityForCages(Cage cage, DateTime SuggestedStartTime, DateTime SuggestedEndTime, List<Treatment> treatments = null)
         {
-            List<Treatment> treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(SuggestedStartTime.Date, SuggestedEndTime.Date);
-
+            if (treatments == null)
+            {
+                try
+                {
+                    treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(SuggestedStartTime.Date, SuggestedEndTime.Date);
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
+                    return false;
+                }
+            }
             foreach (Treatment treatment in treatments)
             {
                 if (treatment.treatmentType.treatmentTypeID == 3 && treatment.cage != null && treatment.cage.CageID == cage.CageID)
@@ -673,7 +763,7 @@ namespace AnimalHouseUI
                 return;
             }
 
-            if(((TreatmentType)ComboBoxTreatmentType.SelectedItem).treatmentTypeID != 3)
+            if (((TreatmentType)ComboBoxTreatmentType.SelectedItem).treatmentTypeID != 3)
             {
                 //if employee is selected in combobox check availability to avoid double bookings
                 if (((Employee)ComboBoxEmployee.SelectedItem).employeeID != -1)
@@ -707,7 +797,7 @@ namespace AnimalHouseUI
                     }
                 }
             }
-            
+
             //check availability of operating rooms if treatment type is operation
             if (((TreatmentType)ComboBoxTreatmentType.SelectedItem).treatmentTypeID == 2)
             {
@@ -795,7 +885,7 @@ namespace AnimalHouseUI
             {
                 headline = $"{ComboBoxTreatmentType.Text}, {selectedEmployee.name}, {selectedItem.name}. {animal.name} ({animal.Species.speciesType})";
             }
-            
+
 
 
             DialogResult dialogResult = MessageBox.Show(message, "Book behandling", MessageBoxButtons.YesNo);
@@ -805,7 +895,7 @@ namespace AnimalHouseUI
                 //Item item = ItemFactory.Instance().CreateItem(9, "Vaccination", 1, 399m, 299m, false, true, true);
 
                 //create new treatment
-                Treatment treatment = TreatmentFactory.Instance().CreateTreatment((TreatmentType)ComboBoxTreatmentType.SelectedItem, selectedOperationRoom, selectedCage, selectedItem, e.Item.StartDate, e.Item.EndDate, false, headline, true, animal, selectedEmployee,status);
+                Treatment treatment = TreatmentFactory.Instance().CreateTreatment((TreatmentType)ComboBoxTreatmentType.SelectedItem, selectedOperationRoom, selectedCage, selectedItem, e.Item.StartDate, e.Item.EndDate, false, headline, true, animal, selectedEmployee, status);
 
                 Treatment treatmentWithID;
                 try
@@ -813,7 +903,7 @@ namespace AnimalHouseUI
                     //add treatment to database and get treatment with treatment ID
                     treatmentWithID = bossController.treatmentController.CreateTreatment(treatment);
                 }
-                catch(Exception exception)
+                catch (Exception exception)
                 {
                     MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
                     e.Cancel = true;
@@ -839,7 +929,16 @@ namespace AnimalHouseUI
 
         private bool CheckAvailabilityForTreatmentMove(CalendarItemEventArgs calendarItemEventArgs)
         {
-            List<Treatment> treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(calendarItemEventArgs.Item.StartDate, calendarItemEventArgs.Item.EndDate);
+            List<Treatment> treatments;
+            try
+            {
+                treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(calendarItemEventArgs.Item.StartDate, calendarItemEventArgs.Item.EndDate);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
+                return false;
+            }
 
             if (treatmentsCache[calendarItemEventArgs.Item.TreatmentID].treatmentType.treatmentTypeID != 3)
             {
@@ -887,7 +986,7 @@ namespace AnimalHouseUI
                 return;
             }
 
-            if(treatmentsCache[e.Item.TreatmentID].status == 2)
+            if (treatmentsCache[e.Item.TreatmentID].status == 2)
             {
                 MessageBox.Show("Du kan ikke flytte en igangværende behandling!");
                 //reset datetimes to original
@@ -939,13 +1038,25 @@ namespace AnimalHouseUI
                 //get updated treatment
                 Treatment newTreatment = GetUpdatedTreatment(treatmentID, e.Item.StartDate, e.Item.EndDate);
                 //update treatment in database
-                bossController.treatmentController.UpdateTreatment(newTreatment);
+                try
+                {
+                    bossController.treatmentController.UpdateTreatment(newTreatment);
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
+                    //reset datetimes to original
+                    e.Item.StartDate = treatmentsCache[e.Item.TreatmentID].startTime;
+                    e.Item.EndDate = treatmentsCache[e.Item.TreatmentID].endTime;
+                    PlaceItems();
+                    return;
+                }
 
                 //remove old treatment from cache
                 treatmentsCache.Remove(treatmentID);
                 //add updated treatment to cache
                 treatmentsCache.Add(newTreatment.treatmentID, newTreatment);
-                
+
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -962,7 +1073,7 @@ namespace AnimalHouseUI
         {
             Treatment oldTreatment = treatmentsCache[treatmentID];
             Treatment newTreatment = TreatmentFactory.Instance().CreateTreatment(treatmentID, oldTreatment.treatmentType, oldTreatment.operationRoom, oldTreatment.cage, oldTreatment.item,
-                newStartTime, newEndTime, oldTreatment.payed, oldTreatment.headline, oldTreatment.active, oldTreatment.animal, oldTreatment.employee,oldTreatment.status);
+                newStartTime, newEndTime, oldTreatment.payed, oldTreatment.headline, oldTreatment.active, oldTreatment.animal, oldTreatment.employee, oldTreatment.status);
 
             return newTreatment;
         }
@@ -972,7 +1083,7 @@ namespace AnimalHouseUI
         {
             Treatment oldTreatment = treatmentsCache[treatmentID];
             Treatment newTreatment = TreatmentFactory.Instance().CreateTreatment(treatmentID, oldTreatment.treatmentType, oldTreatment.operationRoom, oldTreatment.cage, oldTreatment.item,
-                oldTreatment.startTime,oldTreatment.endTime, oldTreatment.payed, oldTreatment.headline, oldTreatment.active, oldTreatment.animal, oldTreatment.employee, status);
+                oldTreatment.startTime, oldTreatment.endTime, oldTreatment.payed, oldTreatment.headline, oldTreatment.active, oldTreatment.animal, oldTreatment.employee, status);
 
             return newTreatment;
         }
@@ -1038,9 +1149,18 @@ namespace AnimalHouseUI
             if (dialogResult == DialogResult.Yes)
             {
                 int treatmentID = e.Item.TreatmentID;
-                
+
                 //delete treatement from database
-                bossController.treatmentController.DeleteTreatment(treatmentID);
+                try
+                {
+                    bossController.treatmentController.DeleteTreatment(treatmentID);
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
+                    e.Cancel = true;
+                    return;
+                }
 
                 //delete treatment fromm treatmentcache
                 treatmentsCache.Remove(treatmentID);
@@ -1059,7 +1179,7 @@ namespace AnimalHouseUI
         {
             int itemcounter = -1;
 
-            for(itemcounter = 0; itemcounter < calendarItemsCache.Count; itemcounter++)
+            for (itemcounter = 0; itemcounter < calendarItemsCache.Count; itemcounter++)
             {
                 if (calendarItemsCache[itemcounter].TreatmentID == treatmentID)
                 {
@@ -1086,11 +1206,11 @@ namespace AnimalHouseUI
             CalendarBooking.Focus();
             SendKeys.Send("{ENTER}");
         }
-        
+
         private void CalendarBooking_KeyDown(object sender, KeyEventArgs e)
         {
             //if enter has been pressed with calendar in focus and no selection made show message box
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 if (CalendarBooking.SelectedElementStart == null)
                 {
@@ -1123,7 +1243,7 @@ namespace AnimalHouseUI
             {
                 animal = customerForm.selectedAnimal;
                 AnimalLabel.Text = $"{animal.name} ({animal.Species.speciesType})";
-                if(animal.Employee != null)
+                if (animal.Employee != null)
                 {
                     int selectAnimalEmployeeIndex = ComboBoxEmployee.FindStringExact(animal.Employee.name);
                     if (selectAnimalEmployeeIndex > -1)
@@ -1176,7 +1296,7 @@ namespace AnimalHouseUI
             int treatmentID = e.Item.TreatmentID;
             Treatment treatment = treatmentsCache[treatmentID];
 
-            if(treatment.status == 0)
+            if (treatment.status == 0)
             {
                 MessageBox.Show("Denne patient er ikke ankommet endnu.");
                 return;
@@ -1189,9 +1309,9 @@ namespace AnimalHouseUI
 
         private void button_startbehandling_Click(object sender, EventArgs e)
         {
-          
+
             bool isValidStart = StartTreatment();
-            
+
             if (isValidStart == true)
             {
                 UpdateTreatmentStatus(2);
@@ -1200,13 +1320,13 @@ namespace AnimalHouseUI
 
         public bool StartTreatment()
         {
-            List<CalendarItem> calendaritems=(List<CalendarItem>)CalendarBooking.GetSelectedItems();
-            if (calendaritems.Count==0)
+            List<CalendarItem> calendaritems = (List<CalendarItem>)CalendarBooking.GetSelectedItems();
+            if (calendaritems.Count == 0)
             {
                 MessageBox.Show("Der er ikke valgt nogen aftale");
                 return false;
             }
-            else if (calendaritems.Count>1)
+            else if (calendaritems.Count > 1)
             {
                 MessageBox.Show("Der kan kun vælges en enkelt aftalte");
                 return false;
@@ -1235,7 +1355,7 @@ namespace AnimalHouseUI
 
         private void UpdateTreatmentStatus(int status)
         {
-           
+
             List<CalendarItem> calendaritems = (List<CalendarItem>)CalendarBooking.GetSelectedItems();
             int treatmentID;
             try
@@ -1245,13 +1365,21 @@ namespace AnimalHouseUI
             }
             catch
             {
-               
+
                 return;
             }
             //get updated treatment
             Treatment newTreatment = GetUpdatedTreatmentStatus(treatmentID, status);
             //update treatment in database
-            bossController.treatmentController.UpdateTreatment(newTreatment);
+            try
+            {
+                bossController.treatmentController.UpdateTreatment(newTreatment);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
+                return;
+            }
 
             //remove old treatment from cache
             treatmentsCache.Remove(treatmentID);
@@ -1281,9 +1409,16 @@ namespace AnimalHouseUI
         {
             while (true)
             {
+                List<Treatment> treatments;
                 Thread.Sleep(30000);
-
-                List<Treatment> treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(treatmentCacheDateStart, treatmentCacheDateEnd);
+                try
+                {
+                    treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(treatmentCacheDateStart, treatmentCacheDateEnd);
+                }
+                catch(Exception exception)
+                {
+                    continue;
+                }
                 UpdateTreatmentCache(treatmentCacheDateStart, treatmentCacheDateEnd, treatments);
 
                 if (InvokeRequired)
