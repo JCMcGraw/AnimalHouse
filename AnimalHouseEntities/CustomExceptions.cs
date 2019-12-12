@@ -249,4 +249,55 @@ namespace AnimalHouseEntities
         {
         }
     }
+
+    public class CantCreateSale : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public CantCreateSale()
+        { }
+
+        public CantCreateSale(string message)
+            : base(message)
+        { }
+
+        public CantCreateSale(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
+
+    public class CantGetUnPaidPrescription : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public CantGetUnPaidPrescription()
+        { }
+
+        public CantGetUnPaidPrescription(string message)
+            : base(message)
+        { }
+
+        public CantGetUnPaidPrescription(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
+
+    public class CantGetUnPaidTreatments : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public CantGetUnPaidTreatments()
+        { }
+
+        public CantGetUnPaidTreatments(string message)
+            : base(message)
+        { }
+
+        public CantGetUnPaidTreatments(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
 }

@@ -106,6 +106,15 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kunne Ikke Oprette et salg..
+        /// </summary>
+        internal static string CantCreateSale {
+            get {
+                return ResourceManager.GetString("CantCreateSale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Behandlingen blev ikke gemt! prøv igen..
         /// </summary>
         internal static string CantCreateTreatment {
@@ -120,6 +129,15 @@ namespace AnimalHouseUI.Localization {
         internal static string CantDeleteException {
             get {
                 return ResourceManager.GetString("CantDeleteException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recepten kunne ikke findes.
+        /// </summary>
+        internal static string CantGetUnPaidPrescription {
+            get {
+                return ResourceManager.GetString("CantGetUnPaidPrescription", resourceCulture);
             }
         }
         

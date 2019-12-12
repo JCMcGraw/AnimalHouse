@@ -495,10 +495,16 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            List<Prescription> prescription = new List<Prescription>();
-            prescription = GetAllPrescriptionList(sQLQueryResult);
-
-            return prescription;
+            if (sQLQueryResult.code == 0)
+            {
+                List<Prescription> prescription = new List<Prescription>();
+                prescription = GetAllPrescriptionList(sQLQueryResult);
+                return prescription;
+            }
+            else
+            {
+                throw new CantGetUnPaidPrescription("", sQLQueryResult.exception);
+            }
         }
     }
 }
