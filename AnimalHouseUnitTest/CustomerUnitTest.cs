@@ -17,13 +17,17 @@ namespace AnimalHouseUnitTest
         {
             CustomerManager customerManager = new CustomerManager();
             customerManager.CreateCustomer(customer);
+            Assert.AreNotEqual(0, customer.customerID);
+
         }
 
         [TestMethod]
         public void DeleteCustomerTestMethod()
         {
             CustomerManager customerManager = new CustomerManager();
-            customerManager.DeleteCustomer(customer);
+            
+            string deleteCustomer= customerManager.DeleteCustomer(customer);
+            Assert.AreEqual("Kunde gjort inaktiv", deleteCustomer);
         }
 
         [TestMethod]
@@ -31,7 +35,8 @@ namespace AnimalHouseUnitTest
         {
             Customer tmpcustomer= CustomerFactory.Instance().CreateCustomer("hans", "Vejvej", "+4553595754", "Hejsa2@gmail.com", true, 0);
             CustomerManager customerManager = new CustomerManager();
-            customerManager.UpdateCustomer(customer);
+           string updateCustomer= customerManager.UpdateCustomer(customer);
+            Assert.AreEqual("Kunde rettet", updateCustomer);
         }
     }
 }
