@@ -62,6 +62,7 @@
             this.label_nulstil = new System.Windows.Forms.Label();
             this.button_nulstil = new System.Windows.Forms.Button();
             this.label_hjaelp = new System.Windows.Forms.Label();
+            this.label_underheader = new System.Windows.Forms.Label();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_dyr)).BeginInit();
@@ -426,12 +427,23 @@
             this.label_hjaelp.TabIndex = 31;
             this.label_hjaelp.Text = "Hjælp";
             // 
+            // label_underheader
+            // 
+            this.label_underheader.AutoSize = true;
+            this.label_underheader.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_underheader.Location = new System.Drawing.Point(39, 129);
+            this.label_underheader.Name = "label_underheader";
+            this.label_underheader.Size = new System.Drawing.Size(160, 20);
+            this.label_underheader.TabIndex = 32;
+            this.label_underheader.Text = "Søg eller opret kunde";
+            // 
             // CustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(640, 542);
+            this.Controls.Add(this.label_underheader);
             this.Controls.Add(this.label_hjaelp);
             this.Controls.Add(this.button_nulstil);
             this.Controls.Add(this.label_nulstil);
@@ -506,5 +518,6 @@
         private System.Windows.Forms.Label label_nulstil;
         private System.Windows.Forms.Button button_nulstil;
         private System.Windows.Forms.Label label_hjaelp;
+        private System.Windows.Forms.Label label_underheader;
     }
 }
