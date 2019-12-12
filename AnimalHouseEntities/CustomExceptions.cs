@@ -352,6 +352,25 @@ namespace AnimalHouseEntities
             : base(message, inner)
         {
         }
+
+       
+    }
+
+    public class CantGetAnimalList : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public CantGetAnimalList()
+        { }
+
+        public CantGetAnimalList(string message)
+            : base(message)
+        { }
+
+        public CantGetAnimalList(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
     }
 
     public class CantCreateSale : Exception

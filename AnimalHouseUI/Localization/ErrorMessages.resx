@@ -153,6 +153,9 @@
   <data name="CantGetUnPaidPrescription" xml:space="preserve">
     <value>Recepten kunne ikke findes</value>
   </data>
+  <data name="CantGetAnimalList" xml:space="preserve">
+    <value>Kundes liste over dyr kunne ikke indlæses</value>
+  </data>
   <data name="CantUpdateTreatment" xml:space="preserve">
     <value>Behandlingen kunne ikke opdateres. </value>
   </data>
@@ -188,5 +191,8 @@
   </data>
   <data name="PrescriptionNotFound" xml:space="preserve">
     <value>Recepterne kunne ikke indlæses. </value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>Behandlingen kunne ikke slettes</value>
   </data>
 </root>

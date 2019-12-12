@@ -184,24 +184,10 @@ namespace AnimalHouseUI
             label_headline.Text = customer.name.ToString();
 
             CheckForBusinesscustomer(customer);
-         
 
-            //danner en liste af dyr der hedder animals. Denne liste bliver dannet et sted på animalmanager og der bruges en customer
-            List<Animal> animals= BossController.Instance().animalController.GetManyAnimalByCustomerID(customer);
-            
-            //tilknytter listen af dyr til kunden
-            customer.AddAnimalList(animals);
-            
-            dataGridView_dyr.DataSource = customer.animals;
+            UpdateDataGridView();
 
-            dataGridView_dyr.Columns["name"].DataPropertyName = "Name";
-
-            for (int i = 0; i < dataGridView_dyr.RowCount; i++)
-            {
-                Species tmpspecies = animals[i].Species;
-
-                dataGridView_dyr.Rows[i].Cells["speciestype"].Value = tmpspecies.speciesType;
-            }
+          
             
             button_rediger.Enabled = true;
             button_slet.Enabled = true;
@@ -209,7 +195,7 @@ namespace AnimalHouseUI
             label_headline.Text = customer.name.ToString();
             checkBox_erhverskunde.Enabled = false;
             textBox_cvr.Enabled = false;
-            //label_underheader.Visible = false;
+         label_underheader.Text="Ret, slet, se dyr eller Tilføj dyr";
 
               
         }
@@ -447,8 +433,7 @@ namespace AnimalHouseUI
             textBox_cvr.Enabled = true;
             checkBox_erhverskunde.Checked = false;
             dataGridView_dyr.DataSource = null;
-           // label_underheader.Visible = true;
-        }
+            label_underheader.Text = "Søg eller opret kunde";        }
 
         public bool CheckForCVRdegit(string cvr)
         {
@@ -531,23 +516,35 @@ namespace AnimalHouseUI
 
         public void UpdateDataGridView()
         {
-
             //danner en liste af dyr der hedder animals. Denne liste bliver dannet et sted på animalmanager og der bruges en customer
-            List<Animal> animals = BossController.Instance().animalController.GetManyAnimalByCustomerID(customer);
 
-            //tilknytter listen af dyr til kunden
-            customer.AddAnimalList(animals);
-
-            dataGridView_dyr.DataSource = customer.animals;
-
-            dataGridView_dyr.Columns["name"].DataPropertyName = "Name";
-
-            for (int i = 0; i < dataGridView_dyr.RowCount; i++)
+            try
             {
-                Species tmpspecies = animals[i].Species;
+                List<Animal> animals = BossController.Instance().animalController.GetManyAnimalByCustomerID(customer);
+                customer.AddAnimalList(animals);
 
-                dataGridView_dyr.Rows[i].Cells["speciestype"].Value = tmpspecies.speciesType;
+                dataGridView_dyr.DataSource = customer.animals;
+
+                dataGridView_dyr.Columns["name"].DataPropertyName = "Name";
+
+                for (int i = 0; i < dataGridView_dyr.RowCount; i++)
+                {
+                    Species tmpspecies = animals[i].Species;
+
+                    dataGridView_dyr.Rows[i].Cells["speciestype"].Value = tmpspecies.speciesType;
+
+
+                }
+
             }
+            catch (Exception exception)
+            {
+                string errorMessage = ErrorManager.Instance().GetErrorMessage(exception);
+                MessageBox.Show(errorMessage);
+                return;
+            }
+            //tilknytter listen af dyr til kunden
+            
 
         }
     }

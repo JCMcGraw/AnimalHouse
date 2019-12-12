@@ -121,6 +121,10 @@ namespace AnimalHouseUI
                 errorMessage = Localization.ErrorMessages.CantCreateSale + GetErrorMessage(exception.InnerException); ;
             }
 
+            else if (exception is CantGetAnimalList)
+            {
+                errorMessage = Localization.ErrorMessages.CantGetAnimalList;
+            }
             else if (exception is SqlException)
             {
                 switch (((SqlException)exception).Number)
