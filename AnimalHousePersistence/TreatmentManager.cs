@@ -198,11 +198,18 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            List<Treatment> treatments = new List<Treatment>();
+            if (sQLQueryResult.code==0)
+            {
+                List<Treatment> treatments = new List<Treatment>();
 
-            treatments = GetTreatmentList(sQLQueryResult);
+                treatments = GetTreatmentList(sQLQueryResult);
 
-            return treatments;
+                return treatments;
+            }
+            else
+            {
+                throw new CantGetUnPaidTreatments("", sQLQueryResult.exception);
+            }
         }
 
         public List<TreatmentType> GetAllTreatmentTypes()
