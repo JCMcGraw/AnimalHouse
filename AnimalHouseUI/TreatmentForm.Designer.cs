@@ -44,6 +44,8 @@
             this.label_underheadline2 = new System.Windows.Forms.Label();
             this.comboBox_recept = new System.Windows.Forms.ComboBox();
             this.label_vaelg_medicin = new System.Windows.Forms.Label();
+            this.label_hjaelp = new System.Windows.Forms.Label();
+            this.button_help = new System.Windows.Forms.Button();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             this.SuspendLayout();
@@ -229,12 +231,38 @@
             this.label_vaelg_medicin.TabIndex = 16;
             this.label_vaelg_medicin.Text = "Vælg medicin";
             // 
+            // label_hjaelp
+            // 
+            this.label_hjaelp.AutoSize = true;
+            this.label_hjaelp.Location = new System.Drawing.Point(746, 82);
+            this.label_hjaelp.Name = "label_hjaelp";
+            this.label_hjaelp.Size = new System.Drawing.Size(35, 13);
+            this.label_hjaelp.TabIndex = 33;
+            this.label_hjaelp.Text = "Hjælp";
+            // 
+            // button_help
+            // 
+            this.button_help.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
+            this.button_help.BackgroundImage = global::AnimalHouseUI.Properties.Resources.question_mark_32px;
+            this.button_help.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button_help.FlatAppearance.BorderSize = 0;
+            this.button_help.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_help.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_help.Location = new System.Drawing.Point(743, 42);
+            this.button_help.Name = "button_help";
+            this.button_help.Size = new System.Drawing.Size(45, 36);
+            this.button_help.TabIndex = 32;
+            this.button_help.UseVisualStyleBackColor = false;
+            this.button_help.Click += new System.EventHandler(this.button_help_Click);
+            // 
             // TreatmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(800, 399);
+            this.Controls.Add(this.label_hjaelp);
+            this.Controls.Add(this.button_help);
             this.Controls.Add(this.label_vaelg_medicin);
             this.Controls.Add(this.comboBox_recept);
             this.Controls.Add(this.label_underheadline2);
@@ -276,5 +304,7 @@
         private System.Windows.Forms.Label label_underheadline2;
         private System.Windows.Forms.ComboBox comboBox_recept;
         private System.Windows.Forms.Label label_vaelg_medicin;
+        private System.Windows.Forms.Label label_hjaelp;
+        private System.Windows.Forms.Button button_help;
     }
 }

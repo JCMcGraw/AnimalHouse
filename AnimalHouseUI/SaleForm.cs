@@ -161,34 +161,24 @@ namespace AnimalHouseUI
 
         private void SearchPhoneButton_Click(object sender, EventArgs e)
         {
-            customer = BossController.Instance().customerController.GetCustomer(PhoneTextBox.Text);
+            try
+            {
+                customer = BossController.Instance().customerController.GetCustomer(PhoneTextBox.Text);
 
-            CustomerNameLabel.Text = customer.name.ToString();
-            CustomerNameLabel.Enabled = true;
-            AdressTextBox.Text = customer.address;
-            EmailTextBox.Text = customer.email;
+                CustomerNameLabel.Text = customer.name.ToString();
+                CustomerNameLabel.Enabled = true;
+                AdressTextBox.Text = customer.address;
+                EmailTextBox.Text = customer.email;
 
-            sale.SetCustomer(customer);
-            LoadeAllUnPaidPrescriptions(customer);
-            LoadeAllUnpaidTreatments(customer);
+                sale.SetCustomer(customer);
+                LoadeAllUnPaidPrescriptions(customer);
+                LoadeAllUnpaidTreatments(customer);
+            }
+            catch (Exception)
+            {
 
-            //try
-            //{
-            //    customer = BossController.Instance().customerController.GetCustomer(PhoneTextBox.Text);
-
-            //    CustomerNameLabel.Text = customer.name.ToString();
-            //    CustomerNameLabel.Enabled = true;
-            //    AdressTextBox.Text = customer.address;
-            //    EmailTextBox.Text = customer.email;
-
-            //    sale.SetCustomer(customer);
-            //    LoadeAllUnPaidPrescriptions(customer);
-            //    LoadeAllUnpaidTreatments(customer);
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("Prøv igen ");
-            //}
+                throw;
+            }
         }
 
         private void EndButton_Click(object sender, EventArgs e)
@@ -268,37 +258,23 @@ namespace AnimalHouseUI
 
         private void ChoseDataView1()
         {
-            //if (customer != null)
-            //{
-                DataGridViewRow row = ItemDataGridView.SelectedRows[0];
-                Item item = row.DataBoundItem as Item;
-                FillItemList(item);
-            //}
-            //else
-            //{
-                //MessageBox.Show("Du skal finde en kunde før du kan tilføje vare til et salg");
-            //}
+            DataGridViewRow row = ItemDataGridView.SelectedRows[0];
+            Item item = row.DataBoundItem as Item;
+            FillItemList(item);
         }
 
         private void ChoseDataView2()
         {
-            //if (customer != null)
-            //{
-                DataGridViewRow row = UnPaidPrescriptionsDataGridView.SelectedRows[0];
-                Prescription prescription = row.DataBoundItem as Prescription;
-                FillItemList(prescription.item,prescription.amount);
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Du skal finde en kunde før du kan tilføje vare til et salg");
-            //}
+            DataGridViewRow row = UnPaidPrescriptionsDataGridView.SelectedRows[0];
+            Prescription prescription = row.DataBoundItem as Prescription;
+            FillItemList(prescription.item, prescription.amount);
         }
+
         private void ChoseDataView3()
         {
-            //if (customer != null)
-            //{
-                DataGridViewRow row = UnPaidTreatmentDataGridView.SelectedRows[0];
-                Treatment treatment = row.DataBoundItem as Treatment;
+            DataGridViewRow row = UnPaidTreatmentDataGridView.SelectedRows[0];
+            Treatment treatment = row.DataBoundItem as Treatment;
+            
             int amount = 1;
             if (treatment.treatmentType.treatmentTypeID ==3)
             {

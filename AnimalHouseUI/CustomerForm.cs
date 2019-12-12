@@ -11,6 +11,7 @@ using AnimalHouse;
 using AnimalHouseEntities;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
+using System.IO;
 
 
 namespace AnimalHouseUI
@@ -183,7 +184,7 @@ namespace AnimalHouseUI
             label_headline.Text = customer.name.ToString();
 
             CheckForBusinesscustomer(customer);
-          //  this.Refresh();
+         
 
             //danner en liste af dyr der hedder animals. Denne liste bliver dannet et sted på animalmanager og der bruges en customer
             List<Animal> animals= BossController.Instance().animalController.GetManyAnimalByCustomerID(customer);
@@ -225,7 +226,9 @@ namespace AnimalHouseUI
                     MessageBox.Show("Ugyldig E-mailadresse");
                     return;
                 }
-                
+
+               
+
                 string name = textBox_navn.Text.ToString();
                 string phone = textBox_phonenumber.Text.ToString();
                 string address = textBox_adresse.Text.ToString();
@@ -235,6 +238,8 @@ namespace AnimalHouseUI
                 bool active = customer.active;
 
                 Customer tmpcustomer = CustomerFactory.Instance().CreateCustomer(customerID, name, address, phone, email, active, cvr);
+
+              
 
                 try
                 {
@@ -269,8 +274,7 @@ namespace AnimalHouseUI
 
                 try
                 {
-                    
-
+                
                     string message = BossController.Instance().customerController.DeleteCustomer(customer);
                     MessageBox.Show(message);
 
@@ -296,6 +300,12 @@ namespace AnimalHouseUI
                     MessageBox.Show("Ugyldig E-mailadresse");
                     return;
                 }
+            if (CheckEmtyTextBoxes()==false)
+            {
+                MessageBox.Show("Alle felterne skal være udfyldt");
+                return;
+            }
+
 
             // tjekker om cvrnummeret består af tal
             string cvr = textBox_cvr.Text;
@@ -330,6 +340,7 @@ namespace AnimalHouseUI
             }
             customer = CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, cvrint);
 
+            
 
             try
             {
@@ -343,6 +354,8 @@ namespace AnimalHouseUI
                 button_rediger.Enabled = true;
                 button_slet.Enabled = true;
                 label_headline.Text = textBox_navn.Text.ToString().ToString();
+                checkBox_erhverskunde.Enabled = false;
+                textBox_cvr.Enabled = false;
 
             }
                 catch (Exception exception)
@@ -436,6 +449,11 @@ namespace AnimalHouseUI
             return cvr.All(char.IsDigit);
         }
 
+        private void button_nulstil_Click(object sender, EventArgs e)
+        {
+            ResetForm();
+        }
+
         private void LoadeAllItemsInListBox()
         {
             List<Animal> animals = BossController.Instance().animalController.GetManyAnimalByCustomerID(customer);
@@ -478,32 +496,31 @@ namespace AnimalHouseUI
         public bool CheckUniquePhone(string phone)
         {
             return BossController.Instance().customerController.CheckUniquePhone(phone);
-                     }
+         }
 
-        //private void button1_Click(object sender, EventArgs e)
-        //{
+     public bool CheckEmtyTextBoxes()
+        {
 
-        //}
+            if (string.IsNullOrEmpty(textBox_phonenumber.Text.ToString())||string.IsNullOrEmpty(textBox_navn.Text.ToString())||string.IsNullOrEmpty(textBox_adresse.Text.ToString())||string.IsNullOrEmpty(textBox_email.Text.ToString()))
+            {
+               
+                return false;
+            }
+            return true;
+        }
 
         private void button_help_Click(object sender, EventArgs e)
         {
             try
             {
 
-                string file = "../../../AnimalHouse/AnimalHouseUI/helpfiles/Customer-Form-Help.pdf";
-                Process.Start(file);
+                string file = Path.GetDirectoryName(Application.ExecutablePath) + "/helpfiles/Customer-Form-Help.pdf";
+                System.Diagnostics.Process.Start(file);
             }
-        catch
+            catch
             {
-                MessageBox.Show("Filen kunne ikke findes");
+                MessageBox.Show("Hjælpefilen kunne ikke findes");
             }
-            }
-
-       
-
-        private void button_nulstil_Click(object sender, EventArgs e)
-        {
-            ResetForm();
         }
-    }
+     }
 }
