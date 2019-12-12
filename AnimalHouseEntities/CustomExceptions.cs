@@ -112,21 +112,93 @@ namespace AnimalHouseEntities
         }
     }
 
-    public class CantUpdateTreatment : Exception
+    public class CantUpdateTreatmentException : Exception
     {
         public string ResourceReferenceProperty { get; set; }
 
-        public CantUpdateTreatment()
+        public CantUpdateTreatmentException()
         { }
 
-        public CantUpdateTreatment(string message)
+        public CantUpdateTreatmentException(string message)
             : base(message)
         { }
 
-        public CantUpdateTreatment(string message, Exception inner)
+        public CantUpdateTreatmentException(string message, Exception inner)
             : base(message, inner)
         {
      
+        }
+    }
+
+    public class CantDeleteTreatmentException : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public CantDeleteTreatmentException()
+        { }
+
+        public CantDeleteTreatmentException(string message)
+            : base(message)
+        { }
+
+        public CantDeleteTreatmentException(string message, Exception inner)
+            : base(message, inner)
+        {
+
+        }
+    }
+
+    public class CantFindTreatmentsException : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public CantFindTreatmentsException()
+        { }
+
+        public CantFindTreatmentsException(string message)
+            : base(message)
+        { }
+
+        public CantFindTreatmentsException(string message, Exception inner)
+            : base(message, inner)
+        {
+
+        }
+    }
+
+    public class CantFindCagesException : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public CantFindCagesException()
+        { }
+
+        public CantFindCagesException(string message)
+            : base(message)
+        { }
+
+        public CantFindCagesException(string message, Exception inner)
+            : base(message, inner)
+        {
+
+        }
+    }
+
+    public class CantFindOperationRoomsException : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public CantFindOperationRoomsException()
+        { }
+
+        public CantFindOperationRoomsException(string message)
+            : base(message)
+        { }
+
+        public CantFindOperationRoomsException(string message, Exception inner)
+            : base(message, inner)
+        {
+
         }
     }
 
@@ -245,6 +317,38 @@ namespace AnimalHouseEntities
         { }
 
         public AnimalNotCreatedException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
+    public class MedicalRecordEntryNotFoundException : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public MedicalRecordEntryNotFoundException()
+        { }
+
+        public MedicalRecordEntryNotFoundException(string message)
+            : base(message)
+        { }
+
+        public MedicalRecordEntryNotFoundException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
+    public class PrescriptionNotFoundException : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public PrescriptionNotFoundException()
+        { }
+
+        public PrescriptionNotFoundException(string message)
+            : base(message)
+        { }
+
+        public PrescriptionNotFoundException(string message, Exception inner)
             : base(message, inner)
         {
         }

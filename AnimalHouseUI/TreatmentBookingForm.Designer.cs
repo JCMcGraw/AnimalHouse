@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange16 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange17 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange18 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange19 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
-            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange20 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange1 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange2 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange3 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange4 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
+            System.Windows.Forms.Calendar.CalendarHighlightRange calendarHighlightRange5 = new System.Windows.Forms.Calendar.CalendarHighlightRange();
             this.PanelHeader = new System.Windows.Forms.Panel();
             this.LabelTitle = new System.Windows.Forms.Label();
             this.PictureBoxLogo = new System.Windows.Forms.PictureBox();
@@ -43,6 +43,7 @@
             this.AnimalLabel = new System.Windows.Forms.Label();
             this.PanelHeadline = new System.Windows.Forms.Panel();
             this.PanelDropdownBoxes = new System.Windows.Forms.Panel();
+            this.ButtonHelp = new System.Windows.Forms.Button();
             this.LabelTreatmentType = new System.Windows.Forms.Label();
             this.LabelEmployee = new System.Windows.Forms.Label();
             this.ComboBoxTreatmentType = new System.Windows.Forms.ComboBox();
@@ -61,11 +62,10 @@
             this.CalendarBooking = new System.Windows.Forms.Calendar.Calendar();
             this.ContextMenuStripBooking = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ankommetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StartTreatmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.ButtonHelp = new System.Windows.Forms.Button();
-            this.StartTreatmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             this.PanelHeadline.SuspendLayout();
@@ -196,6 +196,21 @@
             this.PanelDropdownBoxes.Name = "PanelDropdownBoxes";
             this.PanelDropdownBoxes.Size = new System.Drawing.Size(550, 70);
             this.PanelDropdownBoxes.TabIndex = 15;
+            // 
+            // ButtonHelp
+            // 
+            this.ButtonHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
+            this.ButtonHelp.BackgroundImage = global::AnimalHouseUI.Properties.Resources.question_mark_32px;
+            this.ButtonHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ButtonHelp.FlatAppearance.BorderSize = 0;
+            this.ButtonHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonHelp.Location = new System.Drawing.Point(495, 20);
+            this.ButtonHelp.Name = "ButtonHelp";
+            this.ButtonHelp.Size = new System.Drawing.Size(45, 36);
+            this.ButtonHelp.TabIndex = 29;
+            this.ButtonHelp.UseVisualStyleBackColor = false;
+            this.ButtonHelp.Click += new System.EventHandler(this.ButtonHelp_Click);
             // 
             // LabelTreatmentType
             // 
@@ -393,27 +408,27 @@
             // 
             this.CalendarBooking.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CalendarBooking.Font = new System.Drawing.Font("Segoe UI", 9F);
-            calendarHighlightRange16.DayOfWeek = System.DayOfWeek.Monday;
-            calendarHighlightRange16.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange16.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange17.DayOfWeek = System.DayOfWeek.Tuesday;
-            calendarHighlightRange17.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange17.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange18.DayOfWeek = System.DayOfWeek.Wednesday;
-            calendarHighlightRange18.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange18.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange19.DayOfWeek = System.DayOfWeek.Thursday;
-            calendarHighlightRange19.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange19.StartTime = System.TimeSpan.Parse("08:00:00");
-            calendarHighlightRange20.DayOfWeek = System.DayOfWeek.Friday;
-            calendarHighlightRange20.EndTime = System.TimeSpan.Parse("17:00:00");
-            calendarHighlightRange20.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange1.DayOfWeek = System.DayOfWeek.Monday;
+            calendarHighlightRange1.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange1.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange2.DayOfWeek = System.DayOfWeek.Tuesday;
+            calendarHighlightRange2.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange2.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange3.DayOfWeek = System.DayOfWeek.Wednesday;
+            calendarHighlightRange3.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange3.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange4.DayOfWeek = System.DayOfWeek.Thursday;
+            calendarHighlightRange4.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange4.StartTime = System.TimeSpan.Parse("08:00:00");
+            calendarHighlightRange5.DayOfWeek = System.DayOfWeek.Friday;
+            calendarHighlightRange5.EndTime = System.TimeSpan.Parse("17:00:00");
+            calendarHighlightRange5.StartTime = System.TimeSpan.Parse("08:00:00");
             this.CalendarBooking.HighlightRanges = new System.Windows.Forms.Calendar.CalendarHighlightRange[] {
-        calendarHighlightRange16,
-        calendarHighlightRange17,
-        calendarHighlightRange18,
-        calendarHighlightRange19,
-        calendarHighlightRange20};
+        calendarHighlightRange1,
+        calendarHighlightRange2,
+        calendarHighlightRange3,
+        calendarHighlightRange4,
+        calendarHighlightRange5};
             this.CalendarBooking.Location = new System.Drawing.Point(10, 10);
             this.CalendarBooking.Name = "CalendarBooking";
             this.CalendarBooking.Size = new System.Drawing.Size(830, 406);
@@ -438,52 +453,37 @@
             this.editItemToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.ContextMenuStripBooking.Name = "contextMenuStrip1";
-            this.ContextMenuStripBooking.Size = new System.Drawing.Size(181, 114);
+            this.ContextMenuStripBooking.Size = new System.Drawing.Size(162, 92);
             this.ContextMenuStripBooking.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuStripBooking_Opening);
             // 
             // ankommetToolStripMenuItem
             // 
             this.ankommetToolStripMenuItem.Name = "ankommetToolStripMenuItem";
-            this.ankommetToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ankommetToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.ankommetToolStripMenuItem.Text = "Ankommet";
             this.ankommetToolStripMenuItem.Click += new System.EventHandler(this.AnkommetToolStripMenuItem_Click);
+            // 
+            // StartTreatmentToolStripMenuItem
+            // 
+            this.StartTreatmentToolStripMenuItem.Name = "StartTreatmentToolStripMenuItem";
+            this.StartTreatmentToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.StartTreatmentToolStripMenuItem.Text = "Start Behandling";
+            this.StartTreatmentToolStripMenuItem.Visible = false;
+            this.StartTreatmentToolStripMenuItem.Click += new System.EventHandler(this.StartTreatmentToolStripMenuItem_Click);
             // 
             // editItemToolStripMenuItem
             // 
             this.editItemToolStripMenuItem.Name = "editItemToolStripMenuItem";
-            this.editItemToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editItemToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.editItemToolStripMenuItem.Text = "Rediger tekst";
             this.editItemToolStripMenuItem.Click += new System.EventHandler(this.editItemToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.deleteToolStripMenuItem.Text = "Slet";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
-            // 
-            // ButtonHelp
-            // 
-            this.ButtonHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
-            this.ButtonHelp.BackgroundImage = global::AnimalHouseUI.Properties.Resources.question_mark_32px;
-            this.ButtonHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ButtonHelp.FlatAppearance.BorderSize = 0;
-            this.ButtonHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonHelp.Location = new System.Drawing.Point(495, 20);
-            this.ButtonHelp.Name = "ButtonHelp";
-            this.ButtonHelp.Size = new System.Drawing.Size(45, 36);
-            this.ButtonHelp.TabIndex = 29;
-            this.ButtonHelp.UseVisualStyleBackColor = false;
-            this.ButtonHelp.Click += new System.EventHandler(this.ButtonHelp_Click);
-            // 
-            // StartTreatmentToolStripMenuItem
-            // 
-            this.StartTreatmentToolStripMenuItem.Name = "StartTreatmentToolStripMenuItem";
-            this.StartTreatmentToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.StartTreatmentToolStripMenuItem.Text = "Start Behandling";
-            this.StartTreatmentToolStripMenuItem.Visible = false;
-            this.StartTreatmentToolStripMenuItem.Click += new System.EventHandler(this.StartTreatmentToolStripMenuItem_Click);
             // 
             // TreatmentBookingForm
             // 
@@ -499,7 +499,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "TreatmentBookingForm";
             this.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.Text = "SampleForm";
+            this.Text = "Book behandling";
             this.Load += new System.EventHandler(this.TreatmentBookingForm_Load);
             this.PanelHeader.ResumeLayout(false);
             this.PanelHeader.PerformLayout();

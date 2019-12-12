@@ -163,13 +163,13 @@ namespace AnimalHouseUI
             this.Cursor = Cursors.Default;
         }
 
-        private void button_dyr_Click(object sender, EventArgs e)
-        {
-            Customer customer = BossController.Instance().customerController.GetCustomer(123.ToString());
+        //private void button_dyr_Click(object sender, EventArgs e)
+        //{
+        //    Customer customer = BossController.Instance().customerController.GetCustomer(123.ToString());
 
-            AnimalForm animalForm = new AnimalForm(customer);
-            animalForm.Show();
-        }
+        //    AnimalForm animalForm = new AnimalForm(customer,);
+        //    animalForm.Show();
+        //}
 
         private void Main_Load(object sender, EventArgs e)
         {

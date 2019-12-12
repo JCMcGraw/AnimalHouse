@@ -55,6 +55,12 @@
     <Compile Include="AnimalForm.Designer.cs">
       <DependentUpon>AnimalForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AnimalMREform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnimalMREform.Designer.cs">
+      <DependentUpon>AnimalMREform.cs</DependentUpon>
+    </Compile>
     <Compile Include="animal_gender\SelectedIndexChanged.cs" />
     <Compile Include="CustomerForm.cs">
       <SubType>Form</SubType>
@@ -126,6 +132,9 @@
     </Compile>
     <EmbeddedResource Include="AnimalForm.resx">
       <DependentUpon>AnimalForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AnimalMREform.resx">
+      <DependentUpon>AnimalMREform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerForm.resx">
       <DependentUpon>CustomerForm.cs</DependentUpon>
