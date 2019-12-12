@@ -34,21 +34,20 @@
             this.ButtonMinimize = new System.Windows.Forms.Button();
             this.ButtonMaximize = new System.Windows.Forms.Button();
             this.ButtonClose = new System.Windows.Forms.Button();
-            this.button_opret = new System.Windows.Forms.Button();
+            this.button_create = new System.Windows.Forms.Button();
             this.label_dyr = new System.Windows.Forms.Label();
             this.AnimalName_Label = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.animal_name = new System.Windows.Forms.TextBox();
             this.label_telefonnummer = new System.Windows.Forms.Label();
-            this.button_rediger = new System.Windows.Forms.Button();
-            this.button_slet = new System.Windows.Forms.Button();
+            this.button_edit = new System.Windows.Forms.Button();
+            this.button_delete = new System.Windows.Forms.Button();
             this.label_navn = new System.Windows.Forms.Label();
             this.label_adresse = new System.Windows.Forms.Label();
             this.animal_weight = new System.Windows.Forms.TextBox();
             this.label_email = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.animalSpecies_label = new System.Windows.Forms.Label();
-            this.animalAge_label = new System.Windows.Forms.Label();
             this.animal_owner = new System.Windows.Forms.Label();
             this.animal_species = new System.Windows.Forms.ComboBox();
             this.animal_employee = new System.Windows.Forms.ComboBox();
@@ -57,14 +56,18 @@
             this.animal_bdate = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.animal_prescription = new System.Windows.Forms.DataGridView();
-            this.animal_medicalrecords = new System.Windows.Forms.DataGridView();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.animal_medicalRecords = new System.Windows.Forms.DataGridView();
+            this.button_help = new System.Windows.Forms.Button();
+            this.label_hjaelp = new System.Windows.Forms.Label();
+            this.MR_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.title = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.animal_prescription)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.animal_medicalrecords)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.animal_medicalRecords)).BeginInit();
             this.SuspendLayout();
             // 
             // PanelHeader
@@ -79,7 +82,7 @@
             this.PanelHeader.Location = new System.Drawing.Point(0, 0);
             this.PanelHeader.Name = "PanelHeader";
             this.PanelHeader.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.PanelHeader.Size = new System.Drawing.Size(730, 36);
+            this.PanelHeader.Size = new System.Drawing.Size(800, 36);
             this.PanelHeader.TabIndex = 0;
             this.PanelHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelHeader_MouseDown);
             this.PanelHeader.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelHeader_MouseMove);
@@ -119,7 +122,7 @@
             this.ButtonMinimize.FlatAppearance.BorderSize = 0;
             this.ButtonMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonMinimize.Location = new System.Drawing.Point(634, 2);
+            this.ButtonMinimize.Location = new System.Drawing.Point(704, 2);
             this.ButtonMinimize.Name = "ButtonMinimize";
             this.ButtonMinimize.Size = new System.Drawing.Size(32, 32);
             this.ButtonMinimize.TabIndex = 3;
@@ -134,7 +137,7 @@
             this.ButtonMaximize.FlatAppearance.BorderSize = 0;
             this.ButtonMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonMaximize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonMaximize.Location = new System.Drawing.Point(666, 2);
+            this.ButtonMaximize.Location = new System.Drawing.Point(736, 2);
             this.ButtonMaximize.Name = "ButtonMaximize";
             this.ButtonMaximize.Size = new System.Drawing.Size(32, 32);
             this.ButtonMaximize.TabIndex = 2;
@@ -149,26 +152,26 @@
             this.ButtonClose.FlatAppearance.BorderSize = 0;
             this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonClose.Location = new System.Drawing.Point(698, 2);
+            this.ButtonClose.Location = new System.Drawing.Point(768, 2);
             this.ButtonClose.Name = "ButtonClose";
             this.ButtonClose.Size = new System.Drawing.Size(32, 32);
             this.ButtonClose.TabIndex = 1;
             this.ButtonClose.UseVisualStyleBackColor = true;
             this.ButtonClose.Click += new System.EventHandler(this.ButtonClose_Click);
             // 
-            // button_opret
+            // button_create
             // 
-            this.button_opret.BackColor = System.Drawing.Color.AliceBlue;
-            this.button_opret.FlatAppearance.BorderSize = 0;
-            this.button_opret.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_opret.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_opret.Location = new System.Drawing.Point(167, 420);
-            this.button_opret.Name = "button_opret";
-            this.button_opret.Size = new System.Drawing.Size(118, 73);
-            this.button_opret.TabIndex = 6;
-            this.button_opret.Text = "Opret";
-            this.button_opret.UseVisualStyleBackColor = false;
-            this.button_opret.Click += new System.EventHandler(this.Button_opret_Click_1);
+            this.button_create.BackColor = System.Drawing.Color.AliceBlue;
+            this.button_create.FlatAppearance.BorderSize = 0;
+            this.button_create.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_create.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_create.Location = new System.Drawing.Point(167, 420);
+            this.button_create.Name = "button_create";
+            this.button_create.Size = new System.Drawing.Size(118, 73);
+            this.button_create.TabIndex = 6;
+            this.button_create.Text = "Opret";
+            this.button_create.UseVisualStyleBackColor = false;
+            this.button_create.Click += new System.EventHandler(this.Button_opret_Click_1);
             // 
             // label_dyr
             // 
@@ -220,33 +223,33 @@
             this.label_telefonnummer.TabIndex = 13;
             this.label_telefonnummer.Text = "Art";
             // 
-            // button_rediger
+            // button_edit
             // 
-            this.button_rediger.BackColor = System.Drawing.Color.AliceBlue;
-            this.button_rediger.FlatAppearance.BorderSize = 0;
-            this.button_rediger.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_rediger.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_rediger.Location = new System.Drawing.Point(291, 420);
-            this.button_rediger.Name = "button_rediger";
-            this.button_rediger.Size = new System.Drawing.Size(118, 73);
-            this.button_rediger.TabIndex = 14;
-            this.button_rediger.Text = "Rediger";
-            this.button_rediger.UseVisualStyleBackColor = false;
-            this.button_rediger.Click += new System.EventHandler(this.Button_rediger_Click);
+            this.button_edit.BackColor = System.Drawing.Color.AliceBlue;
+            this.button_edit.FlatAppearance.BorderSize = 0;
+            this.button_edit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_edit.Location = new System.Drawing.Point(291, 420);
+            this.button_edit.Name = "button_edit";
+            this.button_edit.Size = new System.Drawing.Size(118, 73);
+            this.button_edit.TabIndex = 14;
+            this.button_edit.Text = "Rediger";
+            this.button_edit.UseVisualStyleBackColor = false;
+            this.button_edit.Click += new System.EventHandler(this.Button_rediger_Click);
             // 
-            // button_slet
+            // button_delete
             // 
-            this.button_slet.BackColor = System.Drawing.Color.AliceBlue;
-            this.button_slet.FlatAppearance.BorderSize = 0;
-            this.button_slet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_slet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_slet.Location = new System.Drawing.Point(43, 420);
-            this.button_slet.Name = "button_slet";
-            this.button_slet.Size = new System.Drawing.Size(118, 73);
-            this.button_slet.TabIndex = 15;
-            this.button_slet.Text = "Slet";
-            this.button_slet.UseVisualStyleBackColor = false;
-            this.button_slet.Click += new System.EventHandler(this.Button_slet_Click);
+            this.button_delete.BackColor = System.Drawing.Color.AliceBlue;
+            this.button_delete.FlatAppearance.BorderSize = 0;
+            this.button_delete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_delete.Location = new System.Drawing.Point(43, 420);
+            this.button_delete.Name = "button_delete";
+            this.button_delete.Size = new System.Drawing.Size(118, 73);
+            this.button_delete.TabIndex = 15;
+            this.button_delete.Text = "Slet";
+            this.button_delete.UseVisualStyleBackColor = false;
+            this.button_delete.Click += new System.EventHandler(this.Button_slet_Click);
             // 
             // label_navn
             // 
@@ -295,26 +298,16 @@
             // 
             this.animalSpecies_label.AutoSize = true;
             this.animalSpecies_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.animalSpecies_label.Location = new System.Drawing.Point(40, 131);
+            this.animalSpecies_label.Location = new System.Drawing.Point(41, 114);
             this.animalSpecies_label.Name = "animalSpecies_label";
             this.animalSpecies_label.Size = new System.Drawing.Size(30, 17);
             this.animalSpecies_label.TabIndex = 27;
             this.animalSpecies_label.Text = "Art,";
             // 
-            // animalAge_label
-            // 
-            this.animalAge_label.AutoSize = true;
-            this.animalAge_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.animalAge_label.Location = new System.Drawing.Point(41, 114);
-            this.animalAge_label.Name = "animalAge_label";
-            this.animalAge_label.Size = new System.Drawing.Size(41, 17);
-            this.animalAge_label.TabIndex = 28;
-            this.animalAge_label.Text = "Alder";
-            // 
             // animal_owner
             // 
             this.animal_owner.AutoSize = true;
-            this.animal_owner.Location = new System.Drawing.Point(41, 148);
+            this.animal_owner.Location = new System.Drawing.Point(41, 131);
             this.animal_owner.Name = "animal_owner";
             this.animal_owner.Size = new System.Drawing.Size(25, 13);
             this.animal_owner.TabIndex = 29;
@@ -388,6 +381,11 @@
             // 
             // animal_prescription
             // 
+            this.animal_prescription.AllowUserToAddRows = false;
+            this.animal_prescription.AllowUserToDeleteRows = false;
+            this.animal_prescription.AllowUserToResizeColumns = false;
+            this.animal_prescription.AllowUserToResizeRows = false;
+            this.animal_prescription.BackgroundColor = System.Drawing.Color.White;
             this.animal_prescription.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.animal_prescription.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.name,
@@ -396,16 +394,9 @@
             this.animal_prescription.Location = new System.Drawing.Point(435, 373);
             this.animal_prescription.Name = "animal_prescription";
             this.animal_prescription.RowHeadersVisible = false;
+            this.animal_prescription.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.animal_prescription.Size = new System.Drawing.Size(263, 129);
             this.animal_prescription.TabIndex = 37;
-            // 
-            // animal_medicalrecords
-            // 
-            this.animal_medicalrecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.animal_medicalrecords.Location = new System.Drawing.Point(435, 83);
-            this.animal_medicalrecords.Name = "animal_medicalrecords";
-            this.animal_medicalrecords.Size = new System.Drawing.Size(263, 252);
-            this.animal_medicalrecords.TabIndex = 38;
             // 
             // name
             // 
@@ -422,13 +413,61 @@
             this.date.HeaderText = "Dato";
             this.date.Name = "date";
             // 
+            // animal_medicalRecords
+            // 
+            this.animal_medicalRecords.BackgroundColor = System.Drawing.Color.White;
+            this.animal_medicalRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.animal_medicalRecords.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MR_date,
+            this.title});
+            this.animal_medicalRecords.Location = new System.Drawing.Point(435, 83);
+            this.animal_medicalRecords.Name = "animal_medicalRecords";
+            this.animal_medicalRecords.Size = new System.Drawing.Size(263, 252);
+            this.animal_medicalRecords.TabIndex = 38;
+            // 
+            // button_help
+            // 
+            this.button_help.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
+            this.button_help.BackgroundImage = global::AnimalHouseUI.Properties.Resources.question_mark_32px;
+            this.button_help.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button_help.FlatAppearance.BorderSize = 0;
+            this.button_help.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_help.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_help.Location = new System.Drawing.Point(736, 43);
+            this.button_help.Name = "button_help";
+            this.button_help.Size = new System.Drawing.Size(45, 36);
+            this.button_help.TabIndex = 29;
+            this.button_help.UseVisualStyleBackColor = false;
+            this.button_help.Click += new System.EventHandler(this.Button_help_Click);
+            // 
+            // label_hjaelp
+            // 
+            this.label_hjaelp.AutoSize = true;
+            this.label_hjaelp.Location = new System.Drawing.Point(741, 81);
+            this.label_hjaelp.Name = "label_hjaelp";
+            this.label_hjaelp.Size = new System.Drawing.Size(35, 13);
+            this.label_hjaelp.TabIndex = 39;
+            this.label_hjaelp.Text = "Hjælp";
+            // 
+            // MR_date
+            // 
+            this.MR_date.HeaderText = "Dato";
+            this.MR_date.Name = "MR_date";
+            // 
+            // title
+            // 
+            this.title.HeaderText = "Titel";
+            this.title.Name = "title";
+            // 
             // AnimalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
-            this.ClientSize = new System.Drawing.Size(730, 542);
-            this.Controls.Add(this.animal_medicalrecords);
+            this.ClientSize = new System.Drawing.Size(800, 542);
+            this.Controls.Add(this.label_hjaelp);
+            this.Controls.Add(this.button_help);
+            this.Controls.Add(this.animal_medicalRecords);
             this.Controls.Add(this.animal_prescription);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.animal_bdate);
@@ -437,21 +476,20 @@
             this.Controls.Add(this.animal_employee);
             this.Controls.Add(this.animal_species);
             this.Controls.Add(this.animal_owner);
-            this.Controls.Add(this.animalAge_label);
             this.Controls.Add(this.animalSpecies_label);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label_email);
             this.Controls.Add(this.label_adresse);
             this.Controls.Add(this.animal_weight);
             this.Controls.Add(this.label_navn);
-            this.Controls.Add(this.button_slet);
-            this.Controls.Add(this.button_rediger);
+            this.Controls.Add(this.button_delete);
+            this.Controls.Add(this.button_edit);
             this.Controls.Add(this.label_telefonnummer);
             this.Controls.Add(this.animal_name);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.AnimalName_Label);
             this.Controls.Add(this.label_dyr);
-            this.Controls.Add(this.button_opret);
+            this.Controls.Add(this.button_create);
             this.Controls.Add(this.PanelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AnimalForm";
@@ -461,7 +499,7 @@
             this.PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.animal_prescription)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.animal_medicalrecords)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.animal_medicalRecords)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -475,22 +513,21 @@
         private System.Windows.Forms.Button ButtonClose;
         private System.Windows.Forms.PictureBox PictureBoxLogo;
         private System.Windows.Forms.Label LabelTitle;
-        private System.Windows.Forms.Button button_opret;
+        private System.Windows.Forms.Button button_create;
         private System.Windows.Forms.Label label_dyr;
         private System.Windows.Forms.Label AnimalName_Label;
         private System.Windows.Forms.Button button3;
         #endregion
         private System.Windows.Forms.TextBox animal_name;
         private System.Windows.Forms.Label label_telefonnummer;
-        private System.Windows.Forms.Button button_rediger;
-        private System.Windows.Forms.Button button_slet;
+        private System.Windows.Forms.Button button_edit;
+        private System.Windows.Forms.Button button_delete;
         private System.Windows.Forms.Label label_navn;
         private System.Windows.Forms.Label label_adresse;
         private System.Windows.Forms.TextBox animal_weight;
         private System.Windows.Forms.Label label_email;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label animalSpecies_label;
-        private System.Windows.Forms.Label animalAge_label;
         private System.Windows.Forms.Label animal_owner;
         private System.Windows.Forms.ComboBox animal_species;
         private System.Windows.Forms.ComboBox animal_employee;
@@ -499,10 +536,14 @@
         private System.Windows.Forms.DateTimePicker animal_bdate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView animal_prescription;
-        private System.Windows.Forms.DataGridView animal_medicalrecords;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn amount;
         private System.Windows.Forms.DataGridViewTextBoxColumn date;
+        private System.Windows.Forms.DataGridView animal_medicalRecords;
+        private System.Windows.Forms.Button button_help;
+        private System.Windows.Forms.Label label_hjaelp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MR_date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn title;
     }
 
     #region Windows Form Designer generated code

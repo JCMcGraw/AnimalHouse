@@ -198,6 +198,15 @@
     <EmbeddedResource Include="TreatmentForm.resx">
       <DependentUpon>TreatmentForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="helpfiles\TreatmentBooking Instructions.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="helpfiles\Customer-Form-Help.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="helpfiles\Treatment_form_help.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -248,7 +257,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AnimalHouse.ico" />
+    <None Include="Resources\question_mark_32px.png" />
     <None Include="Resources\AnimalHouse.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

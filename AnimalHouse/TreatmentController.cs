@@ -80,9 +80,9 @@ namespace AnimalHouse
             return unpaidTreatmentsByCustomer;
         }
 
-        public List<TreatmentType> GetManyTreatmentTypes()
+        public List<TreatmentType> GetAllTreatmentTypes()
         {
-            List<TreatmentType> getManyTreatmentTypes = treatmentManager.GetManyTreatmentTypes();
+            List<TreatmentType> getManyTreatmentTypes = treatmentManager.GetAllTreatmentTypes();
             return getManyTreatmentTypes;
         }
 

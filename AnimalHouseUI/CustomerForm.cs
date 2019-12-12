@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using AnimalHouse;
 using AnimalHouseEntities;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
+using System.IO;
 
 
 namespace AnimalHouseUI
@@ -182,7 +184,7 @@ namespace AnimalHouseUI
             label_headline.Text = customer.name.ToString();
 
             CheckForBusinesscustomer(customer);
-            this.Refresh();
+         
 
             //danner en liste af dyr der hedder animals. Denne liste bliver dannet et sted på animalmanager og der bruges en customer
             List<Animal> animals= BossController.Instance().animalController.GetManyAnimalByCustomerID(customer);
@@ -205,6 +207,8 @@ namespace AnimalHouseUI
             button_slet.Enabled = true;
             button_dyr.Enabled = true;
             label_headline.Text = customer.name.ToString();
+            checkBox_erhverskunde.Enabled = false;
+            textBox_cvr.Enabled = false;
 
               
         }
@@ -222,7 +226,9 @@ namespace AnimalHouseUI
                     MessageBox.Show("Ugyldig E-mailadresse");
                     return;
                 }
-                
+
+               
+
                 string name = textBox_navn.Text.ToString();
                 string phone = textBox_phonenumber.Text.ToString();
                 string address = textBox_adresse.Text.ToString();
@@ -233,12 +239,14 @@ namespace AnimalHouseUI
 
                 Customer tmpcustomer = CustomerFactory.Instance().CreateCustomer(customerID, name, address, phone, email, active, cvr);
 
+              
+
                 try
                 {
                     string message = BossController.Instance().customerController.UpdateCustomer(tmpcustomer);
                     MessageBox.Show(message);
-                    ResetForm();
-
+                    label_headline.Text = tmpcustomer.name.ToString();
+                  
                 }
                 catch(Exception exception)
                 {
@@ -248,8 +256,11 @@ namespace AnimalHouseUI
                 }
 
             }
-            label_headline.Text = name.ToString();
-
+            else
+            {
+                return;
+            }
+       
         }
 
         private void button_slet_Click(object sender, EventArgs e)
@@ -263,8 +274,7 @@ namespace AnimalHouseUI
 
                 try
                 {
-                    
-
+                
                     string message = BossController.Instance().customerController.DeleteCustomer(customer);
                     MessageBox.Show(message);
 
@@ -290,6 +300,12 @@ namespace AnimalHouseUI
                     MessageBox.Show("Ugyldig E-mailadresse");
                     return;
                 }
+            if (CheckEmtyTextBoxes()==false)
+            {
+                MessageBox.Show("Alle felterne skal være udfyldt");
+                return;
+            }
+
 
             // tjekker om cvrnummeret består af tal
             string cvr = textBox_cvr.Text;
@@ -304,7 +320,7 @@ namespace AnimalHouseUI
 
                 if (cvr.ToString().Length == 8)
                 {
-                    //hvis cvrboxen er chacket af og tallet er i orden erstattes nullet med det nye cvr-nummer
+                    //hvis cvrboxen er checket af og tallet er i orden erstattes nullet med det nye cvr-nummer
                     cvrint =Convert.ToInt32(textBox_cvr.Text);
 
                 }
@@ -324,6 +340,7 @@ namespace AnimalHouseUI
             }
             customer = CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, cvrint);
 
+            
 
             try
             {
@@ -337,6 +354,8 @@ namespace AnimalHouseUI
                 button_rediger.Enabled = true;
                 button_slet.Enabled = true;
                 label_headline.Text = textBox_navn.Text.ToString().ToString();
+                checkBox_erhverskunde.Enabled = false;
+                textBox_cvr.Enabled = false;
 
             }
                 catch (Exception exception)
@@ -414,18 +433,25 @@ namespace AnimalHouseUI
             textBox_email.Clear();
             textBox_cvr.Clear();
  
-           label_headline.Text = "Administrer kunde";
-            LabelTitle.Visible = true;
+           label_headline.Text = "Administrer Kunde";
             button_opret.Enabled = true;
             button_rediger.Enabled = false;
             button_dyr.Enabled = false;
             button_slet.Enabled = false;
+            checkBox_erhverskunde.Enabled = true;
+            textBox_cvr.Enabled = true;
             checkBox_erhverskunde.Checked = false;
+            dataGridView_dyr.DataSource = null;
         }
 
         public bool CheckForCVRdegit(string cvr)
         {
             return cvr.All(char.IsDigit);
+        }
+
+        private void button_nulstil_Click(object sender, EventArgs e)
+        {
+            ResetForm();
         }
 
         private void LoadeAllItemsInListBox()
@@ -446,6 +472,12 @@ namespace AnimalHouseUI
             {
                 
                 textBox_cvr.Text = ((BusinessCustomer)customer).cvr.ToString();
+                checkBox_erhverskunde.Checked = true;
+            }
+            else
+            {
+                checkBox_erhverskunde.Enabled = false;
+                textBox_cvr.Enabled = false;
             }
         }
 
@@ -464,7 +496,31 @@ namespace AnimalHouseUI
         public bool CheckUniquePhone(string phone)
         {
             return BossController.Instance().customerController.CheckUniquePhone(phone);
-                     }
-        
-    }
+         }
+
+     public bool CheckEmtyTextBoxes()
+        {
+
+            if (string.IsNullOrEmpty(textBox_phonenumber.Text.ToString())||string.IsNullOrEmpty(textBox_navn.Text.ToString())||string.IsNullOrEmpty(textBox_adresse.Text.ToString())||string.IsNullOrEmpty(textBox_email.Text.ToString()))
+            {
+               
+                return false;
+            }
+            return true;
+        }
+
+        private void button_help_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                string file = Path.GetDirectoryName(Application.ExecutablePath) + "/helpfiles/Customer-Form-Help.pdf";
+                System.Diagnostics.Process.Start(file);
+            }
+            catch
+            {
+                MessageBox.Show("Hjælpefilen kunne ikke findes");
+            }
+        }
+     }
 }

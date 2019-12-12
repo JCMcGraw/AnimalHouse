@@ -55,11 +55,18 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            int treatmentID = (int)sQLQueryResult.dataTable.Rows[0]["TreatmentID"];
+            if(sQLQueryResult.code != 0)
+            {
+                throw new TreatmentNotCreatedException("", sQLQueryResult.exception);
+            }
+            else
+            {
+                int treatmentID = (int)sQLQueryResult.dataTable.Rows[0]["TreatmentID"];
 
-            treatment.UpdateID(treatmentID);
+                treatment.UpdateID(treatmentID);
 
-            return treatment;
+                return treatment;
+            }
         }
 
         public string UpdateTreatment(Treatment treatment)
@@ -189,7 +196,7 @@ namespace AnimalHousePersistence
             return treatments;
         }
 
-        public List<TreatmentType> GetManyTreatmentTypes()
+        public List<TreatmentType> GetAllTreatmentTypes()
         {
             string query = Utility.ReadSQLQueryFromFile("GetManyTreatmentTypes.txt");
 
@@ -197,11 +204,18 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            List<TreatmentType> treatments = new List<TreatmentType>();
+            if (sQLQueryResult.code != 0 || sQLQueryResult.dataTable.Rows.Count == 0)
+            {
+                throw new NoTreatmentTypesFoundException("", sQLQueryResult.exception);
+            }
+            else
+            {
+                List<TreatmentType> treatments = new List<TreatmentType>();
 
-            treatments = GetTreatmentTypeList(sQLQueryResult);
+                treatments = GetTreatmentTypeList(sQLQueryResult);
 
-            return treatments;
+                return treatments;
+            }
         }
 
         public List<Cage> GetAllCages()
@@ -462,10 +476,18 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@endTime", endTime.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
-
+            if(sQLQueryResult.code != 0)
+            {
+                throw new NoRemindersFoundException("1", sQLQueryResult.exception);
+            }
             List<Treatment> treatments = new List<Treatment>();
 
             treatments = GetTreatmentList(sQLQueryResult);
+
+            if (treatments.Count == 0)
+            {
+                throw new NoRemindersFoundException("2", sQLQueryResult.exception);
+            }
 
             return treatments;
         }

@@ -332,6 +332,7 @@
             this.ItemDataGridView.AllowUserToDeleteRows = false;
             this.ItemDataGridView.AllowUserToResizeColumns = false;
             this.ItemDataGridView.AllowUserToResizeRows = false;
+            this.ItemDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.ItemDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ItemDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ItemName,
@@ -369,6 +370,7 @@
             this.ItemListDataGridView.AllowUserToDeleteRows = false;
             this.ItemListDataGridView.AllowUserToResizeColumns = false;
             this.ItemListDataGridView.AllowUserToResizeRows = false;
+            this.ItemListDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.ItemListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ItemListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.name,
@@ -518,6 +520,7 @@
             this.UnPaidPrescriptionsDataGridView.AllowUserToDeleteRows = false;
             this.UnPaidPrescriptionsDataGridView.AllowUserToResizeColumns = false;
             this.UnPaidPrescriptionsDataGridView.AllowUserToResizeRows = false;
+            this.UnPaidPrescriptionsDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.UnPaidPrescriptionsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.UnPaidPrescriptionsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.prescriptionName,

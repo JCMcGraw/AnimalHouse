@@ -36,9 +36,10 @@ namespace AnimalHousePersistence
         List<Prescription> GetUnpaidPrescriptionByCustomer(Customer customer);
 
 
-        //List<MedicalRecord> GetAllMedicalRecordByAnimal(int animalID);
-       void CreateMedicalRecordEntry(MedicalRecord medicalRecord);
-
+        List<MedicalRecord>GetAllMedicalRecordEntriesByAnimalID(Animal animal);
+        // skal det være en void?
+        //void CreateMedicalRecordEntry(MedicalRecord medicalRecord);
+        MedicalRecord CreateMedicalRecordEntry(MedicalRecord medicalRecord);
         List<Prescription> GetAllPrescriptionByAnimal(int animalID);
 
         Prescription CreatePrescription(Prescription prescription);

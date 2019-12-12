@@ -83,7 +83,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLQueries\CreatePrescription.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLQueries\CreateSale.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -118,7 +118,9 @@
     <Content Include="SQLQueries\GetAllEmployees.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLQueries\GetAllJounalEntriesByAnimalID.txt" />
+    <Content Include="SQLQueries\GetAllJournalEntriesByAnimalID.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SQLQueries\GetAllMedicalRecordByAnimal.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -140,6 +142,7 @@
     <Content Include="SQLQueries\GetCustomer.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQLQueries\GetLastUpdate.txt" />
     <Content Include="SQLQueries\GetManyAnimalsByCustomerID.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -168,7 +171,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLQueries\UpdateAnimal.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLQueries\UpdateCustomer.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

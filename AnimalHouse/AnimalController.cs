@@ -68,12 +68,19 @@ namespace AnimalHouse
             List<Species> animals = animalManager.GetAllSpecies();
             return animals;
         }
+        public List<MedicalRecord> GetAllMedicalRecordByAnimal(Animal animal)
+        {
+            IAnimalManager animalManager = new AnimalManager();
+            List<MedicalRecord> getAllMedicalRecordByAnimal = animalManager.GetAllMedicalRecordEntriesByAnimalID(animal);
+            return getAllMedicalRecordByAnimal;
+        }
 
         public void CreateMedicalRecordEntry(MedicalRecord medicalRecord)
         {
             IAnimalManager animalManager = new AnimalManager();
             animalManager.CreateMedicalRecordEntry(medicalRecord);
         }
+      
 
         public List<Prescription> GetAllPrescriptionByAnimal(int animalID)
         {
@@ -95,5 +102,6 @@ namespace AnimalHouse
             
             return animalManager.CreatePrescription(prescription);
         }
+       
     }
 }

@@ -32,12 +32,14 @@ namespace AnimalHouseEntities
             this.entry = entry;
             this.animal = animal;
             this.treatment = treatment;
+           
 
         }
-
         public void UpdateMedicalRecordID(int medicalRecordID)
         {
             this.medicalRecordID = medicalRecordID;
         }
+
+       
     }
 }

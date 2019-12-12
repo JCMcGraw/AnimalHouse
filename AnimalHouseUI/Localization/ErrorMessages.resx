@@ -117,11 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AnimalNotCreated" xml:space="preserve">
+    <value>Dyret blev ikke oprettet. </value>
+  </data>
+  <data name="AnimalNotDeleted" xml:space="preserve">
+    <value>Dyret blev ikke slettet. </value>
+  </data>
+  <data name="AnimalNotEdited" xml:space="preserve">
+    <value>Dyret blev ikke rettet. </value>
+  </data>
   <data name="CantCreateCustomer" xml:space="preserve">
     <value>Kunden kunne ikke oprettes, Muligvis er telefon -eller cvr-nummer ikke unikt</value>
   </data>
   <data name="CantCreatePrescription" xml:space="preserve">
     <value>Der kunne ikke udstedes recept. Medicin er muligvis ugyldig</value>
+  </data>
+  <data name="CantCreateTreatment" xml:space="preserve">
+    <value>Behandlingen blev ikke gemt! prøv igen.</value>
   </data>
   <data name="CantDeleteException" xml:space="preserve">
     <value>Kunden kunne ikke slettes</value>
@@ -141,7 +153,16 @@
   <data name="NoCustomerFound" xml:space="preserve">
     <value>Der blev ikke fundet nogle kunder.</value>
   </data>
+  <data name="NoEmployeesFound" xml:space="preserve">
+    <value>Der blev ikke fundet nogle medarbejdere.</value>
+  </data>
   <data name="NoItemsFound" xml:space="preserve">
     <value>Ingen varer blev fundet. </value>
+  </data>
+  <data name="NoRemindersFound" xml:space="preserve">
+    <value>Der blev ikke fundet nogle kunder, som der skal sendes påmindelser til.</value>
+  </data>
+  <data name="NoTreatmentTypesFound" xml:space="preserve">
+    <value>Behandlingstyperne kunne ikke findes.</value>
   </data>
 </root>

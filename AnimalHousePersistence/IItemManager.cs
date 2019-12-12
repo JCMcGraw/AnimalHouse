@@ -10,5 +10,7 @@ namespace AnimalHousePersistence
     interface IItemManager
     {
         string UpdateMedicinPrice(Item item);
+
+        string GetLastUpdate(Item item);
     }
 }

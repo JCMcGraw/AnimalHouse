@@ -8,11 +8,14 @@ using System.Data;
 using AnimalHouse;
 using System.Linq;
 using System.Threading;
+using System.IO;
 
 namespace AnimalHouseUI
 {
     public partial class TreatmentBookingForm : Form
     {
+        public bool StartingvaluesLoadedOK = true;
+
         BossController bossController = BossController.Instance();
 
         Animal animal;
@@ -32,7 +35,12 @@ namespace AnimalHouseUI
         public TreatmentBookingForm()
         {
             InitializeComponent();
-            SetValuesForComboboxes();
+            bool comboboxValuesSetSuccessfully = SetValuesForComboboxes();
+            if (comboboxValuesSetSuccessfully == false)
+            {
+                StartingvaluesLoadedOK = false;
+                return;
+            }
             SetOperationRooms();
             SetCages();
             ComboBoxEmployee.SelectedIndex = 0;
@@ -58,23 +66,47 @@ namespace AnimalHouseUI
             cages = bossController.treatmentController.GetAllCages();
         }
 
-        private void SetValuesForComboboxes()
+        private bool SetValuesForComboboxes()
         {
-            List<Employee> employees = bossController.employeeController.GetAllEmployees();
+            List<Employee> employees;
+            try
+            {
+                employees = bossController.employeeController.GetAllEmployees();
+            }
+            catch(Exception exception)
+            {
+                MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
+                return false;
+            }
 
             List<Employee> vets = employees.Where(x => x.title.titleID == 1).ToList<Employee>();
+
+            if (vets.Count == 0)
+            {
+                MessageBox.Show(ErrorManager.Instance().GetErrorMessage(new NoEmployeesFoundException()));
+                return false;
+            }
 
             vets.Insert(0, new Employee(-1, "Alle", true, -1, new Title("Dyrlæge", -1)));
 
             ComboBoxEmployee.DataSource = vets;
             ComboBoxEmployee.DisplayMember = "name";
 
-
-            List<TreatmentType> treatmentTypes = bossController.treatmentController.GetManyTreatmentTypes();
+            List<TreatmentType> treatmentTypes;
+            try
+            {
+                treatmentTypes = bossController.treatmentController.GetAllTreatmentTypes();
+            }
+            catch(Exception exception)
+            {
+                MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
+                return false;
+            }
             
             ComboBoxTreatmentType.DataSource = treatmentTypes;
             ComboBoxTreatmentType.DisplayMember = "name";
             ComboBoxTreatmentType.ValueMember = "treatmentTypeID";
+            return true;
         }
 
         #region form methods
@@ -369,56 +401,56 @@ namespace AnimalHouseUI
             }
         }
 
-        private void redTagToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            foreach (CalendarItem item in CalendarBooking.GetSelectedItems())
-            {
-                item.ApplyColor(Color.Red);
-                CalendarBooking.Invalidate(item);
-            }
-        }
+        //private void redTagToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    foreach (CalendarItem item in CalendarBooking.GetSelectedItems())
+        //    {
+        //        item.ApplyColor(Color.Red);
+        //        CalendarBooking.Invalidate(item);
+        //    }
+        //}
 
-        private void yellowTagToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            foreach (CalendarItem item in CalendarBooking.GetSelectedItems())
-            {
-                item.ApplyColor(Color.Gold);
-                CalendarBooking.Invalidate(item);
-            }
-        }
+        //private void yellowTagToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    foreach (CalendarItem item in CalendarBooking.GetSelectedItems())
+        //    {
+        //        item.ApplyColor(Color.Gold);
+        //        CalendarBooking.Invalidate(item);
+        //    }
+        //}
 
-        private void greenTagToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            foreach (CalendarItem item in CalendarBooking.GetSelectedItems())
-            {
-                item.ApplyColor(Color.Green);
-                CalendarBooking.Invalidate(item);
-            }
-        }
+        //private void greenTagToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    foreach (CalendarItem item in CalendarBooking.GetSelectedItems())
+        //    {
+        //        item.ApplyColor(Color.Green);
+        //        CalendarBooking.Invalidate(item);
+        //    }
+        //}
 
-        private void blueTagToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            foreach (CalendarItem item in CalendarBooking.GetSelectedItems())
-            {
-                item.ApplyColor(Color.DarkBlue);
-                CalendarBooking.Invalidate(item);
-            }
-        }
+        //private void blueTagToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    foreach (CalendarItem item in CalendarBooking.GetSelectedItems())
+        //    {
+        //        item.ApplyColor(Color.DarkBlue);
+        //        CalendarBooking.Invalidate(item);
+        //    }
+        //}
 
-        private void otherColorTagToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (ColorDialog dlg = new ColorDialog())
-            {
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    foreach (CalendarItem item in CalendarBooking.GetSelectedItems())
-                    {
-                        item.ApplyColor(dlg.Color);
-                        CalendarBooking.Invalidate(item);
-                    }
-                }
-            }
-        }
+        //private void otherColorTagToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    using (ColorDialog dlg = new ColorDialog())
+        //    {
+        //        if (dlg.ShowDialog() == DialogResult.OK)
+        //        {
+        //            foreach (CalendarItem item in CalendarBooking.GetSelectedItems())
+        //            {
+        //                item.ApplyColor(dlg.Color);
+        //                CalendarBooking.Invalidate(item);
+        //            }
+        //        }
+        //    }
+        //}
 
         private void editItemToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -775,8 +807,18 @@ namespace AnimalHouseUI
                 //create new treatment
                 Treatment treatment = TreatmentFactory.Instance().CreateTreatment((TreatmentType)ComboBoxTreatmentType.SelectedItem, selectedOperationRoom, selectedCage, selectedItem, e.Item.StartDate, e.Item.EndDate, false, headline, true, animal, selectedEmployee,status);
 
-                //add treatment to database and get treatment with treatment ID
-                Treatment treatmentWithID = bossController.treatmentController.CreateTreatment(treatment);
+                Treatment treatmentWithID;
+                try
+                {
+                    //add treatment to database and get treatment with treatment ID
+                    treatmentWithID = bossController.treatmentController.CreateTreatment(treatment);
+                }
+                catch(Exception exception)
+                {
+                    MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
+                    e.Cancel = true;
+                    return;
+                }
 
                 //add treatment to cache
                 AddTreatmentToCache(treatmentWithID);
@@ -801,6 +843,25 @@ namespace AnimalHouseUI
             //check if times haven't been changed
             if (e.Item.StartDate == treatmentsCache[e.Item.TreatmentID].startTime && e.Item.EndDate == treatmentsCache[e.Item.TreatmentID].endTime)
             {
+                return;
+            }
+
+            if(treatmentsCache[e.Item.TreatmentID].status == 2)
+            {
+                MessageBox.Show("Du kan ikke flytte en igangværende behandling!");
+                //reset datetimes to original
+                e.Item.StartDate = treatmentsCache[e.Item.TreatmentID].startTime;
+                e.Item.EndDate = treatmentsCache[e.Item.TreatmentID].endTime;
+                PlaceItems();
+                return;
+            }
+            else if (treatmentsCache[e.Item.TreatmentID].status == 3)
+            {
+                MessageBox.Show("Du kan ikke flytte en afsluttet behandling!");
+                //reset datetimes to original
+                e.Item.StartDate = treatmentsCache[e.Item.TreatmentID].startTime;
+                e.Item.EndDate = treatmentsCache[e.Item.TreatmentID].endTime;
+                PlaceItems();
                 return;
             }
 
@@ -900,6 +961,19 @@ namespace AnimalHouseUI
         //actions for deleting treatment
         private void CalendarBooking_ItemDeleting(object sender, CalendarItemCancelEventArgs e)
         {
+            if (treatmentsCache[e.Item.TreatmentID].status == 2)
+            {
+                MessageBox.Show("Du kan ikke slette en igangværende behandling!");
+                e.Cancel = true;
+                return;
+            }
+            else if (treatmentsCache[e.Item.TreatmentID].status == 3)
+            {
+                MessageBox.Show("Du kan ikke slette en afsluttet behandling!");
+                e.Cancel = true;
+                return;
+            }
+
             string message = $"Ønsker du at slette denne aftale?";
 
             DialogResult dialogResult = MessageBox.Show(message, "Slet aftale", MessageBoxButtons.YesNo);
@@ -1165,6 +1239,55 @@ namespace AnimalHouseUI
         {
             DateTime monthViewStart = MonthViewBooking.SelectionStart;
             MonthViewBooking.SelectionStart = monthViewStart;
+        }
+
+        private void ButtonHelp_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                string file = Path.GetDirectoryName(Application.ExecutablePath) + "/helpfiles/TreatmentBooking Instructions.pdf";
+                System.Diagnostics.Process.Start(file);
+            }
+            catch
+            {
+                MessageBox.Show("Hjælpefilen kunne ikke findes");
+            }
+        }
+
+        private void StartTreatmentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool isValidStart = StartTreatment();
+
+            if (isValidStart == true)
+            {
+                UpdateTreatmentStatus(2);
+            }
+        }
+
+        private void ContextMenuStripBooking_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            List<CalendarItem> calendaritems = (List<CalendarItem>)CalendarBooking.GetSelectedItems();
+            if (calendaritems.Count == 1)
+            {
+                int treatmentID = calendaritems[0].TreatmentID;
+
+                if (treatmentsCache[treatmentID].status == 0)
+                {
+                    StartTreatmentToolStripMenuItem.Visible = false;
+                    ankommetToolStripMenuItem.Visible = true;
+                }
+                else if (treatmentsCache[treatmentID].status == 1 || treatmentsCache[treatmentID].status == 2)
+                {
+                    StartTreatmentToolStripMenuItem.Visible = true;
+                    ankommetToolStripMenuItem.Visible = false;
+                }
+                else
+                {
+                    StartTreatmentToolStripMenuItem.Visible = false;
+                    ankommetToolStripMenuItem.Visible = false;
+                }
+            }
         }
     }
 }
