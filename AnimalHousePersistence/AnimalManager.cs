@@ -77,7 +77,14 @@ namespace AnimalHousePersistence
             //sQLQuery.AddParameter("@species", animal.Species.speciesid.ToString(), SqlDbType.Int);
             //sQLQuery.AddParameter("@gender", animal.gender.ToString(), SqlDbType.Char);
 
-            sQLQuery.AddParameter("@employeeid", animal.Employee.employeeID.ToString(), SqlDbType.Int);
+            if(animal.Employee is null)
+            {
+                sQLQuery.AddParameter("@employeeid", null, SqlDbType.Int);
+            }
+            else
+            {
+                sQLQuery.AddParameter("@employeeid", animal.Employee.employeeID.ToString(), SqlDbType.Int);
+            }
 
             
 
