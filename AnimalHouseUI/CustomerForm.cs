@@ -209,7 +209,7 @@ namespace AnimalHouseUI
             label_headline.Text = customer.name.ToString();
             checkBox_erhverskunde.Enabled = false;
             textBox_cvr.Enabled = false;
-            label_underheader.Visible = false;
+            //label_underheader.Visible = false;
 
               
         }
@@ -374,7 +374,7 @@ namespace AnimalHouseUI
 
         private void button_dyr_Click(object sender, EventArgs e)
         {
-            AnimalForm animalForm = new AnimalForm(customer);
+            AnimalForm animalForm = new AnimalForm(customer, this);
             animalForm.Show();
         }
 
@@ -404,7 +404,7 @@ namespace AnimalHouseUI
             }
             else
             {
-                AnimalForm animalForm = new AnimalForm(customer, animal);
+                AnimalForm animalForm = new AnimalForm(customer, animal, this);
                 animalForm.Show();
             }
         }
@@ -447,7 +447,7 @@ namespace AnimalHouseUI
             textBox_cvr.Enabled = true;
             checkBox_erhverskunde.Checked = false;
             dataGridView_dyr.DataSource = null;
-            label_underheader.Visible = true;
+           // label_underheader.Visible = true;
         }
 
         public bool CheckForCVRdegit(string cvr)
@@ -531,7 +531,24 @@ namespace AnimalHouseUI
 
         public void UpdateDataGridView()
         {
-            dataGridView_dyr.Update();
+
+            //danner en liste af dyr der hedder animals. Denne liste bliver dannet et sted på animalmanager og der bruges en customer
+            List<Animal> animals = BossController.Instance().animalController.GetManyAnimalByCustomerID(customer);
+
+            //tilknytter listen af dyr til kunden
+            customer.AddAnimalList(animals);
+
+            dataGridView_dyr.DataSource = customer.animals;
+
+            dataGridView_dyr.Columns["name"].DataPropertyName = "Name";
+
+            for (int i = 0; i < dataGridView_dyr.RowCount; i++)
+            {
+                Species tmpspecies = animals[i].Species;
+
+                dataGridView_dyr.Rows[i].Cells["speciestype"].Value = tmpspecies.speciesType;
+            }
+
         }
     }
 }

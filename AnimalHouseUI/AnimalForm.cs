@@ -25,6 +25,7 @@ namespace AnimalHouseUI
         List<Prescription> prescriptions;
         List<MedicalRecord> medicalRecords;
         public MedicalRecord selectedMedicalRecord;
+        CustomerForm customerForm;
 
 
 
@@ -33,6 +34,7 @@ namespace AnimalHouseUI
         public AnimalForm(Customer customer,Animal animal, CustomerForm customerForm)
 
         {
+            this.customerForm = customerForm;
             this.customer = customer;
             this.animal = animal;
             InitializeComponent();
@@ -58,6 +60,7 @@ namespace AnimalHouseUI
         public AnimalForm(Customer customer, CustomerForm customerForm)
 
         {
+            this.customerForm = customerForm;
             this.customer = customer;
 
            
@@ -459,6 +462,7 @@ namespace AnimalHouseUI
                     {
                         MessageBox.Show("Dyret Slettet");
                         this.Close();
+                        customerForm.UpdateDataGridView();
                     }
                 }
                 catch (Exception exception)
