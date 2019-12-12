@@ -192,4 +192,7 @@
   <data name="PrescriptionNotFound" xml:space="preserve">
     <value>Recepterne kunne ikke indlæses. </value>
   </data>
+  <data name="String1" xml:space="preserve">
+    <value>Behandlingen kunne ikke slettes</value>
+  </data>
 </root>

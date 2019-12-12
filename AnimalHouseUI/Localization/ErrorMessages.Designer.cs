@@ -115,7 +115,6 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Behandlingen blev ikke gemt! prøv igen..
         ///   Looks up a localized string similar to Behandlingen blev ikke gemt! prøv igen. .
         /// </summary>
         internal static string CantCreateTreatment {
@@ -161,16 +160,6 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Behandlingen kunne ikke opdateres. .
-        ///   Looks up a localized string similar to Recepten kunne ikke findes.
-        /// </summary>
-        internal static string CantGetUnPaidPrescription {
-            get {
-                return ResourceManager.GetString("CantGetUnPaidPrescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Kundes liste over dyr kunne ikke indlæses.
         /// </summary>
         internal static string CantGetAnimalList {
@@ -180,7 +169,16 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Behandlingen kunne ikke opdateres.
+        ///   Looks up a localized string similar to Recepten kunne ikke findes.
+        /// </summary>
+        internal static string CantGetUnPaidPrescription {
+            get {
+                return ResourceManager.GetString("CantGetUnPaidPrescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Behandlingen kunne ikke opdateres. .
         /// </summary>
         internal static string CantUpdateTreatment {
             get {
@@ -284,6 +282,15 @@ namespace AnimalHouseUI.Localization {
         internal static string PrescriptionNotFound {
             get {
                 return ResourceManager.GetString("PrescriptionNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Behandlingen kunne ikke slettes.
+        /// </summary>
+        internal static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
     }
