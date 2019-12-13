@@ -168,7 +168,7 @@ namespace AnimalHouseUI
 
         private void ShowAllItems()
         {
-            items = allItems.Where(item => item.isTreatment == false).ToList<Item>();
+            items = allItems.Where(item => item.treatment == false).ToList<Item>();
 
             ItemDataGridView.DataSource = items;
 
@@ -177,7 +177,7 @@ namespace AnimalHouseUI
 
         private void ShowItemsUnderLimit(int limit)
         {
-            items = allItems.Where(item => item.isTreatment == false && item.amount <= limit).ToList<Item>();
+            items = allItems.Where(item => item.treatment == false && item.amount <= limit).ToList<Item>();
 
             ItemDataGridView.DataSource = items;
 

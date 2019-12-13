@@ -135,7 +135,7 @@ namespace AnimalHousePersistence
                 }
                 else
                 {
-                    if (saleLineItem.item.isTreatment == false)
+                    if (saleLineItem.item.treatment == false)
                     {
                         int saleLineItemID = (int)sQLQueryResult.dataTable.Rows[0]["SaleLineItemsID"];
                         saleLineItem.UpdateSaleLineItemID(saleLineItemID);

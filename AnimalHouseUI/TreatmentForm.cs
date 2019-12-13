@@ -234,7 +234,7 @@ namespace AnimalHouseUI
 
             foreach (Item item in itemList)
             {
-                if (item.active==true&&item.isPrescription==true)
+                if (item.active==true&&item.prescription==true)
                 {
                     prescriptionItemList.Add(item);
                 }
