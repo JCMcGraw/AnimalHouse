@@ -227,6 +227,8 @@ namespace AnimalHouseUI
                 UnPaidPrescriptionsDataGridView.DataSource = null;
                 UnPaidTreatmentDataGridView.DataSource = null;
                 SearchItemTextBox.Text = "";
+
+                LoadAllItemsInListBox();
             }
             catch (Exception)
             {

@@ -26,24 +26,19 @@ namespace AnimalHouse
             }
 
         }
+        ICustomerManager customerManager = new CustomerManager();
 
         public Customer GetCustomer(string phone)
         {
 
-            ICustomerManager customerManager = new CustomerManager();
-
             Customer customer = customerManager.GetCustomer(phone);
 
             return customer;
-
-
+            
         }
 
         public Customer CreateCustomer(Customer customer)
         {
-
-
-            ICustomerManager customerManager = new CustomerManager();
 
             return customerManager.CreateCustomer(customer);
 
@@ -52,37 +47,22 @@ namespace AnimalHouse
 
         public string UpdateCustomer(Customer customer)
         {
-            ICustomerManager customerManager = new CustomerManager();
-
+         
             return customerManager.UpdateCustomer(customer);
-
         }
 
         public string DeleteCustomer(Customer customer)
         {
-            ICustomerManager customerManager = new CustomerManager();
-
+           
             return customerManager.DeleteCustomer(customer);
         }
 
         public string UndeleteCustomer(Customer customer)
         {
-            ICustomerManager customerManager = new CustomerManager();
-
+        
             return customerManager.UndeleteCustomer(customer);
         }
 
-        //public int GetBusinessCustomerCVR(Customer customer)
-
-        //{
-        //    ICustomerManager customerManager = new CustomerManager();
-        //    return customerManager.GetBusinessCustomerCVR(customer);
-        //}
-
-        //public bool CheckUniquePhone(string phone)
-        //{
-        //    ICustomerManager customerManager = new CustomerManager();
-        //    return customerManager.CheckUniquePhone(phone);
-        //}
+        
     }
 }

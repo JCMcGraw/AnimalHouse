@@ -170,6 +170,27 @@ namespace AnimalHouseUI
             }
             else
             {
+                int saleLineItemAmount = Convert.ToInt32(AmountTextBox.Text);
+
+                if (item.treatment  == false && item.prescription == false)
+                {
+                    if (saleLineItemAmount > item.amount)
+                    {
+                        MessageBox.Show("Der er ikke det ønskede tilbage på lageret");
+                    }
+                    else
+                    {
+                        saleLineItem = SaleLineItemFactory.Instance().CreateSaleLineItem(item, Convert.ToInt32(AmountTextBox.Text), Convert.ToDecimal(PriceTextBox.Text), treatment, prescription);
+
+                        this.DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
+                }
+                else if (item.prescription == true)
+                {
+
+                }
+
                 saleLineItem = SaleLineItemFactory.Instance().CreateSaleLineItem(item, Convert.ToInt32(AmountTextBox.Text), Convert.ToDecimal(PriceTextBox.Text), treatment, prescription);
 
                 this.DialogResult = DialogResult.OK;
