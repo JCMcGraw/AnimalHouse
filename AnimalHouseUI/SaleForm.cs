@@ -198,14 +198,7 @@ namespace AnimalHouseUI
 
         private void FakturaButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                BossController.Instance().saleController.CreateInvoice(sale);
-            }
-            catch (Exception)
-            {
-
-            }
+            BossController.Instance().saleController.CreateInvoice(sale);
             string file = "Faktura" + sale.saleID.ToString() + ".pdf";
             Process.Start(file);
         }
@@ -363,9 +356,11 @@ namespace AnimalHouseUI
             ItemDataGridView.Columns["ItemName"].DataPropertyName = "name";
             ItemDataGridView.Columns["itemAmount"].DataPropertyName = "amount";
             ItemDataGridView.Columns["itemPrice"].DataPropertyName = "price";
+
             try
             {
                 items = BossController.Instance().itemController.GetAllActiveItems();
+                items = items.Where(x => x.prescription.Equals(false) && x.treatment.Equals(false)).ToList<Item>();
                 ItemDataGridView.DataSource = items;
             }
             catch (Exception exception)
