@@ -12,39 +12,39 @@ namespace AnimalHousePersistence
 {
     public class SaleManager : ISaleManager
     {
-        public List<Item> GetAllActiveItems()
-        {
-                string query = Utility.ReadSQLQueryFromFile("GetAllActiveItems.txt");
+        //public List<Item> GetAllActiveItems()
+        //{
+        //        string query = Utility.ReadSQLQueryFromFile("GetAllActiveItems.txt");
 
-                SQLQuery sQLQuery = new SQLQuery(query);
+        //        SQLQuery sQLQuery = new SQLQuery(query);
 
-                SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+        //        SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-                if (sQLQueryResult.code == 0)
-                {
-                    
-                    List<Item> items = GetListOfItemsFromDatatable(sQLQueryResult.dataTable);
-                if (items.Count == 0) { throw new NoItemsFoundException("1"); }
-                    return items;
-                }
-                else
-                {
-                    throw new NoItemsFoundException("", sQLQueryResult.exception);
-                }
-        }
+        //        if (sQLQueryResult.code == 0)
+        //        {
 
-        private List<Item> GetListOfItemsFromDatatable(DataTable dataTable)
-        {
-            List<Item> items = new List<Item>();
+        //            List<Item> items = GetListOfItemsFromDatatable(sQLQueryResult.dataTable);
+        //        if (items.Count == 0) { throw new NoItemsFoundException("1"); }
+        //            return items;
+        //        }
+        //        else
+        //        {
+        //            throw new NoItemsFoundException("", sQLQueryResult.exception);
+        //        }
+        //}
 
-            foreach(DataRow dataRow in dataTable.Rows)
-            {
-                Item item = GetItemFromDataRow(dataRow);
-                items.Add(item);
-            }
+        //private List<Item> GetListOfItemsFromDatatable(DataTable dataTable)
+        //{
+        //    List<Item> items = new List<Item>();
 
-            return items;
-        }
+        //    foreach(DataRow dataRow in dataTable.Rows)
+        //    {
+        //        Item item = GetItemFromDataRow(dataRow);
+        //        items.Add(item);
+        //    }
+
+        //    return items;
+        //}
 
         private Item GetItemFromDataRow(DataRow dataRow)
         {

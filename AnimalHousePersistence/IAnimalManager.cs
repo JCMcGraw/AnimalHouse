@@ -18,7 +18,7 @@ namespace AnimalHousePersistence
         Animal GetAnimal(int animalID);
 
      
-        List<Animal> GetAnimalList(SQLQueryResult sQLQueryResult);
+       // List<Animal> GetAnimalList(SQLQueryResult sQLQueryResult);
 
         //List<Animal>GetAnimalList(int ani);
 

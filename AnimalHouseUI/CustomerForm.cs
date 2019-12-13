@@ -484,10 +484,10 @@ namespace AnimalHouseUI
             }
         }
 
-        public bool CheckUniquePhone(string phone)
-        {
-            return BossController.Instance().customerController.CheckUniquePhone(phone);
-         }
+        //public bool CheckUniquePhone(string phone)
+        //{
+        //    return BossController.Instance().customerController.CheckUniquePhone(phone);
+        // }
 
      public bool CheckEmtyTextBoxes()
         {
@@ -533,18 +533,15 @@ namespace AnimalHouseUI
 
                     dataGridView_dyr.Rows[i].Cells["speciestype"].Value = tmpspecies.speciesType;
 
-
                 }
 
-            }
+        }
             catch (Exception exception)
             {
                 string errorMessage = ErrorManager.Instance().GetErrorMessage(exception);
-                MessageBox.Show(errorMessage);
+        MessageBox.Show(errorMessage);
                 return;
             }
-            //tilknytter listen af dyr til kunden
-            
 
         }
     }

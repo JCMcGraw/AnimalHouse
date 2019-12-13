@@ -55,9 +55,6 @@ namespace AnimalHousePersistence
             SQLQuery sQLQuery = new SQLQuery(query);
 
             sQLQuery.AddParameter("@animalID", animal.animalID.ToString(), SqlDbType.Int);
-            //sQLQuery.AddParameter("@birthday", animal.birthday.ToString(), SqlDbType.VarChar);
-            //sQLQuery.AddParameter("@species", animal.Species.speciesid.ToString(), SqlDbType.Int);
-            //sQLQuery.AddParameter("@gender", animal.gender.ToString(), SqlDbType.Char);
             if (animal.Employee == null)
             {
                 sQLQuery.AddParameter("@employeeid", null, SqlDbType.Int);
@@ -139,14 +136,12 @@ namespace AnimalHousePersistence
             return animal;
         }
 
-        public List<Animal> GetAnimalList(SQLQueryResult sQLQueryResult)
+        private List<Animal> GetAnimalList(SQLQueryResult sQLQueryResult)
         {
             List<Animal> animals = new List<Animal>();
 
             {
-               // string query = Utility.ReadSQLQueryFromFile("GetManyAnimalsByCustomerID.txt");
-
-                //SQLQuery sQLQuery = new SQLQuery(query);
+               
 
                 for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
                 {
@@ -205,7 +200,7 @@ namespace AnimalHousePersistence
            
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            if (sQLQueryResult.code != 0)
+            if (sQLQueryResult.code == 0)
             {
                 List<Animal> animals = new List<Animal>();
                 animals = GetAnimalList(sQLQueryResult);
@@ -217,7 +212,7 @@ namespace AnimalHousePersistence
             }
         }
 
-        public List<Species> GetSpecies(SQLQueryResult sQLQueryResult)
+        private List<Species> GetSpecies(SQLQueryResult sQLQueryResult)
         {
             List<Species> species = new List<Species>();
             {
@@ -271,7 +266,7 @@ namespace AnimalHousePersistence
             } 
         }
 
-        public List<MedicalRecord> GetMedicalRecordEntryList(Animal animal,SQLQueryResult sQLQueryResult)
+        private List<MedicalRecord> GetMedicalRecordEntryList(Animal animal,SQLQueryResult sQLQueryResult)
         {
             List<MedicalRecord> entries = new List<MedicalRecord>();
           
@@ -381,7 +376,7 @@ namespace AnimalHousePersistence
                     string phone = (string)sQLQueryResult.dataTable.Rows[i]["Phone"];
                     string email = (string)sQLQueryResult.dataTable.Rows[i]["Email"];
                     bool activeCustomer = (bool)sQLQueryResult.dataTable.Rows[i]["CustomerActive"];
-                    int cvr = 0; //(int)sQLQueryResult.dataTable.Rows[i]["CVR"];
+                    int cvr = 0; 
                     string name = (string)sQLQueryResult.dataTable.Rows[i]["AnimalName"];
                     DateTime birthYear = (DateTime)sQLQueryResult.dataTable.Rows[i]["BirthYear"];
                     int speciesID = (int)sQLQueryResult.dataTable.Rows[i]["SpeciesID"];

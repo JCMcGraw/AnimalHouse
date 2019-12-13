@@ -31,7 +31,7 @@ namespace AnimalHousePersistence
             }
         }
 
-        public List<Employee> GetEmployeeList(SQLQueryResult sQLQueryResult)
+        private List<Employee> GetEmployeeList(SQLQueryResult sQLQueryResult)
         {
             List<Employee> employees = new List<Employee>();
 

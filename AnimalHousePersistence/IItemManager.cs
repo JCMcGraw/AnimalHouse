@@ -7,10 +7,11 @@ using AnimalHouseEntities;
 
 namespace AnimalHousePersistence
 {
-    interface IItemManager
+    public interface IItemManager
     {
         string UpdateMedicinPrice(Item item);
 
         string GetLastUpdate(Item item);
+        List<Item> GetAllActiveItems();
     }
 }

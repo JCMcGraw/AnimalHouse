@@ -62,6 +62,14 @@ namespace AnimalHouse
                 return EmployeeController.Instance();
             }
         }
+
+        public ItemController itemController
+        {
+            get
+            {
+                return ItemController.Instance();
+            }
+        }
     }
 }
 
