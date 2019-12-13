@@ -188,7 +188,7 @@ namespace AnimalHouseUI
         {
             Item prescriptionItem = (Item)comboBox_recept.SelectedItem;
             
-            SaleItemForm saleItemForm = new SaleItemForm(prescriptionItem);
+            SaleItemForm saleItemForm = new SaleItemForm(prescriptionItem,null,null);
             saleItemForm.RemovePriceOption();
 
             if (saleItemForm.ShowDialog() == DialogResult.OK)

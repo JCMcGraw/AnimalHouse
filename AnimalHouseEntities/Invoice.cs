@@ -10,7 +10,6 @@ namespace AnimalHouseEntities
 {
     public class Invoice: Iinvoice
     {
-
         public void CreatePDF(Sale sale)
         {
             // Her bruges classen pdfDocument.
@@ -33,23 +32,29 @@ namespace AnimalHouseEntities
 
             // Draw the text. Dette er hvad der skal være på teksten, og hvor det skal være. Der kan laves lige så mange som man vil 
             //Kunde Oplysninger------------------------------------------------------------------------------------------------------------------------------
+            if (sale.customer==null)
+            {
 
-            gfx.DrawString((string)sale.customer.name, companyAndDebtor, XBrushes.Black,
+            }
+            else
+            {
+                gfx.DrawString((string)sale.customer.name, companyAndDebtor, XBrushes.Black,
                 new XRect(80, -270, page.Width, page.Height),
                 XStringFormats.CenterLeft);
 
-            gfx.DrawString((string)sale.customer.address, companyAndDebtor, XBrushes.Black,
-                 new XRect(80, -260, page.Width, page.Height),
+                gfx.DrawString((string)sale.customer.address, companyAndDebtor, XBrushes.Black,
+                     new XRect(80, -260, page.Width, page.Height),
+                     XStringFormats.CenterLeft);
+
+                gfx.DrawString((string)sale.customer.email, companyAndDebtor, XBrushes.Black,
+                    new XRect(80, -250, page.Width, page.Height),
+                    XStringFormats.CenterLeft);
+
+                gfx.DrawString((string)sale.customer.phone, companyAndDebtor, XBrushes.Black,
+                 new XRect(80, -230, page.Width, page.Height),
                  XStringFormats.CenterLeft);
-
-            gfx.DrawString((string)sale.customer.email, companyAndDebtor, XBrushes.Black,
-                new XRect(80, -250, page.Width, page.Height),
-                XStringFormats.CenterLeft);
-
-            gfx.DrawString((string)sale.customer.phone, companyAndDebtor, XBrushes.Black,
-             new XRect(80, -230, page.Width, page.Height),
-             XStringFormats.CenterLeft);
-
+            }
+            
             //FAKTURA---------------------------------------------------------------------------------------------------------------------------------------
             gfx.DrawString("FAKTURA", fakture, XBrushes.Black,
                 new XRect(80, -170, page.Width, page.Height),
@@ -150,16 +155,19 @@ namespace AnimalHouseEntities
                    XStringFormats.Center);
                 totalPrice = totalPrice + (sale.Price(sale.saleLineItems[i].item.price, sale.saleLineItems[i].amount));
             }
-                //Hvis det er erhvers person
-                if (sale.customer.GetType()==typeof(BusinessCustomer))
+
+            //Hvis det er erhvers person
+            if (sale.customer!=null)
+            {
+                if (sale.customer.GetType() == typeof(BusinessCustomer))
                 {
                     gfx.DrawString("Total: ", priceFat, XBrushes.Black,
                         new XRect(400, -20 + lineSpace, page.Width, page.Height),
                         XStringFormats.CenterLeft);
 
-                   
 
-                    gfx.DrawString(totalPrice.ToString()+" Kr", companyAndDebtor, XBrushes.Black,
+
+                    gfx.DrawString(totalPrice.ToString() + " Kr", companyAndDebtor, XBrushes.Black,
                         new XRect(-60, -20 + lineSpace, page.Width, page.Height),
                         XStringFormats.CenterRight);
 
@@ -167,6 +175,7 @@ namespace AnimalHouseEntities
                         new XRect(400, -15 + lineSpace, page.Width, page.Height),
                         XStringFormats.CenterLeft);
                 }
+
                 else
                 {
                     decimal momsPrice = sale.Moms(totalPrice);
@@ -183,20 +192,20 @@ namespace AnimalHouseEntities
                     gfx.DrawString("Total ink. Moms: ", priceFat, XBrushes.Black,
                         new XRect(400, 10 + lineSpace, page.Width, page.Height),
                         XStringFormats.CenterLeft);
-                    
+
                     //Viser den totate nettopris
-                    gfx.DrawString(totalPrice.ToString()+" Kr", companyAndDebtor, XBrushes.Black,
+                    gfx.DrawString(totalPrice.ToString() + " Kr", companyAndDebtor, XBrushes.Black,
                         new XRect(-60, -20 + lineSpace, page.Width, page.Height),
                         XStringFormats.CenterRight);
 
                     //Viser prisen på momsen
-                    gfx.DrawString(momsPrice.ToString()+" Kr", companyAndDebtor, XBrushes.Black,
+                    gfx.DrawString(momsPrice.ToString() + " Kr", companyAndDebtor, XBrushes.Black,
                         new XRect(-60, -5 + lineSpace, page.Width, page.Height),
                         XStringFormats.CenterRight);
 
 
                     //viser den totale pris ink moms
-                    gfx.DrawString(totalPriceInkMoms.ToString()+" Kr", priceFat, XBrushes.Black,
+                    gfx.DrawString(totalPriceInkMoms.ToString() + " Kr", priceFat, XBrushes.Black,
                         new XRect(-60, 10 + lineSpace, page.Width, page.Height),
                        XStringFormats.CenterRight);
 
@@ -204,8 +213,45 @@ namespace AnimalHouseEntities
                         new XRect(400, 15 + lineSpace, page.Width, page.Height),
                         XStringFormats.CenterLeft);
                 }
-           
+            }
+            else
+            {
+                decimal momsPrice = sale.Moms(totalPrice);
+                decimal totalPriceInkMoms = sale.TotalPriceInkMoms(totalPrice, momsPrice);
 
+                gfx.DrawString("Netto: ", companyAndDebtor, XBrushes.Black,
+               new XRect(400, -20 + lineSpace, page.Width, page.Height),
+               XStringFormats.CenterLeft);
+
+                gfx.DrawString("Moms (25%): ", companyAndDebtor, XBrushes.Black,
+                    new XRect(400, -5 + lineSpace, page.Width, page.Height),
+                    XStringFormats.CenterLeft);
+
+                gfx.DrawString("Total ink. Moms: ", priceFat, XBrushes.Black,
+                    new XRect(400, 10 + lineSpace, page.Width, page.Height),
+                    XStringFormats.CenterLeft);
+
+                //Viser den totate nettopris
+                gfx.DrawString(totalPrice.ToString() + " Kr", companyAndDebtor, XBrushes.Black,
+                    new XRect(-60, -20 + lineSpace, page.Width, page.Height),
+                    XStringFormats.CenterRight);
+
+                //Viser prisen på momsen
+                gfx.DrawString(momsPrice.ToString() + " Kr", companyAndDebtor, XBrushes.Black,
+                    new XRect(-60, -5 + lineSpace, page.Width, page.Height),
+                    XStringFormats.CenterRight);
+
+
+                //viser den totale pris ink moms
+                gfx.DrawString(totalPriceInkMoms.ToString() + " Kr", priceFat, XBrushes.Black,
+                    new XRect(-60, 10 + lineSpace, page.Width, page.Height),
+                   XStringFormats.CenterRight);
+
+                gfx.DrawString("___________________________ ", smallHeadLine, XBrushes.Black,
+                    new XRect(400, 15 + lineSpace, page.Width, page.Height),
+                    XStringFormats.CenterLeft);
+            }
+            
             gfx.DrawString("___________________________________________________________________________________________ ", smallHeadLine, XBrushes.Black,
                 new XRect(80, -100 + lineSpace, page.Width, page.Height),
                 XStringFormats.CenterLeft);

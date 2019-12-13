@@ -43,7 +43,6 @@ namespace AnimalHouse
             {
                 return AnimalController.Instance();
             }
-
         }
 
         public SaleController saleController
@@ -52,7 +51,6 @@ namespace AnimalHouse
             {
                 return SaleController.Instance();
             }
-
         }
 
         public EmployeeController employeeController

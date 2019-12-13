@@ -164,9 +164,9 @@
             this.NameLabel.Font = new System.Drawing.Font("Segoe Print", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NameLabel.Location = new System.Drawing.Point(35, 82);
             this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(219, 47);
+            this.NameLabel.Size = new System.Drawing.Size(100, 47);
             this.NameLabel.TabIndex = 8;
-            this.NameLabel.Text = "Name på Item";
+            this.NameLabel.Text = "Name";
             // 
             // button2
             // 

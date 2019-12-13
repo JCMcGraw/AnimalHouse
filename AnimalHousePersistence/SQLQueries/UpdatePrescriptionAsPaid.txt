@@ -1,0 +1,1 @@
+﻿update Prescription set Prescription.Payed = 1 where Prescription.PrescriptionID = @prescriptionid

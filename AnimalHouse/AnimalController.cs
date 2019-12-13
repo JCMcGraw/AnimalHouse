@@ -22,86 +22,74 @@ namespace AnimalHouse
             }
             return animalController;
         }
+
         IAnimalManager animalManager = new AnimalManager();
 
-        //public string CreateAnimal(string name, double weight, char gender, bool active)
-        //{
-        //    string createAnimal = animalManager.CreateAnimal(name, weight, gender, active);
-        //    return createAnimal;
-        //}
         public Animal CreateAnimal(Animal animal)
         {
             Animal createAnimal = animalManager.CreateAnimal(animal);
-
             return createAnimal;
         }
+
         public List<Animal> GetManyAnimalByCustomerID(Customer customer)
         {
-            IAnimalManager animalManager = new AnimalManager();
             List<Animal>animals = animalManager.GetManyAnimalByCustomerID(customer);
             return animals;
         }
 
         public string UpdateAnimal(Animal animal)
         {
-            IAnimalManager animalManager = new AnimalManager();
             string updateAnimal = animalManager.UpdateAnimal(animal);
             return updateAnimal;
         }
 
         public string DeleteAnimal(Animal animal)
         {
-            IAnimalManager animalManager = new AnimalManager();
             string deleteAnimal = animalManager.DeleteAnimal(animal);
             return deleteAnimal;
         }
 
+        //Denne bliver ikke brugt og er ikke med i Class Dia-----------------------------------
         public Animal GetAnimal(int animalID)
         {
-            IAnimalManager animalManager = new AnimalManager();
             Animal getAnimal = animalManager.GetAnimal(animalID);
             return getAnimal;
         }
+        //-------------------------------------------------------------------------------------
+
         public List<Species> GetSpecies()
         {
-            IAnimalManager animalManager = new AnimalManager();
             List<Species> animals = animalManager.GetAllSpecies();
             return animals;
         }
+
         public List<MedicalRecord> GetAllMedicalRecordByAnimal(Animal animal)
         {
-            IAnimalManager animalManager = new AnimalManager();
             List<MedicalRecord> getAllMedicalRecordByAnimal = animalManager.GetAllMedicalRecordEntriesByAnimalID(animal);
             return getAllMedicalRecordByAnimal;
         }
 
         public void CreateMedicalRecordEntry(MedicalRecord medicalRecord)
         {
-            IAnimalManager animalManager = new AnimalManager();
             animalManager.CreateMedicalRecordEntry(medicalRecord);
         }
       
-
         public List<Prescription> GetAllPrescriptionByAnimal(int animalID)
         {
-            IAnimalManager animalManager = new AnimalManager();
             List<Prescription> getAllPrescriptionByAnimal = animalManager.GetAllPrescriptionByAnimal(animalID);
             return getAllPrescriptionByAnimal;
         }
 
         public List<Prescription> GetUnpaidPrescriptionByCustomer(Customer customer)
         {
-            IAnimalManager animalManager = new AnimalManager();
             List<Prescription> unpaidPrescriptionByCustomer = animalManager.GetUnpaidPrescriptionByCustomer(customer);
             return unpaidPrescriptionByCustomer;
         }
 
         public Prescription CreatePrescription(Prescription prescription)
         {
-            IAnimalManager animalManager = new AnimalManager();
-            
-            return animalManager.CreatePrescription(prescription);
+            Prescription createPrescription = animalManager.CreatePrescription(prescription);
+            return createPrescription;
         }
-       
     }
 }

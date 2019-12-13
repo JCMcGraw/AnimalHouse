@@ -198,14 +198,7 @@ namespace AnimalHouseUI
 
         private void FakturaButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                BossController.Instance().saleController.CreateInvoice(sale);
-            }
-            catch (Exception)
-            {
-
-            }
+            BossController.Instance().saleController.CreateInvoice(sale);
             string file = "Faktura" + sale.saleID.ToString() + ".pdf";
             Process.Start(file);
         }
@@ -234,6 +227,8 @@ namespace AnimalHouseUI
                 UnPaidPrescriptionsDataGridView.DataSource = null;
                 UnPaidTreatmentDataGridView.DataSource = null;
                 SearchItemTextBox.Text = "";
+
+                LoadAllItemsInListBox();
             }
             catch (Exception)
             {
@@ -260,14 +255,14 @@ namespace AnimalHouseUI
         {
             DataGridViewRow row = ItemDataGridView.SelectedRows[0];
             Item item = row.DataBoundItem as Item;
-            FillItemList(item);
+            FillItemList(item,null,null);
         }
 
         private void ChoseDataView2()
         {
             DataGridViewRow row = UnPaidPrescriptionsDataGridView.SelectedRows[0];
             Prescription prescription = row.DataBoundItem as Prescription;
-            FillItemList(prescription.item, prescription.amount);
+            FillItemList(prescription.item,prescription,null, prescription.amount);
         }
 
         private void ChoseDataView3()
@@ -281,12 +276,12 @@ namespace AnimalHouseUI
                 amount = Convert.ToInt32((treatment.endTime - treatment.startTime).TotalDays);
                     
             }
-                FillItemList(treatment.item,amount);
+                FillItemList(treatment.item,null,treatment,amount);
         }
 
-        private void FillItemList(Item item,int amount=-1)
+        private void FillItemList(Item item,Prescription prescription,Treatment treatment, int amount= -1)
         {
-            SaleItemForm saleItemForm = new SaleItemForm(item,amount);
+            SaleItemForm saleItemForm = new SaleItemForm(item,prescription,treatment,amount);
 
             if (saleItemForm.ShowDialog() == DialogResult.OK)
             {
@@ -338,19 +333,21 @@ namespace AnimalHouseUI
 
         private void FillPriceInLable(decimal price,int amount)
         {
+            decimal total = 0;
             try
             {
                 for (int i = 0; i < ItemListDataGridView.RowCount; i++)
                 {
                     price = Convert.ToInt32(ItemListDataGridView.Rows[i].Cells["Price"].Value);
                     amount = Convert.ToInt32(ItemListDataGridView.Rows[i].Cells["Amount"].Value);
+                    
+                    total = total+price;
+                    price = total;
+
+                    TotalPriceLabel.Text = Convert.ToString(sale.Price(price, amount)) + " Kr";
+                    MomsLabel.Text = Convert.ToString(sale.Moms(sale.Price(price, amount))) + " Kr";
+                    TotalInkMomsLabel.Text = Convert.ToString(sale.TotalPriceInkMoms(sale.Price(price, amount), sale.Moms(sale.Price(price, amount)))) + " Kr";
                 }
-
-                TotalPriceLabel.Text = Convert.ToString(sale.Price(price, amount))+" Kr";
-
-                MomsLabel.Text = Convert.ToString(sale.Moms(sale.Price(price, amount)))+" Kr";
-
-                TotalInkMomsLabel.Text = Convert.ToString(sale.TotalPriceInkMoms(sale.Price(price, amount), sale.Moms(sale.Price(price, amount))))+" Kr";
             }
             catch (Exception)
             {
@@ -363,9 +360,11 @@ namespace AnimalHouseUI
             ItemDataGridView.Columns["ItemName"].DataPropertyName = "name";
             ItemDataGridView.Columns["itemAmount"].DataPropertyName = "amount";
             ItemDataGridView.Columns["itemPrice"].DataPropertyName = "price";
+
             try
             {
                 items = BossController.Instance().itemController.GetAllActiveItems();
+                items = items.Where(x => x.prescription.Equals(false) && x.treatment.Equals(false)).ToList<Item>();
                 ItemDataGridView.DataSource = items;
             }
             catch (Exception exception)

@@ -18,7 +18,7 @@ namespace AnimalHouseUnitTest
         static Animal animal = new Animal(customer,"hej",DateTime.Now,species,100,true,employee,false);
         static Employee employee = new Employee(1,"jens",false,1,new Title("",1));
         
-        int treatmentID = 0;
+        static int treatmentID = 0;
 
         [TestMethod]
         public void CreateTreatmentTestMethod()

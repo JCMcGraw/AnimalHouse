@@ -254,7 +254,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(804, 490);
+            this.label6.Location = new System.Drawing.Point(736, 490);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(31, 13);
             this.label6.TabIndex = 32;
@@ -265,7 +265,7 @@
             this.MomsLabel.AutoSize = true;
             this.MomsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MomsLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.MomsLabel.Location = new System.Drawing.Point(789, 514);
+            this.MomsLabel.Location = new System.Drawing.Point(773, 514);
             this.MomsLabel.Name = "MomsLabel";
             this.MomsLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.MomsLabel.Size = new System.Drawing.Size(0, 13);
@@ -277,7 +277,7 @@
             this.TotalInkMomsLabel.AutoSize = true;
             this.TotalInkMomsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TotalInkMomsLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.TotalInkMomsLabel.Location = new System.Drawing.Point(747, 541);
+            this.TotalInkMomsLabel.Location = new System.Drawing.Point(773, 541);
             this.TotalInkMomsLabel.Name = "TotalInkMomsLabel";
             this.TotalInkMomsLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.TotalInkMomsLabel.Size = new System.Drawing.Size(0, 13);
@@ -288,7 +288,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(753, 541);
+            this.label16.Location = new System.Drawing.Point(685, 541);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(82, 13);
             this.label16.TabIndex = 35;
@@ -298,7 +298,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(800, 514);
+            this.label17.Location = new System.Drawing.Point(732, 514);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(35, 13);
             this.label17.TabIndex = 36;
@@ -309,7 +309,7 @@
             this.TotalPriceLabel.AutoSize = true;
             this.TotalPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TotalPriceLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.TotalPriceLabel.Location = new System.Drawing.Point(789, 490);
+            this.TotalPriceLabel.Location = new System.Drawing.Point(773, 490);
             this.TotalPriceLabel.Name = "TotalPriceLabel";
             this.TotalPriceLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.TotalPriceLabel.Size = new System.Drawing.Size(0, 13);
@@ -559,6 +559,7 @@
             this.UnPaidTreatmentDataGridView.AllowUserToDeleteRows = false;
             this.UnPaidTreatmentDataGridView.AllowUserToResizeColumns = false;
             this.UnPaidTreatmentDataGridView.AllowUserToResizeRows = false;
+            this.UnPaidTreatmentDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.UnPaidTreatmentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.UnPaidTreatmentDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.treatmentName,
