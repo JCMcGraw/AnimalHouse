@@ -260,14 +260,14 @@ namespace AnimalHouseUI
         {
             DataGridViewRow row = ItemDataGridView.SelectedRows[0];
             Item item = row.DataBoundItem as Item;
-            FillItemList(item);
+            FillItemList(item,null,null);
         }
 
         private void ChoseDataView2()
         {
             DataGridViewRow row = UnPaidPrescriptionsDataGridView.SelectedRows[0];
             Prescription prescription = row.DataBoundItem as Prescription;
-            FillItemList(prescription.item, prescription.amount);
+            FillItemList(prescription.item,prescription,null, prescription.amount);
         }
 
         private void ChoseDataView3()
@@ -281,12 +281,12 @@ namespace AnimalHouseUI
                 amount = Convert.ToInt32((treatment.endTime - treatment.startTime).TotalDays);
                     
             }
-                FillItemList(treatment.item,amount);
+                FillItemList(treatment.item,null,treatment,amount);
         }
 
-        private void FillItemList(Item item,int amount=-1)
+        private void FillItemList(Item item,Prescription prescription,Treatment treatment, int amount= -1)
         {
-            SaleItemForm saleItemForm = new SaleItemForm(item,amount);
+            SaleItemForm saleItemForm = new SaleItemForm(item,prescription,treatment,amount);
 
             if (saleItemForm.ShowDialog() == DialogResult.OK)
             {

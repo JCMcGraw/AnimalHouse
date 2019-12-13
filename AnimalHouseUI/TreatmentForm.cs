@@ -188,7 +188,7 @@ namespace AnimalHouseUI
         {
             Item prescriptionItem = (Item)comboBox_recept.SelectedItem;
             
-            SaleItemForm saleItemForm = new SaleItemForm(prescriptionItem);
+            SaleItemForm saleItemForm = new SaleItemForm(prescriptionItem,null,null);
             saleItemForm.RemovePriceOption();
 
             if (saleItemForm.ShowDialog() == DialogResult.OK)
@@ -234,7 +234,7 @@ namespace AnimalHouseUI
 
             foreach (Item item in itemList)
             {
-                if (item.active==true&&item.prescription==true)
+                if (item.active==true&&item.isPrescription==true)
                 {
                     prescriptionItemList.Add(item);
                 }

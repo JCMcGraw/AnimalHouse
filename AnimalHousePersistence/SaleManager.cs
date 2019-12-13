@@ -48,6 +48,8 @@ namespace AnimalHousePersistence
 
         private Item GetItemFromDataRow(DataRow dataRow)
         {
+
+
             int itemID = (int)dataRow["ItemID"];
             string name = (string)dataRow["Name"];
             decimal price = (decimal)dataRow["Price"];
@@ -133,7 +135,7 @@ namespace AnimalHousePersistence
                 }
                 else
                 {
-                    if (saleLineItem.item.treatment == false)
+                    if (saleLineItem.item.isTreatment == false)
                     {
                         int saleLineItemID = (int)sQLQueryResult.dataTable.Rows[0]["SaleLineItemsID"];
                         saleLineItem.UpdateSaleLineItemID(saleLineItemID);
@@ -266,7 +268,7 @@ namespace AnimalHousePersistence
             int amount = (int)dataRow["Quantity"];
             decimal price = (decimal)dataRow["SalePrice"];
 
-            SaleLineItem saleLineItem = SaleLineItemFactory.Instance().CreateSaleLineItem(item, saleLineItemID, amount, price);
+            SaleLineItem saleLineItem = SaleLineItemFactory.Instance().CreateSaleLineItem(item, saleLineItemID, amount, price, null, null);
 
             return saleLineItem;
         }

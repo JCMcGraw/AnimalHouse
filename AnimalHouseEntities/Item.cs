@@ -18,22 +18,28 @@ namespace AnimalHouseEntities
 
         public decimal costPrice { get; private set; }
 
-        public bool prescription { get; private set; }
+        public bool isPrescription { get; private set; }
 
-        public bool treatment { get; private set; }
+        public bool isTreatment { get; private set; }
 
         public bool active { get; private set; }
 
-        public Item(int itemID, string name, int amount, decimal price, decimal costPrice, bool prescription, bool treatment, bool active)
+        //public Treatment treatment { get; private set; }
+
+        //public Prescription prescription { get; private set; }
+
+        public Item(int itemID, string name, int amount, decimal price, decimal costPrice, bool isPrescription, bool isTreatment, bool active)
         {
             this.itemID = itemID;
             this.name = name;
             this.amount = amount;
             this.price = price;
             this.costPrice = costPrice;
-            this.prescription = prescription;
-            this.treatment = treatment;
+            this.isPrescription = isPrescription;
+            this.isTreatment = isTreatment;
             this.active = active;
+          //  this.treatment = treatment;
+            //this.prescription = prescription;
         }
 
         public override string ToString()

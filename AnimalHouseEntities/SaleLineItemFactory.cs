@@ -22,15 +22,15 @@ namespace AnimalHouseEntities
             return instance;
         }
 
-        public SaleLineItem CreateSaleLineItem(Item item, int saleLineItemID, int amount, decimal price)
+        public SaleLineItem CreateSaleLineItem(Item item, int saleLineItemID, int amount, decimal price, Treatment treatment, Prescription prescription)
         {
-            SaleLineItem saleLineItem = new SaleLineItem(item, saleLineItemID, amount, price);
+            SaleLineItem saleLineItem = new SaleLineItem(item, saleLineItemID, amount, price, treatment, prescription);
             return saleLineItem;
         }
 
-        public SaleLineItem CreateSaleLineItem(Item item, int amount, decimal price)
+        public SaleLineItem CreateSaleLineItem(Item item, int amount, decimal price, Treatment treatment, Prescription prescription)
         {
-            SaleLineItem saleLineItem = new SaleLineItem(item, amount, price);
+            SaleLineItem saleLineItem = new SaleLineItem(item, amount, price, treatment, prescription);
             return saleLineItem;
         }
     }

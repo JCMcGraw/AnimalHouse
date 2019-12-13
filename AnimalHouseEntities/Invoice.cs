@@ -10,7 +10,6 @@ namespace AnimalHouseEntities
 {
     public class Invoice: Iinvoice
     {
-
         public void CreatePDF(Sale sale)
         {
             // Her bruges classen pdfDocument.

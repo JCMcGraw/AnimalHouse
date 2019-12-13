@@ -163,13 +163,13 @@ namespace AnimalHouseUI
 
         private void FilterObservations()
         {
-            items = items.Where(x => x.name.Contains("Observation") && x.treatment == true).ToList<Item>();
+            items = items.Where(x => x.name.Contains("Observation") && x.isTreatment == true).ToList<Item>();
             BindItemDataGrid();
         }
 
         private void FilterNotObservations()
         {
-            items = items.Where(x => x.name.Contains("Observation") == false && x.treatment == true).ToList<Item>();
+            items = items.Where(x => x.name.Contains("Observation") == false && x.isTreatment == true).ToList<Item>();
             BindItemDataGrid();
         }
 

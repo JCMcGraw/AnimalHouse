@@ -15,15 +15,19 @@ namespace AnimalHouseUI
     public partial class SaleItemForm : Form
     {
         Item item;
+        Treatment treatment;
+        Prescription prescription;
+
         int amount;
         public SaleLineItem saleLineItem;
 
-        public SaleItemForm(Item item,int amount = -1)
+        public SaleItemForm(Item item, Prescription prescription, Treatment treatment, int amount = -1)
         {
             InitializeComponent();
             this.item = item;
             this.amount = amount;
         }
+
         private void SaleItemForm_Load_1(object sender, EventArgs e)
         {
             if (amount > -1)
@@ -164,7 +168,7 @@ namespace AnimalHouseUI
             }
             else
             {
-                saleLineItem = new SaleLineItem(item, Convert.ToInt32(AmountTextBox.Text), Convert.ToDecimal(PriceTextBox.Text));
+                saleLineItem = SaleLineItemFactory.Instance().CreateSaleLineItem(item, Convert.ToInt32(AmountTextBox.Text), Convert.ToDecimal(PriceTextBox.Text), treatment, prescription);
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();
