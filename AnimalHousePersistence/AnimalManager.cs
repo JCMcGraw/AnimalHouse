@@ -140,54 +140,50 @@ namespace AnimalHousePersistence
         {
             List<Animal> animals = new List<Animal>();
 
+            for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
             {
-               
 
-                for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
+                Employee employee = null;
+                if (sQLQueryResult.dataTable.Rows[i].IsNull("EmployeeID"))
                 {
-
-                    Employee employee = null;
-                    if (sQLQueryResult.dataTable.Rows[i].IsNull("EmployeeID"))
-                    {
-                    }
-                    else
-                    {
-                        string titleName = (string)sQLQueryResult.dataTable.Rows[i]["TitleName"];
-                        int titleID = (int)sQLQueryResult.dataTable.Rows[i]["TitleID"];
-                        Title title = TitleFactory.Instance().CreateTitle(titleName, titleID);
-
-                        string employeeName = (string)sQLQueryResult.dataTable.Rows[i]["EmployeeName"];
-                        int employeeID = (int)sQLQueryResult.dataTable.Rows[i]["EmployeeID"];
-                        bool employeeActive = (bool)sQLQueryResult.dataTable.Rows[i]["EmployeeActive"];
-
-                        employee = EmployeeFactory.Instance().CreateEmployee(employeeID, employeeName, employeeActive, titleID, title);
-                    }
-
-                    int CustomerID = (int)sQLQueryResult.dataTable.Rows[i]["CustomerID"];
-                    string customerName = (string)sQLQueryResult.dataTable.Rows[i]["customername"];
-                    string customeradress = (string)sQLQueryResult.dataTable.Rows[i]["Adress"];
-                    string customerphone = (string)sQLQueryResult.dataTable.Rows[i]["Phone"];
-                    string customeremail = (string)sQLQueryResult.dataTable.Rows[i]["Email"];
-                    bool customeractive = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
-                    Customer customer = CustomerFactory.Instance().CreateCustomer(CustomerID,customerName,customeradress,customerphone,customeremail,customeractive,0);
-                    int animalID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalID"];
-                    string name = (string)sQLQueryResult.dataTable.Rows[i]["Name"];
-                    DateTime birthday = (DateTime)sQLQueryResult.dataTable.Rows[i]["BirthYear"];
-                    int speciesID = (int)sQLQueryResult.dataTable.Rows[i]["Speciesid"];
-                    string speciesName =(string)sQLQueryResult.dataTable.Rows[i]["SpeciesName"];
-                    Species species = SpeciesFactory.Instance().CreateSpecies(speciesID, speciesName);
-
-                    double weight =Convert.ToDouble( (decimal)sQLQueryResult.dataTable.Rows[i]["Weight"]);
-                    bool gender = (bool)sQLQueryResult.dataTable.Rows[i]["Gender"];
-
-                    //int employeeID = (int)sQLQueryResult.dataTable.Rows[i]["employeeID"];
-                    
-                    bool active = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
-
-                    animals.Add(AnimalFactory.Instance().CreateAnimal(customer,animalID, name, birthday, species, weight, gender,employee, true));
                 }
-                return animals;
+                else
+                {
+                    string titleName = (string)sQLQueryResult.dataTable.Rows[i]["TitleName"];
+                    int titleID = (int)sQLQueryResult.dataTable.Rows[i]["TitleID"];
+                    Title title = TitleFactory.Instance().CreateTitle(titleName, titleID);
+
+                    string employeeName = (string)sQLQueryResult.dataTable.Rows[i]["EmployeeName"];
+                    int employeeID = (int)sQLQueryResult.dataTable.Rows[i]["EmployeeID"];
+                    bool employeeActive = (bool)sQLQueryResult.dataTable.Rows[i]["EmployeeActive"];
+
+                    employee = EmployeeFactory.Instance().CreateEmployee(employeeID, employeeName, employeeActive, titleID, title);
+                }
+
+                int CustomerID = (int)sQLQueryResult.dataTable.Rows[i]["CustomerID"];
+                string customerName = (string)sQLQueryResult.dataTable.Rows[i]["customername"];
+                string customeradress = (string)sQLQueryResult.dataTable.Rows[i]["Adress"];
+                string customerphone = (string)sQLQueryResult.dataTable.Rows[i]["Phone"];
+                string customeremail = (string)sQLQueryResult.dataTable.Rows[i]["Email"];
+                bool customeractive = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
+                Customer customer = CustomerFactory.Instance().CreateCustomer(CustomerID, customerName, customeradress, customerphone, customeremail, customeractive, 0);
+                int animalID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalID"];
+                string name = (string)sQLQueryResult.dataTable.Rows[i]["Name"];
+                DateTime birthday = (DateTime)sQLQueryResult.dataTable.Rows[i]["BirthYear"];
+                int speciesID = (int)sQLQueryResult.dataTable.Rows[i]["Speciesid"];
+                string speciesName = (string)sQLQueryResult.dataTable.Rows[i]["SpeciesName"];
+                Species species = SpeciesFactory.Instance().CreateSpecies(speciesID, speciesName);
+
+                double weight = Convert.ToDouble((decimal)sQLQueryResult.dataTable.Rows[i]["Weight"]);
+                bool gender = (bool)sQLQueryResult.dataTable.Rows[i]["Gender"];
+
+                //int employeeID = (int)sQLQueryResult.dataTable.Rows[i]["employeeID"];
+
+                bool active = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
+
+                animals.Add(AnimalFactory.Instance().CreateAnimal(customer, animalID, name, birthday, species, weight, gender, employee, true));
             }
+            return animals;
         }
 
         public List<Animal> GetManyAnimalByCustomerID(Customer customer)
@@ -334,7 +330,6 @@ namespace AnimalHousePersistence
             else
             {
                 throw new PrescriptionNotFoundException("", sQLQueryResult.exception);
-
             }
         }
         
@@ -364,6 +359,7 @@ namespace AnimalHousePersistence
                     title = TitleFactory.Instance().CreateTitle(titleName, titleID);
                     employee = EmployeeFactory.Instance().CreateEmployee(employeeID, name, true, titleID, title);
                 }
+
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("AnimalID"))
                 {
                     animal = null;
@@ -390,6 +386,7 @@ namespace AnimalHousePersistence
 
                     animal = AnimalFactory.Instance().CreateAnimal(customer, name, birthYear, species, weight, gender, employee, activeAnimal);
                 }
+
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("ItemID"))
                 {
                     item = null;
