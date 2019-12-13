@@ -72,17 +72,17 @@ namespace AnimalHouse
             return customerManager.UndeleteCustomer(customer);
         }
 
-        public int GetBusinessCustomerCVR(Customer customer)
+        //public int GetBusinessCustomerCVR(Customer customer)
 
-        {
-            ICustomerManager customerManager = new CustomerManager();
-            return customerManager.GetBusinessCustomerCVR(customer);
-        }
+        //{
+        //    ICustomerManager customerManager = new CustomerManager();
+        //    return customerManager.GetBusinessCustomerCVR(customer);
+        //}
 
-        public bool CheckUniquePhone(string phone)
-        {
-            ICustomerManager customerManager = new CustomerManager();
-            return customerManager.CheckUniquePhone(phone);
-        }
+        //public bool CheckUniquePhone(string phone)
+        //{
+        //    ICustomerManager customerManager = new CustomerManager();
+        //    return customerManager.CheckUniquePhone(phone);
+        //}
     }
 }

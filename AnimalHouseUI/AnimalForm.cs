@@ -357,11 +357,12 @@ namespace AnimalHouseUI
                 }
 
 
-                animal = AnimalFactory.Instance().CreateAnimal(customer, animal_name.Text.ToString(), (animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text), true, employee, true);
+                animal = AnimalFactory.Instance().CreateAnimal(customer, animal_name.Text.ToString(), (animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text),gender, employee, true);
 
                 animal = BossController.Instance().animalController.CreateAnimal(animal);
 
                 MessageBox.Show("Dyret er oprettet");
+                customerForm.UpdateDataGridView();
 
                 AnimalName_Label.Text = animal.name;
                 animalSpecies_label.Text = animal.Species.speciesType.ToString();
@@ -429,6 +430,7 @@ namespace AnimalHouseUI
                 if (message == "ok")
                 {
                     MessageBox.Show("Dyret rettet");
+                    customerForm.UpdateDataGridView();
                 }
             }
             //MessageBox.Show(message);

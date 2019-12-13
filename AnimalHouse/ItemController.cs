@@ -3,10 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AnimalHouseEntities;
+using AnimalHousePersistence;
 
 namespace AnimalHouse
 {
-    class ItemController
+    public class ItemController
     {
+        private static ItemController instance;
+
+        public static ItemController Instance()
+        {
+            if (instance == null)
+            {
+                instance = new ItemController();
+            }
+
+            return instance;
+        }
+
+        IItemManager itemManager = new ItemManager();
+
+        public List<Item> GetAllActiveItems()
+        {
+            List<Item> items = itemManager.GetAllActiveItems();
+            return items;
+        }
     }
 }

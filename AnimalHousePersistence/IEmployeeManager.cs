@@ -10,6 +10,6 @@ namespace AnimalHousePersistence
     public interface IEmployeeManager
     {
          List<Employee> GetAllEmployees();
-        List<Employee> GetEmployeeList(SQLQueryResult sQLQueryResult);
+       // List<Employee> GetEmployeeList(SQLQueryResult sQLQueryResult);
     }
 }

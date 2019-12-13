@@ -26,11 +26,11 @@ namespace AnimalHouse
 
         ISaleManager saleManager = new SaleManager();
 
-        public List<Item> GetAllActiveItems()
-        {
-            List<Item> items = saleManager.GetAllActiveItems();
-            return items;
-        }
+        //public List<Item> GetAllActiveItems()
+        //{
+        //    List<Item> items = ItemController.GetAllActiveItems();
+        //    return items;
+        //}
 
         public Sale CreateSale(Sale sale)
         {

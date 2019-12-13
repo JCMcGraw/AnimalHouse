@@ -158,7 +158,7 @@ namespace AnimalHouseUI
 
         private void GetAllItems()
         {
-            items = bossController.saleController.GetAllActiveItems();
+            items = bossController.itemController.GetAllActiveItems();
         }
 
         private void FilterObservations()

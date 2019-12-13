@@ -59,7 +59,7 @@ namespace AnimalHousePersistence
 
         }
 
-        public void CreateBusinessCustomer(BusinessCustomer businessCustomer)
+        private void CreateBusinessCustomer(BusinessCustomer businessCustomer)
 
         {
 
@@ -81,7 +81,7 @@ namespace AnimalHousePersistence
 
         }
 
-        public void CreatePrivateCustomer(PrivateCustomer privateCustomer)
+        private void CreatePrivateCustomer(PrivateCustomer privateCustomer)
         {
             string query = Utility.ReadSQLQueryFromFile("CreatePrivateCustomer.txt");
 
@@ -196,51 +196,51 @@ namespace AnimalHousePersistence
             
         }
 
-        public int GetBusinessCustomerCVR(Customer customer)
-        {
-            string query = Utility.ReadSQLQueryFromFile("GetBusinesscustomerCVR.txt");
+        //public int GetBusinessCustomerCVR(Customer customer)
+        //{
+        //    string query = Utility.ReadSQLQueryFromFile("GetBusinesscustomerCVR.txt");
 
-            SQLQuery sQLQuery = new SQLQuery(query);
+        //    SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("@customerID", customer.customerID.ToString(), SqlDbType.VarChar);
+        //    sQLQuery.AddParameter("@customerID", customer.customerID.ToString(), SqlDbType.VarChar);
 
-            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+        //    SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            int cvr;
-            try
-            {
-                DataRow dataRow = sQLQueryResult.dataTable.Rows[0];
-                cvr = (int)dataRow["CVR"];
-            }
-            catch
-            {
-                 cvr=0;
-            }
-            return cvr;
+        //    int cvr;
+        //    try
+        //    {
+        //        DataRow dataRow = sQLQueryResult.dataTable.Rows[0];
+        //        cvr = (int)dataRow["CVR"];
+        //    }
+        //    catch
+        //    {
+        //         cvr=0;
+        //    }
+        //    return cvr;
 
-        }
+        //}
 
-        public bool CheckUniquePhone(string phone)
-        {
-            SqlConnection con = new SqlConnection(Utility.connectionString);
+        //public bool CheckUniquePhone(string phone)
+        //{
+        //    SqlConnection con = new SqlConnection(Utility.connectionString);
 
-            string query = Utility.ReadSQLQueryFromFile("CheckUniquePhone.txt");
+        //    string query = Utility.ReadSQLQueryFromFile("CheckUniquePhone.txt");
 
-            SQLQuery sQLQuery = new SQLQuery(query);
+        //    SQLQuery sQLQuery = new SQLQuery(query);
 
-            sQLQuery.AddParameter("@phone", phone, SqlDbType.VarChar);
+        //    sQLQuery.AddParameter("@phone", phone, SqlDbType.VarChar);
             
-            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+        //    SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            //hvis nummeret allerede findes sender den false afsted. Den sender altid en false afsted
+        //    //hvis nummeret allerede findes sender den false afsted. Den sender altid en false afsted
 
-            if ((int)sQLQueryResult.dataTable.Rows[0]["counter"] == 0)
-            {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
+        //    if ((int)sQLQueryResult.dataTable.Rows[0]["counter"] == 0)
+        //    {
+        //        return true;
+        //    }
+        //    else {
+        //        return false;
+        //    }
+        //}
     }
 }

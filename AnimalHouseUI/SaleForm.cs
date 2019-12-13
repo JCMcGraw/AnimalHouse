@@ -365,7 +365,7 @@ namespace AnimalHouseUI
             ItemDataGridView.Columns["itemPrice"].DataPropertyName = "price";
             try
             {
-                items = BossController.Instance().saleController.GetAllActiveItems();
+                items = BossController.Instance().itemController.GetAllActiveItems();
                 ItemDataGridView.DataSource = items;
             }
             catch (Exception exception)

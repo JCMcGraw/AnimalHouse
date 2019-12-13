@@ -229,7 +229,7 @@ namespace AnimalHouseUI
 
         public List<Item>GetPerscriptionList()
         {
-            List<Item> itemList = BossController.Instance().saleController.GetAllActiveItems();
+            List<Item> itemList = BossController.Instance().itemController.GetAllActiveItems();
             List<Item> prescriptionItemList = new List<Item>();
 
             foreach (Item item in itemList)
