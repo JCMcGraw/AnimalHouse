@@ -152,10 +152,49 @@ namespace AnimalHousePersistence
                         }
                     }
                 }
+
+                if(saleLineItem.treatment != null)
+                {
+                    UpdateTreatmentAsPaid(saleLineItem.treatment, connection);
+                }
+
+                if(saleLineItem.prescription != null)
+                {
+                    UpdatePrescriptionAsPaid(saleLineItem.prescription, connection);
+                }
+
+
             }
             return sale;
         }
 
+        private void UpdatePrescriptionAsPaid(Prescription prescription, SqlConnection connection)
+        {
+            string UpdateQuery = Utility.ReadSQLQueryFromFile("UpdatePrescriptionAsPaid.txt");
+            SQLQuery updateSQLQuery = new SQLQuery(UpdateQuery);
+            updateSQLQuery.AddParameter("@prescriptionid", prescription.prescriptionID.ToString(), SqlDbType.Int);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(updateSQLQuery, connection);
+
+            if (sQLQueryResult.code != 0)
+            {
+                throw sQLQueryResult.exception;
+            }
+        }
+
+        private void UpdateTreatmentAsPaid(Treatment treatment, SqlConnection connection)
+        {
+            string UpdateQuery = Utility.ReadSQLQueryFromFile("UpdateTreatmentAsPaid.txt");
+            SQLQuery updateSQLQuery = new SQLQuery(UpdateQuery);
+            updateSQLQuery.AddParameter("@treatmentid", treatment.treatmentID.ToString(), SqlDbType.Int);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(updateSQLQuery, connection);
+
+            if (sQLQueryResult.code != 0)
+            {
+                throw sQLQueryResult.exception;
+            }
+        }
 
         public string DeleteSale(Sale sale)
         {

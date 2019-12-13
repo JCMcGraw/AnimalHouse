@@ -559,6 +559,7 @@
             this.UnPaidTreatmentDataGridView.AllowUserToDeleteRows = false;
             this.UnPaidTreatmentDataGridView.AllowUserToResizeColumns = false;
             this.UnPaidTreatmentDataGridView.AllowUserToResizeRows = false;
+            this.UnPaidTreatmentDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.UnPaidTreatmentDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.UnPaidTreatmentDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.treatmentName,

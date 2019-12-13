@@ -26,6 +26,8 @@ namespace AnimalHouseUI
             InitializeComponent();
             this.item = item;
             this.amount = amount;
+            this.treatment = treatment;
+            this.prescription = prescription;
         }
 
         private void SaleItemForm_Load_1(object sender, EventArgs e)
@@ -162,7 +164,7 @@ namespace AnimalHouseUI
 
         private void AddItemToSaleListButton_Click(object sender, EventArgs e)
         {
-            if  (item.amount<1)
+            if  (item.amount < 1 && item.treatment == false)
             {
                 MessageBox.Show("Der er ikke det ønskede tilbage på lageret");
             }
