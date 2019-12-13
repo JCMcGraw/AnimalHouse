@@ -200,7 +200,7 @@ namespace AnimalHousePersistence
            
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            if (sQLQueryResult.code != 0)
+            if (sQLQueryResult.code == 0)
             {
                 List<Animal> animals = new List<Animal>();
                 animals = GetAnimalList(sQLQueryResult);
