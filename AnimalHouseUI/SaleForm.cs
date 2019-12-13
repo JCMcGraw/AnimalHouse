@@ -227,6 +227,8 @@ namespace AnimalHouseUI
                 UnPaidPrescriptionsDataGridView.DataSource = null;
                 UnPaidTreatmentDataGridView.DataSource = null;
                 SearchItemTextBox.Text = "";
+
+                LoadAllItemsInListBox();
             }
             catch (Exception)
             {
@@ -331,19 +333,21 @@ namespace AnimalHouseUI
 
         private void FillPriceInLable(decimal price,int amount)
         {
+            decimal total = 0;
             try
             {
                 for (int i = 0; i < ItemListDataGridView.RowCount; i++)
                 {
                     price = Convert.ToInt32(ItemListDataGridView.Rows[i].Cells["Price"].Value);
                     amount = Convert.ToInt32(ItemListDataGridView.Rows[i].Cells["Amount"].Value);
+                    
+                    total = total+price;
+                    price = total;
+
+                    TotalPriceLabel.Text = Convert.ToString(sale.Price(price, amount)) + " Kr";
+                    MomsLabel.Text = Convert.ToString(sale.Moms(sale.Price(price, amount))) + " Kr";
+                    TotalInkMomsLabel.Text = Convert.ToString(sale.TotalPriceInkMoms(sale.Price(price, amount), sale.Moms(sale.Price(price, amount)))) + " Kr";
                 }
-
-                TotalPriceLabel.Text = Convert.ToString(sale.Price(price, amount))+" Kr";
-
-                MomsLabel.Text = Convert.ToString(sale.Moms(sale.Price(price, amount)))+" Kr";
-
-                TotalInkMomsLabel.Text = Convert.ToString(sale.TotalPriceInkMoms(sale.Price(price, amount), sale.Moms(sale.Price(price, amount))))+" Kr";
             }
             catch (Exception)
             {
