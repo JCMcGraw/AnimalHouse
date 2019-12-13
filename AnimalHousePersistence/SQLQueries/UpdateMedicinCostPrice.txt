@@ -1,1 +1,1 @@
-﻿update Item set CostPrice=@costprice where (ItemID=@ItemID and Prescription = 1)
+﻿update Item set CostPrice=@costprice where (Name=@name)
