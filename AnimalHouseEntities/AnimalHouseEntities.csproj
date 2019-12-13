@@ -68,7 +68,8 @@
     <Compile Include="ItemFactory.cs" />
     <Compile Include="MedicalRecord.cs" />
     <Compile Include="MedicalRecordFactory.cs" />
-    <Compile Include="MedicinPrice.cs" />
+    <Compile Include="MedicinePrice.cs" />
+    <Compile Include="MedicinPriceFactory.cs" />
     <Compile Include="OperationRoom.cs" />
     <Compile Include="OperationRoomFactory.cs" />
     <Compile Include="Prescription.cs" />

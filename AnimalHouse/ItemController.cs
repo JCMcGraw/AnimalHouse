@@ -29,5 +29,10 @@ namespace AnimalHouse
             List<Item> items = itemManager.GetAllActiveItems();
             return items;
         }
+        //public List<MedicinPrice> GetMedicinPrices()
+        //{
+        //    List<MedicinPrice> medicinPrices = IItemManager.GetMedicinPrices();
+        //    return medicinPrices;
+        //}
     }
 }

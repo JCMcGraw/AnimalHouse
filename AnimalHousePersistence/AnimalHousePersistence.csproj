@@ -49,6 +49,7 @@
     <Compile Include="IAnimalManager.cs" />
     <Compile Include="IEmployeeManager.cs" />
     <Compile Include="IItemManager.cs" />
+    <Compile Include="IMedicinePriceAdapter.cs" />
     <Compile Include="ISaleManager.cs" />
     <Compile Include="ItemManager.cs" />
     <Compile Include="ITreatmentManager.cs" />
@@ -56,6 +57,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="ICustomerManager.cs" />
+    <Compile Include="MedicinePriceAdapter1.cs" />
+    <Compile Include="MedicinePriceAdapter2.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SaleManager.cs" />
