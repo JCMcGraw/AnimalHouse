@@ -12,23 +12,18 @@ namespace AnimalHousePersistence
     {
         public List<MedicinePrice>GetMedicinePrice()
         {
-
             List<MedicinePrice> list = new List<MedicinePrice>();
+
             string[] MedicinPrices = File.ReadAllLines("D:\\Medicin\\medicin2.txt");
             DateTime date;
-
 
             for (int i = 2; i < MedicinPrices.Length; i++)
             {
                 string[] MedicinList = MedicinPrices[i].Split('_');
                 string Name = MedicinList[0];
                 decimal Price = Convert.ToDecimal(MedicinList[1]);
-
-
             }
             return list;
-
-
         }
     }
 }

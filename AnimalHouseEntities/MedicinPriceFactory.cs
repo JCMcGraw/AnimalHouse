@@ -8,7 +8,6 @@ namespace AnimalHouseEntities
 {
     public class MedicinPriceFactory
     {
-
         private static MedicinPriceFactory instance;
 
         private MedicinPriceFactory() { }
@@ -26,7 +25,5 @@ namespace AnimalHouseEntities
         {
             return new MedicinePrice(name, price);
         }
-
-
     }
 }

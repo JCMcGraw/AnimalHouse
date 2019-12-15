@@ -10,7 +10,9 @@ namespace AnimalHousePersistence
     public class SQLParameter
     {
         public string parameterName { get; private set; }
+
         public string parameterValue { get; private set; }
+
         public SqlDbType dataType { get; private set; }
 
         public SQLParameter(string parameterName, string parameterValue, SqlDbType dataType)

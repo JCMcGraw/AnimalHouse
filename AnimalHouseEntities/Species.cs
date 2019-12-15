@@ -8,14 +8,13 @@ namespace AnimalHouseEntities
 {
     public class Species
     {
-        
-        public int speciesid { get; private set;}
+        public int speciesID { get; private set;}
 
         public string speciesType { get; private set; }
 
         public Species(int speciesID, string speciesType)
         {
-            this.speciesid = speciesID;
+            this.speciesID = speciesID;
             this.speciesType = speciesType;
         }
     }

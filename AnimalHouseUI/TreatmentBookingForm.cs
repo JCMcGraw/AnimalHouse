@@ -707,7 +707,7 @@ namespace AnimalHouseUI
 
             foreach (Cage cage in cages)
             {
-                if (animal.Species.speciesid == cage.species.speciesid && CheckAvailabilityForCages(cage, SuggestedStartTime.Date.AddDays(-7), SuggestedEndTime.Date.AddDays(7)) == true)
+                if (animal.Species.speciesID == cage.species.speciesID && CheckAvailabilityForCages(cage, SuggestedStartTime.Date.AddDays(-7), SuggestedEndTime.Date.AddDays(7)) == true)
                 {
                     availableCages.Add(cage);
                 }
