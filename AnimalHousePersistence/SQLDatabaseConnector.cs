@@ -109,7 +109,6 @@ namespace AnimalHousePersistence
                 //return empty datatable and error code + exception if there were any issues
                 return new SQLQueryResult(new DataTable(), 1, e);
             }
-
         }
     }
 }

@@ -48,8 +48,6 @@ namespace AnimalHousePersistence
 
         private Item GetItemFromDataRow(DataRow dataRow)
         {
-
-
             int itemID = (int)dataRow["ItemID"];
             string name = (string)dataRow["Name"];
             decimal price = (decimal)dataRow["Price"];
@@ -82,7 +80,6 @@ namespace AnimalHousePersistence
                 
                 return sale;
             }
-
             return sale;
         }
 
@@ -162,8 +159,6 @@ namespace AnimalHousePersistence
                 {
                     UpdatePrescriptionAsPaid(saleLineItem.prescription, connection);
                 }
-
-
             }
             return sale;
         }

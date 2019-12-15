@@ -9,15 +9,14 @@ using AnimalHouseEntities;
 namespace AnimalHousePersistence
 {
     public class MedicinePriceAdapter1: IMedicinePriceAdapter
-  
     {
         public List<MedicinePrice>GetMedicinePrice()
         {
-
             List<MedicinePrice> list = new List<MedicinePrice>();
-            string[] MedicinPrices = File.ReadAllLines("D:\\Medicin\\medicin1.txt");
-            DateTime date;
 
+            string[] MedicinPrices = File.ReadAllLines("D:\\Medicin\\medicin1.txt");
+
+            DateTime date;
 
             for (int i = 2; i < MedicinPrices.Length; i++)
             {
@@ -27,12 +26,8 @@ namespace AnimalHousePersistence
 
                 MedicinePrice medicinPrice = new MedicinePrice(name,price);
                 list.Add(medicinPrice);
-
-
             }
             return list;
-
-
         }
     }
 }

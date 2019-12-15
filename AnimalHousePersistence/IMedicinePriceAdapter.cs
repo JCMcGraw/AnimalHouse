@@ -9,7 +9,6 @@ namespace AnimalHousePersistence
 {
     interface IMedicinePriceAdapter
     {
-        List<MedicinePrice> GetMedicinePrice();
-       
+        List<MedicinePrice> GetMedicinePrice(); 
     }
 }

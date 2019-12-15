@@ -14,6 +14,7 @@ namespace AnimalHouseEntities
         public string entry { get; private set; }
 
         public Animal animal { get; private set; }
+
         public Treatment treatment { get; private set; }
 
         //Construtor MED MedicalRecordID
@@ -23,7 +24,6 @@ namespace AnimalHouseEntities
             this.entry = entry;
             this.animal = animal;
             this.treatment = treatment;
-
         }
 
         //Construtor UDEN MedicalRecordID
@@ -32,14 +32,10 @@ namespace AnimalHouseEntities
             this.entry = entry;
             this.animal = animal;
             this.treatment = treatment;
-           
-
         }
         public void UpdateMedicalRecordID(int medicalRecordID)
         {
             this.medicalRecordID = medicalRecordID;
         }
-
-       
     }
 }

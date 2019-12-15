@@ -9,14 +9,12 @@ using AnimalHouseEntities;
 namespace AnimalHousePersistence
 {
    public class ItemManager: IItemManager
-    {
-        public void UpdateMedicinPrice(int adapterSelector )
-        //public string UpdateMedicinPrice(MedicinePrice medicinePrice)
+   {
+        public void UpdateMedicinPrice(int adapterSelector)
         {
             IMedicinePriceAdapter medicinPriceAdapter;
             if (adapterSelector == 1)
             {
-
                 medicinPriceAdapter = new MedicinePriceAdapter1();
             }
             else
@@ -35,8 +33,8 @@ namespace AnimalHousePersistence
 
                 SQLQuery sQLQuery = new SQLQuery(query);
 
-                sQLQuery.AddParameter("@name", medicinePrice.Name.ToString(), SqlDbType.VarChar);
-                sQLQuery.AddParameter("@costprice", medicinePrice.Price.ToString(), SqlDbType.Decimal);
+                sQLQuery.AddParameter("@name", medicinePrice.name.ToString(), SqlDbType.VarChar);
+                sQLQuery.AddParameter("@costprice", medicinePrice.price.ToString(), SqlDbType.Decimal);
 
 
 
@@ -61,6 +59,7 @@ namespace AnimalHousePersistence
             //return "ok";
 
         }
+
         public string GetLastUpdate(Item item)
         {
             string query = Utility.ReadSQLQueryFromFile("GetLastUpdate.txt");
@@ -87,6 +86,7 @@ namespace AnimalHousePersistence
 
 
         }
+
         public List<Item> GetAllActiveItems()
         {
             string query = Utility.ReadSQLQueryFromFile("GetAllActiveItems.txt");
@@ -135,6 +135,5 @@ namespace AnimalHousePersistence
             Item item = ItemFactory.Instance().CreateItem(itemID, name, amount, price, costPrice, prescription, treatment, active);
             return item;
         }
-
-    }
+   }
 }
