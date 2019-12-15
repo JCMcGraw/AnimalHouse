@@ -246,7 +246,7 @@ namespace AnimalHouseUI
 
                 try
                 {
-                medicalRecords = BossController.Instance().animalController.GetAllMedicalRecordByAnimal(animal);
+                    medicalRecords = BossController.Instance().animalController.GetAllMedicalRecordByAnimal(animal);
 
                 animal.AddMedicalRecordEntryList(medicalRecords);
 
@@ -278,7 +278,7 @@ namespace AnimalHouseUI
 
 
 
-         
+
 
 
 
@@ -290,10 +290,13 @@ namespace AnimalHouseUI
         }
         private void animal_medicalRecords_DoubleClick(object sender, EventArgs e)
         {
+
             DataGridViewRow row = animal_medicalRecords.SelectedRows[0];
 
             MedicalRecord medicalRecord = row.DataBoundItem as MedicalRecord;
 
+
+            
             if (this.Modal == true)
             {
                 this.DialogResult = DialogResult.OK;
@@ -304,6 +307,7 @@ namespace AnimalHouseUI
             {
                 AnimalMREform animalMREform = new AnimalMREform(medicalRecord, animal);
                 animalMREform.Show();
+
             }
         }
         private void button_opret_Click(object sender, EventArgs e)
