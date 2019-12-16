@@ -38,7 +38,6 @@
             this.button_create = new System.Windows.Forms.Button();
             this.label_dyr = new System.Windows.Forms.Label();
             this.AnimalName_Label = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
             this.animal_name = new System.Windows.Forms.TextBox();
             this.label_telefonnummer = new System.Windows.Forms.Label();
             this.button_edit = new System.Windows.Forms.Button();
@@ -57,14 +56,13 @@
             this.animal_bdate = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.animal_prescription = new System.Windows.Forms.DataGridView();
-            this.animal_medicalRecords = new System.Windows.Forms.DataGridView();
-            this.button_help = new System.Windows.Forms.Button();
-            this.label_hjaelp = new System.Windows.Forms.Label();
-            this.MR_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.title = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.animal_medicalRecords = new System.Windows.Forms.DataGridView();
+            this.MR_date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button_help = new System.Windows.Forms.Button();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.animal_prescription)).BeginInit();
@@ -193,20 +191,6 @@
             this.AnimalName_Label.Size = new System.Drawing.Size(91, 47);
             this.AnimalName_Label.TabIndex = 8;
             this.AnimalName_Label.Text = "Navn";
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
-            this.button3.BackgroundImage = global::AnimalHouseUI.Properties.Resources.icons8_arrow_pointing_left_32px;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(563, 508);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(45, 36);
-            this.button3.TabIndex = 10;
-            this.button3.UseVisualStyleBackColor = false;
             // 
             // animal_name
             // 
@@ -399,6 +383,24 @@
             this.animal_prescription.Size = new System.Drawing.Size(301, 129);
             this.animal_prescription.TabIndex = 37;
             // 
+            // name
+            // 
+            this.name.HeaderText = "Medicin";
+            this.name.Name = "name";
+            // 
+            // amount
+            // 
+            this.amount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.amount.HeaderText = "Antal";
+            this.amount.Name = "amount";
+            this.amount.Width = 56;
+            // 
+            // date
+            // 
+            this.date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.date.HeaderText = "Dato";
+            this.date.Name = "date";
+            // 
             // animal_medicalRecords
             // 
             this.animal_medicalRecords.AllowUserToAddRows = false;
@@ -423,9 +425,23 @@
             this.animal_medicalRecords.Name = "animal_medicalRecords";
             this.animal_medicalRecords.ReadOnly = true;
             this.animal_medicalRecords.RowHeadersVisible = false;
+            this.animal_medicalRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.animal_medicalRecords.Size = new System.Drawing.Size(263, 252);
             this.animal_medicalRecords.TabIndex = 38;
             this.animal_medicalRecords.DoubleClick += new System.EventHandler(this.animal_medicalRecords_DoubleClick);
+            // 
+            // MR_date
+            // 
+            this.MR_date.HeaderText = "Dato";
+            this.MR_date.Name = "MR_date";
+            this.MR_date.ReadOnly = true;
+            // 
+            // title
+            // 
+            this.title.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.title.HeaderText = "Titel";
+            this.title.Name = "title";
+            this.title.ReadOnly = true;
             // 
             // button_help
             // 
@@ -442,53 +458,12 @@
             this.button_help.UseVisualStyleBackColor = false;
             this.button_help.Click += new System.EventHandler(this.Button_help_Click);
             // 
-            // label_hjaelp
-            // 
-            this.label_hjaelp.AutoSize = true;
-            this.label_hjaelp.Location = new System.Drawing.Point(741, 81);
-            this.label_hjaelp.Name = "label_hjaelp";
-            this.label_hjaelp.Size = new System.Drawing.Size(35, 13);
-            this.label_hjaelp.TabIndex = 39;
-            this.label_hjaelp.Text = "Hjælp";
-            // 
-            // MR_date
-            // 
-            this.MR_date.HeaderText = "Dato";
-            this.MR_date.Name = "MR_date";
-            this.MR_date.ReadOnly = true;
-            // 
-            // title
-            // 
-            this.title.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.title.HeaderText = "Titel";
-            this.title.Name = "title";
-            this.title.ReadOnly = true;
-            // 
-            // name
-            // 
-            this.name.HeaderText = "Medicin";
-            this.name.Name = "name";
-            // 
-            // amount
-            // 
-            this.amount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.amount.HeaderText = "Antal";
-            this.amount.Name = "amount";
-            this.amount.Width = 56;
-            // 
-            // date
-            // 
-            this.date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.date.HeaderText = "Dato";
-            this.date.Name = "date";
-            // 
             // AnimalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(800, 542);
-            this.Controls.Add(this.label_hjaelp);
             this.Controls.Add(this.button_help);
             this.Controls.Add(this.animal_medicalRecords);
             this.Controls.Add(this.animal_prescription);
@@ -509,14 +484,13 @@
             this.Controls.Add(this.button_edit);
             this.Controls.Add(this.label_telefonnummer);
             this.Controls.Add(this.animal_name);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.AnimalName_Label);
             this.Controls.Add(this.label_dyr);
             this.Controls.Add(this.button_create);
             this.Controls.Add(this.PanelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AnimalForm";
-            this.Text = "SampleForm";
+            this.Text = "Journal";
             this.Load += new System.EventHandler(this.AnimalForm_Load);
             this.PanelHeader.ResumeLayout(false);
             this.PanelHeader.PerformLayout();
@@ -539,7 +513,6 @@
         private System.Windows.Forms.Button button_create;
         private System.Windows.Forms.Label label_dyr;
         private System.Windows.Forms.Label AnimalName_Label;
-        private System.Windows.Forms.Button button3;
         #endregion
         private System.Windows.Forms.TextBox animal_name;
         private System.Windows.Forms.Label label_telefonnummer;
@@ -561,7 +534,6 @@
         private System.Windows.Forms.DataGridView animal_prescription;
         private System.Windows.Forms.DataGridView animal_medicalRecords;
         private System.Windows.Forms.Button button_help;
-        private System.Windows.Forms.Label label_hjaelp;
         private System.Windows.Forms.DataGridViewTextBoxColumn MR_date;
         private System.Windows.Forms.DataGridViewTextBoxColumn title;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;

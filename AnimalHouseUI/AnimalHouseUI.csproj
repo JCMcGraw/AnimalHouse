@@ -210,6 +210,9 @@
     <EmbeddedResource Include="helpfiles\TreatmentBooking Instructions.pdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <None Include="helpfiles\AnimalForm Instructions.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="helpfiles\Customer-Form-Help.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
