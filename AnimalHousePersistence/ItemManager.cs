@@ -59,14 +59,17 @@ namespace AnimalHousePersistence
             //return "ok";
 
         }
+        //public string UpdateMedicinPriceDate()
+        //{
 
-        public string GetLastUpdate(Item item)
+
+        //}
+
+        public DateTime GetLastUpdate()
         {
             string query = Utility.ReadSQLQueryFromFile("GetLastUpdate.txt");
 
             SQLQuery sQLQuery = new SQLQuery(query);
-
-            sQLQuery.AddParameter("@CostPrice", item.costPrice.ToString(), SqlDbType.Decimal);
 
 
 
@@ -76,11 +79,11 @@ namespace AnimalHousePersistence
 
             if (sQLQueryResult.code == 0)
             {
-                return "Prisen var sidst opdateret den...";
+                return (DateTime) sQLQueryResult.dataTable.Rows[0]["Updatetime"];
             }
             else
             {
-                return sQLQueryResult.exception.Message.ToString();
+                throw new DateNotFound("", sQLQueryResult.exception);
 
             }
 

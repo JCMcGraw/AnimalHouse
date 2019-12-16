@@ -167,6 +167,7 @@
     <Content Include="SQLQueries\GetUnpaidTreatmentsByCustomer.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="SQLQueries\UpdateMedicinPrice.txt" />
     <Content Include="SQLQueries\SendReminder.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
