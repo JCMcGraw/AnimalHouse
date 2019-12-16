@@ -10,7 +10,7 @@ namespace AnimalHousePersistence
 {
    public class ItemManager: IItemManager
    {
-        public void UpdateMedicinPrice(int adapterSelector)
+        public void UpdateMedicinePrice(int adapterSelector)
         {
             IMedicinePriceAdapter medicinPriceAdapter;
             if (adapterSelector == 1)
@@ -21,25 +21,32 @@ namespace AnimalHousePersistence
             {
                 medicinPriceAdapter = new MedicinePriceAdapter2();
             }
+            DateTime UpdateTime = GetLastUpdate();
 
             List<MedicinePrice> medicinePrices = medicinPriceAdapter.GetMedicinePrice();
-
-            for(int i = 0; i <medicinePrices.Count;i++)
+            if(medicinePrices[0].date > UpdateTime)
             {
-                MedicinePrice medicinePrice = medicinePrices[i]; 
+                for (int i = 0; i < medicinePrices.Count; i++)
+                {
+                    MedicinePrice medicinePrice = medicinePrices[i];
 
 
-                string query = Utility.ReadSQLQueryFromFile("UpdateMedicinPrice.txt");
+                    string query = Utility.ReadSQLQueryFromFile("UpdateMedicinCostPrice.txt");
 
-                SQLQuery sQLQuery = new SQLQuery(query);
+                    SQLQuery sQLQuery = new SQLQuery(query);
 
-                sQLQuery.AddParameter("@name", medicinePrice.name.ToString(), SqlDbType.VarChar);
-                sQLQuery.AddParameter("@costprice", medicinePrice.price.ToString(), SqlDbType.Decimal);
+                    sQLQuery.AddParameter("@name", medicinePrice.name.ToString(), SqlDbType.VarChar);
+                    sQLQuery.AddParameter("@costprice", medicinePrice.price.ToString(), SqlDbType.Decimal);
 
 
 
-                SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+                    SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+                }
+                UpdateMedicinePriceDate(medicinePrices[0]);
             }
+            
+
+            
            
 
 
@@ -59,14 +66,36 @@ namespace AnimalHousePersistence
             //return "ok";
 
         }
+        public string UpdateMedicinePriceDate(MedicinePrice medicinePrice)
+        {
+            string query = Utility.ReadSQLQueryFromFile("UpdateMedicinPriceDate.txt");
 
-        public string GetLastUpdate(Item item)
+            SQLQuery sQLQuery = new SQLQuery(query);
+
+            sQLQuery.AddParameter("@newdate",medicinePrice.date.ToString(), SqlDbType.DateTime);
+
+            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            if (sQLQueryResult.code == 0)
+            {
+                return "ok";
+            }
+            else
+            {
+                throw new DateNotUpdated("", sQLQueryResult.exception);
+            }
+
+
+
+
+
+        }
+
+        public DateTime GetLastUpdate()
         {
             string query = Utility.ReadSQLQueryFromFile("GetLastUpdate.txt");
 
             SQLQuery sQLQuery = new SQLQuery(query);
-
-            sQLQuery.AddParameter("@CostPrice", item.costPrice.ToString(), SqlDbType.Decimal);
 
 
 
@@ -76,11 +105,11 @@ namespace AnimalHousePersistence
 
             if (sQLQueryResult.code == 0)
             {
-                return "Prisen var sidst opdateret den...";
+                return (DateTime) sQLQueryResult.dataTable.Rows[0]["Updatetime"];
             }
             else
             {
-                return sQLQueryResult.exception.Message.ToString();
+                throw new DateNotFound("", sQLQueryResult.exception);
 
             }
 

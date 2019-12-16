@@ -29,6 +29,15 @@ namespace AnimalHouse
             List<Item> items = itemManager.GetAllActiveItems();
             return items;
         }
+        public DateTime GetLastUpdate()
+        {
+            return itemManager.GetLastUpdate();
+
+        }
+        public void UpdateMedicinePrice(int adapterSelector)
+        {
+            itemManager.UpdateMedicinePrice(adapterSelector);
+        }
         //public List<MedicinPrice> GetMedicinPrices()
         //{
         //    List<MedicinPrice> medicinPrices = IItemManager.GetMedicinPrices();

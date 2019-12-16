@@ -19,7 +19,7 @@ namespace AnimalHouseUI.Localization {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class ErrorMessages {
@@ -192,6 +192,24 @@ namespace AnimalHouseUI.Localization {
         internal static string CustomerNotUpdated {
             get {
                 return ResourceManager.GetString("CustomerNotUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medicinpriserne kunne ikke opdateres.
+        /// </summary>
+        internal static string DateNotFound {
+            get {
+                return ResourceManager.GetString("DateNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datoen kunne ikke opdateres.
+        /// </summary>
+        internal static string DateNotUpdated {
+            get {
+                return ResourceManager.GetString("DateNotUpdated", resourceCulture);
             }
         }
         

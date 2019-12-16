@@ -9,9 +9,11 @@ namespace AnimalHousePersistence
 {
     public interface IItemManager
     {
-        void UpdateMedicinPrice(int adapterSelector);
+        void UpdateMedicinePrice(int adapterSelector);
 
-        string GetLastUpdate(Item item);
+       
+        //string UpdateMedicinePriceDate(MedicinePrice medicinePrice);
+        DateTime GetLastUpdate();
         List<Item> GetAllActiveItems();
 
         //List<MedicinePrice>GetMedicinPrices(MedicinePrice medicinPrice);

@@ -15,13 +15,19 @@ namespace AnimalHousePersistence
             List<MedicinePrice> list = new List<MedicinePrice>();
 
             string[] MedicinPrices = File.ReadAllLines("D:\\Medicin\\medicin2.txt");
-            DateTime date;
+            DateTime date = Convert.ToDateTime(MedicinPrices[0]);
+            
+
+
 
             for (int i = 2; i < MedicinPrices.Length; i++)
             {
-                string[] MedicinList = MedicinPrices[i].Split('_');
-                string Name = MedicinList[0];
-                decimal Price = Convert.ToDecimal(MedicinList[1]);
+                string[] MedicinList = MedicinPrices[i].Split('?');
+                string name = MedicinList[1];
+                decimal price = Convert.ToDecimal(MedicinList[0]);
+
+                MedicinePrice medicinPrice = new MedicinePrice(name, price, date);
+                list.Add(medicinPrice);
             }
             return list;
         }

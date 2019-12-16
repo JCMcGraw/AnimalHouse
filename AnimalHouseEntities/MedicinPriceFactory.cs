@@ -21,9 +21,9 @@ namespace AnimalHouseEntities
             return instance;
         }
 
-        public MedicinePrice CreateMedicinPrice(string name, decimal price)
+        public MedicinePrice CreateMedicinPrice(string name, decimal price, DateTime date)
         {
-            return new MedicinePrice(name, price);
+            return new MedicinePrice(name, price, date);
         }
     }
 }
