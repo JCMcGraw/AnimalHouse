@@ -239,7 +239,7 @@
             // 
             this.SearchItemTextBox.Location = new System.Drawing.Point(394, 137);
             this.SearchItemTextBox.Name = "SearchItemTextBox";
-            this.SearchItemTextBox.Size = new System.Drawing.Size(153, 20);
+            this.SearchItemTextBox.Size = new System.Drawing.Size(176, 20);
             this.SearchItemTextBox.TabIndex = 20;
             this.SearchItemTextBox.TextChanged += new System.EventHandler(this.SearchItemTextBox_TextChanged);
             // 
@@ -323,7 +323,7 @@
             // 
             this.UpdateMedecinLabel.AutoSize = true;
             this.UpdateMedecinLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UpdateMedecinLabel.Location = new System.Drawing.Point(280, 617);
+            this.UpdateMedecinLabel.Location = new System.Drawing.Point(21, 617);
             this.UpdateMedecinLabel.Name = "UpdateMedecinLabel";
             this.UpdateMedecinLabel.Size = new System.Drawing.Size(191, 13);
             this.UpdateMedecinLabel.TabIndex = 38;
@@ -346,7 +346,7 @@
             this.ItemDataGridView.Name = "ItemDataGridView";
             this.ItemDataGridView.RowHeadersVisible = false;
             this.ItemDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ItemDataGridView.Size = new System.Drawing.Size(233, 316);
+            this.ItemDataGridView.Size = new System.Drawing.Size(256, 316);
             this.ItemDataGridView.TabIndex = 45;
             this.ItemDataGridView.DoubleClick += new System.EventHandler(this.ItemDataGridView_DoubleClick);
             // 
@@ -491,7 +491,7 @@
             this.ShowStockButton.FlatAppearance.BorderSize = 0;
             this.ShowStockButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ShowStockButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ShowStockButton.Location = new System.Drawing.Point(428, 485);
+            this.ShowStockButton.Location = new System.Drawing.Point(451, 490);
             this.ShowStockButton.Name = "ShowStockButton";
             this.ShowStockButton.Size = new System.Drawing.Size(119, 33);
             this.ShowStockButton.TabIndex = 58;
