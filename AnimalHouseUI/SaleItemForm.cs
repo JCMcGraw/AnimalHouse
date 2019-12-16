@@ -196,9 +196,8 @@ namespace AnimalHouseUI
                     this.Close();
                 }
             }
-            catch (Exception)
+            catch (Exception )
             {
-
             }
             
         }
