@@ -14,21 +14,21 @@ namespace AnimalHouseUnitTest
         [TestMethod]
         public void PriceTestMethod()
         {
-            decimal total = sale.Price(5, 5);
+            decimal total = sale.Price();
             Assert.AreEqual(25, total);
         }
 
         [TestMethod]
         public void MomsTestMethod()
         {
-            decimal momsPrice = sale.Moms(25);
+            decimal momsPrice = sale.Moms();
             Assert.AreEqual(6.25m, momsPrice);
         }
 
         [TestMethod]
         public void TotalPriceInkMomsTestMethod()
         {
-            decimal totalPriceInkMoms = sale.TotalPriceInkMoms(25, 6.25m);
+            decimal totalPriceInkMoms = sale.TotalPriceInkMoms();
             Assert.AreEqual(31.25m, totalPriceInkMoms);
         }
     }

@@ -29,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SaleForm));
             this.PanelHeader = new System.Windows.Forms.Panel();
             this.LabelTitle = new System.Windows.Forms.Label();
             this.PictureBoxLogo = new System.Windows.Forms.PictureBox();
@@ -76,8 +77,8 @@
             this.treatmentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.treatmentDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.treatmentPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label_hjaelp = new System.Windows.Forms.Label();
             this.button_help = new System.Windows.Forms.Button();
+            this.DeleteItemInStockButton = new System.Windows.Forms.Button();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemDataGridView)).BeginInit();
@@ -98,7 +99,7 @@
             this.PanelHeader.Location = new System.Drawing.Point(0, 0);
             this.PanelHeader.Name = "PanelHeader";
             this.PanelHeader.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.PanelHeader.Size = new System.Drawing.Size(864, 36);
+            this.PanelHeader.Size = new System.Drawing.Size(879, 36);
             this.PanelHeader.TabIndex = 0;
             this.PanelHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelHeader_MouseDown);
             this.PanelHeader.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelHeader_MouseMove);
@@ -109,7 +110,7 @@
             this.LabelTitle.AutoSize = true;
             this.LabelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelTitle.ForeColor = System.Drawing.Color.White;
-            this.LabelTitle.Location = new System.Drawing.Point(309, 3);
+            this.LabelTitle.Location = new System.Drawing.Point(364, 3);
             this.LabelTitle.Name = "LabelTitle";
             this.LabelTitle.Size = new System.Drawing.Size(162, 29);
             this.LabelTitle.TabIndex = 5;
@@ -137,7 +138,7 @@
             this.ButtonMinimize.FlatAppearance.BorderSize = 0;
             this.ButtonMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonMinimize.Location = new System.Drawing.Point(768, 2);
+            this.ButtonMinimize.Location = new System.Drawing.Point(783, 2);
             this.ButtonMinimize.Name = "ButtonMinimize";
             this.ButtonMinimize.Size = new System.Drawing.Size(32, 32);
             this.ButtonMinimize.TabIndex = 3;
@@ -152,7 +153,7 @@
             this.ButtonMaximize.FlatAppearance.BorderSize = 0;
             this.ButtonMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonMaximize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonMaximize.Location = new System.Drawing.Point(800, 2);
+            this.ButtonMaximize.Location = new System.Drawing.Point(815, 2);
             this.ButtonMaximize.Name = "ButtonMaximize";
             this.ButtonMaximize.Size = new System.Drawing.Size(32, 32);
             this.ButtonMaximize.TabIndex = 2;
@@ -167,7 +168,7 @@
             this.ButtonClose.FlatAppearance.BorderSize = 0;
             this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonClose.Location = new System.Drawing.Point(832, 2);
+            this.ButtonClose.Location = new System.Drawing.Point(847, 2);
             this.ButtonClose.Name = "ButtonClose";
             this.ButtonClose.Size = new System.Drawing.Size(32, 32);
             this.ButtonClose.TabIndex = 1;
@@ -597,15 +598,6 @@
             this.treatmentPrice.Name = "treatmentPrice";
             this.treatmentPrice.Width = 80;
             // 
-            // label_hjaelp
-            // 
-            this.label_hjaelp.AutoSize = true;
-            this.label_hjaelp.Location = new System.Drawing.Point(810, 91);
-            this.label_hjaelp.Name = "label_hjaelp";
-            this.label_hjaelp.Size = new System.Drawing.Size(35, 13);
-            this.label_hjaelp.TabIndex = 66;
-            this.label_hjaelp.Text = "Hjælp";
-            // 
             // button_help
             // 
             this.button_help.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
@@ -614,20 +606,35 @@
             this.button_help.FlatAppearance.BorderSize = 0;
             this.button_help.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_help.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_help.Location = new System.Drawing.Point(807, 51);
+            this.button_help.Location = new System.Drawing.Point(822, 42);
             this.button_help.Name = "button_help";
             this.button_help.Size = new System.Drawing.Size(45, 36);
             this.button_help.TabIndex = 65;
             this.button_help.UseVisualStyleBackColor = false;
             this.button_help.Click += new System.EventHandler(this.button_help_Click);
             // 
+            // DeleteItemInStockButton
+            // 
+            this.DeleteItemInStockButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
+            this.DeleteItemInStockButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("DeleteItemInStockButton.BackgroundImage")));
+            this.DeleteItemInStockButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.DeleteItemInStockButton.FlatAppearance.BorderSize = 0;
+            this.DeleteItemInStockButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DeleteItemInStockButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteItemInStockButton.Location = new System.Drawing.Point(841, 163);
+            this.DeleteItemInStockButton.Name = "DeleteItemInStockButton";
+            this.DeleteItemInStockButton.Size = new System.Drawing.Size(23, 26);
+            this.DeleteItemInStockButton.TabIndex = 67;
+            this.DeleteItemInStockButton.UseVisualStyleBackColor = false;
+            this.DeleteItemInStockButton.Click += new System.EventHandler(this.DeleteItemInStockButton_Click);
+            // 
             // SaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
-            this.ClientSize = new System.Drawing.Size(864, 661);
-            this.Controls.Add(this.label_hjaelp);
+            this.ClientSize = new System.Drawing.Size(879, 661);
+            this.Controls.Add(this.DeleteItemInStockButton);
             this.Controls.Add(this.button_help);
             this.Controls.Add(this.UnPaidTreatmentDataGridView);
             this.Controls.Add(this.UnPaidPrescriptionsDataGridView);
@@ -726,8 +733,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn treatmentName;
         private System.Windows.Forms.DataGridViewTextBoxColumn treatmentDay;
         private System.Windows.Forms.DataGridViewTextBoxColumn treatmentPrice;
-        private System.Windows.Forms.Label label_hjaelp;
         private System.Windows.Forms.Button button_help;
+        private System.Windows.Forms.Button DeleteItemInStockButton;
     }
 
 }

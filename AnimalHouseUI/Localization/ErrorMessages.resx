@@ -195,4 +195,7 @@
   <data name="String1" xml:space="preserve">
     <value>Behandlingen kunne ikke slettes</value>
   </data>
+  <data name="DateNotFound" xml:space="preserve">
+    <value>Medicinpriserne kunne ikke opdateres</value>
+  </data>
 </root>

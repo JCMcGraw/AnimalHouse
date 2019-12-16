@@ -58,22 +58,37 @@ namespace AnimalHouseEntities
             }
         }
 
-        public decimal Price(decimal price, int amount)
+        public decimal Price()
         {
-            decimal total = price * amount;
+            decimal total = 0;
+
+            foreach (var item in saleLineItems)
+            {
+                total += item.price * item.amount;
+            }
             return Math.Round(total, 2);
         }
 
-        public decimal Moms(decimal totalPrice)
+        public decimal Moms()
         {
-            decimal momsPrice = (totalPrice * 1.25m) - totalPrice;
-            return Math.Round(momsPrice, 2);
+            decimal totalprice=Price();
+
+            if (customer == null ||customer.GetType() == typeof (PrivateCustomer))
+            {
+                return Math.Round(totalprice * 0.25m,2);
+            }
+            else
+            {
+                return 0;
+            }
         }
 
-        public decimal TotalPriceInkMoms(decimal price, decimal momsPrice)
+        public decimal TotalPriceInkMoms()
         {
-            decimal totalPriceInkMoms = price + momsPrice;
-            return Math.Round(totalPriceInkMoms, 2);
+            decimal price = Price();
+            decimal moms = Moms();
+
+            return Math.Round(price + moms,2);
         }
     }
 }

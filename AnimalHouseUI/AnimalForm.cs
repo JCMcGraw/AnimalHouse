@@ -372,6 +372,9 @@ namespace AnimalHouseUI
                 AnimalName_Label.Text = animal.name;
                 animalSpecies_label.Text = animal.Species.speciesType.ToString();
                 animal_owner.Text = "Ejer: " + customer.name;
+                button_edit.Enabled = true;
+                button_create.Enabled = false;
+                button_delete.Enabled = true;
 
                
 
@@ -427,7 +430,11 @@ namespace AnimalHouseUI
                 double weight = Convert.ToDouble(animal_weight.Text);
                 bool gender = Convert.ToBoolean(animal_gender.SelectedIndex);
 
-                Employee employee = (Employee)(animal_employee.SelectedItem);
+                Employee employee = null;
+                if (animal_employee.SelectedIndex != 0)
+                {
+                    employee = (Employee)animal_employee.SelectedItem;
+                }
 
                 Animal tmpanimal = new Animal(customer, animal.animalID, name, birthday, species, weight, true, employee, true);
 
@@ -558,7 +565,18 @@ namespace AnimalHouseUI
         }
         public bool CheckWeightDigit(string weight)
         {
-            return weight.All(char.IsDigit);
+            double checkWeight =0;
+           
+            //return weight.All(char.IsDigit);
+            if(Double.TryParse(weight, out checkWeight))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
         }
       
 

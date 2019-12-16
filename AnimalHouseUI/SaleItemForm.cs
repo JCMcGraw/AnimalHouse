@@ -164,38 +164,43 @@ namespace AnimalHouseUI
 
         private void AddItemToSaleListButton_Click(object sender, EventArgs e)
         {
-            if  (item.amount < 1 && item.treatment == false)
+            try
             {
-                MessageBox.Show("Der er ikke det ønskede tilbage på lageret");
+                if (item.amount < 1 && item.treatment == false)
+                {
+                    MessageBox.Show("Der er ikke det ønskede tilbage på lageret");
+                }
+                else
+                {
+                    int saleLineItemAmount = Convert.ToInt32(AmountTextBox.Text);
+
+                    if (item.treatment == false)
+                    {
+                        if (saleLineItemAmount > item.amount)
+                        {
+                            MessageBox.Show("Der er ikke det ønskede tilbage på lageret");
+                            return;
+                        }
+                        else
+                        {
+                            saleLineItem = SaleLineItemFactory.Instance().CreateSaleLineItem(item, Convert.ToInt32(AmountTextBox.Text), Convert.ToDecimal(PriceTextBox.Text), treatment, prescription);
+
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                    }
+
+                    saleLineItem = SaleLineItemFactory.Instance().CreateSaleLineItem(item, Convert.ToInt32(AmountTextBox.Text), Convert.ToDecimal(PriceTextBox.Text), treatment, prescription);
+
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
             }
-            else
+            catch (Exception)
             {
-                int saleLineItemAmount = Convert.ToInt32(AmountTextBox.Text);
 
-                if (item.treatment  == false && item.prescription == false)
-                {
-                    if (saleLineItemAmount > item.amount)
-                    {
-                        MessageBox.Show("Der er ikke det ønskede tilbage på lageret");
-                    }
-                    else
-                    {
-                        saleLineItem = SaleLineItemFactory.Instance().CreateSaleLineItem(item, Convert.ToInt32(AmountTextBox.Text), Convert.ToDecimal(PriceTextBox.Text), treatment, prescription);
-
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
-                    }
-                }
-                else if (item.prescription == true)
-                {
-
-                }
-
-                saleLineItem = SaleLineItemFactory.Instance().CreateSaleLineItem(item, Convert.ToInt32(AmountTextBox.Text), Convert.ToDecimal(PriceTextBox.Text), treatment, prescription);
-
-                this.DialogResult = DialogResult.OK;
-                this.Close();
             }
+            
         }
         public void RemovePriceOption()
         {
