@@ -11,6 +11,7 @@ using AnimalHouse;
 using AnimalHouseEntities;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
+using System.IO;
 
 
 namespace AnimalHouseUI
@@ -246,7 +247,9 @@ namespace AnimalHouseUI
 
                 try
                 {
-                    medicalRecords = BossController.Instance().animalController.GetAllMedicalRecordByAnimal(animal);
+
+                medicalRecords = BossController.Instance().animalController.GetAllMedicalRecordByAnimal(animal);
+                //List<MedicalRecord> medicalRecords = BossController.Instance().animalController.GetAllMedicalRecordByAnimal(animal);
 
                 animal.AddMedicalRecordEntryList(medicalRecords);
 
@@ -294,8 +297,6 @@ namespace AnimalHouseUI
             DataGridViewRow row = animal_medicalRecords.SelectedRows[0];
 
             MedicalRecord medicalRecord = row.DataBoundItem as MedicalRecord;
-
-
             
             if (this.Modal == true)
             {
@@ -337,11 +338,11 @@ namespace AnimalHouseUI
             if (CheckWeightDigit(AnimalWeight) == false)
             {
 
-                //Hvis ikke cvr-nummeret består af noget bliver det lavet om til inten cvrint som er 0.
+                
 
                 if (AnimalWeight.ToString().Length == 8)
                 {
-                    //hvis cvrboxen er checket af og tallet er i orden erstattes nullet med det nye cvr-nummer
+                    
                     animalWeight = Convert.ToInt32(animal_weight.Text);
 
                 }
@@ -509,7 +510,7 @@ namespace AnimalHouseUI
             animal_employee.DisplayMember = "name";
 
             LoadPrescription();
-            //LoadMedicalRecord();
+            
 
            
 
@@ -587,7 +588,7 @@ namespace AnimalHouseUI
             try
             {
 
-                string file = "../../../AnimalHouse/AnimalHouseUI/helpfiles/Animal-Form-Help.pdf";
+                string file = Path.GetDirectoryName(Application.ExecutablePath) + "/helpfiles/AnimalForm Instructions.pdf";
                 Process.Start(file);
             }
             catch
