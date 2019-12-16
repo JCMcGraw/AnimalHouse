@@ -158,7 +158,7 @@ namespace AnimalHouseUI
 
             try
             {
-                treatments = bossController.treatmentController.GetManyTreatmentsForSendingRminders(startDate, endDate);
+                treatments = BossController.Instance().treatmentController.GetManyTreatmentsForSendingRminders(startDate, endDate);
             }
             catch (Exception exception)
             {
