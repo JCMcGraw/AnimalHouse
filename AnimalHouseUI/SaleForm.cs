@@ -314,6 +314,8 @@ namespace AnimalHouseUI
             }
         }
 
+
+
         private void SearchItemTextBox_TextChanged(object sender, EventArgs e)
         {
             try
