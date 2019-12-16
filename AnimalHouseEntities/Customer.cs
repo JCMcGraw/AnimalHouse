@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnimalHouseEntities
 {
-    public class Customer
+    abstract public class Customer
     {
         public int customerID { get; private set; }
         public string name { get; private set; }

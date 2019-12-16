@@ -76,6 +76,8 @@
             this.treatmentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.treatmentDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.treatmentPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label_hjaelp = new System.Windows.Forms.Label();
+            this.button_help = new System.Windows.Forms.Button();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemDataGridView)).BeginInit();
@@ -175,6 +177,7 @@
             // EndButton
             // 
             this.EndButton.BackColor = System.Drawing.Color.AliceBlue;
+            this.EndButton.Enabled = false;
             this.EndButton.FlatAppearance.BorderSize = 0;
             this.EndButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EndButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -254,7 +257,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(736, 490);
+            this.label6.Location = new System.Drawing.Point(721, 490);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(31, 13);
             this.label6.TabIndex = 32;
@@ -288,7 +291,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(685, 541);
+            this.label16.Location = new System.Drawing.Point(674, 541);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(82, 13);
             this.label16.TabIndex = 35;
@@ -298,7 +301,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(732, 514);
+            this.label17.Location = new System.Drawing.Point(721, 514);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(35, 13);
             this.label17.TabIndex = 36;
@@ -320,7 +323,7 @@
             // 
             this.UpdateMedecinLabel.AutoSize = true;
             this.UpdateMedecinLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UpdateMedecinLabel.Location = new System.Drawing.Point(326, 541);
+            this.UpdateMedecinLabel.Location = new System.Drawing.Point(280, 617);
             this.UpdateMedecinLabel.Name = "UpdateMedecinLabel";
             this.UpdateMedecinLabel.Size = new System.Drawing.Size(191, 13);
             this.UpdateMedecinLabel.TabIndex = 38;
@@ -418,6 +421,7 @@
             // 
             // AdressTextBox
             // 
+            this.AdressTextBox.Enabled = false;
             this.AdressTextBox.Location = new System.Drawing.Point(24, 195);
             this.AdressTextBox.Name = "AdressTextBox";
             this.AdressTextBox.Size = new System.Drawing.Size(123, 20);
@@ -425,6 +429,7 @@
             // 
             // EmailTextBox
             // 
+            this.EmailTextBox.Enabled = false;
             this.EmailTextBox.Location = new System.Drawing.Point(24, 243);
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.Size = new System.Drawing.Size(123, 20);
@@ -592,12 +597,38 @@
             this.treatmentPrice.Name = "treatmentPrice";
             this.treatmentPrice.Width = 80;
             // 
+            // label_hjaelp
+            // 
+            this.label_hjaelp.AutoSize = true;
+            this.label_hjaelp.Location = new System.Drawing.Point(810, 91);
+            this.label_hjaelp.Name = "label_hjaelp";
+            this.label_hjaelp.Size = new System.Drawing.Size(35, 13);
+            this.label_hjaelp.TabIndex = 66;
+            this.label_hjaelp.Text = "Hjælp";
+            // 
+            // button_help
+            // 
+            this.button_help.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
+            this.button_help.BackgroundImage = global::AnimalHouseUI.Properties.Resources.question_mark_32px;
+            this.button_help.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button_help.FlatAppearance.BorderSize = 0;
+            this.button_help.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_help.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_help.Location = new System.Drawing.Point(807, 51);
+            this.button_help.Name = "button_help";
+            this.button_help.Size = new System.Drawing.Size(45, 36);
+            this.button_help.TabIndex = 65;
+            this.button_help.UseVisualStyleBackColor = false;
+            this.button_help.Click += new System.EventHandler(this.button_help_Click);
+            // 
             // SaleForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(864, 661);
+            this.Controls.Add(this.label_hjaelp);
+            this.Controls.Add(this.button_help);
             this.Controls.Add(this.UnPaidTreatmentDataGridView);
             this.Controls.Add(this.UnPaidPrescriptionsDataGridView);
             this.Controls.Add(this.label8);
@@ -695,6 +726,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn treatmentName;
         private System.Windows.Forms.DataGridViewTextBoxColumn treatmentDay;
         private System.Windows.Forms.DataGridViewTextBoxColumn treatmentPrice;
+        private System.Windows.Forms.Label label_hjaelp;
+        private System.Windows.Forms.Button button_help;
     }
 
 }

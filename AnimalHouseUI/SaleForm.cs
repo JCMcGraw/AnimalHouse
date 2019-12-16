@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using AnimalHouse;
 using AnimalHouseEntities;
 using System.Diagnostics;
-
+using System.IO;
 namespace AnimalHouseUI
 {
     public partial class SaleForm : Form
@@ -168,6 +168,7 @@ namespace AnimalHouseUI
             catch (Exception exception)
             {
                 MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
+                return;
             }
 
             CustomerNameLabel.Text = customer.name.ToString();
@@ -229,6 +230,7 @@ namespace AnimalHouseUI
                 SearchItemTextBox.Text = "";
 
                 LoadAllItemsInListBox();
+                EndButton.Enabled = false;
             }
             catch (Exception)
             {
@@ -239,6 +241,7 @@ namespace AnimalHouseUI
         private void ItemDataGridView_DoubleClick(object sender, EventArgs e)
         {
             ChoseDataView1();
+            EndButton.Enabled = true;
         }
 
         private void UnPaidPrescriptionsDataGridView_DoubleClick(object sender, EventArgs e)
@@ -415,6 +418,20 @@ namespace AnimalHouseUI
                 UnPaidTreatmentDataGridView.Rows[i].Cells["treatmentName"].Value = treatment.item.name;
                 UnPaidTreatmentDataGridView.Rows[i].Cells["treatmentDay"].Value = treatment.endTime;
                 UnPaidTreatmentDataGridView.Rows[i].Cells["treatmentPrice"].Value = treatment.item.price;
+            }
+        }
+
+        private void button_help_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                string file = Path.GetDirectoryName(Application.ExecutablePath) + "/helpfiles/Sale-Form-Help.pdf";
+                System.Diagnostics.Process.Start(file);
+            }
+            catch
+            {
+                MessageBox.Show("Hjælpefilen kunne ikke findes");
             }
         }
     }
