@@ -342,6 +342,7 @@ namespace AnimalHouseUI
                 label_headline.Text = textBox_navn.Text.ToString().ToString();
                 checkBox_erhverskunde.Enabled = false;
                 textBox_cvr.Enabled = false;
+                label_underheader.Text = "Ret, slet, se dyr eller Tilføj dyr";
 
             }
                 catch (Exception exception)

@@ -125,10 +125,8 @@ namespace AnimalHouseEntities
                 XStringFormats.CenterLeft);
 
             int lineSpace = 0;
-            decimal totalPrice = 0;
             for (int i = 0; i < sale.saleLineItems.Count; i++)
             {
-
                 //Her bliver Variablen sat til 15. så hver gange der bliver kørt GetLeaseOrders(tilføjet en ny vare linje bliver der pludset 15 til y aksens position)
                 lineSpace = 15 * i;
 
@@ -146,14 +144,12 @@ namespace AnimalHouseEntities
                 gfx.DrawString((sale.saleLineItems[i].price.ToString() + " Kr"), companyAndDebtor, XBrushes.Black,
                    new XRect(90, -110 + lineSpace, page.Width, page.Height),
                    XStringFormats.Center);
-                totalPrice = totalPrice + (sale.Price(sale.saleLineItems[i].item.price, sale.saleLineItems[i].amount));
 
                 //I alt
-                decimal priceSum = sale.Price(sale.saleLineItems[i].price, sale.saleLineItems[i].amount);
+                decimal priceSum = sale.Price();
                 gfx.DrawString((priceSum.ToString() + " Kr"), companyAndDebtor, XBrushes.Black,
                    new XRect(200, -110 + lineSpace, page.Width, page.Height),
                    XStringFormats.Center);
-                totalPrice = totalPrice + (sale.Price(sale.saleLineItems[i].item.price, sale.saleLineItems[i].amount));
             }
 
             //Hvis det er erhvers person
@@ -167,7 +163,7 @@ namespace AnimalHouseEntities
 
 
 
-                    gfx.DrawString(totalPrice.ToString() + " Kr", companyAndDebtor, XBrushes.Black,
+                    gfx.DrawString(sale.Price() + " Kr", companyAndDebtor, XBrushes.Black,
                         new XRect(-60, -20 + lineSpace, page.Width, page.Height),
                         XStringFormats.CenterRight);
 
@@ -178,8 +174,8 @@ namespace AnimalHouseEntities
 
                 else
                 {
-                    decimal momsPrice = sale.Moms(totalPrice);
-                    decimal totalPriceInkMoms = sale.TotalPriceInkMoms(totalPrice, momsPrice);
+                    decimal momsPrice = sale.Moms();
+                    decimal totalPriceInkMoms = sale.TotalPriceInkMoms();
 
                     gfx.DrawString("Netto: ", companyAndDebtor, XBrushes.Black,
                    new XRect(400, -20 + lineSpace, page.Width, page.Height),
@@ -194,7 +190,7 @@ namespace AnimalHouseEntities
                         XStringFormats.CenterLeft);
 
                     //Viser den totate nettopris
-                    gfx.DrawString(totalPrice.ToString() + " Kr", companyAndDebtor, XBrushes.Black,
+                    gfx.DrawString(sale.Price() + " Kr", companyAndDebtor, XBrushes.Black,
                         new XRect(-60, -20 + lineSpace, page.Width, page.Height),
                         XStringFormats.CenterRight);
 
@@ -216,8 +212,8 @@ namespace AnimalHouseEntities
             }
             else
             {
-                decimal momsPrice = sale.Moms(totalPrice);
-                decimal totalPriceInkMoms = sale.TotalPriceInkMoms(totalPrice, momsPrice);
+                decimal momsPrice = sale.Moms();
+                decimal totalPriceInkMoms = sale.TotalPriceInkMoms();
 
                 gfx.DrawString("Netto: ", companyAndDebtor, XBrushes.Black,
                new XRect(400, -20 + lineSpace, page.Width, page.Height),
@@ -232,7 +228,7 @@ namespace AnimalHouseEntities
                     XStringFormats.CenterLeft);
 
                 //Viser den totate nettopris
-                gfx.DrawString(totalPrice.ToString() + " Kr", companyAndDebtor, XBrushes.Black,
+                gfx.DrawString(sale.Price() + " Kr", companyAndDebtor, XBrushes.Black,
                     new XRect(-60, -20 + lineSpace, page.Width, page.Height),
                     XStringFormats.CenterRight);
 
