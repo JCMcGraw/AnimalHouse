@@ -423,4 +423,20 @@ namespace AnimalHouseEntities
         {
         }
     }
+    public class DateNotFound : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public DateNotFound()
+        { }
+
+        public DateNotFound(string message)
+            : base(message)
+        { }
+
+        public DateNotFound(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
 }

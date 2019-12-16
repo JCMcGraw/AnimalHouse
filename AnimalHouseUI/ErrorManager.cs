@@ -120,6 +120,11 @@ namespace AnimalHouseUI
             {
                 errorMessage = Localization.ErrorMessages.CantCreateSale + GetErrorMessage(exception.InnerException); ;
             }
+            else if (exception is DateNotFound)
+            {
+                errorMessage = Localization.ErrorMessages.DateNotFound + GetErrorMessage(exception.InnerException); ;
+            }
+
 
             else if (exception is CantGetAnimalList)
             {

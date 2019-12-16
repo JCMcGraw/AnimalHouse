@@ -16,15 +16,15 @@ namespace AnimalHousePersistence
 
             string[] MedicinPrices = File.ReadAllLines("D:\\Medicin\\medicin1.txt");
 
-            DateTime date;
+            DateTime date = Convert.ToDateTime(MedicinPrices[0]);
 
             for (int i = 2; i < MedicinPrices.Length; i++)
             {
                 string[] MedicinList = MedicinPrices[i].Split('?');
                 decimal price = Convert.ToDecimal(MedicinList[0]);
                 string name = MedicinList[1];
-
-                MedicinePrice medicinPrice = new MedicinePrice(name,price);
+                
+                MedicinePrice medicinPrice = new MedicinePrice(name,price,date);
                 list.Add(medicinPrice);
             }
             return list;
