@@ -8,7 +8,7 @@ namespace AnimalHouseUnitTest
     [TestClass]
     public class SaleUnitTest
     {
-        static Customer customer = new Customer(1, "", "", "", "", false);
+        static Customer customer = CustomerFactory.Instance().CreateCustomer(1, "", "", "", "", false, 0);
         Sale sale = new Sale(customer, DateTime.Now);
 
         [TestMethod]

@@ -148,12 +148,6 @@ namespace AnimalHouseUI
 
         #endregion
 
-
-        //private void SampleForm_Load(object sender, EventArgs e)
-        //{
-
-        //}
-
         private void CustomerForm_Load(object sender, EventArgs e)
         {
             dataGridView_dyr.AutoGenerateColumns = false;
@@ -163,7 +157,10 @@ namespace AnimalHouseUI
         private void button_soeg_Click(object sender, EventArgs e)
         {
             button_opret.Enabled = false;
+            checkBox_erhverskunde.Checked = false;
+            textBox_cvr.Text = null;
 
+            //går ind på databasen og søger efter en kunde, via det indtastede telefonnummer
             try
             {
                  customer = BossController.Instance().customerController.GetCustomer(textBox_phonenumber.Text);
@@ -174,21 +171,23 @@ namespace AnimalHouseUI
                 MessageBox.Show(errorMessage);
                 return;
             }
+            //tjekker for at se om kunden er slettet, og i så fald, om den skal reaktiveres
             if (CheckCustomerDeletion()==false)
             {
                 return;
             }
+            //udfylder den relevante data i tekstboksene
             textBox_navn.Text = customer.name.ToString();
             textBox_adresse.Text = customer.address.ToString();
             textBox_email.Text = customer.email.ToString();
             label_headline.Text = customer.name.ToString();
 
+            //tjekker for om der er tale om en foretningskunde
             CheckForBusinesscustomer(customer);
 
+            //updaterer datagridviewet med kundes dyr
             UpdateDataGridView();
-
-          
-            
+  
             button_rediger.Enabled = true;
             button_slet.Enabled = true;
             button_dyr.Enabled = true;
@@ -196,8 +195,7 @@ namespace AnimalHouseUI
             checkBox_erhverskunde.Enabled = false;
             textBox_cvr.Enabled = false;
          label_underheader.Text="Ret, slet, se dyr eller Tilføj dyr";
-
-              
+  
         }
 
         private void button_rediger_Click(object sender, EventArgs e)
@@ -229,8 +227,6 @@ namespace AnimalHouseUI
                 bool active = customer.active;
 
                 Customer tmpcustomer = CustomerFactory.Instance().CreateCustomer(customerID, name, address, phone, email, active, cvr);
-
-              
 
                 try
                 {
@@ -324,18 +320,17 @@ namespace AnimalHouseUI
                 MessageBox.Show("CVR-nummer må kun bestå af tal");
                 return;
             }
-
+            //Hvis kunden er en erhverskunde og cvr-nummer er gyldigt bliver et cvr sendt over som parameter
+            //Dette bliver senere brugt til at oprette en businesscustomer
             if (checkBox_erhverskunde.Checked == true && CheckForCVRdegit(cvr) == true)
             {
                 cvrint =Convert.ToInt32( textBox_cvr.Text);
             }
+            //Ellers bliver cvr-nummeret bare sendt over som 0, som senere bliver brugt til at oprette en privatecustomer
             customer = CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, cvrint);
-
-            
 
             try
             {
-                
                 //her skriver vi den oprettede kunde ind i databasen
                 customer = BossController.Instance().customerController.CreateCustomer(customer);
 
@@ -484,11 +479,6 @@ namespace AnimalHouseUI
             }
         }
 
-        //public bool CheckUniquePhone(string phone)
-        //{
-        //    return BossController.Instance().customerController.CheckUniquePhone(phone);
-        // }
-
      public bool CheckEmtyTextBoxes()
         {
 
@@ -516,7 +506,7 @@ namespace AnimalHouseUI
 
         public void UpdateDataGridView()
         {
-            //danner en liste af dyr der hedder animals. Denne liste bliver dannet et sted på animalmanager og der bruges en customer
+            //danner en liste af dyr der hedder animals. Denne liste bliver dannet et sted på animalmanager og der bruges en customer som parameter
 
             try
             {

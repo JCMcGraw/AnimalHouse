@@ -171,14 +171,19 @@ namespace AnimalHouseUI
 
         private void EnterDataInDataGridViewCells()
         {
-            for(int i = 0; i < treatments.Count; i++)
+            try
             {
-                RemindersDataGridView.Rows[i].Cells["Customer"].Value = treatments[i].animal.customer.name;
-                RemindersDataGridView.Rows[i].Cells["Email"].Value = treatments[i].animal.customer.email;
-                RemindersDataGridView.Rows[i].Cells["Animal"].Value = treatments[i].animal.name;
-                RemindersDataGridView.Rows[i].Cells["Species"].Value = treatments[i].animal.Species.speciesType;
-                RemindersDataGridView.Rows[i].Cells["LatestVisit"].Value = treatments[i].endTime.ToString("d/M/yyyy");
+                for (int i = 0; i < treatments.Count; i++)
+                {
+                    RemindersDataGridView.Rows[i].Cells["Customer"].Value = treatments[i].animal.customer.name;
+                    RemindersDataGridView.Rows[i].Cells["Email"].Value = treatments[i].animal.customer.email;
+                    RemindersDataGridView.Rows[i].Cells["Animal"].Value = treatments[i].animal.name;
+                    RemindersDataGridView.Rows[i].Cells["Species"].Value = treatments[i].animal.Species.speciesType;
+                    RemindersDataGridView.Rows[i].Cells["LatestVisit"].Value = treatments[i].endTime.ToString("d/M/yyyy");
+                }
             }
+            catch
+            { }
         }
 
         private void GetTheWeekFromAYearAgo(out DateTime startDate, out DateTime endDate)

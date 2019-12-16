@@ -14,7 +14,7 @@ namespace AnimalHouseUnitTest
         static Species species = new Species(1,"Hund");
         static Cage cage = new Cage(1,species);
         static Item item = new Item(6, "hej", 3, 50, 40, true, true, true);
-        static Customer customer = new Customer("hans","Vejvej","+4553595754","Hejsa@gmail.com",false);
+        static Customer customer = CustomerFactory.Instance().CreateCustomer("hans","Vejvej","+4553595754","Hejsa@gmail.com",false, 0);
         static Animal animal = new Animal(customer,"hej",DateTime.Now,species,100,true,employee,false);
         static Employee employee = new Employee(1,"jens",false,1,new Title("",1));
         

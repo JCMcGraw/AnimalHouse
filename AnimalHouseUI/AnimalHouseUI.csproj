@@ -216,6 +216,9 @@
     <None Include="helpfiles\Customer-Form-Help.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="helpfiles\sale-form-help.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="helpfiles\Treatment_form_help.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

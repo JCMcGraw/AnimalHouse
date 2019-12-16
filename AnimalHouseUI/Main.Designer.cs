@@ -37,7 +37,7 @@
             this.ButtonClose = new System.Windows.Forms.Button();
             this.button_kunde = new System.Windows.Forms.Button();
             this.button_salg = new System.Windows.Forms.Button();
-            this.button_behandling = new System.Windows.Forms.Button();
+            this.button_kalender = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
@@ -159,19 +159,19 @@
             this.button_salg.UseVisualStyleBackColor = false;
             this.button_salg.Click += new System.EventHandler(this.button_salg_Click);
             // 
-            // button_behandling
+            // button_kalender
             // 
-            this.button_behandling.BackColor = System.Drawing.Color.AliceBlue;
-            this.button_behandling.FlatAppearance.BorderSize = 0;
-            this.button_behandling.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_behandling.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_behandling.Location = new System.Drawing.Point(89, 189);
-            this.button_behandling.Name = "button_behandling";
-            this.button_behandling.Size = new System.Drawing.Size(118, 73);
-            this.button_behandling.TabIndex = 12;
-            this.button_behandling.Text = "Behandling";
-            this.button_behandling.UseVisualStyleBackColor = false;
-            this.button_behandling.Click += new System.EventHandler(this.button_behandling_Click);
+            this.button_kalender.BackColor = System.Drawing.Color.AliceBlue;
+            this.button_kalender.FlatAppearance.BorderSize = 0;
+            this.button_kalender.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_kalender.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_kalender.Location = new System.Drawing.Point(89, 189);
+            this.button_kalender.Name = "button_kalender";
+            this.button_kalender.Size = new System.Drawing.Size(118, 73);
+            this.button_kalender.TabIndex = 12;
+            this.button_kalender.Text = "Kalender";
+            this.button_kalender.UseVisualStyleBackColor = false;
+            this.button_kalender.Click += new System.EventHandler(this.button_behandling_Click);
             // 
             // button1
             // 
@@ -194,7 +194,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(409, 357);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.button_behandling);
+            this.Controls.Add(this.button_kalender);
             this.Controls.Add(this.button_salg);
             this.Controls.Add(this.button_kunde);
             this.Controls.Add(this.PanelHeader);
@@ -220,7 +220,7 @@
         private System.Windows.Forms.Label LabelTitle;
         private System.Windows.Forms.Button button_kunde;
         private System.Windows.Forms.Button button_salg;
-        private System.Windows.Forms.Button button_behandling;
+        private System.Windows.Forms.Button button_kalender;
         private System.Windows.Forms.Button button1;
     }
 }
