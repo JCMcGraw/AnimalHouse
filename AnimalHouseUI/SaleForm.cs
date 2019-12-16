@@ -231,6 +231,7 @@ namespace AnimalHouseUI
 
                 LoadAllItemsInListBox();
                 EndButton.Enabled = false;
+                FakturaButton.Enabled = false;
             }
             catch (Exception)
             {
@@ -241,7 +242,6 @@ namespace AnimalHouseUI
         private void ItemDataGridView_DoubleClick(object sender, EventArgs e)
         {
             ChoseDataView1();
-            EndButton.Enabled = true;
         }
 
         private void UnPaidPrescriptionsDataGridView_DoubleClick(object sender, EventArgs e)
@@ -252,6 +252,28 @@ namespace AnimalHouseUI
         private void UnPaidTreatmentDataGridView_DoubleClick(object sender, EventArgs e)
         {
             ChoseDataView3();
+        }
+
+        private void button_help_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                string file = Path.GetDirectoryName(Application.ExecutablePath) + "/helpfiles/Sale-Form-Help.pdf";
+                Process.Start(file);
+            }
+            catch
+            {
+                MessageBox.Show("Hjælpefilen kunne ikke findes");
+            }
+        }
+
+        private void DeleteItemInStockButton_Click(object sender, EventArgs e)
+        { 
+            int row = ItemListDataGridView.SelectedRows[0].Index;
+            sale.saleLineItems.RemoveAt(row);
+            LoadeItemList();
+            
         }
 
         private void ChoseDataView1()
@@ -296,22 +318,26 @@ namespace AnimalHouseUI
                 }
 
                 sale.AddSaleLineItem(saleLineItem);
-
-                ItemListDataGridView.Columns["Amount"].DataPropertyName = "amount";
-                ItemListDataGridView.Columns["Price"].DataPropertyName = "price";
-
-                ItemListDataGridView.DataSource = null;
-                ItemListDataGridView.DataSource = sale.saleLineItems;
-
-                for (int i = 0; i < ItemListDataGridView.RowCount; i++)
-                {
-                    Item item2 = sale.saleLineItems[i].item;
-
-                    ItemListDataGridView.Rows[i].Cells["Name"].Value = item2.name;
-
-                    FillPriceInLable(item2.price, item2.amount);
-                }
+                LoadeItemList();
+                EndButton.Enabled = true;
             }
+        }
+
+        private void LoadeItemList()
+        {
+            ItemListDataGridView.Columns["Amount"].DataPropertyName = "amount";
+            ItemListDataGridView.Columns["Price"].DataPropertyName = "price";
+
+            ItemListDataGridView.DataSource = null;
+            ItemListDataGridView.DataSource = sale.saleLineItems;
+
+            for (int i = 0; i < ItemListDataGridView.RowCount; i++)
+            {
+                Item item2 = sale.saleLineItems[i].item;
+                
+                ItemListDataGridView.Rows[i].Cells["Name"].Value = item2.name;
+            }
+            FillPriceInLable();
         }
 
         private void SearchItemTextBox_TextChanged(object sender, EventArgs e)
@@ -334,23 +360,13 @@ namespace AnimalHouseUI
             }
         }
 
-        private void FillPriceInLable(decimal price,int amount)
+        private void FillPriceInLable()
         {
-            decimal total = 0;
             try
             {
-                for (int i = 0; i < ItemListDataGridView.RowCount; i++)
-                {
-                    price = Convert.ToInt32(ItemListDataGridView.Rows[i].Cells["Price"].Value);
-                    amount = Convert.ToInt32(ItemListDataGridView.Rows[i].Cells["Amount"].Value);
-                    
-                    total = total+price;
-                    price = total;
-
-                    TotalPriceLabel.Text = Convert.ToString(sale.Price(price, amount)) + " Kr";
-                    MomsLabel.Text = Convert.ToString(sale.Moms(sale.Price(price, amount))) + " Kr";
-                    TotalInkMomsLabel.Text = Convert.ToString(sale.TotalPriceInkMoms(sale.Price(price, amount), sale.Moms(sale.Price(price, amount)))) + " Kr";
-                }
+                TotalPriceLabel.Text = sale.Price() +" Kr";
+                MomsLabel.Text = sale.Moms() + " Kr";
+                TotalInkMomsLabel.Text = sale.TotalPriceInkMoms() + " Kr";  
             }
             catch (Exception)
             {
@@ -418,20 +434,6 @@ namespace AnimalHouseUI
                 UnPaidTreatmentDataGridView.Rows[i].Cells["treatmentName"].Value = treatment.item.name;
                 UnPaidTreatmentDataGridView.Rows[i].Cells["treatmentDay"].Value = treatment.endTime;
                 UnPaidTreatmentDataGridView.Rows[i].Cells["treatmentPrice"].Value = treatment.item.price;
-            }
-        }
-
-        private void button_help_Click(object sender, EventArgs e)
-        {
-            try
-            {
-
-                string file = Path.GetDirectoryName(Application.ExecutablePath) + "/helpfiles/Sale-Form-Help.pdf";
-                System.Diagnostics.Process.Start(file);
-            }
-            catch
-            {
-                MessageBox.Show("Hjælpefilen kunne ikke findes");
             }
         }
     }
