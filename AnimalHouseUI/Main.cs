@@ -173,7 +173,8 @@ namespace AnimalHouseUI
 
         private void Main_Load(object sender, EventArgs e)
         {
-
+            BossController.Instance().itemController.UpdateMedicinePrice(1);
+            BossController.Instance().itemController.UpdateMedicinePrice(2);
         }
 
         private void button1_Click(object sender, EventArgs e)

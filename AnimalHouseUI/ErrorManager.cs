@@ -124,6 +124,10 @@ namespace AnimalHouseUI
             {
                 errorMessage = Localization.ErrorMessages.DateNotFound + GetErrorMessage(exception.InnerException); ;
             }
+            else if (exception is DateNotUpdated)
+            {
+                errorMessage = Localization.ErrorMessages.DateNotUpdated + GetErrorMessage(exception.InnerException); ;
+            }
 
 
             else if (exception is CantGetAnimalList)

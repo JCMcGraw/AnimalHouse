@@ -20,9 +20,9 @@ namespace AnimalHousePersistence
 
             for (int i = 2; i < MedicinPrices.Length; i++)
             {
-                string[] MedicinList = MedicinPrices[i].Split('?');
-                decimal price = Convert.ToDecimal(MedicinList[0]);
-                string name = MedicinList[1];
+                string[] MedicinList = MedicinPrices[i].Split('_');
+                decimal price = Convert.ToDecimal(MedicinList[1]);
+                string name = MedicinList[0];
                 
                 MedicinePrice medicinPrice = new MedicinePrice(name,price,date);
                 list.Add(medicinPrice);
