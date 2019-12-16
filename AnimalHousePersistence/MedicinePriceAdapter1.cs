@@ -23,7 +23,7 @@ namespace AnimalHousePersistence
                 string[] MedicinList = MedicinPrices[i].Split('?');
                 decimal price = Convert.ToDecimal(MedicinList[0]);
                 string name = MedicinList[1];
-
+               
                 MedicinePrice medicinPrice = new MedicinePrice(name,price);
                 list.Add(medicinPrice);
             }
