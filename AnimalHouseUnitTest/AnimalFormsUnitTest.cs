@@ -15,7 +15,7 @@ namespace AnimalHouseUnitTest
         CustomerManager customerManager = new CustomerManager();
         AnimalManager animalManager = new AnimalManager();
         Animal animal;
-
+        static int animalID;
         
 
         [TestMethod]
@@ -26,12 +26,18 @@ namespace AnimalHouseUnitTest
             animal = AnimalFactory.Instance().CreateAnimal(customer, "basse",new DateTime(2014,2,12),new Species(1,"hund"),32,false,null,true);
             animal = animalManager.CreateAnimal(animal);
             Assert.AreNotEqual(0, animal.animalID);
+            animalID = animal.animalID;
+           
             
+
         }
 
         [TestMethod]
-        public void UpdateCustomerTestMethod()
+        public void UpdateAnimalTestMethod()
         {
+            Customer customer = customerManager.GetCustomer(2628.ToString());
+            animal = AnimalFactory.Instance().CreateAnimal(customer,animalID, "basse", new DateTime(2014, 2, 12), new Species(1, "hund"), 32, false, null, true);
+            animal = animalManager.CreateAnimal(animal);
             string result = animalManager.UpdateAnimal(animal);
             Assert.AreEqual("ok", result);
         }
@@ -39,6 +45,9 @@ namespace AnimalHouseUnitTest
         [TestMethod]
         public void DeleteCustomerTestMethod()
         {
+            Customer customer = customerManager.GetCustomer(2628.ToString());
+            animal = AnimalFactory.Instance().CreateAnimal(customer,animalID, "basse", new DateTime(2014, 2, 12), new Species(1, "hund"), 32, false, null, true);
+            animal = animalManager.CreateAnimal(animal);
             string result = animalManager.DeleteAnimal(animal);
             Assert.AreEqual("ok", result);
         }
