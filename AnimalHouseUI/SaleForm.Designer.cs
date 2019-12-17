@@ -112,9 +112,9 @@
             this.LabelTitle.ForeColor = System.Drawing.Color.White;
             this.LabelTitle.Location = new System.Drawing.Point(364, 3);
             this.LabelTitle.Name = "LabelTitle";
-            this.LabelTitle.Size = new System.Drawing.Size(162, 29);
+            this.LabelTitle.Size = new System.Drawing.Size(62, 29);
             this.LabelTitle.TabIndex = 5;
-            this.LabelTitle.Text = "Animal House";
+            this.LabelTitle.Text = "Salg";
             this.LabelTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseDown);
             this.LabelTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseMove);
             this.LabelTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseUp);
@@ -667,8 +667,9 @@
             this.Controls.Add(this.EndButton);
             this.Controls.Add(this.PanelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SaleForm";
-            this.Text = "SampleForm";
+            this.Text = "Salg";
             this.Load += new System.EventHandler(this.SaleForm_Load);
             this.PanelHeader.ResumeLayout(false);
             this.PanelHeader.PerformLayout();

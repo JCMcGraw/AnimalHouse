@@ -181,6 +181,7 @@ namespace AnimalHouseUI
             textBox_adresse.Text = customer.address.ToString();
             textBox_email.Text = customer.email.ToString();
             label_headline.Text = customer.name.ToString();
+            this.Refresh();
 
             //tjekker for om der er tale om en foretningskunde
             CheckForBusinesscustomer(customer);

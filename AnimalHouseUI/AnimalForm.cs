@@ -21,7 +21,7 @@ namespace AnimalHouseUI
         Animal animal;
         Customer customer;
         //Employee employee;
-        List<Employee> employee;
+        List<Employee> employees;
         List<Species> species;
         List<Prescription> prescriptions;
         List<MedicalRecord> medicalRecords;
@@ -495,7 +495,7 @@ namespace AnimalHouseUI
         {
 
          
-            List<Species> species = BossController.Instance().animalController.GetSpecies();
+            species = BossController.Instance().animalController.GetSpecies();
 
             //List<Species> SpeciesType = species.Where(x => x.speciesid.speciesType == 1).ToList<Employee>();
 
@@ -507,7 +507,7 @@ namespace AnimalHouseUI
 
 
 
-            List<Employee> employees = BossController.Instance().employeeController.GetAllEmployees();
+            employees = BossController.Instance().employeeController.GetAllEmployees();
 
 
             List<Employee> vets = employees.Where(x => x.title.titleID == 1).ToList<Employee>();

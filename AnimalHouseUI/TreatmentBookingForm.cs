@@ -29,7 +29,6 @@ namespace AnimalHouseUI
         DateTime treatmentCacheDateEnd = DateTime.Today;
 
         List<CalendarItem> calendarItemsCache = new List<CalendarItem>();
-        //CalendarItem contextItem = null;
 
 
         public TreatmentBookingForm()
@@ -61,7 +60,7 @@ namespace AnimalHouseUI
 
         private void TreatmentBookingForm_Load(object sender, EventArgs e)
         {
-            Thread updateCalender = new Thread(() => UpdateCalender());
+            Thread updateCalender = new Thread(() => UpdateCalendar());
             updateCalender.IsBackground = true;
             updateCalender.Start();
         }
@@ -339,11 +338,7 @@ namespace AnimalHouseUI
                     AddTreatmentToCache(treatment);
                 }
 
-                if (InvokeRequired)
-                {
-                    //BeginInvoke(new MethodInvoker(PlaceItems));
-                }
-                else
+                if (!InvokeRequired)
                 {
                     PlaceItems();
                 }
@@ -1087,38 +1082,7 @@ namespace AnimalHouseUI
 
             return newTreatment;
         }
-
-
-        private void hourToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CalendarBooking.TimeScale = CalendarTimeScale.SixtyMinutes;
-        }
-
-        private void minutesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CalendarBooking.TimeScale = CalendarTimeScale.ThirtyMinutes;
-        }
-
-        private void minutes20ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CalendarBooking.TimeScale = CalendarTimeScale.TwentyMinutes;
-        }
-
-        private void minutes15ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CalendarBooking.TimeScale = CalendarTimeScale.FifteenMinutes;
-        }
-
-        private void minutes10ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CalendarBooking.TimeScale = CalendarTimeScale.TenMinutes;
-        }
-
-        private void minutes5ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CalendarBooking.TimeScale = CalendarTimeScale.FiveMinutes;
-        }
-
+        
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //send 'enter' key press to calendar
@@ -1405,7 +1369,7 @@ namespace AnimalHouseUI
             }
         }
 
-        private void UpdateCalender()
+        private void UpdateCalendar()
         {
             while (true)
             {
