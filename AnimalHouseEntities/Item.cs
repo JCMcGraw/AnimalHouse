@@ -36,11 +36,13 @@ namespace AnimalHouseEntities
             this.active = active;
         }
 
+        //Kommentar
         public override string ToString()
         {
             return $"{name}\t{price.ToString("N2")}\t{amount}";
         }
 
+        //Kommentar
         public decimal GetTotalStockValue()
         {
             return costPrice * amount;

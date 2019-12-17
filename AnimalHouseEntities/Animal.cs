@@ -42,6 +42,7 @@ namespace AnimalHouseEntities
             this.Employee = employeeID;
             this.active = active;
         }
+
         public Animal(Customer customer, string name, DateTime birthday, Species speciesType, double weight, bool gender,Employee employeeID, bool active)
         {
             this.customer = customer;
@@ -54,18 +55,25 @@ namespace AnimalHouseEntities
             this.active = active;
         }
 
+        //Bruges når vi skal hente animalID Fra DB
         public void UpdateID(int animalid)
         {
             this.animalID = animalid;
         }
+
+        //Kommentar
         public void GetAnimalList(int animalid)
         {
             this.animalID = animalid;
         }
+
+        //Kommentar
         public void AddPrescriptionList(List<Prescription> prescriptions)
         {
             this.prescriptions = prescriptions;
         }
+
+        //Kommentar
         public void AddMedicalRecordEntryList(List<MedicalRecord>medicalRecords)
         {
             this.medicalRecords = medicalRecords;

@@ -10,6 +10,7 @@ namespace AnimalHouse
 {
     public class SaleController
     {
+        //SingleTon Mønster
         private static SaleController instance;
 
         private SaleController() { }
@@ -25,12 +26,7 @@ namespace AnimalHouse
         }
 
         ISaleManager saleManager = new SaleManager();
-
-        //public List<Item> GetAllActiveItems()
-        //{
-        //    List<Item> items = ItemController.GetAllActiveItems();
-        //    return items;
-        //}
+        Iinvoice invoice = new Invoice();
 
         public Sale CreateSale(Sale sale)
         {
@@ -58,8 +54,6 @@ namespace AnimalHouse
 
         public void CreateInvoice(Sale sale)
         {
-            Iinvoice invoice = new Invoice();
-
             invoice.CreatePDF(sale);
         }
     }

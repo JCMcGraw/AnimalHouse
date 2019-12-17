@@ -8,6 +8,7 @@ namespace AnimalHouseEntities
 {
     public class TreatmentTypeFactory
     {
+        //SingleTon Mønster
         private static TreatmentTypeFactory instance;
 
         private TreatmentTypeFactory() { }
@@ -22,6 +23,7 @@ namespace AnimalHouseEntities
             return instance;
         }
 
+        //Laver obj af TreatmentType
         public TreatmentType CreateTreatmentType(int treatmentTypeID, string name)
         {
             return new TreatmentType(treatmentTypeID, name);

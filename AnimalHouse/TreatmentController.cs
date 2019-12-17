@@ -10,6 +10,7 @@ namespace AnimalHouse
 {
     public class TreatmentController
     {
+        //SingleTon Mønster
         private static TreatmentController treatmentController;
 
         private TreatmentController() { }
