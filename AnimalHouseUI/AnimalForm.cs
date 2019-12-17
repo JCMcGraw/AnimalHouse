@@ -20,7 +20,6 @@ namespace AnimalHouseUI
     {
         Animal animal;
         Customer customer;
-        //Employee employee;
         List<Employee> employee;
         List<Species> species;
         List<Prescription> prescriptions;
@@ -625,10 +624,10 @@ namespace AnimalHouseUI
             return true;
         }
 
-        private void Animal_medicalRecords_DoubleClick(object sender, EventArgs e)
-        {
+        //private void Animal_medicalRecords_DoubleClick(object sender, EventArgs e)
+        //{
 
-        }
+        //}
     }
 }
 
