@@ -8,6 +8,7 @@ namespace AnimalHouseEntities
 {
     public class TitleFactory
     {
+        //SingleTon mønster
         private TitleFactory() { }
 
         private static TitleFactory titleFactory = null;
@@ -21,6 +22,7 @@ namespace AnimalHouseEntities
             return titleFactory;
         }
 
+        //Laver obj af Title
        public Title CreateTitle(string name, int titleID)
        {
             return new Title(name, titleID);

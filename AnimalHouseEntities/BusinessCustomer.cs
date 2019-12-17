@@ -16,7 +16,6 @@ namespace AnimalHouseEntities
         public BusinessCustomer(int cvr, string name, string address, string phone, string email, bool active) : base(name, address, phone, email, active)
         {
             this.cvr = cvr;
-
         }
 
         //constructor MED customerID, MED cvr
@@ -25,7 +24,6 @@ namespace AnimalHouseEntities
             {
                 this.BusinesscustomerID = customerID;
                 this.cvr = cvr;
-
             }
         }
     }

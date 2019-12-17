@@ -8,6 +8,7 @@ namespace AnimalHouseEntities
 {
     public class PrescriptionFactory
     {
+        //SingleTon Mønster
         private static PrescriptionFactory instance;
 
         private PrescriptionFactory() { }
@@ -22,13 +23,13 @@ namespace AnimalHouseEntities
             return instance;
         }
 
-        //Prescription MED prescriptionID
+        //Laver Obj af Prescription
         public Prescription CreatePrescription(int prescriptionID, int amount, DateTime prescriptionDay, bool payed, Employee employee, Animal animal, Item item)
         {
             return new Prescription(prescriptionID, amount,prescriptionDay,payed, employee, animal, item);
         }
 
-        //Prescription UDEN prescriptionID
+        //Laver Obj af Prescription
         public Prescription CreatePrescription(int amount, DateTime prescriptionDay, bool payed, Employee employee, Animal animal, Item item)
         {
             return new Prescription(amount, prescriptionDay,payed, employee, animal, item);

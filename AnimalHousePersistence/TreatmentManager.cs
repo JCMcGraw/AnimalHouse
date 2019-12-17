@@ -198,18 +198,14 @@ namespace AnimalHousePersistence
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
 
-            if (sQLQueryResult.code==0)
+            if (sQLQueryResult.code!=0)
             {
-                List<Treatment> treatments = new List<Treatment>();
-
-                treatments = GetTreatmentList(sQLQueryResult);
-
-                return treatments;
+                throw new CantGetUnPaidTreatments("", sQLQueryResult.exception);   
             }
-            else
-            {
-                throw new CantGetUnPaidTreatments("", sQLQueryResult.exception);
-            }
+
+            List<Treatment> treatments = new List<Treatment>();
+            treatments = GetTreatmentList(sQLQueryResult);
+            return treatments;
         }
 
         public List<TreatmentType> GetAllTreatmentTypes()
@@ -270,7 +266,6 @@ namespace AnimalHousePersistence
             operationRooms = GetAllOperationRooms(sQLQueryResult);
 
             return operationRooms;
-
         }
 
         private List<Treatment> GetTreatmentList(SQLQueryResult sQLQueryResult)

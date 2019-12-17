@@ -10,6 +10,7 @@ namespace AnimalHouse
 {
     public class EmployeeController
     {
+        //SingleTon Mønster
         private EmployeeController() { }
 
         private static EmployeeController employeeController = null;

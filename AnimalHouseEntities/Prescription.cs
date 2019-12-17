@@ -45,6 +45,7 @@ namespace AnimalHouseEntities
             this.item = item;
         }
 
+        //Bruges når vi skal hente prescriptionID Fra DB
         public void UpdateID(int prescriptionID)
         {
             this.prescriptionID = prescriptionID;

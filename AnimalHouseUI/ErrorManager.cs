@@ -108,9 +108,17 @@ namespace AnimalHouseUI
             {
                 errorMessage = Localization.ErrorMessages.AnimalNotEdited + GetErrorMessage(exception.InnerException); ;
             }
-            else if (exception is CantCreateSale)
+            else if (exception is CantCreateSaleException)
             {
                 errorMessage = Localization.ErrorMessages.CantCreateSale + GetErrorMessage(exception.InnerException); ;
+            }
+            else if (exception is CantDeleteSaleException)
+            {
+                errorMessage = Localization.ErrorMessages.CantDeleteSale + GetErrorMessage(exception.InnerException); ;
+            }
+            else if (exception is CantUpdateSaleException)
+            {
+                errorMessage = Localization.ErrorMessages.CantDeleteSale + GetErrorMessage(exception.InnerException); ;
             }
             else if (exception is CantGetUnPaidPrescription)
             {

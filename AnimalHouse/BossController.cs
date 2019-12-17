@@ -9,6 +9,7 @@ namespace AnimalHouse
 {
     public class BossController
     {
+        //SingleTon Mønster
         private BossController() { }
 
         private static BossController bossController = null;

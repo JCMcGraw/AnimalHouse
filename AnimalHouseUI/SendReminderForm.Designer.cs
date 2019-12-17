@@ -29,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SendReminderForm));
             this.PanelHeader = new System.Windows.Forms.Panel();
             this.LabelTitle = new System.Windows.Forms.Label();
             this.PictureBoxLogo = new System.Windows.Forms.PictureBox();
@@ -37,13 +38,13 @@
             this.ButtonClose = new System.Windows.Forms.Button();
             this.GetRemindersToSend = new System.Windows.Forms.Button();
             this.RemindersDataGridView = new System.Windows.Forms.DataGridView();
+            this.SendToChosenButton = new System.Windows.Forms.Button();
+            this.SendToAllButton = new System.Windows.Forms.Button();
             this.Customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Species = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LatestVisit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SendToChosenButton = new System.Windows.Forms.Button();
-            this.SendToAllButton = new System.Windows.Forms.Button();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RemindersDataGridView)).BeginInit();
@@ -61,7 +62,7 @@
             this.PanelHeader.Location = new System.Drawing.Point(0, 0);
             this.PanelHeader.Name = "PanelHeader";
             this.PanelHeader.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
-            this.PanelHeader.Size = new System.Drawing.Size(948, 36);
+            this.PanelHeader.Size = new System.Drawing.Size(801, 36);
             this.PanelHeader.TabIndex = 0;
             this.PanelHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelHeader_MouseDown);
             this.PanelHeader.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelHeader_MouseMove);
@@ -72,7 +73,7 @@
             this.LabelTitle.AutoSize = true;
             this.LabelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelTitle.ForeColor = System.Drawing.Color.White;
-            this.LabelTitle.Location = new System.Drawing.Point(387, 3);
+            this.LabelTitle.Location = new System.Drawing.Point(272, 2);
             this.LabelTitle.Name = "LabelTitle";
             this.LabelTitle.Size = new System.Drawing.Size(210, 29);
             this.LabelTitle.TabIndex = 5;
@@ -100,7 +101,7 @@
             this.ButtonMinimize.FlatAppearance.BorderSize = 0;
             this.ButtonMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonMinimize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonMinimize.Location = new System.Drawing.Point(852, 2);
+            this.ButtonMinimize.Location = new System.Drawing.Point(705, 2);
             this.ButtonMinimize.Name = "ButtonMinimize";
             this.ButtonMinimize.Size = new System.Drawing.Size(32, 32);
             this.ButtonMinimize.TabIndex = 3;
@@ -115,7 +116,7 @@
             this.ButtonMaximize.FlatAppearance.BorderSize = 0;
             this.ButtonMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonMaximize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonMaximize.Location = new System.Drawing.Point(884, 2);
+            this.ButtonMaximize.Location = new System.Drawing.Point(737, 2);
             this.ButtonMaximize.Name = "ButtonMaximize";
             this.ButtonMaximize.Size = new System.Drawing.Size(32, 32);
             this.ButtonMaximize.TabIndex = 2;
@@ -130,7 +131,7 @@
             this.ButtonClose.FlatAppearance.BorderSize = 0;
             this.ButtonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonClose.Location = new System.Drawing.Point(916, 2);
+            this.ButtonClose.Location = new System.Drawing.Point(769, 2);
             this.ButtonClose.Name = "ButtonClose";
             this.ButtonClose.Size = new System.Drawing.Size(32, 32);
             this.ButtonClose.TabIndex = 1;
@@ -143,7 +144,7 @@
             this.GetRemindersToSend.FlatAppearance.BorderSize = 0;
             this.GetRemindersToSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.GetRemindersToSend.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GetRemindersToSend.Location = new System.Drawing.Point(743, 86);
+            this.GetRemindersToSend.Location = new System.Drawing.Point(639, 86);
             this.GetRemindersToSend.Name = "GetRemindersToSend";
             this.GetRemindersToSend.Size = new System.Drawing.Size(118, 73);
             this.GetRemindersToSend.TabIndex = 6;
@@ -170,8 +171,36 @@
             this.RemindersDataGridView.RowHeadersVisible = false;
             this.RemindersDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.RemindersDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.RemindersDataGridView.Size = new System.Drawing.Size(657, 380);
+            this.RemindersDataGridView.Size = new System.Drawing.Size(556, 380);
             this.RemindersDataGridView.TabIndex = 7;
+            // 
+            // SendToChosenButton
+            // 
+            this.SendToChosenButton.BackColor = System.Drawing.Color.AliceBlue;
+            this.SendToChosenButton.FlatAppearance.BorderSize = 0;
+            this.SendToChosenButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SendToChosenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SendToChosenButton.Location = new System.Drawing.Point(639, 271);
+            this.SendToChosenButton.Name = "SendToChosenButton";
+            this.SendToChosenButton.Size = new System.Drawing.Size(118, 73);
+            this.SendToChosenButton.TabIndex = 8;
+            this.SendToChosenButton.Text = "Send til valgte";
+            this.SendToChosenButton.UseVisualStyleBackColor = false;
+            this.SendToChosenButton.Click += new System.EventHandler(this.SendToChosenButton_Click);
+            // 
+            // SendToAllButton
+            // 
+            this.SendToAllButton.BackColor = System.Drawing.Color.AliceBlue;
+            this.SendToAllButton.FlatAppearance.BorderSize = 0;
+            this.SendToAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SendToAllButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SendToAllButton.Location = new System.Drawing.Point(639, 178);
+            this.SendToAllButton.Name = "SendToAllButton";
+            this.SendToAllButton.Size = new System.Drawing.Size(118, 73);
+            this.SendToAllButton.TabIndex = 9;
+            this.SendToAllButton.Text = "Send til alle";
+            this.SendToAllButton.UseVisualStyleBackColor = false;
+            this.SendToAllButton.Click += new System.EventHandler(this.SendToAllButton_Click);
             // 
             // Customer
             // 
@@ -199,52 +228,26 @@
             // 
             // LatestVisit
             // 
+            this.LatestVisit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.LatestVisit.HeaderText = "Sidste behandling";
             this.LatestVisit.Name = "LatestVisit";
             this.LatestVisit.ReadOnly = true;
-            // 
-            // SendToChosenButton
-            // 
-            this.SendToChosenButton.BackColor = System.Drawing.Color.AliceBlue;
-            this.SendToChosenButton.FlatAppearance.BorderSize = 0;
-            this.SendToChosenButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SendToChosenButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SendToChosenButton.Location = new System.Drawing.Point(743, 271);
-            this.SendToChosenButton.Name = "SendToChosenButton";
-            this.SendToChosenButton.Size = new System.Drawing.Size(118, 73);
-            this.SendToChosenButton.TabIndex = 8;
-            this.SendToChosenButton.Text = "Send til valgte";
-            this.SendToChosenButton.UseVisualStyleBackColor = false;
-            this.SendToChosenButton.Click += new System.EventHandler(this.SendToChosenButton_Click);
-            // 
-            // SendToAllButton
-            // 
-            this.SendToAllButton.BackColor = System.Drawing.Color.AliceBlue;
-            this.SendToAllButton.FlatAppearance.BorderSize = 0;
-            this.SendToAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SendToAllButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SendToAllButton.Location = new System.Drawing.Point(743, 178);
-            this.SendToAllButton.Name = "SendToAllButton";
-            this.SendToAllButton.Size = new System.Drawing.Size(118, 73);
-            this.SendToAllButton.TabIndex = 9;
-            this.SendToAllButton.Text = "Send til alle";
-            this.SendToAllButton.UseVisualStyleBackColor = false;
-            this.SendToAllButton.Click += new System.EventHandler(this.SendToAllButton_Click);
             // 
             // SendReminderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
-            this.ClientSize = new System.Drawing.Size(948, 521);
+            this.ClientSize = new System.Drawing.Size(801, 521);
             this.Controls.Add(this.SendToAllButton);
             this.Controls.Add(this.SendToChosenButton);
             this.Controls.Add(this.RemindersDataGridView);
             this.Controls.Add(this.GetRemindersToSend);
             this.Controls.Add(this.PanelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SendReminderForm";
-            this.Text = "SampleForm";
+            this.Text = "Send påmindelser";
             this.PanelHeader.ResumeLayout(false);
             this.PanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).EndInit();
@@ -265,12 +268,12 @@
         #endregion
 
         private System.Windows.Forms.DataGridView RemindersDataGridView;
+        private System.Windows.Forms.Button SendToChosenButton;
+        private System.Windows.Forms.Button SendToAllButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn Customer;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn Animal;
         private System.Windows.Forms.DataGridViewTextBoxColumn Species;
         private System.Windows.Forms.DataGridViewTextBoxColumn LatestVisit;
-        private System.Windows.Forms.Button SendToChosenButton;
-        private System.Windows.Forms.Button SendToAllButton;
     }
 }

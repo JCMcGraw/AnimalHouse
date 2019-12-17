@@ -8,6 +8,7 @@ namespace AnimalHouseEntities
 {
     public class OperationRoomFactory
     {
+        //SingleTon Mønster
         private static OperationRoomFactory instance;
 
         private OperationRoomFactory() { }
@@ -22,6 +23,7 @@ namespace AnimalHouseEntities
             return instance;
         }
 
+        //Laver obj af OperationRoom
         public OperationRoom CreateOperationRoom(int operationRoomID)
         {
             return new OperationRoom(operationRoomID);

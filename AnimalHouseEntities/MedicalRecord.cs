@@ -33,6 +33,8 @@ namespace AnimalHouseEntities
             this.animal = animal;
             this.treatment = treatment;
         }
+
+        //Bruges når vi skal hente medicalRecordID Fra DB
         public void UpdateMedicalRecordID(int medicalRecordID)
         {
             this.medicalRecordID = medicalRecordID;

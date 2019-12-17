@@ -164,6 +164,8 @@ namespace AnimalHouseUI
 
         private void SearchPhoneButton_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
+
             try
             {
                 customer = BossController.Instance().customerController.GetCustomer(PhoneTextBox.Text);
@@ -171,6 +173,7 @@ namespace AnimalHouseUI
             catch (Exception exception)
             {
                 MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
+                this.Cursor = Cursors.Default;
                 return;
             }
 
@@ -182,10 +185,14 @@ namespace AnimalHouseUI
             sale.SetCustomer(customer);
             LoadeAllUnPaidPrescriptions(customer);
             LoadeAllUnpaidTreatments(customer);
+
+            this.Cursor = Cursors.Default;
         }
 
         private void EndButton_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
+
             try
             {
                 BossController.Instance().saleController.CreateSale(sale);
@@ -194,27 +201,39 @@ namespace AnimalHouseUI
             {
                 string errorMessage = ErrorManager.Instance().GetErrorMessage(exception);
                 MessageBox.Show(errorMessage);
+                this.Cursor = Cursors.Default;
                 return;
             }
             MessageBox.Show("Salg Oprettet");
             FakturaButton.Enabled = true;
+            this.Cursor = Cursors.Default;
         }
 
         private void FakturaButton_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
+
             BossController.Instance().saleController.CreateInvoice(sale);
             string file = "Faktura" + sale.saleID.ToString() + ".pdf";
             Process.Start(file);
+
+            this.Cursor = Cursors.Default;
         }
 
         private void ShowStockButton_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
+
             StockForm stockForm = new StockForm();
             stockForm.Show();
+
+            this.Cursor = Cursors.Default;
         }
 
         private void NewSaleButton_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
+
             try
             {
                 customer = null;
@@ -239,7 +258,10 @@ namespace AnimalHouseUI
             catch (Exception)
             {
                 MessageBox.Show("noget gik galt");
+                this.Cursor = Cursors.Default;
             }
+
+            this.Cursor = Cursors.Default;
         }
 
         private void ItemDataGridView_DoubleClick(object sender, EventArgs e)
@@ -342,6 +364,8 @@ namespace AnimalHouseUI
             }
             FillPriceInLable();
         }
+
+
 
         private void SearchItemTextBox_TextChanged(object sender, EventArgs e)
         {

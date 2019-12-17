@@ -29,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerForm));
             this.PanelHeader = new System.Windows.Forms.Panel();
             this.LabelTitle = new System.Windows.Forms.Label();
             this.PictureBoxLogo = new System.Windows.Forms.PictureBox();
@@ -61,7 +62,6 @@
             this.button_help = new System.Windows.Forms.Button();
             this.label_nulstil = new System.Windows.Forms.Label();
             this.button_nulstil = new System.Windows.Forms.Button();
-            this.label_hjaelp = new System.Windows.Forms.Label();
             this.label_underheader = new System.Windows.Forms.Label();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
@@ -91,11 +91,11 @@
             this.LabelTitle.AutoSize = true;
             this.LabelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelTitle.ForeColor = System.Drawing.Color.White;
-            this.LabelTitle.Location = new System.Drawing.Point(309, 3);
+            this.LabelTitle.Location = new System.Drawing.Point(253, 3);
             this.LabelTitle.Name = "LabelTitle";
-            this.LabelTitle.Size = new System.Drawing.Size(162, 29);
+            this.LabelTitle.Size = new System.Drawing.Size(83, 29);
             this.LabelTitle.TabIndex = 5;
-            this.LabelTitle.Text = "Animal House";
+            this.LabelTitle.Text = "Kunde";
             this.LabelTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseDown);
             this.LabelTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseMove);
             this.LabelTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseUp);
@@ -376,6 +376,7 @@
             // 
             // speciestype
             // 
+            this.speciestype.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.speciestype.HeaderText = "Art";
             this.speciestype.Name = "speciestype";
             // 
@@ -418,15 +419,6 @@
             this.button_nulstil.UseVisualStyleBackColor = false;
             this.button_nulstil.Click += new System.EventHandler(this.button_nulstil_Click);
             // 
-            // label_hjaelp
-            // 
-            this.label_hjaelp.AutoSize = true;
-            this.label_hjaelp.Location = new System.Drawing.Point(586, 82);
-            this.label_hjaelp.Name = "label_hjaelp";
-            this.label_hjaelp.Size = new System.Drawing.Size(35, 13);
-            this.label_hjaelp.TabIndex = 31;
-            this.label_hjaelp.Text = "Hjælp";
-            // 
             // label_underheader
             // 
             this.label_underheader.AutoSize = true;
@@ -444,7 +436,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(640, 542);
             this.Controls.Add(this.label_underheader);
-            this.Controls.Add(this.label_hjaelp);
             this.Controls.Add(this.button_nulstil);
             this.Controls.Add(this.label_nulstil);
             this.Controls.Add(this.button_help);
@@ -470,8 +461,9 @@
             this.Controls.Add(this.button_opret);
             this.Controls.Add(this.PanelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CustomerForm";
-            this.Text = "SampleForm";
+            this.Text = "Kunde";
             this.Load += new System.EventHandler(this.CustomerForm_Load);
             this.PanelHeader.ResumeLayout(false);
             this.PanelHeader.PerformLayout();
@@ -511,13 +503,12 @@
         private System.Windows.Forms.CheckBox checkBox_erhverskunde;
         private System.Windows.Forms.Label label_erhverskunde;
         private System.Windows.Forms.DataGridView dataGridView_dyr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn speciestype;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button button_help;
         private System.Windows.Forms.Label label_nulstil;
         private System.Windows.Forms.Button button_nulstil;
-        private System.Windows.Forms.Label label_hjaelp;
         private System.Windows.Forms.Label label_underheader;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn speciestype;
     }
 }

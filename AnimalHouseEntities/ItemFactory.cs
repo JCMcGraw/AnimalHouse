@@ -8,6 +8,7 @@ namespace AnimalHouseEntities
 {
     public class ItemFactory
     {
+        //SingleTon Mønster
         private static ItemFactory instance;
 
         private ItemFactory() { }
@@ -22,6 +23,7 @@ namespace AnimalHouseEntities
             return instance;
         }
 
+        //Laver obj af Item
         public Item CreateItem(int itemID, string name, int amount, decimal price, decimal costPrice, bool prescription, bool treatment, bool active)
         {
             Item item = new Item(itemID, name, amount, price, costPrice, prescription, treatment, active);

@@ -8,6 +8,7 @@ namespace AnimalHouseEntities
 {
     public class SpeciesFactory
     {
+        //SingleTon Mønster
         private static SpeciesFactory instance;
 
         private SpeciesFactory() { }
@@ -21,10 +22,10 @@ namespace AnimalHouseEntities
             return instance;
         }
 
+        //Laver Obj af Species
         public Species CreateSpecies(int speciesID, string speciesType)
         {
             return new Species(speciesID, speciesType);
         }
-       
     }
 }

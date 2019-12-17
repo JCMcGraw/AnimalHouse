@@ -253,6 +253,8 @@ namespace AnimalHouseUI
         {
             StringBuilder stringBuilder = new StringBuilder();
 
+            stringBuilder.Append("Vare\tIndkøbspris\tAntal\n\n");
+
             foreach(Item item in items)
             {
                 stringBuilder.Append(item.ToString() + "\n");
