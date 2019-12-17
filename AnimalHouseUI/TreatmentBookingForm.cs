@@ -572,7 +572,7 @@ namespace AnimalHouseUI
             return newSelectedStartDate;
         }
 
-        private List<OperationRoom> GetAllAvailableOperationRooms(List<OperationRoom> operationRooms, DateTime SuggestedStartTime, DateTime SuggestedEndTime)
+        private List<OperationRoom> GetAllAvailableOperationRooms(List<OperationRoom> operationRooms, DateTime SuggestedStartTime, DateTime SuggestedEndTime, Treatment treatment = null)
         {
             List<OperationRoom> availableOperationRooms = new List<OperationRoom>();
             List<Treatment> treatments;
@@ -581,7 +581,7 @@ namespace AnimalHouseUI
 
             foreach (OperationRoom operationRoom in operationRooms)
             {
-                if (CheckAvailabilityForOperationRooms(operationRoom, SuggestedStartTime, SuggestedEndTime, treatments) == true)
+                if (CheckAvailabilityForOperationRooms(operationRoom, SuggestedStartTime, SuggestedEndTime, treatment, treatments) == true)
                 {
                     availableOperationRooms.Add(operationRoom);
                 }
@@ -590,7 +590,7 @@ namespace AnimalHouseUI
             return availableOperationRooms;
         }
 
-        private bool CheckAvailabilityForOperationRooms(OperationRoom operationRoom, DateTime SuggestedStartTime, DateTime SuggestedEndTime, List<Treatment> treatments = null)
+        private bool CheckAvailabilityForOperationRooms(OperationRoom operationRoom, DateTime SuggestedStartTime, DateTime SuggestedEndTime, Treatment checkTreatment = null, List<Treatment> treatments = null)
         {
             if (treatments == null)
             {
@@ -601,6 +601,11 @@ namespace AnimalHouseUI
             {
                 if (treatment.operationRoom != null && treatment.operationRoom.operationRoomID == operationRoom.operationRoomID)
                 {
+                    if (checkTreatment != null && checkTreatment.treatmentID == treatment.treatmentID)
+                    {
+                        continue;
+                    }
+
                     if ((treatment.startTime >= SuggestedStartTime && treatment.startTime < SuggestedEndTime) || (treatment.endTime > SuggestedStartTime && treatment.endTime <= SuggestedEndTime) ||
                         (treatment.startTime <= SuggestedStartTime && treatment.endTime >= SuggestedEndTime))
                     {
@@ -630,7 +635,7 @@ namespace AnimalHouseUI
 
             foreach (Employee employee in employees)
             {
-                if (CheckAvailabilityOfEmployeeForConsultationOrOperation(employee, SuggestedStartTime, SuggestedEndTime, treatments) == true && employee.employeeID != -1)
+                if (CheckAvailabilityOfEmployeeForConsultationOrOperation(employee, SuggestedStartTime, SuggestedEndTime, null, treatments) == true && employee.employeeID != -1)
                 {
                     availableEmployees.Add(employee);
                 }
@@ -639,7 +644,7 @@ namespace AnimalHouseUI
             return availableEmployees;
         }
 
-        private bool CheckAvailabilityOfEmployeeForConsultationOrOperation(Employee employee, DateTime SuggestedStartTime, DateTime SuggestedEndTime, List<Treatment> treatments = null)
+        private bool CheckAvailabilityOfEmployeeForConsultationOrOperation(Employee employee, DateTime SuggestedStartTime, DateTime SuggestedEndTime, Treatment checkTreatment = null, List<Treatment> treatments = null)
         {
             if (treatments == null)
             {
@@ -658,6 +663,11 @@ namespace AnimalHouseUI
             {
                 if (treatment.employee != null && treatment.employee.employeeID == employee.employeeID)
                 {
+                    if (checkTreatment != null && checkTreatment.treatmentID == treatment.treatmentID)
+                    {
+                        continue;
+                    }
+
                     if ((treatment.startTime >= SuggestedStartTime && treatment.startTime < SuggestedEndTime) || (treatment.endTime > SuggestedStartTime && treatment.endTime <= SuggestedEndTime) ||
                         (treatment.startTime <= SuggestedStartTime && treatment.endTime >= SuggestedEndTime))
                     {
@@ -932,7 +942,7 @@ namespace AnimalHouseUI
             {
                 Employee employee = treatmentsCache[calendarItemEventArgs.Item.TreatmentID].employee;
 
-                bool isEmployeeFree = CheckAvailabilityOfEmployeeForConsultationOrOperation(employee, calendarItemEventArgs.Item.StartDate, calendarItemEventArgs.Item.EndDate, treatments);
+                bool isEmployeeFree = CheckAvailabilityOfEmployeeForConsultationOrOperation(employee, calendarItemEventArgs.Item.StartDate, calendarItemEventArgs.Item.EndDate, treatmentsCache[calendarItemEventArgs.Item.TreatmentID], treatments);
 
                 if (isEmployeeFree == false)
                 {
@@ -945,7 +955,7 @@ namespace AnimalHouseUI
                     List<OperationRoom> availableOperationRooms;
                     try
                     {
-                        availableOperationRooms = GetAllAvailableOperationRooms(operationRooms, calendarItemEventArgs.Item.StartDate, calendarItemEventArgs.Item.EndDate);
+                        availableOperationRooms = GetAllAvailableOperationRooms(operationRooms, calendarItemEventArgs.Item.StartDate, calendarItemEventArgs.Item.EndDate, treatmentsCache[calendarItemEventArgs.Item.TreatmentID]);
                     }
                     catch
                     {
@@ -978,9 +988,11 @@ namespace AnimalHouseUI
         //actions for calendaritems dates/times changed
         private void CalendarBooking_ItemDatesChanged(object sender, CalendarItemEventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             //check if times haven't been changed
             if (e.Item.StartDate == treatmentsCache[e.Item.TreatmentID].startTime && e.Item.EndDate == treatmentsCache[e.Item.TreatmentID].endTime)
             {
+                this.Cursor = Cursors.Default;
                 return;
             }
 
@@ -991,6 +1003,7 @@ namespace AnimalHouseUI
                 e.Item.StartDate = treatmentsCache[e.Item.TreatmentID].startTime;
                 e.Item.EndDate = treatmentsCache[e.Item.TreatmentID].endTime;
                 PlaceItems();
+                this.Cursor = Cursors.Default;
                 return;
             }
             else if (treatmentsCache[e.Item.TreatmentID].status == 3)
@@ -1000,6 +1013,7 @@ namespace AnimalHouseUI
                 e.Item.StartDate = treatmentsCache[e.Item.TreatmentID].startTime;
                 e.Item.EndDate = treatmentsCache[e.Item.TreatmentID].endTime;
                 PlaceItems();
+                this.Cursor = Cursors.Default;
                 return;
             }
             else if (e.Item.StartDate < DateTime.Now)
@@ -1009,6 +1023,7 @@ namespace AnimalHouseUI
                 e.Item.StartDate = treatmentsCache[e.Item.TreatmentID].startTime;
                 e.Item.EndDate = treatmentsCache[e.Item.TreatmentID].endTime;
                 PlaceItems();
+                this.Cursor = Cursors.Default;
                 return;
             }
             else if (CheckAvailabilityForTreatmentMove(e) == false)
@@ -1017,6 +1032,7 @@ namespace AnimalHouseUI
                 e.Item.StartDate = treatmentsCache[e.Item.TreatmentID].startTime;
                 e.Item.EndDate = treatmentsCache[e.Item.TreatmentID].endTime;
                 PlaceItems();
+                this.Cursor = Cursors.Default;
                 return;
             }
 
@@ -1031,6 +1047,7 @@ namespace AnimalHouseUI
             DialogResult dialogResult = MessageBox.Show(message, "Book behandling", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+                this.Cursor = Cursors.WaitCursor;
                 int treatmentID = e.Item.TreatmentID;
 
                 //get updated treatment
@@ -1047,6 +1064,7 @@ namespace AnimalHouseUI
                     e.Item.StartDate = treatmentsCache[e.Item.TreatmentID].startTime;
                     e.Item.EndDate = treatmentsCache[e.Item.TreatmentID].endTime;
                     PlaceItems();
+                    this.Cursor = Cursors.Default;
                     return;
                 }
 
@@ -1062,6 +1080,8 @@ namespace AnimalHouseUI
                 e.Item.StartDate = treatmentsCache[e.Item.TreatmentID].startTime;
                 e.Item.EndDate = treatmentsCache[e.Item.TreatmentID].endTime;
             }
+
+            this.Cursor = Cursors.Default;
 
             PlaceItems();
         }
@@ -1264,18 +1284,12 @@ namespace AnimalHouseUI
 
         private void CalendarBooking_ItemDoubleClick(object sender, CalendarItemEventArgs e)
         {
-            int treatmentID = e.Item.TreatmentID;
-            Treatment treatment = treatmentsCache[treatmentID];
+            bool isValidStart = StartTreatment();
 
-            if (treatment.status == 0)
+            if (isValidStart == true)
             {
-                MessageBox.Show("Denne patient er ikke ankommet endnu.");
-                return;
+                UpdateTreatmentStatus(2);
             }
-
-            TreatmentForm treatmentform = new TreatmentForm(treatment);
-            treatmentform.Show();
-            UpdateTreatmentStatus(2);
         }
 
         private void button_startbehandling_Click(object sender, EventArgs e)
@@ -1311,6 +1325,15 @@ namespace AnimalHouseUI
                 {
                     MessageBox.Show("Denne patient er ikke ankommet.");
                     return false;
+                }
+
+                if (treatment.status == 3)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Denne behandling er afsluttet, ønsker du at genåbne den?", "Genåbn behandling?", MessageBoxButtons.YesNo);
+                    if (dialogResult != DialogResult.Yes)
+                    {
+                        return false;
+                    }
                 }
 
                 this.Cursor = Cursors.WaitCursor;
