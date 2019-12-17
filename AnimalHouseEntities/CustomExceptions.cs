@@ -439,4 +439,20 @@ namespace AnimalHouseEntities
         {
         }
     }
+    public class DateNotUpdated : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public DateNotUpdated()
+        { }
+
+        public DateNotUpdated(string message)
+            : base(message)
+        { }
+
+        public DateNotUpdated(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
 }

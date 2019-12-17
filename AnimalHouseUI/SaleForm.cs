@@ -20,6 +20,7 @@ namespace AnimalHouseUI
         List<Item> items;
         List<Prescription> prescriptions;
         List<Treatment> treatments;
+        DateTime LastUpdate;
 
         public SaleForm()
         {
@@ -36,6 +37,8 @@ namespace AnimalHouseUI
 
             LoadAllItemsInListBox();
             sale = new Sale(customer, DateTime.Now);
+            LastUpdate = BossController.Instance().itemController.GetLastUpdate();
+            UpdateMedicineLabel.Text = "Dato for sidst opdateret medicinpriser: " + LastUpdate.ToString("dd-MM-yyyy");
         }
 
         #region Copy this 
@@ -344,6 +347,8 @@ namespace AnimalHouseUI
             }
             FillPriceInLable();
         }
+
+
 
         private void SearchItemTextBox_TextChanged(object sender, EventArgs e)
         {

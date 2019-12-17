@@ -198,4 +198,7 @@
   <data name="DateNotFound" xml:space="preserve">
     <value>Medicinpriserne kunne ikke opdateres</value>
   </data>
+  <data name="DateNotUpdated" xml:space="preserve">
+    <value>Datoen kunne ikke opdateres</value>
+  </data>
 </root>

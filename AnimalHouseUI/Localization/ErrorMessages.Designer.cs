@@ -205,6 +205,15 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Datoen kunne ikke opdateres.
+        /// </summary>
+        internal static string DateNotUpdated {
+            get {
+                return ResourceManager.GetString("DateNotUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Der var et problem med databasen.  .
         /// </summary>
         internal static string DefaultDatabaseError {

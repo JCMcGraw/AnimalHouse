@@ -49,7 +49,7 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.TotalPriceLabel = new System.Windows.Forms.Label();
-            this.UpdateMedecinLabel = new System.Windows.Forms.Label();
+            this.UpdateMedicineLabel = new System.Windows.Forms.Label();
             this.ItemDataGridView = new System.Windows.Forms.DataGridView();
             this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -320,15 +320,15 @@
             this.TotalPriceLabel.TabIndex = 37;
             this.TotalPriceLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // UpdateMedecinLabel
+            // UpdateMedicineLabel
             // 
-            this.UpdateMedecinLabel.AutoSize = true;
-            this.UpdateMedecinLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UpdateMedecinLabel.Location = new System.Drawing.Point(21, 617);
-            this.UpdateMedecinLabel.Name = "UpdateMedecinLabel";
-            this.UpdateMedecinLabel.Size = new System.Drawing.Size(191, 13);
-            this.UpdateMedecinLabel.TabIndex = 38;
-            this.UpdateMedecinLabel.Text = "Dato for sidste opdateret Medicin priser";
+            this.UpdateMedicineLabel.AutoSize = true;
+            this.UpdateMedicineLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UpdateMedicineLabel.Location = new System.Drawing.Point(21, 617);
+            this.UpdateMedicineLabel.Name = "UpdateMedicineLabel";
+            this.UpdateMedicineLabel.Size = new System.Drawing.Size(191, 13);
+            this.UpdateMedicineLabel.TabIndex = 38;
+            this.UpdateMedicineLabel.Text = "Dato for sidste opdateret Medicin priser";
             // 
             // ItemDataGridView
             // 
@@ -651,7 +651,7 @@
             this.Controls.Add(this.NewSaleButton);
             this.Controls.Add(this.ItemListDataGridView);
             this.Controls.Add(this.ItemDataGridView);
-            this.Controls.Add(this.UpdateMedecinLabel);
+            this.Controls.Add(this.UpdateMedicineLabel);
             this.Controls.Add(this.TotalPriceLabel);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label16);
@@ -705,7 +705,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label TotalPriceLabel;
-        private System.Windows.Forms.Label UpdateMedecinLabel;
+        private System.Windows.Forms.Label UpdateMedicineLabel;
         private System.Windows.Forms.DataGridView ItemDataGridView;
         private System.Windows.Forms.DataGridView ItemListDataGridView;
         private System.Windows.Forms.Button NewSaleButton;
