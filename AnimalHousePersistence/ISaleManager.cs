@@ -9,9 +9,7 @@ namespace AnimalHousePersistence
 {
     public interface ISaleManager
     {
-        //List<Item> GetAllActiveItems();
         Sale CreateSale(Sale sale);
-        string UpdateSale(Sale sale);
         string DeleteSale(Sale sale);
         List<Sale> GetManySalesByCustomerID(Customer customer);
       

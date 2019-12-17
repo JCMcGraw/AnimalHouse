@@ -34,12 +34,6 @@ namespace AnimalHouse
             return saleWithID;
         }
 
-        public string UpdateSale(Sale sale)
-        {
-            string returncode = saleManager.UpdateSale(sale);
-            return returncode;
-        }
-
         public string DeleteSale(Sale sale)
         {
             string returncode = saleManager.DeleteSale(sale);

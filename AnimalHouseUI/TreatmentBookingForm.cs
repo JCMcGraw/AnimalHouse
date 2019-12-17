@@ -576,17 +576,8 @@ namespace AnimalHouseUI
         {
             List<OperationRoom> availableOperationRooms = new List<OperationRoom>();
             List<Treatment> treatments;
-            try
-            {
-                treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(SuggestedStartTime.Date, SuggestedStartTime.Date.AddDays(1));
-            }
-            catch (Exception exception)
-            {
-                //MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
-                return availableOperationRooms;
-            }
 
-
+            treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(SuggestedStartTime.Date, SuggestedStartTime.Date.AddDays(1));
 
             foreach (OperationRoom operationRoom in operationRooms)
             {
@@ -603,15 +594,7 @@ namespace AnimalHouseUI
         {
             if (treatments == null)
             {
-                try
-                {
-                    treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(SuggestedStartTime.Date, SuggestedStartTime.Date.AddDays(1));
-                }
-                catch (Exception exception)
-                {
-                    MessageBox.Show(ErrorManager.Instance().GetErrorMessage(exception));
-                    return false;
-                }
+                treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(SuggestedStartTime.Date, SuggestedStartTime.Date.AddDays(1));
             }
 
             foreach (Treatment treatment in treatments)
@@ -796,7 +779,17 @@ namespace AnimalHouseUI
             //check availability of operating rooms if treatment type is operation
             if (((TreatmentType)ComboBoxTreatmentType.SelectedItem).treatmentTypeID == 2)
             {
-                List<OperationRoom> availableOperationRooms = GetAllAvailableOperationRooms(operationRooms, e.Item.StartDate, e.Item.EndDate);
+                List<OperationRoom> availableOperationRooms;
+                try
+                {
+                    availableOperationRooms = GetAllAvailableOperationRooms(operationRooms, e.Item.StartDate, e.Item.EndDate);
+                }
+                catch
+                {
+                    MessageBox.Show("Der var et problem med at finde ledige operationsstuer, prøv igen.");
+                    e.Cancel = true;
+                    return;
+                }
 
                 if (availableOperationRooms.Count == 0)
                 {
@@ -949,8 +942,18 @@ namespace AnimalHouseUI
 
                 if (treatmentsCache[calendarItemEventArgs.Item.TreatmentID].treatmentType.treatmentTypeID == 2)
                 {
-
-                    if (GetAllAvailableOperationRooms(operationRooms, calendarItemEventArgs.Item.StartDate, calendarItemEventArgs.Item.EndDate).Count == 0)
+                    List<OperationRoom> availableOperationRooms;
+                    try
+                    {
+                        availableOperationRooms = GetAllAvailableOperationRooms(operationRooms, calendarItemEventArgs.Item.StartDate, calendarItemEventArgs.Item.EndDate);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Der var et problem med at finde ledige operationsstuer, prøv igen.");
+                        return false;
+                    }
+                    
+                    if (availableOperationRooms.Count == 0)
                     {
                         MessageBox.Show("Der er ingen ledige operationsstuer i det ønskede tidsrum!");
                         return false;
@@ -1200,8 +1203,12 @@ namespace AnimalHouseUI
 
         private void ChooseAnimalButton_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
+
             CustomerForm customerForm = new CustomerForm();
             customerForm.ShowDialog();
+
+            this.Cursor = Cursors.Default;
 
             if (customerForm.DialogResult == DialogResult.OK)
             {
@@ -1306,8 +1313,12 @@ namespace AnimalHouseUI
                     return false;
                 }
 
+                this.Cursor = Cursors.WaitCursor;
+
                 TreatmentForm treatmentform = new TreatmentForm(treatment);
                 treatmentform.Show();
+
+                this.Cursor = Cursors.Default;
                 return true;
             }
         }
@@ -1379,7 +1390,7 @@ namespace AnimalHouseUI
                 {
                     treatments = bossController.treatmentController.GetManyTreatmentsByDateTime(treatmentCacheDateStart, treatmentCacheDateEnd);
                 }
-                catch(Exception exception)
+                catch
                 {
                     continue;
                 }

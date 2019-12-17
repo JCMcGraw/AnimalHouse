@@ -373,18 +373,52 @@ namespace AnimalHouseEntities
         }
     }
 
-    public class CantCreateSale : Exception
+    public class CantCreateSaleException : Exception
     {
         public string ResourceReferenceProperty { get; set; }
 
-        public CantCreateSale()
+        public CantCreateSaleException()
         { }
 
-        public CantCreateSale(string message)
+        public CantCreateSaleException(string message)
             : base(message)
         { }
 
-        public CantCreateSale(string message, Exception inner)
+        public CantCreateSaleException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
+
+    public class CantDeleteSaleException : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public CantDeleteSaleException()
+        { }
+
+        public CantDeleteSaleException(string message)
+            : base(message)
+        { }
+
+        public CantDeleteSaleException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
+
+    public class CantUpdateSaleException : Exception
+    {
+        public string ResourceReferenceProperty { get; set; }
+
+        public CantUpdateSaleException()
+        { }
+
+        public CantUpdateSaleException(string message)
+            : base(message)
+        { }
+
+        public CantUpdateSaleException(string message, Exception inner)
             : base(message, inner)
         {
         }

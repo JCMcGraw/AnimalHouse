@@ -141,35 +141,37 @@ namespace AnimalHouseUI
 
         private void button_kunde_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
+
             CustomerForm customerForm = new CustomerForm();
             customerForm.Show();
+
+            this.Cursor = Cursors.Default;
 
         }
 
         private void button_salg_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
+
             SaleForm saleui = new SaleForm();
             saleui.Show();
+
+            this.Cursor = Cursors.Default;
         }
 
         private void button_behandling_Click(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
+
             TreatmentBookingForm treatmentBookingForm = new TreatmentBookingForm();
             if (treatmentBookingForm.StartingvaluesLoadedOK == true)
             {
                 treatmentBookingForm.Show();
             }
+
             this.Cursor = Cursors.Default;
         }
-
-        //private void button_dyr_Click(object sender, EventArgs e)
-        //{
-        //    Customer customer = BossController.Instance().customerController.GetCustomer(123.ToString());
-
-        //    AnimalForm animalForm = new AnimalForm(customer,);
-        //    animalForm.Show();
-        //}
 
         private void Main_Load(object sender, EventArgs e)
         {
@@ -179,8 +181,12 @@ namespace AnimalHouseUI
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
+
             SendReminderForm sendReminderForm = new SendReminderForm();
             sendReminderForm.Show();
+
+            this.Cursor = Cursors.Default;
         }
     }
 }
