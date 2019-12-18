@@ -29,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerForm));
             this.PanelHeader = new System.Windows.Forms.Panel();
             this.LabelTitle = new System.Windows.Forms.Label();
             this.PictureBoxLogo = new System.Windows.Forms.PictureBox();
@@ -55,13 +56,13 @@
             this.checkBox_erhverskunde = new System.Windows.Forms.CheckBox();
             this.label_erhverskunde = new System.Windows.Forms.Label();
             this.dataGridView_dyr = new System.Windows.Forms.DataGridView();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.speciestype = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.button_help = new System.Windows.Forms.Button();
             this.label_nulstil = new System.Windows.Forms.Label();
             this.button_nulstil = new System.Windows.Forms.Button();
             this.label_underheader = new System.Windows.Forms.Label();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.speciestype = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_dyr)).BeginInit();
@@ -90,11 +91,11 @@
             this.LabelTitle.AutoSize = true;
             this.LabelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelTitle.ForeColor = System.Drawing.Color.White;
-            this.LabelTitle.Location = new System.Drawing.Point(309, 3);
+            this.LabelTitle.Location = new System.Drawing.Point(253, 3);
             this.LabelTitle.Name = "LabelTitle";
-            this.LabelTitle.Size = new System.Drawing.Size(162, 29);
+            this.LabelTitle.Size = new System.Drawing.Size(83, 29);
             this.LabelTitle.TabIndex = 5;
-            this.LabelTitle.Text = "Animal House";
+            this.LabelTitle.Text = "Kunde";
             this.LabelTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseDown);
             this.LabelTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseMove);
             this.LabelTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseUp);
@@ -368,6 +369,17 @@
             this.dataGridView_dyr.TabIndex = 27;
             this.dataGridView_dyr.DoubleClick += new System.EventHandler(this.dataGridView_dyr_DoubleClick);
             // 
+            // name
+            // 
+            this.name.HeaderText = "Navn";
+            this.name.Name = "name";
+            // 
+            // speciestype
+            // 
+            this.speciestype.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.speciestype.HeaderText = "Art";
+            this.speciestype.Name = "speciestype";
+            // 
             // button_help
             // 
             this.button_help.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
@@ -417,17 +429,6 @@
             this.label_underheader.TabIndex = 32;
             this.label_underheader.Text = "Søg eller opret kunde";
             // 
-            // name
-            // 
-            this.name.HeaderText = "Navn";
-            this.name.Name = "name";
-            // 
-            // speciestype
-            // 
-            this.speciestype.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.speciestype.HeaderText = "Art";
-            this.speciestype.Name = "speciestype";
-            // 
             // CustomerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -460,8 +461,9 @@
             this.Controls.Add(this.button_opret);
             this.Controls.Add(this.PanelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CustomerForm";
-            this.Text = "SampleForm";
+            this.Text = "Kunde";
             this.Load += new System.EventHandler(this.CustomerForm_Load);
             this.PanelHeader.ResumeLayout(false);
             this.PanelHeader.PerformLayout();

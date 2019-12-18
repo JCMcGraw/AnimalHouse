@@ -8,6 +8,7 @@ namespace AnimalHouseEntities
 {
     public class MedicinPriceFactory
     {
+        //SingleTon Mønster
         private static MedicinPriceFactory instance;
 
         private MedicinPriceFactory() { }
@@ -21,6 +22,7 @@ namespace AnimalHouseEntities
             return instance;
         }
 
+        //Laver Obj af MedicinPrice
         public MedicinePrice CreateMedicinPrice(string name, decimal price, DateTime date)
         {
             return new MedicinePrice(name, price, date);

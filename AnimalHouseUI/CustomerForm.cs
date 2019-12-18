@@ -156,6 +156,7 @@ namespace AnimalHouseUI
 
         private void button_soeg_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             button_opret.Enabled = false;
             checkBox_erhverskunde.Checked = false;
             textBox_cvr.Text = null;
@@ -169,11 +170,13 @@ namespace AnimalHouseUI
             {
                 string errorMessage = ErrorManager.Instance().GetErrorMessage(exception);
                 MessageBox.Show(errorMessage);
+                this.Cursor = Cursors.Default;
                 return;
             }
             //tjekker for at se om kunden er slettet, og i så fald, om den skal reaktiveres
             if (CheckCustomerDeletion()==false)
             {
+                this.Cursor = Cursors.Default;
                 return;
             }
             //udfylder den relevante data i tekstboksene
@@ -181,6 +184,7 @@ namespace AnimalHouseUI
             textBox_adresse.Text = customer.address.ToString();
             textBox_email.Text = customer.email.ToString();
             label_headline.Text = customer.name.ToString();
+            this.Refresh();
 
             //tjekker for om der er tale om en foretningskunde
             CheckForBusinesscustomer(customer);
@@ -194,8 +198,10 @@ namespace AnimalHouseUI
             label_headline.Text = customer.name.ToString();
             checkBox_erhverskunde.Enabled = false;
             textBox_cvr.Enabled = false;
-         label_underheader.Text="Ret, slet, se dyr eller Tilføj dyr";
-  
+            label_underheader.Text="Ret, slet, se dyr eller Tilføj dyr";
+
+            this.Cursor = Cursors.Default;
+
         }
 
         private void button_rediger_Click(object sender, EventArgs e)
@@ -356,8 +362,10 @@ namespace AnimalHouseUI
 
         private void button_dyr_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             AnimalForm animalForm = new AnimalForm(customer, this);
             animalForm.Show();
+            this.Cursor = Cursors.Default;
         }
 
         private void checkBox_erhverskunde_CheckedChanged(object sender, EventArgs e)
@@ -386,8 +394,10 @@ namespace AnimalHouseUI
             }
             else
             {
+                this.Cursor = Cursors.WaitCursor;
                 AnimalForm animalForm = new AnimalForm(customer, animal, this);
                 animalForm.Show();
+                this.Cursor = Cursors.Default;
             }
         }
 

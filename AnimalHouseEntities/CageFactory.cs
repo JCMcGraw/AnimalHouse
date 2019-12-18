@@ -8,6 +8,7 @@ namespace AnimalHouseEntities
 {
     public class CageFactory
     {
+        //SingleTon Mønster
         private static CageFactory instance;
 
         private CageFactory() { }
@@ -22,6 +23,7 @@ namespace AnimalHouseEntities
             return instance;
         }
 
+        //Laver Obj af Cage
         public Cage CreateCage(int cageID,Species species)
         {
             return new Cage(cageID,species);

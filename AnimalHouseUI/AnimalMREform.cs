@@ -138,13 +138,18 @@ namespace AnimalHouseUI
 
         #endregion
         Animal animal;
-        //List<MedicalRecord> medicalRecords;
+        MedicalRecord medicalRecord;
         public AnimalMREform(MedicalRecord medicalRecord,Animal animal)
         {
             InitializeComponent();
-            BossController.Instance().animalController.GetAllMedicalRecordByAnimal(animal);
-            animal_mrEntry.Text = medicalRecord.entry.ToString();
+            this.animal = animal;
+            this.medicalRecord = medicalRecord;
             
+        }
+
+        private void AnimalMREform_Load(object sender, EventArgs e)
+        {
+            animal_mrEntry.Text = medicalRecord.entry.ToString();
         }
     }
 }

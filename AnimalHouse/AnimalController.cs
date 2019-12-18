@@ -10,6 +10,7 @@ namespace AnimalHouse
 {
     public class AnimalController
     {
+        //SingleTon Mønster
         private static AnimalController animalController;
 
         private AnimalController() { }

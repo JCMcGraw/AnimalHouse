@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SaleItemForm));
             this.PanelHeader = new System.Windows.Forms.Panel();
             this.LabelTitle = new System.Windows.Forms.Label();
             this.PictureBoxLogo = new System.Windows.Forms.PictureBox();
@@ -69,11 +70,11 @@
             this.LabelTitle.AutoSize = true;
             this.LabelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelTitle.ForeColor = System.Drawing.Color.White;
-            this.LabelTitle.Location = new System.Drawing.Point(84, 3);
+            this.LabelTitle.Location = new System.Drawing.Point(112, 3);
             this.LabelTitle.Name = "LabelTitle";
-            this.LabelTitle.Size = new System.Drawing.Size(162, 29);
+            this.LabelTitle.Size = new System.Drawing.Size(63, 29);
             this.LabelTitle.TabIndex = 5;
-            this.LabelTitle.Text = "Animal House";
+            this.LabelTitle.Text = "Vare";
             this.LabelTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseDown);
             this.LabelTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseMove);
             this.LabelTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseUp);
@@ -236,8 +237,9 @@
             this.Controls.Add(this.AddItemToSaleListButton);
             this.Controls.Add(this.PanelHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SaleItemForm";
-            this.Text = "SampleForm";
+            this.Text = "Vare";
             this.Load += new System.EventHandler(this.SaleItemForm_Load_1);
             this.PanelHeader.ResumeLayout(false);
             this.PanelHeader.PerformLayout();

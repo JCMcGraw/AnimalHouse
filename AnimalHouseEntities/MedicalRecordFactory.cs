@@ -8,6 +8,7 @@ namespace AnimalHouseEntities
 {
     public class MedicalRecordFactory
     {
+        //SingleTon
         private static MedicalRecordFactory instance;
 
         private MedicalRecordFactory() { }
@@ -22,14 +23,14 @@ namespace AnimalHouseEntities
             return instance;
         }
 
-        //MEdicalRecord MED medicalRecordID
+        //Laver Obj af MedicalRecord
         public MedicalRecord CreateMedicalRecord(int medicalRecordID,string entry, Animal animal, Treatment treatment)
         {
             MedicalRecord medicalRecord = new MedicalRecord(medicalRecordID,entry, animal, treatment);
             return medicalRecord;
         }
 
-        //MedicalRecord UDEN medicalRecordID
+        //Laver Obj af MedicalRecord
         public MedicalRecord CreateMedicalRecord(string entry, Animal animal, Treatment treatment)
         {
             MedicalRecord medicalRecord = new MedicalRecord(entry, animal, treatment);

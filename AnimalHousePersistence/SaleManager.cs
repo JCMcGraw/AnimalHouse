@@ -12,39 +12,6 @@ namespace AnimalHousePersistence
 {
     public class SaleManager : ISaleManager
     {
-        //public List<Item> GetAllActiveItems()
-        //{
-        //        string query = Utility.ReadSQLQueryFromFile("GetAllActiveItems.txt");
-
-        //        SQLQuery sQLQuery = new SQLQuery(query);
-
-        //        SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
-
-        //        if (sQLQueryResult.code == 0)
-        //        {
-
-        //            List<Item> items = GetListOfItemsFromDatatable(sQLQueryResult.dataTable);
-        //        if (items.Count == 0) { throw new NoItemsFoundException("1"); }
-        //            return items;
-        //        }
-        //        else
-        //        {
-        //            throw new NoItemsFoundException("", sQLQueryResult.exception);
-        //        }
-        //}
-
-        //private List<Item> GetListOfItemsFromDatatable(DataTable dataTable)
-        //{
-        //    List<Item> items = new List<Item>();
-
-        //    foreach(DataRow dataRow in dataTable.Rows)
-        //    {
-        //        Item item = GetItemFromDataRow(dataRow);
-        //        items.Add(item);
-        //    }
-
-        //    return items;
-        //}
 
         private Item GetItemFromDataRow(DataRow dataRow)
         {
@@ -77,8 +44,8 @@ namespace AnimalHousePersistence
             }
             catch (Exception e)
             {
-                
-                return sale;
+
+                throw new CantCreateSaleException("", e);
             }
             return sale;
         }
@@ -210,7 +177,7 @@ namespace AnimalHousePersistence
             }
             catch (Exception e)
             {
-                return "Sale not  deleted";
+                throw new CantDeleteSaleException("", e);
             }
             return "Sale deleted";
         }
@@ -307,27 +274,5 @@ namespace AnimalHousePersistence
             return saleLineItem;
         }
 
-
-        public string UpdateSale(Sale sale)
-        {
-            try
-            {
-                using (TransactionScope transactionScope = new TransactionScope())
-                {
-                    using (SqlConnection sqlConnection = SQLDatabaseConnector.OpenConnection())
-                    {
-
-                        DeleteSaleLineItemsFromSale(sale, sqlConnection);
-                        InsertSaleLineItemsInSale(sale, sqlConnection);
-                    }
-                    transactionScope.Complete();
-                }
-            }
-            catch (Exception e)
-            {
-                return "Sale not  updated";
-            }
-            return "Sale updated";
-        }
     }
 }

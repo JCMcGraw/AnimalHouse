@@ -8,6 +8,7 @@ namespace AnimalHouseEntities
 {
     public class SaleFactory
     {
+        //SingleTon Mønster
         private static SaleFactory instance;
 
         private SaleFactory() { }
@@ -21,13 +22,15 @@ namespace AnimalHouseEntities
 
             return instance;
         }
-
+        
+        //Laver Obj af Sale
         public Sale CreateSale(int saleID, Customer customer, DateTime salesDay)
         {
             Sale sale = new Sale(saleID, customer, salesDay);
             return sale;
         }
 
+        //Laver Obj af Sale
         public Sale CreateSale(Customer customer, DateTime salesDay)
         {
             Sale sale = new Sale(customer, salesDay);

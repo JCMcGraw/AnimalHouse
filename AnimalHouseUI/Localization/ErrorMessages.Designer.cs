@@ -19,7 +19,7 @@ namespace AnimalHouseUI.Localization {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class ErrorMessages {
@@ -106,7 +106,7 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kunne Ikke Oprette et salg..
+        ///   Looks up a localized string similar to Kunne Ikke Oprette et salg. .
         /// </summary>
         internal static string CantCreateSale {
             get {
@@ -129,6 +129,15 @@ namespace AnimalHouseUI.Localization {
         internal static string CantDeleteException {
             get {
                 return ResourceManager.GetString("CantDeleteException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salget kunne ikke slettes. .
+        /// </summary>
+        internal static string CantDeleteSale {
+            get {
+                return ResourceManager.GetString("CantDeleteSale", resourceCulture);
             }
         }
         
@@ -160,7 +169,7 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kundes liste over dyr kunne ikke indlæses.
+        ///   Looks up a localized string similar to Kundes liste over dyr kunne ikke indlæses. .
         /// </summary>
         internal static string CantGetAnimalList {
             get {
@@ -169,7 +178,7 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Recepten kunne ikke findes.
+        ///   Looks up a localized string similar to Recepten kunne ikke findes. .
         /// </summary>
         internal static string CantGetUnPaidPrescription {
             get {
@@ -187,7 +196,7 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Det var ikke muligt at redigere kunden. Muligvis er telefon -eller cvr-nummer optaget..
+        ///   Looks up a localized string similar to Det var ikke muligt at redigere kunden. Muligvis er telefon -eller cvr-nummer optaget. .
         /// </summary>
         internal static string CustomerNotUpdated {
             get {
@@ -196,7 +205,7 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Medicinpriserne kunne ikke opdateres.
+        ///   Looks up a localized string similar to Medicinpriserne kunne ikke opdateres. .
         /// </summary>
         internal static string DateNotFound {
             get {
@@ -205,7 +214,7 @@ namespace AnimalHouseUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Datoen kunne ikke opdateres.
+        ///   Looks up a localized string similar to Datoen kunne ikke opdateres. .
         /// </summary>
         internal static string DateNotUpdated {
             get {
@@ -300,15 +309,6 @@ namespace AnimalHouseUI.Localization {
         internal static string PrescriptionNotFound {
             get {
                 return ResourceManager.GetString("PrescriptionNotFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Behandlingen kunne ikke slettes.
-        /// </summary>
-        internal static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
     }
