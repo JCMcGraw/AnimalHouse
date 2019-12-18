@@ -29,7 +29,7 @@ namespace AnimalHousePersistence
                 decimal price = Convert.ToDecimal(MedicinList[1]);
                 string name = MedicinList[0];
                 
-                MedicinePrice medicinPrice = new MedicinePrice(name,price,date);
+                MedicinePrice medicinPrice = MedicinPriceFactory.Instance().CreateMedicinPrice(name,price,date);
                 list.Add(medicinPrice);
             }
             return list;

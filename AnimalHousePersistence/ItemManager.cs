@@ -30,7 +30,6 @@ namespace AnimalHousePersistence
                 {
                     MedicinePrice medicinePrice = medicinePrices[i];
 
-
                     string query = Utility.ReadSQLQueryFromFile("UpdateMedicinCostPrice.txt");
 
                     SQLQuery sQLQuery = new SQLQuery(query);
@@ -38,33 +37,10 @@ namespace AnimalHousePersistence
                     sQLQuery.AddParameter("@name", medicinePrice.name.ToString(), SqlDbType.VarChar);
                     sQLQuery.AddParameter("@costprice", medicinePrice.price.ToString(), SqlDbType.Decimal);
 
-
-
                     SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
                 }
                 UpdateMedicinePriceDate(medicinePrices[0]);
             }
-            
-
-            
-           
-
-
-       
-
-
-
-            //if (sQLQueryResult.code == 0)
-            //{
-            //    return "ok";
-            //}
-            //else
-            //{
-            //    return sQLQueryResult.exception.Message.ToString();
-
-            //}
-            //return "ok";
-
         }
         public string UpdateMedicinePriceDate(MedicinePrice medicinePrice)
         {
