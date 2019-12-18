@@ -11,11 +11,8 @@ namespace AnimalHousePersistence
     {
         void UpdateMedicinePrice(int adapterSelector);
 
-       
-        //string UpdateMedicinePriceDate(MedicinePrice medicinePrice);
         DateTime GetLastUpdate();
         List<Item> GetAllActiveItems();
 
-        //List<MedicinePrice>GetMedicinPrices(MedicinePrice medicinPrice);
     }
 }

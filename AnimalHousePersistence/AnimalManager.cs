@@ -282,7 +282,7 @@ namespace AnimalHousePersistence
 
                 MedicalRecord medicalRecord = MedicalRecordFactory.Instance().CreateMedicalRecord(MedicalRecordID, entry, animal, treatment);
                 entries.Add(medicalRecord);
-                //entries.Add(MedicalRecordFactory.Instance().CreateMedicalRecord(entry,animalID,treatmentType));
+               
             }
             return entries;
         }
