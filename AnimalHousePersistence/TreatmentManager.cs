@@ -127,45 +127,7 @@ namespace AnimalHousePersistence
 
             return treatments;
         }
-
-        public List<Treatment> GetManyTreatmentsByEmployee(int employeeID, DateTime startTime, DateTime endTime)
-        {
-            string query = Utility.ReadSQLQueryFromFile("GetManyTreatmentsByEmployee.txt");
-
-            SQLQuery sQLQuery = new SQLQuery(query);
-
-            sQLQuery.AddParameter("@employeeID", employeeID.ToString(), SqlDbType.Int);
-            sQLQuery.AddParameter("@startTime", startTime.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
-            sQLQuery.AddParameter("@endTime", endTime.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
-
-            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
-
-            List<Treatment> treatments = new List<Treatment>();
-
-            treatments = GetTreatmentList(sQLQueryResult);
-
-            return treatments;
-        }
-
-        public List<Treatment> GetManyTreatmentsByAnimal(int animalID, DateTime startTime, DateTime endTime)
-        {
-            string query = Utility.ReadSQLQueryFromFile("GetManyTreatmentsByAnimal.txt");
-
-            SQLQuery sQLQuery = new SQLQuery(query);
-
-            sQLQuery.AddParameter("@animalID", animalID.ToString(), SqlDbType.Int);
-            sQLQuery.AddParameter("@startTime", startTime.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
-            sQLQuery.AddParameter("@endTime", endTime.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
-
-            SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
-
-            List<Treatment> treatments = new List<Treatment>();
-
-            treatments = GetTreatmentList(sQLQueryResult);
-
-            return treatments;
-        }
-
+        
         public List<Treatment> GetManyTreatmentsByDateTime(DateTime startTime, DateTime endTime)
         {
             string query = Utility.ReadSQLQueryFromFile("GetManyTreatmentsByDateTime.txt");
