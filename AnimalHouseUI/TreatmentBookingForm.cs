@@ -316,6 +316,10 @@ namespace AnimalHouseUI
         {
             lock (locker)
             {
+                if (!InvokeRequired)
+                {
+                    this.Cursor = Cursors.WaitCursor;
+                }
                 if (treatments == null)
                 {
                     try
@@ -341,6 +345,7 @@ namespace AnimalHouseUI
                 if (!InvokeRequired)
                 {
                     PlaceItems();
+                    this.Cursor = Cursors.Default;
                 }
             }
 
@@ -386,7 +391,8 @@ namespace AnimalHouseUI
         private void PlaceItems()
         {
             int treatmenttype = 0;
-
+            
+            //get treatementtype selected on form
             if (ComboBoxTreatmentType.SelectedValue != null)
             {
                 try
@@ -395,34 +401,41 @@ namespace AnimalHouseUI
                 }
                 catch { }
             }
-
+            //clear items from calendar
             CalendarBooking.Items.Clear();
+            //insert each CalendarItem in calendar
             foreach (CalendarItem item in calendarItemsCache)
             {
                 if (CalendarBooking.ViewIntersects(item))
                 {
+                    //insert observation items
                     if (treatmenttype == 3)
                     {
                         if (treatmentsCache[item.TreatmentID].treatmentType.treatmentTypeID == 3)
                         {
-
+                            //set color of item
                             ChangeColor(treatmentsCache[item.TreatmentID].status, item);
                             CalendarBooking.Items.Add(item);
                         }
                     }
+                    //insert consultation or operation items
                     else
                     {
                         if (treatmentsCache[item.TreatmentID].treatmentType.treatmentTypeID != 3)
                         {
                             Employee selectedEmployee = (Employee)ComboBoxEmployee.SelectedItem;
 
+                            //set all items
                             if (selectedEmployee.employeeID == -1)
                             {
+                                //set color of item
                                 ChangeColor(treatmentsCache[item.TreatmentID].status, item);
                                 CalendarBooking.Items.Add(item);
                             }
+                            //set only items of selected employee
                             else if (item.EmployeeID == selectedEmployee.employeeID)
                             {
+                                //set color of item
                                 ChangeColor(treatmentsCache[item.TreatmentID].status, item);
                                 CalendarBooking.Items.Add(item);
                             }
