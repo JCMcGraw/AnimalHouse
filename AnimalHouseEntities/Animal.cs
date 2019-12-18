@@ -62,12 +62,6 @@ namespace AnimalHouseEntities
         }
 
         //Kommentar
-        public void GetAnimalList(int animalid)
-        {
-            this.animalID = animalid;
-        }
-
-        //Kommentar
         public void AddPrescriptionList(List<Prescription> prescriptions)
         {
             this.prescriptions = prescriptions;

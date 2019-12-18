@@ -98,7 +98,6 @@
             this.LabelTitle.Size = new System.Drawing.Size(49, 29);
             this.LabelTitle.TabIndex = 5;
             this.LabelTitle.Text = "Dyr";
-            this.LabelTitle.Click += new System.EventHandler(this.LabelTitle_Click);
             this.LabelTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseDown);
             this.LabelTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseMove);
             this.LabelTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LabelTitle_MouseUp);
@@ -306,7 +305,6 @@
             this.animal_species.Name = "animal_species";
             this.animal_species.Size = new System.Drawing.Size(99, 21);
             this.animal_species.TabIndex = 30;
-            this.animal_species.SelectedIndexChanged += new System.EventHandler(this.Animal_species_SelectedIndexChanged);
             // 
             // animal_employee
             // 
@@ -325,7 +323,6 @@
             this.animal_employee.Name = "animal_employee";
             this.animal_employee.Size = new System.Drawing.Size(99, 21);
             this.animal_employee.TabIndex = 31;
-            this.animal_employee.SelectedIndexChanged += new System.EventHandler(this.Animal_employee_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -346,7 +343,6 @@
             this.animal_gender.Name = "animal_gender";
             this.animal_gender.Size = new System.Drawing.Size(99, 21);
             this.animal_gender.TabIndex = 33;
-            this.animal_gender.SelectedIndexChanged += new System.EventHandler(this.Animal_gender_SelectedIndexChanged);
             // 
             // animal_bdate
             // 

@@ -310,15 +310,7 @@ namespace AnimalHouseUI
 
             }
         }
-        private void button_opret_Click(object sender, EventArgs e)
-        {
 
-
-            
-
-
-
-        }
 
         private void Button_opret_Click_1(object sender, EventArgs e)
         {
@@ -390,15 +382,6 @@ namespace AnimalHouseUI
             }
         }
 
-        private void Animal_species_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void LabelTitle_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void Button_rediger_Click(object sender, EventArgs e)
         {
@@ -579,26 +562,7 @@ namespace AnimalHouseUI
         }
       
 
-
-        private void Animal_gender_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void PictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Animal_employee_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private void Button_help_Click(object sender, EventArgs e)
         {
@@ -624,10 +588,7 @@ namespace AnimalHouseUI
             return true;
         }
 
-        //private void Animal_medicalRecords_DoubleClick(object sender, EventArgs e)
-        //{
-
-        //}
+       
     }
 }
 
