@@ -36,7 +36,7 @@ namespace AnimalHouseUI
             FakturaButton.Enabled = false;
 
             LoadAllItemsInListBox();
-            sale = new Sale(customer, DateTime.Now);
+            sale = SaleFactory.Instance().CreateSale(customer, DateTime.Now);
             LastUpdate = BossController.Instance().itemController.GetLastUpdate();
             UpdateMedicineLabel.Text = "Dato for sidst opdateret medicinpriser: " + LastUpdate.ToString("dd-MM-yyyy");
         }
@@ -245,7 +245,7 @@ namespace AnimalHouseUI
                 MomsLabel.Text = "";
                 TotalInkMomsLabel.Text = "";
 
-                sale = new Sale(customer, DateTime.Now);
+                sale = SaleFactory.Instance().CreateSale(customer, DateTime.Now);
                 ItemListDataGridView.DataSource = null;
                 UnPaidPrescriptionsDataGridView.DataSource = null;
                 UnPaidTreatmentDataGridView.DataSource = null;
@@ -344,7 +344,7 @@ namespace AnimalHouseUI
 
                 if (sale == null)
                 {
-                    sale = new Sale(customer, DateTime.Now);
+                    sale = SaleFactory.Instance().CreateSale(customer, DateTime.Now);
                 }
 
                 sale.AddSaleLineItem(saleLineItem);

@@ -198,9 +198,9 @@ namespace AnimalHouseUI
             }
             catch (Exception )
             {
-            }
-            
+            } 
         }
+
         public void RemovePriceOption()
         {
             PriceTextBox.Enabled = false;
