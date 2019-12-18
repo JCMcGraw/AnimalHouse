@@ -51,7 +51,13 @@
             this.TotalPriceLabel = new System.Windows.Forms.Label();
             this.UpdateMedicineLabel = new System.Windows.Forms.Label();
             this.ItemDataGridView = new System.Windows.Forms.DataGridView();
+            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemListDataGridView = new System.Windows.Forms.DataGridView();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NewSaleButton = new System.Windows.Forms.Button();
             this.AdressTextBox = new System.Windows.Forms.TextBox();
             this.EmailTextBox = new System.Windows.Forms.TextBox();
@@ -73,12 +79,6 @@
             this.treatmentPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button_help = new System.Windows.Forms.Button();
             this.DeleteItemInStockButton = new System.Windows.Forms.Button();
-            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ItemDataGridView)).BeginInit();
@@ -326,9 +326,9 @@
             this.UpdateMedicineLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdateMedicineLabel.Location = new System.Drawing.Point(21, 617);
             this.UpdateMedicineLabel.Name = "UpdateMedicineLabel";
-            this.UpdateMedicineLabel.Size = new System.Drawing.Size(191, 13);
+            this.UpdateMedicineLabel.Size = new System.Drawing.Size(187, 13);
             this.UpdateMedicineLabel.TabIndex = 38;
-            this.UpdateMedicineLabel.Text = "Dato for sidste opdateret Medicin priser";
+            this.UpdateMedicineLabel.Text = "Dato for sidste opdateret medicinpriser";
             // 
             // ItemDataGridView
             // 
@@ -351,6 +351,23 @@
             this.ItemDataGridView.TabIndex = 45;
             this.ItemDataGridView.DoubleClick += new System.EventHandler(this.ItemDataGridView_DoubleClick);
             // 
+            // ItemName
+            // 
+            this.ItemName.HeaderText = "Navn";
+            this.ItemName.Name = "ItemName";
+            // 
+            // itemAmount
+            // 
+            this.itemAmount.HeaderText = "Antal";
+            this.itemAmount.Name = "itemAmount";
+            this.itemAmount.Width = 50;
+            // 
+            // itemPrice
+            // 
+            this.itemPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.itemPrice.HeaderText = "Pris";
+            this.itemPrice.Name = "itemPrice";
+            // 
             // ItemListDataGridView
             // 
             this.ItemListDataGridView.AllowUserToAddRows = false;
@@ -370,6 +387,24 @@
             this.ItemListDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.ItemListDataGridView.Size = new System.Drawing.Size(234, 316);
             this.ItemListDataGridView.TabIndex = 46;
+            // 
+            // name
+            // 
+            this.name.HeaderText = "Navn";
+            this.name.Name = "name";
+            // 
+            // amount
+            // 
+            this.amount.HeaderText = "Antal";
+            this.amount.Name = "amount";
+            this.amount.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.amount.Width = 50;
+            // 
+            // price
+            // 
+            this.price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.price.HeaderText = "Pris";
+            this.price.Name = "price";
             // 
             // NewSaleButton
             // 
@@ -447,9 +482,9 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(311, 147);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 13);
+            this.label7.Size = new System.Drawing.Size(55, 13);
             this.label7.TabIndex = 57;
-            this.label7.Text = "Hylde Vare";
+            this.label7.Text = "Hyldevare";
             // 
             // ShowStockButton
             // 
@@ -592,41 +627,6 @@
             this.DeleteItemInStockButton.TabIndex = 67;
             this.DeleteItemInStockButton.UseVisualStyleBackColor = false;
             this.DeleteItemInStockButton.Click += new System.EventHandler(this.DeleteItemInStockButton_Click);
-            // 
-            // ItemName
-            // 
-            this.ItemName.HeaderText = "Navn";
-            this.ItemName.Name = "ItemName";
-            // 
-            // itemAmount
-            // 
-            this.itemAmount.HeaderText = "Antal";
-            this.itemAmount.Name = "itemAmount";
-            this.itemAmount.Width = 50;
-            // 
-            // itemPrice
-            // 
-            this.itemPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.itemPrice.HeaderText = "Pris";
-            this.itemPrice.Name = "itemPrice";
-            // 
-            // name
-            // 
-            this.name.HeaderText = "Navn";
-            this.name.Name = "name";
-            // 
-            // amount
-            // 
-            this.amount.HeaderText = "Antal";
-            this.amount.Name = "amount";
-            this.amount.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.amount.Width = 50;
-            // 
-            // price
-            // 
-            this.price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.price.HeaderText = "Pris";
-            this.price.Name = "price";
             // 
             // SaleForm
             // 

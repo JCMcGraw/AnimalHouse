@@ -153,7 +153,7 @@ namespace AnimalHousePersistence
                     int employeeID = (int)sQLQueryResult.dataTable.Rows[i]["EmployeeID"];
                     bool employeeActive = (bool)sQLQueryResult.dataTable.Rows[i]["EmployeeActive"];
 
-                    employee = EmployeeFactory.Instance().CreateEmployee(employeeID, employeeName, employeeActive, titleID, title);
+                    employee = EmployeeFactory.Instance().CreateEmployee(employeeID, employeeName, employeeActive, title);
                 }
                 int CustomerID = (int)sQLQueryResult.dataTable.Rows[i]["CustomerID"];
                 string customerName = (string)sQLQueryResult.dataTable.Rows[i]["customername"];
@@ -344,7 +344,7 @@ namespace AnimalHousePersistence
                     string titleName = (string)sQLQueryResult.dataTable.Rows[i]["TitleName"];
 
                     title = TitleFactory.Instance().CreateTitle(titleName, titleID);
-                    employee = EmployeeFactory.Instance().CreateEmployee(employeeID, name, true, titleID, title);
+                    employee = EmployeeFactory.Instance().CreateEmployee(employeeID, name, true, title);
                 }
 
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("AnimalID"))

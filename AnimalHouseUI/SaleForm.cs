@@ -294,11 +294,16 @@ namespace AnimalHouseUI
         }
 
         private void DeleteItemInStockButton_Click(object sender, EventArgs e)
-        { 
-            int row = ItemListDataGridView.SelectedRows[0].Index;
-            sale.saleLineItems.RemoveAt(row);
-            LoadeItemList();
-            
+        {
+            try
+            {
+                int row = ItemListDataGridView.SelectedRows[0].Index;
+                sale.saleLineItems.RemoveAt(row);
+                LoadeItemList();
+
+            }
+            catch { }
+
         }
 
         private void ChoseDataView1()

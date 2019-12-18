@@ -493,7 +493,7 @@ namespace AnimalHouseUI
 
 
             List<Employee> vets = employees.Where(x => x.title.titleID == 1).ToList<Employee>();
-            vets.Insert(0, new Employee(-1, "ingen", true, -1, new Title("Dyrlæge", -1)));
+            vets.Insert(0, new Employee(-1, "ingen", true, new Title("Dyrlæge", -1)));
 
             animal_employee.DataSource = vets;
             animal_employee.DisplayMember = "name";

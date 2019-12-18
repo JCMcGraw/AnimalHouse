@@ -90,6 +90,12 @@ namespace AnimalHousePersistence
             sQLQuery.AddParameter("@customerID", privateCustomer.customerID.ToString(), SqlDbType.Int);
 
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
+
+            if (sQLQueryResult.code != 0)
+            {
+                throw new CantCreateCustomer("", sQLQueryResult.exception);
+            }
+
         }
 
         public string UpdateCustomer(Customer customer)

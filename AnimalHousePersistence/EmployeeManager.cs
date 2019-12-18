@@ -52,7 +52,7 @@ namespace AnimalHousePersistence
                 Title newtitle = TitleFactory.Instance().CreateTitle(titleName, titleID);
                 title = newtitle;
 
-                employees.Add(EmployeeFactory.Instance().CreateEmployee(employeeID, name, active, titleID, title));
+                employees.Add(EmployeeFactory.Instance().CreateEmployee(employeeID, name, active, title));
             }
             return employees;
         }

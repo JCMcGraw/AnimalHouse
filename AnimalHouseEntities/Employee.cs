@@ -14,16 +14,14 @@ namespace AnimalHouseEntities
 
         public bool active { get; private set; }
 
-        public int titleID { get; private set; }
-
+        
         public Title title { get; private set; }
 
-        public Employee(int employeeID, string name, bool active, int titleID, Title title)
+        public Employee(int employeeID, string name, bool active, Title title)
         {
             this.employeeID = employeeID;
             this.name = name;
-            this.active = active;
-            this.titleID = titleID;
+            this.active = active; 
             this.title = title;
         }
         public Employee(int employeeID, string name)
