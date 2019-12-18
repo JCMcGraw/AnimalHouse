@@ -23,9 +23,9 @@ namespace AnimalHouseEntities
         }
 
         //Laver Obj af Employee
-        public Employee CreateEmployee(int employeeID, string name, bool active, int titleID, Title title)
+        public Employee CreateEmployee(int employeeID, string name, bool active, Title title)
         {
-            return new Employee(employeeID, name, active, titleID, title);
+            return new Employee(employeeID, name, active, title);
         }
 
         //Laver Obj af Employee

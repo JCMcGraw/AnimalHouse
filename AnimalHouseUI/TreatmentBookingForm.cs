@@ -114,7 +114,7 @@ namespace AnimalHouseUI
                 return false;
             }
 
-            vets.Insert(0, new Employee(-1, "Alle", true, -1, new Title("Dyrlæge", -1)));
+            vets.Insert(0, new Employee(-1, "Alle", true, new Title("Dyrlæge", -1)));
 
             ComboBoxEmployee.DataSource = vets;
             ComboBoxEmployee.DisplayMember = "name";
