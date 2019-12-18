@@ -44,7 +44,6 @@
             this.label_underheadline2 = new System.Windows.Forms.Label();
             this.comboBox_recept = new System.Windows.Forms.ComboBox();
             this.label_vaelg_medicin = new System.Windows.Forms.Label();
-            this.label_hjaelp = new System.Windows.Forms.Label();
             this.button_help = new System.Windows.Forms.Button();
             this.PanelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogo)).BeginInit();
@@ -231,15 +230,6 @@
             this.label_vaelg_medicin.TabIndex = 16;
             this.label_vaelg_medicin.Text = "Vælg medicin";
             // 
-            // label_hjaelp
-            // 
-            this.label_hjaelp.AutoSize = true;
-            this.label_hjaelp.Location = new System.Drawing.Point(746, 82);
-            this.label_hjaelp.Name = "label_hjaelp";
-            this.label_hjaelp.Size = new System.Drawing.Size(35, 13);
-            this.label_hjaelp.TabIndex = 33;
-            this.label_hjaelp.Text = "Hjælp";
-            // 
             // button_help
             // 
             this.button_help.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
@@ -261,7 +251,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(227)))), ((int)(((byte)(254)))));
             this.ClientSize = new System.Drawing.Size(800, 399);
-            this.Controls.Add(this.label_hjaelp);
             this.Controls.Add(this.button_help);
             this.Controls.Add(this.label_vaelg_medicin);
             this.Controls.Add(this.comboBox_recept);
@@ -304,7 +293,6 @@
         private System.Windows.Forms.Label label_underheadline2;
         private System.Windows.Forms.ComboBox comboBox_recept;
         private System.Windows.Forms.Label label_vaelg_medicin;
-        private System.Windows.Forms.Label label_hjaelp;
         private System.Windows.Forms.Button button_help;
     }
 }

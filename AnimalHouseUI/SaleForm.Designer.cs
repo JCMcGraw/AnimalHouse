@@ -482,9 +482,9 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(311, 147);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 13);
+            this.label7.Size = new System.Drawing.Size(55, 13);
             this.label7.TabIndex = 57;
-            this.label7.Text = "Hylde Vare";
+            this.label7.Text = "Hyldevare";
             // 
             // ShowStockButton
             // 

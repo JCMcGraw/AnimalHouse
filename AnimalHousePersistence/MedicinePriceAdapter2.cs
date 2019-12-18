@@ -14,7 +14,7 @@ namespace AnimalHousePersistence
         {
             List<MedicinePrice> list = new List<MedicinePrice>();
 
-            string[] MedicinPrices = File.ReadAllLines("D:\\Medicin\\medicin2.txt");
+            string[] MedicinPrices = File.ReadAllLines("Medicin/medicin2.txt");
             DateTime date = Convert.ToDateTime(MedicinPrices[0]);
             
 
