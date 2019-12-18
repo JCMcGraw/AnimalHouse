@@ -51,18 +51,6 @@ namespace AnimalHouse
             return getTreatment;
         }
 
-        public List<Treatment> GetManyTreatmentsByEmployee(int employeeID, DateTime startTime, DateTime endTime)
-        {
-            List<Treatment> getManyTreatmentsByEmployee = treatmentManager.GetManyTreatmentsByEmployee(employeeID,startTime,endTime);
-            return getManyTreatmentsByEmployee;
-        }
-
-        public List<Treatment> GetManyTreatmentsByAnimal(int animalID, DateTime startTime, DateTime endTime)
-        {
-            List<Treatment> getManyTreatmentsByAnimal = treatmentManager.GetManyTreatmentsByAnimal(animalID,startTime,endTime);
-            return getManyTreatmentsByAnimal;
-        }
-
         public List<Treatment> GetManyTreatmentsByDateTime(DateTime startTime, DateTime endTime)
         {
             List<Treatment> getManyTreatmentsByDateTime = treatmentManager.GetManyTreatmentsByDateTime(startTime, endTime);

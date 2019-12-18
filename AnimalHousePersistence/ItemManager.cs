@@ -105,7 +105,7 @@ namespace AnimalHousePersistence
 
             if (sQLQueryResult.code == 0)
             {
-                return (DateTime) sQLQueryResult.dataTable.Rows[0]["Updatetime"];
+                return (DateTime) sQLQueryResult.dataTable.Rows[0]["UpdateTime"];
             }
             else
             {
