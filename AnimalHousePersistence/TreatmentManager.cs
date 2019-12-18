@@ -376,6 +376,7 @@ namespace AnimalHousePersistence
 
                     int animalEmployeeID = (int)sQLQueryResult.dataTable.Rows[i]["AnimalEmployeeID"];
                     string animalEmployeeName = (string)sQLQueryResult.dataTable.Rows[i]["AnimalEmployeeName"];
+                    
                     bool animalEmployeeActive = (bool)sQLQueryResult.dataTable.Rows[i]["AnimalEmployeeActive"];
 
 
