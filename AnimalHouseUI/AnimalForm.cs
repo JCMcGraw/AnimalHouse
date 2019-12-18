@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AnimalHouse;
 using AnimalHouseEntities;
@@ -13,27 +12,19 @@ using System.Text.RegularExpressions;
 using System.Diagnostics;
 using System.IO;
 
-
 namespace AnimalHouseUI
 {
     public partial class AnimalForm : Form
     {
         Animal animal;
         Customer customer;
-        //Employee employee;
         List<Employee> employees;
         List<Species> species;
         List<Prescription> prescriptions;
         List<MedicalRecord> medicalRecords;
         public MedicalRecord selectedMedicalRecord;
         CustomerForm customerForm;
-
-
-
-        //private DataTable Animal_Gender = new DataTable();
-
         public AnimalForm(Customer customer,Animal animal, CustomerForm customerForm)
-
         {
             this.customerForm = customerForm;
             this.customer = customer;
@@ -41,36 +32,28 @@ namespace AnimalHouseUI
             InitializeComponent();
             animal_prescription.AutoGenerateColumns = false;
 
-
             button_create.Enabled = false;
 
             animal_name.Enabled = false;
             animal_bdate.Enabled = false;
             animal_species.Enabled = false;
             animal_gender.Enabled = false;
-            animal_medicalRecords.AutoGenerateColumns = false;
-            //MessageBox.Show(animal.gender.ToString());
+            animal_medicalRecords.AutoGenerateColumns = false;         
         }
         private void SetStatusComboBoxToDefault()
         {
             animal_gender.SelectedIndex=0;
-            animal_species.SelectedIndex = 0;
-           
-            
+            animal_species.SelectedIndex = 0;           
         }
         public AnimalForm(Customer customer, CustomerForm customerForm)
-
         {
             this.customerForm = customerForm;
             this.customer = customer;
-
-           
+   
             InitializeComponent();
 
             button_delete.Enabled = false;
             button_edit.Enabled = false;
-
-
         }
         #region Copy this 
 
@@ -195,9 +178,6 @@ namespace AnimalHouseUI
 
         private void AnimalForm_Load(object sender, EventArgs e)
         {
-            
-            //animal_medicalRecords.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
             LoadeAllItemsInComboBox();
             BossController.Instance().animalController.GetSpecies();
             if( animal != null)
@@ -216,8 +196,6 @@ namespace AnimalHouseUI
                 {
                     animal_employee.Text = Convert.ToString(animal.Employee.name);
                 }
-
-
                 try
                 {
                     prescriptions = BossController.Instance().animalController.GetAllPrescriptionByAnimal(animal.animalID);
@@ -237,25 +215,18 @@ namespace AnimalHouseUI
                 }
                 catch (Exception exception)
                 {
-
                     string errorMessage = ErrorManager.Instance().GetErrorMessage(exception);
                     MessageBox.Show(errorMessage);
                     return;
                 }
-
-
-
                 try
                 {
 
                 medicalRecords = BossController.Instance().animalController.GetAllMedicalRecordByAnimal(animal);
-                //List<MedicalRecord> medicalRecords = BossController.Instance().animalController.GetAllMedicalRecordByAnimal(animal);
-
+                
                 animal.AddMedicalRecordEntryList(medicalRecords);
 
                 animal_medicalRecords.DataSource = medicalRecords;
-
-              
 
                     for (int i = 0; i < medicalRecords.Count; i++)
                     {
@@ -263,37 +234,18 @@ namespace AnimalHouseUI
 
                         animal_medicalRecords.Rows[i].Cells["title"].Value = tmpMedicalRecord.treatment.headline;
                         animal_medicalRecords.Rows[i].Cells["MR_date"].Value = tmpMedicalRecord.treatment.startTime;
-
                     }
                 }
                 catch (Exception exception)
                 {
-
                     string errorMessage = ErrorManager.Instance().GetErrorMessage(exception);
                     MessageBox.Show(errorMessage);
                     return;
                 }
-
-
-
-
             }
-
-
-
-
-
-
-
-
-
-
-
-
         }
         private void animal_medicalRecords_DoubleClick(object sender, EventArgs e)
         {
-
             DataGridViewRow row = animal_medicalRecords.SelectedRows[0];
 
             MedicalRecord medicalRecord = row.DataBoundItem as MedicalRecord;
@@ -308,24 +260,12 @@ namespace AnimalHouseUI
             {
                 AnimalMREform animalMREform = new AnimalMREform(medicalRecord, animal);
                 animalMREform.Show();
-
             }
         }
-        private void button_opret_Click(object sender, EventArgs e)
-        {
 
-
-            
-
-
-
-        }
 
         private void Button_opret_Click_1(object sender, EventArgs e)
         {
-
-            this.Cursor = Cursors.WaitCursor;
-
             string AnimalWeight = animal_weight.Text;
 
             int animalWeight = 0;
@@ -337,17 +277,13 @@ namespace AnimalHouseUI
             }
 
             if (CheckWeightDigit(AnimalWeight) == false)
-            {
-
-                
-
+            {     
                 if (AnimalWeight.ToString().Length == 8)
                 {
                     
                     animalWeight = Convert.ToInt32(animal_weight.Text);
 
                 }
-
                 MessageBox.Show("Vægten må kun bestå af tal");
                 return;
             }
@@ -361,8 +297,6 @@ namespace AnimalHouseUI
                 {
                     employee = (Employee)animal_employee.SelectedItem;
                 }
-
-
                 animal = AnimalFactory.Instance().CreateAnimal(customer, animal_name.Text.ToString(), (animal_bdate.Value), species, Convert.ToDouble(animal_weight.Text),gender, employee, true);
 
                 animal = BossController.Instance().animalController.CreateAnimal(animal);
@@ -376,53 +310,29 @@ namespace AnimalHouseUI
                 button_edit.Enabled = true;
                 button_create.Enabled = false;
                 button_delete.Enabled = true;
-
-               
-
-                
-
-
             }
             catch (Exception exception)
             {
 
                 string errorMessage = ErrorManager.Instance().GetErrorMessage(exception);
                 MessageBox.Show(errorMessage);
-                this.Cursor = Cursors.Default;
                 return;
             }
-
-            this.Cursor = Cursors.Default;
         }
-
-        private void Animal_species_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void LabelTitle_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Button_rediger_Click(object sender, EventArgs e)
         {
-
-            this.Cursor = Cursors.WaitCursor;
-            string AnimalWeight = animal_weight.Text;
+         string AnimalWeight = animal_weight.Text;
 
             int animalWeight = 0;
 
             if (CheckWeightDigit(AnimalWeight) == false)
             {
-
                 if (AnimalWeight.ToString().Length == 8)
                 {
                     
                     animalWeight = Convert.ToInt32(animal_weight.Text);
 
                 }
-
                 MessageBox.Show("Vægten må kun bestå af tal");
                 return;
             }
@@ -450,28 +360,20 @@ namespace AnimalHouseUI
                     customerForm.UpdateDataGridView();
                 }
             }
-            //MessageBox.Show(message);
             catch (Exception exception)
             {
-
                 string errorMessage = ErrorManager.Instance().GetErrorMessage(exception);
                 MessageBox.Show(errorMessage);
-                this.Cursor = Cursors.Default;
                 return;
             }
-
-            this.Cursor = Cursors.Default;
         }
 
         private void Button_slet_Click(object sender, EventArgs e)
         {
-            this.Cursor = Cursors.WaitCursor;
             var confirm = MessageBox.Show("Fjern dette dyr?", "Bekræft sletning", MessageBoxButtons.YesNo);
 
             if (confirm == DialogResult.Yes)
             {
-                //animal = BossController.instance().animalController.GetAnimal();
-
                 try
                 {
                     string message = BossController.Instance().animalController.DeleteAnimal(animal);
@@ -487,24 +389,16 @@ namespace AnimalHouseUI
                 {
                     string errorMessage = ErrorManager.Instance().GetErrorMessage(exception);
                     MessageBox.Show(errorMessage);
-                    this.Cursor = Cursors.Default;
                     return;
                 }
-
             }
-
-            this.Cursor = Cursors.Default;
         }
-
         private void LoadeAllItemsInComboBox()
         {
             species = BossController.Instance().animalController.GetSpecies();
 
             animal_species.DataSource = species;
             animal_species.DisplayMember = "speciesType";
-
-
-
 
             employees = BossController.Instance().employeeController.GetAllEmployees();
 
@@ -516,15 +410,9 @@ namespace AnimalHouseUI
             animal_employee.DisplayMember = "name";
 
             LoadPrescription();
-            
-
-           
-
-
         }
 
         private void LoadPrescription()
-
         {
             if(animal == null)
             {
@@ -533,11 +421,7 @@ namespace AnimalHouseUI
             List<Prescription> prescription = BossController.Instance().animalController.GetAllPrescriptionByAnimal(animal.animalID);
 
             animal.AddPrescriptionList(prescription);
-
-            
-
         }
-
         public bool selectGender
         {
             get
@@ -549,11 +433,10 @@ namespace AnimalHouseUI
                 animal_gender.SelectedIndex = value ? 0 : 1;
             }
         }
-
         public bool CheckWeightDigit(string weight)
         {
             double checkWeight =0;
-           
+  
             if(Double.TryParse(weight, out checkWeight))
             {
                 return true;
@@ -561,32 +444,8 @@ namespace AnimalHouseUI
             else
             {
                 return false;
-            }
-            
+            }          
         }
-      
-
-
-        private void Animal_gender_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void PictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Animal_employee_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void Button_help_Click(object sender, EventArgs e)
         {
             try
@@ -602,19 +461,13 @@ namespace AnimalHouseUI
         }
         public bool CheckEmtyTextBoxes()
         {
-
             if (string.IsNullOrEmpty(animal_name.Text.ToString())||animal_gender.SelectedIndex<0)
             {
 
                 return false;
             }
             return true;
-        }
-
-        private void Animal_medicalRecords_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
+        } 
     }
 }
 

@@ -272,6 +272,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AnimalHouse.ico" />
+    <Content Include="Medicine\medicin1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Medicine\medicin2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\question_mark_32px.png" />
     <None Include="Resources\AnimalHouse.ico" />
   </ItemGroup>

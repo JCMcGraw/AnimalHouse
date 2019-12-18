@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using AnimalHouseEntities;
+using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace AnimalHousePersistence
 {
@@ -14,7 +16,10 @@ namespace AnimalHousePersistence
         {
             List<MedicinePrice> list = new List<MedicinePrice>();
 
-           string[] MedicinPrices = File.ReadAllLines("Medicin/medicin1.txt");
+
+            string file = Path.GetDirectoryName(Application.ExecutablePath) + "/Medicine/medicin1.txt";
+
+            string[] MedicinPrices = File.ReadAllLines(file);
 
             DateTime date = Convert.ToDateTime(MedicinPrices[0]);
 

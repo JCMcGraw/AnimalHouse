@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AnimalHouseEntities;
 using AnimalHouse;
+using System.Threading;
 
 namespace AnimalHouseUI
 {
@@ -175,8 +176,15 @@ namespace AnimalHouseUI
 
         private void Main_Load(object sender, EventArgs e)
         {
-            //BossController.Instance().itemController.UpdateMedicinePrice(1);
-            //BossController.Instance().itemController.UpdateMedicinePrice(2);
+            Thread updateMedicinePrice = new Thread(() => UpdateMedicinePrice());
+            updateMedicinePrice.IsBackground = true;
+            updateMedicinePrice.Start();
+
+        }
+        private void UpdateMedicinePrice()
+        {
+            BossController.Instance().itemController.UpdateMedicinePrice(1);
+            BossController.Instance().itemController.UpdateMedicinePrice(2);
         }
 
         private void button1_Click(object sender, EventArgs e)

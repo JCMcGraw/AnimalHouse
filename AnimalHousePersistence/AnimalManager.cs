@@ -77,7 +77,6 @@ namespace AnimalHousePersistence
                 throw new AnimalNotEditedException("",sQLQueryResult.exception);
             }
         }
-
         public string DeleteAnimal(Animal animal)
         {
             string query = Utility.ReadSQLQueryFromFile("DeleteAnimal.txt");
@@ -98,7 +97,6 @@ namespace AnimalHousePersistence
                 throw new AnimalNotDeletedException("", sQLQueryResult.exception);
             }
         }
-
         public Animal GetAnimal(int animalID)
         {
             string query = Utility.ReadSQLQueryFromFile("GetAnimal.txt");
@@ -135,14 +133,12 @@ namespace AnimalHousePersistence
 
             return animal;
         }
-
         private List<Animal> GetAnimalList(SQLQueryResult sQLQueryResult)
         {
             List<Animal> animals = new List<Animal>();
 
             for (int i = 0; i < sQLQueryResult.dataTable.Rows.Count; i++)
             {
-
                 Employee employee = null;
                 if (sQLQueryResult.dataTable.Rows[i].IsNull("EmployeeID"))
                 {
@@ -159,7 +155,6 @@ namespace AnimalHousePersistence
 
                     employee = EmployeeFactory.Instance().CreateEmployee(employeeID, employeeName, employeeActive, title);
                 }
-
                 int CustomerID = (int)sQLQueryResult.dataTable.Rows[i]["CustomerID"];
                 string customerName = (string)sQLQueryResult.dataTable.Rows[i]["customername"];
                 string customeradress = (string)sQLQueryResult.dataTable.Rows[i]["Adress"];
@@ -173,12 +168,8 @@ namespace AnimalHousePersistence
                 int speciesID = (int)sQLQueryResult.dataTable.Rows[i]["Speciesid"];
                 string speciesName = (string)sQLQueryResult.dataTable.Rows[i]["SpeciesName"];
                 Species species = SpeciesFactory.Instance().CreateSpecies(speciesID, speciesName);
-
                 double weight = Convert.ToDouble((decimal)sQLQueryResult.dataTable.Rows[i]["Weight"]);
                 bool gender = (bool)sQLQueryResult.dataTable.Rows[i]["Gender"];
-
-                //int employeeID = (int)sQLQueryResult.dataTable.Rows[i]["employeeID"];
-
                 bool active = (bool)sQLQueryResult.dataTable.Rows[i]["Active"];
 
                 animals.Add(AnimalFactory.Instance().CreateAnimal(customer, animalID, name, birthday, species, weight, gender, employee, true));
@@ -207,7 +198,6 @@ namespace AnimalHousePersistence
                 throw new CantGetAnimalList("", sQLQueryResult.exception);
             }
         }
-
         private List<Species> GetSpecies(SQLQueryResult sQLQueryResult)
         {
             List<Species> species = new List<Species>();
@@ -222,7 +212,6 @@ namespace AnimalHousePersistence
                 return species;
             }
         }
-
         public List<Species> GetAllSpecies()
         {
             string query = Utility.ReadSQLQueryFromFile("GetSpecies.txt");
@@ -237,7 +226,6 @@ namespace AnimalHousePersistence
 
             return allspecies;
         }
-
         public List<MedicalRecord> GetAllMedicalRecordEntriesByAnimalID(Animal animal)
         {
             string query = Utility.ReadSQLQueryFromFile("GetAllMedicalRecordByAnimal.txt");
@@ -261,7 +249,6 @@ namespace AnimalHousePersistence
                 throw new MedicalRecordEntryNotFoundException("", sQLQueryResult.exception);
             } 
         }
-
         private List<MedicalRecord> GetMedicalRecordEntryList(Animal animal,SQLQueryResult sQLQueryResult)
         {
             List<MedicalRecord> entries = new List<MedicalRecord>();
@@ -282,7 +269,7 @@ namespace AnimalHousePersistence
 
                 MedicalRecord medicalRecord = MedicalRecordFactory.Instance().CreateMedicalRecord(MedicalRecordID, entry, animal, treatment);
                 entries.Add(medicalRecord);
-                //entries.Add(MedicalRecordFactory.Instance().CreateMedicalRecord(entry,animalID,treatmentType));
+              
             }
             return entries;
         }
