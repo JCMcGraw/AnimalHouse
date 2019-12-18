@@ -23,7 +23,7 @@ namespace AnimalHouseUI
             SelectCageCombobox.DataSource = cages;
             SelectCageCombobox.DisplayMember = "Species";
             SelectCageCombobox.Format += (s, e) => {
-                e.Value = "bur " + ((Cage)e.ListItem).CageID + " (" + ((Species)e.Value).speciesType + ")";
+                e.Value = "bur " + ((Cage)e.ListItem).CageID + " (" + ((Species)e.Value).speciesName + ")";
             };
 
         }

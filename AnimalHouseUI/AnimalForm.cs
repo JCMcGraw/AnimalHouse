@@ -185,11 +185,11 @@ namespace AnimalHouseUI
                 animal_owner.Text = "Ejer: " + customer.name;
                 AnimalName_Label.Text = animal.name;
                 
-                animalSpecies_label.Text = animal.Species.speciesType.ToString();
+                animalSpecies_label.Text = animal.Species.speciesName.ToString();
 
                 animal_name.Text = animal.name;
-                animal_bdate.Text = Convert.ToString(animal.birthday);
-                animal_species.Text = Convert.ToString(animal.Species.speciesType);
+                animal_bdate.Text = Convert.ToString(animal.birthYear);
+                animal_species.Text = Convert.ToString(animal.Species.speciesName);
                 animal_weight.Text = Convert.ToString(animal.weight);
                 animal_gender.SelectedIndex = Convert.ToInt32(animal.gender);
                 if (animal.Employee != null)
@@ -305,7 +305,7 @@ namespace AnimalHouseUI
                 customerForm.UpdateDataGridView();
 
                 AnimalName_Label.Text = animal.name;
-                animalSpecies_label.Text = animal.Species.speciesType.ToString();
+                animalSpecies_label.Text = animal.Species.speciesName.ToString();
                 animal_owner.Text = "Ejer: " + customer.name;
                 button_edit.Enabled = true;
                 button_create.Enabled = false;
@@ -467,7 +467,7 @@ namespace AnimalHouseUI
                 return false;
             }
             return true;
-        } 
+        }
     }
 }
 

@@ -12,7 +12,7 @@ namespace AnimalHouseEntities
 
         public string name { get; private set; }
 
-        public DateTime birthday { get; private set; }
+        public DateTime birthYear { get; private set; }
 
         public double weight { get; private set; }
 
@@ -30,12 +30,12 @@ namespace AnimalHouseEntities
 
         public Species Species { get; private set; }
 
-        public Animal(Customer customer, int animalID, string name, DateTime birthday, Species SpeciesType, double weight, bool gender,Employee employeeID, bool active)
+        public Animal(Customer customer, int animalID, string name, DateTime birthYear, Species SpeciesType, double weight, bool gender,Employee employeeID, bool active)
         {
             this.customer = customer;
             this.animalID = animalID;
             this.name = name;
-            this.birthday = birthday;
+            this.birthYear = birthYear;
             this.Species = SpeciesType;
             this.weight = weight;
             this.gender = gender;
@@ -43,11 +43,11 @@ namespace AnimalHouseEntities
             this.active = active;
         }
 
-        public Animal(Customer customer, string name, DateTime birthday, Species speciesType, double weight, bool gender,Employee employeeID, bool active)
+        public Animal(Customer customer, string name, DateTime birthYear, Species speciesType, double weight, bool gender,Employee employeeID, bool active)
         {
             this.customer = customer;
             this.name = name;
-            this.birthday = birthday;
+            this.birthYear = birthYear;
             this.Species = speciesType;
             this.weight = weight;
             this.gender = gender;

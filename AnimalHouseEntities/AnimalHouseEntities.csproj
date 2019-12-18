@@ -87,7 +87,7 @@
     <Compile Include="Title.cs" />
     <Compile Include="TitleFactory.cs" />
     <Compile Include="Treatment.cs" />
-    <Compile Include="TreatmentFaktory.cs" />
+    <Compile Include="TreatmentFactory.cs" />
     <Compile Include="TreatmentType.cs" />
     <Compile Include="TreatmentTypeFactory.cs" />
   </ItemGroup>

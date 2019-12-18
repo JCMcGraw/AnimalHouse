@@ -197,7 +197,7 @@
             this.animal_name.Location = new System.Drawing.Point(44, 268);
             this.animal_name.Name = "animal_name";
             this.animal_name.Size = new System.Drawing.Size(99, 20);
-            this.animal_name.TabIndex = 12;
+            this.animal_name.TabIndex = 1;
             // 
             // label_telefonnummer
             // 
@@ -259,7 +259,7 @@
             this.animal_weight.Location = new System.Drawing.Point(167, 315);
             this.animal_weight.Name = "animal_weight";
             this.animal_weight.Size = new System.Drawing.Size(99, 20);
-            this.animal_weight.TabIndex = 19;
+            this.animal_weight.TabIndex = 5;
             // 
             // label_email
             // 
@@ -304,7 +304,7 @@
             this.animal_species.Location = new System.Drawing.Point(44, 361);
             this.animal_species.Name = "animal_species";
             this.animal_species.Size = new System.Drawing.Size(99, 21);
-            this.animal_species.TabIndex = 30;
+            this.animal_species.TabIndex = 3;
             // 
             // animal_employee
             // 
@@ -322,7 +322,7 @@
             this.animal_employee.Location = new System.Drawing.Point(169, 361);
             this.animal_employee.Name = "animal_employee";
             this.animal_employee.Size = new System.Drawing.Size(99, 21);
-            this.animal_employee.TabIndex = 31;
+            this.animal_employee.TabIndex = 6;
             // 
             // label4
             // 
@@ -342,14 +342,14 @@
             this.animal_gender.Location = new System.Drawing.Point(44, 315);
             this.animal_gender.Name = "animal_gender";
             this.animal_gender.Size = new System.Drawing.Size(99, 21);
-            this.animal_gender.TabIndex = 33;
+            this.animal_gender.TabIndex = 2;
             // 
             // animal_bdate
             // 
             this.animal_bdate.Location = new System.Drawing.Point(169, 268);
             this.animal_bdate.Name = "animal_bdate";
             this.animal_bdate.Size = new System.Drawing.Size(98, 20);
-            this.animal_bdate.TabIndex = 34;
+            this.animal_bdate.TabIndex = 4;
             // 
             // label2
             // 

@@ -18,7 +18,7 @@ namespace AnimalHousePersistence
 
             sQLQuery.AddParameter("@customerid", animal.customer.customerID.ToString(), SqlDbType.Int);
             sQLQuery.AddParameter("@species", animal.Species.speciesID.ToString(), SqlDbType.Int);
-            sQLQuery.AddParameter("@birthday", animal.birthday.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
+            sQLQuery.AddParameter("@birthday", animal.birthYear.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime);
             sQLQuery.AddParameter("@name", animal.name.ToString(), SqlDbType.VarChar);
             sQLQuery.AddParameter("@weight", animal.weight.ToString(), SqlDbType.Float);
             sQLQuery.AddParameter("@gender", animal.gender.ToString(), SqlDbType.Bit);

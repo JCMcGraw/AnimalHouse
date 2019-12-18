@@ -532,7 +532,7 @@ namespace AnimalHouseUI
                 {
                     Species tmpspecies = animals[i].Species;
 
-                    dataGridView_dyr.Rows[i].Cells["speciestype"].Value = tmpspecies.speciesType;
+                    dataGridView_dyr.Rows[i].Cells["speciestype"].Value = tmpspecies.speciesName;
 
                 }
 
