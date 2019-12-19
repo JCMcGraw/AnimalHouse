@@ -37,8 +37,15 @@ namespace AnimalHouseUI
 
             LoadAllItemsInListBox();
             sale = SaleFactory.Instance().CreateSale(customer, DateTime.Now);
-            LastUpdate = BossController.Instance().itemController.GetLastUpdate();
-            UpdateMedicineLabel.Text = "Dato for sidst opdateret medicinpriser: " + LastUpdate.ToString("dd-MM-yyyy");
+            try
+            {
+                LastUpdate = BossController.Instance().itemController.GetLastUpdate();
+                UpdateMedicineLabel.Text = "Dato for sidst opdateret medicinpriser: " + LastUpdate.ToString("dd-MM-yyyy");
+            }
+            catch
+            {
+                UpdateMedicineLabel.Text = "";
+            }
         }
 
         #region Copy this 
