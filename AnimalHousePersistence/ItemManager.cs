@@ -83,9 +83,7 @@ namespace AnimalHousePersistence
             else
             {
                 throw new DateNotFound("", sQLQueryResult.exception);
-
             }
-
         }
 
         public List<Item> GetAllActiveItems()

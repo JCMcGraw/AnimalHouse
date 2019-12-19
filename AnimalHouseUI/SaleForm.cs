@@ -283,7 +283,6 @@ namespace AnimalHouseUI
         {
             try
             {
-
                 string file = Path.GetDirectoryName(Application.ExecutablePath) + "/helpfiles/Sale-Form-Help.pdf";
                 Process.Start(file);
             }
