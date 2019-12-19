@@ -9,7 +9,6 @@ namespace AnimalHouseUnitTest
     [TestClass]
     public class CustomerUnitTest
     {
-        
         static Customer customer = CustomerFactory.Instance().CreateCustomer("hans", "Vejvej", "+4553595754", "Hejsa@gmail.com", true,0);
 
         [TestMethod]
@@ -18,7 +17,6 @@ namespace AnimalHouseUnitTest
             CustomerManager customerManager = new CustomerManager();
             customerManager.CreateCustomer(customer);
             Assert.AreNotEqual(0, customer.customerID);
-
         }
 
         [TestMethod]
