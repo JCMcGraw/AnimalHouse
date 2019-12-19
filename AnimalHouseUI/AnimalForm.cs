@@ -396,7 +396,7 @@ namespace AnimalHouseUI
         private void LoadeAllItemsInComboBox()
         {
             species = BossController.Instance().animalController.GetSpecies();
-
+            
             animal_species.DataSource = species;
             animal_species.DisplayMember = "speciesType";
 
