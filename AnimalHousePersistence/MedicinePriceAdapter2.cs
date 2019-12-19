@@ -28,9 +28,9 @@ namespace AnimalHousePersistence
             {
                 string[] MedicinList = MedicinPrices[i].Split('?');
                 string name = MedicinList[1];
-                decimal price = Convert.ToDecimal(MedicinList[0]);
+                decimal price = Convert.ToDecimal(MedicinList[0], new System.Globalization.CultureInfo("da-DK"));
 
-                MedicinePrice medicinPrice = new MedicinePrice(name, price, date);
+                MedicinePrice medicinPrice = MedicinPriceFactory.Instance().CreateMedicinPrice(name, price, date);
                 list.Add(medicinPrice);
             }
             return list;
