@@ -1,1 +1,1 @@
-﻿select * from MedicinPriceDate 
+﻿select * from MedicinePriceDate 

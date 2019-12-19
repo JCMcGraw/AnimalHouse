@@ -1,1 +1,1 @@
-﻿update MedicinPriceDate set Updatetime = @newdate
+﻿update MedicinePriceDate set UpdateTime = @newdate

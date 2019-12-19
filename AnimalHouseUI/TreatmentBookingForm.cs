@@ -890,11 +890,11 @@ namespace AnimalHouseUI
 
             if (((TreatmentType)ComboBoxTreatmentType.SelectedItem).treatmentTypeID == 3)
             {
-                headline = $"{ComboBoxTreatmentType.Text}, {animal.name} ({animal.Species.speciesType})";
+                headline = $"{ComboBoxTreatmentType.Text}, {animal.name} ({animal.Species.speciesName})";
             }
             else
             {
-                headline = $"{ComboBoxTreatmentType.Text}, {selectedEmployee.name}, {selectedItem.name}. {animal.name} ({animal.Species.speciesType})";
+                headline = $"{ComboBoxTreatmentType.Text}, {selectedEmployee.name}, {selectedItem.name}. {animal.name} ({animal.Species.speciesName})";
             }
 
 
@@ -1246,7 +1246,7 @@ namespace AnimalHouseUI
             if (customerForm.DialogResult == DialogResult.OK)
             {
                 animal = customerForm.selectedAnimal;
-                AnimalLabel.Text = $"{animal.name} ({animal.Species.speciesType})";
+                AnimalLabel.Text = $"{animal.name} ({animal.Species.speciesName})";
                 if (animal.Employee != null)
                 {
                     int selectAnimalEmployeeIndex = ComboBoxEmployee.FindStringExact(animal.Employee.name);

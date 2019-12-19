@@ -23,9 +23,9 @@ namespace AnimalHouseEntities
         }
 
         //Laver Obj af Species
-        public Species CreateSpecies(int speciesID, string speciesType)
+        public Species CreateSpecies(int speciesID, string speciesName)
         {
-            return new Species(speciesID, speciesType);
+            return new Species(speciesID, speciesName);
         }
     }
 }

@@ -9,27 +9,39 @@ namespace AnimalHouseUnitTest
     public class SaleUnitTest
     {
         static Customer customer = CustomerFactory.Instance().CreateCustomer(1, "", "", "", "", false, 0);
-        Sale sale = new Sale(customer, DateTime.Now);
+        Sale sale = SaleFactory.Instance().CreateSale(customer, DateTime.Now);
+        
+
+
 
         [TestMethod]
         public void PriceTestMethod()
         {
+            SaleLineItem saleLineItem= SaleLineItemFactory.Instance().CreateSaleLineItem(null, 1, 5, 50, null, null);
+            sale.AddSaleLineItem(saleLineItem);
+
             decimal total = sale.Price();
-            Assert.AreEqual(25, total);
+            Assert.AreEqual(250, total);
         }
 
         [TestMethod]
         public void MomsTestMethod()
         {
+            SaleLineItem saleLineItem = SaleLineItemFactory.Instance().CreateSaleLineItem(null, 1, 5, 50, null, null);
+            sale.AddSaleLineItem(saleLineItem);
+
             decimal momsPrice = sale.Moms();
-            Assert.AreEqual(6.25m, momsPrice);
+            Assert.AreEqual(62.50m, momsPrice);
         }
 
         [TestMethod]
         public void TotalPriceInkMomsTestMethod()
         {
+            SaleLineItem saleLineItem = SaleLineItemFactory.Instance().CreateSaleLineItem(null, 1, 5, 50, null, null);
+            sale.AddSaleLineItem(saleLineItem);
+
             decimal totalPriceInkMoms = sale.TotalPriceInkMoms();
-            Assert.AreEqual(31.25m, totalPriceInkMoms);
+            Assert.AreEqual(312.50m, totalPriceInkMoms);
         }
     }
 }

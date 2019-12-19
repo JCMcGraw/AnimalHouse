@@ -149,7 +149,7 @@ namespace AnimalHouseUI
         private void TreatmentForm_Load_1(object sender, EventArgs e)
         {
             string animalName= treatment.animal.name.ToString();
-            string underheadline = treatment.animal.Species.speciesType+", " + treatment.treatmentType.name.ToString();
+            string underheadline = treatment.animal.Species.speciesName+", " + treatment.treatmentType.name.ToString();
             string underheadline2 = "Ejet af: "+treatment.animal.customer.name.ToString();
 
             label_header.Text = animalName;

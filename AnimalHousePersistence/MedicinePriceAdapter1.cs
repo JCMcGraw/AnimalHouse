@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using AnimalHouseEntities;
+using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace AnimalHousePersistence
 {
@@ -14,17 +16,20 @@ namespace AnimalHousePersistence
         {
             List<MedicinePrice> list = new List<MedicinePrice>();
 
-           string[] MedicinPrices = File.ReadAllLines("Medicin/medicin1.txt");
+
+            string file = Path.GetDirectoryName(Application.ExecutablePath) + "/Medicine/medicin1.txt";
+
+            string[] MedicinPrices = File.ReadAllLines(file);
 
             DateTime date = Convert.ToDateTime(MedicinPrices[0]);
 
             for (int i = 2; i < MedicinPrices.Length; i++)
             {
                 string[] MedicinList = MedicinPrices[i].Split('_');
-                decimal price = Convert.ToDecimal(MedicinList[1]);
+                decimal price = Convert.ToDecimal(MedicinList[1], new System.Globalization.CultureInfo("da-DK"));
                 string name = MedicinList[0];
                 
-                MedicinePrice medicinPrice = new MedicinePrice(name,price,date);
+                MedicinePrice medicinPrice = MedicinPriceFactory.Instance().CreateMedicinPrice(name,price,date);
                 list.Add(medicinPrice);
             }
             return list;
