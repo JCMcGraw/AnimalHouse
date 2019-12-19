@@ -273,6 +273,5 @@ namespace AnimalHousePersistence
 
             return saleLineItem;
         }
-
     }
 }

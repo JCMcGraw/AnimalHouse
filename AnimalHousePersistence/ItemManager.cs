@@ -41,6 +41,8 @@ namespace AnimalHousePersistence
                 }
                 UpdateMedicinePriceDate(medicinePrices[0]);
             }
+         
+
         }
         public string UpdateMedicinePriceDate(MedicinePrice medicinePrice)
         {
@@ -61,10 +63,6 @@ namespace AnimalHousePersistence
                 throw new DateNotUpdated("", sQLQueryResult.exception);
             }
 
-
-
-
-
         }
 
         public DateTime GetLastUpdate()
@@ -73,11 +71,7 @@ namespace AnimalHousePersistence
 
             SQLQuery sQLQuery = new SQLQuery(query);
 
-
-
             SQLQueryResult sQLQueryResult = SQLDatabaseConnector.QueryDatabase(sQLQuery);
-
-
 
             if (sQLQueryResult.code == 0)
             {
@@ -86,10 +80,7 @@ namespace AnimalHousePersistence
             else
             {
                 throw new DateNotFound("", sQLQueryResult.exception);
-
             }
-
-
         }
 
         public List<Item> GetAllActiveItems()
