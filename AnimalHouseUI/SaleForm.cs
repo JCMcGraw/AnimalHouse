@@ -306,7 +306,6 @@ namespace AnimalHouseUI
                 int row = ItemListDataGridView.SelectedRows[0].Index;
                 sale.saleLineItems.RemoveAt(row);
                 LoadeItemList();
-
             }
             catch { }
         }
