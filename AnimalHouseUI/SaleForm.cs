@@ -212,6 +212,7 @@ namespace AnimalHouseUI
                 return;
             }
             MessageBox.Show("Salg Oprettet");
+            EndButton.Enabled = false;
             FakturaButton.Enabled = true;
             this.Cursor = Cursors.Default;
         }
