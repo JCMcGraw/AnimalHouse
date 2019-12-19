@@ -328,10 +328,16 @@ namespace AnimalHouseUI
             }
             //Hvis kunden er en erhverskunde og cvr-nummer er gyldigt bliver et cvr sendt over som parameter
             //Dette bliver senere brugt til at oprette en businesscustomer
+            
             if (checkBox_erhverskunde.Checked == true && CheckForCVRdegit(cvr) == true)
             {
-                cvrint =Convert.ToInt32( textBox_cvr.Text);
+                cvrint = Convert.ToInt32(textBox_cvr.Text);
             }
+            
+
+
+
+
             //Ellers bliver cvr-nummeret bare sendt over som 0, som senere bliver brugt til at oprette en privatecustomer
             customer = CustomerFactory.Instance().CreateCustomer(textBox_navn.Text.ToString(), textBox_adresse.Text.ToString(), textBox_phonenumber.Text.ToString(), textBox_email.Text.ToString(), true, cvrint);
 
@@ -351,9 +357,8 @@ namespace AnimalHouseUI
                 label_underheader.Text = "Ret, slet, se dyr eller Tilføj dyr";
 
             }
-                catch (Exception exception)
+            catch (Exception exception)
             {
-
                 string errorMessage = ErrorManager.Instance().GetErrorMessage(exception);
                 MessageBox.Show(errorMessage);
                 return;
@@ -439,11 +444,19 @@ namespace AnimalHouseUI
             textBox_cvr.Enabled = true;
             checkBox_erhverskunde.Checked = false;
             dataGridView_dyr.DataSource = null;
-            label_underheader.Text = "Søg eller opret kunde";        }
+            label_underheader.Text = "Søg eller opret kunde";
+        }
 
         public bool CheckForCVRdegit(string cvr)
         {
-            return cvr.All(char.IsDigit);
+            if (cvr=="")
+            {
+                return false;
+            }
+            else
+            {
+                return cvr.All(char.IsDigit);
+            }
         }
 
         private void button_nulstil_Click(object sender, EventArgs e)

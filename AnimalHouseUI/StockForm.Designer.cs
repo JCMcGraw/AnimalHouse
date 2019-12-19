@@ -153,6 +153,10 @@
             // 
             // ItemDataGridView
             // 
+            this.ItemDataGridView.AllowUserToAddRows = false;
+            this.ItemDataGridView.AllowUserToDeleteRows = false;
+            this.ItemDataGridView.AllowUserToResizeColumns = false;
+            this.ItemDataGridView.AllowUserToResizeRows = false;
             this.ItemDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ItemDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.itemName,
@@ -160,6 +164,7 @@
             this.itemAmount});
             this.ItemDataGridView.Location = new System.Drawing.Point(60, 149);
             this.ItemDataGridView.Name = "ItemDataGridView";
+            this.ItemDataGridView.ReadOnly = true;
             this.ItemDataGridView.RowHeadersVisible = false;
             this.ItemDataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.ItemDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -170,17 +175,20 @@
             // 
             this.itemName.HeaderText = "Vare";
             this.itemName.Name = "itemName";
+            this.itemName.ReadOnly = true;
             // 
             // itemPrice
             // 
             this.itemPrice.HeaderText = "Pris";
             this.itemPrice.Name = "itemPrice";
+            this.itemPrice.ReadOnly = true;
             // 
             // itemAmount
             // 
             this.itemAmount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.itemAmount.HeaderText = "Antal";
             this.itemAmount.Name = "itemAmount";
+            this.itemAmount.ReadOnly = true;
             // 
             // AmountCheckBox
             // 

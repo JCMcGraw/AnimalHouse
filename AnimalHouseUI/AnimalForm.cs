@@ -280,9 +280,7 @@ namespace AnimalHouseUI
             {     
                 if (AnimalWeight.ToString().Length == 8)
                 {
-                    
                     animalWeight = Convert.ToInt32(animal_weight.Text);
-
                 }
                 MessageBox.Show("Vægten må kun bestå af tal");
                 return;
@@ -310,6 +308,12 @@ namespace AnimalHouseUI
                 button_edit.Enabled = true;
                 button_create.Enabled = false;
                 button_delete.Enabled = true;
+                animal_name.Enabled = false;
+                animal_bdate.Enabled = false;
+                animal_species.Enabled = false;
+                animal_gender.Enabled = false;
+                animal_medicalRecords.AutoGenerateColumns = false;
+
             }
             catch (Exception exception)
             {

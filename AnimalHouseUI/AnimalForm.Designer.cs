@@ -375,6 +375,7 @@
             this.date});
             this.animal_prescription.Location = new System.Drawing.Point(435, 373);
             this.animal_prescription.Name = "animal_prescription";
+            this.animal_prescription.ReadOnly = true;
             this.animal_prescription.RowHeadersVisible = false;
             this.animal_prescription.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.animal_prescription.Size = new System.Drawing.Size(301, 129);
@@ -384,12 +385,14 @@
             // 
             this.name.HeaderText = "Medicin";
             this.name.Name = "name";
+            this.name.ReadOnly = true;
             // 
             // amount
             // 
             this.amount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.amount.HeaderText = "Antal";
             this.amount.Name = "amount";
+            this.amount.ReadOnly = true;
             this.amount.Width = 56;
             // 
             // date
@@ -397,6 +400,7 @@
             this.date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.date.HeaderText = "Dato";
             this.date.Name = "date";
+            this.date.ReadOnly = true;
             // 
             // animal_medicalRecords
             // 

@@ -225,19 +225,33 @@ namespace AnimalHouseUI
 
         private void SendToAllButton_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show($"Ønsker du at sende påmindelser til {treatments.Count} kunder?", "Book behandling", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            if (treatments==null)
             {
-                MessageBox.Show("Påmindelser sendt!");
+                MessageBox.Show("Der er ikke nogle at sende til");
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show($"Ønsker du at sende påmindelser til {treatments.Count} kunder?", "Book behandling", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    MessageBox.Show("Påmindelser sendt!");
+                }
             }
         }
 
         private void SendToChosenButton_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show($"Ønsker du at sende påmindelser til {RemindersDataGridView.SelectedRows.Count} kunder?", "Book behandling", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            if (treatments==null)
             {
-                MessageBox.Show("Påmindelser sendt!");
+                MessageBox.Show("Der er ikke nogle at sende til");
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show($"Ønsker du at sende påmindelser til {RemindersDataGridView.SelectedRows.Count} kunder?", "Book behandling", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    MessageBox.Show("Påmindelser sendt!");
+                }
             }
         }
     }
