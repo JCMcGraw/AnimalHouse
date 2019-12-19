@@ -309,7 +309,6 @@ namespace AnimalHouseUI
 
             }
             catch { }
-
         }
 
         private void ChoseDataView1()
